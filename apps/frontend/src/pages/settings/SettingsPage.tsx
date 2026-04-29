@@ -29,13 +29,17 @@ import {
     CheckCircle,
     XCircle,
     Server,
+    Scan,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { Switch } from '@/components/ui/switch';
 
 interface SystemConfiguration {
     id: string;
     defaultProfitMargin: number;
     minStockAlert: number;
+    barcodeScannerEnabled: boolean;
+    barcodeScannerTimeoutMs: number;
     createdAt: string;
     updatedAt: string;
 }
@@ -54,6 +58,8 @@ export default function SettingsPage() {
     const queryClient = useQueryClient();
     const [profitMargin, setProfitMargin] = useState('');
     const [minStock, setMinStock] = useState('');
+    const [barcodeScannerEnabled, setBarcodeScannerEnabled] = useState(false);
+    const [barcodeScannerTimeoutMs, setBarcodeScannerTimeoutMs] = useState('100');
     const [healthStatus, setHealthStatus] = useState<HealthStatus | null>(null);
     const [isCheckingHealth, setIsCheckingHealth] = useState(false);
 
@@ -71,12 +77,14 @@ export default function SettingsPage() {
         if (config) {
             setProfitMargin(Number(config.defaultProfitMargin).toString());
             setMinStock(Number(config.minStockAlert).toString());
+            setBarcodeScannerEnabled(config.barcodeScannerEnabled);
+            setBarcodeScannerTimeoutMs(Number(config.barcodeScannerTimeoutMs).toString());
         }
     }, [config]);
 
     // Mutation para guardar configuración
     const saveMutation = useMutation({
-        mutationFn: async (data: { defaultProfitMargin?: number; minStockAlert?: number }) => {
+        mutationFn: async (data: { defaultProfitMargin?: number; minStockAlert?: number; barcodeScannerEnabled?: boolean; barcodeScannerTimeoutMs?: number }) => {
             const res = await api.patch('/api/configuration', data);
             return res.data;
         },
@@ -109,6 +117,7 @@ export default function SettingsPage() {
     const handleSave = () => {
         const margin = Number.parseFloat(profitMargin);
         const stock = Number.parseInt(minStock);
+        const timeout = Number.parseInt(barcodeScannerTimeoutMs);
 
         if (Number.isNaN(margin) || margin < 0) {
             toast.error('Ingrese un % de ganancia válido');
@@ -118,10 +127,16 @@ export default function SettingsPage() {
             toast.error('Ingrese un stock mínimo válido');
             return;
         }
+        if (Number.isNaN(timeout) || timeout < 0) {
+            toast.error('Ingrese un timeout de scanner válido');
+            return;
+        }
 
         saveMutation.mutate({
             defaultProfitMargin: margin,
             minStockAlert: stock,
+            barcodeScannerEnabled,
+            barcodeScannerTimeoutMs: timeout,
         });
     };
 
@@ -331,6 +346,66 @@ export default function SettingsPage() {
 
                             {/* Placeholder para alinear altura */}
                             <div className="h-9" />
+                        </div>
+                    </div>
+
+                    {/* Card: Lector de Códigos de Barras */}
+                    <div className="rounded-xl border bg-card shadow-sm overflow-hidden group hover:shadow-md transition-shadow">
+                        <div className="p-5 bg-gradient-to-r from-blue-500/10 to-indigo-500/5 border-b">
+                            <div className="flex items-center gap-3">
+                                <div className="h-10 w-10 rounded-xl bg-blue-500/15 flex items-center justify-center">
+                                    <Scan className="h-5 w-5 text-blue-600" />
+                                </div>
+                                <div>
+                                    <h3 className="font-semibold text-lg">Lector de Barras</h3>
+                                    <p className="text-xs text-muted-foreground">
+                                        Configuración del scanner
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="p-5 space-y-4">
+                            <div className="flex items-center justify-between">
+                                <div className="space-y-0.5">
+                                    <Label className="text-sm font-medium">Habilitar scanner</Label>
+                                    <p className="text-xs text-muted-foreground">
+                                        Permite usar lector de códigos de barras en ventas
+                                    </p>
+                                </div>
+                                <Switch
+                                    checked={barcodeScannerEnabled}
+                                    onCheckedChange={setBarcodeScannerEnabled}
+                                />
+                            </div>
+
+                            <div>
+                                <Label htmlFor="scannerTimeout" className="text-sm font-medium">
+                                    Timeout entre teclas (ms)
+                                </Label>
+                                <div className="flex gap-2 items-center mt-2">
+                                    <NumericInput
+                                        id="scannerTimeout"
+                                        allowDecimals={false}
+                                        value={barcodeScannerTimeoutMs}
+                                        onChange={(e) => setBarcodeScannerTimeoutMs(e.target.value)}
+                                        className="w-24 text-center font-semibold"
+                                    />
+                                    <span className="text-muted-foreground font-medium">ms</span>
+                                </div>
+                            </div>
+
+                            {/* Info visual */}
+                            <div className="rounded-xl bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/30 dark:to-indigo-950/20 p-4 border border-blue-200/50 dark:border-blue-900/50">
+                                <div className="text-sm">
+                                    <p className="font-medium text-blue-800 dark:text-blue-300">
+                                        Detección de scanner
+                                    </p>
+                                    <p className="text-muted-foreground text-xs mt-1">
+                                        Si el tiempo entre teclas es menor a <strong className="text-blue-700 dark:text-blue-400">{barcodeScannerTimeoutMs || 0}ms</strong>, se considera entrada de scanner
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

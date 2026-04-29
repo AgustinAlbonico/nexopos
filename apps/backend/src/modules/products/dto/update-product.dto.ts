@@ -48,6 +48,12 @@ export class UpdateProductDto {
     @Length(0, 100)
     brandName?: string | null;
 
+    @ApiPropertyOptional({ example: '1234567890123', description: 'Código de barras del producto' })
+    @IsOptional()
+    @IsString()
+    @Length(0, 100)
+    barcode?: string | null;
+
     @ApiPropertyOptional({ example: true })
     @IsOptional()
     @IsBoolean()

@@ -70,6 +70,11 @@ export const productsApi = {
         const response = await api.post<{ price: number }>('/api/products/calculate-price', data);
         return response.data;
     },
+
+    findByBarcode: async (barcode: string): Promise<Product | null> => {
+        const response = await api.get<Product>(`/api/products/barcode/${barcode}`);
+        return response.data;
+    },
 };
 
 export const categoriesApi = {

@@ -18,6 +18,12 @@ export class SystemConfiguration {
     @Column('boolean', { default: true })
     sistemaHabilitado!: boolean;
 
+    @Column('boolean', { default: false })
+    barcodeScannerEnabled!: boolean;
+
+    @Column('int', { default: 100 })
+    barcodeScannerTimeoutMs!: number;
+
     @CreateDateColumn()
     createdAt!: Date;
 

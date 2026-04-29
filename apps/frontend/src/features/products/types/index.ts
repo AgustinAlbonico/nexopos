@@ -37,6 +37,7 @@ export interface Category {
 export interface CreateProductDTO {
     name: string;
     description?: string | null;
+    barcode?: string | null;
     cost: number;
     stock?: number;
     categoryId?: string | null;

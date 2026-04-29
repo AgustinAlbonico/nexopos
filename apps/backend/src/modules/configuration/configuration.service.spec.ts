@@ -14,6 +14,8 @@ const createMockConfig = (overrides = {}) => ({
     id: 'config-uuid-123',
     defaultProfitMargin: 30,
     minStockAlert: 5,
+    barcodeScannerEnabled: false,
+    barcodeScannerTimeoutMs: 100,
     createdAt: new Date(),
     updatedAt: new Date(),
     ...overrides,
@@ -88,6 +90,8 @@ describe('ConfigurationService', () => {
             expect(mockConfigRepository.save).toHaveBeenCalledWith({
                 defaultProfitMargin: 30,
                 minStockAlert: 5,
+                barcodeScannerEnabled: false,
+                barcodeScannerTimeoutMs: 100,
             });
         });
 
@@ -128,6 +132,25 @@ describe('ConfigurationService', () => {
                 { defaultProfitMargin: 40 }
             );
             expect(result.defaultProfitMargin).toBe(40);
+        });
+
+        it('actualiza configuración del scanner de barras', async () => {
+            const oldConfig = createMockConfig();
+            const updatedConfig = createMockConfig({ barcodeScannerEnabled: true, barcodeScannerTimeoutMs: 200 });
+
+            mockConfigRepository.find
+                .mockResolvedValueOnce([oldConfig])
+                .mockResolvedValueOnce([updatedConfig]);
+            mockConfigRepository.update.mockResolvedValue({ affected: 1 });
+
+            const result = await service.updateConfiguration({ barcodeScannerEnabled: true, barcodeScannerTimeoutMs: 200 });
+
+            expect(mockConfigRepository.update).toHaveBeenCalledWith(
+                oldConfig.id,
+                { barcodeScannerEnabled: true, barcodeScannerTimeoutMs: 200 }
+            );
+            expect(result.barcodeScannerEnabled).toBe(true);
+            expect(result.barcodeScannerTimeoutMs).toBe(200);
         });
     });
 

@@ -14,6 +14,7 @@ export const BaseProductSchema = z.object({
     stock: z.number().int().min(0).optional().default(0),
     categoryId: z.string().uuid().optional().nullable(),
     brandName: z.string().max(100).optional().nullable(),
+    barcode: z.string().max(100).optional().nullable(),
     isActive: z.boolean().default(true),
     // Margen de ganancia personalizado (opcional)
     useCustomMargin: z.boolean().optional().default(false),
@@ -62,6 +63,12 @@ export class CreateProductDto {
     @IsString()
     @Length(0, 100)
     brandName?: string | null;
+
+    @ApiPropertyOptional({ example: '1234567890123', description: 'Código de barras del producto' })
+    @IsOptional()
+    @IsString()
+    @Length(0, 100)
+    barcode?: string | null;
 
     @ApiPropertyOptional({ example: true, default: true })
     @IsOptional()

@@ -58,4 +58,12 @@ export class ProductsController {
     remove(@Param('id') id: string) {
         return this.productsService.remove(id);
     }
+
+    @Get('barcode/:barcode')
+    @ApiOperation({ summary: 'Buscar producto por código de barras' })
+    @ApiResponse({ status: 200, description: 'Producto encontrado' })
+    @ApiResponse({ status: 404, description: 'Producto no encontrado' })
+    findByBarcode(@Param('barcode') barcode: string) {
+        return this.productsService.findByBarcode(barcode);
+    }
 }

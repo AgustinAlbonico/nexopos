@@ -31,6 +31,7 @@ interface ProductSearchProps {
     readonly showStock?: boolean;
     readonly showCost?: boolean;
     readonly showSKU?: boolean;
+    readonly showBarcode?: boolean;
     readonly limit?: number;
     readonly className?: string;
     readonly disabled?: boolean;
@@ -62,6 +63,7 @@ export function ProductSearch({
     showStock = true,
     showCost = false,
     showSKU = true,
+    showBarcode = true,
     limit = 15,
     className = '',
     disabled = false,
@@ -89,6 +91,9 @@ export function ProductSearch({
 
     const selectedProductName = selectedProductData?.name || null;
 
+    // Detectar si el término de búsqueda parece un código de barras (>8 caracteres numéricos)
+    const isBarcodeSearch = /^\d{9,}$/.test(searchTerm.trim());
+
     // Filtrar productos excluyendo los IDs especificados y los sin stock si corresponde
     const filteredProducts = productsData?.data.filter(
         product => {
@@ -99,6 +104,17 @@ export function ProductSearch({
             return true;
         }
     ) || [];
+
+    // Priorizar coincidencia exacta de barcode cuando la búsqueda parece un código de barras
+    const sortedProducts = isBarcodeSearch
+        ? [...filteredProducts].sort((a, b) => {
+            const aExact = a.barcode === searchTerm.trim();
+            const bExact = b.barcode === searchTerm.trim();
+            if (aExact && !bExact) return -1;
+            if (!aExact && bExact) return 1;
+            return 0;
+        })
+        : filteredProducts;
 
     const handleSelect = (product: Product) => {
         onSelect(product.id, product);
@@ -200,7 +216,7 @@ export function ProductSearch({
                                         </div>
                                     )}
                                     <CommandGroup>
-                                        {filteredProducts.map((product) => (
+                                        {sortedProducts.map((product) => (
                                             <CommandItem
                                                 key={product.id}
                                                 value={product.id}
@@ -209,6 +225,9 @@ export function ProductSearch({
                                                 <div className="flex flex-col flex-1">
                                                     <span className="font-medium">{product.name}</span>
                                                     <div className="flex gap-2 text-xs text-muted-foreground mt-0.5">
+                                                        {showBarcode && product.barcode && (
+                                                            <span>BAR: {product.barcode}</span>
+                                                        )}
                                                         {showSKU && (
                                                             <span>SKU: {product.sku ?? 'N/A'}</span>
                                                         )}

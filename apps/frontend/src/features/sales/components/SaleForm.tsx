@@ -2,7 +2,7 @@
  * Formulario profesional de Punto de Venta (POS)
  * Diseño moderno y optimizado para velocidad de uso
  */
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
@@ -47,6 +47,7 @@ import { Customer, CreateCustomerDTO } from '@/features/customers/types';
 import { createSaleSchema, CreateSaleFormValues } from '../schemas/sale.schema';
 import { PaymentMethod, CreateSaleDTO, CreateSalePaymentDTO, CreateSaleItemDTO } from '../types';
 import { getTodayLocal } from '@/lib/date-utils';
+import { api } from '@/lib/axios';
 import { fiscalApi } from '@/features/configuration/api/fiscal.api';
 import { IvaCondition } from '@/features/configuration/types/fiscal';
 import { paymentMethodsApi } from '@/features/configuration/api/payment-methods.api';
@@ -66,6 +67,8 @@ import { ParkedSalesDialog } from './ParkedSalesDialog';
 import { ProductFormDialog } from '@/features/products/components/ProductFormDialog';
 import { PauseCircle, History } from 'lucide-react';
 import { Product } from '@/features/products/types';
+import { useBarcodeScanner } from '@/hooks/useBarcodeScanner';
+import { productsApi } from '@/features/products/api/products.api';
 
 interface SaleFormProps {
     readonly onSubmit: (data: CreateSaleDTO) => void;
@@ -128,6 +131,21 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
 
     // Inline Product Creation
     const [showCreateProduct, setShowCreateProduct] = useState(false);
+
+    // Scanner state
+    const [pendingItemIndex, setPendingItemIndex] = useState<number | null>(null);
+
+    // Obtener configuración del sistema para saber si el scanner está habilitado
+    const { data: systemConfig } = useQuery({
+        queryKey: ['configuration'],
+        queryFn: async () => {
+            const res = await api.get('/api/configuration');
+            return res.data as { barcodeScannerEnabled: boolean; barcodeScannerTimeoutMs: number };
+        },
+    });
+
+    const scannerEnabled = systemConfig?.barcodeScannerEnabled ?? false;
+    const scannerTimeout = systemConfig?.barcodeScannerTimeoutMs ?? 100;
 
     const form = useForm<CreateSaleFormValues>({
         resolver: zodResolver(createSaleSchema),
@@ -239,7 +257,7 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
         addItemToSale(productId, product);
     };
 
-    const addItemToSale = (productId: string, product: any) => {
+    const addItemToSale = useCallback((productId: string, product: any): number => {
         // Verificar si el producto ya está en la lista
         const existingIndex = items.findIndex(item => item.productId === productId);
 
@@ -250,11 +268,12 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
 
             if (maxStock !== undefined && currentQty >= maxStock) {
                 toast.error(`Stock máximo alcanzado: ${maxStock}`);
-                return;
+                return existingIndex;
             }
 
             form.setValue(`items.${existingIndex}.quantity`, currentQty + 1);
             toast.success(`${product.name} x${currentQty + 1}`);
+            return existingIndex;
         } else {
             // Agregar nuevo producto
             appendItem({
@@ -267,8 +286,9 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
                 stock: product.stock,
             });
             toast.success(`${product.name} agregado`);
+            return items.length;
         }
-    }
+    }, [items, form, appendItem]);
 
     const handleCreateProduct = () => {
         setShowCreateProduct(true);
@@ -278,6 +298,66 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
         // Agregar el producto creado a la venta automáticamente
         addItemToSale(product.id, product);
     };
+
+    // Procesar barcode escaneado (scanner rápido)
+    const handleBarcodeScan = useCallback(async (barcode: string) => {
+        try {
+            // Si hay un item pendiente, confirmarlo con qty=1 antes de agregar el nuevo
+            if (pendingItemIndex !== null) {
+                setPendingItemIndex(null);
+            }
+
+            // Buscar producto por barcode usando endpoint dedicado
+            const matched = await productsApi.findByBarcode(barcode);
+
+            if (!matched) {
+                toast.error(`Producto no encontrado: ${barcode}`);
+                return;
+            }
+
+            const newIndex = addItemToSale(matched.id, matched);
+            // El nuevo item queda pendiente para edición de cantidad
+            setPendingItemIndex(newIndex);
+        } catch {
+            toast.error('Error al buscar producto por código de barras');
+        }
+    }, [pendingItemIndex, addItemToSale]);
+
+    // Procesar entrada manual lenta + Enter (cantidad)
+    const handleManualEnter = useCallback((buffer: string) => {
+        if (pendingItemIndex === null) return;
+
+        const qty = Number.parseInt(buffer, 10);
+        if (!Number.isNaN(qty) && qty > 0) {
+            const maxStock = items[pendingItemIndex]?.stock;
+            const finalQty = maxStock !== undefined ? Math.min(qty, maxStock) : qty;
+            form.setValue(`items.${pendingItemIndex}.quantity`, finalQty);
+            toast.success(`Cantidad actualizada: ${finalQty}`);
+        }
+        setPendingItemIndex(null);
+    }, [pendingItemIndex, items, form]);
+
+    // Hook de scanner de códigos de barras (unificado: scanner + cantidad manual)
+    useBarcodeScanner({
+        enabled: scannerEnabled,
+        timeoutMs: scannerTimeout,
+        onScan: handleBarcodeScan,
+        onManualEnter: handleManualEnter,
+    });
+
+    // Listener para Escape (cancelar item pendiente)
+    useEffect(() => {
+        if (pendingItemIndex === null) return;
+
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                setPendingItemIndex(null);
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        return () => document.removeEventListener('keydown', handleKeyDown);
+    }, [pendingItemIndex]);
 
     const updateQuantity = (index: number, delta: number) => {
         const currentQty = items[index]?.quantity || 1;
@@ -572,6 +652,8 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
                                 onRemoveItem={removeItem}
                                 subtotal={subtotal}
                                 control={form.control}
+                                pendingItemIndex={pendingItemIndex}
+                                onConfirmPending={() => setPendingItemIndex(null)}
                             />
                         </div>
 

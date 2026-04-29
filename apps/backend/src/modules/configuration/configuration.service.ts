@@ -24,6 +24,8 @@ export class ConfigurationService implements OnModuleInit {
             await this.configRepository.save({
                 defaultProfitMargin: 30,
                 minStockAlert: 5,
+                barcodeScannerEnabled: false,
+                barcodeScannerTimeoutMs: 100,
             });
         }
     }

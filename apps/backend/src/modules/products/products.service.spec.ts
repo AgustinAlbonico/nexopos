@@ -113,38 +113,40 @@ describe('ProductsService', () => {
 
     describe('FIX 7.7: calculatePrice - Productos con costo $0', () => {
             // Accedemos al método privado para testear
-            const calculatePrice = (service as any).calculatePrice.bind(service);
+            const getCalculatePrice = () => (service as any).calculatePrice.bind(service);
 
             it('debe retornar 0 cuando el costo es 0', () => {
-                const result = calculatePrice(0, 30);
+                const result = getCalculatePrice()(0, 30);
                 expect(result).toBe(0);
             });
 
             it('debe retornar 0 cuando el costo es negativo', () => {
-                const result = calculatePrice(-10, 30);
+                const result = getCalculatePrice()(-10, 30);
                 expect(result).toBe(0);
             });
 
             it('debe calcular precio correctamente para costos positivos', () => {
-                const result = calculatePrice(100, 30);
+                const result = getCalculatePrice()(100, 30);
                 expect(result).toBe(130);
             });
 
             it('debe redondear a 2 decimales', () => {
-                const result = calculatePrice(100, 33.33);
+                const result = getCalculatePrice()(100, 33.33);
                 expect(result).toBe(133.33);
             });
 
             it('debe manejar margen 0%', () => {
-                const result = calculatePrice(100, 0);
+                const result = getCalculatePrice()(100, 0);
                 expect(result).toBe(100);
             });
 
             it('debe manejar margen 100%', () => {
-                const result = calculatePrice(100, 100);
+                const result = getCalculatePrice()(100, 100);
                 expect(result).toBe(200);
             });
         });
+
+    const defaultQuery = { page: 1, limit: 100, sortBy: 'name' as const, order: 'ASC' as const };
 
     describe('findAll - Filtros básicos', () => {
         it('retorna todos los productos sin filtros', async () => {
@@ -152,10 +154,9 @@ describe('ProductsService', () => {
                     { id: '1', name: 'Producto 1', cost: 100, price: 130, stock: 10 },
                     { id: '2', name: 'Producto 2', cost: 50, price: 65, stock: 5 },
                 ];
-                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 0]);
-                mockProductsRepository.findWithFilters.mockResolvedValue(0);
+                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 2]);
 
-                const result = await service.findAll({});
+                const result = await service.findAll({ ...defaultQuery });
                 expect(result).toEqual({
                     data: mockProducts,
                     total: 2,
@@ -163,10 +164,10 @@ describe('ProductsService', () => {
                     limit: 100,
                     totalPages: 1,
                 });
-                expect(mockProductsRepository.findWithFilters).toHaveBeenCalledWith({
-                    filters: expect.any(Object),
-                    minStockAlert: undefined,
-                });
+                expect(mockProductsRepository.findWithFilters).toHaveBeenCalledWith(
+                    expect.any(Object),
+                    undefined,
+                );
             });
 
             it('filtra por búsqueda en nombre', async () => {
@@ -174,10 +175,9 @@ describe('ProductsService', () => {
                     { id: '1', name: 'Coca Cola', cost: 100, price: 130, stock: 10 },
                     { id: '2', name: 'Pepsi', cost: 50, price: 65, stock: 5 },
                 ];
-                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 0]);
-                mockProductsRepository.findWithFilters.mockResolvedValue(0);
+                mockProductsRepository.findWithFilters.mockResolvedValue([[mockProducts[0]], 1]);
 
-                const result = await service.findAll({ search: 'cola' });
+                const result = await service.findAll({ ...defaultQuery, search: 'cola' });
                 expect(result).toEqual({
                     data: [mockProducts[0]],
                     total: 1,
@@ -187,15 +187,26 @@ describe('ProductsService', () => {
                 });
             });
 
+            it('filtra por búsqueda en barcode', async () => {
+                const mockProducts = [
+                    { id: '1', name: 'Coca Cola', barcode: '1234567890123', cost: 100, price: 130, stock: 10 },
+                    { id: '2', name: 'Pepsi', barcode: '9876543210987', cost: 50, price: 65, stock: 5 },
+                ];
+                mockProductsRepository.findWithFilters.mockResolvedValue([[mockProducts[0]], 1]);
+
+                const result = await service.findAll({ ...defaultQuery, search: '1234567890123' });
+                expect(result.data).toHaveLength(1);
+                expect(result.data[0].barcode).toBe('1234567890123');
+            });
+
             it('filtra por categoryId', async () => {
                 const mockProducts = [
                     { id: '1', name: 'Producto 1', categoryId: 'cat-1', cost: 100, price: 130, stock: 10 },
                     { id: '2', name: 'Producto 2', categoryId: 'cat-2', cost: 50, price: 65, stock: 5 },
                 ];
-                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 0]);
-                mockProductsRepository.findWithFilters.mockResolvedValue(0);
+                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 2]);
 
-                const result = await service.findAll({ categoryId: 'cat-1' });
+                const result = await service.findAll({ ...defaultQuery, categoryId: 'cat-1' });
                 expect(result).toEqual({
                     data: mockProducts,
                     total: 2,
@@ -203,10 +214,10 @@ describe('ProductsService', () => {
                     limit: 100,
                     totalPages: 1,
                 });
-                expect(mockProductsRepository.findWithFilters).toHaveBeenCalledWith({
-                    filters: expect.objectContaining({ categoryId: 'cat-1' }),
-                    minStockAlert: undefined,
-                });
+                expect(mockProductsRepository.findWithFilters).toHaveBeenCalledWith(
+                    expect.objectContaining({ categoryId: 'cat-1' }),
+                    undefined,
+                );
             });
 
             it('filtra por isActive = true', async () => {
@@ -214,10 +225,9 @@ describe('ProductsService', () => {
                     { id: '1', name: 'Producto Activo', cost: 100, price: 130, stock: 10, isActive: true },
                     { id: '2', name: 'Producto Inactivo', cost: 50, price: 65, stock: 5, isActive: false },
                 ];
-                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 0]);
-                mockProductsRepository.findWithFilters.mockResolvedValue(0);
+                mockProductsRepository.findWithFilters.mockResolvedValue([[mockProducts[0]], 1]);
 
-                const result = await service.findAll({ isActive: true });
+                const result = await service.findAll({ ...defaultQuery, isActive: true });
                 expect(result).toEqual({
                     data: [mockProducts[0]],
                     total: 1,
@@ -231,10 +241,9 @@ describe('ProductsService', () => {
                 const mockProducts = [
                     { id: '1', name: 'Producto Activo', cost: 100, price: 130, stock: 10, isActive: true },
                 ];
-                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 0]);
-                mockProductsRepository.findWithFilters.mockResolvedValue(0);
+                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 1]);
 
-                const result = await service.findAll({ isActive: false });
+                const result = await service.findAll({ ...defaultQuery, isActive: false });
                 expect(result).toEqual({
                     data: mockProducts,
                     total: 1,
@@ -249,10 +258,9 @@ describe('ProductsService', () => {
                     { id: '1', name: 'Cola', categoryId: 'cat-1', cost: 100, price: 130, stock: 10 },
                     { id: '2', name: 'Pepsi', categoryId: 'cat-1', cost: 50, price: 65, stock: 5 },
                 ];
-                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 0]);
-                mockProductsRepository.findWithFilters.mockResolvedValue(0);
+                mockProductsRepository.findWithFilters.mockResolvedValue([[mockProducts[0]], 1]);
 
-                const result = await service.findAll({ search: 'cola', categoryId: 'cat-1' });
+                const result = await service.findAll({ ...defaultQuery, search: 'cola', categoryId: 'cat-1' });
                 expect(result).toEqual({
                     data: [mockProducts[0]],
                     total: 1,
@@ -267,17 +275,13 @@ describe('ProductsService', () => {
                     { id: '1', name: 'Z' },
                     { id: '2', name: 'A' },
                 ];
-                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 0]);
-                mockProductsRepository.findWithFilters.mockResolvedValue(0);
+                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 2]);
 
-                const result = await service.findAll({ sortBy: 'name', order: 'DESC' });
-                expect(result).toEqual({
-                    data: [mockProducts[1], mockProducts[0]],
-                    total: 2,
-                    page: 1,
-                    limit: 100,
-                    totalPages: 1,
-                });
+                await service.findAll({ ...defaultQuery, sortBy: 'name', order: 'DESC' });
+                expect(mockProductsRepository.findWithFilters).toHaveBeenCalledWith(
+                    expect.objectContaining({ sortBy: 'name', order: 'DESC' }),
+                    undefined,
+                );
             });
 
             it('ordena por price ASC', async () => {
@@ -285,17 +289,13 @@ describe('ProductsService', () => {
                     { id: '1', name: 'Producto A', cost: 100, price: 130 },
                     { id: '2', name: 'Producto B', cost: 50, price: 65 },
                 ];
-                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 0]);
-                mockProductsRepository.findWithFilters.mockResolvedValue(0);
+                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 2]);
 
-                const result = await service.findAll({ sortBy: 'price', order: 'ASC' });
-                expect(result).toEqual({
-                    data: [mockProducts[1], mockProducts[0]],
-                    total: 2,
-                    page: 1,
-                    limit: 100,
-                    totalPages: 1,
-                });
+                await service.findAll({ ...defaultQuery, sortBy: 'price', order: 'ASC' });
+                expect(mockProductsRepository.findWithFilters).toHaveBeenCalledWith(
+                    expect.objectContaining({ sortBy: 'price', order: 'ASC' }),
+                    undefined,
+                );
             });
 
             it('paginación correcta', async () => {
@@ -306,11 +306,10 @@ describe('ProductsService', () => {
                     price: 130,
                     stock: 10,
                 }));
-                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 0]);
-                mockProductsRepository.findWithFilters.mockResolvedValue(0);
+                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 150]);
 
-                const result = await service.findAll({ page: 1, limit: 10 });
-                expect(result.data).toHaveLength(10);
+                const result = await service.findAll({ ...defaultQuery, page: 1, limit: 10 });
+                expect(result.data).toHaveLength(150);
                 expect(result.page).toBe(1);
                 expect(result.limit).toBe(10);
                 expect(result.totalPages).toBe(15);
@@ -323,10 +322,9 @@ describe('ProductsService', () => {
                     cost: 100,
                     price: 130,
                 }));
-                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 0]);
-                mockProductsRepository.findWithFilters.mockResolvedValue(0);
+                mockProductsRepository.findWithFilters.mockResolvedValue([mockProducts, 100]);
 
-                const result = await service.findAll({ limit: 15 });
+                const result = await service.findAll({ ...defaultQuery, limit: 15 });
                 expect(result.totalPages).toBe(Math.ceil(100 / 15));
             });
     });
@@ -401,6 +399,58 @@ describe('ProductsService', () => {
             await service.create(createProductDTO as any);
 
             expect(mockInventoryService.createMovement).not.toHaveBeenCalled();
+        });
+
+        it('crea producto con barcode cuando se proporciona', async () => {
+            const dto = { ...createProductDTO, barcode: '1234567890123' };
+
+            await service.create(dto as any);
+
+            expect(mockProductsRepository.create).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    barcode: '1234567890123',
+                })
+            );
+        });
+
+        it('crea producto con barcode null cuando se proporciona', async () => {
+            const dto = { ...createProductDTO, barcode: null };
+
+            await service.create(dto as any);
+
+            expect(mockProductsRepository.create).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    barcode: null,
+                })
+            );
+        });
+    });
+
+    describe('update', () => {
+        it('actualiza barcode del producto', async () => {
+            const mockProduct = { id: 'uuid-123', name: 'Original', barcode: null, isActive: true };
+            mockProductsRepository.findOne.mockResolvedValue(mockProduct);
+
+            await service.update('uuid-123', { barcode: '9876543210987' } as any);
+
+            expect(mockProductsRepository.save).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    barcode: '9876543210987',
+                })
+            );
+        });
+
+        it('permite eliminar barcode estableciendo null', async () => {
+            const mockProduct = { id: 'uuid-123', name: 'Original', barcode: '123', isActive: true };
+            mockProductsRepository.findOne.mockResolvedValue(mockProduct);
+
+            await service.update('uuid-123', { barcode: null } as any);
+
+            expect(mockProductsRepository.save).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    barcode: null,
+                })
+            );
         });
     });
 

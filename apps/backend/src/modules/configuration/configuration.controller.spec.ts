@@ -16,6 +16,8 @@ describe('ConfigurationController', () => {
         defaultProfitMargin: 30,
         minStockAlert: 5,
         sistemaHabilitado: true,
+        barcodeScannerEnabled: false,
+        barcodeScannerTimeoutMs: 100,
         createdAt: new Date('2026-01-01'),
         updatedAt: new Date('2026-01-01'),
     };

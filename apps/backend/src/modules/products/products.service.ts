@@ -108,6 +108,7 @@ export class ProductsService {
             categoryId: dto.categoryId || null,
             brand,
             brandId: brand?.id || null,
+            barcode: dto.barcode ?? null,
             isActive: dto.isActive ?? true,
         });
 
@@ -191,6 +192,7 @@ export class ProductsService {
         if (dto.description !== undefined) product.description = dto.description;
         if (dto.cost !== undefined) product.cost = dto.cost;
         if (dto.stock !== undefined) product.stock = dto.stock;
+        if (dto.barcode !== undefined) product.barcode = dto.barcode;
         if (dto.isActive !== undefined) product.isActive = dto.isActive;
 
         return this.productsRepository.save(product);
@@ -298,6 +300,17 @@ export class ProductsService {
         }
 
         return updated;
+    }
+
+    /**
+     * Busca un producto por código de barras exacto
+     * Útil para scanners de código de barras en el POS
+     */
+    async findByBarcode(barcode: string): Promise<Product | null> {
+        if (!barcode) {
+            return null;
+        }
+        return this.productsRepository.findByBarcode(barcode);
     }
 
     /**

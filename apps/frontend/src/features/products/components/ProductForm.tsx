@@ -159,6 +159,26 @@ export function ProductForm({ initialData, onSubmit, isLoading, isEditing }: Pro
                     )}
                 />
 
+                {/* Código de barras */}
+                <FormField
+                    control={form.control}
+                    name="barcode"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Código de Barras</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder="Ej: 7791234567890"
+                                    {...field}
+                                    value={field.value || ''}
+                                />
+                            </FormControl>
+                            <FormDescription>Código de barras del producto (opcional)</FormDescription>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+
                 {/* Marca (Autocomplete / Nueva) */}
                 <FormField
                     control={form.control}

@@ -1,5 +1,5 @@
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNumber, Min, Max, IsOptional, IsInt } from 'class-validator';
+import { IsNumber, Min, Max, IsOptional, IsInt, IsBoolean } from 'class-validator';
 
 /**
  * DTO para actualizar configuración del sistema
@@ -17,4 +17,15 @@ export class UpdateConfigurationDto {
     @IsInt()
     @Min(0)
     minStockAlert?: number;
+
+    @ApiPropertyOptional({ example: false, description: 'Habilitar escáner de código de barras' })
+    @IsOptional()
+    @IsBoolean()
+    barcodeScannerEnabled?: boolean;
+
+    @ApiPropertyOptional({ example: 100, description: 'Timeout del escáner de código de barras en milisegundos' })
+    @IsOptional()
+    @IsInt()
+    @Min(0)
+    barcodeScannerTimeoutMs?: number;
 }

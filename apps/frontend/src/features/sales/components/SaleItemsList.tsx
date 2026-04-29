@@ -27,6 +27,8 @@ interface SaleItemsListProps {
     readonly onRemoveItem: (index: number) => void;
     readonly subtotal: number;
     readonly control: Control<CreateSaleFormValues>;
+    readonly pendingItemIndex?: number | null;
+    readonly onConfirmPending?: () => void;
 }
 
 function formatCurrency(value: number): string {
@@ -44,7 +46,9 @@ export function SaleItemsList({
     onUpdateQuantity,
     onRemoveItem,
     subtotal,
-    control
+    control,
+    pendingItemIndex,
+    onConfirmPending,
 }: SaleItemsListProps) {
     const [showNotes, setShowNotes] = useState(false);
 
@@ -77,15 +81,26 @@ export function SaleItemsList({
                             const item = items[index];
                             const itemTotal = (item?.quantity || 0) * (item?.unitPrice || 0) - (item?.discount || 0);
 
+                            const isPending = pendingItemIndex === index;
+
                             return (
                                 <div
                                     key={field.id}
-                                    className="flex items-center gap-3 p-3 bg-muted/30 rounded-lg hover:bg-muted/50 transition-colors group"
+                                    className={`flex items-center gap-3 p-3 rounded-lg transition-colors group ${
+                                        isPending
+                                            ? 'bg-blue-50 dark:bg-blue-950/30 border-2 border-blue-300 dark:border-blue-700 animate-pulse'
+                                            : 'bg-muted/30 hover:bg-muted/50'
+                                    }`}
                                 >
                                     {/* Info del producto */}
                                     <div className="flex-1 min-w-0">
-                                        <div className="font-medium truncate">
+                                        <div className="font-medium truncate flex items-center gap-2">
                                             {item?.productName || 'Producto sin nombre'}
+                                            {isPending && (
+                                                <span className="text-[10px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-semibold">
+                                                    PENDIENTE
+                                                </span>
+                                            )}
                                         </div>
                                         <div className="flex items-center gap-2 mt-1 text-xs text-muted-foreground">
                                             <span>{formatCurrency(item?.unitPrice || 0)} c/u</span>

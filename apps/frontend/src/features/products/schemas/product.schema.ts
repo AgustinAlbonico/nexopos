@@ -11,6 +11,7 @@ import { z } from 'zod';
 export const productSchema = z.object({
     name: z.string().min(1, 'El nombre es requerido').max(255),
     description: z.string().max(1000).optional().nullable(),
+    barcode: z.string().max(100).optional().nullable(),
     cost: z.coerce.number().min(0, 'El costo debe ser 0 o mayor'),
     stock: z.coerce.number().int().min(0, 'El stock debe ser 0 o mayor').default(0),
     categoryId: z.string().uuid().optional().nullable(),
