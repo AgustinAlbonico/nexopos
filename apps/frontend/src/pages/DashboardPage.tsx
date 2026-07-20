@@ -70,8 +70,8 @@ export function DashboardPage() {
     // Estado de carga
     if (isLoading) {
         return (
-            <div className="flex items-center justify-center h-96">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            <div className="flex items-center justify-center min-h-64 xl:min-h-80 2xl:min-h-96">
+                <div className="animate-spin rounded-full h-10 w-10 xl:h-12 xl:w-12 border-b-2 border-primary"></div>
             </div>
         );
     }
@@ -79,8 +79,8 @@ export function DashboardPage() {
     // Estado de error
     if (error || !dashboard) {
         return (
-            <div className="flex flex-col items-center justify-center h-96 space-y-4">
-                <AlertTriangle className="h-16 w-16 text-destructive" />
+            <div className="flex flex-col items-center justify-center min-h-64 xl:min-h-80 2xl:min-h-96 space-y-4">
+                <AlertTriangle className="h-12 w-12 xl:h-16 xl:w-16 text-destructive" />
                 <p className="text-lg text-muted-foreground">Error al cargar el dashboard</p>
                 <Button onClick={() => globalThis.location.reload()}>Reintentar</Button>
             </div>
@@ -94,11 +94,11 @@ export function DashboardPage() {
         backupStatus?.needsBackup;
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-4 xl:space-y-6">
             {/* Header con saludo y acciones rápidas */}
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 wide:gap-4">
                 <div>
-                    <h1 className="text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
+                    <h1 className="text-2xl xl:text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
                         ¡Hola, {user?.firstName}!
                     </h1>
                     <p className="text-muted-foreground mt-1">
@@ -209,16 +209,16 @@ export function DashboardPage() {
             )}
 
             {/* KPIs principales */}
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 wide:grid-cols-5 2xl:gap-4">
                 {/* Ventas del día */}
                 <Card className="relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-bl-full" />
+                    <div className="absolute top-0 right-0 w-12 h-12 wide:w-20 wide:h-20 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-bl-full" />
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Ventas Hoy</CardTitle>
-                        <ShoppingCart className="h-4 w-4 text-emerald-600" />
+                        <CardTitle className="text-xs xl:text-sm font-medium text-muted-foreground">Ventas Hoy</CardTitle>
+                        <ShoppingCart className="h-3 w-3 xl:h-4 xl:w-4 text-emerald-600" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-emerald-600">
+                        <div className="text-xl xl:text-2xl font-bold text-emerald-600">
                             {formatCurrency(dashboard.today.sales.revenue)}
                         </div>
                         <p className="text-xs text-muted-foreground mt-1">
@@ -229,13 +229,13 @@ export function DashboardPage() {
 
                 {/* Ventas del mes */}
                 <Card className="relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-blue-500/20 to-transparent rounded-bl-full" />
+                    <div className="absolute top-0 right-0 w-12 h-12 wide:w-20 wide:h-20 bg-gradient-to-br from-blue-500/20 to-transparent rounded-bl-full" />
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Ventas Mes</CardTitle>
-                        <TrendingUp className="h-4 w-4 text-blue-600" />
+                        <CardTitle className="text-xs xl:text-sm font-medium text-muted-foreground">Ventas Mes</CardTitle>
+                        <TrendingUp className="h-3 w-3 xl:h-4 xl:w-4 text-blue-600" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-blue-600">
+                        <div className="text-xl xl:text-2xl font-bold text-blue-600">
                             {formatCurrency(dashboard.month.sales.revenue)}
                         </div>
                         <div className="flex items-center gap-1 mt-1">
@@ -254,14 +254,14 @@ export function DashboardPage() {
 
                 {/* Resultado neto */}
                 <Card className="relative overflow-hidden">
-                    <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${dashboard.month.netProfit >= 0 ? 'from-emerald-500/20' : 'from-destructive/20'
+                    <div className={`absolute top-0 right-0 w-12 h-12 wide:w-20 wide:h-20 bg-gradient-to-br ${dashboard.month.netProfit >= 0 ? 'from-emerald-500/20' : 'from-destructive/20'
                         } to-transparent rounded-bl-full`} />
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Resultado Mes</CardTitle>
-                        <DollarSign className={`h-4 w-4 ${dashboard.month.netProfit >= 0 ? 'text-emerald-600' : 'text-destructive'}`} />
+                        <CardTitle className="text-xs xl:text-sm font-medium text-muted-foreground">Resultado Mes</CardTitle>
+                        <DollarSign className={`h-3 w-3 xl:h-4 xl:w-4 ${dashboard.month.netProfit >= 0 ? 'text-emerald-600' : 'text-destructive'}`} />
                     </CardHeader>
                     <CardContent>
-                        <div className={`text-2xl font-bold ${dashboard.month.netProfit >= 0 ? 'text-emerald-600' : 'text-destructive'
+                        <div className={`text-xl xl:text-2xl font-bold ${dashboard.month.netProfit >= 0 ? 'text-emerald-600' : 'text-destructive'
                             }`}>
                             {formatCurrency(dashboard.month.netProfit)}
                         </div>
@@ -273,13 +273,13 @@ export function DashboardPage() {
 
                 {/* Deudores */}
                 <Card className="relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-purple-500/20 to-transparent rounded-bl-full" />
+                    <div className="absolute top-0 right-0 w-12 h-12 wide:w-20 wide:h-20 bg-gradient-to-br from-purple-500/20 to-transparent rounded-bl-full" />
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Deudores</CardTitle>
-                        <Users className="h-4 w-4 text-purple-600" />
+                        <CardTitle className="text-xs xl:text-sm font-medium text-muted-foreground">Deudores</CardTitle>
+                        <Users className="h-3 w-3 xl:h-4 xl:w-4 text-purple-600" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-purple-600">
+                        <div className="text-xl xl:text-2xl font-bold text-purple-600">
                             {formatCurrency(dashboard.accounts.totalDebt)}
                         </div>
                         <p className="text-xs text-muted-foreground mt-1">
@@ -293,13 +293,13 @@ export function DashboardPage() {
 
                 {/* Inventario */}
                 <Card className="relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-orange-500/20 to-transparent rounded-bl-full" />
+                    <div className="absolute top-0 right-0 w-12 h-12 wide:w-20 wide:h-20 bg-gradient-to-br from-orange-500/20 to-transparent rounded-bl-full" />
                     <CardHeader className="flex flex-row items-center justify-between pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Inventario</CardTitle>
-                        <Package className="h-4 w-4 text-orange-600" />
+                        <CardTitle className="text-xs xl:text-sm font-medium text-muted-foreground">Inventario</CardTitle>
+                        <Package className="h-3 w-3 xl:h-4 xl:w-4 text-orange-600" />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-orange-600">
+                        <div className="text-xl xl:text-2xl font-bold text-orange-600">
                             {formatCurrency(dashboard.inventory.totalValue)}
                         </div>
                         <p className="text-xs text-muted-foreground mt-1">
@@ -310,9 +310,9 @@ export function DashboardPage() {
             </div>
 
             {/* Estado de Caja + Gráfico */}
-            <div className="grid gap-6 lg:grid-cols-3">
+            <div className="grid gap-4 xl:gap-6 xl:grid-cols-3">
                 {/* Estado de Caja */}
-                <Card className={`lg:col-span-1 ${dashboard.cashRegister.isOpen
+                <Card className={`xl:col-span-1 ${dashboard.cashRegister.isOpen
                     ? 'border-emerald-500/50 bg-gradient-to-br from-emerald-500/5 to-transparent'
                     : 'border-destructive/50 bg-gradient-to-br from-destructive/5 to-transparent'
                     }`}>
@@ -335,7 +335,7 @@ export function DashboardPage() {
                         {dashboard.cashRegister.isOpen ? (
                             <div className="space-y-4">
                                 <div>
-                                    <p className="text-3xl font-bold text-emerald-600">
+                                    <p className="text-2xl xl:text-3xl font-bold text-emerald-600">
                                         {formatCurrency(dashboard.cashRegister.balance)}
                                     </p>
                                     <p className="text-sm text-muted-foreground mt-1">
@@ -375,7 +375,7 @@ export function DashboardPage() {
                 </Card>
 
                 {/* Gráfico de ventas */}
-                <Card className="lg:col-span-2">
+                <Card className="xl:col-span-2">
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">
                             <TrendingUp className="h-5 w-5 text-primary" />
@@ -470,13 +470,13 @@ export function DashboardPage() {
             )}
 
             {/* Flujo de caja del día */}
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 2xl:gap-4">
                 <Card>
                     <CardHeader className="pb-2">
                         <CardTitle className="text-sm font-medium text-muted-foreground">Ingresos Hoy</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-emerald-600">
+                        <div className="text-xl xl:text-2xl font-bold text-emerald-600">
                             {formatCurrency(dashboard.today.sales.revenue)}
                         </div>
                         <p className="text-xs text-muted-foreground">
@@ -487,10 +487,10 @@ export function DashboardPage() {
 
                 <Card>
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Egresos Hoy</CardTitle>
+                        <CardTitle className="text-xs xl:text-sm font-medium text-muted-foreground">Egresos Hoy</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold text-destructive">
+                        <div className="text-xl xl:text-2xl font-bold text-destructive">
                             {formatCurrency(dashboard.today.expenses.amount + dashboard.today.purchases.amount)}
                         </div>
                         <p className="text-xs text-muted-foreground">
@@ -501,10 +501,10 @@ export function DashboardPage() {
 
                 <Card>
                     <CardHeader className="pb-2">
-                        <CardTitle className="text-sm font-medium text-muted-foreground">Flujo Neto Hoy</CardTitle>
+                        <CardTitle className="text-xs xl:text-sm font-medium text-muted-foreground">Flujo Neto Hoy</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <div className={`text-2xl font-bold ${dashboard.today.netCashFlow >= 0 ? 'text-emerald-600' : 'text-destructive'
+                        <div className={`text-xl xl:text-2xl font-bold ${dashboard.today.netCashFlow >= 0 ? 'text-emerald-600' : 'text-destructive'
                             }`}>
                             {formatCurrency(dashboard.today.netCashFlow)}
                         </div>
