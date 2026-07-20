@@ -247,9 +247,9 @@ nsis:
 publish:
   - provider: github
     owner: AgustinAlbonico
-    repo: sistema-gestion
+    repo: sistema-gestion-yomemimo
     releaseType: release
-    private: true
+    private: false
 
 asar: true
 asarUnpack:

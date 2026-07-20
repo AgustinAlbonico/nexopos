@@ -1,6 +1,6 @@
 {
     "name": "@sistema/desktop",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "NexoPOS - Aplicación de Escritorio",
     "main": "dist/electron/main.js",
     "author": "Agustin Albonico",
@@ -10,7 +10,7 @@
         "build": "npm run build:frontend && npm run build:backend && npm run build:electron && npm run copy-deps && npm run package",
         "build:frontend": "npm run build --workspace=@sistema/frontend",
         "build:backend": "npm run build:bundle --workspace=@sistema/backend",
-        "build:electron": "tsc -p tsconfig.json",
+        "build:electron": "tsc -p tsconfig.json && node scripts/copy-setup-preload.js",
         "copy-deps": "node scripts/copy-deps.js",
         "package": "electron-builder --win --config electron-builder.yml",
         "package:dir": "electron-builder --win --dir --config electron-builder.yml"
