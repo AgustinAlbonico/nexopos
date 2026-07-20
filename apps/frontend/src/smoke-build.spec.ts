@@ -1,207 +1,151 @@
-/**
- * Smoke Tests para Frontend - Build y Despliegue
- *
- * Estos tests verifican que la aplicación frontend:
- * 1. Se construye correctamente
- * 2. Tiene las rutas principales configuradas
- * 3. Los componentes básicos renderizan sin crash
- *
- * Son tests rápidos que se ejecutan antes de desplegar.
- */
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import { describe, it, expect, beforeEach } from 'vitest';
+import { QueryClient } from '@tanstack/react-query';
+import * as Dialog from '@radix-ui/react-dialog';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+import * as Select from '@radix-ui/react-select';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import { ShoppingCart, Users } from 'lucide-react';
+import { describe, expect, it } from 'vitest';
+
+import packageJson from '../package.json';
+import tsconfig from '../tsconfig.json';
+import App from './App';
+import { DashboardPage } from './pages/DashboardPage';
+import ProductsPage from './pages/products/ProductsPage';
+import { useAuthStore } from './stores/auth.store';
+import { formatCurrency } from './lib/utils';
+
+const currentDir = dirname(fileURLToPath(import.meta.url));
+const frontendRoot = resolve(currentDir, '..');
+const appSource = readFileSync(resolve(currentDir, 'App.tsx'), 'utf-8');
+const viteConfigSource = readFileSync(resolve(frontendRoot, 'vite.config.ts'), 'utf-8');
+
+const protectedRoutePaths = [
+  'dashboard',
+  'products',
+  'customers',
+  'suppliers',
+  'purchases',
+  'sales',
+  'expenses',
+  'incomes',
+  'cash-register',
+  'customer-accounts',
+  'customer-accounts/:customerId',
+  'reports',
+  'settings',
+  'settings/fiscal',
+  'settings/users',
+  'settings/backup',
+] as const;
 
 describe('Smoke Tests - Frontend Build', () => {
-  describe('Configuración de Rutas', () => {
-    it('debe tener configuradas las rutas principales', () => {
-      // Este test verifica que el archivo de rutas existe y es importable
-      const routesModule = () => {
-        // Intentar importar el módulo de rutas
-        try {
-          require('../routes');
-          return true;
-        } catch {
-          // Si falla, verificar que existe App.tsx que debería tener las rutas
-          try {
-            require('../App');
-            return true;
-          } catch {
-            return false;
-          }
-        }
-      };
-
-      expect(routesModule()).toBe(true);
+  describe('Aplicación y rutas actuales', () => {
+    it('debe exponer el componente App principal', () => {
+      expect(typeof App).toBe('function');
     });
 
-    it('debe tener el componente App principal', () => {
-      expect(() => {
-        const App = require('../App').default;
-        expect(App).toBeDefined();
-      }).not.toThrow();
+    it('debe usar HashRouter para compatibilidad con Electron', () => {
+      expect(HashRouter).toBeDefined();
+      expect(appSource).toContain("import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'");
+      expect(appSource).toContain('<HashRouter>');
+    });
+
+    it('debe declarar las rutas protegidas actuales', () => {
+      expect(Routes).toBeDefined();
+      expect(Route).toBeDefined();
+
+      for (const routePath of protectedRoutePaths) {
+        expect(appSource).toContain(`path="${routePath}"`);
+      }
+    });
+
+    it('debe redirigir raíz y rutas desconocidas al dashboard actual', () => {
+      expect(appSource).toContain('to="/dashboard"');
+      expect(appSource).toContain('path="*"');
     });
   });
 
-  describe('Imports de Componentes Críticos', () => {
-    it('debe poder importar hooks de autenticación', () => {
-      expect(() => {
-        require('../features/auth/hooks/useAuth');
-      }).not.toThrow();
+  describe('Páginas y estado crítico', () => {
+    it('debe poder importar DashboardPage desde la ubicación actual', () => {
+      expect(typeof DashboardPage).toBe('function');
     });
 
-    it('debe poder importar componentes de ventas', () => {
-      expect(() => {
-        require('../features/sales/components/SaleForm');
-      }).not.toThrow();
+    it('debe poder importar ProductsPage desde la ubicación actual', () => {
+      expect(typeof ProductsPage).toBe('function');
     });
 
-    it('debe poder importar componentes de productos', () => {
-      expect(() => {
-        // Verificar que existe al menos un componente de productos
-        const productsPath = require('../features/products');
-        expect(productsPath).toBeDefined();
-      }).not.toThrow();
-    });
-  });
+    it('debe exponer useAuthStore con el contrato actual de sesión', () => {
+      const authState = useAuthStore.getState();
 
-  describe('Configuración de Estado Global', () => {
-    it('debe tener configurado Zustand para estado global', () => {
-      expect(() => {
-        require('../store');
-      }).not.toThrow();
+      expect(typeof useAuthStore).toBe('function');
+      expect(authState).toMatchObject({
+        user: null,
+        isAuthenticated: false,
+      });
+      expect(typeof authState.setAuth).toBe('function');
+      expect(typeof authState.setUser).toBe('function');
+      expect(typeof authState.logout).toBe('function');
     });
   });
 
-  describe('Configuración de Router', () => {
-    it('debe tener React Router configurado', () => {
-      // Verificar que react-router-dom está disponible
-      const reactRouter = require('react-router-dom');
-      expect(reactRouter).toBeDefined();
-      expect(typeof reactRouter.BrowserRouter !== 'undefined').toBe(true);
+  describe('Librerías base de UI y datos', () => {
+    it('debe tener TanStack Query disponible para data fetching', () => {
+      expect(typeof QueryClient).toBe('function');
+    });
+
+    it('debe poder importar componentes base de Radix UI', () => {
+      expect(Dialog.Root).toBeDefined();
+      expect(DropdownMenu.Root).toBeDefined();
+      expect(Select.Root).toBeDefined();
+    });
+
+    it('debe tener iconos críticos disponibles desde lucide-react', () => {
+      expect(ShoppingCart).toBeDefined();
+      expect(Users).toBeDefined();
     });
   });
 
-  describe('Configuración de Queries', () => {
-    it('debe tener TanStack Query configurado', () => {
-      const tanStackQuery = require('@tanstack/react-query');
-      expect(tanStackQuery).toBeDefined();
-      expect(typeof tanStackQuery.useQuery).toBe('function');
-    });
-  });
+  describe('Utilidades compartidas', () => {
+    it('debe formatear moneda argentina desde lib/utils', () => {
+      const formatted = formatCurrency(1234);
 
-  describe('Componentes UI Base', () => {
-    it('debe poder importar componentes de Radix UI', () => {
-      expect(() => {
-        require('@radix-ui/react-dialog');
-        require('@radix-ui/react-dropdown-menu');
-        require('@radix-ui/react-select');
-      }).not.toThrow();
-    });
-
-    it('debe tener iconos de lucide-react disponibles', () => {
-      const lucideReact = require('lucide-react');
-      expect(lucideReact).toBeDefined();
-      // Verificar que algunos iconos comunes existen
-      expect(typeof lucideReact.ShoppingCart).toBe('function');
-      expect(typeof lucideReact.Users).toBe('function');
-    });
-  });
-
-  describe('Utilidades y Helpers', () => {
-    it('debe tener utilidad de formatting de moneda', () => {
-      // Verificar que existe alguna función de formatting
-      expect(() => {
-        // Intentar importar desde utils o common
-        try {
-          require('../utils/currency');
-        } catch {
-          // Si no existe, no fallar el test - es opcional
-        }
-      }).not.toThrow();
-    });
-
-    it('debe tener utilidad de formatting de fechas', () => {
-      // Verificar que date-fns está disponible
-      const dateFns = require('date-fns');
-      expect(dateFns).toBeDefined();
-      expect(typeof dateFns.format).toBe('function');
-    });
-  });
-});
-
-describe('Smoke Tests - Componentes No Crash', () => {
-  describe('Componentes de Autenticación', () => {
-    it('useAuth hook debe estar definido', () => {
-      const useAuth = require('../features/auth/hooks/useAuth').useAuth;
-      expect(typeof useAuth).toBe('function');
-    });
-  });
-
-  describe('Componentes de Dashboard', () => {
-    it('debe tener componentes de métricas o dashboard', () => {
-      expect(() => {
-        try {
-          require('../components/Dashboard');
-        } catch {
-          // Si no existe en components, intentar en features
-          try {
-            require('../features/dashboard');
-          } catch {
-            // Dashboard puede estar en diferente ubicación
-          }
-        }
-      }).not.toThrow();
+      expect(formatted).toContain('$');
+      expect(formatted).toContain('1.234');
     });
   });
 });
 
 describe('Smoke Tests - Configuración de Build', () => {
-  it('package.json debe tener scripts de build', () => {
-    const packageJson = require('../../package.json');
-    expect(packageJson.scripts).toBeDefined();
-    expect(packageJson.scripts.build).toBeDefined();
-    expect(packageJson.scripts.build).toMatch(/vite build/);
+  it('package.json debe tener el script de build de Vite', () => {
+    expect(packageJson.name).toBe('@sistema/frontend');
+    expect(packageJson.scripts.build).toBe('vite build');
   });
 
-  it('vite.config debe existir o vite.config.ts debe ser válido', () => {
-    expect(() => {
-      require('../../vite.config.ts');
-    }).not.toThrow();
+  it('vite.config debe apuntar al root y alias actuales del frontend', () => {
+    expect(viteConfigSource).toContain("base: './'");
+    expect(viteConfigSource).toContain("'@': path.resolve(__dirname, './src')");
+    expect(viteConfigSource).toContain("outDir: '../desktop/dist/renderer'");
+    expect(viteConfigSource).toContain('port: 5173');
   });
 
-  it('debe tener TypeScript configurado', () => {
-    const tsconfig = require('../../tsconfig.json');
-    expect(tsconfig).toBeDefined();
-    expect(tsconfig.compilerOptions).toBeDefined();
+  it('tsconfig debe incluir src y resolver alias @ desde el root frontend', () => {
+    expect(tsconfig.include).toEqual(['src']);
+    expect(tsconfig.compilerOptions.baseUrl).toBe('.');
+    expect(tsconfig.compilerOptions.paths).toEqual({
+      '@/*': ['./src/*'],
+    });
+    expect(tsconfig.compilerOptions.strict).toBe(true);
   });
 });
 
 describe('Smoke Tests - Variables de Entorno', () => {
-  it('debe tener definida la URL de la API', () => {
-    // La URL de la API puede venir de env o estar hardcoded
-    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3000';
-    expect(typeof apiUrl).toBe('string');
-    expect(apiUrl.length).toBeGreaterThan(0);
-  });
-});
+  it('debe resolver una URL de API usable', () => {
+    const apiUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
 
-describe('Smoke Tests - Optimización de Bundle', () => {
-  it('debe tener configurado code splitting por rutas', () => {
-    // Verificar que el archivo de rutas usa lazy loading
-    // Esto es un smoke check básico
-    const fs = require('fs');
-    const path = require('path');
-
-    const appPath = path.resolve(__dirname, '../App.tsx');
-    if (fs.existsSync(appPath)) {
-      const appContent = fs.readFileSync(appPath, 'utf-8');
-      // Verificar que hay alguna referencia a lazy o Suspense
-      const hasCodeSplitting =
-        appContent.includes('lazy') || appContent.includes('Suspense');
-      // No fallar si no tiene, pero es un warning
-      if (!hasCodeSplitting) {
-        console.warn('⚠️  Considerar implementar code splitting para mejor performance');
-      }
-    }
+    expect(apiUrl).toMatch(/^https?:\/\//);
   });
 });
