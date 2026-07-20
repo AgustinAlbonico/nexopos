@@ -19,6 +19,8 @@ import { AuditEntityType, AuditAction } from '../enums/audit.enums';
 @Index(['userId'])
 @Index(['timestamp'])
 @Index(['action'])
+@Index(['entityType', 'timestamp'])
+@Index(['userId', 'timestamp'])
 export class AuditLog {
     @PrimaryGeneratedColumn('uuid')
     id!: string;

@@ -19,6 +19,7 @@ export default new DataSource({
     database: process.env.DATABASE_NAME || 'nexopos',
     entities: entities,
     migrations: ['src/migrations/*.ts'],
+    migrationsTransactionMode: 'each',
     synchronize: false,
     logging: false,
 });

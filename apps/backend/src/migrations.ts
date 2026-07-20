@@ -8,6 +8,7 @@ import { AddBrandsSupport1768003658000 } from './migrations/1768003658000-AddBra
 import { SimplifyBrandsTable1768003659000 } from './migrations/1768003659000-SimplifyBrandsTable';
 import { AddMissingCustomerAccountColumns1768003660000 } from './migrations/1768003660000-AddMissingCustomerAccountColumns';
 import { SchemaImprovements1768003661000 } from './migrations/1768003661000-SchemaImprovements';
+import { AddAuditLogCompositeIndexes1769113297000 } from './migrations/1769113297000-AddAuditLogCompositeIndexes';
 
 export const migrations: (new () => MigrationInterface)[] = [
     InitialSchema1734450000000,
@@ -16,4 +17,5 @@ export const migrations: (new () => MigrationInterface)[] = [
     SimplifyBrandsTable1768003659000,
     AddMissingCustomerAccountColumns1768003660000,
     SchemaImprovements1768003661000,
+    AddAuditLogCompositeIndexes1769113297000,
 ];

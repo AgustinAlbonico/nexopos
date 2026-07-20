@@ -44,6 +44,7 @@ import { migrations } from './migrations';
         migrations: migrations,
         // Ejecutar migraciones automáticamente al iniciar
         migrationsRun: true,
+        migrationsTransactionMode: 'each',
         logging: false,
       }),
     }),
