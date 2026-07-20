@@ -65,6 +65,13 @@ export class ExpensesController {
         return this.expensesService.getStats(startDate, endDate);
     }
 
+    @Get('recurring-suggestions')
+    @ApiOperation({ summary: 'Obtener sugerencias de gastos recurrentes del mes' })
+    @ApiResponse({ status: 200, description: 'Gastos recurrentes pendientes este mes' })
+    getRecurringSuggestions() {
+        return this.expensesService.getRecurringSuggestions();
+    }
+
     @Get(':id')
     @ApiOperation({ summary: 'Obtener gasto por ID' })
     @ApiResponse({ status: 200, description: 'Gasto encontrado' })

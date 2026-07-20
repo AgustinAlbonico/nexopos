@@ -382,10 +382,91 @@ export class ExpensesService {
         return savedExpense;
     }
 
-    /**
-     * Obtiene estadísticas de gastos
+/**
+     * FIX 2.2: Obtiene sugerencias de gastos recurrentes para el mes actual.
+     * Devuelve las categorías con isRecurring=true cuyo último gasto NO se
+     * haya registrado aún este mes, con los datos del último gasto para
+     * permitir crear uno nuevo con un clic.
      */
-    async getStats(startDate?: string, endDate?: string): Promise<ExpenseStats> {
+    async getRecurringSuggestions(): Promise<Array<{
+        categoryId: string;
+        categoryName: string;
+        lastExpense: {
+            description: string;
+            amount: number;
+            paymentMethodId: string | null;
+            receiptNumber: string | null;
+            notes: string | null;
+            lastDate: string;
+        };
+    }>> {
+        // 1. Obtener categorías recurrentes activas
+        const recurringCategories = await this.categoryRepo.find({
+            where: { isRecurring: true, isActive: true },
+        });
+
+        if (recurringCategories.length === 0) return [];
+
+        const now = new Date();
+        const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+        const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+
+        const suggestions: Array<{
+            categoryId: string;
+            categoryName: string;
+            lastExpense: {
+                description: string;
+                amount: number;
+                paymentMethodId: string | null;
+                receiptNumber: string | null;
+                notes: string | null;
+                lastDate: string;
+            };
+        }> = [];
+
+        for (const category of recurringCategories) {
+            // 2. Verificar si ya hay un gasto este mes para esta categoría
+            const existingThisMonth = await this.expenseRepo
+                .createQueryBuilder('expense')
+                .where('expense.categoryId = :categoryId', { categoryId: category.id })
+                .andWhere('expense.deletedAt IS NULL')
+                .andWhere('expense.expenseDate >= :monthStart', { monthStart })
+                .andWhere('expense.expenseDate < :monthEnd', { monthEnd })
+                .getCount();
+
+            if (existingThisMonth > 0) continue;
+
+            // 3. Obtener el último gasto de la categoría
+            const lastExpense = await this.expenseRepo
+                .createQueryBuilder('expense')
+                .where('expense.categoryId = :categoryId', { categoryId: category.id })
+                .andWhere('expense.deletedAt IS NULL')
+                .orderBy('expense.expenseDate', 'DESC')
+                .getOne();
+
+            if (!lastExpense) continue;
+
+            suggestions.push({
+                categoryId: category.id,
+                categoryName: category.name,
+                lastExpense: {
+                    description: lastExpense.description,
+                    amount: Number(lastExpense.amount),
+                    paymentMethodId: lastExpense.paymentMethodId,
+                    receiptNumber: lastExpense.receiptNumber,
+                    notes: lastExpense.notes,
+                    lastDate: lastExpense.expenseDate.toISOString(),
+                },
+            });
+        }
+
+        return suggestions;
+    }
+
+    /**
+ * Obtiene estadísticas de gastos
+ */
+async getStats(startDate?: string, endDate?: string): Promise<ExpenseStats> {
         const query = this.expenseRepo
             .createQueryBuilder('expense')
             .leftJoinAndSelect('expense.category', 'category')
