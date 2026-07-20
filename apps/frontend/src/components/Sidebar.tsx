@@ -39,6 +39,7 @@ interface SidebarProps {
     readonly onLogout: () => void;
     readonly collapsed?: boolean;
     readonly onToggle?: () => void;
+    readonly hideToggle?: boolean;
 }
 
 interface NavItem {
@@ -124,7 +125,7 @@ const navItems: NavItem[] = [
     },
 ];
 
-export function Sidebar({ user, onLogout, collapsed = false, onToggle }: SidebarProps) {
+export function Sidebar({ user, onLogout, collapsed = false, onToggle, hideToggle = false }: SidebarProps) {
     const location = useLocation();
     const { count: lowStockCount } = useLowStockCount();
     const [version, setVersion] = useState<string>('');
@@ -148,42 +149,44 @@ export function Sidebar({ user, onLogout, collapsed = false, onToggle }: Sidebar
             <div
                 className={cn(
                     "flex flex-col h-full bg-card border-r border-border transition-all duration-300 relative",
-                    collapsed ? "w-16" : "w-64"
+                    collapsed ? "w-14 xl:w-16" : "w-48 xl:w-56 wide:w-64"
                 )}
             >
-                {/* Botón de toggle */}
-                <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={onToggle}
-                    className="absolute -right-3 top-7 z-50 h-6 w-6 rounded-full border border-border bg-card shadow-sm hover:bg-accent"
-                >
-                    {collapsed ? (
-                        <ChevronRight className="h-3 w-3" />
-                    ) : (
-                        <ChevronLeft className="h-3 w-3" />
-                    )}
-                </Button>
+                {/* Botón de toggle - solo visible cuando no está auto-colapsado */}
+                {!hideToggle && (
+                    <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={onToggle}
+                        className="absolute -right-3 top-7 z-50 h-6 w-6 rounded-full border border-border bg-card shadow-sm hover:bg-accent"
+                    >
+                        {collapsed ? (
+                            <ChevronRight className="h-3 w-3" />
+                        ) : (
+                            <ChevronLeft className="h-3 w-3" />
+                        )}
+                    </Button>
+                )}
 
                 {/* Header / Logo */}
-                <div className={cn("p-6 border-b border-border", collapsed && "px-3 py-4")}>
+                <div className={cn("p-4 xl:p-6 border-b border-border", collapsed && "px-2 xl:px-3 py-3 xl:py-4")}>
                     <Link to="/dashboard" className="flex items-center justify-center gap-3 ">
                         {collapsed ? (
-                            <div className="h-9 w-9 rounded-xl bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg shadow-md shadow-primary/25 flex-shrink-0">
+                            <div className="h-8 w-8 xl:h-9 xl:w-9 rounded-xl bg-primary flex items-center justify-center text-primary-foreground font-bold text-base xl:text-lg shadow-md shadow-primary/25 flex-shrink-0">
                                 NP
                             </div>
                         ) : (
                             <img
                                 src={logoNexopos}
                                 alt="NexoPOS"
-                                className="h-10 w-auto"
+                                className="h-8 xl:h-10 w-auto"
                             />
                         )}
                     </Link>
                 </div>
 
                 {/* Navigation */}
-                <nav className="flex-1 overflow-y-auto py-4 px-3">
+                <nav className="flex-1 overflow-y-auto py-3 xl:py-4 px-2 xl:px-3">
                     <div className="space-y-1">
                         {navItems.map((item) => {
                             const isActive = location.pathname === item.href;
@@ -195,7 +198,7 @@ export function Sidebar({ user, onLogout, collapsed = false, onToggle }: Sidebar
                                     key={item.href}
                                     to={item.href}
                                     className={cn(
-                                        'group flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150',
+                                        'group flex items-center gap-2 xl:gap-3 px-2 xl:px-3 py-2 xl:py-2.5 rounded-lg text-xs xl:text-sm font-medium transition-all duration-150',
                                         isActive
                                             ? 'bg-primary text-primary-foreground shadow-sm shadow-primary/25'
                                             : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground',
@@ -204,7 +207,7 @@ export function Sidebar({ user, onLogout, collapsed = false, onToggle }: Sidebar
                                 >
                                     <Icon
                                         className={cn(
-                                            'h-5 w-5 transition-colors flex-shrink-0',
+                                            'h-4 w-4 xl:h-5 xl:w-5 transition-colors flex-shrink-0',
                                             isActive
                                                 ? 'text-primary-foreground'
                                                 : 'text-muted-foreground group-hover:text-accent-foreground'
@@ -265,7 +268,7 @@ export function Sidebar({ user, onLogout, collapsed = false, onToggle }: Sidebar
                 </nav>
 
                 {/* User Profile & Logout */}
-                <div className={cn("p-4 border-t border-border bg-muted/30", collapsed && "px-2")}>
+                <div className={cn("p-3 xl:p-4 border-t border-border bg-muted/30", collapsed && "px-2")}>
                     {collapsed ? (
                         <Tooltip>
                             <TooltipTrigger asChild>
@@ -284,16 +287,16 @@ export function Sidebar({ user, onLogout, collapsed = false, onToggle }: Sidebar
                         </Tooltip>
                     ) : (
                         <>
-                            <div className="flex items-center gap-3 mb-3 px-1">
-                                <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-sm flex-shrink-0">
+                            <div className="flex items-center gap-2 xl:gap-3 mb-2 xl:mb-3 px-1">
+                                <div className="h-8 w-8 xl:h-10 xl:w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-semibold text-xs xl:text-sm flex-shrink-0">
                                     {user?.firstName?.[0]}
                                     {user?.lastName?.[0]}
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-foreground truncate">
+                                    <p className="text-xs xl:text-sm font-medium text-foreground truncate">
                                         {user?.firstName} {user?.lastName}
                                     </p>
-                                    <p className="text-xs text-muted-foreground truncate">
+                                    <p className="text-[10px] xl:text-xs text-muted-foreground truncate">
                                         {user?.username}
                                     </p>
                                 </div>
@@ -301,10 +304,10 @@ export function Sidebar({ user, onLogout, collapsed = false, onToggle }: Sidebar
                             <Button
                                 variant="ghost"
                                 size="sm"
-                                className="w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10"
+                                className="w-full justify-start text-muted-foreground hover:text-destructive hover:bg-destructive/10 h-8 xl:h-9 text-xs xl:text-sm"
                                 onClick={onLogout}
                             >
-                                <LogOut className="mr-2 h-4 w-4" />
+                                <LogOut className="mr-2 h-3 w-3 xl:h-4 xl:w-4" />
                                 Cerrar Sesión
                             </Button>
                             {version && (

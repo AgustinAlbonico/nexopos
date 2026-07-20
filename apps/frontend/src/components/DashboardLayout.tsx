@@ -7,12 +7,15 @@ import { useAuthStore } from '../stores/auth.store';
 import { Sidebar } from './Sidebar';
 import { Loader2 } from 'lucide-react';
 import { useRouteRefresh } from '@/hooks/useRouteRefresh';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 export function DashboardLayout() {
     const navigate = useNavigate();
     const queryClient = useQueryClient();
     const { user, setUser, logout } = useAuthStore();
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+    const isBelowXl = useMediaQuery('(max-width: 1279px)');
+    const effectiveCollapsed = sidebarCollapsed || isBelowXl;
 
     // Forzar refetch de datos al navegar entre rutas del sidebar
     useRouteRefresh();
@@ -57,14 +60,15 @@ export function DashboardLayout() {
             <Sidebar
                 user={user}
                 onLogout={handleLogout}
-                collapsed={sidebarCollapsed}
+                collapsed={effectiveCollapsed}
                 onToggle={toggleSidebar}
+                hideToggle={isBelowXl}
             />
 
             {/* Main Content */}
             <div className="flex-1 flex flex-col overflow-hidden">
-                <main className="flex-1 overflow-y-auto p-6 lg:p-8">
-                    <div className="max-w-7xl mx-auto">
+                <main className="flex-1 overflow-y-auto p-4 xl:p-6 wide:p-8">
+                    <div className="mx-auto w-full max-w-full wide:max-w-7xl 2xl:max-w-[1600px]">
                         <Suspense fallback={
                             <div className="flex h-full w-full items-center justify-center p-12">
                                 <Loader2 className="h-8 w-8 animate-spin text-primary" />
