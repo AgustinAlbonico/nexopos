@@ -4,6 +4,7 @@ import {
     Inject,
     forwardRef,
 } from '@nestjs/common';
+import { In } from 'typeorm';
 import { ProductsRepository } from './products.repository';
 import { CategoriesRepository } from './categories.repository';
 import {
@@ -164,6 +165,18 @@ export class ProductsService {
         return product;
     }
 
+    async findByIds(ids: string[]): Promise<Product[]> {
+        const uniqueIds = Array.from(new Set(ids));
+        if (uniqueIds.length === 0) {
+            return [];
+        }
+
+        return this.productsRepository.find({
+            where: { id: In(uniqueIds) },
+            relations: ['category', 'brand'],
+        });
+    }
+
     async update(id: string, dto: UpdateProductDTO) {
         const product = await this.findOne(id);
 
@@ -191,9 +204,23 @@ export class ProductsService {
         if (dto.name !== undefined) product.name = dto.name;
         if (dto.description !== undefined) product.description = dto.description;
         if (dto.cost !== undefined) product.cost = dto.cost;
-        if (dto.stock !== undefined) product.stock = dto.stock;
         if (dto.barcode !== undefined) product.barcode = dto.barcode;
         if (dto.isActive !== undefined) product.isActive = dto.isActive;
+
+        // FIX: Si cambia el stock, registrar un movimiento ADJUSTMENT para no
+        // romper el historial (antes se pisaba product.stock sin crear StockMovement).
+        if (dto.stock !== undefined && dto.stock !== product.stock) {
+            const delta = dto.stock - product.stock;
+            await this.inventoryService.createMovement({
+                productId: product.id,
+                type: delta > 0 ? StockMovementType.IN : StockMovementType.OUT,
+                source: StockMovementSource.ADJUSTMENT,
+                quantity: Math.abs(delta),
+                notes: 'Ajuste manual desde edición de producto',
+                date: new Date().toISOString(),
+            });
+            product.stock = dto.stock;
+        }
 
         return this.productsRepository.save(product);
     }

@@ -111,6 +111,33 @@ describe('ProductsService', () => {
         });
     });
 
+    describe('findByIds', () => {
+        it('busca productos en una sola consulta y elimina IDs duplicados', async () => {
+            const mockProducts = [
+                { id: 'product-1', name: 'Producto 1' },
+                { id: 'product-2', name: 'Producto 2' },
+            ];
+            mockProductsRepository.find.mockResolvedValue(mockProducts);
+
+            const result = await service.findByIds(['product-1', 'product-2', 'product-1']);
+
+            expect(result).toEqual(mockProducts);
+            expect(mockProductsRepository.find).toHaveBeenCalledTimes(1);
+            expect(mockProductsRepository.find).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    relations: ['category', 'brand'],
+                })
+            );
+        });
+
+        it('retorna array vacío sin consultar la base si no recibe IDs', async () => {
+            const result = await service.findByIds([]);
+
+            expect(result).toEqual([]);
+            expect(mockProductsRepository.find).not.toHaveBeenCalled();
+        });
+    });
+
     describe('FIX 7.7: calculatePrice - Productos con costo $0', () => {
             // Accedemos al método privado para testear
             const getCalculatePrice = () => (service as any).calculatePrice.bind(service);
