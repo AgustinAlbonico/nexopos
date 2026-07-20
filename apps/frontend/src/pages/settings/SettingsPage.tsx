@@ -33,6 +33,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Switch } from '@/components/ui/switch';
+import { BarcodeScannerTest } from './components/BarcodeScannerTest';
 
 interface SystemConfiguration {
     id: string;
@@ -406,6 +407,8 @@ export default function SettingsPage() {
                                     </p>
                                 </div>
                             </div>
+
+                            <BarcodeScannerTest timeoutMs={Number.parseInt(barcodeScannerTimeoutMs) || 100} />
                         </div>
                     </div>
                 </div>
