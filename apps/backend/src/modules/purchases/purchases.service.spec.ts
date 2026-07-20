@@ -66,6 +66,7 @@ const mockQueryRunner = {
     manager: {
         save: jest.fn(),
         findOne: jest.fn(),
+        query: jest.fn().mockResolvedValue([]),
     },
     isTransactionActive: true,
 };
@@ -168,6 +169,31 @@ describe('PurchasesService', () => {
             expect(result.providerName).toBe('Proveedor Test');
             expect(mockQueryRunner.manager.save).toHaveBeenCalled();
             expect(mockQueryRunner.commitTransaction).toHaveBeenCalled();
+        });
+
+        it('serializa la asignación del número de compra por año', async () => {
+            const year = new Date().getFullYear();
+            mockQueryRunner.manager.query
+                .mockResolvedValueOnce([])
+                .mockResolvedValueOnce([{ purchaseNumber: `COMP-${year}-1` }]);
+
+            await service.create(createPurchaseDto, 'user-123');
+
+            expect(mockQueryRunner.manager.query).toHaveBeenNthCalledWith(
+                1,
+                expect.stringContaining('pg_advisory_xact_lock'),
+                [year],
+            );
+            expect(mockQueryRunner.manager.query).toHaveBeenNthCalledWith(
+                2,
+                expect.stringContaining(
+                    `CAST(SPLIT_PART("purchaseNumber", '-', 3) AS INTEGER) DESC`,
+                ),
+                [`COMP-${year}-%`],
+            );
+            expect(mockPurchaseRepo.create).toHaveBeenCalledWith(
+                expect.objectContaining({ purchaseNumber: `COMP-${year}-00002` }),
+            );
         });
 
         it('lanza BadRequestException si marca como pagada sin caja abierta', async () => {

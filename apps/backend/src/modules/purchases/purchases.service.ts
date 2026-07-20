@@ -8,7 +8,7 @@ import {
     BadRequestException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, DataSource, Like } from 'typeorm';
+import { Repository, DataSource, Like, EntityManager } from 'typeorm';
 import { Purchase, PurchaseStatus } from './entities/purchase.entity';
 import { PurchaseItem } from './entities/purchase-item.entity';
 import {
@@ -69,8 +69,8 @@ export class PurchasesService {
         try {
             await this.validatePurchaseItems(dto.items);
 
-            // Generar número de compra
-            const purchaseNumber = await this.generatePurchaseNumber();
+            // Generar número de compra (transaccional para evitar race conditions)
+            const purchaseNumber = await this.generatePurchaseNumberTransactional(queryRunner.manager);
 
             // Calcular subtotal y total
             const { subtotal, total } = this.calculatePurchaseTotals(dto.items, dto.tax, dto.discount);
@@ -122,9 +122,7 @@ export class PurchasesService {
             await queryRunner.release();
 
             // Log de auditoría (fuera de la transacción)
-            console.log('[PurchasesService.create] userId recibido para auditoría:', userId);
             if (userId) {
-                console.log('[PurchasesService.create] Intentando crear log de auditoría...');
                 await this.auditService.logSilent({
                     entityType: AuditEntityType.PURCHASE,
                     entityId: result.id,
@@ -142,9 +140,6 @@ export class PurchasesService {
                         result.purchaseNumber
                     ),
                 });
-                console.log('[PurchasesService.create] Log de auditoría creado');
-            } else {
-                console.log('[PurchasesService.create] userId es undefined - NO se crea auditoría');
             }
 
             return result;
@@ -522,6 +517,7 @@ export class PurchasesService {
 
     /**
      * Genera número de compra único
+     * @deprecated Usar generatePurchaseNumberTransactional para evitar race conditions
      */
     private async generatePurchaseNumber(): Promise<string> {
         const year = new Date().getFullYear();
@@ -532,6 +528,40 @@ export class PurchasesService {
 
         const nextNumber = (count + 1).toString().padStart(5, '0');
         return `COMP-${year}-${nextNumber}`;
+    }
+
+    /**
+     * Genera número de compra único dentro de una transacción
+     * FIX: Evita race condition usando FOR UPDATE (mismo patrón que sales)
+     */
+    private async generatePurchaseNumberTransactional(manager: EntityManager): Promise<string> {
+        const year = new Date().getFullYear();
+        const prefix = `COMP-${year}-`;
+
+        // Serializa la asignación del número anual incluso cuando aún no hay
+        // compras para bloquear con una fila existente.
+        await manager.query(
+            "SELECT pg_advisory_xact_lock(hashtext('purchase-number'), $1)",
+            [year],
+        );
+
+        const result = await manager.query(`
+            SELECT "purchaseNumber" FROM purchases
+            WHERE "purchaseNumber" LIKE $1
+            ORDER BY CAST(SPLIT_PART("purchaseNumber", '-', 3) AS INTEGER) DESC
+            LIMIT 1
+        `, [`${prefix}%`]);
+
+        let nextNumber = 1;
+        if (result.length > 0) {
+            const lastNumber = result[0].purchaseNumber;
+            const match = lastNumber.match(/COMP-\d{4}-(\d+)/);
+            if (match) {
+                nextNumber = parseInt(match[1], 10) + 1;
+            }
+        }
+
+        return `${prefix}${String(nextNumber).padStart(5, '0')}`;
     }
 
     /**
