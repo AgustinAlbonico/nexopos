@@ -2,12 +2,12 @@
  * Formulario para crear/editar compras
  * Permite crear productos nuevos directamente desde el formulario
  */
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { Plus, Trash2, Loader2, PackagePlus } from 'lucide-react';
+import { Plus, Trash2, Loader2, PackagePlus, ScanBarcode } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { NumericInput } from '@/components/ui/numeric-input';
@@ -71,6 +71,11 @@ export function PurchaseForm({ onSubmit, isLoading }: PurchaseFormProps) {
     const [createProductOpen, setCreateProductOpen] = useState(false);
     const [createProductIndex, setCreateProductIndex] = useState<number | null>(null);
     const [initialProductName, setInitialProductName] = useState('');
+
+    // FIX 2.1: Escaneo de código de barras en compras (campo dedicado autoFocus)
+    const [barcodeValue, setBarcodeValue] = useState('');
+    const [isScanningBarcode, setIsScanningBarcode] = useState(false);
+    const barcodeInputRef = useRef<HTMLInputElement>(null);
 
     const queryClient = useQueryClient();
 
@@ -187,6 +192,49 @@ export function PurchaseForm({ onSubmit, isLoading }: PurchaseFormProps) {
     // Crear producto desde el formulario completo
     const handleCreateProduct = (data: ProductFormValues) => {
         createProductMutation.mutate(data);
+    };
+
+    // FIX 2.1: Manejar el código de barras escaneado o tipeado + Enter
+    const handleBarcodeScan = async (barcode: string) => {
+        const trimmed = barcode.trim();
+        if (!trimmed) return;
+
+        try {
+            setIsScanningBarcode(true);
+            const product = await productsApi.findByBarcode(trimmed);
+
+            if (!product) {
+                toast.error(`Producto no encontrado: ${trimmed}`, {
+                    description: 'Podés crearlo desde el botón "Crear Producto"',
+                });
+                setBarcodeValue('');
+                return;
+            }
+
+            // Verificar si el producto ya está en la lista (evitar duplicar líneas)
+            const existingIndex = fields.findIndex(f => f.productId === product.id);
+            if (existingIndex >= 0) {
+                toast.info(`${product.name} ya está en la compra (línea ${existingIndex + 1})`);
+                setBarcodeValue('');
+                barcodeInputRef.current?.focus();
+                return;
+            }
+
+            // Agregar nueva línea con el costo del producto
+            append({
+                productId: product.id,
+                quantity: 1,
+                unitPrice: product.cost,
+                notes: '',
+            });
+            toast.success(`${product.name} agregado`);
+            setBarcodeValue('');
+            barcodeInputRef.current?.focus();
+        } catch {
+            toast.error('Error al buscar producto por código de barras');
+        } finally {
+            setIsScanningBarcode(false);
+        }
     };
 
     const handleSubmit = (data: CreatePurchaseFormValues) => {
@@ -313,6 +361,41 @@ export function PurchaseForm({ onSubmit, isLoading }: PurchaseFormProps) {
 
                     {/* Items de compra */}
                     <div className="space-y-4">
+                        {/* FIX 2.1: Campo de escaneo de código de barras */}
+                        <div className="flex gap-2">
+                            <div className="relative flex-1">
+                                <ScanBarcode className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                                <Input
+                                    ref={barcodeInputRef}
+                                    value={barcodeValue}
+                                    onChange={(e) => setBarcodeValue(e.target.value)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') {
+                                            e.preventDefault();
+                                            handleBarcodeScan(barcodeValue);
+                                        }
+                                    }}
+                                    placeholder="Escaneá el código de barras o escribí + Enter"
+                                    className="pl-9"
+                                    disabled={isScanningBarcode}
+                                    aria-label="Escanear código de barras"
+                                />
+                            </div>
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="icon"
+                                onClick={() => handleBarcodeScan(barcodeValue)}
+                                disabled={isScanningBarcode || !barcodeValue.trim()}
+                                title="Buscar por código"
+                            >
+                                {isScanningBarcode ? (
+                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                ) : (
+                                    <ScanBarcode className="h-4 w-4" />
+                                )}
+                            </Button>
+                        </div>
                         <div className="flex justify-between items-center">
                             <h3 className="font-semibold text-lg">Productos <span className="text-red-500">*</span></h3>
                             <Button

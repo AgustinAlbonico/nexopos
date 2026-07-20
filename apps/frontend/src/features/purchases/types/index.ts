@@ -70,13 +70,11 @@ export interface Purchase {
     discount: number;
     total: number;
     status: PurchaseStatus;
-    paymentMethod?: PaymentMethod | null;
     paidAt?: string | null;
     invoiceNumber?: string | null;
     notes?: string | null;
     inventoryUpdated: boolean;
-    expenseCreated: boolean;
-    expenseId?: string | null;
+    paymentMethod?: { id: string; name: string; code: string } | null;
     items: PurchaseItem[];
     createdBy?: {
         id: string;

@@ -17,7 +17,6 @@ import {
     Phone,
     User,
     DollarSign,
-    FileCheck,
     TrendingDown,
     Percent,
 } from 'lucide-react';
@@ -37,7 +36,6 @@ import {
 import { Separator } from '@/components/ui/separator';
 import {
     Purchase,
-    PaymentMethodLabels,
 } from '../types';
 import { formatDateForDisplay } from '@/lib/date-utils';
 
@@ -123,15 +121,6 @@ export function PurchaseDetail({ purchase, open, onClose }: PurchaseDetailProps)
                                         Stock Actualizado
                                     </Badge>
                                 ) : null}
-                                {purchase.expenseCreated ? (
-                                    <Badge
-                                        variant="secondary"
-                                        className="bg-blue-500/30 text-white border-blue-400/50"
-                                    >
-                                        <FileCheck className="h-3 w-3 mr-1" />
-                                        Gasto Registrado
-                                    </Badge>
-                                ) : null}
                             </div>
                         </div>
                     </div>
@@ -188,7 +177,7 @@ export function PurchaseDetail({ purchase, open, onClose }: PurchaseDetailProps)
                                 {purchase.paymentMethod ? (
                                     <div className="flex justify-between items-center">
                                         <span className="text-sm text-muted-foreground">Método de pago:</span>
-                                        <span className="font-medium">{PaymentMethodLabels[purchase.paymentMethod]}</span>
+                                        <span className="font-medium">{purchase.paymentMethod.name}</span>
                                     </div>
                                 ) : null}
                                 {purchase.paidAt ? (
