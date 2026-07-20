@@ -21,7 +21,8 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { useQuery } from '@tanstack/react-query';
-import { categoriesApi } from '../api/products.api';
+import { toast } from 'sonner';
+import { categoriesApi, productsApi } from '../api/products.api';
 import { api } from '@/lib/axios';
 import { formatCurrency } from '@/lib/utils';
 import { useEffect, useState, useMemo } from 'react';
@@ -34,6 +35,7 @@ interface ProductFormProps {
     readonly onSubmit: (data: ProductFormValues) => void;
     readonly isLoading?: boolean;
     readonly isEditing?: boolean;
+    readonly currentProductId?: string;
 }
 
 /**
@@ -42,7 +44,7 @@ interface ProductFormProps {
  * 2. Margen de la categoría (si la categoría tiene profitMargin)
  * 3. Margen general del sistema
  */
-export function ProductForm({ initialData, onSubmit, isLoading, isEditing }: ProductFormProps) {
+export function ProductForm({ initialData, onSubmit, isLoading, isEditing, currentProductId }: ProductFormProps) {
     const [defaultMargin, setDefaultMargin] = useState<number>(30);
 
     // Obtener el % de ganancia por defecto de la configuración
@@ -60,6 +62,7 @@ export function ProductForm({ initialData, onSubmit, isLoading, isEditing }: Pro
         defaultValues: initialData || {
             name: '',
             description: null,
+            barcode: null,
             cost: 0,
             stock: 0,
             categoryId: null,
@@ -117,6 +120,24 @@ export function ProductForm({ initialData, onSubmit, isLoading, isEditing }: Pro
 
     const calculatedPrice = cost > 0 ? cost * (1 + marginInfo.margin / 100) : 0;
 
+    // FIX 2.3: Verificar barcode duplicado al perder foco (anti-duplicado)
+    const handleBarcodeBlur = async (barcode: string | null | undefined) => {
+        const trimmed = (barcode ?? '').trim();
+        if (!trimmed) return;
+
+        try {
+            const existing = await productsApi.findByBarcode(trimmed);
+            // Si es el mismo producto que estamos editando, no es duplicado
+            if (existing && existing.id !== currentProductId) {
+                toast.warning(`Ya existe el producto "${existing.name}" con ese código`, {
+                    description: 'Considerá editar el producto existente en vez de crear uno nuevo.',
+                });
+            }
+        } catch {
+            // Silenciar errores de red para no molestar al tipear
+        }
+    };
+
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
@@ -171,6 +192,12 @@ export function ProductForm({ initialData, onSubmit, isLoading, isEditing }: Pro
                                     placeholder="Ej: 7791234567890"
                                     {...field}
                                     value={field.value || ''}
+                                    onBlur={() => handleBarcodeBlur(field.value)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') {
+                                            e.preventDefault();
+                                        }
+                                    }}
                                 />
                             </FormControl>
                             <FormDescription>Código de barras del producto (opcional)</FormDescription>

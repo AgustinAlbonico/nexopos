@@ -13,14 +13,6 @@ import {
     AlertTriangle,
     Eye,
     History,
-    Package,
-    DollarSign,
-    TrendingUp,
-    Boxes,
-    Tag,
-    FileText,
-    CheckCircle2,
-    XCircle
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { formatCurrency } from '@/lib/utils';
@@ -39,223 +31,19 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import {
-    Dialog,
-    DialogContent,
-} from '@/components/ui/dialog';
 import { StockHistoryDialog } from './StockHistoryDialog';
-import { Separator } from '@/components/ui/separator';
 import { BrandSelect } from './BrandSelect';
 
 interface ProductListProps {
     readonly onEdit: (product: Product) => void;
     readonly onDelete: (id: string) => void;
-}
-
-/**
- * Modal para ver detalle de un producto con diseño mejorado
- */
-function ProductDetailDialog({
-    product,
-    open,
-    onClose,
-    globalMinStock = 5,
-}: {
-    readonly product: Product | null;
-    readonly open: boolean;
-    readonly onClose: () => void;
-    readonly globalMinStock?: number;
-}) {
-    if (!product) return null;
-
-    const margin = product.profitMargin ?? 0;
-    const ganancia = product.price - product.cost;
-    const isLowStock = product.stock <= globalMinStock && product.stock > 0;
-    const isOutOfStock = product.stock === 0;
-
-    // Determinar el estado del stock para mostrar badge
-    const getStockStatus = () => {
-        if (isOutOfStock) return { label: 'Sin Stock', variant: 'destructive' as const, className: 'bg-red-500/10 text-red-600 border-red-200' };
-        if (isLowStock) return { label: 'Stock Bajo', variant: 'outline' as const, className: 'bg-yellow-500/10 text-yellow-600 border-yellow-300' };
-        return { label: 'En Stock', variant: 'outline' as const, className: 'bg-green-500/10 text-green-600 border-green-300' };
-    };
-    const stockStatus = getStockStatus();
-
-    return (
-        <Dialog open={open} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-[480px] p-0 gap-0 overflow-hidden">
-                {/* Header con gradiente y nombre del producto */}
-                <div className="bg-gradient-to-br from-primary/90 via-primary to-primary/80 px-6 py-5 text-primary-foreground">
-                    <div className="flex items-start gap-4">
-                        <div className="p-3 bg-white/20 rounded-xl backdrop-blur-sm">
-                            <Package className="h-6 w-6" />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                            <h2 className="text-xl font-bold tracking-tight truncate">
-                                {product.name}
-                            </h2>
-                            <div className="flex items-center gap-3 mt-1.5 flex-wrap">
-                                {product.category ? (
-                                    <div
-                                        className="flex items-center gap-1.5 px-2 py-0.5 rounded-full backdrop-blur-sm"
-                                        style={{
-                                            backgroundColor: product.category.color ? `${product.category.color}40` : 'rgba(255,255,255,0.1)',
-                                            border: product.category.color ? `1px solid ${product.category.color}60` : 'none'
-                                        }}
-                                    >
-                                        <Tag className="h-3.5 w-3.5 opacity-80" />
-                                        <span className="text-sm font-medium opacity-90">{product.category.name}</span>
-                                    </div>
-                                ) : null}
-                                {product.brand ? (
-                                    <div className="flex items-center gap-1.5 bg-white/10 px-2 py-0.5 rounded-full backdrop-blur-sm">
-                                        <Boxes className="h-3.5 w-3.5 opacity-80" />
-                                        <span className="text-sm font-medium opacity-90">{product.brand.name}</span>
-                                    </div>
-                                ) : null}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Contenido principal */}
-                <div className="p-6 space-y-5">
-                    {/* Descripción si existe */}
-                    {product.description ? (
-                        <div className="rounded-xl bg-muted/40 p-4 border border-border/50">
-                            <div className="flex items-center gap-2 mb-2">
-                                <FileText className="h-4 w-4 text-muted-foreground" />
-                                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                                    Descripción
-                                </span>
-                            </div>
-                            <p className="text-sm leading-relaxed">{product.description}</p>
-                        </div>
-                    ) : null}
-
-                    {/* Sección de precios */}
-                    <div className="space-y-3">
-                        <div className="flex items-center gap-2">
-                            <DollarSign className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                                Información de Precios
-                            </span>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-3">
-                            {/* Costo */}
-                            <div className="rounded-lg bg-slate-50 dark:bg-slate-900/50 p-3 border border-slate-200 dark:border-slate-800">
-                                <p className="text-xs text-muted-foreground mb-1">Costo</p>
-                                <p className="text-lg font-semibold">{formatCurrency(product.cost)}</p>
-                            </div>
-
-                            {/* Margen */}
-                            <div className="rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3 border border-blue-200 dark:border-blue-800/50">
-                                <div className="flex items-center gap-1 mb-1">
-                                    <TrendingUp className="h-3 w-3 text-blue-500" />
-                                    <p className="text-xs text-blue-600 dark:text-blue-400">Margen</p>
-                                </div>
-                                <p className="text-lg font-semibold text-blue-600 dark:text-blue-400">
-                                    {margin.toFixed(1)}%
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Precio de venta destacado */}
-                        <div className="rounded-xl bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-950/50 dark:to-green-950/50 p-4 border border-emerald-200 dark:border-emerald-800/50 shadow-sm">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <p className="text-sm font-medium text-emerald-700 dark:text-emerald-300 mb-0.5">
-                                        Precio de Venta
-                                    </p>
-                                    <p className="text-xs text-emerald-600/80 dark:text-emerald-400/80">
-                                        Ganancia: {formatCurrency(ganancia)}/unidad
-                                    </p>
-                                </div>
-                                <div className="text-right">
-                                    <p className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
-                                        {formatCurrency(product.price)}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <Separator className="my-4" />
-
-                    {/* Stock e información adicional */}
-                    <div className="space-y-3">
-                        <div className="flex items-center gap-2">
-                            <Boxes className="h-4 w-4 text-muted-foreground" />
-                            <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                                Inventario y Estado
-                            </span>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-3">
-                            {/* Stock actual */}
-                            <div className={`rounded-lg p-3 border transition-colors ${(() => {
-                                if (isOutOfStock) return 'bg-red-50 dark:bg-red-950/30 border-red-200 dark:border-red-800/50';
-                                if (isLowStock) return 'bg-yellow-50 dark:bg-yellow-950/30 border-yellow-200 dark:border-yellow-800/50';
-                                return 'bg-slate-50 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800';
-                            })()
-                                }`}>
-                                <div className="flex items-center justify-between mb-1">
-                                    <p className="text-xs text-muted-foreground">Stock Actual</p>
-                                    {(isLowStock || isOutOfStock) ? (
-                                        <AlertTriangle className={`h-3.5 w-3.5 ${isOutOfStock ? 'text-red-500' : 'text-yellow-500'}`} />
-                                    ) : null}
-                                </div>
-                                <p className={`text-lg font-semibold ${(() => {
-                                    if (isOutOfStock) return 'text-red-600 dark:text-red-400';
-                                    if (isLowStock) return 'text-yellow-600 dark:text-yellow-400';
-                                    return '';
-                                })()
-                                    }`}>
-                                    {product.stock} <span className="text-sm font-normal text-muted-foreground">unidades</span>
-                                </p>
-                            </div>
-
-                            {/* Estado del producto */}
-                            <div className="rounded-lg bg-slate-50 dark:bg-slate-900/50 p-3 border border-slate-200 dark:border-slate-800">
-                                <p className="text-xs text-muted-foreground mb-1">Estado</p>
-                                <div className="flex items-center gap-2">
-                                    {product.isActive ? (
-                                        <>
-                                            <CheckCircle2 className="h-4 w-4 text-green-500" />
-                                            <span className="text-sm font-medium text-green-600 dark:text-green-400">Activo</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <XCircle className="h-4 w-4 text-slate-400" />
-                                            <span className="text-sm font-medium text-muted-foreground">Inactivo</span>
-                                        </>
-                                    )}
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Badge de estado de stock */}
-                        <div className="flex items-center justify-center pt-2">
-                            <Badge
-                                variant={stockStatus.variant}
-                                className={`${stockStatus.className} px-4 py-1`}
-                            >
-                                {stockStatus.label}
-                            </Badge>
-                        </div>
-                    </div>
-                </div>
-            </DialogContent>
-        </Dialog>
-    );
+    readonly onView: (product: Product) => void;
 }
 
 /**
  * Componente para mostrar la lista de productos con acciones
  */
-export function ProductList({ onEdit, onDelete }: ProductListProps) {
-    const [viewProduct, setViewProduct] = useState<Product | null>(null);
+export function ProductList({ onEdit, onDelete, onView }: ProductListProps) {
     const [historyProduct, setHistoryProduct] = useState<Product | null>(null);
     const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
     const [selectedBrandId, setSelectedBrandId] = useState<string>('');
@@ -501,7 +289,7 @@ export function ProductList({ onEdit, onDelete }: ProductListProps) {
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                             <DropdownMenuLabel>Acciones</DropdownMenuLabel>
-                            <DropdownMenuItem onClick={() => setViewProduct(product)}>
+                            <DropdownMenuItem onClick={() => onView(product)}>
                                 <Eye className="mr-2 h-4 w-4" />
                                 Ver Detalle
                             </DropdownMenuItem>
@@ -550,12 +338,6 @@ export function ProductList({ onEdit, onDelete }: ProductListProps) {
                 searchPlaceholder="Buscar producto..."
                 filterSlot={filtersSlot}
                 getRowClassName={getRowClassName}
-            />
-            <ProductDetailDialog
-                product={viewProduct}
-                open={!!viewProduct}
-                onClose={() => setViewProduct(null)}
-                globalMinStock={globalMinStock}
             />
             <StockHistoryDialog
                 product={historyProduct}
