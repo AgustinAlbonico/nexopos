@@ -61,7 +61,7 @@ export const createCashMovementSchema = z.object({
 export const cashFlowReportFiltersSchema = z.object({
     startDate: z.string().min(1, 'La fecha de inicio es requerida'),
     endDate: z.string().min(1, 'La fecha de fin es requerida'),
-    paymentMethod: z.enum(['cash', 'debit_card', 'credit_card', 'transfer', 'qr', 'check', 'other']).optional(),
+    paymentMethod: z.string().optional(),
     includeComparison: z.boolean().optional(),
 });
 

@@ -10,16 +10,6 @@ export enum MovementType {
     EXPENSE = 'expense',
 }
 
-export enum PaymentMethod {
-    CASH = 'cash',
-    DEBIT_CARD = 'debit_card',
-    CREDIT_CARD = 'credit_card',
-    TRANSFER = 'transfer',
-    QR = 'qr',
-    CHECK = 'check',
-    OTHER = 'other',
-}
-
 export interface User {
     id: string;
     name: string | null;

@@ -37,11 +37,10 @@ import {
     Banknote,
     CreditCard,
     Landmark,
-    QrCode,
     FileCheck
 } from 'lucide-react';
 import { useCashFlowReport } from '../hooks';
-import type { CashFlowReportFilters, PaymentMethod } from '../types';
+import type { CashFlowReportFilters } from '../types';
 import { formatCurrency, formatDate, cn } from '@/lib/utils';
 
 interface CashFlowReportDialogProps {
@@ -51,15 +50,14 @@ interface CashFlowReportDialogProps {
 
 type PeriodPreset = 'today' | 'week' | 'month' | 'custom';
 
-const paymentMethodConfig: Record<PaymentMethod, { label: string; icon: React.ReactNode; color: string }> = {
+const paymentMethodConfig: Record<string, { label: string; icon: React.ReactNode; color: string }> = {
     cash: { label: 'Efectivo', icon: <Banknote className="h-4 w-4" />, color: 'bg-green-500' },
-    debit_card: { label: 'Débito', icon: <CreditCard className="h-4 w-4" />, color: 'bg-blue-500' },
-    credit_card: { label: 'Crédito', icon: <CreditCard className="h-4 w-4" />, color: 'bg-purple-500' },
-    transfer: { label: 'Transferencia', icon: <Landmark className="h-4 w-4" />, color: 'bg-orange-500' },
-    qr: { label: 'QR', icon: <QrCode className="h-4 w-4" />, color: 'bg-cyan-500' },
+    bank: { label: 'Banco / Transferencia', icon: <Landmark className="h-4 w-4" />, color: 'bg-blue-500' },
+    wallet: { label: 'Billetera Digital', icon: <CreditCard className="h-4 w-4" />, color: 'bg-purple-500' },
     check: { label: 'Cheque', icon: <FileCheck className="h-4 w-4" />, color: 'bg-gray-500' },
-    other: { label: 'Otro', icon: <Banknote className="h-4 w-4" />, color: 'bg-slate-500' },
 };
+
+const defaultPaymentMethodDisplay = { label: 'Otro', icon: <Banknote className="h-4 w-4" />, color: 'bg-slate-500' };
 
 export function CashFlowReportDialog({ open, onOpenChange }: CashFlowReportDialogProps) {
     const [periodPreset, setPeriodPreset] = useState<PeriodPreset>('week');
@@ -280,8 +278,7 @@ export function CashFlowReportDialog({ open, onOpenChange }: CashFlowReportDialo
                                         <CardContent className="px-3 sm:px-6">
                                             <div className="space-y-2 sm:space-y-3">
                                                 {Object.entries(report.byPaymentMethod).map(([method, data]) => {
-                                                    const config = paymentMethodConfig[method as PaymentMethod];
-                                                    if (!config) return null;
+                                                    const config = paymentMethodConfig[method] ?? { ...defaultPaymentMethodDisplay, label: method };
                                                     return (
                                                         <div key={method} className="flex items-center gap-2 sm:gap-4 p-2 sm:p-3 rounded-lg border">
                                                             <div className={cn("p-1.5 sm:p-2 rounded-full text-white shrink-0", config.color)}>
