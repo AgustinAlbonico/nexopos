@@ -267,8 +267,6 @@
     </div>
 
     <script>
-        const { ipcRenderer } = require('electron');
-
         const form = document.getElementById('db-form');
         const connectBtn = document.getElementById('connect-btn');
         const statusDiv = document.getElementById('status');
@@ -323,13 +321,13 @@
 
             try {
                 // Enviar datos al proceso principal para probar y guardar
-                const result = await ipcRenderer.invoke('setup-database', config);
+                const result = await window.setupAPI.setupDatabase(config);
 
                 if (result.success) {
                     statusDiv.textContent = '¡Conexión exitosa! Configurando sistema...';
                     statusDiv.classList.add('status-success');
                     setTimeout(() => {
-                        ipcRenderer.send('setup-complete');
+                        window.setupAPI.notifySetupComplete();
                     }, 1500);
                 } else {
                     throw new Error(result.error);

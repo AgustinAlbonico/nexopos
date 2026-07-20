@@ -1,6 +1,7 @@
 import { BrowserWindow, ipcMain, app } from 'electron';
 import * as path from 'node:path';
 import * as fs from 'node:fs/promises';
+import { randomBytes } from 'node:crypto';
 import { Client } from 'pg';
 
 /** Detectar si estamos en modo desarrollo (consistente con main.ts) */
@@ -20,8 +21,9 @@ export function createSetupWizard(onSuccess: () => void) {
         resizable: false,
         title: 'Configuración inicial - NexoPOS',
         webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false, // Simplificado para este wizard local
+            nodeIntegration: false,
+            contextIsolation: true,
+            preload: path.join(__dirname, 'setup-preload.js'),
         },
         autoHideMenuBar: true,
     });
@@ -75,7 +77,7 @@ FRONTEND_PORT=5173
 NODE_ENV=production
 
 # Seguridad JWT
-JWT_SECRET=${config.jwtSecret || Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}
+JWT_SECRET=${config.jwtSecret || randomBytes(32).toString('hex')}
 JWT_EXPIRATION=36500d
       `.trim();
 
