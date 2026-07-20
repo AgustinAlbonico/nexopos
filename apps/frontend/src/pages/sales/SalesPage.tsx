@@ -317,24 +317,24 @@ export default function SalesPage() {
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-4 xl:space-y-6">
             {/* Header */}
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold tracking-tight text-foreground">
+                    <h1 className="text-xl xl:text-2xl font-bold tracking-tight text-foreground">
                         Ventas
                     </h1>
-                    <p className="text-muted-foreground">
+                    <p className="text-sm xl:text-base text-muted-foreground">
                         Punto de venta y registro de ventas
                     </p>
                 </div>
-                <div>
+                <div className="w-full xl:w-auto">
                     <Button
-                        size="lg"
-                        className="shadow-lg"
+                        size="default"
+                        className="shadow-lg w-full xl:w-auto"
                         onClick={openCreateModal}
                     >
-                        <Plus className="mr-2 h-5 w-5" />
+                        <Plus className="mr-2 h-4 w-4 xl:h-5 xl:w-5" />
                         Nueva Venta
                     </Button>
 
@@ -431,9 +431,9 @@ export default function SalesPage() {
                         </div>
 
                         {/* Filtros detallados */}
-                        <div className="flex flex-wrap items-end gap-4">
+                        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-[minmax(14rem,1.4fr)_repeat(4,minmax(9rem,1fr))_auto]">
                             {/* Búsqueda */}
-                            <div className="w-56">
+                            <div className="min-w-0">
                                 <Label className="text-xs text-muted-foreground">Buscar</Label>
                                 <Input
                                     placeholder="Nº, cliente..."
@@ -445,7 +445,7 @@ export default function SalesPage() {
                             </div>
 
                             {/* Estado */}
-                            <div className="w-36">
+                            <div className="min-w-0">
                                 <Label className="text-xs text-muted-foreground">Estado</Label>
                                 <Select
                                     value={filters.status ?? '__all__'}
@@ -471,7 +471,7 @@ export default function SalesPage() {
                             </div>
 
                             {/* Facturación */}
-                            <div className="w-36">
+                            <div className="min-w-0">
                                 <Label className="text-xs text-muted-foreground">Facturación</Label>
                                 <Select
                                     value={filters.invoiceStatus ?? '__all__'}
@@ -497,7 +497,7 @@ export default function SalesPage() {
                             </div>
 
                             {/* Fecha desde */}
-                            <div className="w-36">
+                            <div className="min-w-0">
                                 <Label className="text-xs text-muted-foreground">Desde</Label>
                                 <Input
                                     type="date"
@@ -509,7 +509,7 @@ export default function SalesPage() {
                             </div>
 
                             {/* Fecha hasta */}
-                            <div className="w-36">
+                            <div className="min-w-0">
                                 <Label className="text-xs text-muted-foreground">Hasta</Label>
                                 <Input
                                     type="date"

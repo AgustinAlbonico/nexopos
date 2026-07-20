@@ -31,16 +31,16 @@ export function SaleStatsCards({ startDate, endDate }: SaleStatsCardsProps) {
 
     if (isLoading) {
         return (
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4 2xl:gap-4">
                 {Array.from({ length: 4 }, (_, i) => (
                     <Card key={`skeleton-${i}`}>
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                            <Skeleton className="h-4 w-24" />
-                            <Skeleton className="h-4 w-4" />
+                            <Skeleton className="h-3 xl:h-4 w-20 xl:w-24" />
+                            <Skeleton className="h-3 w-3 xl:h-4 xl:w-4" />
                         </CardHeader>
                         <CardContent>
-                            <Skeleton className="h-8 w-32" />
-                            <Skeleton className="h-3 w-20 mt-1" />
+                            <Skeleton className="h-6 xl:h-8 w-24 xl:w-32" />
+                            <Skeleton className="h-2 xl:h-3 w-16 xl:w-20 mt-1" />
                         </CardContent>
                     </Card>
                 ))}
@@ -84,17 +84,17 @@ export function SaleStatsCards({ startDate, endDate }: SaleStatsCardsProps) {
     ];
 
     return (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4 2xl:gap-4">
             {cards.map((card) => (
                 <Card key={card.title} className={card.bgColor}>
                     <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">
+                        <CardTitle className="text-xs xl:text-sm font-medium">
                             {card.title}
                         </CardTitle>
-                        <card.icon className={`h-4 w-4 ${card.iconColor}`} />
+                        <card.icon className={`h-3 w-3 xl:h-4 xl:w-4 ${card.iconColor}`} />
                     </CardHeader>
                     <CardContent>
-                        <div className="text-2xl font-bold">{card.value}</div>
+                        <div className="text-xl xl:text-2xl font-bold">{card.value}</div>
                         <p className="text-xs text-muted-foreground">{card.subtitle}</p>
                     </CardContent>
                 </Card>
