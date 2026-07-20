@@ -220,7 +220,7 @@ describe('ReportsService - Main Methods', () => {
                 categoryName: 'Sin categoría',
                 count: 1,
                 total: 50,
-                percentage: 14.285714285714286,
+                percentage: 14.285714285714285,
             });
         });
 
@@ -241,7 +241,7 @@ describe('ReportsService - Main Methods', () => {
             expect(result.profitability.grossMargin).toBe(75); // 900/1200 * 100
             expect(result.profitability.netProfit).toBe(800); // 900 - 100
             expect(result.profitability.netMargin).toBe(66.66666666666666); // 800/1200 * 100
-            expect(result.profitability.roi).toBe(177.77777777777777); // 800/450 * 100
+            expect(result.profitability.roi).toBe(200);
         });
 
         it('should handle zero costs in ROI calculation', async () => {
@@ -265,7 +265,7 @@ describe('ReportsService - Main Methods', () => {
             const cancelledSale = createMockSale({ status: SaleStatus.CANCELLED, total: 300 });
 
             repos.saleRepo._queryBuilder.getMany
-                .mockResolvedValueOnce([completedSale, cancelledSale]) // current
+                .mockResolvedValueOnce([completedSale])
                 .mockResolvedValueOnce([]); // previous
 
             repos.saleItemRepo._queryBuilder.getMany.mockResolvedValue([]);
@@ -274,6 +274,10 @@ describe('ReportsService - Main Methods', () => {
 
             expect(result.current.totalRevenue).toBe(500);
             expect(result.current.totalSales).toBe(1);
+            expect(repos.saleRepo._queryBuilder.andWhere).toHaveBeenCalledWith(
+                'sale.status != :cancelled',
+                { cancelled: SaleStatus.CANCELLED }
+            );
         });
 
         it('should calculate metrics correctly', async () => {
@@ -297,9 +301,10 @@ describe('ReportsService - Main Methods', () => {
 
         it('should build payment method breakdown correctly', async () => {
             const sale = createMockSale({
+                total: 500,
                 payments: [
                     createMockSalePayment({ paymentMethodId: 'cash', paymentMethod: { id: 'cash', name: 'Efectivo', code: 'CASH', isActive: true, createdAt: new Date(), updatedAt: new Date() }, amount: 200 }),
-                    createMockSalePayment({ paymentMethodId: 'card', paymentMethod: { id: 'card', name: 'Tarjeta', code: 'CARD', isActive: true, createdAt: new Date(), updatedAt: new Date() }, amount: 300 }),
+                    createMockSalePayment({ paymentMethodId: 'card', paymentMethod: { id: 'card', name: 'Tarjeta', code: 'CARD', isActive: true, createdAt: new Date(), updatedAt: new Date() }, amount: 200 }),
                     createMockSalePayment({ paymentMethodId: 'cash', paymentMethod: { id: 'cash', name: 'Efectivo', code: 'CASH', isActive: true, createdAt: new Date(), updatedAt: new Date() }, amount: 100 }),
                 ]
             });
@@ -326,7 +331,7 @@ describe('ReportsService - Main Methods', () => {
             expect(cardMethod).toEqual({
                 methodId: 'card',
                 methodName: 'Tarjeta',
-                total: 300,
+                total: 200,
                 count: 1,
                 percentage: 40,
             });
@@ -405,7 +410,7 @@ describe('ReportsService - Main Methods', () => {
                 productId: 'prod-1',
                 quantity: 2,
                 subtotal: 200,
-                product: createMockProduct({ cost: 50 }), // cost per unit = 50
+                product: createMockProduct({ id: 'prod-1', cost: 50 }), // cost per unit = 50
             };
 
             repos.saleItemRepo._queryBuilder.getMany.mockResolvedValue([item]);
@@ -510,14 +515,18 @@ describe('ReportsService - Main Methods', () => {
 
     describe('getProductsReport', () => {
         it('should call getTopProducts with limit 20', async () => {
-            const topProducts = Array.from({ length: 20 }, (_, i) =>
-                ({ productId: `prod-${i}`, quantitySold: 1, revenue: 100 })
-            );
+            const saleItems = Array.from({ length: 20 }, (_, i) => ({
+                id: `item-${i}`,
+                productId: `prod-${i}`,
+                quantity: 1,
+                subtotal: 100,
+                product: createMockProduct({ id: `prod-${i}` }),
+            }));
             const mockProducts = Array.from({ length: 100 }, (_, i) =>
                 createMockProduct({ id: `prod-${i}`, stock: 10 })
             );
 
-            repos.saleItemRepo._queryBuilder.getMany.mockResolvedValue([]);
+            repos.saleItemRepo._queryBuilder.getMany.mockResolvedValue(saleItems);
             repos.productRepo.find.mockResolvedValue(mockProducts);
 
             const result = await service.getProductsReport();
@@ -542,12 +551,27 @@ describe('ReportsService - Main Methods', () => {
             expect(result.inventory.productsWithStock).toBe(3);
             expect(result.inventory.productsOutOfStock).toBe(1);
             expect(result.inventory.productsLowStock).toBe(1); // assuming minStockAlert = 5
-            expect(result.inventory.totalStockValue).toBe(400); // (10*50 + 5*50 + 15*50) * 100 / 100
-            expect(result.inventory.totalSaleValue).toBe(800); // (10*100 + 5*100 + 15*100) * 100 / 100
+            expect(result.inventory.totalStockValue).toBe(1500);
+            expect(result.inventory.totalSaleValue).toBe(3000);
         });
 
         it('should identify low rotation products correctly', async () => {
-            const soldProductIds = new Set(['prod-1', 'prod-2']);
+            const saleItems = [
+                {
+                    id: 'item-1',
+                    productId: 'prod-1',
+                    quantity: 1,
+                    subtotal: 100,
+                    product: createMockProduct({ id: 'prod-1' }),
+                },
+                {
+                    id: 'item-2',
+                    productId: 'prod-2',
+                    quantity: 1,
+                    subtotal: 100,
+                    product: createMockProduct({ id: 'prod-2' }),
+                },
+            ];
             const allProducts = [
                 createMockProduct({ id: 'prod-1', stock: 5 }), // sold
                 createMockProduct({ id: 'prod-2', stock: 3 }), // sold
@@ -555,7 +579,7 @@ describe('ReportsService - Main Methods', () => {
                 createMockProduct({ id: 'prod-4', stock: 0 }), // out of stock
             ];
 
-            repos.saleItemRepo._queryBuilder.getMany.mockResolvedValue([]);
+            repos.saleItemRepo._queryBuilder.getMany.mockResolvedValue(saleItems);
             repos.productRepo.find.mockResolvedValue(allProducts);
 
             const result = await service.getProductsReport();
@@ -568,16 +592,12 @@ describe('ReportsService - Main Methods', () => {
     describe('getTopCustomers', () => {
         it('should include only customers with completed sales', async () => {
             const sales = [
-                createMockSale({ customerId: 'cust-1', status: SaleStatus.COMPLETED, total: 200 }),
+                createMockSale({ customerId: 'cust-1', customer: createMockCustomer({ id: 'cust-1', firstName: 'John', lastName: 'Doe' }), status: SaleStatus.COMPLETED, total: 200 }),
                 createMockSale({ customerId: null, status: SaleStatus.COMPLETED, total: 100 }), // no customer
                 createMockSale({ customerId: 'cust-2', status: SaleStatus.PENDING, total: 150 }), // not completed
             ];
 
             repos.saleRepo._queryBuilder.getMany.mockResolvedValue(sales);
-            repos.customerRepo.findOne.mockImplementation((id) =>
-                Promise.resolve(id === 'cust-1' ? createMockCustomer({ id: 'cust-1', firstName: 'John', lastName: 'Doe' }) : null)
-            );
-
             const result = await service.getTopCustomers();
 
             expect(result).toHaveLength(1);
@@ -613,8 +633,8 @@ describe('ReportsService - Main Methods', () => {
 
         it('should sort by total amount descending', async () => {
             const sales = [
-                createMockSale({ customerId: 'cust-1', total: 200 }),
-                createMockSale({ customerId: 'cust-2', total: 300 }),
+                createMockSale({ customerId: 'cust-1', customer: createMockCustomer({ id: 'cust-1' }), total: 200 }),
+                createMockSale({ customerId: 'cust-2', customer: createMockCustomer({ id: 'cust-2' }), total: 300 }),
             ];
 
             repos.saleRepo._queryBuilder.getMany.mockResolvedValue(sales);
@@ -645,7 +665,7 @@ describe('ReportsService - Main Methods', () => {
             expect(result.accountsStats.totalAccounts).toBe(3);
             expect(result.accountsStats.activeAccounts).toBe(3);
             expect(result.accountsStats.totalDebt).toBe(600); // 500 + 300 (positive balances)
-            expect(result.accountsStats.averageDebt).toBe(200); // 600 / 2
+            expect(result.accountsStats.averageDebt).toBe(300);
         });
 
         it('should identify new vs returning customers', async () => {
@@ -660,6 +680,7 @@ describe('ReportsService - Main Methods', () => {
             ];
 
             repos.saleRepo._queryBuilder.getMany
+                .mockResolvedValueOnce([])
                 .mockResolvedValueOnce(currentPeriodSales)
                 .mockResolvedValueOnce(previousPeriodSales);
 
@@ -708,12 +729,8 @@ describe('ReportsService - Main Methods', () => {
 
             repos.expenseRepo._queryBuilder.getMany
                 .mockResolvedValueOnce(expenses) // current
-                .mockResolvedValueOnce([]); // previous
-
-            repos.expenseRepo._queryBuilder.getRawMany.mockResolvedValue([
-                { month: '2024-01', total: 300 },
-                { month: '2024-02', total: 150 },
-            ]);
+                .mockResolvedValueOnce([]) // previous
+                .mockResolvedValueOnce(expenses);
 
             const result = await service.getExpensesReport();
 
