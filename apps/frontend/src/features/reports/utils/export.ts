@@ -225,10 +225,21 @@ export function exportExpensesToCSV(report: ExpensesReport, filename?: string): 
  * Función auxiliar para descargar CSV
  */
 function downloadCSV(rows: (string | number)[][], filename: string): void {
+    // Sanitizar para prevenir CSV injection (fórmulas en Excel/Sheets)
+    // Celdas que empiezan con =, +, -, @, TAB, CR se tratan como texto
+    const sanitizeCell = (cell: string | number): string => {
+        const cellStr = String(cell);
+        // Prevenir inyección CSV: prefijar con ' si empieza con caracteres de fórmula
+        if (/^[=+\-@\t\r]/.test(cellStr)) {
+            return `'${cellStr}`;
+        }
+        return cellStr;
+    };
+
     // Escapar valores con comas o saltos de línea
     const escapedRows = rows.map(row => 
         row.map(cell => {
-            const cellStr = String(cell);
+            const cellStr = sanitizeCell(cell);
             if (cellStr.includes(',') || cellStr.includes('\n') || cellStr.includes('"')) {
                 return `"${cellStr.replaceAll('"', '""')}"`;
             }
