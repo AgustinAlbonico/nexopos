@@ -2,7 +2,7 @@ import { useState, useMemo, useCallback } from 'react';
 import { useConfirm } from '@/hooks/useConfirm';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
-import { Plus, Tags, RefreshCw, Receipt } from 'lucide-react';
+import { Plus, Tags, RefreshCw, Receipt, Repeat, X } from 'lucide-react';
 import { useShortcutAction } from '@/hooks/useKeyboardShortcuts';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -36,13 +36,14 @@ import {
     expensesApi,
     expenseCategoriesApi,
 } from '@/features/expenses/api/expenses.api';
-import { Expense, ExpenseFilters } from '@/features/expenses/types';
+import { Expense, ExpenseFilters, RecurringSuggestion } from '@/features/expenses/types';
 import { ExpenseFormValues } from '@/features/expenses/schemas/expense.schema';
 import {
     getCurrentMonthRange,
     getTodayRange,
     getCurrentWeekRange,
     formatDateForDisplay,
+    getTodayLocal,
 } from '@/lib/date-utils';
 import { useOpenCashRegister } from '@/features/cash-register/hooks';
 import { UnclosedCashAlertDialog } from '@/features/cash-register/components/UnclosedCashAlertDialog';
@@ -58,6 +59,10 @@ export default function ExpensesPage() {
     const [newCategoryRecurring, setNewCategoryRecurring] = useState(false);
     // Estado para controlar si el usuario decidió continuar a pesar de la alerta de caja
     const [dismissedCashAlert, setDismissedCashAlert] = useState(false);
+
+    // FIX 2.2: Prefill del form de creación desde sugerencia recurrente + dismissed state
+    const [createPrefill, setCreatePrefill] = useState<Partial<ExpenseFormValues> | null>(null);
+    const [dismissedSuggestions, setDismissedSuggestions] = useState<string[]>([]);
 
     // Inicializar filtros con el mes actual por defecto
     const defaultMonthRange = useMemo(() => getCurrentMonthRange(), []);
@@ -90,16 +95,26 @@ export default function ExpensesPage() {
         queryFn: expenseCategoriesApi.getAll,
     });
 
+    // FIX 2.2: Query para sugerencias de gastos recurrentes del mes
+    const { data: recurringSuggestions } = useQuery<RecurringSuggestion[]>({
+        queryKey: ['expense-recurring-suggestions'],
+        queryFn: expensesApi.getRecurringSuggestions,
+        staleTime: 1000 * 60 * 5, // 5 minutos
+    });
+
     // Mutaciones
     const createMutation = useMutation({
         mutationFn: expensesApi.create,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['expenses'] });
             queryClient.invalidateQueries({ queryKey: ['expense-stats'] });
+            // FIX 2.2: Refrescar sugerencias recurrentes al crear un gasto
+            queryClient.invalidateQueries({ queryKey: ['expense-recurring-suggestions'] });
             // Invalidate cash register query to update movements immediately
             queryClient.invalidateQueries({ queryKey: ['cash-register', 'current'] });
             toast.success('Gasto registrado');
             setIsCreateOpen(false);
+            setCreatePrefill(null);
         },
         onError: () => {
             toast.error('Error al registrar gasto');
@@ -452,8 +467,11 @@ export default function ExpensesPage() {
 
                         <FormDialog
                             open={isCreateOpen}
-                            onOpenChange={setIsCreateOpen}
-                            title="Registrar Gasto"
+                            onOpenChange={(open) => {
+                                setIsCreateOpen(open);
+                                if (!open) setCreatePrefill(null);
+                            }}
+                            title={createPrefill ? `Registrar Gasto (${createPrefill.description ?? 'recurrente'})` : 'Registrar Gasto'}
                             description="Completa los datos del nuevo gasto"
                             icon={Receipt}
                             variant="danger"
@@ -462,6 +480,7 @@ export default function ExpensesPage() {
                             <ExpenseForm
                                 onSubmit={handleCreate}
                                 isLoading={createMutation.isPending}
+                                initialData={createPrefill ?? undefined}
                             />
                         </FormDialog>
                     </div>
@@ -474,6 +493,68 @@ export default function ExpensesPage() {
                     {getDateRangeText()}
                 </p>
             </div>
+
+            {/* FIX 2.2: Banner de sugerencias de gastos recurrentes */}
+            {recurringSuggestions && recurringSuggestions.length > 0 && (
+                <div className="bg-gradient-to-r from-blue-500/5 to-purple-500/5 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                        <div className="p-1.5 bg-blue-500/10 rounded-md">
+                            <Repeat className="h-4 w-4 text-blue-600" />
+                        </div>
+                        <div className="flex-1">
+                            <p className="text-sm font-semibold text-foreground">
+                                Gastos recurrentes pendientes este mes
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                                Tocá "Crear" para registrar con los datos del último mes.
+                            </p>
+                        </div>
+                        <Button
+                            size="sm"
+                            variant="ghost"
+                            onClick={() => setDismissedSuggestions(recurringSuggestions.map(s => s.categoryId))}
+                            title="Descartar todas las sugerencias"
+                        >
+                            <X className="h-4 w-4" />
+                        </Button>
+                    </div>
+                    <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                        {recurringSuggestions
+                            .filter(s => !dismissedSuggestions.includes(s.categoryId))
+                            .map((suggestion) => (
+                                <div
+                                    key={suggestion.categoryId}
+                                    className="bg-background border rounded-md p-3 flex items-center justify-between gap-2"
+                                >
+                                    <div className="min-w-0 flex-1">
+                                        <p className="font-medium text-sm truncate">{suggestion.categoryName}</p>
+                                        <p className="text-xs text-muted-foreground truncate">
+                                            {suggestion.lastExpense.description} · {new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(suggestion.lastExpense.amount)}
+                                        </p>
+                                    </div>
+                                    <Button
+                                        size="sm"
+                                        onClick={() => {
+                                            setCreatePrefill({
+                                                description: suggestion.lastExpense.description,
+                                                amount: suggestion.lastExpense.amount,
+                                                categoryId: suggestion.categoryId,
+                                                paymentMethodId: suggestion.lastExpense.paymentMethodId ?? undefined,
+                                                receiptNumber: suggestion.lastExpense.receiptNumber ?? '',
+                                                notes: suggestion.lastExpense.notes ?? '',
+                                                isPaid: true,
+                                                expenseDate: getTodayLocal(),
+                                            });
+                                            setIsCreateOpen(true);
+                                        }}
+                                    >
+                                        Crear
+                                    </Button>
+                                </div>
+                            ))}
+                    </div>
+                </div>
+            )}
 
             {/* Estadísticas */}
             <ExpenseStatsCards

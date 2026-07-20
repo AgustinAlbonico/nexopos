@@ -13,6 +13,7 @@ import {
     ExpenseFilters,
     ExpenseStats,
     PaginatedExpenses,
+    RecurringSuggestion,
 } from '../types';
 
 export const expensesApi = {
@@ -71,8 +72,16 @@ export const expensesApi = {
         const params: Record<string, string> = {};
         if (startDate) params.startDate = startDate;
         if (endDate) params.endDate = endDate;
-        
+
         const response = await api.get<ExpenseStats>('/api/expenses/stats', { params });
+        return response.data;
+    },
+
+    /**
+     * FIX 2.2: Obtiene sugerencias de gastos recurrentes del mes actual
+     */
+    getRecurringSuggestions: async (): Promise<RecurringSuggestion[]> => {
+        const response = await api.get<RecurringSuggestion[]>('/api/expenses/recurring-suggestions');
         return response.data;
     },
 };

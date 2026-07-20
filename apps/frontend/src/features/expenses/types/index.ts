@@ -102,6 +102,19 @@ export interface ExpenseStats {
     }>;
 }
 
+export interface RecurringSuggestion {
+    categoryId: string;
+    categoryName: string;
+    lastExpense: {
+        description: string;
+        amount: number;
+        paymentMethodId: string | null;
+        receiptNumber: string | null;
+        notes: string | null;
+        lastDate: string;
+    };
+}
+
 export interface PaginatedExpenses {
     data: Expense[];
     total: number;
