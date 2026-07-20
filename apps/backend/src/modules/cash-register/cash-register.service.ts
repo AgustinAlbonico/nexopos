@@ -538,10 +538,8 @@ export class CashRegisterService {
         const savedMovement = result[0];
 
         // Actualizar totales de caja usando UPDATE directo para no tocar relaciones
-        await this.cashRegisterRepo.update(
-            { id: cashRegister.id },
-            { totalIncome: Number(cashRegister.totalIncome) + Math.abs(amount) }
-        );
+        // FIX 1.4: incremento atómico en SQL (antes: read-modify-write con race condition)
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalIncome', Math.abs(amount));
 
         // Actualizar totales por método de pago
         // Necesitamos la entidad PaymentMethod para updatePaymentMethodTotal
@@ -610,10 +608,8 @@ export class CashRegisterService {
         const savedMovement = result[0];
 
         // Actualizar totales de caja usando UPDATE directo para no tocar relaciones
-        await this.cashRegisterRepo.update(
-            { id: cashRegister.id },
-            { totalExpense: Number(cashRegister.totalExpense) + Math.abs(amount) }
-        );
+        // FIX 1.4: incremento atómico en SQL
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalExpense', Math.abs(amount));
 
         // Actualizar totales por método de pago
         const paymentMethodEntity = await this.paymentMethodRepo.findOneBy({ id: expense.paymentMethodId });
@@ -681,10 +677,8 @@ export class CashRegisterService {
         const savedMovement = result[0];
 
         // Actualizar totales de caja usando UPDATE directo para no tocar relaciones
-        await this.cashRegisterRepo.update(
-            { id: cashRegister.id },
-            { totalIncome: Number(cashRegister.totalIncome) + Math.abs(amount) }
-        );
+        // FIX 1.4: incremento atómico en SQL (antes: read-modify-write con race condition)
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalIncome', Math.abs(amount));
 
         // Actualizar totales por método de pago
         const paymentMethodEntity = await this.paymentMethodRepo.findOneBy({ id: income.paymentMethodId });
@@ -746,10 +740,8 @@ export class CashRegisterService {
         const savedMovement = result[0];
 
         // Actualizar totales de caja usando UPDATE directo para no tocar relaciones
-        await this.cashRegisterRepo.update(
-            { id: cashRegister.id },
-            { totalIncome: Number(cashRegister.totalIncome) + amount }
-        );
+        // FIX 1.4: incremento atómico en SQL
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalIncome', amount);
 
         // Actualizar totales por método de pago
         const paymentMethodEntity = await this.paymentMethodRepo.findOneBy({ id: data.paymentMethodId });
@@ -830,10 +822,8 @@ export class CashRegisterService {
         const savedMovement = result[0];
 
         // Actualizar totales de caja usando UPDATE directo para no tocar relaciones
-        await this.cashRegisterRepo.update(
-            { id: cashRegister.id },
-            { totalExpense: Number(cashRegister.totalExpense) + Math.abs(amount) }
-        );
+        // FIX 1.4: incremento atómico en SQL
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalExpense', Math.abs(amount));
 
         // Actualizar totales por método de pago
         if (paymentMethodId) {
@@ -895,10 +885,8 @@ export class CashRegisterService {
         const savedMovement = result[0];
 
         // Actualizar totales de caja
-        await this.cashRegisterRepo.update(
-            { id: cashRegister.id },
-            { totalExpense: Number(cashRegister.totalExpense) + amount }
-        );
+        // FIX 1.4: incremento atómico en SQL
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalExpense', amount);
 
         // Actualizar totales por método de pago
         const paymentMethodEntity = await this.paymentMethodRepo.findOneBy({ id: data.paymentMethodId });
@@ -935,7 +923,6 @@ export class CashRegisterService {
 
         // Si no existe el total para este método de pago, crearlo
         if (!total) {
-            console.log(`[CashRegister] Creando total para método ${paymentMethod.name} en caja ${cashRegisterId}`);
             total = this.cashTotalsRepo.create({
                 cashRegister: { id: cashRegisterId } as any,
                 paymentMethod,
@@ -944,18 +931,16 @@ export class CashRegisterService {
                 totalExpense: 0,
                 expectedAmount: 0,
             });
+            await this.cashTotalsRepo.save(total);
         }
 
-        if (type === 'income') {
-            total.totalIncome = Number(total.totalIncome) + amount;
-        } else {
-            total.totalExpense = Number(total.totalExpense) + amount;
-        }
-        total.expectedAmount =
-            Number(total.initialAmount) +
-            Number(total.totalIncome) -
-            Number(total.totalExpense);
-        await this.cashTotalsRepo.save(total);
+        // FIX 1.4: Incrementos atómicos en SQL para evitar race conditions
+        // (antes hacía read-modify-write en memoria, perdía actualizaciones concurrentes).
+        // initialAmount es inmutable post-apertura, así que expectedAmount tiene el
+        // mismo delta que el ingreso/egreso.
+        const column = type === 'income' ? 'totalIncome' : 'totalExpense';
+        await this.cashTotalsRepo.increment({ id: total.id }, column, amount);
+        await this.cashTotalsRepo.increment({ id: total.id }, 'expectedAmount', type === 'income' ? amount : -amount);
     }
 
     /**
@@ -1012,15 +997,10 @@ export class CashRegisterService {
 
         // Actualizar totales de la caja
         if (isIncome) {
-            await this.cashRegisterRepo.update(
-                { id: cashRegister.id },
-                { totalIncome: Number(cashRegister.totalIncome) + amount }
-            );
+            // FIX 1.4: incremento atómico en SQL
+            await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalIncome', amount);
         } else {
-            await this.cashRegisterRepo.update(
-                { id: cashRegister.id },
-                { totalExpense: Number(cashRegister.totalExpense) + amount }
-            );
+            await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalExpense', amount);
         }
 
         // Actualizar totales por método de pago

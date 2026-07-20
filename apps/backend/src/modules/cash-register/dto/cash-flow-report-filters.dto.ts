@@ -1,6 +1,5 @@
-import { IsDateString, IsOptional, IsEnum, IsBoolean } from 'class-validator';
+import { IsDateString, IsOptional, IsString, IsBoolean } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { PaymentMethod } from '../entities/cash-movement.entity';
 
 export class CashFlowReportFiltersDto {
     @ApiProperty({
@@ -18,12 +17,12 @@ export class CashFlowReportFiltersDto {
     endDate!: string;
 
     @ApiPropertyOptional({
-        description: 'Filtrar por método de pago específico',
-        enum: PaymentMethod,
+        description: 'Filtrar por código de método de pago (ej: cash, bank, wallet, check)',
+        example: 'cash',
     })
-    @IsEnum(PaymentMethod)
+    @IsString()
     @IsOptional()
-    paymentMethod?: PaymentMethod;
+    paymentMethod?: string;
 
     @ApiPropertyOptional({
         description: 'Incluir comparación con el período anterior',

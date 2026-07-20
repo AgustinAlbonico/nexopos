@@ -19,6 +19,7 @@ const mockCashRegisterRepository = {
     save: jest.fn(),
     create: jest.fn(),
     update: jest.fn(),
+    increment: jest.fn(),
     find: jest.fn(),
     createQueryBuilder: jest.fn(),
 };
@@ -33,6 +34,7 @@ const mockCashTotalsRepository = {
     find: jest.fn(),
     findOne: jest.fn(),
     create: jest.fn(),
+    increment: jest.fn(),
 };
 
 const mockPaymentMethodRepository = {
@@ -451,9 +453,10 @@ describe('CashRegisterService', () => {
             );
 
             expect(result.manualAmount).toBe(1500);
-            expect(mockCashRegisterRepository.update).toHaveBeenCalledWith(
+            expect(mockCashRegisterRepository.increment).toHaveBeenCalledWith(
                 { id: 'cash-1' },
-                { totalIncome: 1500 }
+                'totalIncome',
+                1500
             );
         });
 
@@ -483,9 +486,10 @@ describe('CashRegisterService', () => {
                 'user-1',
             );
 
-            expect(mockCashRegisterRepository.update).toHaveBeenCalledWith(
+            expect(mockCashRegisterRepository.increment).toHaveBeenCalledWith(
                 { id: 'cash-1' },
-                { totalExpense: 500 }
+                'totalExpense',
+                500
             );
         });
 
