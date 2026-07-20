@@ -20,6 +20,7 @@ import {
 } from './dto';
 import { InventoryService } from '../inventory/inventory.service';
 import { ProductsService } from '../products/products.service';
+import { Product } from '../products/entities/product.entity';
 import { InvoiceService } from './services/invoice.service';
 import { CashRegisterService } from '../cash-register/cash-register.service';
 import { CustomerAccountsService } from '../customer-accounts/customer-accounts.service';
@@ -71,9 +72,27 @@ export class SalesService {
     /**
      * Valida que todos los productos existan y tengan stock suficiente
      */
-    private async validateProductsStock(items: CreateSaleDto['items']): Promise<void> {
+    private async getProductsById(items: CreateSaleDto['items']): Promise<Map<string, Product>> {
+        const productIds = Array.from(new Set(items.map((item) => item.productId)));
+        const products = await this.productsService.findByIds(productIds);
+        const productsById = new Map(products.map((product) => [product.id, product]));
+
         for (const item of items) {
-            const product = await this.productsService.findOne(item.productId);
+            const product = productsById.get(item.productId);
+            if (!product) {
+                throw new NotFoundException(`Producto con ID ${item.productId} no encontrado`);
+            }
+        }
+
+        return productsById;
+    }
+
+    /**
+     * Valida que todos los productos existan y tengan stock suficiente
+     */
+    private validateProductsStock(items: CreateSaleDto['items'], productsById: Map<string, Product>): void {
+        for (const item of items) {
+            const product = productsById.get(item.productId);
             if (!product) {
                 throw new NotFoundException(`Producto con ID ${item.productId} no encontrado`);
             }
@@ -149,10 +168,14 @@ export class SalesService {
     private async createSaleItems(
         manager: EntityManager,
         saleId: string,
-        items: CreateSaleDto['items']
+        items: CreateSaleDto['items'],
+        productsById: Map<string, Product>
     ): Promise<void> {
         for (const itemDto of items) {
-            const product = await this.productsService.findOne(itemDto.productId);
+            const product = productsById.get(itemDto.productId);
+            if (!product) {
+                throw new NotFoundException(`Producto con ID ${itemDto.productId} no encontrado`);
+            }
             const item = this.saleItemRepo.create({
                 saleId,
                 productId: itemDto.productId,
@@ -264,7 +287,8 @@ export class SalesService {
         }
 
         // Validar productos y stock
-        await this.validateProductsStock(dto.items);
+        const productsById = await this.getProductsById(dto.items);
+        this.validateProductsStock(dto.items, productsById);
 
         // Calcular totales
         const { subtotal, totalTax, total } = this.calculateSaleTotals(dto);
@@ -306,7 +330,7 @@ export class SalesService {
             const savedSale = await queryRunner.manager.save(sale);
 
             // Crear items, impuestos y pagos usando funciones auxiliares
-            await this.createSaleItems(queryRunner.manager, savedSale.id, dto.items);
+            await this.createSaleItems(queryRunner.manager, savedSale.id, dto.items, productsById);
             await this.createSaleTaxes(queryRunner.manager, savedSale.id, dto.taxes);
             await this.createSalePayments(queryRunner.manager, savedSale.id, dto.payments);
 
@@ -847,61 +871,71 @@ export class SalesService {
      * Obtiene estadísticas de ventas
      */
     async getStats(startDate?: string, endDate?: string): Promise<SaleStats> {
-        const query = this.saleRepo
+        const summaryQuery = this.saleRepo
             .createQueryBuilder('sale')
-            .leftJoinAndSelect('sale.payments', 'payments')
-            .leftJoinAndSelect('payments.paymentMethod', 'paymentMethod')
+            .select('COUNT(*)', 'totalSales')
+            .addSelect(
+                "COALESCE(SUM(CASE WHEN sale.status != 'cancelled' THEN sale.total ELSE 0 END), 0)",
+                'totalAmount'
+            )
+            .addSelect(
+                "COALESCE(SUM(CASE WHEN sale.status = 'completed' THEN sale.total ELSE 0 END), 0)",
+                'totalCompleted'
+            )
+            .addSelect(
+                "COALESCE(SUM(CASE WHEN sale.status IN ('pending', 'partial') THEN sale.total ELSE 0 END), 0)",
+                'totalPending'
+            )
+            .addSelect("COALESCE(SUM(CASE WHEN sale.status = 'completed' THEN 1 ELSE 0 END), 0)", 'completedCount')
+            .addSelect("COALESCE(SUM(CASE WHEN sale.status = 'pending' THEN 1 ELSE 0 END), 0)", 'pendingCount')
+            .addSelect("COALESCE(SUM(CASE WHEN sale.status = 'partial' THEN 1 ELSE 0 END), 0)", 'partialCount')
+            .addSelect("COALESCE(SUM(CASE WHEN sale.status = 'cancelled' THEN 1 ELSE 0 END), 0)", 'cancelledCount')
             .where('sale.deletedAt IS NULL');
 
-        if (startDate && endDate) {
-            query.andWhere('DATE(sale.saleDate) BETWEEN :start AND :end', {
-                start: startDate,
-                end: endDate,
-            });
-        }
+        this.applyDateFilters(summaryQuery, startDate, endDate);
 
-        const sales = await query.getMany();
+        const paymentQuery = this.saleRepo
+            .createQueryBuilder('sale')
+            .innerJoin('sale.payments', 'payment')
+            .leftJoin('payment.paymentMethod', 'paymentMethod')
+            .select("COALESCE(paymentMethod.name, 'Desconocido')", 'method')
+            .addSelect('COALESCE(SUM(payment.amount), 0)', 'total')
+            .where('sale.deletedAt IS NULL')
+            .groupBy('paymentMethod.name');
 
-        const totalSales = sales.length;
+        this.applyDateFilters(paymentQuery, startDate, endDate);
 
-        const totalAmount = sales
-            .filter((s) => s.status !== SaleStatus.CANCELLED)
-            .reduce((sum, s) => sum + Number(s.total), 0);
+        const [summary, paymentRows] = await Promise.all([
+            summaryQuery.getRawOne<{
+                totalSales: string;
+                totalAmount: string;
+                totalCompleted: string;
+                totalPending: string;
+                completedCount: string;
+                pendingCount: string;
+                partialCount: string;
+                cancelledCount: string;
+            }>(),
+            paymentQuery.getRawMany<{ method: string; total: string }>(),
+        ]);
 
-        const totalCompleted = sales
-            .filter((s) => s.status === SaleStatus.COMPLETED)
-            .reduce((sum, s) => sum + Number(s.total), 0);
-
-        const totalPending = sales
-            .filter((s) => s.status === SaleStatus.PENDING || s.status === SaleStatus.PARTIAL)
-            .reduce((sum, s) => sum + Number(s.total), 0);
-
-        // Contar por estado
         const salesByStatus = {
-            [SaleStatus.COMPLETED]: 0,
-            [SaleStatus.PENDING]: 0,
-            [SaleStatus.PARTIAL]: 0,
-            [SaleStatus.CANCELLED]: 0,
+            [SaleStatus.COMPLETED]: Number(summary?.completedCount ?? 0),
+            [SaleStatus.PENDING]: Number(summary?.pendingCount ?? 0),
+            [SaleStatus.PARTIAL]: Number(summary?.partialCount ?? 0),
+            [SaleStatus.CANCELLED]: Number(summary?.cancelledCount ?? 0),
         };
 
-        for (const sale of sales) {
-            salesByStatus[sale.status]++;
-        }
-
-        // Contar por método de pago
         const salesByPaymentMethod: Record<string, number> = {};
-        for (const sale of sales) {
-            for (const payment of sale.payments || []) {
-                const method = payment.paymentMethod?.name ?? 'Desconocido';
-                salesByPaymentMethod[method] = (salesByPaymentMethod[method] || 0) + Number(payment.amount);
-            }
+        for (const row of paymentRows) {
+            salesByPaymentMethod[row.method] = Number(row.total);
         }
 
         return {
-            totalSales,
-            totalAmount,
-            totalCompleted,
-            totalPending,
+            totalSales: Number(summary?.totalSales ?? 0),
+            totalAmount: Number(summary?.totalAmount ?? 0),
+            totalCompleted: Number(summary?.totalCompleted ?? 0),
+            totalPending: Number(summary?.totalPending ?? 0),
             salesByStatus,
             salesByPaymentMethod,
         };

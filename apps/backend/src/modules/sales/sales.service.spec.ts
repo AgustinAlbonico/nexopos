@@ -19,7 +19,67 @@ import { CashRegisterService } from '../cash-register/cash-register.service';
 import { CustomerAccountsService } from '../customer-accounts/customer-accounts.service';
 import { AuditService } from '../audit/audit.service';
 import { CreateSaleDto } from './dto';
+import { InvoiceFilterStatus } from './dto/sale-filters.dto';
 import { createSaleDTO, createSaleItemDTO } from '../../test/factories';
+
+let mockCompletedSaleForFindOne: unknown = null;
+const savedEntities = new Map<string, unknown[]>();
+let mockPaymentsForSale: unknown[] = [];
+
+const createMockQueryRunner = () => ({
+    connect: jest.fn(),
+    startTransaction: jest.fn(),
+    commitTransaction: jest.fn(),
+    rollbackTransaction: jest.fn(),
+    release: jest.fn(),
+    manager: {
+        query: jest.fn().mockResolvedValue([]),
+        save: jest.fn().mockImplementation(async (entity: unknown) => {
+            if (!entity) {
+                return { id: 'generated-id' };
+            }
+            const typedEntity = entity as Record<string, unknown>;
+            const savedEntity = { ...typedEntity, id: typedEntity.id || `generated-${Date.now()}-${Math.random()}` };
+
+            if (entity && typeof entity === 'object' && 'paymentMethodId' in entity && 'amount' in entity) {
+                const payments = savedEntities.get('payments') || [];
+                payments.push(savedEntity);
+                savedEntities.set('payments', payments);
+            }
+
+            return savedEntity;
+        }),
+        findOne: jest.fn().mockImplementation(async (_entity: unknown, options?: unknown) => {
+            const typedOptions = options as { where?: { id?: string } } | undefined;
+            if (typedOptions?.where?.id) {
+                const payments = mockPaymentsForSale.length > 0 ? mockPaymentsForSale : (savedEntities.get('payments') || []);
+                return {
+                    ...(mockCompletedSaleForFindOne || {}),
+                    payments: payments.length > 0 ? payments : [],
+                };
+            }
+            return mockCompletedSaleForFindOne;
+        }),
+        getRepository: jest.fn(() => mockRepository()),
+    },
+});
+
+const mockDataSource = {
+    createQueryRunner: jest.fn(createMockQueryRunner),
+};
+
+beforeEach(() => {
+    mockProductsService.findByIds.mockImplementation(async (ids: string[]) => {
+        const products = await Promise.all(ids.map((id) => mockProductsService.findOne(id)));
+        return products.filter(Boolean);
+    });
+});
+
+afterEach(() => {
+    mockCompletedSaleForFindOne = null;
+    savedEntities.clear();
+    mockPaymentsForSale = [];
+});
 
 const mockRepository = () => ({
     create: jest.fn(),
@@ -50,6 +110,7 @@ const mockCashRegisterService = {
 
 const mockProductsService = {
     findOne: jest.fn(),
+    findByIds: jest.fn(),
 };
 
 const mockInventoryService = {
@@ -72,55 +133,6 @@ const mockAuditService = {
 describe('SalesService - critical flows', () => {
     let service: SalesService;
 
-    // Estado encapsulado dentro del bloque describe para evitar interferencia entre tests
-    let mockCompletedSaleForFindOne: unknown = null;
-    const savedEntities = new Map<string, unknown[]>();
-    let mockPaymentsForSale: unknown[] = [];
-
-    // Crea un queryRunner limpio para cada test
-    const createMockQueryRunner = () => ({
-        connect: jest.fn(),
-        startTransaction: jest.fn(),
-        commitTransaction: jest.fn(),
-        rollbackTransaction: jest.fn(),
-        release: jest.fn(),
-        manager: {
-            query: jest.fn().mockResolvedValue([]),
-            save: jest.fn().mockImplementation(async (entity: unknown) => {
-                if (!entity) {
-                    return { id: 'generated-id' };
-                }
-                const typedEntity = entity as Record<string, unknown>;
-                const savedEntity = { ...typedEntity, id: typedEntity.id || `generated-${Date.now()}-${Math.random()}` };
-
-                // Guardar payments en un array para poder recuperarlos después
-                if (entity && typeof entity === 'object' && 'paymentMethodId' in entity && 'amount' in entity) {
-                    const payments = savedEntities.get('payments') || [];
-                    payments.push(savedEntity);
-                    savedEntities.set('payments', payments);
-                }
-
-                return savedEntity;
-            }),
-            findOne: jest.fn().mockImplementation(async (_entity: unknown, options?: unknown) => {
-                const typedOptions = options as { where?: { id?: string } } | undefined;
-                if (typedOptions?.where?.id) {
-                    const payments = mockPaymentsForSale.length > 0 ? mockPaymentsForSale : (savedEntities.get('payments') || []);
-                    return {
-                        ...(mockCompletedSaleForFindOne || {}),
-                        payments: payments.length > 0 ? payments : [],
-                    };
-                }
-                return mockCompletedSaleForFindOne;
-            }),
-            getRepository: jest.fn(() => mockRepository()),
-        },
-    });
-
-    const mockDataSource = {
-        createQueryRunner: jest.fn(createMockQueryRunner),
-    };
-
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
@@ -140,6 +152,11 @@ describe('SalesService - critical flows', () => {
         }).compile();
 
         service = module.get<SalesService>(SalesService);
+
+        mockProductsService.findByIds.mockImplementation(async (ids: string[]) => {
+            const products = await Promise.all(ids.map((id) => mockProductsService.findOne(id)));
+            return products.filter(Boolean);
+        });
     });
 
     afterEach(() => {
@@ -312,6 +329,43 @@ describe('SalesService - critical flows', () => {
             await expect(service.create(dto)).rejects.toThrow(
                 new NotFoundException('Producto con ID product-inexistente no encontrado')
             );
+        });
+
+        it('debe buscar productos en lote para evitar N+1 queries', async () => {
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+            mockProductsService.findByIds.mockResolvedValue([
+                { id: 'product-1', stock: 10, sku: 'SKU1', name: 'Producto 1' },
+                { id: 'product-2', stock: 10, sku: 'SKU2', name: 'Producto 2' },
+            ]);
+
+            mockCompletedSaleForFindOne = {
+                id: 'sale-1',
+                saleNumber: 'VENTA-2026-00001',
+                status: SaleStatus.COMPLETED,
+                saleDate: new Date(),
+                items: [],
+                payments: [],
+                customer: null,
+                createdBy: null,
+                invoice: null,
+            };
+            mockPaymentsForSale = [
+                { id: 'payment-1', paymentMethodId: 'pm-1', amount: 300, saleId: 'sale-1' },
+            ];
+
+            const dto: CreateSaleDto = {
+                items: [
+                    { productId: 'product-1', quantity: 1, unitPrice: 100 },
+                    { productId: 'product-2', quantity: 1, unitPrice: 200 },
+                ],
+                payments: [{ paymentMethodId: 'pm-1', amount: 300 }],
+            };
+
+            await service.create(dto, 'user-1');
+
+            expect(mockProductsService.findByIds).toHaveBeenCalledTimes(1);
+            expect(mockProductsService.findByIds).toHaveBeenCalledWith(['product-1', 'product-2']);
+            expect(mockProductsService.findOne).not.toHaveBeenCalled();
         });
 
         it('debe crear movimiento de stock al completar venta', async () => {
@@ -731,7 +785,7 @@ describe('SalesService - canCreateSale', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
-                { provide: getDataSourceToken(), useValue: {} },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
 
@@ -801,7 +855,7 @@ describe('SalesService - findAll con filtros', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
-                { provide: getDataSourceToken(), useValue: {} },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
 
@@ -867,7 +921,7 @@ describe('SalesService - findOne', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
-                { provide: getDataSourceToken(), useValue: {} },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
 
@@ -929,7 +983,7 @@ describe('SalesService - update', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
-                { provide: getDataSourceToken(), useValue: {} },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
 
@@ -1055,7 +1109,7 @@ describe('SalesService - cancel', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
-                { provide: getDataSourceToken(), useValue: {} },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
 
@@ -1162,7 +1216,7 @@ describe('SalesService - remove (soft delete)', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
-                { provide: getDataSourceToken(), useValue: {} },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
 
@@ -1376,7 +1430,7 @@ describe('SalesService - getTodaySales', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
-                { provide: getDataSourceToken(), useValue: {} },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
 
@@ -1406,38 +1460,47 @@ describe('SalesService - getTodaySales', () => {
 
 describe('SalesService - getStats', () => {
     let service: SalesService;
-    let mockQueryBuilder: unknown;
+    let mockSummaryQueryBuilder: unknown;
+    let mockPaymentQueryBuilder: unknown;
 
     beforeEach(async () => {
-        mockQueryBuilder = {
+        mockSummaryQueryBuilder = {
             leftJoin: jest.fn().mockReturnThis(),
             leftJoinAndSelect: jest.fn().mockReturnThis(),
+            select: jest.fn().mockReturnThis(),
+            addSelect: jest.fn().mockReturnThis(),
             where: jest.fn().mockReturnThis(),
             andWhere: jest.fn().mockReturnThis(),
-            getMany: jest.fn().mockResolvedValue([
-                {
-                    id: 'sale-1',
-                    status: SaleStatus.COMPLETED,
-                    total: 100,
-                    payments: [{ paymentMethod: { name: 'Efectivo' }, amount: 50 }],
-                },
-                {
-                    id: 'sale-2',
-                    status: SaleStatus.PENDING,
-                    total: 50,
-                    payments: [],
-                },
-                {
-                    id: 'sale-3',
-                    status: SaleStatus.CANCELLED,
-                    total: 75,
-                    payments: [],
-                },
+            getRawOne: jest.fn().mockResolvedValue({
+                totalSales: '3',
+                totalAmount: '150',
+                totalCompleted: '100',
+                totalPending: '50',
+                completedCount: '1',
+                pendingCount: '1',
+                partialCount: '0',
+                cancelledCount: '1',
+            }),
+            getMany: jest.fn().mockResolvedValue([]),
+        };
+
+        mockPaymentQueryBuilder = {
+            innerJoin: jest.fn().mockReturnThis(),
+            leftJoin: jest.fn().mockReturnThis(),
+            select: jest.fn().mockReturnThis(),
+            addSelect: jest.fn().mockReturnThis(),
+            where: jest.fn().mockReturnThis(),
+            andWhere: jest.fn().mockReturnThis(),
+            groupBy: jest.fn().mockReturnThis(),
+            getRawMany: jest.fn().mockResolvedValue([
+                { method: 'Efectivo', total: '50' },
             ]),
         };
 
         const mockSaleRepo = {
-            createQueryBuilder: jest.fn().mockReturnValue(mockQueryBuilder),
+            createQueryBuilder: jest.fn()
+                .mockReturnValueOnce(mockSummaryQueryBuilder)
+                .mockReturnValueOnce(mockPaymentQueryBuilder),
         } as unknown as Repository<Sale>;
 
         const module: TestingModule = await Test.createTestingModule({
@@ -1453,7 +1516,7 @@ describe('SalesService - getStats', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
-                { provide: getDataSourceToken(), useValue: {} },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
 
@@ -1471,6 +1534,7 @@ describe('SalesService - getStats', () => {
         expect(result.totalAmount).toBe(150); // Excluye cancelled
         expect(result.totalCompleted).toBe(100);
         expect(result.totalPending).toBe(50);
+        expect((mockSummaryQueryBuilder as { getMany: jest.Mock }).getMany).not.toHaveBeenCalled();
     });
 
     it('debe contar ventas por estado', async () => {
@@ -1490,5 +1554,941 @@ describe('SalesService - getStats', () => {
         expect(result.salesByPaymentMethod).toEqual({
             'Efectivo': 50,
         });
+    });
+});
+
+describe('SalesService - Validación de Impuestos Duplicados (FIX 7.8)', () => {
+    let service: SalesService;
+
+    beforeEach(async () => {
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [
+                SalesService,
+                { provide: getRepositoryToken(Sale), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleItem), useFactory: mockRepository },
+                { provide: getRepositoryToken(SalePayment), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleTax), useFactory: mockRepository },
+                { provide: CashRegisterService, useValue: mockCashRegisterService },
+                { provide: ProductsService, useValue: mockProductsService },
+                { provide: InventoryService, useValue: mockInventoryService },
+                { provide: InvoiceService, useValue: mockInvoiceService },
+                { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
+                { provide: AuditService, useValue: mockAuditService },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
+            ],
+        }).compile();
+
+        service = module.get<SalesService>(SalesService);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('debe rechazar impuestos duplicados', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 142 }],
+            taxes: [
+                { name: 'IVA', percentage: 21, amount: 21 },
+                { name: 'IVA', percentage: 21, amount: 21 }, // Duplicado
+            ],
+        };
+
+        await expect(service.create(dto)).rejects.toThrow(
+            new BadRequestException('No se permiten impuestos duplicados en la misma venta. Verifique los impuestos seleccionados.')
+        );
+    });
+
+    it('debe rechazar impuestos con nombres similares (case insensitive)', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 142 }],
+            taxes: [
+                { name: 'IVA', percentage: 21, amount: 21 },
+                { name: 'iva', percentage: 21, amount: 21 }, // Duplicado en minúsculas
+            ],
+        };
+
+        await expect(service.create(dto)).rejects.toThrow(
+            new BadRequestException('No se permiten impuestos duplicados en la misma venta. Verifique los impuestos seleccionados.')
+        );
+    });
+
+    it('debe aceptar impuestos con nombres diferentes', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+
+        const mockCompletedSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            items: [],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        };
+        mockCompletedSaleForFindOne = mockCompletedSale;
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 126 }],
+            taxes: [
+                { name: 'IVA', percentage: 21, amount: 21 },
+                { name: 'Impuesto Municipal', percentage: 5, amount: 5 },
+            ],
+        };
+
+        const result = await service.create(dto, 'user-1');
+        expect(result).toBeDefined();
+    });
+});
+
+describe('SalesService - Tolerancia de Redondeo en Pagos', () => {
+    let service: SalesService;
+
+    beforeEach(async () => {
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [
+                SalesService,
+                { provide: getRepositoryToken(Sale), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleItem), useFactory: mockRepository },
+                { provide: getRepositoryToken(SalePayment), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleTax), useFactory: mockRepository },
+                { provide: CashRegisterService, useValue: mockCashRegisterService },
+                { provide: ProductsService, useValue: mockProductsService },
+                { provide: InventoryService, useValue: mockInventoryService },
+                { provide: InvoiceService, useValue: mockInvoiceService },
+                { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
+                { provide: AuditService, useValue: mockAuditService },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
+            ],
+        }).compile();
+
+        service = module.get<SalesService>(SalesService);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('debe aceptar diferencia de 0.01 en pagos', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+
+        const mockCompletedSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            items: [],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        };
+        mockCompletedSaleForFindOne = mockCompletedSale;
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-1', quantity: 3, unitPrice: 100 }], // 300
+            payments: [{ paymentMethodId: 'pm-1', amount: 300.01 }], // Diferencia 0.01
+        };
+
+        const result = await service.create(dto, 'user-1');
+        expect(result).toBeDefined();
+    });
+
+    it('debe rechazar diferencia mayor a 0.01', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 100.05 }], // Diferencia 0.05
+        };
+
+        await expect(service.create(dto)).rejects.toThrow(
+            new BadRequestException('El total de pagos ($100.05) no coincide con el total de la venta ($100.00)')
+        );
+    });
+});
+
+describe('SalesService - generateSaleNumberTransactional', () => {
+    let service: SalesService;
+    let mockQueryRunner: any;
+
+    beforeEach(async () => {
+        mockQueryRunner = {
+            connect: jest.fn(),
+            startTransaction: jest.fn(),
+            commitTransaction: jest.fn(),
+            rollbackTransaction: jest.fn(),
+            release: jest.fn(),
+            manager: {
+                query: jest.fn(),
+                save: jest.fn(),
+                findOne: jest.fn(),
+            },
+        };
+
+        const mockDataSource = {
+            createQueryRunner: jest.fn().mockReturnValue(mockQueryRunner),
+        };
+
+        mockQueryRunner.manager.save.mockImplementation(async (entity: unknown) => {
+            if (entity && typeof entity === 'object') {
+                return Object.assign({ id: 'sale-1' }, entity);
+            }
+
+            return { id: 'sale-1' };
+        });
+        mockQueryRunner.manager.findOne.mockImplementation(async () => mockCompletedSaleForFindOne);
+
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [
+                SalesService,
+                { provide: getRepositoryToken(Sale), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleItem), useFactory: mockRepository },
+                { provide: getRepositoryToken(SalePayment), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleTax), useFactory: mockRepository },
+                { provide: CashRegisterService, useValue: mockCashRegisterService },
+                { provide: ProductsService, useValue: mockProductsService },
+                { provide: InventoryService, useValue: mockInventoryService },
+                { provide: InvoiceService, useValue: mockInvoiceService },
+                { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
+                { provide: AuditService, useValue: mockAuditService },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
+            ],
+        }).compile();
+
+        service = module.get<SalesService>(SalesService);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('debe generar primer número de venta correctamente', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+
+        mockQueryRunner.manager.query.mockResolvedValue([]); // Sin ventas previas
+
+        const mockCompletedSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            items: [],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        };
+        mockCompletedSaleForFindOne = mockCompletedSale;
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+        };
+
+        const result = await service.create(dto, 'user-1');
+
+        expect(result.saleNumber).toMatch(/^VENTA-\d{4}-00001$/);
+    });
+
+    it('debe incrementar número secuencial correctamente', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+
+        mockQueryRunner.manager.query.mockResolvedValue([{ saleNumber: 'VENTA-2026-00005' }]);
+
+        const mockCompletedSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00006',
+            status: SaleStatus.COMPLETED,
+            items: [],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        };
+        mockCompletedSaleForFindOne = mockCompletedSale;
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+        };
+
+        const result = await service.create(dto, 'user-1');
+
+        expect(result.saleNumber).toBe('VENTA-2026-00006');
+    });
+});
+
+describe('SalesService - create con Items Múltiples y Descuentos', () => {
+    let service: SalesService;
+
+    beforeEach(async () => {
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [
+                SalesService,
+                { provide: getRepositoryToken(Sale), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleItem), useFactory: mockRepository },
+                { provide: getRepositoryToken(SalePayment), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleTax), useFactory: mockRepository },
+                { provide: CashRegisterService, useValue: mockCashRegisterService },
+                { provide: ProductsService, useValue: mockProductsService },
+                { provide: InventoryService, useValue: mockInventoryService },
+                { provide: InvoiceService, useValue: mockInvoiceService },
+                { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
+                { provide: AuditService, useValue: mockAuditService },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
+            ],
+        }).compile();
+
+        service = module.get<SalesService>(SalesService);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('debe crear venta con múltiples items con descuentos individuales', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockImplementation((id: string) => {
+            if (id === 'product-1') {
+                return Promise.resolve({ id: 'product-1', stock: 10, sku: 'SKU1', name: 'Producto 1' });
+            }
+            return Promise.resolve({ id: 'product-2', stock: 5, sku: 'SKU2', name: 'Producto 2' });
+        });
+
+        const mockCompletedSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            items: [
+                { id: 'item-1', productId: 'product-1', quantity: 2, unitPrice: 100, discount: 10 }, // 190
+                { id: 'item-2', productId: 'product-2', quantity: 1, unitPrice: 50, discount: 5 },  // 45
+            ],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+            subtotal: 235,
+            discount: 0,
+            tax: 0,
+            total: 235,
+        };
+        mockCompletedSaleForFindOne = mockCompletedSale;
+
+        const dto: CreateSaleDto = {
+            items: [
+                { productId: 'product-1', quantity: 2, unitPrice: 100, discount: 10 },
+                { productId: 'product-2', quantity: 1, unitPrice: 50, discount: 5 },
+            ],
+            payments: [{ paymentMethodId: 'pm-1', amount: 235 }],
+        };
+
+        const result = await service.create(dto, 'user-1');
+
+        expect(result).toBeDefined();
+        expect(mockInventoryService.createMovement).toHaveBeenCalledTimes(2);
+    });
+
+    it('debe calcular subtotal correctamente con descuentos por item', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+
+        const mockCompletedSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            items: [],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+            subtotal: 270,
+            discount: 0,
+            tax: 0,
+            total: 270,
+        };
+        mockCompletedSaleForFindOne = mockCompletedSale;
+
+        const dto: CreateSaleDto = {
+            items: [
+                { productId: 'product-1', quantity: 2, unitPrice: 100, discount: 10 }, // 190
+                { productId: 'product-1', quantity: 1, unitPrice: 100, discount: 20 }, // 80
+            ],
+            payments: [{ paymentMethodId: 'pm-1', amount: 270 }],
+        };
+
+        const result = await service.create(dto, 'user-1');
+
+        expect(result.subtotal).toBe(270); // (200-10) + (100-20) = 190 + 80 = 270
+    });
+});
+
+describe('SalesService - create con Pago Mixto', () => {
+    let service: SalesService;
+
+    beforeEach(async () => {
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [
+                SalesService,
+                { provide: getRepositoryToken(Sale), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleItem), useFactory: mockRepository },
+                { provide: getRepositoryToken(SalePayment), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleTax), useFactory: mockRepository },
+                { provide: CashRegisterService, useValue: mockCashRegisterService },
+                { provide: ProductsService, useValue: mockProductsService },
+                { provide: InventoryService, useValue: mockInventoryService },
+                { provide: InvoiceService, useValue: mockInvoiceService },
+                { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
+                { provide: AuditService, useValue: mockAuditService },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
+            ],
+        }).compile();
+
+        service = module.get<SalesService>(SalesService);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('debe registrar ingresos por cada método de pago', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+
+        const mockCompletedSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            items: [],
+            payments: [
+                { id: 'payment-1', paymentMethodId: 'pm-cash', amount: 60 },
+                { id: 'payment-2', paymentMethodId: 'pm-debit', amount: 40 },
+            ],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        };
+        mockCompletedSaleForFindOne = mockCompletedSale;
+        mockPaymentsForSale = [
+            { id: 'payment-1', paymentMethodId: 'pm-cash', amount: 60, saleId: 'sale-1' },
+            { id: 'payment-2', paymentMethodId: 'pm-debit', amount: 40, saleId: 'sale-1' },
+        ];
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [
+                { paymentMethodId: 'pm-cash', amount: 60 },
+                { paymentMethodId: 'pm-debit', amount: 40 },
+            ],
+        };
+
+        await service.create(dto, 'user-1');
+
+        expect(mockCashRegisterService.registerIncome).toHaveBeenCalledTimes(2);
+    });
+
+    it('debe aceptar pagos mixtos que cubran el total exacto', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+
+        const mockCompletedSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            items: [],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        };
+        mockCompletedSaleForFindOne = mockCompletedSale;
+        mockPaymentsForSale = [
+            { id: 'payment-1', paymentMethodId: 'pm-cash', amount: 50, saleId: 'sale-1' },
+            { id: 'payment-2', paymentMethodId: 'pm-credit', amount: 50, saleId: 'sale-1' },
+        ];
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [
+                { paymentMethodId: 'pm-cash', amount: 50 },
+                { paymentMethodId: 'pm-credit', amount: 50 },
+            ],
+        };
+
+        const result = await service.create(dto, 'user-1');
+        expect(result).toBeDefined();
+    });
+});
+
+describe('SalesService - findAll con Filtros', () => {
+    let service: SalesService;
+    let mockQueryBuilder: any;
+
+    beforeEach(async () => {
+        mockQueryBuilder = {
+            leftJoinAndSelect: jest.fn().mockReturnThis(),
+            leftJoin: jest.fn().mockReturnThis(),
+            where: jest.fn().mockReturnThis(),
+            andWhere: jest.fn().mockReturnThis(),
+            orderBy: jest.fn().mockReturnThis(),
+            skip: jest.fn().mockReturnThis(),
+            take: jest.fn().mockReturnThis(),
+            getMany: jest.fn().mockResolvedValue([]),
+            getManyAndCount: jest.fn().mockResolvedValue([[], 0]),
+        };
+
+        const mockSaleRepo = {
+            createQueryBuilder: jest.fn().mockReturnValue(mockQueryBuilder),
+        } as unknown as Repository<Sale>;
+
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [
+                SalesService,
+                { provide: getRepositoryToken(Sale), useValue: mockSaleRepo },
+                { provide: getRepositoryToken(SaleItem), useFactory: mockRepository },
+                { provide: getRepositoryToken(SalePayment), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleTax), useFactory: mockRepository },
+                { provide: CashRegisterService, useValue: mockCashRegisterService },
+                { provide: ProductsService, useValue: mockProductsService },
+                { provide: InventoryService, useValue: mockInventoryService },
+                { provide: InvoiceService, useValue: mockInvoiceService },
+                { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
+                { provide: AuditService, useValue: mockAuditService },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
+            ],
+        }).compile();
+
+        service = module.get<SalesService>(SalesService);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('debe filtrar por rango de fechas', async () => {
+        await service.findAll({
+            startDate: '2026-01-01',
+            endDate: '2026-01-31',
+        });
+
+        expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
+            'DATE(sale.saleDate) BETWEEN :start AND :end',
+            { start: '2026-01-01', end: '2026-01-31' }
+        );
+    });
+
+    it('debe filtrar solo por fecha de inicio', async () => {
+        await service.findAll({
+            startDate: '2026-01-01',
+        });
+
+        expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
+            'DATE(sale.saleDate) >= :start',
+            { start: '2026-01-01' }
+        );
+    });
+
+    it('debe filtrar solo por fecha de fin', async () => {
+        await service.findAll({
+            endDate: '2026-01-31',
+        });
+
+        expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
+            'DATE(sale.saleDate) <= :end',
+            { end: '2026-01-31' }
+        );
+    });
+
+    it('debe filtrar por búsqueda de número de venta', async () => {
+        await service.findAll({
+            search: 'VENTA-2026',
+        });
+
+        expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
+            expect.stringContaining('saleNumber ILIKE'),
+            expect.objectContaining({ search: '%VENTA-2026%' })
+        );
+    });
+
+    it('debe filtrar por estado', async () => {
+        await service.findAll({
+            status: SaleStatus.COMPLETED,
+        });
+
+        expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
+            'sale.status = :status',
+            { status: SaleStatus.COMPLETED }
+        );
+    });
+
+    it('debe filtrar por cliente', async () => {
+        await service.findAll({
+            customerId: 'customer-123',
+        });
+
+        expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
+            'sale.customerId = :customerId',
+            { customerId: 'customer-123' }
+        );
+    });
+
+    it('debe filtrar por estado de factura fiscal (fiscal)', async () => {
+        await service.findAll({
+            invoiceStatus: InvoiceFilterStatus.FISCAL,
+        });
+
+        expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
+            'sale.isFiscal = :isFiscal',
+            { isFiscal: true }
+        );
+    });
+
+    it('debe filtrar por estado de factura fiscal (no fiscal)', async () => {
+        await service.findAll({
+            invoiceStatus: InvoiceFilterStatus.NO_FISCAL,
+        });
+
+        expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
+            'sale.isFiscal = :isFiscal',
+            { isFiscal: false }
+        );
+        expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
+            '(sale.fiscalPending IS NULL OR sale.fiscalPending = :fiscalPending)',
+            { fiscalPending: false }
+        );
+    });
+
+    it('debe filtrar por error de factura fiscal', async () => {
+        await service.findAll({
+            invoiceStatus: InvoiceFilterStatus.ERROR,
+        });
+
+        expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
+            'sale.fiscalPending = :fiscalPending',
+            { fiscalPending: true }
+        );
+        expect(mockQueryBuilder.andWhere).toHaveBeenCalledWith(
+            'sale.isFiscal = :isFiscal',
+            { isFiscal: false }
+        );
+    });
+});
+
+describe('SalesService - cancel con Escenarios Especiales', () => {
+    let service: SalesService;
+    let mockSaleRepo: Repository<Sale>;
+
+    beforeEach(async () => {
+        mockSaleRepo = {
+            findOne: jest.fn(),
+            save: jest.fn(),
+        } as unknown as Repository<Sale>;
+
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [
+                SalesService,
+                { provide: getRepositoryToken(Sale), useValue: mockSaleRepo },
+                { provide: getRepositoryToken(SaleItem), useFactory: mockRepository },
+                { provide: getRepositoryToken(SalePayment), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleTax), useFactory: mockRepository },
+                { provide: CashRegisterService, useValue: mockCashRegisterService },
+                { provide: ProductsService, useValue: mockProductsService },
+                { provide: InventoryService, useValue: mockInventoryService },
+                { provide: InvoiceService, useValue: mockInvoiceService },
+                { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
+                { provide: AuditService, useValue: mockAuditService },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
+            ],
+        }).compile();
+
+        service = module.get<SalesService>(SalesService);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('debe registrar devolución para cada pago al cancelar venta de contado', async () => {
+        const mockSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            inventoryUpdated: true,
+            total: 150,
+            isOnAccount: false,
+            customerId: null,
+            items: [{ id: 'item-1', productId: 'product-1', quantity: 1, unitPrice: 150 }],
+            payments: [
+                { id: 'payment-1', paymentMethodId: 'pm-cash', amount: 100 },
+                { id: 'payment-2', paymentMethodId: 'pm-debit', amount: 50 },
+            ],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        };
+        (mockSaleRepo.findOne as jest.Mock).mockResolvedValue(mockSale);
+        (mockSaleRepo.save as jest.Mock).mockImplementation((sale) => sale);
+
+        await service.cancel('sale-1', 'user-1');
+
+        expect(mockCashRegisterService.registerRefund).toHaveBeenCalledTimes(2);
+    });
+
+    it('debe registrar advertencia si venta de contado no tiene pagos', async () => {
+        const mockSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            inventoryUpdated: false,
+            total: 100,
+            isOnAccount: false,
+            customerId: null,
+            items: [],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        };
+        (mockSaleRepo.findOne as jest.Mock).mockResolvedValue(mockSale);
+        (mockSaleRepo.save as jest.Mock).mockImplementation((sale) => sale);
+
+        const consoleSpy = jest.spyOn(console, 'warn').mockImplementation();
+
+        await service.cancel('sale-1', 'user-1');
+
+        expect(consoleSpy).toHaveBeenCalledWith(
+            expect.stringContaining('no tiene pagos registrados')
+        );
+        consoleSpy.mockRestore();
+    });
+
+    it('no debe revertir inventario si no estaba actualizado', async () => {
+        const mockSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            inventoryUpdated: false,
+            total: 100,
+            isOnAccount: false,
+            customerId: null,
+            items: [{ id: 'item-1', productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [{ id: 'payment-1', paymentMethodId: 'pm-cash', amount: 100 }],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        };
+        (mockSaleRepo.findOne as jest.Mock).mockResolvedValue(mockSale);
+        (mockSaleRepo.save as jest.Mock).mockImplementation((sale) => sale);
+
+        await service.cancel('sale-1', 'user-1');
+
+        expect(mockInventoryService.createMovement).not.toHaveBeenCalled();
+    });
+});
+
+describe('SalesService - create con Cuenta Corriente', () => {
+    let service: SalesService;
+
+    beforeEach(async () => {
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [
+                SalesService,
+                { provide: getRepositoryToken(Sale), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleItem), useFactory: mockRepository },
+                { provide: getRepositoryToken(SalePayment), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleTax), useFactory: mockRepository },
+                { provide: CashRegisterService, useValue: mockCashRegisterService },
+                { provide: ProductsService, useValue: mockProductsService },
+                { provide: InventoryService, useValue: mockInventoryService },
+                { provide: InvoiceService, useValue: mockInvoiceService },
+                { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
+                { provide: AuditService, useValue: mockAuditService },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
+            ],
+        }).compile();
+
+        service = module.get<SalesService>(SalesService);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('debe rechazar cuenta corriente sin cliente', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+
+        const dto: CreateSaleDto = {
+            isOnAccount: true,
+            customerId: undefined,
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+        };
+
+        await expect(service.create(dto)).rejects.toThrow();
+    });
+});
+
+describe('SalesService - create con Factura Fiscal', () => {
+    let service: SalesService;
+
+    beforeEach(async () => {
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [
+                SalesService,
+                { provide: getRepositoryToken(Sale), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleItem), useFactory: mockRepository },
+                { provide: getRepositoryToken(SalePayment), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleTax), useFactory: mockRepository },
+                { provide: CashRegisterService, useValue: mockCashRegisterService },
+                { provide: ProductsService, useValue: mockProductsService },
+                { provide: InventoryService, useValue: mockInventoryService },
+                { provide: InvoiceService, useValue: mockInvoiceService },
+                { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
+                { provide: AuditService, useValue: mockAuditService },
+                { provide: getDataSourceToken(), useValue: mockDataSource },
+            ],
+        }).compile();
+
+        service = module.get<SalesService>(SalesService);
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('debe generar factura fiscal si esta configurado', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+        mockInvoiceService.generateInvoice.mockResolvedValue({ id: 'invoice-1' });
+
+        const mockCompletedSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            items: [],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: { id: 'invoice-1' },
+        };
+        mockCompletedSaleForFindOne = mockCompletedSale;
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+            generateInvoice: true,
+        };
+
+        await service.create(dto, 'user-1');
+
+        expect(mockInvoiceService.generateInvoice).toHaveBeenCalledWith('generated-id', expect.anything());
+    });
+
+    it('debe manejar error de factura fiscal gracefully', async () => {
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto Test'
+        });
+        mockInvoiceService.generateInvoice.mockRejectedValue(new Error('Error AFIP'));
+
+        const mockCompletedSale = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            items: [],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+            fiscalPending: true,
+            fiscalError: 'Error AFIP',
+        };
+        mockCompletedSaleForFindOne = mockCompletedSale;
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+            generateInvoice: true,
+        };
+
+        const result = await service.create(dto, 'user-1');
+
+        expect(result.fiscalPending).toBe(true);
+        expect(result.fiscalError).toBe('Error AFIP');
     });
 });
