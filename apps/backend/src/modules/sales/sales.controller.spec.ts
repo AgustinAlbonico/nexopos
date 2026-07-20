@@ -3,6 +3,7 @@
  * Prueba los endpoints del controlador de ventas
  */
 import { Test, TestingModule } from '@nestjs/testing';
+import { BadRequestException } from '@nestjs/common';
 import { SalesController } from './sales.controller';
 import { SalesService } from './sales.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -280,5 +281,162 @@ describe('SalesController', () => {
             );
             expect(result).toEqual(mockSale);
         });
+    });
+});
+
+describe('SalesController - Validación de DTOs', () => {
+    let controller: SalesController;
+    let salesService: any;
+
+    const mockRequest = {
+        user: { userId: 'test-user-id' },
+    } as unknown as AuthenticatedRequest;
+
+    beforeEach(async () => {
+        const mockSalesService: any = {
+            create: jest.fn(),
+            findAll: jest.fn(),
+            getStats: jest.fn(),
+            canCreateSale: jest.fn(),
+            getTodaySales: jest.fn(),
+            findOne: jest.fn(),
+            update: jest.fn(),
+            cancel: jest.fn(),
+            markAsPaid: jest.fn(),
+            remove: jest.fn(),
+        };
+
+        const module: TestingModule = await Test.createTestingModule({
+            controllers: [SalesController],
+            providers: [
+                {
+                    provide: SalesService,
+                    useValue: mockSalesService,
+                },
+            ],
+        })
+            .overrideGuard(JwtAuthGuard)
+            .useValue({ canActivate: () => true })
+            .compile();
+
+        controller = module.get<SalesController>(SalesController);
+        salesService = mockSalesService;
+    });
+
+    it('debería rechazar venta sin items', async () => {
+        salesService.create.mockRejectedValue(new BadRequestException('items debe ser un array no vacío'));
+
+        const invalidDto = {
+            items: [],
+            payments: [],
+        };
+
+        await expect(controller.create(invalidDto as any, mockRequest)).rejects.toThrow();
+    });
+
+    it('debería rechazar item sin productId', async () => {
+        salesService.create.mockRejectedValue(new BadRequestException('productId es requerido'));
+
+        const invalidDto = {
+            items: [
+                { quantity: 1, unitPrice: 100 } as any, // Falta productId
+            ],
+            payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+        };
+
+        await expect(controller.create(invalidDto as any, mockRequest)).rejects.toThrow();
+    });
+
+    it('debería rechazar item con cantidad inválida', async () => {
+        salesService.create.mockRejectedValue(new BadRequestException('quantity debe ser mayor a 0'));
+
+        const invalidDto = {
+            items: [
+                { productId: 'product-123', quantity: 0, unitPrice: 100 } as any,
+            ],
+            payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+        };
+
+        await expect(controller.create(invalidDto as any, mockRequest)).rejects.toThrow();
+    });
+
+    it('debería rechazar pago con monto negativo', async () => {
+        salesService.create.mockRejectedValue(new BadRequestException('amount debe ser mayor a 0'));
+
+        const invalidDto = {
+            items: [
+                { productId: 'product-123', quantity: 1, unitPrice: 100 },
+            ],
+            payments: [{ paymentMethodId: 'pm-1', amount: -50 } as any],
+        };
+
+        await expect(controller.create(invalidDto as any, mockRequest)).rejects.toThrow();
+    });
+
+    it('debería propagar error de servicio al crear', async () => {
+        salesService.create.mockRejectedValue(new Error('Error interno del servidor'));
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-123', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+        };
+
+        await expect(controller.create(dto, mockRequest)).rejects.toThrow('Error interno del servidor');
+    });
+
+    it('debería propagar error de servicio al actualizar', async () => {
+        salesService.update.mockRejectedValue(new Error('Venta no encontrada'));
+
+        const dto: UpdateSaleDto = { notes: 'Nueva nota' };
+
+        await expect(controller.update('nonexistent', dto, mockRequest)).rejects.toThrow('Venta no encontrada');
+    });
+
+    it('debería propagar error de servicio al cancelar', async () => {
+        salesService.cancel.mockRejectedValue(new BadRequestException('La venta ya está cancelada'));
+
+        await expect(controller.cancel('sale-123', mockRequest)).rejects.toThrow('La venta ya está cancelada');
+    });
+
+    it('debería rechazar descuento negativo', async () => {
+        salesService.create.mockRejectedValue(new BadRequestException('discount no puede ser negativo'));
+
+        const invalidDto = {
+            items: [{ productId: 'product-123', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+            discount: -10 as any,
+        };
+
+        await expect(controller.create(invalidDto as any, mockRequest)).rejects.toThrow();
+    });
+
+    it('debería aceptar cliente sin customerId (venta mostrador)', async () => {
+        const mockSale = { id: 'sale-123', customerId: null };
+        salesService.create.mockResolvedValue(mockSale as any);
+
+        const dto: CreateSaleDto = {
+            items: [{ productId: 'product-123', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+        };
+
+        const result = await controller.create(dto, mockRequest);
+
+        expect(salesService.create).toHaveBeenCalledWith(dto, 'test-user-id');
+    });
+
+    it('debería manejar paginación con página inválida', async () => {
+        salesService.findAll.mockResolvedValue({
+            data: [],
+            total: 0,
+            page: 1,
+            limit: 10,
+            totalPages: 0,
+        });
+
+        const filters: SaleFiltersDto = { page: -1, limit: 0 };
+
+        await controller.findAll(filters);
+
+        expect(salesService.findAll).toHaveBeenCalledWith(filters);
     });
 });
