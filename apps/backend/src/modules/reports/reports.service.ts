@@ -805,6 +805,73 @@ export class ReportsService {
         return topProducts;
     }
 
+    async getProductsByIds(
+        productIds: string[],
+        period?: ReportPeriod,
+        startDate?: string,
+        endDate?: string
+    ): Promise<TopProduct[]> {
+        if (productIds.length === 0) return [];
+
+        const { start, end } = this.getPeriodDates(period, startDate, endDate);
+        const startStr = start.toISOString().split('T')[0];
+        const endStr = end.toISOString().split('T')[0];
+
+        // Obtener items de ventas completadas filtrando por ids de producto
+        const items = await this.saleItemRepo
+            .createQueryBuilder('item')
+            .innerJoin('item.sale', 'sale')
+            .leftJoinAndSelect('item.product', 'product')
+            .where('sale.deletedAt IS NULL')
+            .andWhere('sale.status = :status', { status: SaleStatus.COMPLETED })
+            .andWhere('DATE(sale.saleDate) BETWEEN :start AND :end', { start: startStr, end: endStr })
+            .andWhere('item.productId IN (:...ids)', { ids: productIds })
+            .getMany();
+
+        // Agrupar por producto
+        const productMap = new Map<string, {
+            product: Product;
+            quantity: number;
+            revenue: number;
+            cost: number;
+        }>();
+
+        for (const item of items) {
+            if (!item.product) continue;
+            const productId = item.productId;
+            if (!productMap.has(productId)) {
+                productMap.set(productId, {
+                    product: item.product,
+                    quantity: 0,
+                    revenue: 0,
+                    cost: 0,
+                });
+            }
+            const prod = productMap.get(productId)!;
+            prod.quantity += item.quantity;
+            prod.revenue += Number(item.subtotal);
+            prod.cost += item.quantity * Number(item.product.cost);
+        }
+
+        const result: TopProduct[] = Array.from(productMap.values())
+            .map(data => {
+                const profit = data.revenue - data.cost;
+                return {
+                    productId: data.product.id,
+                    productName: data.product.name,
+                    productSku: data.product.sku ?? null,
+                    quantitySold: data.quantity,
+                    revenue: data.revenue,
+                    cost: data.cost,
+                    profit,
+                    margin: data.revenue > 0 ? (profit / data.revenue) * 100 : 0,
+                };
+            })
+            .sort((a, b) => b.revenue - a.revenue);
+
+        return result;
+    }
+
     // ============================================
     // REPORTE DE PRODUCTOS
     // ============================================

@@ -6,6 +6,7 @@ import { reportsApi } from '../api/reports.api';
 import {
     ReportFilters,
     TopProductsFilters,
+    ProductsByIdFilters,
     TopCustomersFilters,
     ReportPeriod,
 } from '../types';
@@ -18,6 +19,7 @@ export const reportsKeys = {
     sales: (filters?: ReportFilters) => [...reportsKeys.all, 'sales', filters] as const,
     products: (filters?: ReportFilters) => [...reportsKeys.all, 'products', filters] as const,
     topProducts: (filters?: TopProductsFilters) => [...reportsKeys.all, 'top-products', filters] as const,
+    productsById: (filters?: ProductsByIdFilters) => [...reportsKeys.all, 'products-by-id', filters] as const,
     customers: (filters?: ReportFilters) => [...reportsKeys.all, 'customers', filters] as const,
     topCustomers: (filters?: TopCustomersFilters) => [...reportsKeys.all, 'top-customers', filters] as const,
     expenses: (filters?: ReportFilters) => [...reportsKeys.all, 'expenses', filters] as const,
@@ -76,6 +78,18 @@ export function useTopProducts(filters?: TopProductsFilters) {
     return useQuery({
         queryKey: reportsKeys.topProducts(filters),
         queryFn: () => reportsApi.getTopProducts(filters),
+        staleTime: 1000 * 60 * 5,
+    });
+}
+
+/**
+ * Hook para obtener reporte de productos seleccionados por id
+ */
+export function useProductsByIdReport(filters?: ProductsByIdFilters) {
+    return useQuery({
+        queryKey: reportsKeys.productsById(filters),
+        queryFn: () => reportsApi.getProductsByIds(filters!),
+        enabled: Boolean(filters?.productIds && filters.productIds.length > 0),
         staleTime: 1000 * 60 * 5,
     });
 }

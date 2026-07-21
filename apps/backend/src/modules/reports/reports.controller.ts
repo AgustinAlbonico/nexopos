@@ -5,7 +5,7 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ReportsService } from './reports.service';
-import { ReportFiltersDto, TopProductsFiltersDto, TopCustomersFiltersDto } from './dto';
+import { ReportFiltersDto, TopProductsFiltersDto, TopCustomersFiltersDto, ProductsByIdReportDto } from './dto';
 
 @Controller('reports')
 @UseGuards(JwtAuthGuard)
@@ -71,6 +71,20 @@ export class ReportsController {
             filters.startDate,
             filters.endDate,
             filters.limit
+        );
+    }
+
+    /**
+     * GET /api/reports/products-by-ids
+     * Obtiene reporte de productos seleccionados por id
+     */
+    @Get('products-by-ids')
+    getProductsByIds(@Query() filters: ProductsByIdReportDto) {
+        return this.reportsService.getProductsByIds(
+            filters.productIds,
+            filters.period,
+            filters.startDate,
+            filters.endDate
         );
     }
 

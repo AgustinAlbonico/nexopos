@@ -28,6 +28,10 @@ export interface TopProductsFilters extends ReportFilters {
     limit?: number;
 }
 
+export interface ProductsByIdFilters extends ReportFilters {
+    productIds: string[];
+}
+
 export interface TopCustomersFilters extends ReportFilters {
     limit?: number;
 }

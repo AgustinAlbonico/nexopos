@@ -1,8 +1,8 @@
 /**
  * DTOs para filtros de reportes
  */
-import { IsOptional, IsDateString, IsEnum, IsInt, Min, Max } from 'class-validator';
-import { Type } from 'class-transformer';
+import { IsOptional, IsDateString, IsEnum, IsInt, Min, Max, IsArray, ArrayMinSize } from 'class-validator';
+import { Type, Transform } from 'class-transformer';
 
 export enum ReportPeriod {
     TODAY = 'today',
@@ -48,4 +48,15 @@ export class TopCustomersFiltersDto extends ReportFiltersDto {
     @Max(100)
     @Type(() => Number)
     limit?: number = 10;
+}
+
+export class ProductsByIdReportDto extends ReportFiltersDto {
+    @Transform(({ value }: { value: unknown }) => {
+        if (Array.isArray(value)) return value;
+        if (typeof value !== 'string') return value;
+        return value.split(',').map((id) => id.trim()).filter(Boolean);
+    })
+    @IsArray()
+    @ArrayMinSize(1)
+    productIds!: string[];
 }

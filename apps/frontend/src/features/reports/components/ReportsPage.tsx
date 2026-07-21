@@ -32,6 +32,7 @@ import { MetricCard } from './MetricCard';
 import { PieChartCard, BarChartCard, LineChartCard, ComposedChartCard } from './Charts';
 import { TopProductsTable } from './TopProductsTable';
 import { TopCustomersTable } from './TopCustomersTable';
+import { ProductsByIdSelector } from './ProductsByIdSelector';
 
 // Hooks
 import {
@@ -42,10 +43,11 @@ import {
     useCustomersReport,
     useExpensesReport,
     useCashFlowReport,
+    useProductsByIdReport,
 } from '../hooks/useReports';
 
 // Tipos y utilidades
-import { ReportPeriod, ReportFilters } from '../types';
+import { ReportPeriod, ReportFilters, ProductsByIdFilters } from '../types';
 import {
     exportFinancialToCSV,
     exportSalesToCSV,
@@ -59,6 +61,7 @@ export function ReportsPage() {
     const [activeTab, setActiveTab] = useState('overview');
     const [period, setPeriod] = useState<ReportPeriod>(ReportPeriod.THIS_MONTH);
     const [customDates, setCustomDates] = useState<{ start?: string; end?: string }>({});
+    const [selectedProductIds, setSelectedProductIds] = useState<string[]>([]);
 
     // Construir filtros basados en período
     const filters: ReportFilters = {
@@ -66,6 +69,10 @@ export function ReportsPage() {
         startDate: period === ReportPeriod.CUSTOM ? customDates.start : undefined,
         endDate: period === ReportPeriod.CUSTOM ? customDates.end : undefined,
     };
+
+    const productsByIdFilters: ProductsByIdFilters | undefined = selectedProductIds.length > 0
+        ? { ...filters, productIds: selectedProductIds }
+        : undefined;
 
     // Hooks de datos
     const { data: dashboard, isLoading: loadingDashboard } = useDashboardSummary();
@@ -75,6 +82,7 @@ export function ReportsPage() {
     const { data: customers, isLoading: loadingCustomers } = useCustomersReport(filters);
     const { data: expenses, isLoading: loadingExpenses } = useExpensesReport(filters);
     const { data: cashFlow, isLoading: loadingCashFlow } = useCashFlowReport(filters);
+    const { data: selectedProductsReport, isLoading: loadingSelectedProducts } = useProductsByIdReport(productsByIdFilters);
 
     // Handlers
     const handlePeriodChange = (newPeriod: ReportPeriod, start?: string, end?: string) => {
@@ -458,6 +466,34 @@ export function ReportsPage() {
                         layout="vertical"
                         isLoading={loadingProducts}
                     />
+
+                    {/* Reporte de productos seleccionados por id */}
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="text-base">Reporte de Productos Seleccionados</CardTitle>
+                            <CardDescription>
+                                Elegí los productos para analizar las ventas del período actual
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <ProductsByIdSelector
+                                value={selectedProductIds}
+                                onChange={setSelectedProductIds}
+                                placeholder="Buscar y agregar productos..."
+                            />
+                            {selectedProductIds.length === 0 ? (
+                                <div className="py-8 text-center text-muted-foreground border border-dashed rounded-lg">
+                                    Agregá uno o más productos usando el buscador para ver el reporte
+                                </div>
+                            ) : (
+                                <TopProductsTable
+                                    products={selectedProductsReport || []}
+                                    isLoading={loadingSelectedProducts}
+                                    title="Productos Seleccionados"
+                                />
+                            )}
+                        </CardContent>
+                    </Card>
                 </TabsContent>
 
                 {/* TAB: CLIENTES */}

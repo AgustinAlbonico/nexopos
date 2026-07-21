@@ -6,6 +6,7 @@ import { api } from '@/lib/axios';
 import {
     ReportFilters,
     TopProductsFilters,
+    ProductsByIdFilters,
     TopCustomersFilters,
     FinancialReport,
     SalesReport,
@@ -56,6 +57,19 @@ export const reportsApi = {
      */
     getTopProducts: async (params?: TopProductsFilters): Promise<TopProduct[]> => {
         const response = await api.get<TopProduct[]>('/api/reports/top-products', { params });
+        return response.data;
+    },
+
+    /**
+     * Obtiene reporte de productos seleccionados por id
+     */
+    getProductsByIds: async (params: ProductsByIdFilters): Promise<TopProduct[]> => {
+        const response = await api.get<TopProduct[]>('/api/reports/products-by-ids', {
+            params: {
+                ...params,
+                productIds: params.productIds.join(','),
+            },
+        });
         return response.data;
     },
 
