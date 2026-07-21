@@ -34,11 +34,16 @@ export class InventoryService {
                 throw new NotFoundException('Producto no encontrado');
             }
 
-            // Validar stock suficiente para salidas
+            // Validar stock suficiente para salidas (los movimientos de venta respetan allowOutOfStockSale)
             if (dto.type === StockMovementType.OUT && product.stock < dto.quantity) {
-                throw new BadRequestException(
-                    `Stock insuficiente. Disponible: ${product.stock}, Solicitado: ${dto.quantity}`
-                );
+                const allowOutOfStock =
+                    dto.source === StockMovementSource.SALE &&
+                    await this.configurationService.isOutOfStockSaleAllowed();
+                if (!allowOutOfStock) {
+                    throw new BadRequestException(
+                        `Stock insuficiente. Disponible: ${product.stock}, Solicitado: ${dto.quantity}`
+                    );
+                }
             }
 
             // Crear movimiento con source (default: ADJUSTMENT)

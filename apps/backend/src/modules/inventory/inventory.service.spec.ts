@@ -40,6 +40,7 @@ const mockProductRepository = {
 
 const mockConfigurationService = {
     getMinStockAlert: jest.fn().mockResolvedValue(5),
+    isOutOfStockSaleAllowed: jest.fn().mockResolvedValue(false),
 };
 
 const mockQueryRunner = {
@@ -136,6 +137,40 @@ describe('InventoryService', () => {
             await expect(
                 service.createMovement(dto)
             ).rejects.toThrow('Stock insuficiente');
+        });
+
+        it('permite salida con stock cero cuando source=SALE y allowOutOfStockSale=true', async () => {
+            mockConfigurationService.isOutOfStockSaleAllowed.mockResolvedValue(true);
+            const product = createMockProduct({ stock: 0 });
+            mockProductRepository.findOne.mockResolvedValue(product);
+
+            const dto = {
+                ...baseMovementDto,
+                type: StockMovementType.OUT,
+                source: StockMovementSource.SALE,
+                quantity: 1,
+            };
+
+            const result = await service.createMovement(dto);
+
+            expect(result.product.stock).toBe(-1);
+            expect(mockQueryRunner.commitTransaction).toHaveBeenCalled();
+        });
+
+        it('rechaza salida con stock cero cuando source=ADJUSTMENT aunque allowOutOfStockSale=true', async () => {
+            mockConfigurationService.isOutOfStockSaleAllowed.mockResolvedValue(true);
+            const product = createMockProduct({ stock: 0 });
+            mockProductRepository.findOne.mockResolvedValue(product);
+
+            const dto = {
+                ...baseMovementDto,
+                type: StockMovementType.OUT,
+                source: StockMovementSource.ADJUSTMENT,
+                quantity: 1,
+            };
+
+            await expect(service.createMovement(dto)).rejects.toThrow(BadRequestException);
+            await expect(service.createMovement(dto)).rejects.toThrow('Stock insuficiente');
         });
 
         it('actualiza costo y precio cuando es compra con costo', async () => {
