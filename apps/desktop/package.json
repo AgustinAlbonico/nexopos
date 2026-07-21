@@ -1,6 +1,6 @@
 {
     "name": "@sistema/desktop",
-    "version": "1.0.11",
+    "version": "1.0.12",
     "description": "NexoPOS - Aplicación de Escritorio",
     "main": "dist/electron/main.js",
     "author": "Agustin Albonico",
