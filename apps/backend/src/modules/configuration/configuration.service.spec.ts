@@ -92,6 +92,7 @@ describe('ConfigurationService', () => {
                 minStockAlert: 5,
                 barcodeScannerEnabled: false,
                 barcodeScannerTimeoutMs: 100,
+                allowOutOfStockSale: false,
             });
         });
 

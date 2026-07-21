@@ -24,6 +24,10 @@ export class SystemConfiguration {
     @Column('int', { default: 100 })
     barcodeScannerTimeoutMs!: number;
 
+    /** Si es true, permite vender productos con stock ≤ 0 (el stock queda negativo) */
+    @Column('boolean', { default: false })
+    allowOutOfStockSale!: boolean;
+
     @CreateDateColumn()
     createdAt!: Date;
 

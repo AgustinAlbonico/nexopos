@@ -140,12 +140,17 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
         queryKey: ['configuration'],
         queryFn: async () => {
             const res = await api.get('/api/configuration');
-            return res.data as { barcodeScannerEnabled: boolean; barcodeScannerTimeoutMs: number };
+            return res.data as {
+                barcodeScannerEnabled: boolean;
+                barcodeScannerTimeoutMs: number;
+                allowOutOfStockSale: boolean;
+            };
         },
     });
 
     const scannerEnabled = systemConfig?.barcodeScannerEnabled ?? false;
     const scannerTimeout = systemConfig?.barcodeScannerTimeoutMs ?? 100;
+    const allowOutOfStockSale = systemConfig?.allowOutOfStockSale ?? false;
 
     const form = useForm<CreateSaleFormValues>({
         resolver: zodResolver(createSaleSchema),
@@ -266,7 +271,7 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
             const currentQty = items[existingIndex].quantity || 1;
             const maxStock = items[existingIndex].stock;
 
-            if (maxStock !== undefined && currentQty >= maxStock) {
+            if (!allowOutOfStockSale && maxStock !== undefined && currentQty >= maxStock) {
                 toast.error(`Stock máximo alcanzado: ${maxStock}`);
                 return existingIndex;
             }
@@ -288,7 +293,7 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
             toast.success(`${product.name} agregado`);
             return items.length;
         }
-    }, [items, form, appendItem]);
+    }, [items, form, appendItem, allowOutOfStockSale]);
 
     const handleCreateProduct = () => {
         setShowCreateProduct(true);
@@ -330,12 +335,14 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
         const qty = Number.parseInt(buffer, 10);
         if (!Number.isNaN(qty) && qty > 0) {
             const maxStock = items[pendingItemIndex]?.stock;
-            const finalQty = maxStock !== undefined ? Math.min(qty, maxStock) : qty;
+            const finalQty = (!allowOutOfStockSale && maxStock !== undefined)
+                ? Math.min(qty, maxStock)
+                : qty;
             form.setValue(`items.${pendingItemIndex}.quantity`, finalQty);
             toast.success(`Cantidad actualizada: ${finalQty}`);
         }
         setPendingItemIndex(null);
-    }, [pendingItemIndex, items, form]);
+    }, [pendingItemIndex, items, form, allowOutOfStockSale]);
 
     // Hook de scanner de códigos de barras (unificado: scanner + cantidad manual)
     useBarcodeScanner({
@@ -369,7 +376,7 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
             return;
         }
 
-        if (maxStock !== undefined && newQty > maxStock) {
+        if (!allowOutOfStockSale && maxStock !== undefined && newQty > maxStock) {
             toast.error(`Stock máximo: ${maxStock}`);
             return;
         }
@@ -638,7 +645,7 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
                                     limit={20}
                                     className="h-12 text-lg"
                                     excludeIds={items.map(item => item.productId).filter(id => id !== '')}
-                                    excludeOutOfStock
+                                    excludeOutOfStock={!allowOutOfStockSale}
                                     allowCreate
                                     onCreateClick={handleCreateProduct}
                                 />

@@ -26,6 +26,7 @@ export class ConfigurationService implements OnModuleInit {
                 minStockAlert: 5,
                 barcodeScannerEnabled: false,
                 barcodeScannerTimeoutMs: 100,
+                allowOutOfStockSale: false,
             });
         }
     }
@@ -53,6 +54,11 @@ export class ConfigurationService implements OnModuleInit {
     async getMinStockAlert(): Promise<number> {
         const config = await this.getConfiguration();
         return Number(config.minStockAlert);
+    }
+
+    async isOutOfStockSaleAllowed(): Promise<boolean> {
+        const config = await this.getConfiguration();
+        return Boolean(config.allowOutOfStockSale);
     }
 
     /**

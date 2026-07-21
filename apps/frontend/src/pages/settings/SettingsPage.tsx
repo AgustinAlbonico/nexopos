@@ -30,6 +30,7 @@ import {
     XCircle,
     Server,
     Scan,
+    ShoppingCart,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { Switch } from '@/components/ui/switch';
@@ -41,6 +42,7 @@ interface SystemConfiguration {
     minStockAlert: number;
     barcodeScannerEnabled: boolean;
     barcodeScannerTimeoutMs: number;
+    allowOutOfStockSale: boolean;
     createdAt: string;
     updatedAt: string;
 }
@@ -61,6 +63,7 @@ export default function SettingsPage() {
     const [minStock, setMinStock] = useState('');
     const [barcodeScannerEnabled, setBarcodeScannerEnabled] = useState(false);
     const [barcodeScannerTimeoutMs, setBarcodeScannerTimeoutMs] = useState('100');
+    const [allowOutOfStockSale, setAllowOutOfStockSale] = useState(false);
     const [healthStatus, setHealthStatus] = useState<HealthStatus | null>(null);
     const [isCheckingHealth, setIsCheckingHealth] = useState(false);
 
@@ -80,12 +83,13 @@ export default function SettingsPage() {
             setMinStock(Number(config.minStockAlert).toString());
             setBarcodeScannerEnabled(config.barcodeScannerEnabled);
             setBarcodeScannerTimeoutMs(Number(config.barcodeScannerTimeoutMs).toString());
+            setAllowOutOfStockSale(config.allowOutOfStockSale);
         }
     }, [config]);
 
     // Mutation para guardar configuración
     const saveMutation = useMutation({
-        mutationFn: async (data: { defaultProfitMargin?: number; minStockAlert?: number; barcodeScannerEnabled?: boolean; barcodeScannerTimeoutMs?: number }) => {
+        mutationFn: async (data: { defaultProfitMargin?: number; minStockAlert?: number; barcodeScannerEnabled?: boolean; barcodeScannerTimeoutMs?: number; allowOutOfStockSale?: boolean }) => {
             const res = await api.patch('/api/configuration', data);
             return res.data;
         },
@@ -138,6 +142,7 @@ export default function SettingsPage() {
             minStockAlert: stock,
             barcodeScannerEnabled,
             barcodeScannerTimeoutMs: timeout,
+            allowOutOfStockSale,
         });
     };
 
@@ -409,6 +414,56 @@ export default function SettingsPage() {
                             </div>
 
                             <BarcodeScannerTest timeoutMs={Number.parseInt(barcodeScannerTimeoutMs) || 100} />
+                        </div>
+                    </div>
+
+                    {/* Card: Venta sin Stock */}
+                    <div className="rounded-xl border bg-card shadow-sm overflow-hidden group hover:shadow-md transition-shadow">
+                        <div className="p-5 bg-gradient-to-r from-rose-500/10 to-red-500/5 border-b">
+                            <div className="flex items-center gap-3">
+                                <div className="h-10 w-10 rounded-xl bg-rose-500/15 flex items-center justify-center">
+                                    <ShoppingCart className="h-5 w-5 text-rose-600" />
+                                </div>
+                                <div>
+                                    <h3 className="font-semibold text-lg">Venta sin Stock</h3>
+                                    <p className="text-xs text-muted-foreground">
+                                        Permitir ventas con stock en cero
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="p-5 space-y-4">
+                            <div className="flex items-center justify-between">
+                                <div className="space-y-0.5">
+                                    <Label className="text-sm font-medium">Permitir venta sin stock</Label>
+                                    <p className="text-xs text-muted-foreground">
+                                        Cargar y vender productos aunque no tengan stock disponible
+                                    </p>
+                                </div>
+                                <Switch
+                                    checked={allowOutOfStockSale}
+                                    onCheckedChange={setAllowOutOfStockSale}
+                                />
+                            </div>
+
+                            <div className="rounded-xl bg-gradient-to-r from-rose-50 to-red-50 dark:from-rose-950/30 dark:to-red-950/20 p-4 border border-rose-200/50 dark:border-rose-900/50">
+                                <div className="flex items-start gap-3">
+                                    <AlertTriangle className="h-5 w-5 text-rose-600 flex-shrink-0 mt-0.5" />
+                                    <div className="text-sm">
+                                        <p className="font-medium text-rose-800 dark:text-rose-300">
+                                            {allowOutOfStockSale ? 'Habilitado' : 'Deshabilitado (por defecto)'}
+                                        </p>
+                                        <p className="text-muted-foreground text-xs mt-1">
+                                            {allowOutOfStockSale
+                                                ? 'Los productos aparecen en el buscador aunque su stock sea cero. Al vender, el stock queda negativo.'
+                                                : 'Los productos con stock en cero o negativo no aparecen en el buscador de ventas.'}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="h-9" />
                         </div>
                     </div>
                 </div>

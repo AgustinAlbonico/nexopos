@@ -28,4 +28,9 @@ export class UpdateConfigurationDto {
     @IsInt()
     @Min(0)
     barcodeScannerTimeoutMs?: number;
+
+    @ApiPropertyOptional({ example: false, description: 'Permitir ventas de productos con stock agotado (queda negativo)' })
+    @IsOptional()
+    @IsBoolean()
+    allowOutOfStockSale?: boolean;
 }

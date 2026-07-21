@@ -12,6 +12,7 @@ import { IncreaseProfitMarginPrecision1768412960845 } from './migrations/1768412
 import { MassiveNumericPrecisionStandardization1768413296219 } from './migrations/1768413296219-MassiveNumericPrecisionStandardization';
 import { AddBarcodeScannerConfig1768413297000 } from './migrations/1768413297000-AddBarcodeScannerConfig';
 import { AddAuditLogCompositeIndexes1769113297000 } from './migrations/1769113297000-AddAuditLogCompositeIndexes';
+import { AllowOutOfStockSale1769200000000 } from './migrations/1769200000000-AllowOutOfStockSale';
 
 export const migrations: (new () => MigrationInterface)[] = [
     InitialSchema1734450000000,
@@ -24,4 +25,5 @@ export const migrations: (new () => MigrationInterface)[] = [
     MassiveNumericPrecisionStandardization1768413296219,
     AddBarcodeScannerConfig1768413297000,
     AddAuditLogCompositeIndexes1769113297000,
+    AllowOutOfStockSale1769200000000,
 ];

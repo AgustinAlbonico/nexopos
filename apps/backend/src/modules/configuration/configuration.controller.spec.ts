@@ -18,6 +18,7 @@ describe('ConfigurationController', () => {
         sistemaHabilitado: true,
         barcodeScannerEnabled: false,
         barcodeScannerTimeoutMs: 100,
+        allowOutOfStockSale: false,
         createdAt: new Date('2026-01-01'),
         updatedAt: new Date('2026-01-01'),
     };

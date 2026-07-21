@@ -29,6 +29,7 @@ import { parseLocalDate } from '../../common/utils/date.utils';
 import { AuditService } from '../audit/audit.service';
 import { AuditEntityType, AuditAction } from '../audit/enums';
 import { PaymentDto } from '../auth/interfaces';
+import { ConfigurationService } from '../configuration/configuration.service';
 
 export interface SaleStats {
     totalSales: number;
@@ -65,6 +66,7 @@ export class SalesService {
         private readonly customerAccountsService: CustomerAccountsService,
         private readonly dataSource: DataSource,
         private readonly auditService: AuditService,
+        private readonly configurationService: ConfigurationService,
     ) { }
 
     // ============ Métodos auxiliares para reducir complejidad cognitiva ============
@@ -90,11 +92,15 @@ export class SalesService {
     /**
      * Valida que todos los productos existan y tengan stock suficiente
      */
-    private validateProductsStock(items: CreateSaleDto['items'], productsById: Map<string, Product>): void {
+    private async validateProductsStock(items: CreateSaleDto['items'], productsById: Map<string, Product>): Promise<void> {
+        const allowOutOfStock = await this.configurationService.isOutOfStockSaleAllowed();
         for (const item of items) {
             const product = productsById.get(item.productId);
             if (!product) {
                 throw new NotFoundException(`Producto con ID ${item.productId} no encontrado`);
+            }
+            if (allowOutOfStock) {
+                continue;
             }
             if (product.stock < item.quantity) {
                 throw new BadRequestException(
@@ -288,7 +294,7 @@ export class SalesService {
 
         // Validar productos y stock
         const productsById = await this.getProductsById(dto.items);
-        this.validateProductsStock(dto.items, productsById);
+        await this.validateProductsStock(dto.items, productsById);
 
         // Calcular totales
         const { subtotal, totalTax, total } = this.calculateSaleTotals(dto);

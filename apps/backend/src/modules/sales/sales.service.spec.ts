@@ -18,6 +18,7 @@ import { InvoiceService } from './services/invoice.service';
 import { CashRegisterService } from '../cash-register/cash-register.service';
 import { CustomerAccountsService } from '../customer-accounts/customer-accounts.service';
 import { AuditService } from '../audit/audit.service';
+import { ConfigurationService } from '../configuration/configuration.service';
 import { CreateSaleDto } from './dto';
 import { InvoiceFilterStatus } from './dto/sale-filters.dto';
 import { createSaleDTO, createSaleItemDTO } from '../../test/factories';
@@ -130,6 +131,10 @@ const mockAuditService = {
     logSilent: jest.fn(),
 };
 
+const mockConfigurationService = {
+    isOutOfStockSaleAllowed: jest.fn().mockResolvedValue(false),
+};
+
 describe('SalesService - critical flows', () => {
     let service: SalesService;
 
@@ -147,6 +152,7 @@ describe('SalesService - critical flows', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -410,6 +416,61 @@ describe('SalesService - critical flows', () => {
                     quantity: 2,
                     type: 'OUT',
                 })
+            );
+        });
+
+        it('debe permitir venta sin stock cuando allowOutOfStockSale está activo', async () => {
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+            mockConfigurationService.isOutOfStockSaleAllowed.mockResolvedValue(true);
+            mockProductsService.findOne.mockResolvedValue({
+                id: 'product-1',
+                stock: 0,
+                sku: 'SKU1',
+                name: 'Producto Sin Stock'
+            });
+
+            const mockCompletedSale = {
+                id: 'sale-1',
+                saleNumber: 'VENTA-2026-00001',
+                status: SaleStatus.COMPLETED,
+                saleDate: new Date(),
+                items: [],
+                payments: [],
+                customer: null,
+                createdBy: null,
+                invoice: null,
+            } as unknown;
+            mockCompletedSaleForFindOne = mockCompletedSale;
+            mockPaymentsForSale = [
+                { id: 'payment-1', paymentMethodId: 'pm-1', amount: 500, saleId: 'sale-1' },
+            ];
+
+            const dto: CreateSaleDto = {
+                items: [{ productId: 'product-1', quantity: 5, unitPrice: 100 }],
+                payments: [{ paymentMethodId: 'pm-1', amount: 500 }],
+            };
+
+            await expect(service.create(dto, 'user-1')).resolves.toBeDefined();
+            expect(mockConfigurationService.isOutOfStockSaleAllowed).toHaveBeenCalled();
+        });
+
+        it('debe respetar flag allowOutOfStockSale=false aunque isOutOfStockSaleAllowed falle', async () => {
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+            mockConfigurationService.isOutOfStockSaleAllowed.mockResolvedValue(false);
+            mockProductsService.findOne.mockResolvedValue({
+                id: 'product-1',
+                stock: 0,
+                sku: 'SKU1',
+                name: 'Producto Test'
+            });
+
+            const dto: CreateSaleDto = {
+                items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+                payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+            };
+
+            await expect(service.create(dto)).rejects.toThrow(
+                new BadRequestException('Stock insuficiente para "Producto Test". Disponible: 0, Solicitado: 1')
             );
         });
     });
@@ -785,6 +846,7 @@ describe('SalesService - canCreateSale', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -855,6 +917,7 @@ describe('SalesService - findAll con filtros', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -921,6 +984,7 @@ describe('SalesService - findOne', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -983,6 +1047,7 @@ describe('SalesService - update', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -1109,6 +1174,7 @@ describe('SalesService - cancel', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -1216,6 +1282,7 @@ describe('SalesService - remove (soft delete)', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -1314,6 +1381,7 @@ describe('SalesService - markAsPaid', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -1430,6 +1498,7 @@ describe('SalesService - getTodaySales', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -1516,6 +1585,7 @@ describe('SalesService - getStats', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -1574,6 +1644,7 @@ describe('SalesService - Validación de Impuestos Duplicados (FIX 7.8)', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -1683,6 +1754,7 @@ describe('SalesService - Tolerancia de Redondeo en Pagos', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -1788,6 +1860,7 @@ describe('SalesService - generateSaleNumberTransactional', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -1883,6 +1956,7 @@ describe('SalesService - create con Items Múltiples y Descuentos', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -1992,6 +2066,7 @@ describe('SalesService - create con Pago Mixto', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -2116,6 +2191,7 @@ describe('SalesService - findAll con Filtros', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -2259,6 +2335,7 @@ describe('SalesService - cancel con Escenarios Especiales', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -2365,6 +2442,7 @@ describe('SalesService - create con Cuenta Corriente', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
@@ -2412,6 +2490,7 @@ describe('SalesService - create con Factura Fiscal', () => {
                 { provide: InvoiceService, useValue: mockInvoiceService },
                 { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
                 { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
             ],
         }).compile();
