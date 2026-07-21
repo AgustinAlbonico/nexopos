@@ -1548,6 +1548,73 @@ module.exports = function GetIntrinsic(name, allowMissing) {
 
 /***/ },
 
+/***/ 698
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AddAuditLogCompositeIndexes1769113297000 = void 0;
+/**
+ * Migración: Agregar índices compuestos a audit_logs
+ *
+ * Índices agregados:
+ * - idx_audit_entity_type_timestamp (entityType, timestamp) - para reportes por tipo + fecha
+ * - idx_audit_user_id_timestamp (userId, timestamp) - para actividad de usuario por fecha
+ *
+ * IMPORTANTE: Usar CONCURRENTLY para no bloquear la tabla en producción
+ */
+class AddAuditLogCompositeIndexes1769113297000 {
+    name = 'AddAuditLogCompositeIndexes1769113297000';
+    transaction = false;
+    /**
+     * Verifica si un índice existe
+     */
+    async indexExists(queryRunner, indexName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM pg_indexes
+                WHERE tablename = 'audit_logs'
+                AND indexname = '${indexName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async up(queryRunner) {
+        // 1. Índice compuesto para entityType + timestamp
+        if (!await this.indexExists(queryRunner, 'idx_audit_entity_type_timestamp')) {
+            await queryRunner.query(`
+                CREATE INDEX CONCURRENTLY "idx_audit_entity_type_timestamp"
+                ON "audit_logs" ("entity_type", "timestamp")
+            `);
+        }
+        // 2. Índice compuesto para userId + timestamp
+        if (!await this.indexExists(queryRunner, 'idx_audit_user_id_timestamp')) {
+            await queryRunner.query(`
+                CREATE INDEX CONCURRENTLY "idx_audit_user_id_timestamp"
+                ON "audit_logs" ("user_id", "timestamp")
+            `);
+        }
+    }
+    async down(queryRunner) {
+        // Eliminar índices en orden inverso
+        if (await this.indexExists(queryRunner, 'idx_audit_user_id_timestamp')) {
+            await queryRunner.query(`
+                DROP INDEX CONCURRENTLY "idx_audit_user_id_timestamp"
+            `);
+        }
+        if (await this.indexExists(queryRunner, 'idx_audit_entity_type_timestamp')) {
+            await queryRunner.query(`
+                DROP INDEX CONCURRENTLY "idx_audit_entity_type_timestamp"
+            `);
+        }
+    }
+}
+exports.AddAuditLogCompositeIndexes1769113297000 = AddAuditLogCompositeIndexes1769113297000;
+
+
+/***/ },
+
 /***/ 757
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -1851,6 +1918,10 @@ const _1768003658000_AddBrandsSupport_1 = __webpack_require__(33315);
 const _1768003659000_SimplifyBrandsTable_1 = __webpack_require__(78941);
 const _1768003660000_AddMissingCustomerAccountColumns_1 = __webpack_require__(5759);
 const _1768003661000_SchemaImprovements_1 = __webpack_require__(63165);
+const _1768412960845_IncreaseProfitMarginPrecision_1 = __webpack_require__(85400);
+const _1768413296219_MassiveNumericPrecisionStandardization_1 = __webpack_require__(70720);
+const _1768413297000_AddBarcodeScannerConfig_1 = __webpack_require__(75374);
+const _1769113297000_AddAuditLogCompositeIndexes_1 = __webpack_require__(698);
 exports.migrations = [
     _1734450000000_InitialSchema_1.InitialSchema1734450000000,
     _1735498200000_UpdateAccountDateColumnsToTimestamp_1.UpdateAccountDateColumnsToTimestamp1735498200000,
@@ -1858,6 +1929,10 @@ exports.migrations = [
     _1768003659000_SimplifyBrandsTable_1.SimplifyBrandsTable1768003659000,
     _1768003660000_AddMissingCustomerAccountColumns_1.AddMissingCustomerAccountColumns1768003660000,
     _1768003661000_SchemaImprovements_1.SchemaImprovements1768003661000,
+    _1768412960845_IncreaseProfitMarginPrecision_1.IncreaseProfitMarginPrecision1768412960845,
+    _1768413296219_MassiveNumericPrecisionStandardization_1.MassiveNumericPrecisionStandardization1768413296219,
+    _1768413297000_AddBarcodeScannerConfig_1.AddBarcodeScannerConfig1768413297000,
+    _1769113297000_AddAuditLogCompositeIndexes_1.AddAuditLogCompositeIndexes1769113297000,
 ];
 
 
@@ -9310,6 +9385,8 @@ let SystemConfiguration = class SystemConfiguration {
     minStockAlert;
     /** Control de acceso: si es false, el sistema muestra pantalla de bloqueo */
     sistemaHabilitado;
+    barcodeScannerEnabled;
+    barcodeScannerTimeoutMs;
     createdAt;
     updatedAt;
 };
@@ -9330,6 +9407,14 @@ __decorate([
     (0, typeorm_1.Column)('boolean', { default: true }),
     __metadata("design:type", Boolean)
 ], SystemConfiguration.prototype, "sistemaHabilitado", void 0);
+__decorate([
+    (0, typeorm_1.Column)('boolean', { default: false }),
+    __metadata("design:type", Boolean)
+], SystemConfiguration.prototype, "barcodeScannerEnabled", void 0);
+__decorate([
+    (0, typeorm_1.Column)('int', { default: 100 }),
+    __metadata("design:type", Number)
+], SystemConfiguration.prototype, "barcodeScannerTimeoutMs", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
@@ -12472,6 +12557,9 @@ let ProductsController = class ProductsController {
     remove(id) {
         return this.productsService.remove(id);
     }
+    findByBarcode(barcode) {
+        return this.productsService.findByBarcode(barcode);
+    }
 };
 exports.ProductsController = ProductsController;
 __decorate([
@@ -12516,6 +12604,16 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], ProductsController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Get)('barcode/:barcode'),
+    (0, swagger_1.ApiOperation)({ summary: 'Buscar producto por código de barras' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Producto encontrado' }),
+    (0, swagger_1.ApiResponse)({ status: 404, description: 'Producto no encontrado' }),
+    __param(0, (0, common_1.Param)('barcode')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ProductsController.prototype, "findByBarcode", null);
 exports.ProductsController = ProductsController = __decorate([
     (0, swagger_1.ApiTags)('products'),
     (0, common_1.Controller)('products'),
@@ -13255,8 +13353,8 @@ let PurchasesService = class PurchasesService {
         await queryRunner.startTransaction();
         try {
             await this.validatePurchaseItems(dto.items);
-            // Generar número de compra
-            const purchaseNumber = await this.generatePurchaseNumber();
+            // Generar número de compra (transaccional para evitar race conditions)
+            const purchaseNumber = await this.generatePurchaseNumberTransactional(queryRunner.manager);
             // Calcular subtotal y total
             const { subtotal, total } = this.calculatePurchaseTotals(dto.items, dto.tax, dto.discount);
             // Validar y obtener proveedor si se proporciona supplierId
@@ -13298,9 +13396,7 @@ let PurchasesService = class PurchasesService {
             await queryRunner.commitTransaction();
             await queryRunner.release();
             // Log de auditoría (fuera de la transacción)
-            console.log('[PurchasesService.create] userId recibido para auditoría:', userId);
             if (userId) {
-                console.log('[PurchasesService.create] Intentando crear log de auditoría...');
                 await this.auditService.logSilent({
                     entityType: enums_1.AuditEntityType.PURCHASE,
                     entityId: result.id,
@@ -13314,10 +13410,6 @@ let PurchasesService = class PurchasesService {
                     },
                     description: audit_service_1.AuditService.generateDescription(enums_1.AuditAction.CREATE, enums_1.AuditEntityType.PURCHASE, result.purchaseNumber),
                 });
-                console.log('[PurchasesService.create] Log de auditoría creado');
-            }
-            else {
-                console.log('[PurchasesService.create] userId es undefined - NO se crea auditoría');
             }
             return result;
         }
@@ -13623,6 +13715,7 @@ let PurchasesService = class PurchasesService {
     }
     /**
      * Genera número de compra único
+     * @deprecated Usar generatePurchaseNumberTransactional para evitar race conditions
      */
     async generatePurchaseNumber() {
         const year = new Date().getFullYear();
@@ -13632,6 +13725,32 @@ let PurchasesService = class PurchasesService {
         });
         const nextNumber = (count + 1).toString().padStart(5, '0');
         return `COMP-${year}-${nextNumber}`;
+    }
+    /**
+     * Genera número de compra único dentro de una transacción
+     * FIX: Evita race condition usando FOR UPDATE (mismo patrón que sales)
+     */
+    async generatePurchaseNumberTransactional(manager) {
+        const year = new Date().getFullYear();
+        const prefix = `COMP-${year}-`;
+        // Serializa la asignación del número anual incluso cuando aún no hay
+        // compras para bloquear con una fila existente.
+        await manager.query("SELECT pg_advisory_xact_lock(hashtext('purchase-number'), $1)", [year]);
+        const result = await manager.query(`
+            SELECT "purchaseNumber" FROM purchases
+            WHERE "purchaseNumber" LIKE $1
+            ORDER BY CAST(SPLIT_PART("purchaseNumber", '-', 3) AS INTEGER) DESC
+            LIMIT 1
+        `, [`${prefix}%`]);
+        let nextNumber = 1;
+        if (result.length > 0) {
+            const lastNumber = result[0].purchaseNumber;
+            const match = lastNumber.match(/COMP-\d{4}-(\d+)/);
+            if (match) {
+                nextNumber = parseInt(match[1], 10) + 1;
+            }
+        }
+        return `${prefix}${String(nextNumber).padStart(5, '0')}`;
     }
     /**
      * Obtiene estadísticas de compras
@@ -30620,6 +30739,8 @@ const class_validator_1 = __webpack_require__(15521);
 class UpdateConfigurationDto {
     defaultProfitMargin;
     minStockAlert;
+    barcodeScannerEnabled;
+    barcodeScannerTimeoutMs;
 }
 exports.UpdateConfigurationDto = UpdateConfigurationDto;
 __decorate([
@@ -30637,6 +30758,19 @@ __decorate([
     (0, class_validator_1.Min)(0),
     __metadata("design:type", Number)
 ], UpdateConfigurationDto.prototype, "minStockAlert", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({ example: false, description: 'Habilitar escáner de código de barras' }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], UpdateConfigurationDto.prototype, "barcodeScannerEnabled", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({ example: 100, description: 'Timeout del escáner de código de barras en milisegundos' }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(0),
+    __metadata("design:type", Number)
+], UpdateConfigurationDto.prototype, "barcodeScannerTimeoutMs", void 0);
 
 
 /***/ },
@@ -36316,6 +36450,7 @@ class UpdateProductDto {
     stock;
     categoryId;
     brandName;
+    barcode;
     isActive;
     useCustomMargin;
     customProfitMargin;
@@ -36362,6 +36497,13 @@ __decorate([
     (0, class_validator_1.Length)(0, 100),
     __metadata("design:type", Object)
 ], UpdateProductDto.prototype, "brandName", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({ example: '1234567890123', description: 'Código de barras del producto' }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(0, 100),
+    __metadata("design:type", Object)
+], UpdateProductDto.prototype, "barcode", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({ example: true }),
     (0, class_validator_1.IsOptional)(),
@@ -53095,7 +53237,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var _a, _b, _c, _d, _e;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.CashMovement = exports.PaymentMethod = exports.MovementType = void 0;
+exports.CashMovement = exports.MovementType = void 0;
 const typeorm_1 = __webpack_require__(86118);
 const user_entity_1 = __webpack_require__(81465);
 const cash_register_entity_1 = __webpack_require__(43358);
@@ -53104,16 +53246,6 @@ var MovementType;
     MovementType["INCOME"] = "income";
     MovementType["EXPENSE"] = "expense";
 })(MovementType || (exports.MovementType = MovementType = {}));
-var PaymentMethod;
-(function (PaymentMethod) {
-    PaymentMethod["CASH"] = "cash";
-    PaymentMethod["DEBIT_CARD"] = "debit_card";
-    PaymentMethod["CREDIT_CARD"] = "credit_card";
-    PaymentMethod["TRANSFER"] = "transfer";
-    PaymentMethod["QR"] = "qr";
-    PaymentMethod["CHECK"] = "check";
-    PaymentMethod["OTHER"] = "other";
-})(PaymentMethod || (exports.PaymentMethod = PaymentMethod = {}));
 let CashMovement = class CashMovement {
     id;
     cashRegister;
@@ -64277,6 +64409,9 @@ let ExpensesController = class ExpensesController {
     getStats(startDate, endDate) {
         return this.expensesService.getStats(startDate, endDate);
     }
+    getRecurringSuggestions() {
+        return this.expensesService.getRecurringSuggestions();
+    }
     findOne(id) {
         return this.expensesService.findOne(id);
     }
@@ -64323,6 +64458,14 @@ __decorate([
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", void 0)
 ], ExpensesController.prototype, "getStats", null);
+__decorate([
+    (0, common_1.Get)('recurring-suggestions'),
+    (0, swagger_1.ApiOperation)({ summary: 'Obtener sugerencias de gastos recurrentes del mes' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Gastos recurrentes pendientes este mes' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], ExpensesController.prototype, "getRecurringSuggestions", null);
 __decorate([
     (0, common_1.Get)(':id'),
     (0, swagger_1.ApiOperation)({ summary: 'Obtener gasto por ID' }),
@@ -76599,9 +76742,24 @@ let SalesService = class SalesService {
     /**
      * Valida que todos los productos existan y tengan stock suficiente
      */
-    async validateProductsStock(items) {
+    async getProductsById(items) {
+        const productIds = Array.from(new Set(items.map((item) => item.productId)));
+        const products = await this.productsService.findByIds(productIds);
+        const productsById = new Map(products.map((product) => [product.id, product]));
         for (const item of items) {
-            const product = await this.productsService.findOne(item.productId);
+            const product = productsById.get(item.productId);
+            if (!product) {
+                throw new common_1.NotFoundException(`Producto con ID ${item.productId} no encontrado`);
+            }
+        }
+        return productsById;
+    }
+    /**
+     * Valida que todos los productos existan y tengan stock suficiente
+     */
+    validateProductsStock(items, productsById) {
+        for (const item of items) {
+            const product = productsById.get(item.productId);
             if (!product) {
                 throw new common_1.NotFoundException(`Producto con ID ${item.productId} no encontrado`);
             }
@@ -76658,9 +76816,12 @@ let SalesService = class SalesService {
     /**
      * Crea los items de la venta
      */
-    async createSaleItems(manager, saleId, items) {
+    async createSaleItems(manager, saleId, items, productsById) {
         for (const itemDto of items) {
-            const product = await this.productsService.findOne(itemDto.productId);
+            const product = productsById.get(itemDto.productId);
+            if (!product) {
+                throw new common_1.NotFoundException(`Producto con ID ${itemDto.productId} no encontrado`);
+            }
             const item = this.saleItemRepo.create({
                 saleId,
                 productId: itemDto.productId,
@@ -76750,7 +76911,8 @@ let SalesService = class SalesService {
             throw new common_1.BadRequestException('No hay caja abierta. Debe abrir la caja antes de registrar ventas.');
         }
         // Validar productos y stock
-        await this.validateProductsStock(dto.items);
+        const productsById = await this.getProductsById(dto.items);
+        this.validateProductsStock(dto.items, productsById);
         // Calcular totales
         const { subtotal, totalTax, total } = this.calculateSaleTotals(dto);
         // Determinar estado
@@ -76783,7 +76945,7 @@ let SalesService = class SalesService {
             });
             const savedSale = await queryRunner.manager.save(sale);
             // Crear items, impuestos y pagos usando funciones auxiliares
-            await this.createSaleItems(queryRunner.manager, savedSale.id, dto.items);
+            await this.createSaleItems(queryRunner.manager, savedSale.id, dto.items, productsById);
             await this.createSaleTaxes(queryRunner.manager, savedSale.id, dto.taxes);
             await this.createSalePayments(queryRunner.manager, savedSale.id, dto.payments);
             // Actualizar inventario siempre que la venta no esté cancelada
@@ -77245,51 +77407,46 @@ let SalesService = class SalesService {
      * Obtiene estadísticas de ventas
      */
     async getStats(startDate, endDate) {
-        const query = this.saleRepo
+        const summaryQuery = this.saleRepo
             .createQueryBuilder('sale')
-            .leftJoinAndSelect('sale.payments', 'payments')
-            .leftJoinAndSelect('payments.paymentMethod', 'paymentMethod')
+            .select('COUNT(*)', 'totalSales')
+            .addSelect("COALESCE(SUM(CASE WHEN sale.status != 'cancelled' THEN sale.total ELSE 0 END), 0)", 'totalAmount')
+            .addSelect("COALESCE(SUM(CASE WHEN sale.status = 'completed' THEN sale.total ELSE 0 END), 0)", 'totalCompleted')
+            .addSelect("COALESCE(SUM(CASE WHEN sale.status IN ('pending', 'partial') THEN sale.total ELSE 0 END), 0)", 'totalPending')
+            .addSelect("COALESCE(SUM(CASE WHEN sale.status = 'completed' THEN 1 ELSE 0 END), 0)", 'completedCount')
+            .addSelect("COALESCE(SUM(CASE WHEN sale.status = 'pending' THEN 1 ELSE 0 END), 0)", 'pendingCount')
+            .addSelect("COALESCE(SUM(CASE WHEN sale.status = 'partial' THEN 1 ELSE 0 END), 0)", 'partialCount')
+            .addSelect("COALESCE(SUM(CASE WHEN sale.status = 'cancelled' THEN 1 ELSE 0 END), 0)", 'cancelledCount')
             .where('sale.deletedAt IS NULL');
-        if (startDate && endDate) {
-            query.andWhere('DATE(sale.saleDate) BETWEEN :start AND :end', {
-                start: startDate,
-                end: endDate,
-            });
-        }
-        const sales = await query.getMany();
-        const totalSales = sales.length;
-        const totalAmount = sales
-            .filter((s) => s.status !== sale_entity_1.SaleStatus.CANCELLED)
-            .reduce((sum, s) => sum + Number(s.total), 0);
-        const totalCompleted = sales
-            .filter((s) => s.status === sale_entity_1.SaleStatus.COMPLETED)
-            .reduce((sum, s) => sum + Number(s.total), 0);
-        const totalPending = sales
-            .filter((s) => s.status === sale_entity_1.SaleStatus.PENDING || s.status === sale_entity_1.SaleStatus.PARTIAL)
-            .reduce((sum, s) => sum + Number(s.total), 0);
-        // Contar por estado
+        this.applyDateFilters(summaryQuery, startDate, endDate);
+        const paymentQuery = this.saleRepo
+            .createQueryBuilder('sale')
+            .innerJoin('sale.payments', 'payment')
+            .leftJoin('payment.paymentMethod', 'paymentMethod')
+            .select("COALESCE(paymentMethod.name, 'Desconocido')", 'method')
+            .addSelect('COALESCE(SUM(payment.amount), 0)', 'total')
+            .where('sale.deletedAt IS NULL')
+            .groupBy('paymentMethod.name');
+        this.applyDateFilters(paymentQuery, startDate, endDate);
+        const [summary, paymentRows] = await Promise.all([
+            summaryQuery.getRawOne(),
+            paymentQuery.getRawMany(),
+        ]);
         const salesByStatus = {
-            [sale_entity_1.SaleStatus.COMPLETED]: 0,
-            [sale_entity_1.SaleStatus.PENDING]: 0,
-            [sale_entity_1.SaleStatus.PARTIAL]: 0,
-            [sale_entity_1.SaleStatus.CANCELLED]: 0,
+            [sale_entity_1.SaleStatus.COMPLETED]: Number(summary?.completedCount ?? 0),
+            [sale_entity_1.SaleStatus.PENDING]: Number(summary?.pendingCount ?? 0),
+            [sale_entity_1.SaleStatus.PARTIAL]: Number(summary?.partialCount ?? 0),
+            [sale_entity_1.SaleStatus.CANCELLED]: Number(summary?.cancelledCount ?? 0),
         };
-        for (const sale of sales) {
-            salesByStatus[sale.status]++;
-        }
-        // Contar por método de pago
         const salesByPaymentMethod = {};
-        for (const sale of sales) {
-            for (const payment of sale.payments || []) {
-                const method = payment.paymentMethod?.name ?? 'Desconocido';
-                salesByPaymentMethod[method] = (salesByPaymentMethod[method] || 0) + Number(payment.amount);
-            }
+        for (const row of paymentRows) {
+            salesByPaymentMethod[row.method] = Number(row.total);
         }
         return {
-            totalSales,
-            totalAmount,
-            totalCompleted,
-            totalPending,
+            totalSales: Number(summary?.totalSales ?? 0),
+            totalAmount: Number(summary?.totalAmount ?? 0),
+            totalCompleted: Number(summary?.totalCompleted ?? 0),
+            totalPending: Number(summary?.totalPending ?? 0),
             salesByStatus,
             salesByPaymentMethod,
         };
@@ -81114,6 +81271,7 @@ exports.AppModule = AppModule = __decorate([
                     migrations: migrations_1.migrations,
                     // Ejecutar migraciones automáticamente al iniciar
                     migrationsRun: true,
+                    migrationsTransactionMode: 'each',
                     logging: false,
                 }),
             }),
@@ -88361,8 +88519,60 @@ let ExpensesService = class ExpensesService {
         return savedExpense;
     }
     /**
-     * Obtiene estadísticas de gastos
-     */
+         * FIX 2.2: Obtiene sugerencias de gastos recurrentes para el mes actual.
+         * Devuelve las categorías con isRecurring=true cuyo último gasto NO se
+         * haya registrado aún este mes, con los datos del último gasto para
+         * permitir crear uno nuevo con un clic.
+         */
+    async getRecurringSuggestions() {
+        // 1. Obtener categorías recurrentes activas
+        const recurringCategories = await this.categoryRepo.find({
+            where: { isRecurring: true, isActive: true },
+        });
+        if (recurringCategories.length === 0)
+            return [];
+        const now = new Date();
+        const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+        const monthEnd = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+        const suggestions = [];
+        for (const category of recurringCategories) {
+            // 2. Verificar si ya hay un gasto este mes para esta categoría
+            const existingThisMonth = await this.expenseRepo
+                .createQueryBuilder('expense')
+                .where('expense.categoryId = :categoryId', { categoryId: category.id })
+                .andWhere('expense.deletedAt IS NULL')
+                .andWhere('expense.expenseDate >= :monthStart', { monthStart })
+                .andWhere('expense.expenseDate < :monthEnd', { monthEnd })
+                .getCount();
+            if (existingThisMonth > 0)
+                continue;
+            // 3. Obtener el último gasto de la categoría
+            const lastExpense = await this.expenseRepo
+                .createQueryBuilder('expense')
+                .where('expense.categoryId = :categoryId', { categoryId: category.id })
+                .andWhere('expense.deletedAt IS NULL')
+                .orderBy('expense.expenseDate', 'DESC')
+                .getOne();
+            if (!lastExpense)
+                continue;
+            suggestions.push({
+                categoryId: category.id,
+                categoryName: category.name,
+                lastExpense: {
+                    description: lastExpense.description,
+                    amount: Number(lastExpense.amount),
+                    paymentMethodId: lastExpense.paymentMethodId,
+                    receiptNumber: lastExpense.receiptNumber,
+                    notes: lastExpense.notes,
+                    lastDate: lastExpense.expenseDate.toISOString(),
+                },
+            });
+        }
+        return suggestions;
+    }
+    /**
+ * Obtiene estadísticas de gastos
+ */
     async getStats(startDate, endDate) {
         const query = this.expenseRepo
             .createQueryBuilder('expense')
@@ -89799,12 +90009,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.CashFlowReportFiltersDto = void 0;
 const class_validator_1 = __webpack_require__(15521);
 const swagger_1 = __webpack_require__(77504);
-const cash_movement_entity_1 = __webpack_require__(19762);
 class CashFlowReportFiltersDto {
     startDate;
     endDate;
@@ -89830,12 +90038,12 @@ __decorate([
 ], CashFlowReportFiltersDto.prototype, "endDate", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
-        description: 'Filtrar por método de pago específico',
-        enum: cash_movement_entity_1.PaymentMethod,
+        description: 'Filtrar por código de método de pago (ej: cash, bank, wallet, check)',
+        example: 'cash',
     }),
-    (0, class_validator_1.IsEnum)(cash_movement_entity_1.PaymentMethod),
+    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", typeof (_a = typeof cash_movement_entity_1.PaymentMethod !== "undefined" && cash_movement_entity_1.PaymentMethod) === "function" ? _a : Object)
+    __metadata("design:type", String)
 ], CashFlowReportFiltersDto.prototype, "paymentMethod", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({
@@ -147548,6 +147756,7 @@ var _a, _b, _c, _d, _e;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ProductsService = void 0;
 const common_1 = __webpack_require__(42909);
+const typeorm_1 = __webpack_require__(86118);
 const products_repository_1 = __webpack_require__(42917);
 const categories_repository_1 = __webpack_require__(11033);
 const configuration_service_1 = __webpack_require__(56300);
@@ -147629,6 +147838,7 @@ let ProductsService = class ProductsService {
             categoryId: dto.categoryId || null,
             brand,
             brandId: brand?.id || null,
+            barcode: dto.barcode ?? null,
             isActive: dto.isActive ?? true,
         });
         const savedProduct = await this.productsRepository.save(product);
@@ -147673,6 +147883,16 @@ let ProductsService = class ProductsService {
         }
         return product;
     }
+    async findByIds(ids) {
+        const uniqueIds = Array.from(new Set(ids));
+        if (uniqueIds.length === 0) {
+            return [];
+        }
+        return this.productsRepository.find({
+            where: { id: (0, typeorm_1.In)(uniqueIds) },
+            relations: ['category', 'brand'],
+        });
+    }
     async update(id, dto) {
         const product = await this.findOne(id);
         // Actualizar categoría si se proporciona
@@ -147700,10 +147920,24 @@ let ProductsService = class ProductsService {
             product.description = dto.description;
         if (dto.cost !== undefined)
             product.cost = dto.cost;
-        if (dto.stock !== undefined)
-            product.stock = dto.stock;
+        if (dto.barcode !== undefined)
+            product.barcode = dto.barcode;
         if (dto.isActive !== undefined)
             product.isActive = dto.isActive;
+        // FIX: Si cambia el stock, registrar un movimiento ADJUSTMENT para no
+        // romper el historial (antes se pisaba product.stock sin crear StockMovement).
+        if (dto.stock !== undefined && dto.stock !== product.stock) {
+            const delta = dto.stock - product.stock;
+            await this.inventoryService.createMovement({
+                productId: product.id,
+                type: delta > 0 ? stock_movement_entity_1.StockMovementType.IN : stock_movement_entity_1.StockMovementType.OUT,
+                source: stock_movement_entity_1.StockMovementSource.ADJUSTMENT,
+                quantity: Math.abs(delta),
+                notes: 'Ajuste manual desde edición de producto',
+                date: new Date().toISOString(),
+            });
+            product.stock = dto.stock;
+        }
         return this.productsRepository.save(product);
     }
     /**
@@ -147794,6 +148028,16 @@ let ProductsService = class ProductsService {
             updated++;
         }
         return updated;
+    }
+    /**
+     * Busca un producto por código de barras exacto
+     * Útil para scanners de código de barras en el POS
+     */
+    async findByBarcode(barcode) {
+        if (!barcode) {
+            return null;
+        }
+        return this.productsRepository.findByBarcode(barcode);
     }
     /**
      * Calcula el precio de venta basado en costo y margen
@@ -156456,6 +156700,8 @@ let ConfigurationService = class ConfigurationService {
             await this.configRepository.save({
                 defaultProfitMargin: 30,
                 minStockAlert: 5,
+                barcodeScannerEnabled: false,
+                barcodeScannerTimeoutMs: 100,
             });
         }
     }
@@ -177738,7 +177984,9 @@ exports.AuditLog = AuditLog = __decorate([
     (0, typeorm_1.Index)(['entityType', 'entityId']),
     (0, typeorm_1.Index)(['userId']),
     (0, typeorm_1.Index)(['timestamp']),
-    (0, typeorm_1.Index)(['action'])
+    (0, typeorm_1.Index)(['action']),
+    (0, typeorm_1.Index)(['entityType', 'timestamp']),
+    (0, typeorm_1.Index)(['userId', 'timestamp'])
 ], AuditLog);
 
 
@@ -189925,6 +190173,214 @@ exports.MissingPrimaryColumnError = MissingPrimaryColumnError;
 
 /***/ },
 
+/***/ 70720
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.MassiveNumericPrecisionStandardization1768413296219 = void 0;
+/**
+ * Migración para estandarizar la precisión numérica en todo el esquema.
+ * Cambia columnas numeric(10,2) y numeric(12,2) a numeric(20,2) para mayor capacidad.
+ * Esta versión es idempotente y segura.
+ */
+class MassiveNumericPrecisionStandardization1768413296219 {
+    name = 'MassiveNumericPrecisionStandardization1768413296219';
+    /**
+     * Verifica si una columna existe en una tabla
+     */
+    async columnExists(queryRunner, tableName, columnName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.columns
+                WHERE table_schema = 'public'
+                AND table_name = '${tableName}'
+                AND column_name = '${columnName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    /**
+     * Altera el tipo de una columna si existe
+     */
+    async alterColumnTypeIfExists(queryRunner, tableName, columnName, newType) {
+        if (await this.columnExists(queryRunner, tableName, columnName)) {
+            try {
+                await queryRunner.query(`ALTER TABLE "${tableName}" ALTER COLUMN "${columnName}" TYPE ${newType}`);
+            }
+            catch (error) {
+                // Si el tipo ya es el mismo, PostgreSQL no da error, pero por si acaso
+                const err = error;
+                if (!err.message?.includes('already') && !err.message?.includes('same')) {
+                    throw error;
+                }
+            }
+        }
+    }
+    async up(queryRunner) {
+        // ============================================
+        // CASH_REGISTER_TOTALS - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'initialAmount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'totalIncome', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'totalExpense', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'expectedAmount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'actualAmount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'difference', 'numeric(20,2)');
+        // ============================================
+        // CASH_REGISTERS - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'initialAmount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'totalIncome', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'totalExpense', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'expectedAmount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'actualAmount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'difference', 'numeric(20,2)');
+        // ============================================
+        // CASH_MOVEMENTS - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_movements', 'manualAmount', 'numeric(20,2)');
+        // ============================================
+        // TAX_TYPES - Cambiar percentage a numeric(10,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'tax_types', 'percentage', 'numeric(10,2)');
+        // ============================================
+        // CUSTOMER_ACCOUNTS - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'customer_accounts', 'balance', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'customer_accounts', 'creditLimit', 'numeric(20,2)');
+        // ============================================
+        // ACCOUNT_MOVEMENTS - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'account_movements', 'amount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'account_movements', 'balanceBefore', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'account_movements', 'balanceAfter', 'numeric(20,2)');
+        // ============================================
+        // EXPENSES & INCOMES - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'expenses', 'amount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'incomes', 'amount', 'numeric(20,2)');
+        // ============================================
+        // PRODUCTS - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'products', 'cost', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'products', 'price', 'numeric(20,2)');
+        // ============================================
+        // STOCK_MOVEMENTS - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'stock_movements', 'cost', 'numeric(20,2)');
+        // ============================================
+        // PURCHASES - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'purchases', 'subtotal', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'purchases', 'tax', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'purchases', 'discount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'purchases', 'total', 'numeric(20,2)');
+        // ============================================
+        // PURCHASE_ITEMS - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'purchase_items', 'unitPrice', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'purchase_items', 'subtotal', 'numeric(20,2)');
+        // ============================================
+        // SALE_ITEMS - Cambiar a numeric(20,2) y numeric(10,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_items', 'unitPrice', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_items', 'discount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_items', 'discountPercent', 'numeric(10,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_items', 'subtotal', 'numeric(20,2)');
+        // ============================================
+        // SALE_PAYMENTS - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_payments', 'amount', 'numeric(20,2)');
+        // ============================================
+        // SALE_TAXES - Cambiar a numeric(20,2) y numeric(10,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_taxes', 'percentage', 'numeric(10,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_taxes', 'amount', 'numeric(20,2)');
+        // ============================================
+        // SALES - Cambiar a numeric(20,2) y numeric(10,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'subtotal', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'discount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'surcharge', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'tax', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'total', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'ivaPercentage', 'numeric(10,2)');
+        // ============================================
+        // INVOICES - Cambiar a numeric(20,2)
+        // ============================================
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'subtotal', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'discount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'otherTaxes', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'total', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'netAmount', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'iva21', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'iva105', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'iva27', 'numeric(20,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'netAmountExempt', 'numeric(20,2)');
+    }
+    async down(queryRunner) {
+        // Revertir cambios (generalmente no se recomienda, pero aquí está para completitud)
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'netAmountExempt', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'iva27', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'iva105', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'iva21', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'netAmount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'total', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'otherTaxes', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'discount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'invoices', 'subtotal', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'ivaPercentage', 'numeric(4,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'total', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'tax', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'surcharge', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'discount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sales', 'subtotal', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_taxes', 'amount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_taxes', 'percentage', 'numeric(5,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_payments', 'amount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_items', 'subtotal', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_items', 'discountPercent', 'numeric(5,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_items', 'discount', 'numeric(10,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'sale_items', 'unitPrice', 'numeric(10,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'purchase_items', 'subtotal', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'purchase_items', 'unitPrice', 'numeric(10,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'purchases', 'total', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'purchases', 'discount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'purchases', 'tax', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'purchases', 'subtotal', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'stock_movements', 'cost', 'numeric(10,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'products', 'price', 'numeric(10,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'products', 'cost', 'numeric(10,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'incomes', 'amount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'expenses', 'amount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'account_movements', 'balanceAfter', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'account_movements', 'balanceBefore', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'account_movements', 'amount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'customer_accounts', 'creditLimit', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'customer_accounts', 'balance', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'tax_types', 'percentage', 'numeric(5,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_movements', 'manualAmount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'difference', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'actualAmount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'expectedAmount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'totalExpense', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'totalIncome', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_registers', 'initialAmount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'difference', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'actualAmount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'expectedAmount', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'totalExpense', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'totalIncome', 'numeric(12,2)');
+        await this.alterColumnTypeIfExists(queryRunner, 'cash_register_totals', 'initialAmount', 'numeric(12,2)');
+    }
+}
+exports.MassiveNumericPrecisionStandardization1768413296219 = MassiveNumericPrecisionStandardization1768413296219;
+
+
+/***/ },
+
 /***/ 70804
 (__unused_webpack_module, exports) {
 
@@ -200200,6 +200656,7 @@ exports.BaseProductSchema = zod_1.z.object({
     stock: zod_1.z.number().int().min(0).optional().default(0),
     categoryId: zod_1.z.string().uuid().optional().nullable(),
     brandName: zod_1.z.string().max(100).optional().nullable(),
+    barcode: zod_1.z.string().max(100).optional().nullable(),
     isActive: zod_1.z.boolean().default(true),
     // Margen de ganancia personalizado (opcional)
     useCustomMargin: zod_1.z.boolean().optional().default(false),
@@ -200218,6 +200675,7 @@ class CreateProductDto {
     stock;
     categoryId;
     brandName;
+    barcode;
     isActive;
     useCustomMargin;
     customProfitMargin;
@@ -200262,6 +200720,13 @@ __decorate([
     (0, class_validator_1.Length)(0, 100),
     __metadata("design:type", Object)
 ], CreateProductDto.prototype, "brandName", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({ example: '1234567890123', description: 'Código de barras del producto' }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.Length)(0, 100),
+    __metadata("design:type", Object)
+], CreateProductDto.prototype, "barcode", void 0);
 __decorate([
     (0, swagger_1.ApiPropertyOptional)({ example: true, default: true }),
     (0, class_validator_1.IsOptional)(),
@@ -205031,6 +205496,72 @@ class BetterSqlite3Driver extends AbstractSqliteDriver_1.AbstractSqliteDriver {
 exports.BetterSqlite3Driver = BetterSqlite3Driver;
 
 //# sourceMappingURL=BetterSqlite3Driver.js.map
+
+
+/***/ },
+
+/***/ 75374
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AddBarcodeScannerConfig1768413297000 = void 0;
+/**
+ * Migración: Agregar configuración del lector de códigos de barras
+ *
+ * Cambios:
+ * - Agrega columna "barcodeScannerEnabled" (boolean, default false) a system_configuration
+ * - Agrega columna "barcodeScannerTimeoutMs" (int, default 100) a system_configuration
+ */
+class AddBarcodeScannerConfig1768413297000 {
+    name = 'AddBarcodeScannerConfig1768413297000';
+    /**
+     * Verifica si una columna existe en una tabla
+     */
+    async columnExists(queryRunner, tableName, columnName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.columns
+                WHERE table_schema = 'public'
+                AND table_name = '${tableName}'
+                AND column_name = '${columnName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async up(queryRunner) {
+        // 1. Agregar columna barcodeScannerEnabled (boolean, default false)
+        if (!await this.columnExists(queryRunner, 'system_configuration', 'barcodeScannerEnabled')) {
+            await queryRunner.query(`
+                ALTER TABLE "system_configuration"
+                ADD COLUMN "barcodeScannerEnabled" boolean NOT NULL DEFAULT false
+            `);
+        }
+        // 2. Agregar columna barcodeScannerTimeoutMs (int, default 100)
+        if (!await this.columnExists(queryRunner, 'system_configuration', 'barcodeScannerTimeoutMs')) {
+            await queryRunner.query(`
+                ALTER TABLE "system_configuration"
+                ADD COLUMN "barcodeScannerTimeoutMs" integer NOT NULL DEFAULT 100
+            `);
+        }
+    }
+    async down(queryRunner) {
+        // Revertir cambios en orden inverso
+        // Usar IF EXISTS para que sea idempotente
+        // 1. Eliminar columna barcodeScannerTimeoutMs
+        await queryRunner.query(`
+            ALTER TABLE "system_configuration"
+            DROP COLUMN IF EXISTS "barcodeScannerTimeoutMs"
+        `);
+        // 2. Eliminar columna barcodeScannerEnabled
+        await queryRunner.query(`
+            ALTER TABLE "system_configuration"
+            DROP COLUMN IF EXISTS "barcodeScannerEnabled"
+        `);
+    }
+}
+exports.AddBarcodeScannerConfig1768413297000 = AddBarcodeScannerConfig1768413297000;
 
 
 /***/ },
@@ -225741,7 +226272,8 @@ let CashRegisterService = class CashRegisterService {
         ]);
         const savedMovement = result[0];
         // Actualizar totales de caja usando UPDATE directo para no tocar relaciones
-        await this.cashRegisterRepo.update({ id: cashRegister.id }, { totalIncome: Number(cashRegister.totalIncome) + Math.abs(amount) });
+        // FIX 1.4: incremento atómico en SQL (antes: read-modify-write con race condition)
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalIncome', Math.abs(amount));
         // Actualizar totales por método de pago
         // Necesitamos la entidad PaymentMethod para updatePaymentMethodTotal
         const paymentMethodEntity = await this.paymentMethodRepo.findOneBy({ id: payment.paymentMethodId });
@@ -225782,7 +226314,8 @@ let CashRegisterService = class CashRegisterService {
         ]);
         const savedMovement = result[0];
         // Actualizar totales de caja usando UPDATE directo para no tocar relaciones
-        await this.cashRegisterRepo.update({ id: cashRegister.id }, { totalExpense: Number(cashRegister.totalExpense) + Math.abs(amount) });
+        // FIX 1.4: incremento atómico en SQL
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalExpense', Math.abs(amount));
         // Actualizar totales por método de pago
         const paymentMethodEntity = await this.paymentMethodRepo.findOneBy({ id: expense.paymentMethodId });
         if (paymentMethodEntity) {
@@ -225822,7 +226355,8 @@ let CashRegisterService = class CashRegisterService {
         ]);
         const savedMovement = result[0];
         // Actualizar totales de caja usando UPDATE directo para no tocar relaciones
-        await this.cashRegisterRepo.update({ id: cashRegister.id }, { totalIncome: Number(cashRegister.totalIncome) + Math.abs(amount) });
+        // FIX 1.4: incremento atómico en SQL (antes: read-modify-write con race condition)
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalIncome', Math.abs(amount));
         // Actualizar totales por método de pago
         const paymentMethodEntity = await this.paymentMethodRepo.findOneBy({ id: income.paymentMethodId });
         if (paymentMethodEntity) {
@@ -225857,7 +226391,8 @@ let CashRegisterService = class CashRegisterService {
         ]);
         const savedMovement = result[0];
         // Actualizar totales de caja usando UPDATE directo para no tocar relaciones
-        await this.cashRegisterRepo.update({ id: cashRegister.id }, { totalIncome: Number(cashRegister.totalIncome) + amount });
+        // FIX 1.4: incremento atómico en SQL
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalIncome', amount);
         // Actualizar totales por método de pago
         const paymentMethodEntity = await this.paymentMethodRepo.findOneBy({ id: data.paymentMethodId });
         if (paymentMethodEntity) {
@@ -225907,7 +226442,8 @@ let CashRegisterService = class CashRegisterService {
         ]);
         const savedMovement = result[0];
         // Actualizar totales de caja usando UPDATE directo para no tocar relaciones
-        await this.cashRegisterRepo.update({ id: cashRegister.id }, { totalExpense: Number(cashRegister.totalExpense) + Math.abs(amount) });
+        // FIX 1.4: incremento atómico en SQL
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalExpense', Math.abs(amount));
         // Actualizar totales por método de pago
         if (paymentMethodId) {
             const paymentMethodEntity = await this.paymentMethodRepo.findOneBy({ id: paymentMethodId });
@@ -225944,7 +226480,8 @@ let CashRegisterService = class CashRegisterService {
         ]);
         const savedMovement = result[0];
         // Actualizar totales de caja
-        await this.cashRegisterRepo.update({ id: cashRegister.id }, { totalExpense: Number(cashRegister.totalExpense) + amount });
+        // FIX 1.4: incremento atómico en SQL
+        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalExpense', amount);
         // Actualizar totales por método de pago
         const paymentMethodEntity = await this.paymentMethodRepo.findOneBy({ id: data.paymentMethodId });
         if (paymentMethodEntity) {
@@ -225965,7 +226502,6 @@ let CashRegisterService = class CashRegisterService {
         });
         // Si no existe el total para este método de pago, crearlo
         if (!total) {
-            console.log(`[CashRegister] Creando total para método ${paymentMethod.name} en caja ${cashRegisterId}`);
             total = this.cashTotalsRepo.create({
                 cashRegister: { id: cashRegisterId },
                 paymentMethod,
@@ -225974,18 +226510,15 @@ let CashRegisterService = class CashRegisterService {
                 totalExpense: 0,
                 expectedAmount: 0,
             });
+            await this.cashTotalsRepo.save(total);
         }
-        if (type === 'income') {
-            total.totalIncome = Number(total.totalIncome) + amount;
-        }
-        else {
-            total.totalExpense = Number(total.totalExpense) + amount;
-        }
-        total.expectedAmount =
-            Number(total.initialAmount) +
-                Number(total.totalIncome) -
-                Number(total.totalExpense);
-        await this.cashTotalsRepo.save(total);
+        // FIX 1.4: Incrementos atómicos en SQL para evitar race conditions
+        // (antes hacía read-modify-write en memoria, perdía actualizaciones concurrentes).
+        // initialAmount es inmutable post-apertura, así que expectedAmount tiene el
+        // mismo delta que el ingreso/egreso.
+        const column = type === 'income' ? 'totalIncome' : 'totalExpense';
+        await this.cashTotalsRepo.increment({ id: total.id }, column, amount);
+        await this.cashTotalsRepo.increment({ id: total.id }, 'expectedAmount', type === 'income' ? amount : -amount);
     }
     /**
      * Crear movimiento manual (retiro/ingreso de efectivo)
@@ -226022,10 +226555,11 @@ let CashRegisterService = class CashRegisterService {
         const savedMovement = result[0];
         // Actualizar totales de la caja
         if (isIncome) {
-            await this.cashRegisterRepo.update({ id: cashRegister.id }, { totalIncome: Number(cashRegister.totalIncome) + amount });
+            // FIX 1.4: incremento atómico en SQL
+            await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalIncome', amount);
         }
         else {
-            await this.cashRegisterRepo.update({ id: cashRegister.id }, { totalExpense: Number(cashRegister.totalExpense) + amount });
+            await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalExpense', amount);
         }
         // Actualizar totales por método de pago
         await this.updatePaymentMethodTotal(cashRegister.id, paymentMethod, amount, isIncome ? 'income' : 'expense');
@@ -235580,6 +236114,223 @@ function BeforeUpdate() {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const tslib_1 = __webpack_require__(85608);
 tslib_1.__exportStar(__webpack_require__(77738), exports);
+
+
+/***/ },
+
+/***/ 85400
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.IncreaseProfitMarginPrecision1768412960845 = void 0;
+/**
+ * Migración para mejorar precisión de profitMargin y agregar constraints únicos.
+ * Esta versión es idempotente - verifica la existencia de elementos antes de operar.
+ */
+class IncreaseProfitMarginPrecision1768412960845 {
+    name = 'IncreaseProfitMarginPrecision1768412960845';
+    /**
+     * Verifica si un constraint existe
+     */
+    async constraintExists(queryRunner, tableName, constraintName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.table_constraints
+                WHERE constraint_schema = 'public'
+                AND table_name = '${tableName}'
+                AND constraint_name = '${constraintName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    /**
+     * Verifica si un índice existe
+     */
+    async indexExists(queryRunner, indexName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM pg_indexes
+                WHERE schemaname = 'public'
+                AND indexname = '${indexName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    /**
+     * Verifica si una columna existe en una tabla
+     */
+    async columnExists(queryRunner, tableName, columnName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.columns
+                WHERE table_schema = 'public'
+                AND table_name = '${tableName}'
+                AND column_name = '${columnName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async up(queryRunner) {
+        // ============================================
+        // 1. ACTUALIZAR PRECISIÓN DE PROFIT MARGIN
+        // ============================================
+        // system_configuration.defaultProfitMargin: numeric(5,2) -> numeric(10,2)
+        await queryRunner.query(`
+            ALTER TABLE "system_configuration" ALTER COLUMN "defaultProfitMargin" TYPE numeric(10,2)
+        `);
+        // categories.profitMargin: numeric(5,2) -> numeric(10,2)
+        await queryRunner.query(`
+            ALTER TABLE "categories" ALTER COLUMN "profitMargin" TYPE numeric(10,2)
+        `);
+        // products.profitMargin: numeric(5,2) -> numeric(10,2)
+        await queryRunner.query(`
+            ALTER TABLE "products" ALTER COLUMN "profitMargin" TYPE numeric(10,2)
+        `);
+        // ============================================
+        // 2. ELIMINAR COLUMNA isActive DE brands (si existe)
+        // ============================================
+        if (await this.columnExists(queryRunner, 'brands', 'isActive')) {
+            await queryRunner.query(`ALTER TABLE "brands" DROP COLUMN "isActive"`);
+        }
+        // ============================================
+        // 3. AGREGAR CONSTRAINTS ÚNICOS (si no existen)
+        // ============================================
+        // refresh_tokens.token UNIQUE
+        if (!await this.constraintExists(queryRunner, 'refresh_tokens', 'UQ_4542dd2f38a61354a040ba9fd57')) {
+            await queryRunner.query(`ALTER TABLE "refresh_tokens" ADD CONSTRAINT "UQ_4542dd2f38a61354a040ba9fd57" UNIQUE ("token")`);
+        }
+        // users.username UNIQUE
+        if (!await this.constraintExists(queryRunner, 'users', 'UQ_fe0bb3f6520ee0469504521e710')) {
+            await queryRunner.query(`ALTER TABLE "users" ADD CONSTRAINT "UQ_fe0bb3f6520ee0469504521e710" UNIQUE ("username")`);
+        }
+        // payment_methods.name UNIQUE
+        if (!await this.constraintExists(queryRunner, 'payment_methods', 'UQ_a793d7354d7c3aaf76347ee5a66')) {
+            await queryRunner.query(`ALTER TABLE "payment_methods" ADD CONSTRAINT "UQ_a793d7354d7c3aaf76347ee5a66" UNIQUE ("name")`);
+        }
+        // payment_methods.code UNIQUE
+        if (!await this.constraintExists(queryRunner, 'payment_methods', 'UQ_f8aad3eab194dfdae604ca11125')) {
+            await queryRunner.query(`ALTER TABLE "payment_methods" ADD CONSTRAINT "UQ_f8aad3eab194dfdae604ca11125" UNIQUE ("code")`);
+        }
+        // customer_categories.name UNIQUE
+        if (!await this.constraintExists(queryRunner, 'customer_categories', 'UQ_ede93c8cf28e307313ec668e730')) {
+            await queryRunner.query(`ALTER TABLE "customer_categories" ADD CONSTRAINT "UQ_ede93c8cf28e307313ec668e730" UNIQUE ("name")`);
+        }
+        // customers.documentNumber UNIQUE
+        if (!await this.constraintExists(queryRunner, 'customers', 'UQ_dffea8343d90688bccac70b63ad')) {
+            await queryRunner.query(`ALTER TABLE "customers" ADD CONSTRAINT "UQ_dffea8343d90688bccac70b63ad" UNIQUE ("documentNumber")`);
+        }
+        // expense_categories.name UNIQUE
+        if (!await this.constraintExists(queryRunner, 'expense_categories', 'UQ_6bdb3db95dd955d3c701e935426')) {
+            await queryRunner.query(`ALTER TABLE "expense_categories" ADD CONSTRAINT "UQ_6bdb3db95dd955d3c701e935426" UNIQUE ("name")`);
+        }
+        // income_categories.name UNIQUE
+        if (!await this.constraintExists(queryRunner, 'income_categories', 'UQ_9bfab959a7960a323bcf1d118cf')) {
+            await queryRunner.query(`ALTER TABLE "income_categories" ADD CONSTRAINT "UQ_9bfab959a7960a323bcf1d118cf" UNIQUE ("name")`);
+        }
+        // categories.name UNIQUE
+        if (!await this.constraintExists(queryRunner, 'categories', 'UQ_8b0be371d28245da6e4f4b61878')) {
+            await queryRunner.query(`ALTER TABLE "categories" ADD CONSTRAINT "UQ_8b0be371d28245da6e4f4b61878" UNIQUE ("name")`);
+        }
+        // suppliers.documentNumber UNIQUE
+        if (!await this.constraintExists(queryRunner, 'suppliers', 'UQ_939b78561f0b4da019d2f1bdcc4')) {
+            await queryRunner.query(`ALTER TABLE "suppliers" ADD CONSTRAINT "UQ_939b78561f0b4da019d2f1bdcc4" UNIQUE ("documentNumber")`);
+        }
+        // purchases.purchaseNumber UNIQUE
+        if (!await this.constraintExists(queryRunner, 'purchases', 'UQ_59712045f2664aeb8a046928981')) {
+            await queryRunner.query(`ALTER TABLE "purchases" ADD CONSTRAINT "UQ_59712045f2664aeb8a046928981" UNIQUE ("purchaseNumber")`);
+        }
+        // sales.saleNumber UNIQUE
+        if (!await this.constraintExists(queryRunner, 'sales', 'UQ_12c072f5150ca7d495b07aa1c6e')) {
+            await queryRunner.query(`ALTER TABLE "sales" ADD CONSTRAINT "UQ_12c072f5150ca7d495b07aa1c6e" UNIQUE ("saleNumber")`);
+        }
+        // ============================================
+        // 4. ACTUALIZAR ENUM backups_status_enum
+        // ============================================
+        try {
+            await queryRunner.query(`ALTER TYPE "public"."backups_status_enum" RENAME TO "backups_status_enum_old"`);
+            await queryRunner.query(`CREATE TYPE "public"."backups_status_enum" AS ENUM('completed', 'failed')`);
+            await queryRunner.query(`ALTER TABLE "backups" ALTER COLUMN "status" DROP DEFAULT`);
+            await queryRunner.query(`ALTER TABLE "backups" ALTER COLUMN "status" TYPE "public"."backups_status_enum" USING "status"::"text"::"public"."backups_status_enum"`);
+            await queryRunner.query(`ALTER TABLE "backups" ALTER COLUMN "status" SET DEFAULT 'completed'`);
+            await queryRunner.query(`DROP TYPE "public"."backups_status_enum_old"`);
+        }
+        catch (error) {
+            // Si el enum ya fue actualizado, continuar
+            const err = error;
+            if (!err.message?.includes('already exists') && !err.message?.includes('does not exist')) {
+                throw error;
+            }
+        }
+        // ============================================
+        // 5. ACTUALIZAR FOREIGN KEYS (si es necesario)
+        // ============================================
+        // Recrear FK de refresh_tokens.userId si es necesario
+        if (await this.constraintExists(queryRunner, 'refresh_tokens', 'FK_3ddc983c5f7bcf132fd8732c3f4')) {
+            await queryRunner.query(`ALTER TABLE "refresh_tokens" DROP CONSTRAINT "FK_3ddc983c5f7bcf132fd8732c3f4"`);
+        }
+        if (!await this.constraintExists(queryRunner, 'refresh_tokens', 'FK_610102b60fea1455310ccd299de')) {
+            await queryRunner.query(`ALTER TABLE "refresh_tokens" ADD CONSTRAINT "FK_610102b60fea1455310ccd299de" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE NO ACTION`);
+        }
+        // Recrear FK de stock_movements.productId si es necesario
+        if (await this.constraintExists(queryRunner, 'stock_movements', 'FK_2c1bb05b80ddcc562cd28d826c6')) {
+            await queryRunner.query(`ALTER TABLE "stock_movements" DROP CONSTRAINT "FK_2c1bb05b80ddcc562cd28d826c6"`);
+        }
+        if (!await this.constraintExists(queryRunner, 'stock_movements', 'FK_a3acb59db67e977be45e382fc56')) {
+            await queryRunner.query(`ALTER TABLE "stock_movements" ADD CONSTRAINT "FK_a3acb59db67e977be45e382fc56" FOREIGN KEY ("productId") REFERENCES "products"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        }
+    }
+    async down(queryRunner) {
+        // Revertir precisión de profitMargin
+        await queryRunner.query(`ALTER TABLE "system_configuration" ALTER COLUMN "defaultProfitMargin" TYPE numeric(5,2)`);
+        await queryRunner.query(`ALTER TABLE "categories" ALTER COLUMN "profitMargin" TYPE numeric(5,2)`);
+        await queryRunner.query(`ALTER TABLE "products" ALTER COLUMN "profitMargin" TYPE numeric(5,2)`);
+        // Recrear columna isActive en brands
+        if (!await this.columnExists(queryRunner, 'brands', 'isActive')) {
+            await queryRunner.query(`ALTER TABLE "brands" ADD "isActive" boolean NOT NULL DEFAULT true`);
+        }
+        // Eliminar constraints únicos agregados
+        await queryRunner.query(`ALTER TABLE "sales" DROP CONSTRAINT IF EXISTS "UQ_12c072f5150ca7d495b07aa1c6e"`);
+        await queryRunner.query(`ALTER TABLE "purchases" DROP CONSTRAINT IF EXISTS "UQ_59712045f2664aeb8a046928981"`);
+        await queryRunner.query(`ALTER TABLE "suppliers" DROP CONSTRAINT IF EXISTS "UQ_939b78561f0b4da019d2f1bdcc4"`);
+        await queryRunner.query(`ALTER TABLE "categories" DROP CONSTRAINT IF EXISTS "UQ_8b0be371d28245da6e4f4b61878"`);
+        await queryRunner.query(`ALTER TABLE "income_categories" DROP CONSTRAINT IF EXISTS "UQ_9bfab959a7960a323bcf1d118cf"`);
+        await queryRunner.query(`ALTER TABLE "expense_categories" DROP CONSTRAINT IF EXISTS "UQ_6bdb3db95dd955d3c701e935426"`);
+        await queryRunner.query(`ALTER TABLE "customers" DROP CONSTRAINT IF EXISTS "UQ_dffea8343d90688bccac70b63ad"`);
+        await queryRunner.query(`ALTER TABLE "customer_categories" DROP CONSTRAINT IF EXISTS "UQ_ede93c8cf28e307313ec668e730"`);
+        await queryRunner.query(`ALTER TABLE "payment_methods" DROP CONSTRAINT IF EXISTS "UQ_f8aad3eab194dfdae604ca11125"`);
+        await queryRunner.query(`ALTER TABLE "payment_methods" DROP CONSTRAINT IF EXISTS "UQ_a793d7354d7c3aaf76347ee5a66"`);
+        await queryRunner.query(`ALTER TABLE "users" DROP CONSTRAINT IF EXISTS "UQ_fe0bb3f6520ee0469504521e710"`);
+        await queryRunner.query(`ALTER TABLE "refresh_tokens" DROP CONSTRAINT IF EXISTS "UQ_4542dd2f38a61354a040ba9fd57"`);
+        // Revertir enum backups_status_enum
+        try {
+            await queryRunner.query(`CREATE TYPE "public"."backups_status_enum_old" AS ENUM('pending', 'completed', 'failed')`);
+            await queryRunner.query(`ALTER TABLE "backups" ALTER COLUMN "status" DROP DEFAULT`);
+            await queryRunner.query(`ALTER TABLE "backups" ALTER COLUMN "status" TYPE "public"."backups_status_enum_old" USING "status"::"text"::"public"."backups_status_enum_old"`);
+            await queryRunner.query(`ALTER TABLE "backups" ALTER COLUMN "status" SET DEFAULT 'pending'`);
+            await queryRunner.query(`DROP TYPE "public"."backups_status_enum"`);
+            await queryRunner.query(`ALTER TYPE "public"."backups_status_enum_old" RENAME TO "backups_status_enum"`);
+        }
+        catch (error) {
+            // Si ya fue revertido, continuar
+        }
+        // Revertir foreign keys
+        if (await this.constraintExists(queryRunner, 'refresh_tokens', 'FK_610102b60fea1455310ccd299de')) {
+            await queryRunner.query(`ALTER TABLE "refresh_tokens" DROP CONSTRAINT "FK_610102b60fea1455310ccd299de"`);
+        }
+        if (!await this.constraintExists(queryRunner, 'refresh_tokens', 'FK_3ddc983c5f7bcf132fd8732c3f4')) {
+            await queryRunner.query(`ALTER TABLE "refresh_tokens" ADD CONSTRAINT "FK_3ddc983c5f7bcf132fd8732c3f4" FOREIGN KEY ("userId") REFERENCES "users"("id") ON DELETE CASCADE`);
+        }
+        if (await this.constraintExists(queryRunner, 'stock_movements', 'FK_a3acb59db67e977be45e382fc56')) {
+            await queryRunner.query(`ALTER TABLE "stock_movements" DROP CONSTRAINT "FK_a3acb59db67e977be45e382fc56"`);
+        }
+        if (!await this.constraintExists(queryRunner, 'stock_movements', 'FK_2c1bb05b80ddcc562cd28d826c6')) {
+            await queryRunner.query(`ALTER TABLE "stock_movements" ADD CONSTRAINT "FK_2c1bb05b80ddcc562cd28d826c6" FOREIGN KEY ("productId") REFERENCES "products"("id") ON DELETE CASCADE`);
+        }
+    }
+}
+exports.IncreaseProfitMarginPrecision1768412960845 = IncreaseProfitMarginPrecision1768412960845;
 
 
 /***/ },
