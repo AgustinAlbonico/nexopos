@@ -5,9 +5,11 @@ import { toast } from 'sonner';
 import { authService } from '../services/auth.service';
 import { useAuthStore } from '../stores/auth.store';
 import { Sidebar } from './Sidebar';
+import { WindowControls } from './WindowControls';
 import { Loader2 } from 'lucide-react';
 import { useRouteRefresh } from '@/hooks/useRouteRefresh';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { isElectron } from '@/lib/utils';
 
 export function DashboardLayout() {
     const navigate = useNavigate();
@@ -67,6 +69,17 @@ export function DashboardLayout() {
 
             {/* Main Content */}
             <div className="flex-1 flex flex-col overflow-hidden">
+                {isElectron() && (
+                    <div
+                        className="h-12 shrink-0 flex items-center justify-between px-3 border-b border-border/40 bg-background/80 backdrop-blur-sm"
+                        style={{ WebkitAppRegion: 'drag' } as React.CSSProperties}
+                    >
+                        <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground select-none">
+                            NexoPOS
+                        </div>
+                        <WindowControls className="flex items-center gap-1" />
+                    </div>
+                )}
                 <main className="flex-1 overflow-y-auto p-4 xl:p-6 wide:p-8">
                     <div className="mx-auto w-full max-w-full wide:max-w-7xl 2xl:max-w-[1600px]">
                         <Suspense fallback={

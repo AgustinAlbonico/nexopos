@@ -7,7 +7,6 @@ import { Loader2 } from 'lucide-react';
 import { DashboardLayout } from './components/DashboardLayout';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { GuestRoute } from './components/GuestRoute';
-import { WindowControls } from './components/WindowControls';
 import { KeyboardShortcutsProvider } from './components/KeyboardShortcutsProvider';
 import { BackendHealthCheck } from './components/BackendHealthCheck';
 import { ConfirmProvider } from './components/ConfirmProvider';
@@ -104,9 +103,6 @@ function App() {
 
           {/* Toast notifications */}
           <Toaster position="top-center" richColors />
-
-          {/* Controles de ventana para Electron (solo visible en desktop) */}
-          <WindowControls />
         </ConfirmProvider>
       </QueryClientProvider>
     </BackendHealthCheck>

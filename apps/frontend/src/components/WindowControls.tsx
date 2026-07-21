@@ -18,23 +18,29 @@ import {
     AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 import { useState, useEffect } from 'react';
+import { isElectron as detectIsElectron } from '@/lib/utils';
 
 /**
  * Componente de controles de ventana para la versión Desktop (Electron).
  * Proporciona botones para:
  * - Salir/entrar de pantalla completa
  * - Cerrar la aplicación
- * 
- * Solo se muestra cuando la app corre en Electron.
+ *
+ * Render únicamente los botones (sin contenedor flotante) para que el layout
+ * padre los posicione donde corresponda (típicamente dentro del topbar).
+ *
+ * Solo se renderiza cuando la app corre en Electron.
  */
-export function WindowControls() {
+interface WindowControlsProps {
+    className?: string;
+}
+
+export function WindowControls({ className }: WindowControlsProps) {
     const [isFullscreen, setIsFullscreen] = useState(true);
-    const [isElectron, setIsElectron] = useState(false);
+    const [runningInElectron, setRunningInElectron] = useState(false);
 
     useEffect(() => {
-        // Detectar si estamos en Electron
-        const electronAPI = (globalThis as unknown as { electronAPI?: { isElectron?: boolean } }).electronAPI;
-        setIsElectron(electronAPI?.isElectron === true);
+        setRunningInElectron(detectIsElectron());
 
         // Escuchar cambios de pantalla completa
         const handleFullscreenChange = () => {
@@ -46,7 +52,7 @@ export function WindowControls() {
     }, []);
 
     // No mostrar si no estamos en Electron
-    if (!isElectron) {
+    if (!runningInElectron) {
         return null;
     }
 
@@ -63,7 +69,10 @@ export function WindowControls() {
 
     return (
         <TooltipProvider>
-            <div className="fixed top-4 right-4 z-50 flex items-center gap-2 bg-background/80 backdrop-blur-sm rounded-lg p-1.5 shadow-lg border border-border/50">
+            <div
+                className={className ?? 'flex items-center gap-1'}
+                style={{ WebkitAppRegion: 'no-drag' } as React.CSSProperties}
+            >
                 {/* Botón de pantalla completa */}
                 <Tooltip>
                     <TooltipTrigger asChild>
