@@ -1,6 +1,6 @@
 # NexoPOS - Manuales de usuario en video
 
-Generador de videos tutoriales de NexoPOS usando **Remotion** + **Edge TTS** (voz es-AR-ElenaNeural, gratis) + screenshots reales del sistema capturados con **Playwright**.
+Generador de videos tutoriales de NexoPOS usando **Remotion** + TTS + screenshots reales del sistema capturados con **Playwright**. TTS primario: **Edge TTS** (voz es-AR-ElenaNeural, gratis). Fallback offline Windows: **SAPI** (voz Helena es-ES, activa si Edge TTS está bloqueado por firewall corporativo).
 
 Cada modulo del sistema tiene su propio video. El guion vive en un YAML simple y el pipeline arma el MP4 final: intro animada con logo + pasos con screenshot/audio/zoom/highlight + outro con CTA al siguiente video.
 
@@ -40,17 +40,22 @@ apps/video-manuals/
       theme.ts                  # colores y tipografia NexoPOS
   scripts/
     generate-audio.ts           # YAML -> MP3 por paso (Edge TTS es-AR)
+    generate-silence.ts         # fallback silencio (ffmpeg anullsrc)
+    sapi-generate-audio.ps1     # fallback offline Windows (SAPI Helena es-ES)
     scriptTemplate.ts           # scaffold de tutorials/{id}/
-    build-video.ts              # invoca remotion render con props
-    capture-screenshots.ts      # placeholder (Playwright MCP externo)
-  tutorials/
-    _template/script.yaml       # template de guion completo y comentado
-    <id>/
-      script.yaml               # guion editado por video
-      screenshots/*.png          # capturas 1920x1080
-      audio/*.mp3                # generados por generate:audio
+    build-video.ts              # invoca remotion render con props + pre-build validation
+    capture-screenshots.ts      # captura 1920x1080 de NexoPOS con Playwright
+  public/
+    logo-nexopos.png
+    tutorials/
+      _template/script.yaml     # template de guion completo y comentado
+      <id>/
+        script.yaml             # guion editado por video
+        screenshots/*.png        # capturas 1920x1080
+        audio/*.mp3              # generados por generate:audio | generate:sapi | generate:silence
   out/
     <id>.mp4                    # video final
+  .env.example                  # template de NEXOPOS_USERNAME/PASSWORD/BASE_URL
 ```
 
 ---
@@ -62,7 +67,7 @@ Cada video es una carpeta `tutorials/<id>/`. El flujo para crear uno nuevo:
 ### 1. Scaffold del guion
 
 ```bash
-pnpm scaffold:tutorial configuracion-general
+npm run scaffold:tutorial configuracion-general
 ```
 
 Crea `tutorials/configuracion-general/` con `script.yaml` (template), `screenshots/` y `audio/` vacios.
@@ -85,7 +90,7 @@ Ver `tutorials/_template/script.yaml` para el formato completo con comentarios.
 ### 4. Generar audio
 
 ```bash
-pnpm generate:audio configuracion-general
+npm run generate:audio configuracion-general
 ```
 
 Lee el YAML, por cada step genera `tutorials/<id>/audio/<stepId>.mp3` con voz es-AR-ElenaNeural. Skip si el MP3 ya existe (para re-generar, borrar la carpeta `audio/`).
@@ -93,19 +98,19 @@ Lee el YAML, por cada step genera `tutorials/<id>/audio/<stepId>.mp3` con voz es
 ### 5. Previsualizar en Studio (opcional)
 
 ```bash
-pnpm dev
+npm run dev
 ```
 
 Abre Remotion Studio. Para ver un tutorial especifico:
 
 ```bash
-pnpm dev --props='{"tutorialId":"configuracion-general"}'
+npm run dev --props='{"tutorialId":"configuracion-general"}'
 ```
 
 ### 6. Renderizar el MP4 final
 
 ```bash
-pnpm build:video configuracion-general
+npm run build:video configuracion-general
 ```
 
 Genera `out/configuracion-general.mp4` (1080p 30fps).
@@ -149,5 +154,47 @@ Definidos en `src/schemas/tutorial.ts` (constantes `WIDTH`, `HEIGHT`, `FPS`, `IN
 
 - **TutorialVideo.tsx** (componente publico en la Composition) NO usa filesystem. Recibe `tutorial: SerializedTutorial` ya computado. El `calculateMetadata` de `Root.tsx` hace todo el trabajo server-side: lee el YAML, mide los audios con `@remotion/media-parser`, arma los `StepAudio[]` con `durationFrames`, y pasa el `SerializedTutorial` como prop.
 - **Edge TTS** es gratis y no requiere API key, pero necesita conexion a internet (habla con los endpoints de Microsoft Edge Read Aloud).
-- Los audios se cachean en `tutorials/<id>/audio/`. Borrar la carpeta para forzar regeneracion.
+- Los audios se cachean en `public/tutorials/<id>/audio/`. Borrar la carpeta para forzar regeneracion.
 - Los screenshots son 1920x1080. El zoom se calcula en ese espacio de coordenadas.
+- **Step schema (Zod)** acepta un campo opcional `route: z.string()` por step. Lo usa `capture-screenshots.ts` para navegar al URL correspondiente antes de capturar.
+
+---
+
+## Fallbacks operativos
+
+### TTS
+
+Edge TTS puede quedar bloqueado por firewall corporativo (endpoint de Microsoft Edge Read Aloud). Si pasa, dos alternativas:
+
+1. **SAPI (offline, solo Windows)**: voz Helena es-ES via `System.Speech.Synthesis`. Genera WAV y convierte a MP3 96k/44.1kHz con el ffmpeg hoisted de Remotion. Funciona sin internet.
+
+   ```bash
+   npm run generate:sapi configuracion-general
+   ```
+
+2. **Silence placeholder**: MP3 de silencio calculado por duración estimada de la narración (110 palabras/min, mínimo 3s). Útil para validar el pipeline antes de tener audio real.
+
+   ```bash
+   npm run generate:silence configuracion-general
+   ```
+
+### Captura de screenshots
+
+Si NexoPOS no está corriendo, `scripts/build-video.ts` tiene **pre-build validation** que falla rápido (`exit 1`) si falta algún screenshot o las coordenadas de `highlight`/`zoom` se salen de bounds 1920×1080. Útil para regenerar con placeholders sin perder tiempo de cómputo de Remotion.
+
+### Workflow recomendado
+
+1. Editar `public/tutorials/<id>/script.yaml` (5 steps aprox).
+2. Capturar screenshots reales con NexoPOS corriendo:
+   ```bash
+   cp .env.example .env  # poblar NEXOPOS_USERNAME/PASSWORD
+   npm run capture <id>
+   ```
+3. Generar audio (Edge TTS, o SAPI si Edge está bloqueado):
+   ```bash
+   npm run generate:audio <id>   # o generate:sapi / generate:silence
+   ```
+4. Renderizar:
+   ```bash
+   npm run build:video <id>
+   ```
