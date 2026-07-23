@@ -1,0 +1,83 @@
+id: configuracion-general
+title: "Configuracion general del comercio"
+module: "Etapa 1 - Setup"
+description: "Setup inicial del comercio: login, datos basicos, configuracion general y backup."
+next: "Usuarios y Backup"
+
+steps:
+  - id: paso-1-login
+    screenshot: "01-login.png"
+    route: "/login"
+    narration: |
+      Bienvenido a NexoPOS. Antes de empezar a operar, vamos a configurar
+      el sistema por primera vez. Lo primero es ingresar al sistema con
+      nuestro usuario y contrasena.
+    highlight:
+      x: 736
+      y: 365
+      w: 448
+      h: 350
+      label: "Formulario de login"
+    duration: 0.5
+
+  - id: paso-2-menu-configuracion
+    screenshot: "02-menu-configuracion.png"
+    route: "/settings"
+    narration: |
+      Una vez adentro, vamos a Configuracion. Aca vas a encontrar todas
+      las opciones para ajustar el sistema a tu comercio: los datos del
+      emisor para facturar, los usuarios, las copias de seguridad y el
+      estado del sistema.
+    highlight:
+      x: 576
+      y: 770
+      w: 768
+      h: 250
+      label: "Accesos directos"
+    duration: 0.5
+
+  - id: paso-3-datos-comercio
+    screenshot: "03-datos-comercio.png"
+    route: "/settings/fiscal"
+    narration: |
+      El primer paso es completar los datos del comercio. Cargamos el nombre
+      de la razon social, el CUIT, el domicilio comercial, la condicion frente
+      al IVA y el punto de venta. Estos datos se usan para facturar.
+    highlight:
+      x: 320
+      y: 350
+      w: 1280
+      h: 480
+      label: "Datos del emisor"
+    duration: 0.6
+
+  - id: paso-4-lector-barras
+    screenshot: "04-lector-barras.png"
+    route: "/settings"
+    narration: |
+      Despues activamos el lector de codigos de barras. Esto permite escanear
+      productos en el punto de venta sin tener que buscarlos a mano. Solo
+      activamos el switch y ajustamos el tiempo maximo entre teclas para que
+      el sistema reconozca el scanner.
+    highlight:
+      x: 576
+      y: 660
+      w: 368
+      h: 340
+      label: "Lector de codigos de barras"
+    duration: 0.6
+
+  - id: paso-5-backup
+    screenshot: "05-backup.png"
+    route: "/settings/backup"
+    narration: |
+      Por ultimo, configuramos las copias de seguridad. Esto protege toda la
+      informacion del sistema. Podes crear un backup ahora mismo o descargar
+      uno existente para guardarlo en otro lugar.
+    highlight:
+      x: 1230
+      y: 130
+      w: 270
+      h: 65
+      label: "Crear backup"
+    duration: 0.5

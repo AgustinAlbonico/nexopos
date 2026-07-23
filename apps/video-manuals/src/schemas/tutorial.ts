@@ -21,6 +21,7 @@ export const stepSchema = z.object({
   zoom: zoomSchema.optional(),
   highlight: highlightSchema.nullable().optional(),
   duration: z.number().positive().describe('Safety seconds added after the audio ends'),
+  route: z.string().optional(),
 });
 
 export const tutorialSchema = z.object({
