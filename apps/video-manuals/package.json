@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "generate:audio": "tsx scripts/generate-audio.ts",
     "generate:silence": "tsx scripts/generate-silence.ts",
+    "generate:sapi": "powershell -ExecutionPolicy Bypass -File scripts/sapi-generate-audio.ps1",
     "scaffold:tutorial": "tsx scripts/scriptTemplate.ts",
     "build:video": "tsx scripts/build-video.ts",
     "capture": "tsx scripts/capture-screenshots.ts"
