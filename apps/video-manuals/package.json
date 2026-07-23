@@ -1,0 +1,33 @@
+{
+  "name": "@sistema/video-manuals",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Manuales de usuario en video para NexoPOS. Remotion + Edge TTS es-AR + Playwright.",
+  "scripts": {
+    "dev": "remotion studio",
+    "build": "remotion render",
+    "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "generate:audio": "tsx scripts/generate-audio.ts",
+    "scaffold:tutorial": "tsx scripts/scriptTemplate.ts",
+    "build:video": "tsx scripts/build-video.ts",
+    "capture": "tsx scripts/capture-screenshots.ts"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.292",
+    "@remotion/media-parser": "4.0.292",
+    "@travisvn/edge-tts": "^1.0.2",
+    "js-yaml": "^4.1.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.292",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^22.10.0",
+    "@types/react": "18.3.10",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

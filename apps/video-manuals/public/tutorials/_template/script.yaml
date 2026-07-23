@@ -1,0 +1,74 @@
+# =====================================================================
+# Template de guion para un video manual de NexoPOS
+# ---------------------------------------------------------------------
+# Copia esta carpeta a tutorials/<id>/ o usa: pnpm scaffold:tutorial <id>
+# Todos los comentarios despues de cada campo son solo guia; los podes
+# borrar una vez que el script este completo.
+# =====================================================================
+
+# id: identificador corto, kebab-case. Debe matchear el nombre de la carpeta.
+id: _template
+
+# title: titulo que aparece en la intro del video y en el outro del video previo.
+title: "Titulo del video"
+
+# module: etiqueta de etapa. Formato: "Etapa N - Modulo".
+module: "Etapa 1 - Setup"
+
+# description: descripcion breve interna (no se renderiza en el video).
+description: ""
+
+# next: titulo EXACTO del video siguiente en el curriculo. Se muestra en el
+# outro como CTA ("Proximo video: ..."). Poner null si este es el ultimo video.
+next: "Titulo del siguiente video"
+
+# steps: lista de pasos. Minimo 1. Cada paso = 1 screenshot + 1 narracion + audio.
+# El orden de los pasos define el orden del video.
+steps:
+  - # id: identificador del paso, kebab-case. Se usa para nombrar el MP3 en audio/.
+    id: paso-1
+
+    # screenshot: nombre del archivo PNG dentro de screenshots/.
+    # Tamaño: 1920x1080 (fullscreen). Si la captura es mas chica, escalala.
+    screenshot: "01-pantalla-inicial.png"
+
+    # narration: texto que lee la voz es-AR-ElenaNeural. Usa YAML multilinea (|)
+    # para textos largos. Evitar signos raros que TTS no lee bien (?, ! excesivos).
+    narration: |
+      Bienvenidos a este video de NexoPOS. En este paso vamos a ver la pantalla
+      principal del modulo. Aca podes acceder a todas las opciones del sistema.
+
+    # zoom: encuadre de camara. Opcional. Si lo omitis, se ve la screenshot entera.
+    #   x, y: centro del zoom en espacio screenshot 1920x1080.
+    #   scale: factor de zoom (>1 acerca, 1 = sin zoom).
+    zoom:
+      x: 960
+      y: 540
+      scale: 1.4
+
+    # highlight: caja que encuadra una region para llamar la atencion. Opcional
+    # (null o ausente = sin highlight). Coords en espacio screenshot 1920x1080.
+    #   label: texto arriba de la caja (opcional).
+    highlight:
+      x: 320
+      y: 240
+      w: 640
+      h: 140
+      label: "Boton Configuracion"
+
+    # duration: segundos de safety (pausa) DESPUES de que termina el audio del
+    # paso, antes de avanzar al siguiente. Tipicamente 0.3 a 0.8s.
+    duration: 0.5
+
+  - id: paso-2
+    screenshot: "02-configuracion.png"
+    narration: |
+      Ahora vamos a la seccion de configuracion general. Aca podemos ajustar
+      datos del comercio, moneda, y otros parametros del sistema.
+    zoom:
+      x: 1400
+      y: 300
+      scale: 2
+    # highlight: null  ->  sin caja de highlight en este paso
+    highlight: null
+    duration: 0.5

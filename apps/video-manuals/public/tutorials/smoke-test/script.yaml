@@ -1,0 +1,10 @@
+id: smoke-test
+title: "Smoke Test"
+module: "Test"
+description: ""
+next: null
+steps:
+  - id: paso-1
+    screenshot: "01.png"
+    narration: "Hola, este es un test del sistema de manuales en video de NexoPOS."
+    duration: 0.3
