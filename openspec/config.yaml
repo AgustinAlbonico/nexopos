@@ -1,0 +1,59 @@
+project: sistema-gestion-yomemimo
+schema: 1
+version: 0.1.0
+
+# SDD execution mode
+execution_mode: auto
+artifact_store: both          # openspec files in repo + Engram copies
+pr_strategy: auto-forecast
+review_budget: 400
+
+# Quality gates
+strict_tdd: true
+test_runner_backend: jest
+test_runner_frontend: vitest
+e2e_runner_frontend: playwright
+
+# Testing capabilities
+testing:
+  backend:
+    runner: jest
+    projects: [unit, integration, api]
+    coverage_threshold:
+      branches: 60
+      functions: 70
+      lines: 70
+      statements: 70
+    commands:
+      unit: "npm run test:unit -w @sistema/backend"
+      integration: "npm run test:integration -w @sistema/backend"
+      api: "npm run test:api -w @sistema/backend"
+      all: "npm run test:all -w @sistema/backend"
+  frontend:
+    runner: vitest
+    e2e: playwright
+    commands:
+      unit: "npm run test -w @sistema/frontend"
+      coverage: "npm run test:coverage -w @sistema/frontend"
+      e2e: "npm run test:e2e -w @sistema/frontend"
+  desktop:
+    runner: none               # desktop reuses backend+frontend artifacts
+
+# Project-level rules (must mirror AGENTS.md)
+rules:
+  servers:
+    auto_start: false         # never start backend or frontend dev servers automatically
+    rule: user_lifts_servers
+  migrations:
+    index_file: apps/backend/src/migrations.ts
+    consistency_test: apps/backend/src/migrations.consistency.spec.ts
+    must_register_in_index: true
+  code_review:
+    skill: code-review
+    mandatory: true
+
+# Tracked changes
+changes:
+  - name: stock-sectorizado
+    status: archived
+    description: Stock sectorizado opcional — shipped 2026-08-10 (PR1–PR10). See openspec/changes/stock-sectorizado/archive.md.

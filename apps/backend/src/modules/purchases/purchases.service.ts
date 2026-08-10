@@ -22,6 +22,7 @@ import { CashRegisterService } from '../cash-register/cash-register.service';
 import { SuppliersService } from '../suppliers/suppliers.service';
 import { parseLocalDate } from '../../common/utils/date.utils';
 import { StockMovementType, StockMovementSource } from '../inventory/entities/stock-movement.entity';
+import { Location } from '../inventory/entities/location.entity';
 import { AuditService } from '../audit/audit.service';
 import { AuditEntityType, AuditAction } from '../audit/enums';
 
@@ -62,6 +63,11 @@ export class PurchasesService {
     async create(dto: CreatePurchaseDto, userId?: string): Promise<Purchase> {
         await this.ensureOpenCashRegisterForPaidPurchase(dto.status);
 
+        const sectorized = await this.inventoryService.isSectorizedMode();
+        const resolvedLocationId = sectorized
+            ? await this.resolvePurchaseDestinationLocation(dto.locationId)
+            : null;
+
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
         await queryRunner.startTransaction();
@@ -96,6 +102,7 @@ export class PurchasesService {
                 invoiceNumber: dto.invoiceNumber ?? null,
                 notes: dto.notes ?? null,
                 createdById: userId ?? null,
+                locationId: resolvedLocationId,
             });
 
             // Guardar compra
@@ -106,12 +113,18 @@ export class PurchasesService {
             await queryRunner.manager.save(purchaseItems);
 
             // Si se marca como pagada, actualizar inventario y registrar en caja
-            await this.processPaidPurchaseIfNeeded(dto, savedPurchase, queryRunner.manager, userId);
+            await this.processPaidPurchaseIfNeeded(
+                dto,
+                savedPurchase,
+                queryRunner.manager,
+                userId,
+                sectorized ? resolvedLocationId : null,
+            );
 
             // Cargar la compra con relaciones usando el manager de la transacción
             const result = await queryRunner.manager.findOne(Purchase, {
                 where: { id: savedPurchase.id },
-                relations: ['items', 'items.product', 'createdBy', 'paymentMethod'],
+                relations: ['items', 'items.product', 'createdBy', 'paymentMethod', 'location'],
             });
 
             if (!result) {
@@ -207,6 +220,7 @@ export class PurchasesService {
         savedPurchase: Purchase,
         manager: Repository<Purchase>['manager'],
         userId?: string,
+        sectorizedLocationId?: string | null,
     ): Promise<void> {
         if (dto.status !== PurchaseStatus.PAID) return;
 
@@ -217,7 +231,15 @@ export class PurchasesService {
 
         if (!purchaseWithItems) return;
 
-        await this.updateInventoryFromPurchase(purchaseWithItems);
+        if (sectorizedLocationId) {
+            await this.updateInventoryFromPurchaseInLocation(
+                purchaseWithItems,
+                sectorizedLocationId,
+                manager,
+            );
+        } else {
+            await this.updateInventoryFromPurchase(purchaseWithItems);
+        }
         savedPurchase.inventoryUpdated = true;
         savedPurchase.paidAt = savedPurchase.paidAt ?? new Date();
         await manager.save(savedPurchase);
@@ -232,6 +254,50 @@ export class PurchasesService {
             },
             userId || 'system',
         );
+    }
+
+    private async updateInventoryFromPurchaseInLocation(
+        purchase: Purchase,
+        locationId: string,
+        manager: Repository<Purchase>['manager'],
+    ): Promise<void> {
+        const dateString = typeof purchase.purchaseDate === 'string'
+            ? purchase.purchaseDate
+            : purchase.purchaseDate.toISOString();
+
+        for (const item of purchase.items) {
+            await this.inventoryService.recordMovementInLocation({
+                productId: item.productId,
+                locationId,
+                type: StockMovementType.IN,
+                source: StockMovementSource.PURCHASE,
+                quantity: item.quantity,
+                cost: item.unitPrice,
+                notes: `Ingreso por compra ${purchase.purchaseNumber}`,
+                date: new Date(dateString),
+                allowOutOfStock: false,
+                manager,
+            });
+        }
+    }
+
+    private async resolvePurchaseDestinationLocation(
+        dtoLocationId: string | undefined,
+    ): Promise<string> {
+        if (dtoLocationId) {
+            const loc = await this.dataSource
+                .getRepository(Location)
+                .findOne({ where: { id: dtoLocationId } });
+            if (!loc || !loc.isActive) {
+                throw new BadRequestException('destination is inactive');
+            }
+            return dtoLocationId;
+        }
+        const defaultId = await this.inventoryService.getDefaultReceiveLocationId();
+        if (!defaultId) {
+            throw new BadRequestException('destination required in sectorized mode');
+        }
+        return defaultId;
     }
 
     /**

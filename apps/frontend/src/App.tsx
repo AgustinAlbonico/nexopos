@@ -32,6 +32,9 @@ const CashRegisterPage = React.lazy(() => import('./pages/CashRegisterPage').the
 const CustomerAccountsPage = React.lazy(() => import('./features/customer-accounts').then(module => ({ default: module.CustomerAccountsPage })));
 const AccountStatementPage = React.lazy(() => import('./features/customer-accounts').then(module => ({ default: module.AccountStatementPage })));
 const ReportsPage = React.lazy(() => import('./features/reports').then(module => ({ default: module.ReportsPage })));
+const LocationsPage = React.lazy(() => import('./features/locations').then(module => ({ default: module.LocationsPage })));
+const ActivationWizardPage = React.lazy(() => import('./features/locations').then(module => ({ default: module.ActivationWizardPage })));
+const ReplenishmentPage = React.lazy(() => import('./features/locations').then(module => ({ default: module.ReplenishmentPage })));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -92,6 +95,9 @@ function App() {
                     <Route path="settings/fiscal" element={<FiscalConfigPage />} />
                     <Route path="settings/users" element={<UsersManagementPage />} />
                     <Route path="settings/backup" element={<BackupPage />} />
+<Route path="inventory/locations" element={<LocationsPage />} />
+                  <Route path="inventory/locations/activate" element={<ActivationWizardPage />} />
+                  <Route path="inventory/replenishment" element={<ReplenishmentPage />} />
                   </Route>
 
                   {/* Ruta 404 */}

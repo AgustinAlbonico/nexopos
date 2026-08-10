@@ -13,6 +13,9 @@ import {
     CreateSalePaymentDTO,
     Invoice,
     AfipStatus,
+    CheckReplenishmentItemDTO,
+    CheckReplenishmentResultDTO,
+    ReplenishmentTransferDTO,
 } from '../types';
 
 export const salesApi = {
@@ -92,6 +95,43 @@ export const salesApi = {
      */
     getTodaySales: async (): Promise<Sale[]> => {
         const response = await api.get<Sale[]>('/api/sales/today');
+        return response.data;
+    },
+};
+
+/**
+ * API de reposición ("Reponer y continuar") — modo sectorizado (PR8).
+ * Endpoints provistos por PR4: `POST /sales/check-replenishment` (read-only)
+ * y `POST /sales` con `replenishmentTransfers` (mismo endpoint, ruta de
+ * ejecución "complete-after-replenishment").
+ */
+export const replenishmentApi = {
+    /**
+     * Devuelve por ítem el stock disponible en la ubicación principal y
+     * alternativas (con su `available`) en otras ubicaciones activas.
+     */
+    checkReplenishment: async (
+        items: CheckReplenishmentItemDTO[],
+    ): Promise<CheckReplenishmentResultDTO[]> => {
+        const response = await api.post<CheckReplenishmentResultDTO[]>(
+            '/api/sales/check-replenishment',
+            { items },
+        );
+        return response.data;
+    },
+
+    /**
+     * Completa la venta ejecutando primero los traslados de reposición en
+     * la misma transacción.
+     */
+    completeAfterReplenishment: async (
+        sale: CreateSaleDTO,
+        transfers: ReplenishmentTransferDTO[],
+    ): Promise<Sale> => {
+        const response = await api.post<Sale>('/api/sales', {
+            ...sale,
+            replenishmentTransfers: transfers,
+        });
         return response.data;
     },
 };

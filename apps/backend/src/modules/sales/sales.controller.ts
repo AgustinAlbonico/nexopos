@@ -20,6 +20,7 @@ import {
     CreateSaleDto,
     UpdateSaleDto,
     SaleFiltersDto,
+    CheckReplenishmentItemDto,
 } from './dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { AuthenticatedRequest, PaymentDto } from '../auth/interfaces';
@@ -30,11 +31,30 @@ export class SalesController {
     constructor(private readonly salesService: SalesService) { }
 
     /**
-     * Crea una nueva venta
+     * Crea una nueva venta. Si el DTO trae `replenishmentTransfers`, se
+     * enruta al flujo "Reponer y continuar" (sectorizado): los traslados
+     * y la venta se ejecutan en una sola transacción.
      */
     @Post()
     create(@Body() dto: CreateSaleDto, @Request() req: AuthenticatedRequest) {
+        if (dto.replenishmentTransfers && dto.replenishmentTransfers.length > 0) {
+            return this.salesService.completeSaleAfterReplenishment(
+                dto,
+                dto.replenishmentTransfers,
+                req.user?.userId,
+            );
+        }
         return this.salesService.create(dto, req.user?.userId);
+    }
+
+    /**
+     * Lee opciones de reposición por ítem para el POS (read-only).
+     * Devuelve por cada producto: stock en la primaria, si requiere
+     * reposición, y alternativas en otras ubicaciones activas.
+     */
+    @Post('check-replenishment')
+    checkReplenishment(@Body() body: { items: CheckReplenishmentItemDto[] }) {
+        return this.salesService.checkReplenishment(body.items ?? []);
     }
 
     /**

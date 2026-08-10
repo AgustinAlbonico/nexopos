@@ -7,4 +7,5 @@ export * from './SaleDetail';
 export * from './SaleStatsCards';
 export * from './InvoiceActions';
 export * from './SaleConfirmationModal';
+export * from './ReplenishmentDialog';
 

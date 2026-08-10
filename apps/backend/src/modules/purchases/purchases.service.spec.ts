@@ -34,6 +34,9 @@ const mockPurchaseItemRepo = {
 
 const mockInventoryService = {
     createMovement: jest.fn(),
+    recordMovementInLocation: jest.fn(),
+    isSectorizedMode: jest.fn().mockResolvedValue(false),
+    getDefaultReceiveLocationId: jest.fn().mockResolvedValue(null),
 };
 
 const mockProductsService = {
@@ -53,8 +56,13 @@ const mockAuditService = {
     logSilent: jest.fn(),
 };
 
+const mockLocationRepo = {
+    findOne: jest.fn(),
+};
+
 const mockDataSource = {
     createQueryRunner: jest.fn(),
+    getRepository: jest.fn().mockImplementation(() => mockLocationRepo),
 };
 
 const mockQueryRunner = {
@@ -93,6 +101,8 @@ const createMockPurchase = (overrides = {}) => ({
     items: [],
     createdBy: null,
     paymentMethod: null,
+    location: null,
+    locationId: null,
     createdAt: new Date(),
     updatedAt: new Date(),
     deletedAt: null,
@@ -160,6 +170,10 @@ describe('PurchasesService', () => {
             mockProductsService.findOne.mockResolvedValue({ id: 'product-123' });
             mockSuppliersService.findOne.mockResolvedValue({ id: 'supplier-123' });
             mockPurchaseRepo.count.mockResolvedValue(0);
+            mockInventoryService.isSectorizedMode.mockResolvedValue(false);
+            mockInventoryService.getDefaultReceiveLocationId.mockResolvedValue(null);
+            mockInventoryService.recordMovementInLocation.mockResolvedValue({});
+            mockLocationRepo.findOne.mockResolvedValue(null);
         });
 
         it('crea una compra pendiente exitosamente', async () => {
@@ -252,6 +266,125 @@ describe('PurchasesService', () => {
             await expect(service.create(createPurchaseDto, 'user-123')).rejects.toThrow();
             expect(mockQueryRunner.rollbackTransaction).toHaveBeenCalled();
             expect(mockQueryRunner.release).toHaveBeenCalled();
+        });
+    });
+
+    describe('create (modo sectorizado — PR5)', () => {
+        const paidDto = {
+            supplierId: 'supplier-123',
+            providerName: 'Proveedor Test',
+            purchaseDate: '2024-01-15',
+            items: [{ productId: 'product-123', quantity: 10, unitPrice: 100 }],
+            tax: 210,
+            discount: 0,
+            status: PurchaseStatus.PAID,
+        };
+        const paidPurchase = {
+            ...createMockPurchase({ status: PurchaseStatus.PAID, inventoryUpdated: false }),
+            items: [createMockPurchaseItem()],
+        };
+
+        beforeEach(() => {
+            mockQueryRunner.manager.save.mockResolvedValue(paidPurchase);
+            mockQueryRunner.manager.findOne.mockResolvedValue(paidPurchase);
+            mockProductsService.findOne.mockResolvedValue({ id: 'product-123' });
+            mockSuppliersService.findOne.mockResolvedValue({ id: 'supplier-123' });
+            mockPurchaseRepo.count.mockResolvedValue(0);
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-123' });
+        });
+
+        it('modo simple: ignora locationId, persiste null y no llama recordMovementInLocation', async () => {
+            mockInventoryService.isSectorizedMode.mockResolvedValue(false);
+            mockInventoryService.recordMovementInLocation.mockClear();
+
+            const dtoWithLocation = { ...paidDto, locationId: 'should-be-ignored' };
+            await service.create(dtoWithLocation, 'user-123');
+
+            expect(mockInventoryService.isSectorizedMode).toHaveBeenCalled();
+            expect(mockInventoryService.recordMovementInLocation).not.toHaveBeenCalled();
+            expect(mockInventoryService.getDefaultReceiveLocationId).not.toHaveBeenCalled();
+            const created = mockPurchaseRepo.create.mock.calls[0][0];
+            expect(created.locationId).toBeNull();
+        });
+
+        it('sectorizado + sin locationId en DTO + default configurado: usa default y acredita vía recordMovementInLocation', async () => {
+            mockInventoryService.isSectorizedMode.mockResolvedValue(true);
+            mockInventoryService.getDefaultReceiveLocationId.mockResolvedValue('default-loc');
+
+            await service.create(paidDto, 'user-123');
+
+            expect(mockInventoryService.getDefaultReceiveLocationId).toHaveBeenCalled();
+            expect(mockInventoryService.recordMovementInLocation).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    productId: 'product-123',
+                    locationId: 'default-loc',
+                    source: 'PURCHASE',
+                    quantity: 10,
+                    allowOutOfStock: false,
+                }),
+            );
+            const created = mockPurchaseRepo.create.mock.calls[0][0];
+            expect(created.locationId).toBe('default-loc');
+        });
+
+        it('sectorizado + sin locationId en DTO + default NO configurado: lanza 400', async () => {
+            mockInventoryService.isSectorizedMode.mockResolvedValue(true);
+            mockInventoryService.getDefaultReceiveLocationId.mockResolvedValue(null);
+
+            await expect(service.create(paidDto, 'user-123')).rejects.toThrow(BadRequestException);
+            await expect(service.create(paidDto, 'user-123')).rejects.toThrow('destination required in sectorized mode');
+            expect(mockInventoryService.recordMovementInLocation).not.toHaveBeenCalled();
+            expect(mockQueryRunner.commitTransaction).not.toHaveBeenCalled();
+        });
+
+        it('sectorizado + locationId inactivo en DTO: lanza 400', async () => {
+            mockInventoryService.isSectorizedMode.mockResolvedValue(true);
+            mockLocationRepo.findOne.mockResolvedValue({ id: 'inactive-loc', isActive: false });
+
+            const dto = { ...paidDto, locationId: 'inactive-loc' };
+            await expect(service.create(dto, 'user-123')).rejects.toThrow(BadRequestException);
+            await expect(service.create(dto, 'user-123')).rejects.toThrow('destination is inactive');
+            expect(mockInventoryService.recordMovementInLocation).not.toHaveBeenCalled();
+        });
+
+        it('sectorizado + locationId activo en DTO: acredita ahí y persiste el id', async () => {
+            mockInventoryService.isSectorizedMode.mockResolvedValue(true);
+            mockLocationRepo.findOne.mockResolvedValue({ id: 'active-loc', isActive: true });
+
+            const dto = { ...paidDto, locationId: 'active-loc' };
+            await service.create(dto, 'user-123');
+
+            expect(mockLocationRepo.findOne).toHaveBeenCalledWith({ where: { id: 'active-loc' } });
+            expect(mockInventoryService.recordMovementInLocation).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    productId: 'product-123',
+                    locationId: 'active-loc',
+                    source: 'PURCHASE',
+                    quantity: 10,
+                }),
+            );
+            const created = mockPurchaseRepo.create.mock.calls[0][0];
+            expect(created.locationId).toBe('active-loc');
+        });
+
+        it('regresión simple: costo y total consolidado se calculan igual con o sin locationId', async () => {
+            const dtoWithMultipleItems = {
+                ...paidDto,
+                items: [
+                    { productId: 'product-1', quantity: 5, unitPrice: 100 },
+                    { productId: 'product-2', quantity: 3, unitPrice: 50 },
+                ],
+                tax: 100,
+                discount: 50,
+                status: PurchaseStatus.PENDING,
+            };
+            mockInventoryService.isSectorizedMode.mockResolvedValue(false);
+
+            await service.create(dtoWithMultipleItems, 'user-123');
+
+            const savedPurchase = mockPurchaseRepo.create.mock.calls[0][0];
+            expect(savedPurchase.subtotal).toBe(650);
+            expect(savedPurchase.total).toBe(700);
         });
     });
 

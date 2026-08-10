@@ -42,6 +42,7 @@ import { Product, Category, CreateCategoryDTO } from '@/features/products/types'
 import { ProductFormValues } from '@/features/products/schemas/product.schema';
 import { NumericInput } from '@/components/ui/numeric-input';
 import { formatCurrency } from '@/lib/utils';
+import { StockByLocationSection } from '@/features/locations';
 
 interface Configuration {
     minStockAlert: number;
@@ -244,6 +245,10 @@ function ProductDetailDialog({
                             </Badge>
                         </div>
                     </div>
+
+                    <Separator className="my-4" />
+
+                    <StockByLocationSection productId={product.id} />
                 </div>
             </DialogContent>
         </Dialog>

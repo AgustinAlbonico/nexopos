@@ -5,6 +5,7 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     ManyToOne,
+    OneToMany,
     JoinColumn,
     Index,
     BeforeInsert,
@@ -12,6 +13,8 @@ import {
 } from 'typeorm';
 import { Category } from './category.entity';
 import { Brand } from './brand.entity';
+import { StockMovement } from '../../inventory/entities/stock-movement.entity';
+import { ProductLocationStock } from '../../inventory/entities/product-location-stock.entity';
 
 @Entity('products')
 @Index(['name'])
@@ -68,6 +71,14 @@ export class Product {
     })
     profitMargin?: number | null;
 
+    /**
+     * Stock total consolidado.
+     * - En modo simple: única verdad, se modifica como hasta ahora.
+     * - En modo sectorizado: derivado de la suma de
+     *   `ProductLocationStock.quantity`. NO se escribe directamente;
+     *   `InventoryService` lo recalcula dentro de la misma transacción que
+     *   toca `product_location_stock`.
+     */
     @Column({ type: 'int', default: 0 })
     stock!: number;
 
@@ -88,6 +99,14 @@ export class Product {
     @ManyToOne(() => Brand, (brand) => brand.products, { eager: false, nullable: true })
     @JoinColumn({ name: 'brandId' })
     brand!: Brand | null;
+
+    // Movimientos de stock que afectaron este producto (modo simple o sectorizado).
+    @OneToMany(() => StockMovement, (movement) => movement.product)
+    stockMovements!: StockMovement[];
+
+    // Saldos por ubicación cuando el modo sectorizado está activo.
+    @OneToMany(() => ProductLocationStock, (pls) => pls.product)
+    productLocationStocks!: ProductLocationStock[];
 
     // Indica si el producto usa un margen de ganancia personalizado (no afectado por actualización masiva)
     @Column({ type: 'boolean', default: false })

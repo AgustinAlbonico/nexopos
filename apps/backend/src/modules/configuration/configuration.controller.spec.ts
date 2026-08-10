@@ -19,6 +19,10 @@ describe('ConfigurationController', () => {
         barcodeScannerEnabled: false,
         barcodeScannerTimeoutMs: 100,
         allowOutOfStockSale: false,
+        stockSectorizado: false,
+        primarySaleLocationId: null,
+        defaultReceiveLocationId: null,
+        stockMinimoVenta: 5,
         createdAt: new Date('2026-01-01'),
         updatedAt: new Date('2026-01-01'),
     };

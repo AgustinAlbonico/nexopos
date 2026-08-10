@@ -2,7 +2,7 @@
  * Página de Ventas (POS)
  * Gestión completa de ventas con punto de venta integrado
  */
-import { useState, useMemo, useCallback } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import { useConfirm } from '@/hooks/useConfirm';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
@@ -30,8 +30,11 @@ import {
     SaleDetail,
     SaleStatsCards,
     SaleConfirmationModal,
+    ReplenishmentDialog,
 } from '@/features/sales/components';
-import { salesApi } from '@/features/sales/api/sales.api';
+import { salesApi, replenishmentApi } from '@/features/sales/api/sales.api';
+import { useReplenishmentOptions } from '@/features/sales/hooks/useReplenishmentOptions';
+import { useSystemConfig } from '@/features/locations/hooks/useLocations';
 import {
     Sale,
     SaleFilters,
@@ -40,6 +43,10 @@ import {
     InvoiceFilterStatus,
     InvoiceFilterStatusLabels,
     CreateSaleDTO,
+    BlockedStockItemDTO,
+    CheckReplenishmentItemDTO,
+    ReplenishmentTransferDTO,
+    SaleBlockedByStockErrorBody,
 } from '@/features/sales/types';
 import {
     getCurrentMonthRange,
@@ -83,6 +90,24 @@ export default function SalesPage() {
     // Estado para trackear si el usuario descartó la alerta de caja del día anterior dentro del modal
     const [dismissedModalCashAlert, setDismissedModalCashAlert] = useState(false);
 
+    const { data: systemConfig } = useSystemConfig();
+    const isSectorized = !!systemConfig?.stockSectorizado;
+
+    const [blockedItems, setBlockedItems] = useState<BlockedStockItemDTO[] | null>(null);
+    const [pendingSalePayload, setPendingSalePayload] = useState<CreateSaleDTO | null>(null);
+    const [replenishmentError, setReplenishmentError] = useState<string | null>(null);
+
+    const checkItems = useMemo<CheckReplenishmentItemDTO[]>(
+        () =>
+            (blockedItems ?? []).map((i) => ({
+                productId: i.productId,
+                quantity: i.requested,
+            })),
+        [blockedItems],
+    );
+
+    useReplenishmentOptions(checkItems, isSectorized && checkItems.length > 0);
+
     // Callback para abrir modal de nueva venta (usado por botón y atajo F1)
     const openCreateModal = useCallback(() => {
         if (!openRegister) {
@@ -96,27 +121,82 @@ export default function SalesPage() {
     useShortcutAction('NEW_SALE', openCreateModal);
 
     // Mutaciones
-    const createMutation = useMutation({
-        mutationFn: salesApi.create,
-        onSuccess: (newSale) => {
+    const handleCreateSuccess = useCallback(
+        (newSale: Sale) => {
             queryClient.invalidateQueries({ queryKey: ['sales'] });
             queryClient.invalidateQueries({ queryKey: ['sale-stats'] });
             queryClient.invalidateQueries({ queryKey: ['products'] });
             queryClient.invalidateQueries({ queryKey: ['inventory'] });
-            // Invalidar cuentas corrientes si es venta a cuenta
             if (newSale.isOnAccount) {
-                // Invalidar todas las queries de cuentas corrientes para refrescar la data
                 queryClient.invalidateQueries({ queryKey: ['customer-accounts'] });
             }
             toast.success('Venta registrada exitosamente');
             setIsCreateOpen(false);
-            // Mostrar modal de confirmación con la venta creada
+            setBlockedItems(null);
+            setPendingSalePayload(null);
+            setReplenishmentError(null);
             setConfirmedSale(newSale);
         },
-        onError: (error: any) => {
-            toast.error(error.response?.data?.message || 'Error al registrar venta');
+        [queryClient],
+    );
+
+    const createMutation = useMutation({
+        mutationFn: salesApi.create,
+        onSuccess: handleCreateSuccess,
+        onError: (error: any, variables: CreateSaleDTO) => {
+            const body = error?.response?.data as SaleBlockedByStockErrorBody | undefined;
+            if (body?.items && Array.isArray(body.items) && isSectorized) {
+                setPendingSalePayload(variables);
+                setBlockedItems(body.items);
+                setReplenishmentError(null);
+                return;
+            }
+            toast.error(error?.response?.data?.message || 'Error al registrar venta');
         },
     });
+
+    const completeAfterReplenishmentMutation = useMutation({
+        mutationFn: ({
+            sale,
+            transfers,
+        }: {
+            sale: CreateSaleDTO;
+            transfers: ReplenishmentTransferDTO[];
+        }) => replenishmentApi.completeAfterReplenishment(sale, transfers),
+        onSuccess: handleCreateSuccess,
+        onError: (error: any) => {
+            const body = error?.response?.data as SaleBlockedByStockErrorBody | undefined;
+            if (body?.items && Array.isArray(body.items)) {
+                setBlockedItems(body.items);
+                setReplenishmentError(
+                    body.message ||
+                        'El stock cambió mientras elegías la reposición. Revisá las opciones.',
+                );
+                return;
+            }
+            setReplenishmentError(
+                error?.response?.data?.message || 'Error al reponer y registrar venta',
+            );
+        },
+    });
+
+    const handleConfirmReplenishment = useCallback(
+        (transfers: ReplenishmentTransferDTO[]) => {
+            if (!pendingSalePayload) return;
+            completeAfterReplenishmentMutation.mutate({
+                sale: pendingSalePayload,
+                transfers,
+            });
+        },
+        [pendingSalePayload, completeAfterReplenishmentMutation],
+    );
+
+    const handleReplenishmentOpenChange = useCallback((open: boolean) => {
+        if (!open) {
+            setBlockedItems(null);
+            setReplenishmentError(null);
+        }
+    }, []);
 
     const cancelMutation = useMutation({
         mutationFn: salesApi.cancel,
@@ -343,13 +423,15 @@ export default function SalesPage() {
                         onOpenChange={(open) => {
                             setIsCreateOpen(open);
                             if (!open) {
-                                setResumingSale(null); // Limpiar al cerrar
+                                setResumingSale(null);
                                 setDismissedModalCashAlert(false);
+                                setBlockedItems(null);
+                                setPendingSalePayload(null);
+                                setReplenishmentError(null);
                             }
                         }}
                     >
                         <DialogContent className="max-w-[98vw] w-full h-[95vh] overflow-hidden p-0 gap-0">
-                            {/* Alerta de caja del día anterior dentro del modal */}
                             {!isCashStatusLoading &&
                                 cashStatus?.hasOpenRegister &&
                                 cashStatus?.isFromPreviousDay &&
@@ -366,7 +448,10 @@ export default function SalesPage() {
                                 <SaleForm
                                     onSubmit={handleCreate}
                                     onParkSale={() => setIsCreateOpen(false)}
-                                    isLoading={createMutation.isPending}
+                                    isLoading={
+                                        createMutation.isPending ||
+                                        completeAfterReplenishmentMutation.isPending
+                                    }
                                     initialData={resumingSale?.data}
                                 />
                             </div>
@@ -574,6 +659,17 @@ export default function SalesPage() {
                 open={!!confirmedSale}
                 onClose={() => setConfirmedSale(null)}
             />
+
+            {blockedItems && blockedItems.length > 0 && (
+                <ReplenishmentDialog
+                    open={!!blockedItems}
+                    onOpenChange={handleReplenishmentOpenChange}
+                    items={blockedItems}
+                    isSubmitting={completeAfterReplenishmentMutation.isPending}
+                    submitError={replenishmentError}
+                    onConfirm={handleConfirmReplenishment}
+                />
+            )}
 
             {/* Alerta de caja del día anterior sin cerrar */}
             {!dismissedCashAlert && (

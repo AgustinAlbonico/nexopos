@@ -207,6 +207,69 @@ export interface UpdateSaleDTO {
 }
 
 /**
+ * Item para `POST /sales/check-replenishment` (PR4 / PR8).
+ */
+export interface CheckReplenishmentItemDTO {
+    productId: string;
+    quantity: number;
+}
+
+/**
+ * Opción de reposición desde otra ubicación activa (PR4 / PR8).
+ */
+export interface ReplenishmentOptionDTO {
+    locationId: string;
+    locationName: string;
+    available: number;
+}
+
+/**
+ * Respuesta de `POST /sales/check-replenishment` por ítem (PR4 / PR8).
+ */
+export interface CheckReplenishmentResultDTO {
+    productId: string;
+    quantity: number;
+    primarySaleAvailable: number;
+    needsReplenishment: boolean;
+    options: ReplenishmentOptionDTO[];
+}
+
+/**
+ * Ítem del body 409 `SaleBlockedByStockError` (PR4 / PR8).
+ * Misma forma que `CheckReplenishmentResultDTO` pero sin `needsReplenishment`
+ * (siempre true en este contexto) y agrupado dentro de `items[]`.
+ */
+export interface BlockedStockItemDTO {
+    productId: string;
+    productName: string;
+    requested: number;
+    primarySaleAvailable: number;
+    options: ReplenishmentOptionDTO[];
+}
+
+/**
+ * Body del `ConflictException` 409 cuando el modo sectorizado detecta
+ * faltante en la ubicación principal de venta.
+ */
+export interface SaleBlockedByStockErrorBody {
+    statusCode: number;
+    error: string;
+    message: string;
+    items: BlockedStockItemDTO[];
+}
+
+/**
+ * Traslado previo a la venta (PR4 / PR8). El backend lo ejecuta dentro
+ * de la misma transacción que la venta.
+ */
+export interface ReplenishmentTransferDTO {
+    productId: string;
+    fromLocationId: string;
+    quantity: number;
+    reason?: string;
+}
+
+/**
  * Estados de facturación para filtrar
  */
 export enum InvoiceFilterStatus {

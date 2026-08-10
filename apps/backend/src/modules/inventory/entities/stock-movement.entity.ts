@@ -8,6 +8,7 @@ import {
     Index,
 } from 'typeorm';
 import { Product } from '../../products/entities/product.entity';
+import { Location } from './location.entity';
 
 /**
  * Tipos de movimiento de stock
@@ -26,16 +27,22 @@ export enum StockMovementSource {
     SALE = 'SALE',                    // Venta
     ADJUSTMENT = 'ADJUSTMENT',        // Ajuste manual de inventario
     RETURN = 'RETURN',                // Devolución
+    TRANSFER = 'TRANSFER',            // Traslado entre ubicaciones (modo sectorizado)
 }
 
 /**
- * Entidad para registrar movimientos de inventario
+ * Entidad para registrar movimientos de inventario.
+ *
+ * En modo sectorizado la columna `locationId` identifica la ubicación
+ * afectada; en modo simple queda en null (back-compat con el historial
+ * previo a la activación).
  */
 @Entity('stock_movements')
 @Index(['productId'])
 @Index(['date'])
 @Index(['type'])
 @Index(['source'])
+@Index(['productId', 'locationId', 'createdAt'])
 export class StockMovement {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
@@ -77,6 +84,17 @@ export class StockMovement {
 
     @Column({ type: 'timestamp' })
     date!: Date;
+
+    /**
+     * Ubicación afectada por el movimiento (modo sectorizado).
+     * Null en modo simple y en movimientos históricos previos a la activación.
+     */
+    @Column({ type: 'uuid', nullable: true })
+    locationId!: string | null;
+
+    @ManyToOne(() => Location, { eager: false, nullable: true })
+    @JoinColumn({ name: 'locationId' })
+    location!: Location | null;
 
     @CreateDateColumn()
     createdAt!: Date;

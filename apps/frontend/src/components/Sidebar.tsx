@@ -22,6 +22,8 @@ import {
     TrendingUp,
     ChevronLeft,
     ChevronRight,
+    Boxes,
+    ArrowRightLeft,
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { useLowStockCount } from '@/features/products/hooks/useLowStock';
@@ -117,6 +119,16 @@ const navItems: NavItem[] = [
         href: '/reports',
         icon: BarChart3,
         shortcut: 'F11',
+    },
+    {
+        title: 'Ubicaciones',
+        href: '/inventory/locations',
+        icon: Boxes,
+    },
+    {
+        title: 'Reposición',
+        href: '/inventory/replenishment',
+        icon: ArrowRightLeft,
     },
     {
         title: 'Configuración',

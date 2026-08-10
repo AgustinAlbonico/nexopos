@@ -35,6 +35,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Switch } from '@/components/ui/switch';
 import { BarcodeScannerTest } from './components/BarcodeScannerTest';
+import { ActivationBanner } from '@/features/locations';
 
 interface SystemConfiguration {
     id: string;
@@ -43,6 +44,10 @@ interface SystemConfiguration {
     barcodeScannerEnabled: boolean;
     barcodeScannerTimeoutMs: number;
     allowOutOfStockSale: boolean;
+    stockSectorizado?: boolean;
+    primarySaleLocationId?: string | null;
+    defaultReceiveLocationId?: string | null;
+    stockMinimoVenta?: number;
     createdAt: string;
     updatedAt: string;
 }
@@ -219,6 +224,9 @@ export default function SettingsPage() {
                         </div>
                     </div>
                 </div>
+
+                {/* Banner de activación del modo sectorizado (PR7) */}
+                {config && !config.stockSectorizado ? <ActivationBanner /> : null}
 
                 {/* Grid de configuraciones principales */}
                 <div className="grid md:grid-cols-2 gap-6">

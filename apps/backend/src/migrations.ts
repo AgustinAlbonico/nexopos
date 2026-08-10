@@ -13,6 +13,10 @@ import { MassiveNumericPrecisionStandardization1768413296219 } from './migration
 import { AddBarcodeScannerConfig1768413297000 } from './migrations/1768413297000-AddBarcodeScannerConfig';
 import { AddAuditLogCompositeIndexes1769113297000 } from './migrations/1769113297000-AddAuditLogCompositeIndexes';
 import { AllowOutOfStockSale1769200000000 } from './migrations/1769200000000-AllowOutOfStockSale';
+import { AddStockSectorizadoFoundations1770000000000 } from './migrations/1770000000000-AddStockSectorizadoFoundations';
+import { AddLocationIdToInventoryMovements1771000000000 } from './migrations/1771000000000-AddLocationIdToInventoryMovements';
+import { AddStockSectorizadoConfig1772000000000 } from './migrations/1772000000000-AddStockSectorizadoConfig';
+import { AddPurchaseLocationId1773000000000 } from './migrations/1773000000000-AddPurchaseLocationId';
 
 export const migrations: (new () => MigrationInterface)[] = [
     InitialSchema1734450000000,
@@ -26,4 +30,8 @@ export const migrations: (new () => MigrationInterface)[] = [
     AddBarcodeScannerConfig1768413297000,
     AddAuditLogCompositeIndexes1769113297000,
     AllowOutOfStockSale1769200000000,
+    AddStockSectorizadoFoundations1770000000000,
+    AddLocationIdToInventoryMovements1771000000000,
+    AddStockSectorizadoConfig1772000000000,
+    AddPurchaseLocationId1773000000000,
 ];

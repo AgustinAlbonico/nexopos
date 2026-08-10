@@ -40,7 +40,10 @@ import { IncomeCategory } from './modules/incomes/entities/income-category.entit
 import { Income } from './modules/incomes/entities/income.entity';
 
 // Inventory
+import { Location } from './modules/inventory/entities/location.entity';
+import { ProductLocationStock } from './modules/inventory/entities/product-location-stock.entity';
 import { StockMovement } from './modules/inventory/entities/stock-movement.entity';
+import { StockTransfer } from './modules/inventory/entities/stock-transfer.entity';
 
 // Products
 import { Category } from './modules/products/entities/category.entity';
@@ -83,7 +86,10 @@ export const entities = [
     Expense,
     IncomeCategory,
     Income,
+    Location,
+    ProductLocationStock,
     StockMovement,
+    StockTransfer,
     Category,
     Product,
     Brand,

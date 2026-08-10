@@ -116,6 +116,12 @@ const mockProductsService = {
 
 const mockInventoryService = {
     createMovement: jest.fn(),
+    recordMovementInLocation: jest.fn(),
+    transfer: jest.fn(),
+    isSectorizedMode: jest.fn().mockResolvedValue(false),
+    getPrimarySaleLocationId: jest.fn().mockResolvedValue(null),
+    getDefaultReceiveLocationId: jest.fn().mockResolvedValue(null),
+    findReplenishmentOptions: jest.fn().mockResolvedValue([]),
 };
 
 const mockInvoiceService = {
@@ -2569,5 +2575,418 @@ describe('SalesService - create con Factura Fiscal', () => {
 
         expect(result.fiscalPending).toBe(true);
         expect(result.fiscalError).toBe('Error AFIP');
+    });
+});
+
+describe('SalesService - sectorized mode', () => {
+    let service: SalesService;
+    let savedEntities: unknown[] = [];
+
+    const createMockQueryRunnerForSectorized = () => ({
+        connect: jest.fn(),
+        startTransaction: jest.fn(),
+        commitTransaction: jest.fn(),
+        rollbackTransaction: jest.fn(),
+        release: jest.fn(),
+        manager: {
+            query: jest.fn().mockResolvedValue([]),
+            save: jest.fn().mockImplementation(async (entity: unknown) => {
+                if (!entity) return { id: 'generated-id' };
+                const typed = entity as Record<string, unknown>;
+                const saved = { ...typed, id: typed.id || `gen-${Date.now()}-${Math.random()}` };
+                if (Array.isArray(entity)) {
+                    return entity.map((e) => ({ ...(e as object), id: (e as { id?: string }).id || `gen-${Date.now()}` }));
+                }
+                savedEntities.push(saved);
+                return saved;
+            }),
+            findOne: jest.fn().mockImplementation(async (_entity: unknown, options?: unknown) => {
+                const opts = options as { where?: { id?: string } } | undefined;
+                if (opts?.where?.id) {
+                    return {
+                        ...(mockCompletedSaleForFindOne || {}),
+                        payments: mockPaymentsForSale.length > 0 ? mockPaymentsForSale : [],
+                    };
+                }
+                return mockCompletedSaleForFindOne;
+            }),
+            getRepository: jest.fn(() => mockRepository()),
+        },
+    });
+
+    const sectorizedDataSource = {
+        createQueryRunner: jest.fn(createMockQueryRunnerForSectorized),
+        getRepository: jest.fn(),
+    };
+
+    beforeEach(async () => {
+        savedEntities = [];
+        mockCompletedSaleForFindOne = null;
+        mockPaymentsForSale = [];
+
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [
+                SalesService,
+                { provide: getRepositoryToken(Sale), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleItem), useFactory: mockRepository },
+                { provide: getRepositoryToken(SalePayment), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleTax), useFactory: mockRepository },
+                { provide: CashRegisterService, useValue: mockCashRegisterService },
+                { provide: ProductsService, useValue: mockProductsService },
+                { provide: InventoryService, useValue: mockInventoryService },
+                { provide: InvoiceService, useValue: mockInvoiceService },
+                { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
+                { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
+                { provide: getDataSourceToken(), useValue: sectorizedDataSource },
+            ],
+        }).compile();
+
+        service = module.get<SalesService>(SalesService);
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+        mockCompletedSaleForFindOne = null;
+        savedEntities = [];
+        mockPaymentsForSale = [];
+    });
+
+    it('modo simple: comportamiento inalterado (no llama a recordMovementInLocation)', async () => {
+        mockInventoryService.isSectorizedMode.mockResolvedValue(false);
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 10,
+            sku: 'SKU1',
+            name: 'Producto',
+        });
+        mockCompletedSaleForFindOne = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            saleDate: new Date(),
+            items: [
+                { id: 'item-1', productId: 'product-1', quantity: 1, unitPrice: 100, saleId: 'sale-1' },
+            ],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        } as unknown;
+        mockPaymentsForSale = [{ id: 'pay-1', paymentMethodId: 'pm-1', amount: 100, saleId: 'sale-1' }];
+
+        await service.create({
+            items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+        });
+
+        expect(mockInventoryService.recordMovementInLocation).not.toHaveBeenCalled();
+        expect(mockInventoryService.createMovement).toHaveBeenCalled();
+    });
+
+    it('sectorizado + stock suficiente en primaria: usa recordMovementInLocation con locationId', async () => {
+        mockInventoryService.isSectorizedMode.mockResolvedValue(true);
+        mockInventoryService.getPrimarySaleLocationId.mockResolvedValue('loc-primary');
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 5,
+            sku: 'SKU1',
+            name: 'Producto',
+        });
+
+        const plsRepo = {
+            find: jest.fn().mockResolvedValue([{ productId: 'product-1', locationId: 'loc-primary', quantity: 5 }]),
+        };
+        sectorizedDataSource.getRepository.mockReturnValue(plsRepo);
+
+        mockCompletedSaleForFindOne = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            saleDate: new Date(),
+            items: [{ id: 'item-1', productId: 'product-1', quantity: 2, unitPrice: 100, saleId: 'sale-1' }],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        } as unknown;
+        mockPaymentsForSale = [{ id: 'pay-1', paymentMethodId: 'pm-1', amount: 200, saleId: 'sale-1' }];
+
+        await service.create({
+            items: [{ productId: 'product-1', quantity: 2, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 200 }],
+        });
+
+        expect(mockInventoryService.recordMovementInLocation).toHaveBeenCalledWith(
+            expect.objectContaining({
+                productId: 'product-1',
+                locationId: 'loc-primary',
+                type: 'OUT',
+                source: 'SALE',
+                quantity: 2,
+                manager: expect.anything(),
+            }),
+        );
+        expect(mockInventoryService.createMovement).not.toHaveBeenCalled();
+    });
+
+    it('sectorizado + stock insuficiente + allowOutOfStock false: lanza ConflictException estructurado', async () => {
+        mockInventoryService.isSectorizedMode.mockResolvedValue(true);
+        mockInventoryService.getPrimarySaleLocationId.mockResolvedValue('loc-primary');
+        mockConfigurationService.isOutOfStockSaleAllowed.mockResolvedValue(false);
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 0,
+            sku: 'SKU1',
+            name: 'Producto Test',
+        });
+        mockInventoryService.findReplenishmentOptions.mockResolvedValue([
+            { locationId: 'loc-storage', locationName: 'Depósito', available: 10 },
+        ]);
+
+        const plsRepo = {
+            find: jest.fn().mockResolvedValue([{ productId: 'product-1', locationId: 'loc-primary', quantity: 1 }]),
+        };
+        sectorizedDataSource.getRepository.mockReturnValue(plsRepo);
+
+        let caught: unknown;
+        try {
+            await service.create({
+                items: [{ productId: 'product-1', quantity: 5, unitPrice: 100 }],
+                payments: [{ paymentMethodId: 'pm-1', amount: 500 }],
+            });
+        } catch (e) {
+            caught = e;
+        }
+
+        expect(caught).toBeDefined();
+        const response = (caught as { getResponse: () => unknown }).getResponse();
+        const body = response as { statusCode: number; items: Array<{ productId: string; options: unknown[] }> };
+        expect(body.statusCode).toBe(409);
+        expect(body.items).toHaveLength(1);
+        expect(body.items[0].productId).toBe('product-1');
+        expect(body.items[0].options).toHaveLength(1);
+    });
+
+    it('sectorizado + stock insuficiente + allowOutOfStock true: pasa con allowOutOfStock:true', async () => {
+        mockInventoryService.isSectorizedMode.mockResolvedValue(true);
+        mockInventoryService.getPrimarySaleLocationId.mockResolvedValue('loc-primary');
+        mockConfigurationService.isOutOfStockSaleAllowed.mockResolvedValue(true);
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 0,
+            sku: 'SKU1',
+            name: 'Producto',
+        });
+
+        const plsRepo = {
+            find: jest.fn().mockResolvedValue([{ productId: 'product-1', locationId: 'loc-primary', quantity: 0 }]),
+        };
+        sectorizedDataSource.getRepository.mockReturnValue(plsRepo);
+
+        mockCompletedSaleForFindOne = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            saleDate: new Date(),
+            items: [{ id: 'item-1', productId: 'product-1', quantity: 2, unitPrice: 100, saleId: 'sale-1' }],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        } as unknown;
+        mockPaymentsForSale = [{ id: 'pay-1', paymentMethodId: 'pm-1', amount: 200, saleId: 'sale-1' }];
+
+        await service.create({
+            items: [{ productId: 'product-1', quantity: 2, unitPrice: 100 }],
+            payments: [{ paymentMethodId: 'pm-1', amount: 200 }],
+        });
+
+        expect(mockInventoryService.recordMovementInLocation).toHaveBeenCalledWith(
+            expect.objectContaining({ allowOutOfStock: true, quantity: 2 }),
+        );
+    });
+});
+
+describe('SalesService - completeSaleAfterReplenishment', () => {
+    let service: SalesService;
+    let savedEntities: unknown[] = [];
+
+    const createAtomicQueryRunner = () => {
+        const transfersExecuted: Array<{ productId: string; quantity: number }> = [];
+        return {
+            connect: jest.fn(),
+            startTransaction: jest.fn(),
+            commitTransaction: jest.fn(),
+            rollbackTransaction: jest.fn(),
+            release: jest.fn(),
+            manager: {
+                query: jest.fn().mockResolvedValue([]),
+                save: jest.fn().mockImplementation(async (entity: unknown) => {
+                    if (!entity) return { id: 'generated-id' };
+                    const typed = entity as Record<string, unknown>;
+                    const saved = { ...typed, id: typed.id || `gen-${Date.now()}` };
+                    if (Array.isArray(entity)) {
+                        return entity.map((e) => ({ ...(e as object), id: (e as { id?: string }).id || `gen-${Date.now()}-${Math.random()}` }));
+                    }
+                    savedEntities.push(saved);
+                    return saved;
+                }),
+                findOne: jest.fn().mockImplementation(async (_entity: unknown, options?: unknown) => {
+                    const opts = options as { where?: { id?: string } } | undefined;
+                    if (opts?.where?.id) {
+                        return {
+                            ...(mockCompletedSaleForFindOne || {}),
+                            payments: mockPaymentsForSale.length > 0 ? mockPaymentsForSale : [],
+                        };
+                    }
+                    return mockCompletedSaleForFindOne;
+                }),
+                getRepository: jest.fn(() => mockRepository()),
+                __transfersExecuted: transfersExecuted,
+            },
+        };
+    };
+
+    const atomicDataSource = {
+        createQueryRunner: jest.fn(createAtomicQueryRunner),
+        getRepository: jest.fn(),
+    };
+
+    beforeEach(async () => {
+        savedEntities = [];
+        mockCompletedSaleForFindOne = null;
+        mockPaymentsForSale = [];
+
+        const module: TestingModule = await Test.createTestingModule({
+            providers: [
+                SalesService,
+                { provide: getRepositoryToken(Sale), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleItem), useFactory: mockRepository },
+                { provide: getRepositoryToken(SalePayment), useFactory: mockRepository },
+                { provide: getRepositoryToken(SaleTax), useFactory: mockRepository },
+                { provide: CashRegisterService, useValue: mockCashRegisterService },
+                { provide: ProductsService, useValue: mockProductsService },
+                { provide: InventoryService, useValue: mockInventoryService },
+                { provide: InvoiceService, useValue: mockInvoiceService },
+                { provide: CustomerAccountsService, useValue: mockCustomerAccountsService },
+                { provide: AuditService, useValue: mockAuditService },
+                { provide: ConfigurationService, useValue: mockConfigurationService },
+                { provide: getDataSourceToken(), useValue: atomicDataSource },
+            ],
+        }).compile();
+
+        service = module.get<SalesService>(SalesService);
+        mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+    });
+
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
+
+    it('ejecuta traslados + venta en una sola tx (transfer con manager)', async () => {
+        mockInventoryService.isSectorizedMode.mockResolvedValue(true);
+        mockInventoryService.getPrimarySaleLocationId.mockResolvedValue('loc-primary');
+        mockProductsService.findOne.mockResolvedValue({
+            id: 'product-1',
+            stock: 5,
+            sku: 'SKU1',
+            name: 'Producto',
+        });
+        mockInventoryService.transfer.mockImplementation(async (opts) => {
+            return { id: 'transfer-1', productId: opts.productId, quantity: opts.quantity };
+        });
+
+        const plsRepo = {
+            find: jest.fn().mockResolvedValue([{ productId: 'product-1', locationId: 'loc-primary', quantity: 5 }]),
+        };
+        atomicDataSource.getRepository.mockReturnValue(plsRepo);
+
+        mockCompletedSaleForFindOne = {
+            id: 'sale-1',
+            saleNumber: 'VENTA-2026-00001',
+            status: SaleStatus.COMPLETED,
+            saleDate: new Date(),
+            items: [{ id: 'item-1', productId: 'product-1', quantity: 3, unitPrice: 100, saleId: 'sale-1' }],
+            payments: [],
+            customer: null,
+            createdBy: null,
+            invoice: null,
+        } as unknown;
+        mockPaymentsForSale = [{ id: 'pay-1', paymentMethodId: 'pm-1', amount: 300, saleId: 'sale-1' }];
+
+        await service.completeSaleAfterReplenishment(
+            {
+                items: [{ productId: 'product-1', quantity: 3, unitPrice: 100 }],
+                payments: [{ paymentMethodId: 'pm-1', amount: 300 }],
+            },
+            [{ productId: 'product-1', fromLocationId: 'loc-storage', quantity: 2, reason: 'Reposición' }],
+            'user-1',
+        );
+
+        expect(mockInventoryService.transfer).toHaveBeenCalledTimes(1);
+        expect(mockInventoryService.transfer).toHaveBeenCalledWith(
+            expect.objectContaining({
+                productId: 'product-1',
+                fromLocationId: 'loc-storage',
+                toLocationId: 'loc-primary',
+                quantity: 2,
+                manager: expect.anything(),
+            }),
+        );
+        expect(mockInventoryService.recordMovementInLocation).toHaveBeenCalledWith(
+            expect.objectContaining({ productId: 'product-1', locationId: 'loc-primary', quantity: 3, manager: expect.anything() }),
+        );
+    });
+
+    it('rollbackea todo si un traslado falla (la venta no se persiste)', async () => {
+        mockInventoryService.isSectorizedMode.mockResolvedValue(true);
+        mockInventoryService.getPrimarySaleLocationId.mockResolvedValue('loc-primary');
+        mockProductsService.findOne.mockImplementation(async (id: string) => ({
+            id,
+            stock: 5,
+            sku: `SKU-${id}`,
+            name: `Producto ${id}`,
+        }));
+        mockProductsService.findByIds.mockImplementation(async (ids: string[]) =>
+            ids.map((id) => ({ id, stock: 5, sku: `SKU-${id}`, name: `Producto ${id}` })),
+        );
+        mockInventoryService.transfer.mockImplementation(async (opts) => {
+            if (opts.productId === 'product-2') {
+                throw new BadRequestException('Saldo insuficiente en origen');
+            }
+            return { id: 'transfer-1' };
+        });
+
+        const plsRepo = {
+            find: jest.fn().mockResolvedValue([
+                { productId: 'product-1', locationId: 'loc-primary', quantity: 5 },
+                { productId: 'product-2', locationId: 'loc-primary', quantity: 5 },
+            ]),
+        };
+        atomicDataSource.getRepository.mockReturnValue(plsRepo);
+
+        await expect(
+            service.completeSaleAfterReplenishment(
+                {
+                    items: [
+                        { productId: 'product-1', quantity: 1, unitPrice: 100 },
+                        { productId: 'product-2', quantity: 1, unitPrice: 50 },
+                    ],
+                    payments: [{ paymentMethodId: 'pm-1', amount: 150 }],
+                },
+                [
+                    { productId: 'product-1', fromLocationId: 'loc-storage', quantity: 2 },
+                    { productId: 'product-2', fromLocationId: 'loc-storage', quantity: 1 },
+                ],
+                'user-1',
+            ),
+        ).rejects.toThrow(/Saldo insuficiente/);
+
+        const qb = atomicDataSource.createQueryRunner.mock.results[0].value;
+        expect(qb.rollbackTransaction).toHaveBeenCalled();
+        expect(qb.commitTransaction).not.toHaveBeenCalled();
+        expect(mockInventoryService.recordMovementInLocation).not.toHaveBeenCalled();
     });
 });

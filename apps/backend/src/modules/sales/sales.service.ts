@@ -6,9 +6,10 @@ import {
     Injectable,
     NotFoundException,
     BadRequestException,
+    ConflictException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, DataSource, Like, EntityManager, SelectQueryBuilder } from 'typeorm';
+import { Repository, DataSource, Like, EntityManager, SelectQueryBuilder, In } from 'typeorm';
 import { Sale, SaleStatus } from './entities/sale.entity';
 import { SaleItem } from './entities/sale-item.entity';
 import { SalePayment } from './entities/sale-payment.entity';
@@ -17,6 +18,8 @@ import {
     CreateSaleDto,
     UpdateSaleDto,
     SaleFiltersDto,
+    ReplenishmentTransferDto,
+    CheckReplenishmentItemDto,
 } from './dto';
 import { InventoryService } from '../inventory/inventory.service';
 import { ProductsService } from '../products/products.service';
@@ -25,6 +28,7 @@ import { InvoiceService } from './services/invoice.service';
 import { CashRegisterService } from '../cash-register/cash-register.service';
 import { CustomerAccountsService } from '../customer-accounts/customer-accounts.service';
 import { StockMovementType, StockMovementSource } from '../inventory/entities/stock-movement.entity';
+import { ProductLocationStock } from '../inventory/entities/product-location-stock.entity';
 import { parseLocalDate } from '../../common/utils/date.utils';
 import { AuditService } from '../audit/audit.service';
 import { AuditEntityType, AuditAction } from '../audit/enums';
@@ -108,6 +112,72 @@ export class SalesService {
                 );
             }
         }
+    }
+
+    /**
+     * Modo sectorizado: lee el saldo por producto en la ubicación principal
+     * de venta y, si alguno no alcanza, lanza `ConflictException` (HTTP 409)
+     * con la lista estructurada de faltantes y opciones de reposición. Si
+     * `allowOutOfStock` es true, no lanza: el saldo puede quedar negativo.
+     */
+    private async validateStockAtPrimaryLocation(
+        items: CreateSaleDto['items'],
+        productsById: Map<string, Product>,
+        allowOutOfStock: boolean,
+    ): Promise<void> {
+        const primaryId = await this.inventoryService.getPrimarySaleLocationId();
+        if (!primaryId) {
+            throw new BadRequestException(
+                'Modo sectorizado activo pero no hay ubicación principal de venta configurada',
+            );
+        }
+
+        const productIds = Array.from(new Set(items.map((i) => i.productId)));
+        const plsRows = await this.dataSource
+            .getRepository(ProductLocationStock)
+            .find({ where: productIds.map((pid) => ({ productId: pid, locationId: primaryId })) });
+        const availableByProduct = new Map<string, number>();
+        for (const row of plsRows) {
+            availableByProduct.set(row.productId, Number(row.quantity));
+        }
+
+        const shortages: Array<{
+            productId: string;
+            productName: string;
+            requested: number;
+            primarySaleAvailable: number;
+            options: Array<{ locationId: string; locationName: string; available: number }>;
+        }> = [];
+
+        for (const item of items) {
+            const available = availableByProduct.get(item.productId) ?? 0;
+            if (available < item.quantity) {
+                const product = productsById.get(item.productId)!;
+                const options = await this.inventoryService.findReplenishmentOptions(
+                    item.productId,
+                    item.quantity,
+                );
+                shortages.push({
+                    productId: item.productId,
+                    productName: product.name,
+                    requested: item.quantity,
+                    primarySaleAvailable: available,
+                    options,
+                });
+            }
+        }
+
+        if (shortages.length === 0 || allowOutOfStock) {
+            return;
+        }
+
+        throw new ConflictException({
+            statusCode: 409,
+            error: 'Stock insuficiente en ubicación principal de venta',
+            message:
+                'Uno o más productos no alcanzan en la ubicación principal. Elegí una reposición o activá allowOutOfStockSale.',
+            items: shortages,
+        });
     }
 
     /**
@@ -294,7 +364,14 @@ export class SalesService {
 
         // Validar productos y stock
         const productsById = await this.getProductsById(dto.items);
-        await this.validateProductsStock(dto.items, productsById);
+
+        const sectorized = await this.inventoryService.isSectorizedMode();
+        const allowOutOfStock = await this.configurationService.isOutOfStockSaleAllowed();
+        if (sectorized) {
+            await this.validateStockAtPrimaryLocation(dto.items, productsById, allowOutOfStock);
+        } else {
+            await this.validateProductsStock(dto.items, productsById);
+        }
 
         // Calcular totales
         const { subtotal, totalTax, total } = this.calculateSaleTotals(dto);
@@ -343,7 +420,17 @@ export class SalesService {
             // Actualizar inventario siempre que la venta no esté cancelada
             // (las ventas en cuenta corriente también deben descontar stock)
             if (status !== SaleStatus.CANCELLED) {
-                await this.updateInventoryFromSale(savedSale.id, queryRunner.manager);
+                if (sectorized) {
+                    const primaryId = await this.inventoryService.getPrimarySaleLocationId();
+                    await this.updateInventoryFromSaleInLocation(
+                        savedSale.id,
+                        queryRunner.manager,
+                        primaryId,
+                        allowOutOfStock,
+                    );
+                } else {
+                    await this.updateInventoryFromSale(savedSale.id, queryRunner.manager);
+                }
                 savedSale.inventoryUpdated = true;
                 await queryRunner.manager.save(savedSale);
             }
@@ -985,6 +1072,46 @@ export class SalesService {
     }
 
     /**
+     * Variante sectorizada: debita `ProductLocationStock(primaryLocationId)`
+     * vía `recordMovementInLocation`, pasando `allowOutOfStock` para que el
+     * saldo pueda quedar negativo si así lo permite la config.
+     */
+    private async updateInventoryFromSaleInLocation(
+        saleId: string,
+        manager: EntityManager,
+        primaryLocationId: string | null,
+        allowOutOfStock: boolean,
+    ): Promise<void> {
+        const sale = await manager.findOne(Sale, {
+            where: { id: saleId },
+            relations: ['items'],
+        });
+
+        if (!sale) {
+            throw new NotFoundException(`Venta con ID ${saleId} no encontrada`);
+        }
+
+        const saleDateStr = sale.saleDate instanceof Date
+            ? sale.saleDate.toISOString()
+            : String(sale.saleDate);
+
+        for (const item of sale.items) {
+            await this.inventoryService.recordMovementInLocation({
+                productId: item.productId,
+                locationId: primaryLocationId ?? undefined,
+                type: StockMovementType.OUT,
+                source: StockMovementSource.SALE,
+                quantity: item.quantity,
+                cost: item.unitPrice,
+                notes: `Venta ${sale.saleNumber}`,
+                allowOutOfStock,
+                date: new Date(saleDateStr),
+                manager,
+            });
+        }
+    }
+
+    /**
      * Revierte inventario de una venta cancelada (suma stock)
      */
     private async revertInventoryFromSale(sale: Sale): Promise<void> {
@@ -1045,6 +1172,199 @@ export class SalesService {
         }
 
         return `${prefix}${String(nextNumber).padStart(5, '0')}`;
+    }
+
+    /**
+     * Lee opciones de reposición para una lista de productos (read-only).
+     * Pensado para que el POS consulte antes de pedirle al usuario aceptar
+     * traslados.
+     */
+    async checkReplenishment(
+        items: CheckReplenishmentItemDto[],
+    ): Promise<Array<{
+        productId: string;
+        quantity: number;
+        primarySaleAvailable: number;
+        needsReplenishment: boolean;
+        options: Array<{ locationId: string; locationName: string; available: number }>;
+    }>> {
+        const primaryId = await this.inventoryService.getPrimarySaleLocationId();
+        const out: Array<{
+            productId: string;
+            quantity: number;
+            primarySaleAvailable: number;
+            needsReplenishment: boolean;
+            options: Array<{ locationId: string; locationName: string; available: number }>;
+        }> = [];
+
+        const productIds = Array.from(new Set(items.map((i) => i.productId)));
+        const plsRows = primaryId
+            ? await this.dataSource
+                .getRepository(ProductLocationStock)
+                .find({ where: productIds.map((pid) => ({ productId: pid, locationId: primaryId })) })
+            : [];
+        const availableByProduct = new Map<string, number>();
+        for (const row of plsRows) {
+            availableByProduct.set(row.productId, Number(row.quantity));
+        }
+
+        for (const item of items) {
+            const available = availableByProduct.get(item.productId) ?? 0;
+            const options = await this.inventoryService.findReplenishmentOptions(
+                item.productId,
+                item.quantity,
+            );
+            out.push({
+                productId: item.productId,
+                quantity: item.quantity,
+                primarySaleAvailable: available,
+                needsReplenishment: available < item.quantity,
+                options,
+            });
+        }
+
+        return out;
+    }
+
+    /**
+     * Crea una venta ejecutando primero una lista de traslados
+     * (`replenishmentTransfers`) y luego el descuento de la venta, todo en
+     * UNA sola transacción. Si cualquier traslado falla (saldo insuficiente,
+     * destino inactivo, etc.) la venta no se persiste y los traslados ya
+     * aplicados se rollbackean.
+     *
+     * Pensado para el botón "Reponer y continuar" del POS. Si
+     * `replenishmentTransfers` viene vacío, se comporta como `create()`.
+     */
+    async completeSaleAfterReplenishment(
+        dto: CreateSaleDto,
+        transfers: ReplenishmentTransferDto[],
+        userId?: string,
+    ): Promise<Sale> {
+        const openCashRegister = await this.cashRegisterService.getOpenRegister();
+        if (!openCashRegister) {
+            throw new BadRequestException(
+                'No hay caja abierta. Debe abrir la caja antes de registrar ventas.',
+            );
+        }
+
+        const productsById = await this.getProductsById(dto.items);
+        const sectorized = await this.inventoryService.isSectorizedMode();
+        const allowOutOfStock = await this.configurationService.isOutOfStockSaleAllowed();
+
+        if (!sectorized) {
+            // En modo simple no hay reposición: caemos al flujo normal.
+            return this.create(dto, userId);
+        }
+
+        // Validar stock (post-traslado será suficiente). Esto es una
+        // pre-validación barata; el `recordMovementInLocation` interno
+        // revalidará bajo lock pesimista.
+        await this.validateStockAtPrimaryLocation(dto.items, productsById, allowOutOfStock);
+
+        const { subtotal, totalTax, total } = this.calculateSaleTotals(dto);
+        const status = this.determineSaleStatus(dto);
+        this.validatePayments(dto, total);
+        this.validateNoDuplicateTaxes(dto.taxes);
+
+        const queryRunner = this.dataSource.createQueryRunner();
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+
+        try {
+            // 1) Traslados dentro del MISMO manager para garantizar
+            // atomicidad total. Si uno falla, el rollback borra los previos.
+            for (const t of transfers) {
+                await this.inventoryService.transfer({
+                    productId: t.productId,
+                    fromLocationId: t.fromLocationId,
+                    toLocationId: (await this.inventoryService.getPrimarySaleLocationId())!,
+                    quantity: t.quantity,
+                    reason: t.reason ?? `Reposición previa a venta`,
+                    userId: userId ?? undefined,
+                    manager: queryRunner.manager,
+                });
+            }
+
+            const saleNumber = await this.generateSaleNumberTransactional(queryRunner.manager);
+            const sale = this.saleRepo.create({
+                saleNumber,
+                customerId: dto.customerId ?? null,
+                customerName: dto.customerName ?? null,
+                saleDate: dto.saleDate ? parseLocalDate(dto.saleDate) : new Date(),
+                subtotal,
+                discount: dto.discount ?? 0,
+                surcharge: dto.surcharge ?? 0,
+                tax: totalTax,
+                total,
+                status,
+                isOnAccount: dto.isOnAccount ?? false,
+                notes: dto.notes ?? null,
+                createdById: userId ?? null,
+            });
+            const savedSale = await queryRunner.manager.save(sale);
+
+            await this.createSaleItems(queryRunner.manager, savedSale.id, dto.items, productsById);
+            await this.createSaleTaxes(queryRunner.manager, savedSale.id, dto.taxes);
+            await this.createSalePayments(queryRunner.manager, savedSale.id, dto.payments);
+
+            if (status !== SaleStatus.CANCELLED) {
+                const primaryId = await this.inventoryService.getPrimarySaleLocationId();
+                await this.updateInventoryFromSaleInLocation(
+                    savedSale.id,
+                    queryRunner.manager,
+                    primaryId,
+                    allowOutOfStock,
+                );
+                savedSale.inventoryUpdated = true;
+                await queryRunner.manager.save(savedSale);
+            }
+
+            if (dto.isOnAccount && dto.customerId) {
+                await this.customerAccountsService.createCharge(
+                    dto.customerId,
+                    {
+                        amount: total,
+                        description: `Venta ${saleNumber}`,
+                        saleId: savedSale.id,
+                        notes: dto.notes || undefined,
+                    },
+                    userId,
+                );
+            }
+
+            await queryRunner.commitTransaction();
+
+            const completed = await queryRunner.manager.findOne(Sale, {
+                where: { id: savedSale.id },
+                relations: ['items', 'items.product', 'payments', 'customer', 'createdBy', 'invoice'],
+            });
+            if (userId && completed) {
+                await this.auditService.logSilent({
+                    entityType: AuditEntityType.SALE,
+                    entityId: completed.id,
+                    action: AuditAction.CREATE,
+                    userId,
+                    newValues: {
+                        saleNumber: completed.saleNumber,
+                        total: completed.total,
+                        status: completed.status,
+                        replenishmentTransfers: transfers.length,
+                    },
+                    description: AuditService.generateDescription(
+                        AuditAction.CREATE,
+                        AuditEntityType.SALE,
+                        completed.saleNumber,
+                    ),
+                });
+            }
+            return completed!;
+        } catch (err) {
+            await queryRunner.rollbackTransaction();
+            throw err;
+        } finally {
+            await queryRunner.release();
+        }
     }
 }
 

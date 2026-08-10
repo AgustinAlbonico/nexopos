@@ -19,6 +19,40 @@ import { Type } from 'class-transformer';
 import { SaleStatus } from '../entities/sale.entity';
 
 /**
+ * Traslado previo a la venta, usado por el flujo "Reponer y continuar"
+ * del POS en modo sectorizado. Se ejecuta dentro de la misma transacción
+ * que la venta.
+ */
+export class ReplenishmentTransferDto {
+    @IsUUID()
+    productId!: string;
+
+    @IsUUID()
+    fromLocationId!: string;
+
+    @IsNumber()
+    @Min(0.0001)
+    quantity!: number;
+
+    @IsString()
+    @IsOptional()
+    @MaxLength(255)
+    reason?: string;
+}
+
+/**
+ * Item para `POST /sales/check-replenishment` (read-only).
+ */
+export class CheckReplenishmentItemDto {
+    @IsUUID()
+    productId!: string;
+
+    @IsNumber()
+    @Min(1)
+    quantity!: number;
+}
+
+/**
  * DTO para crear un item de venta
  */
 export class CreateSaleItemDto {
@@ -180,5 +214,16 @@ export class CreateSaleDto {
     @Type(() => CreateSalePaymentDto)
     @IsOptional()
     payments?: CreateSalePaymentDto[];
+
+    /**
+     * Traslados previos a la venta, opcionales. Si están presentes, el
+     * backend los ejecuta en la misma transacción antes de registrar la
+     * venta. Sólo se usan en modo sectorizado; en modo simple se ignoran.
+     */
+    @IsArray()
+    @ValidateNested({ each: true })
+    @Type(() => ReplenishmentTransferDto)
+    @IsOptional()
+    replenishmentTransfers?: ReplenishmentTransferDto[];
 }
 

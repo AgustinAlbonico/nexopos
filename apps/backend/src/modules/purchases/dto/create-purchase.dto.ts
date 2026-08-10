@@ -103,5 +103,9 @@ export class CreatePurchaseDto {
     @ValidateNested({ each: true })
     @Type(() => CreatePurchaseItemDto)
     items!: CreatePurchaseItemDto[];
+
+    @IsString()
+    @IsOptional()
+    locationId?: string;
 }
 

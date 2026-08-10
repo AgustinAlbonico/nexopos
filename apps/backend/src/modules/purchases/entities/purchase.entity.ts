@@ -18,6 +18,7 @@ import { User } from '../../auth/entities/user.entity';
 import { PurchaseItem } from './purchase-item.entity';
 import { Supplier } from '../../suppliers/entities/supplier.entity';
 import { PaymentMethod as PaymentMethodEntity } from '../../configuration/entities/payment-method.entity';
+import { Location } from '../../inventory/entities/location.entity';
 
 /**
  * Estados posibles de una compra
@@ -158,6 +159,13 @@ export class Purchase {
 
     @Column({ name: 'created_by', nullable: true })
     createdById!: string | null;
+
+    @ManyToOne(() => Location, { nullable: true })
+    @JoinColumn({ name: 'locationId' })
+    location!: Location | null;
+
+    @Column({ name: 'locationId', type: 'uuid', nullable: true })
+    locationId!: string | null;
 
     @CreateDateColumn({ type: 'timestamp' })
     createdAt!: Date;
