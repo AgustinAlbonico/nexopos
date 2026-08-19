@@ -1,0 +1,39 @@
+- id: "1"
+  title: "Sprint 1: Plantillas Maestras de Escalas de Talles y Paletas de Colores Guardables"
+  description: >-
+    Permite al usuario crear, editar, persistir y reutilizar plantillas de escalas de talles y paletas de colores tanto desde Configuración como on-the-fly desde la grilla matricial (CAP-1).
+  spec_checkpoint: true
+  invoke_dev_with: >-
+    Crear entidades TypeORM SizeScaleTemplate y ColorPaletteTemplate con migración registrada y testeada. Integrar selector dinámico y botón 'Guardar como plantilla' en ProductVariantMatrixGrid.tsx condicionado por STRUCTURAL.variants.
+
+- id: "2"
+  title: "Sprint 2: Reglas de Recargo para Talles Especiales y Edición Masiva por Eje en Grilla 2D"
+  description: >-
+    Incorpora la definición de recargos (+% o +$) sobre columnas de talles especiales (ej. XXL/50+) y la capacidad de editar precios/costos en lote por fila o columna (CAP-2).
+  spec_checkpoint: true
+  invoke_dev_with: >-
+    Añadir modal/popover de reglas de talles especiales en la cabecera de la grilla que recalcule automáticamente precio y costo en celdas activas sin tocar talles estándar. Añadir acciones rápidas de edición en cabeceras de filas (colores) y columnas (talles).
+
+- id: "3"
+  title: "Sprint 3: Ergonomía de Operador, Navegación por Teclado y Clonación de Modelos"
+  description: >-
+    Habilita la navegación completa por teclado en la grilla 2D (flechas direccionales, Tab, Enter) y la funcionalidad de clonar modelos existentes con su estructura matricial (CAP-3, CAP-4).
+  spec_checkpoint: true
+  invoke_dev_with: >-
+    Implementar hook useMatrixKeyboardNavigation para movimiento fluido bidireccional entre inputs de celdas. Añadir botón 'Clonar Modelo' en ProductList y ficha de producto que pre-cargue ProductForm con atributos y matriz base.
+
+- id: "4"
+  title: "Sprint 4: Importador y Exportador Masivo Excel en Formato Matriz 2D"
+  description: >-
+    Provee la descarga de plantilla XLSX matricial bidimensional y el parser de importación con previsualización, validación y persistencia atómica multi-modelo (CAP-5).
+  spec_checkpoint: true
+  invoke_dev_with: >-
+    Crear servicio backend de parseo Excel 2D que transforme filas (modelo, color) y columnas de talles en llamadas estructuradas al servicio de productos. Crear diálogo UI de importación con preview y tabla de errores detallada.
+
+- id: "5"
+  title: "Sprint 5: Disparador de Impresión de Etiquetas Térmicas y Hangtags Post-Alta"
+  description: >-
+    Ofrece el flujo de emisión inmediata de etiquetas térmicas y de colgar con talle visible en recuadro gigante y código de barras tras guardar un producto matricial o recepcionar curva (CAP-6).
+  spec_checkpoint: true
+  invoke_dev_with: >-
+    Integrar diálogo post-guardado en ProductForm con selección de plantilla de etiquetas (Zebra/Térmica 50x30, Hangtag de colgar con talle gigante). Conectar con labels.service.ts existente y añadir soporte de preview inmediato.

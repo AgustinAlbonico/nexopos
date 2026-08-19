@@ -9,6 +9,11 @@ import {
     UpdateCategoryDTO,
     Brand,
     CategoryDeletionPreview,
+    LocalBarcodeLayout,
+    VariableBarcodeResolution,
+    CreateApparelMatrixProductDTO,
+    SizeScaleTemplate,
+    ColorPaletteTemplate,
 } from '../types';
 
 export const brandsApi = {
@@ -52,12 +57,26 @@ export const productsApi = {
     },
 
     create: async (data: CreateProductDTO) => {
-        const response = await api.post<Product>('/api/products', data);
+        const cleanData = Object.fromEntries(
+            Object.entries(data).filter(([_, v]) => v !== null && v !== undefined)
+        );
+        const response = await api.post<Product>('/api/products', cleanData);
+        return response.data;
+    },
+
+    createMatrix: async (data: CreateApparelMatrixProductDTO) => {
+        const response = await api.post<{ parent: Product; variants: Product[]; totalVariants: number }>(
+            '/api/products/matrix',
+            data
+        );
         return response.data;
     },
 
     update: async (id: string, data: UpdateProductDTO) => {
-        const response = await api.patch<Product>(`/api/products/${id}`, data);
+        const cleanData = Object.fromEntries(
+            Object.entries(data).filter(([_, v]) => v !== null && v !== undefined)
+        );
+        const response = await api.patch<Product>(`/api/products/${id}`, cleanData);
         return response.data;
     },
 
@@ -73,6 +92,21 @@ export const productsApi = {
 
     findByBarcode: async (barcode: string): Promise<Product | null> => {
         const response = await api.get<Product>(`/api/products/barcode/${barcode}`);
+        return response.data;
+    },
+
+    resolveVariableBarcode: async (barcode: string, layout: LocalBarcodeLayout): Promise<VariableBarcodeResolution | null> => {
+        const response = await api.post<VariableBarcodeResolution | null>('/api/products/variable-barcode/resolve', { barcode, layout });
+        return response.data;
+    },
+
+    generateVariants: async (id: string, attributes: Record<string, string[]>) => {
+        const response = await api.post<Product[]>(`/api/products/${id}/variants/generate`, { attributes });
+        return response.data;
+    },
+
+    getApparelSuggestions: async () => {
+        const response = await api.get<{ seasons: string[]; collections: string[] }>('/api/products/apparel/suggestions');
         return response.data;
     },
 };
@@ -108,3 +142,42 @@ export const categoriesApi = {
         return response.data;
     },
 };
+
+export const sizeScalesApi = {
+    getAll: async () => {
+        const response = await api.get<SizeScaleTemplate[]>('/api/products/size-scales');
+        return response.data;
+    },
+    create: async (data: { name: string; category?: string | null; sizes: string[]; sortOrder?: number }) => {
+        const response = await api.post<SizeScaleTemplate>('/api/products/size-scales', data);
+        return response.data;
+    },
+    update: async (id: string, data: { name: string; category?: string | null; sizes: string[]; sortOrder?: number }) => {
+        const response = await api.put<SizeScaleTemplate>(`/api/products/size-scales/${id}`, data);
+        return response.data;
+    },
+    delete: async (id: string) => {
+        const response = await api.delete<{ message: string }>(`/api/products/size-scales/${id}`);
+        return response.data;
+    },
+};
+
+export const colorPalettesApi = {
+    getAll: async () => {
+        const response = await api.get<ColorPaletteTemplate[]>('/api/products/color-palettes');
+        return response.data;
+    },
+    create: async (data: { name: string; colors: Array<{ name: string; hex: string; border?: boolean }>; sortOrder?: number }) => {
+        const response = await api.post<ColorPaletteTemplate>('/api/products/color-palettes', data);
+        return response.data;
+    },
+    update: async (id: string, data: { name: string; colors: Array<{ name: string; hex: string; border?: boolean }>; sortOrder?: number }) => {
+        const response = await api.put<ColorPaletteTemplate>(`/api/products/color-palettes/${id}`, data);
+        return response.data;
+    },
+    delete: async (id: string) => {
+        const response = await api.delete<{ message: string }>(`/api/products/color-palettes/${id}`);
+        return response.data;
+    },
+};
+
