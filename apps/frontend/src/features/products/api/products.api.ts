@@ -181,3 +181,53 @@ export const colorPalettesApi = {
     },
 };
 
+export interface MatrixPreviewResponse {
+    models: Array<{
+        styleCode?: string;
+        name: string;
+        categoryName?: string;
+        brandName?: string;
+        season?: string;
+        collection?: string;
+        cost?: number;
+        price?: number;
+        variants: Array<{
+            color: string;
+            colorHex?: string;
+            size: string;
+            stock: number;
+            cost?: number;
+            price?: number;
+            sku?: string;
+        }>;
+        line: number;
+    }>;
+    totalModels: number;
+    totalVariants: number;
+    totalStockUnits: number;
+    sizeColumns: string[];
+    errors: Array<{ line: number; message: string }>;
+}
+
+export const matrixImportApi = {
+    downloadTemplate: async () => {
+        const response = await api.get('/api/products/matrix-import/template', { responseType: 'blob' });
+        const blob = new Blob([response.data], { type: 'text/csv;charset=utf-8;' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'plantilla_matriz_indumentaria.csv');
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+    },
+    preview: async (csv: string): Promise<MatrixPreviewResponse> => {
+        const response = await api.post<MatrixPreviewResponse>('/api/products/matrix-import/preview', { csv });
+        return response.data;
+    },
+    commit: async (csv: string): Promise<{ success: boolean; importedModels: number; importedVariants: number; totalStockUnits: number }> => {
+        const response = await api.post('/api/products/matrix-import/commit', { csv });
+        return response.data;
+    },
+};
+

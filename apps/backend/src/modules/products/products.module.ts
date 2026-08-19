@@ -24,6 +24,8 @@ import { BrandsRepository } from './brands.repository';
 import { ImportController } from './import/import.controller';
 import { ImportService } from './import/import.service';
 import { ImportPreviewCache } from './import/preview-cache';
+import { MatrixImportController } from './import/matrix-import.controller';
+import { MatrixImportService } from './import/matrix-import.service';
 import { LabelsController } from './labels/labels.controller';
 import { LabelsService } from './labels/labels.service';
 
@@ -42,7 +44,14 @@ import { LabelsService } from './labels/labels.service';
         ConfigurationModule,
         forwardRef(() => InventoryModule),
     ],
-    controllers: [ProductsController, CategoriesController, BrandsController, ImportController, LabelsController],
+    controllers: [
+        ProductsController,
+        CategoriesController,
+        BrandsController,
+        ImportController,
+        MatrixImportController,
+        LabelsController,
+    ],
     providers: [
         ProductsService,
         ProductsRepository,
@@ -52,8 +61,9 @@ import { LabelsService } from './labels/labels.service';
         BrandsRepository,
         ImportService,
         ImportPreviewCache,
+        MatrixImportService,
         LabelsService,
     ],
-    exports: [ProductsService, CategoriesService, BrandsService],
+    exports: [ProductsService, CategoriesService, BrandsService, MatrixImportService],
 })
 export class ProductsModule { }

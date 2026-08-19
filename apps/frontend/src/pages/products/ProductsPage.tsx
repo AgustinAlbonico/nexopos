@@ -21,6 +21,7 @@ import {
     CheckCircle2,
     XCircle,
     AlertTriangle,
+    FileSpreadsheet,
 } from 'lucide-react';
 import { FormDialog } from '@/components/ui/form-dialog';
 import {
@@ -38,6 +39,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { productsApi, categoriesApi } from '@/features/products/api/products.api';
 import { api } from '@/lib/axios';
 import { toast } from 'sonner';
+import { useCapabilities } from '@/hooks/useCapabilities';
+import { MatrixImportDialog } from '@/features/products/components/MatrixImportDialog';
 import { Product, Category, CreateCategoryDTO } from '@/features/products/types';
 import { ProductFormValues } from '@/features/products/schemas/product.schema';
 import { NumericInput } from '@/components/ui/numeric-input';
@@ -289,7 +292,10 @@ export default function ProductsPage() {
     const [viewProduct, setViewProduct] = useState<Product | null>(null);
     const [createBarcode, setCreateBarcode] = useState<string | null>(null);
     const [cloneData, setCloneData] = useState<ProductFormValues | null>(null);
+    const [isMatrixImportOpen, setIsMatrixImportOpen] = useState(false);
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+
+    const { data: capabilitiesData } = useCapabilities();
 
     // Estado para crear/editar categorías
     const [newCategoryName, setNewCategoryName] = useState('');
@@ -721,6 +727,18 @@ export default function ProductsPage() {
                         </DialogContent>
                     </Dialog>
 
+                    {/* Botón Importar Matriz 2D (Indumentaria) */}
+                    {capabilitiesData?.capabilities?.['STRUCTURAL.variants'] && (
+                        <Button
+                            variant="outline"
+                            onClick={() => setIsMatrixImportOpen(true)}
+                            className="gap-1.5 border-blue-200 dark:border-blue-800 text-blue-700 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-blue-950/40"
+                        >
+                            <FileSpreadsheet className="h-4 w-4 text-blue-600" />
+                            Importar Matriz 2D
+                        </Button>
+                    )}
+
                     {/* Botón Nuevo Producto */}
                     <Button onClick={() => setIsCreateOpen(true)}>
                         <Plus className="mr-2 h-4 w-4" />
@@ -738,6 +756,13 @@ export default function ProductsPage() {
                     onClone={handleCloneProduct}
                 />
             </div>
+
+            {/* Modal de Importación Masiva Matriz 2D */}
+            <MatrixImportDialog
+                open={isMatrixImportOpen}
+                onOpenChange={setIsMatrixImportOpen}
+                onSuccess={() => queryClient.invalidateQueries({ queryKey: ['products'] })}
+            />
 
             {/* Modal de Matriz de Variantes (Indumentaria / Calzado) */}
             {matrixProduct ? (
