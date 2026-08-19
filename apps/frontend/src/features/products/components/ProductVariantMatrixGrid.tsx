@@ -14,6 +14,12 @@ import {
     BookmarkPlus,
     Palette,
     Loader2,
+    Zap,
+    SlidersHorizontal,
+    Table2,
+    DollarSign,
+    Percent,
+    ArrowUpDown,
 } from 'lucide-react';
 import {
     Dialog,
@@ -37,6 +43,21 @@ import {
 } from '../utils/matrix-presets';
 import { ApparelMatrixCellDTO, SizeScaleTemplate, ColorPaletteTemplate } from '../types';
 
+export interface SpecialSizeRule {
+    size: string;
+    type: 'percentage' | 'fixed';
+    value: number;
+    applyTo: 'price' | 'cost' | 'both';
+}
+
+interface BulkEditState {
+    open: boolean;
+    axis: 'size' | 'color';
+    targetName: string;
+    field: 'stock' | 'price' | 'cost';
+    value: number | '';
+}
+
 interface ProductVariantMatrixGridProps {
     readonly styleCode?: string;
     readonly defaultPrice?: number;
@@ -55,13 +76,13 @@ export function ProductVariantMatrixGrid({
     const queryClient = useQueryClient();
 
     // Consultas React Query para escalas y paletas
-    const { data: serverSizeScales, isLoading: isLoadingScales } = useQuery({
+    const { data: serverSizeScales } = useQuery({
         queryKey: ['products', 'size-scales'],
         queryFn: () => sizeScalesApi.getAll(),
         staleTime: 1000 * 60 * 5,
     });
 
-    const { data: serverColorPalettes, isLoading: isLoadingPalettes } = useQuery({
+    const { data: serverColorPalettes } = useQuery({
         queryKey: ['products', 'color-palettes'],
         queryFn: () => colorPalettesApi.getAll(),
         staleTime: 1000 * 60 * 5,
@@ -72,6 +93,26 @@ export function ProductVariantMatrixGrid({
     const [newScaleName, setNewScaleName] = useState('');
     const [isSavePaletteOpen, setIsSavePaletteOpen] = useState(false);
     const [newPaletteName, setNewPaletteName] = useState('');
+
+    // Modal de Reglas de Talles Especiales (CAP-2)
+    const [isSpecialSizesOpen, setIsSpecialSizesOpen] = useState(false);
+    const [specialRuleSelectedSizes, setSpecialRuleSelectedSizes] = useState<string[]>([]);
+    const [specialRuleType, setSpecialRuleType] = useState<'percentage' | 'fixed'>('percentage');
+    const [specialRuleValue, setSpecialRuleValue] = useState<number | ''>(15);
+    const [specialRuleApplyTo, setSpecialRuleApplyTo] = useState<'price' | 'cost' | 'both'>('both');
+    const [specialSizeRules, setSpecialSizeRules] = useState<Record<string, SpecialSizeRule>>({});
+
+    // Modal de Edición Masiva por Eje (CAP-2)
+    const [bulkEdit, setBulkEdit] = useState<BulkEditState>({
+        open: false,
+        axis: 'size',
+        targetName: '',
+        field: 'stock',
+        value: '',
+    });
+
+    // Modo de vista: Rápida (solo Stock) vs Detallada (Stock + Precios + Costos + SKU)
+    const [isDetailedView, setIsDetailedView] = useState(false);
 
     // Talles seleccionados (Columnas)
     const [sizes, setSizes] = useState<string[]>(['S', 'M', 'L', 'XL']);
@@ -117,6 +158,47 @@ export function ProductVariantMatrixGrid({
     useEffect(() => {
         onMatrixChange(Object.values(cells));
     }, []);
+
+    // Sincronizar precios base cuando cambian los defaults de entrada (si no fueron modificados individualmente)
+    useEffect(() => {
+        if (defaultPrice > 0 || defaultCost > 0) {
+            setCells((prev) => {
+                const updated = { ...prev };
+                for (const key of Object.keys(updated)) {
+                    const item = updated[key];
+                    // Si el talle tiene regla especial, calculamos a partir del nuevo base
+                    const rule = specialSizeRules[item.size];
+                    let cellPrice = defaultPrice || null;
+                    let cellCost = defaultCost || null;
+
+                    if (rule) {
+                        if (rule.type === 'percentage') {
+                            if (rule.applyTo === 'price' || rule.applyTo === 'both') {
+                                cellPrice = defaultPrice ? Math.round(defaultPrice * (1 + rule.value / 100)) : null;
+                            }
+                            if (rule.applyTo === 'cost' || rule.applyTo === 'both') {
+                                cellCost = defaultCost ? Math.round(defaultCost * (1 + rule.value / 100)) : null;
+                            }
+                        } else {
+                            if (rule.applyTo === 'price' || rule.applyTo === 'both') {
+                                cellPrice = defaultPrice ? defaultPrice + rule.value : null;
+                            }
+                            if (rule.applyTo === 'cost' || rule.applyTo === 'both') {
+                                cellCost = defaultCost ? defaultCost + rule.value : null;
+                            }
+                        }
+                    }
+
+                    updated[key] = {
+                        ...item,
+                        price: item.price === 0 || item.price === null ? cellPrice : item.price,
+                        cost: item.cost === 0 || item.cost === null ? cellCost : item.cost,
+                    };
+                }
+                return updated;
+            });
+        }
+    }, [defaultPrice, defaultCost]);
 
     // Lista unificada de escalas (servidor + presets locales como fallback)
     const availableSizeScales = useMemo(() => {
@@ -202,6 +284,38 @@ export function ProductVariantMatrixGrid({
         },
     });
 
+    // Helper para recalcular celda con regla de recargo
+    const getCellPriceCostForSize = (size: string, basePrice: number, baseCost: number) => {
+        const rule = specialSizeRules[size];
+        if (!rule) {
+            return { price: basePrice || null, cost: baseCost || null };
+        }
+
+        let calculatedPrice = basePrice;
+        let calculatedCost = baseCost;
+
+        if (rule.type === 'percentage') {
+            if (rule.applyTo === 'price' || rule.applyTo === 'both') {
+                calculatedPrice = basePrice ? Math.round(basePrice * (1 + rule.value / 100)) : basePrice;
+            }
+            if (rule.applyTo === 'cost' || rule.applyTo === 'both') {
+                calculatedCost = baseCost ? Math.round(baseCost * (1 + rule.value / 100)) : baseCost;
+            }
+        } else {
+            if (rule.applyTo === 'price' || rule.applyTo === 'both') {
+                calculatedPrice = basePrice ? basePrice + rule.value : basePrice;
+            }
+            if (rule.applyTo === 'cost' || rule.applyTo === 'both') {
+                calculatedCost = baseCost ? baseCost + rule.value : baseCost;
+            }
+        }
+
+        return {
+            price: calculatedPrice || null,
+            cost: calculatedCost || null,
+        };
+    };
+
     // Agregar / Quitar Talles
     const handleApplySizePreset = (presetSizes: string[]) => {
         setSizes(presetSizes);
@@ -209,13 +323,14 @@ export function ProductVariantMatrixGrid({
         for (const c of colors) {
             for (const s of presetSizes) {
                 const key = `${c.name}__${s}`;
+                const { price, cost } = getCellPriceCostForSize(s, defaultPrice, defaultCost);
                 updated[key] = cells[key] || {
                     color: c.name,
                     size: s,
                     colorHex: c.hex,
                     stock: 0,
-                    cost: defaultCost || null,
-                    price: defaultPrice || null,
+                    cost,
+                    price,
                     customProfitMargin: defaultProfitMargin || null,
                     sku: generateStructuredSku(styleCode, c.name, s),
                     barcode: null,
@@ -237,13 +352,14 @@ export function ProductVariantMatrixGrid({
         const updated = { ...cells };
         for (const c of colors) {
             const key = `${c.name}__${trimmed}`;
+            const { price, cost } = getCellPriceCostForSize(trimmed, defaultPrice, defaultCost);
             updated[key] = {
                 color: c.name,
                 size: trimmed,
                 colorHex: c.hex,
                 stock: 0,
-                cost: defaultCost || null,
-                price: defaultPrice || null,
+                cost,
+                price,
                 customProfitMargin: defaultProfitMargin || null,
                 sku: generateStructuredSku(styleCode, c.name, trimmed),
                 barcode: null,
@@ -274,13 +390,14 @@ export function ProductVariantMatrixGrid({
         for (const c of paletteColors) {
             for (const s of sizes) {
                 const key = `${c.name}__${s}`;
+                const { price, cost } = getCellPriceCostForSize(s, defaultPrice, defaultCost);
                 updated[key] = cells[key] || {
                     color: c.name,
                     size: s,
                     colorHex: c.hex,
                     stock: 0,
-                    cost: defaultCost || null,
-                    price: defaultPrice || null,
+                    cost,
+                    price,
                     customProfitMargin: defaultProfitMargin || null,
                     sku: generateStructuredSku(styleCode, c.name, s),
                     barcode: null,
@@ -306,13 +423,14 @@ export function ProductVariantMatrixGrid({
         for (const c of newColors) {
             for (const s of sizes) {
                 const key = `${c.name}__${s}`;
+                const { price, cost } = getCellPriceCostForSize(s, defaultPrice, defaultCost);
                 updated[key] = cells[key] || {
                     color: c.name,
                     size: s,
                     colorHex: c.hex,
                     stock: 0,
-                    cost: defaultCost || null,
-                    price: defaultPrice || null,
+                    cost,
+                    price,
                     customProfitMargin: defaultProfitMargin || null,
                     sku: generateStructuredSku(styleCode, c.name, s),
                     barcode: null,
@@ -335,13 +453,14 @@ export function ProductVariantMatrixGrid({
         const updated = { ...cells };
         for (const s of sizes) {
             const key = `${trimmed}__${s}`;
+            const { price, cost } = getCellPriceCostForSize(s, defaultPrice, defaultCost);
             updated[key] = {
                 color: trimmed,
                 size: s,
                 colorHex: customColorHex,
                 stock: 0,
-                cost: defaultCost || null,
-                price: defaultPrice || null,
+                cost,
+                price,
                 customProfitMargin: defaultProfitMargin || null,
                 sku: generateStructuredSku(styleCode, trimmed, s),
                 barcode: null,
@@ -391,6 +510,123 @@ export function ProductVariantMatrixGrid({
             name: trimmed,
             colors,
         });
+    };
+
+    // Aplicar Regla de Talles Especiales (CAP-2)
+    const handleApplySpecialSizeRule = (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        if (specialRuleSelectedSizes.length === 0) {
+            toast.error('Seleccioná al menos un talle para aplicar el recargo');
+            return;
+        }
+        const numericVal = Number(specialRuleValue) || 0;
+        if (numericVal <= 0) {
+            toast.error('Ingresá un valor de recargo válido mayor a 0');
+            return;
+        }
+
+        const newRules = { ...specialSizeRules };
+        const updatedCells = { ...cells };
+
+        for (const size of specialRuleSelectedSizes) {
+            newRules[size] = {
+                size,
+                type: specialRuleType,
+                value: numericVal,
+                applyTo: specialRuleApplyTo,
+            };
+
+            // Aplicar a todas las celdas de ese talle
+            for (const c of colors) {
+                const key = `${c.name}__${size}`;
+                if (updatedCells[key]) {
+                    const currentCell = updatedCells[key];
+                    let calculatedPrice = currentCell.price ?? defaultPrice;
+                    let calculatedCost = currentCell.cost ?? defaultCost;
+
+                    if (specialRuleType === 'percentage') {
+                        if (specialRuleApplyTo === 'price' || specialRuleApplyTo === 'both') {
+                            calculatedPrice = defaultPrice ? Math.round(defaultPrice * (1 + numericVal / 100)) : calculatedPrice;
+                        }
+                        if (specialRuleApplyTo === 'cost' || specialRuleApplyTo === 'both') {
+                            calculatedCost = defaultCost ? Math.round(defaultCost * (1 + numericVal / 100)) : calculatedCost;
+                        }
+                    } else {
+                        if (specialRuleApplyTo === 'price' || specialRuleApplyTo === 'both') {
+                            calculatedPrice = (defaultPrice || 0) + numericVal;
+                        }
+                        if (specialRuleApplyTo === 'cost' || specialRuleApplyTo === 'both') {
+                            calculatedCost = (defaultCost || 0) + numericVal;
+                        }
+                    }
+
+                    updatedCells[key] = {
+                        ...currentCell,
+                        price: calculatedPrice,
+                        cost: calculatedCost,
+                    };
+                }
+            }
+        }
+
+        setSpecialSizeRules(newRules);
+        notifyChange(updatedCells);
+        setIsSpecialSizesOpen(false);
+        toast.success(`Recargo de ${specialRuleType === 'percentage' ? `+${numericVal}%` : `+$${numericVal}`} aplicado a: ${specialRuleSelectedSizes.join(', ')}`);
+    };
+
+    // Restablecer recargos de talles especiales
+    const handleResetSpecialRules = () => {
+        setSpecialSizeRules({});
+        const updated = { ...cells };
+        for (const key of Object.keys(updated)) {
+            updated[key] = {
+                ...updated[key],
+                price: defaultPrice || null,
+                cost: defaultCost || null,
+            };
+        }
+        notifyChange(updated);
+        setIsSpecialSizesOpen(false);
+        toast.success('Reglas de recargos eliminadas. Precios base restaurados.');
+    };
+
+    // Ejecutar Edición Masiva por Eje (CAP-2)
+    const handleExecuteBulkEdit = (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        const { axis, targetName, field, value } = bulkEdit;
+        const numVal = value === '' ? 0 : Number(value);
+
+        const updated = { ...cells };
+
+        if (axis === 'size') {
+            // Modificar columna completa (todos los colores de un talle)
+            for (const c of colors) {
+                const key = `${c.name}__${targetName}`;
+                if (updated[key]) {
+                    updated[key] = {
+                        ...updated[key],
+                        [field]: numVal,
+                    };
+                }
+            }
+            toast.success(`Columna ${targetName}: ${field} actualizado a ${numVal} en todos los colores`);
+        } else {
+            // Modificar fila completa (todos los talles de un color)
+            for (const s of sizes) {
+                const key = `${targetName}__${s}`;
+                if (updated[key]) {
+                    updated[key] = {
+                        ...updated[key],
+                        [field]: numVal,
+                    };
+                }
+            }
+            toast.success(`Fila ${targetName}: ${field} actualizado a ${numVal} en todos los talles`);
+        }
+
+        notifyChange(updated);
+        setBulkEdit((prev) => ({ ...prev, open: false, value: '' }));
     };
 
     // Actualización de Celda Individual
@@ -479,6 +715,7 @@ export function ProductVariantMatrixGrid({
     const totalVariants = colors.length * sizes.length;
     const totalStockUnits = Object.values(cells).reduce((acc, c) => acc + (Number(c.stock) || 0), 0);
     const variantsWithStock = Object.values(cells).filter((c) => (Number(c.stock) || 0) > 0).length;
+    const specialSizesCount = Object.keys(specialSizeRules).length;
 
     return (
         <div className="space-y-6">
@@ -578,6 +815,11 @@ export function ProductVariantMatrixGrid({
                             className="bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 border-slate-300 dark:border-slate-700 pl-2.5 pr-1.5 py-0.5 text-xs font-semibold flex items-center gap-1.5"
                         >
                             <span>{size}</span>
+                            {specialSizeRules[size] && (
+                                <span className="text-[10px] bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-200 font-bold px-1 rounded">
+                                    {specialSizeRules[size].type === 'percentage' ? `+${specialSizeRules[size].value}%` : `+$${specialSizeRules[size].value}`}
+                                </span>
+                            )}
                             <button
                                 type="button"
                                 onClick={() => handleRemoveSize(size)}
@@ -697,41 +939,76 @@ export function ProductVariantMatrixGrid({
 
             {/* 3. Grilla 2D Interactiva */}
             <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 shadow-sm overflow-hidden">
-                {/* Barra de Acciones Rápidas de Grilla */}
+                {/* Barra de Acciones Rápidas y Herramientas */}
                 <div className="border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/60 p-3 px-4 flex flex-wrap items-center justify-between gap-3">
-                    <div className="flex items-center gap-2">
-                        <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
-                            Atajos de Stock:
-                        </span>
-                        <div className="flex flex-wrap gap-1">
-                            {DISTRIBUTION_CURVES.map((curve) => (
+                    <div className="flex flex-wrap items-center gap-3">
+                        {/* Atajos de Curvas */}
+                        <div className="flex items-center gap-1.5">
+                            <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">
+                                Curvas:
+                            </span>
+                            <div className="flex flex-wrap gap-1">
+                                {DISTRIBUTION_CURVES.map((curve) => (
+                                    <button
+                                        key={curve.key}
+                                        type="button"
+                                        onClick={() => handleApplyGlobalCurve(curve.ratio)}
+                                        className="px-2 py-1 text-xs rounded bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors"
+                                    >
+                                        {curve.key}
+                                    </button>
+                                ))}
                                 <button
-                                    key={curve.key}
                                     type="button"
-                                    onClick={() => handleApplyGlobalCurve(curve.ratio)}
+                                    onClick={() => handleFillAllStock(5)}
                                     className="px-2 py-1 text-xs rounded bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors"
                                 >
-                                    {curve.key}
+                                    Todo 5u
                                 </button>
-                            ))}
-                            <button
-                                type="button"
-                                onClick={() => handleFillAllStock(5)}
-                                className="px-2 py-1 text-xs rounded bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 font-medium transition-colors"
-                            >
-                                Todo 5u
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => handleFillAllStock(0)}
-                                className="px-2 py-1 text-xs rounded bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-red-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                            >
-                                Limpiar
-                            </button>
+                                <button
+                                    type="button"
+                                    onClick={() => handleFillAllStock(0)}
+                                    className="px-2 py-1 text-xs rounded bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-red-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                                >
+                                    Limpiar
+                                </button>
+                            </div>
                         </div>
+
+                        {/* Botón Reglas de Talles Especiales (CAP-2) */}
+                        <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            onClick={() => {
+                                setSpecialRuleSelectedSizes(sizes.filter((s) => ['XXL', '3XL', '4XL', '48', '50', '52'].includes(s)));
+                                setIsSpecialSizesOpen(true);
+                            }}
+                            className={`h-7 text-xs gap-1.5 ${
+                                specialSizesCount > 0
+                                    ? 'border-amber-500 text-amber-700 dark:text-amber-300 bg-amber-50/70 dark:bg-amber-950/40 font-semibold'
+                                    : 'text-slate-700 dark:text-slate-300'
+                            }`}
+                        >
+                            <Zap className={`h-3.5 w-3.5 ${specialSizesCount > 0 ? 'text-amber-600 fill-amber-500' : 'text-amber-500'}`} />
+                            Talles Especiales {specialSizesCount > 0 ? `(${specialSizesCount})` : ''}
+                        </Button>
                     </div>
 
                     <div className="flex items-center gap-2">
+                        {/* Toggle Vista Rápida / Detallada */}
+                        <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => setIsDetailedView((prev) => !prev)}
+                            className="h-7 text-xs gap-1.5 text-slate-600 dark:text-slate-300"
+                            title={isDetailedView ? 'Cambiar a vista compacta de solo stock' : 'Ver y editar costos y precios por celda'}
+                        >
+                            <Table2 className="h-3.5 w-3.5" />
+                            {isDetailedView ? 'Vista Compacta' : 'Vista Detallada'}
+                        </Button>
+
                         <Button
                             type="button"
                             variant="outline"
@@ -749,20 +1026,47 @@ export function ProductVariantMatrixGrid({
                     <table className="w-full border-collapse text-left">
                         <thead>
                             <tr className="border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30">
-                                <th className="p-3 pl-4 text-xs font-semibold text-slate-600 dark:text-slate-400 w-48 min-w-[180px]">
+                                <th className="p-3 pl-4 text-xs font-semibold text-slate-600 dark:text-slate-400 w-52 min-w-[200px]">
                                     Color / Variante
                                 </th>
-                                {sizes.map((size) => (
-                                    <th
-                                        key={size}
-                                        className="p-3 text-center text-xs font-bold text-slate-800 dark:text-slate-200 min-w-[100px]"
-                                    >
-                                        <div className="inline-flex items-center justify-center px-2 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-xs font-bold">
-                                            {size}
-                                        </div>
-                                    </th>
-                                ))}
-                                <th className="p-3 text-center text-xs font-semibold text-slate-500 w-20">
+                                {sizes.map((size) => {
+                                    const rule = specialSizeRules[size];
+                                    return (
+                                        <th
+                                            key={size}
+                                            className="p-3 text-center text-xs font-bold text-slate-800 dark:text-slate-200 min-w-[110px]"
+                                        >
+                                            <div className="flex flex-col items-center gap-1">
+                                                <div className="inline-flex items-center justify-center gap-1 px-2.5 py-0.5 rounded bg-slate-200/70 dark:bg-slate-800 text-xs font-bold">
+                                                    <span>{size}</span>
+                                                    {rule && (
+                                                        <span className="text-[10px] text-amber-700 dark:text-amber-300">
+                                                            {rule.type === 'percentage' ? `+${rule.value}%` : `+$${rule.value}`}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                {/* Botón de Edición Masiva por Columna */}
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        setBulkEdit({
+                                                            open: true,
+                                                            axis: 'size',
+                                                            targetName: size,
+                                                            field: 'stock',
+                                                            value: '',
+                                                        })
+                                                    }
+                                                    className="text-[10px] text-slate-400 hover:text-blue-600 flex items-center gap-0.5 font-normal transition-colors"
+                                                    title={`Editar masivamente la columna ${size}`}
+                                                >
+                                                    <SlidersHorizontal className="h-2.5 w-2.5" /> Masivo
+                                                </button>
+                                            </div>
+                                        </th>
+                                    );
+                                })}
+                                <th className="p-3 text-center text-xs font-semibold text-slate-500 w-24">
                                     Subtotal
                                 </th>
                                 <th className="p-3 text-center text-xs font-semibold text-slate-500 w-12 pr-4">
@@ -791,13 +1095,30 @@ export function ProductVariantMatrixGrid({
                                                     {color.name}
                                                 </span>
                                             </div>
-                                            <div className="flex items-center gap-1 mt-1">
+                                            <div className="flex items-center gap-2 mt-1">
                                                 <button
                                                     type="button"
                                                     onClick={() => handleApplyRowCurve(color.name, [1, 2, 2, 1])}
                                                     className="text-[10px] text-blue-600 dark:text-blue-400 hover:underline font-medium"
                                                 >
                                                     +Curva 1-2-2-1
+                                                </button>
+                                                <span className="text-slate-300 dark:text-slate-700">•</span>
+                                                <button
+                                                    type="button"
+                                                    onClick={() =>
+                                                        setBulkEdit({
+                                                            open: true,
+                                                            axis: 'color',
+                                                            targetName: color.name,
+                                                            field: 'stock',
+                                                            value: '',
+                                                        })
+                                                    }
+                                                    className="text-[10px] text-slate-400 hover:text-blue-600 flex items-center gap-0.5 font-normal transition-colors"
+                                                    title={`Editar masivamente la fila de color ${color.name}`}
+                                                >
+                                                    <SlidersHorizontal className="h-2.5 w-2.5" /> Masivo
                                                 </button>
                                             </div>
                                         </td>
@@ -809,18 +1130,22 @@ export function ProductVariantMatrixGrid({
                                                 color: color.name,
                                                 size,
                                                 stock: 0,
+                                                price: defaultPrice || null,
+                                                cost: defaultCost || null,
                                             };
                                             const hasStock = Number(cell.stock) > 0;
 
                                             return (
-                                                <td key={size} className="p-2 text-center">
-                                                    <div className="relative inline-block w-full max-w-[90px]">
+                                                <td key={size} className="p-2 text-center align-top">
+                                                    <div className="inline-flex flex-col items-center gap-1 w-full max-w-[100px]">
+                                                        {/* Input de Stock */}
                                                         <Input
                                                             type="number"
                                                             min="0"
                                                             step="1"
                                                             value={cell.stock === 0 ? '' : cell.stock}
                                                             placeholder="0"
+                                                            title={`Stock para ${color.name} - ${size}`}
                                                             onChange={(e) =>
                                                                 handleCellChange(
                                                                     color.name,
@@ -829,19 +1154,63 @@ export function ProductVariantMatrixGrid({
                                                                     e.target.value === '' ? 0 : Number.parseInt(e.target.value, 10) || 0
                                                                 )
                                                             }
-                                                            className={`h-9 text-center font-bold text-xs rounded-lg transition-all ${
+                                                            className={`h-8 text-center font-bold text-xs rounded-lg transition-all ${
                                                                 hasStock
                                                                     ? 'bg-emerald-50 dark:bg-emerald-950/40 border-emerald-300 dark:border-emerald-700/60 text-emerald-900 dark:text-emerald-200 shadow-xs'
                                                                     : 'bg-white dark:bg-slate-950 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300'
                                                             } focus-visible:ring-1 focus-visible:ring-blue-500`}
                                                         />
+
+                                                        {/* Vista Detallada (Precio y Costo por Celda) */}
+                                                        {isDetailedView && (
+                                                            <div className="w-full space-y-1 pt-0.5">
+                                                                <div className="flex items-center gap-0.5">
+                                                                    <span className="text-[10px] text-slate-400 font-medium">$</span>
+                                                                    <Input
+                                                                        type="number"
+                                                                        min="0"
+                                                                        placeholder="Precio"
+                                                                        value={cell.price ?? ''}
+                                                                        title="Precio de venta unitario"
+                                                                        onChange={(e) =>
+                                                                            handleCellChange(
+                                                                                color.name,
+                                                                                size,
+                                                                                'price',
+                                                                                e.target.value === '' ? null : Number.parseFloat(e.target.value) || 0
+                                                                            )
+                                                                        }
+                                                                        className="h-6 text-[11px] p-1 text-center bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800"
+                                                                    />
+                                                                </div>
+                                                                <div className="flex items-center gap-0.5">
+                                                                    <span className="text-[10px] text-slate-400 font-medium">C</span>
+                                                                    <Input
+                                                                        type="number"
+                                                                        min="0"
+                                                                        placeholder="Costo"
+                                                                        value={cell.cost ?? ''}
+                                                                        title="Costo de compra unitario"
+                                                                        onChange={(e) =>
+                                                                            handleCellChange(
+                                                                                color.name,
+                                                                                size,
+                                                                                'cost',
+                                                                                e.target.value === '' ? null : Number.parseFloat(e.target.value) || 0
+                                                                            )
+                                                                        }
+                                                                        className="h-6 text-[11px] p-1 text-center bg-slate-50 dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-500"
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 </td>
                                             );
                                         })}
 
                                         {/* Subtotal Fila */}
-                                        <td className="p-3 text-center">
+                                        <td className="p-3 text-center align-middle">
                                             <span
                                                 className={`text-xs font-bold px-2 py-0.5 rounded ${
                                                     rowStockSum > 0
@@ -854,7 +1223,7 @@ export function ProductVariantMatrixGrid({
                                         </td>
 
                                         {/* Eliminar Fila */}
-                                        <td className="p-3 text-center pr-4">
+                                        <td className="p-3 text-center pr-4 align-middle">
                                             <button
                                                 type="button"
                                                 onClick={() => handleRemoveColor(color.name)}
@@ -883,6 +1252,12 @@ export function ProductVariantMatrixGrid({
                             <span className="h-2 w-2 rounded-full bg-emerald-500" />
                             <span>Con stock inicial: <strong>{variantsWithStock} variantes</strong></span>
                         </div>
+                        {specialSizesCount > 0 && (
+                            <div className="flex items-center gap-1 text-amber-600 dark:text-amber-400">
+                                <Zap className="h-3.5 w-3.5" />
+                                <span>Recargos activos: <strong>{specialSizesCount} talles especiales</strong></span>
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex items-center gap-2">
@@ -893,6 +1268,263 @@ export function ProductVariantMatrixGrid({
                     </div>
                 </div>
             </div>
+
+            {/* Modal: Reglas de Talles Especiales (CAP-2) */}
+            <Dialog open={isSpecialSizesOpen} onOpenChange={setIsSpecialSizesOpen}>
+                <DialogContent className="sm:max-w-[480px]">
+                    <DialogHeader>
+                        <DialogTitle className="flex items-center gap-2 text-base">
+                            <Zap className="h-5 w-5 text-amber-500 fill-amber-500" />
+                            Reglas de Recargo para Talles Especiales
+                        </DialogTitle>
+                        <DialogDescription className="text-xs">
+                            Definí recargos automáticos para talles grandes o medidas especiales sin alterar los talles estándar base.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleApplySpecialSizeRule} className="space-y-4 py-2">
+                        {/* 1. Seleccionar Talles Especiales */}
+                        <div className="space-y-1.5">
+                            <Label className="text-xs font-semibold">Talles a los que aplica el recargo:</Label>
+                            <div className="flex flex-wrap gap-1.5">
+                                {sizes.map((s) => {
+                                    const isSelected = specialRuleSelectedSizes.includes(s);
+                                    return (
+                                        <button
+                                            key={s}
+                                            type="button"
+                                            onClick={() => {
+                                                if (isSelected) {
+                                                    setSpecialRuleSelectedSizes(specialRuleSelectedSizes.filter((item) => item !== s));
+                                                } else {
+                                                    setSpecialRuleSelectedSizes([...specialRuleSelectedSizes, s]);
+                                                }
+                                            }}
+                                            className={`px-2.5 py-1 text-xs rounded-lg font-semibold border transition-all ${
+                                                isSelected
+                                                    ? 'bg-amber-500 text-white border-amber-600 shadow-xs'
+                                                    : 'bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800'
+                                            }`}
+                                        >
+                                            {s}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+
+                        {/* 2. Tipo de Recargo y Valor */}
+                        <div className="grid grid-cols-2 gap-3">
+                            <div className="space-y-1.5">
+                                <Label className="text-xs font-semibold">Tipo de Recargo</Label>
+                                <div className="flex rounded-lg border border-slate-200 dark:border-slate-800 p-0.5 bg-slate-100 dark:bg-slate-900">
+                                    <button
+                                        type="button"
+                                        onClick={() => setSpecialRuleType('percentage')}
+                                        className={`flex-1 py-1 text-xs rounded font-semibold flex items-center justify-center gap-1 transition-all ${
+                                            specialRuleType === 'percentage'
+                                                ? 'bg-white dark:bg-slate-950 text-blue-600 shadow-xs'
+                                                : 'text-slate-500'
+                                        }`}
+                                    >
+                                        <Percent className="h-3 w-3" /> Porcentaje (+%)
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setSpecialRuleType('fixed')}
+                                        className={`flex-1 py-1 text-xs rounded font-semibold flex items-center justify-center gap-1 transition-all ${
+                                            specialRuleType === 'fixed'
+                                                ? 'bg-white dark:bg-slate-950 text-blue-600 shadow-xs'
+                                                : 'text-slate-500'
+                                        }`}
+                                    >
+                                        <DollarSign className="h-3 w-3" /> Monto Fijo (+$)
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div className="space-y-1.5">
+                                <Label htmlFor="ruleValue" className="text-xs font-semibold">
+                                    {specialRuleType === 'percentage' ? 'Porcentaje de Recargo (%)' : 'Monto de Recargo ($)'}
+                                </Label>
+                                <Input
+                                    id="ruleValue"
+                                    type="number"
+                                    min="0"
+                                    step={specialRuleType === 'percentage' ? '1' : '100'}
+                                    placeholder={specialRuleType === 'percentage' ? '15' : '2000'}
+                                    value={specialRuleValue}
+                                    onChange={(e) => setSpecialRuleValue(e.target.value === '' ? '' : Number(e.target.value))}
+                                    className="h-9 text-xs"
+                                />
+                            </div>
+                        </div>
+
+                        {/* 3. Aplicar a Precio / Costo */}
+                        <div className="space-y-1.5">
+                            <Label className="text-xs font-semibold">Aplicar recargo a:</Label>
+                            <div className="grid grid-cols-3 gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setSpecialRuleApplyTo('both')}
+                                    className={`py-1.5 text-xs rounded-lg border font-medium transition-all ${
+                                        specialRuleApplyTo === 'both'
+                                            ? 'bg-blue-50 dark:bg-blue-950/40 border-blue-500 text-blue-900 dark:text-blue-100 font-semibold'
+                                            : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
+                                    }`}
+                                >
+                                    Precio y Costo
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setSpecialRuleApplyTo('price')}
+                                    className={`py-1.5 text-xs rounded-lg border font-medium transition-all ${
+                                        specialRuleApplyTo === 'price'
+                                            ? 'bg-blue-50 dark:bg-blue-950/40 border-blue-500 text-blue-900 dark:text-blue-100 font-semibold'
+                                            : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
+                                    }`}
+                                >
+                                    Solo Precio
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setSpecialRuleApplyTo('cost')}
+                                    className={`py-1.5 text-xs rounded-lg border font-medium transition-all ${
+                                        specialRuleApplyTo === 'cost'
+                                            ? 'bg-blue-50 dark:bg-blue-950/40 border-blue-500 text-blue-900 dark:text-blue-100 font-semibold'
+                                            : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
+                                    }`}
+                                >
+                                    Solo Costo
+                                </button>
+                            </div>
+                        </div>
+
+                        <DialogFooter className="gap-2 sm:gap-0 pt-3">
+                            {specialSizesCount > 0 && (
+                                <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={handleResetSpecialRules}
+                                    className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950/40 text-xs"
+                                >
+                                    Restablecer todo
+                                </Button>
+                            )}
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setIsSpecialSizesOpen(false)}
+                            >
+                                Cancelar
+                            </Button>
+                            <Button
+                                type="submit"
+                                size="sm"
+                                disabled={specialRuleSelectedSizes.length === 0 || !specialRuleValue}
+                                className="bg-amber-600 hover:bg-amber-700 text-white"
+                            >
+                                Aplicar Recargo
+                            </Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
+
+            {/* Modal: Edición Masiva por Eje (CAP-2) */}
+            <Dialog
+                open={bulkEdit.open}
+                onOpenChange={(open) => setBulkEdit((prev) => ({ ...prev, open }))}
+            >
+                <DialogContent className="sm:max-w-[420px]">
+                    <DialogHeader>
+                        <DialogTitle className="flex items-center gap-2 text-base">
+                            <SlidersHorizontal className="h-5 w-5 text-blue-600" />
+                            Edición Masiva — {bulkEdit.axis === 'size' ? `Talle ${bulkEdit.targetName}` : `Color ${bulkEdit.targetName}`}
+                        </DialogTitle>
+                        <DialogDescription className="text-xs">
+                            Modificá en lote un campo para todas las celdas de este {bulkEdit.axis === 'size' ? 'talle en todos los colores' : 'color en todos los talles'}.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <form onSubmit={handleExecuteBulkEdit} className="space-y-4 py-2">
+                        {/* Selector de campo */}
+                        <div className="space-y-1.5">
+                            <Label className="text-xs font-semibold">Campo a modificar</Label>
+                            <div className="grid grid-cols-3 gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setBulkEdit((prev) => ({ ...prev, field: 'stock' }))}
+                                    className={`py-1.5 text-xs rounded-lg border font-medium transition-all ${
+                                        bulkEdit.field === 'stock'
+                                            ? 'bg-blue-50 dark:bg-blue-950/40 border-blue-500 text-blue-900 dark:text-blue-100 font-semibold'
+                                            : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
+                                    }`}
+                                >
+                                    Stock
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setBulkEdit((prev) => ({ ...prev, field: 'price' }))}
+                                    className={`py-1.5 text-xs rounded-lg border font-medium transition-all ${
+                                        bulkEdit.field === 'price'
+                                            ? 'bg-blue-50 dark:bg-blue-950/40 border-blue-500 text-blue-900 dark:text-blue-100 font-semibold'
+                                            : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
+                                    }`}
+                                >
+                                    Precio ($)
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setBulkEdit((prev) => ({ ...prev, field: 'cost' }))}
+                                    className={`py-1.5 text-xs rounded-lg border font-medium transition-all ${
+                                        bulkEdit.field === 'cost'
+                                            ? 'bg-blue-50 dark:bg-blue-950/40 border-blue-500 text-blue-900 dark:text-blue-100 font-semibold'
+                                            : 'border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400'
+                                    }`}
+                                >
+                                    Costo ($)
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Input de Valor */}
+                        <div className="space-y-1.5">
+                            <Label htmlFor="bulkValue" className="text-xs font-semibold">
+                                Nuevo valor para {bulkEdit.field === 'stock' ? 'Stock (unidades)' : bulkEdit.field === 'price' ? 'Precio de Venta ($)' : 'Costo de Compra ($)'}
+                            </Label>
+                            <Input
+                                id="bulkValue"
+                                type="number"
+                                min="0"
+                                placeholder={bulkEdit.field === 'stock' ? '10' : '15000'}
+                                value={bulkEdit.value}
+                                onChange={(e) => setBulkEdit((prev) => ({ ...prev, value: e.target.value === '' ? '' : Number(e.target.value) }))}
+                                autoFocus
+                                className="h-9 text-xs"
+                            />
+                        </div>
+
+                        <DialogFooter className="gap-2 sm:gap-0 pt-2">
+                            <Button
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setBulkEdit((prev) => ({ ...prev, open: false }))}
+                            >
+                                Cancelar
+                            </Button>
+                            <Button
+                                type="submit"
+                                size="sm"
+                                disabled={bulkEdit.value === ''}
+                            >
+                                Aplicar a {bulkEdit.axis === 'size' ? `${colors.length} Colores` : `${sizes.length} Talles`}
+                            </Button>
+                        </DialogFooter>
+                    </form>
+                </DialogContent>
+            </Dialog>
 
             {/* Modal: Guardar Escala de Talles */}
             <Dialog open={isSaveScaleOpen} onOpenChange={setIsSaveScaleOpen}>
