@@ -20,6 +20,7 @@ import {
     DollarSign,
     Percent,
     ArrowUpDown,
+    Keyboard,
 } from 'lucide-react';
 import {
     Dialog,
@@ -159,6 +160,33 @@ export function ProductVariantMatrixGrid({
         onMatrixChange(Object.values(cells));
     }, []);
 
+    // Atajos globales de teclado (CAP-3: Alt+S, Alt+L, Alt+D, Alt+C)
+    useEffect(() => {
+        const handleGlobalKeyDown = (e: KeyboardEvent) => {
+            if (!e.altKey) return;
+            const key = e.key.toLowerCase();
+            if (key === 's') {
+                e.preventDefault();
+                handleGenerateBarcodes();
+                toast.info('SKUs auto-generados (Alt+S)');
+            } else if (key === 'l') {
+                e.preventDefault();
+                handleFillAllStock(0);
+                toast.info('Matriz limpiada a 0 unidades (Alt+L)');
+            } else if (key === 'd') {
+                e.preventDefault();
+                setIsDetailedView((prev) => !prev);
+            } else if (key === 'c') {
+                e.preventDefault();
+                setSpecialRuleSelectedSizes(sizes.filter((s) => ['XXL', '3XL', '4XL', '48', '50', '52'].includes(s)));
+                setIsSpecialSizesOpen(true);
+            }
+        };
+
+        window.addEventListener('keydown', handleGlobalKeyDown);
+        return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+    }, [colors, sizes, cells, styleCode]);
+
     // Sincronizar precios base cuando cambian los defaults de entrada (si no fueron modificados individualmente)
     useEffect(() => {
         if (defaultPrice > 0 || defaultCost > 0) {
@@ -166,7 +194,6 @@ export function ProductVariantMatrixGrid({
                 const updated = { ...prev };
                 for (const key of Object.keys(updated)) {
                     const item = updated[key];
-                    // Si el talle tiene regla especial, calculamos a partir del nuevo base
                     const rule = specialSizeRules[item.size];
                     let cellPrice = defaultPrice || null;
                     let cellCost = defaultCost || null;
@@ -314,6 +341,55 @@ export function ProductVariantMatrixGrid({
             price: calculatedPrice || null,
             cost: calculatedCost || null,
         };
+    };
+
+    // Navegación fluida por teclado 2D (CAP-3)
+    const handleCellKeyDown = (
+        e: React.KeyboardEvent<HTMLInputElement>,
+        rowIndex: number,
+        colIndex: number
+    ) => {
+        const totalRows = colors.length;
+        const totalCols = sizes.length;
+
+        let nextRow = rowIndex;
+        let nextCol = colIndex;
+
+        if (e.key === 'ArrowRight' || e.key === 'Enter') {
+            e.preventDefault();
+            if (colIndex < totalCols - 1) {
+                nextCol = colIndex + 1;
+            } else if (rowIndex < totalRows - 1) {
+                nextRow = rowIndex + 1;
+                nextCol = 0;
+            }
+        } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            if (colIndex > 0) {
+                nextCol = colIndex - 1;
+            } else if (rowIndex > 0) {
+                nextRow = rowIndex - 1;
+                nextCol = totalCols - 1;
+            }
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (rowIndex < totalRows - 1) {
+                nextRow = rowIndex + 1;
+            }
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (rowIndex > 0) {
+                nextRow = rowIndex - 1;
+            }
+        } else {
+            return;
+        }
+
+        const nextInput = document.getElementById(`matrix-cell-${nextRow}-${nextCol}`) as HTMLInputElement | null;
+        if (nextInput) {
+            nextInput.focus();
+            nextInput.select();
+        }
     };
 
     // Agregar / Quitar Talles
@@ -600,7 +676,6 @@ export function ProductVariantMatrixGrid({
         const updated = { ...cells };
 
         if (axis === 'size') {
-            // Modificar columna completa (todos los colores de un talle)
             for (const c of colors) {
                 const key = `${c.name}__${targetName}`;
                 if (updated[key]) {
@@ -612,7 +687,6 @@ export function ProductVariantMatrixGrid({
             }
             toast.success(`Columna ${targetName}: ${field} actualizado a ${numVal} en todos los colores`);
         } else {
-            // Modificar fila completa (todos los talles de un color)
             for (const s of sizes) {
                 const key = `${targetName}__${s}`;
                 if (updated[key]) {
@@ -969,6 +1043,7 @@ export function ProductVariantMatrixGrid({
                                     type="button"
                                     onClick={() => handleFillAllStock(0)}
                                     className="px-2 py-1 text-xs rounded bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-red-500 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                                    title="Limpiar stock (Alt+L)"
                                 >
                                     Limpiar
                                 </button>
@@ -989,6 +1064,7 @@ export function ProductVariantMatrixGrid({
                                     ? 'border-amber-500 text-amber-700 dark:text-amber-300 bg-amber-50/70 dark:bg-amber-950/40 font-semibold'
                                     : 'text-slate-700 dark:text-slate-300'
                             }`}
+                            title="Configurar recargos para talles especiales (Alt+C)"
                         >
                             <Zap className={`h-3.5 w-3.5 ${specialSizesCount > 0 ? 'text-amber-600 fill-amber-500' : 'text-amber-500'}`} />
                             Talles Especiales {specialSizesCount > 0 ? `(${specialSizesCount})` : ''}
@@ -1003,7 +1079,7 @@ export function ProductVariantMatrixGrid({
                             size="sm"
                             onClick={() => setIsDetailedView((prev) => !prev)}
                             className="h-7 text-xs gap-1.5 text-slate-600 dark:text-slate-300"
-                            title={isDetailedView ? 'Cambiar a vista compacta de solo stock' : 'Ver y editar costos y precios por celda'}
+                            title={isDetailedView ? 'Cambiar a vista compacta de solo stock (Alt+D)' : 'Ver y editar costos y precios por celda (Alt+D)'}
                         >
                             <Table2 className="h-3.5 w-3.5" />
                             {isDetailedView ? 'Vista Compacta' : 'Vista Detallada'}
@@ -1015,13 +1091,14 @@ export function ProductVariantMatrixGrid({
                             size="sm"
                             onClick={handleGenerateBarcodes}
                             className="h-7 text-xs gap-1 text-slate-600 dark:text-slate-300"
+                            title="Auto-generar códigos SKU estructurados (Alt+S)"
                         >
                             <Barcode className="h-3.5 w-3.5" /> Generar SKUs
                         </Button>
                     </div>
                 </div>
 
-                {/* Tabla de Matriz 2D */}
+                {/* Tabla de Matriz 2D con Navegación por Teclado */}
                 <div className="overflow-x-auto">
                     <table className="w-full border-collapse text-left">
                         <thead>
@@ -1075,7 +1152,7 @@ export function ProductVariantMatrixGrid({
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100 dark:divide-slate-900">
-                            {colors.map((color) => {
+                            {colors.map((color, rowIndex) => {
                                 const rowCells = sizes.map((s) => cells[`${color.name}__${s}`]);
                                 const rowStockSum = rowCells.reduce((acc, c) => acc + (Number(c?.stock) || 0), 0);
 
@@ -1124,7 +1201,7 @@ export function ProductVariantMatrixGrid({
                                         </td>
 
                                         {/* Celdas de Talles */}
-                                        {sizes.map((size) => {
+                                        {sizes.map((size, colIndex) => {
                                             const cellKey = `${color.name}__${size}`;
                                             const cell = cells[cellKey] || {
                                                 color: color.name,
@@ -1138,14 +1215,19 @@ export function ProductVariantMatrixGrid({
                                             return (
                                                 <td key={size} className="p-2 text-center align-top">
                                                     <div className="inline-flex flex-col items-center gap-1 w-full max-w-[100px]">
-                                                        {/* Input de Stock */}
+                                                        {/* Input de Stock con Navegación 2D por Teclado */}
                                                         <Input
+                                                            id={`matrix-cell-${rowIndex}-${colIndex}`}
+                                                            data-row={rowIndex}
+                                                            data-col={colIndex}
                                                             type="number"
                                                             min="0"
                                                             step="1"
                                                             value={cell.stock === 0 ? '' : cell.stock}
                                                             placeholder="0"
-                                                            title={`Stock para ${color.name} - ${size}`}
+                                                            title={`Stock para ${color.name} - ${size} (Enter/Flechas para navegar)`}
+                                                            onFocus={(e) => e.target.select()}
+                                                            onKeyDown={(e) => handleCellKeyDown(e, rowIndex, colIndex)}
                                                             onChange={(e) =>
                                                                 handleCellChange(
                                                                     color.name,
@@ -1241,7 +1323,7 @@ export function ProductVariantMatrixGrid({
                     </table>
                 </div>
 
-                {/* Resumen al pie de la Grilla */}
+                {/* Resumen al pie de la Grilla con Atajos */}
                 <div className="border-t border-slate-200 dark:border-slate-800 bg-slate-50/80 dark:bg-slate-900/80 p-3.5 px-4 flex flex-wrap items-center justify-between gap-4 text-xs">
                     <div className="flex flex-wrap items-center gap-4 text-slate-600 dark:text-slate-300">
                         <div className="flex items-center gap-1.5">
@@ -1252,12 +1334,10 @@ export function ProductVariantMatrixGrid({
                             <span className="h-2 w-2 rounded-full bg-emerald-500" />
                             <span>Con stock inicial: <strong>{variantsWithStock} variantes</strong></span>
                         </div>
-                        {specialSizesCount > 0 && (
-                            <div className="flex items-center gap-1 text-amber-600 dark:text-amber-400">
-                                <Zap className="h-3.5 w-3.5" />
-                                <span>Recargos activos: <strong>{specialSizesCount} talles especiales</strong></span>
-                            </div>
-                        )}
+                        <div className="hidden sm:flex items-center gap-1.5 text-slate-500 text-[11px]">
+                            <Keyboard className="h-3.5 w-3.5" />
+                            <span>Navegación: <kbd className="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono text-[10px]">Enter</kbd> / <kbd className="px-1 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono text-[10px]">Flechas</kbd></span>
+                        </div>
                     </div>
 
                     <div className="flex items-center gap-2">

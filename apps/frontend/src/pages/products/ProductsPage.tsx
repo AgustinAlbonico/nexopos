@@ -54,13 +54,18 @@ const EMPTY_CREATE_DEFAULTS: ProductFormValues = {
     name: '',
     description: null,
     barcode: null,
+    isMeasure: false,
     cost: 0,
+    price: undefined,
     stock: 0,
     categoryId: null,
     isActive: true,
+    useManualPrice: true,
     useCustomMargin: false,
     customProfitMargin: undefined,
     brandName: null,
+    season: null,
+    collection: null,
 };
 
 /**
@@ -81,7 +86,7 @@ function ProductDetailDialog({
     if (!product) return null;
 
     const margin = product.profitMargin ?? 0;
-    const ganancia = product.price - product.cost;
+    const ganancia = product.price - (product.cost ?? 0);
     const isLowStock = product.stock <= globalMinStock && product.stock > 0;
     const isOutOfStock = product.stock === 0;
 
@@ -152,7 +157,7 @@ function ProductDetailDialog({
                         <div className="grid grid-cols-2 gap-3">
                             <div className="rounded-lg bg-slate-50 dark:bg-slate-900/50 p-3 border border-slate-200 dark:border-slate-800">
                                 <p className="text-xs text-muted-foreground mb-1">Costo</p>
-                                <p className="text-lg font-semibold">{formatCurrency(product.cost)}</p>
+                                <p className="text-lg font-semibold">{formatCurrency(product.cost ?? 0)}</p>
                             </div>
 
                             <div className="rounded-lg bg-blue-50 dark:bg-blue-900/20 p-3 border border-blue-200 dark:border-blue-800/50">
@@ -236,6 +241,23 @@ function ProductDetailDialog({
                             </div>
                         </div>
 
+                        {(product.season || product.collection) ? (
+                            <div className="rounded-lg bg-purple-50 dark:bg-purple-950/30 p-3 border border-purple-200 dark:border-purple-800/50 flex items-center justify-between gap-4">
+                                {product.season ? (
+                                    <div>
+                                        <p className="text-xs text-purple-600 dark:text-purple-400 font-medium">Temporada</p>
+                                        <p className="text-sm font-semibold">{product.season}</p>
+                                    </div>
+                                ) : null}
+                                {product.collection ? (
+                                    <div className="text-right">
+                                        <p className="text-xs text-purple-600 dark:text-purple-400 font-medium">Colección</p>
+                                        <p className="text-sm font-semibold">{product.collection}</p>
+                                    </div>
+                                ) : null}
+                            </div>
+                        ) : null}
+
                         <div className="flex items-center justify-center pt-2">
                             <Badge
                                 variant={stockStatus.variant}
@@ -258,11 +280,15 @@ function ProductDetailDialog({
 /**
  * Página de Productos - Gestión completa de productos y stock
  */
+import { VariantMatrixModal } from '@/features/products/components/VariantMatrixModal';
+
 export default function ProductsPage() {
+    const [matrixProduct, setMatrixProduct] = useState<Product | null>(null);
     const [isCreateOpen, setIsCreateOpen] = useState(false);
     const [editingProduct, setEditingProduct] = useState<Product | null>(null);
     const [viewProduct, setViewProduct] = useState<Product | null>(null);
     const [createBarcode, setCreateBarcode] = useState<string | null>(null);
+    const [cloneData, setCloneData] = useState<ProductFormValues | null>(null);
     const [isCategoryOpen, setIsCategoryOpen] = useState(false);
 
     // Estado para crear/editar categorías
@@ -422,6 +448,29 @@ export default function ProductsPage() {
         if (confirmed) {
             deleteMutation.mutate(id);
         }
+    };
+
+    const handleCloneProduct = (product: Product) => {
+        const clonedValues: ProductFormValues = {
+            name: `${product.name} (Copia)`,
+            description: product.description ?? null,
+            barcode: null,
+            isMeasure: product.isMeasure ?? false,
+            cost: product.cost ?? 0,
+            price: product.price ?? undefined,
+            stock: 0,
+            categoryId: product.categoryId ?? null,
+            isActive: true,
+            useManualPrice: product.useManualPrice ?? true,
+            useCustomMargin: product.useCustomMargin ?? false,
+            customProfitMargin: product.profitMargin ?? undefined,
+            brandName: product.brand?.name ?? null,
+            season: product.season ?? null,
+            collection: product.collection ?? null,
+        };
+        setCloneData(clonedValues);
+        setIsCreateOpen(true);
+        toast.info(`Clonando datos base de "${product.name}"`);
     };
 
     const handleCreateCategory = () => {
@@ -685,27 +734,48 @@ export default function ProductsPage() {
                     onEdit={setEditingProduct}
                     onDelete={handleDelete}
                     onView={setViewProduct}
+                    onGenerateVariants={setMatrixProduct}
+                    onClone={handleCloneProduct}
                 />
             </div>
+
+            {/* Modal de Matriz de Variantes (Indumentaria / Calzado) */}
+            {matrixProduct ? (
+                <VariantMatrixModal
+                    parentProductId={matrixProduct.id}
+                    parentProductName={matrixProduct.name}
+                    open={!!matrixProduct}
+                    onClose={() => setMatrixProduct(null)}
+                    onSuccess={() => queryClient.invalidateQueries({ queryKey: ['products'] })}
+                />
+            ) : null}
 
             {/* Modal de creación premium */}
             <FormDialog
                 open={isCreateOpen}
                 onOpenChange={(open) => {
                     setIsCreateOpen(open);
-                    if (!open) setCreateBarcode(null);
+                    if (!open) {
+                        setCreateBarcode(null);
+                        setCloneData(null);
+                    }
                 }}
-                title="Nuevo Producto"
-                description="El precio se calcula automático según la configuración o categoría"
+                title={cloneData ? "Clonar Producto / Modelo" : "Nuevo Producto"}
+                description="Cargá un producto simple o un modelo con matriz de talles y colores"
                 icon={Package}
                 variant="success"
-                maxWidth="md"
+                maxWidth="5xl"
             >
                 <ProductForm
-                    key={createBarcode ?? 'create'}
-                    initialData={createBarcode ? { ...EMPTY_CREATE_DEFAULTS, barcode: createBarcode } : undefined}
+                    key={cloneData ? `clone-${cloneData.name}` : (createBarcode ?? 'create')}
+                    initialData={cloneData ?? (createBarcode ? { ...EMPTY_CREATE_DEFAULTS, barcode: createBarcode } : undefined)}
                     onSubmit={handleCreate}
                     isLoading={createMutation.isPending}
+                    onSuccess={() => {
+                        setIsCreateOpen(false);
+                        setCreateBarcode(null);
+                        setCloneData(null);
+                    }}
                 />
             </FormDialog>
 
@@ -717,7 +787,7 @@ export default function ProductsPage() {
                 description="Modificá el costo o stock del producto"
                 icon={Package}
                 variant="success"
-                maxWidth="md"
+                maxWidth="3xl"
             >
                 {editingProduct ? (
                     <ProductForm
@@ -725,12 +795,17 @@ export default function ProductsPage() {
                             name: editingProduct.name,
                             description: editingProduct.description,
                             barcode: editingProduct.barcode ?? null,
+                            isMeasure: editingProduct.isMeasure ?? false,
                             cost: editingProduct.cost,
+                            price: editingProduct.price,
                             stock: editingProduct.stock,
                             categoryId: editingProduct.categoryId || null,
                             isActive: editingProduct.isActive,
+                            useManualPrice: editingProduct.useManualPrice ?? true,
                             useCustomMargin: editingProduct.useCustomMargin ?? false,
                             customProfitMargin: editingProduct.useCustomMargin ? editingProduct.profitMargin : undefined,
+                            season: editingProduct.season ?? null,
+                            collection: editingProduct.collection ?? null,
                         }}
                         onSubmit={handleUpdate}
                         isLoading={updateMutation.isPending}
