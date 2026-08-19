@@ -9,6 +9,7 @@ import {
     Delete,
     Query,
     UseGuards,
+    ParseUUIDPipe,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { ProductsService } from './products.service';
@@ -132,19 +133,22 @@ export class ProductsController {
 
     @Get(':id')
     @ApiOperation({ summary: 'Obtener producto por ID' })
-    findOne(@Param('id') id: string) {
+    findOne(@Param('id', new ParseUUIDPipe({ version: '4' })) id: string) {
         return this.productsService.findOne(id);
     }
 
     @Patch(':id')
     @ApiOperation({ summary: 'Actualizar producto' })
-    update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
+    update(
+        @Param('id', new ParseUUIDPipe({ version: '4' })) id: string,
+        @Body() updateProductDto: UpdateProductDto,
+    ) {
         return this.productsService.update(id, updateProductDto);
     }
 
     @Delete(':id')
     @ApiOperation({ summary: 'Eliminar producto' })
-    remove(@Param('id') id: string) {
+    remove(@Param('id', new ParseUUIDPipe({ version: '4' })) id: string) {
         return this.productsService.remove(id);
     }
 }
