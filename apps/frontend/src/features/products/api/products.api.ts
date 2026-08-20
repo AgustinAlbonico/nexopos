@@ -8,6 +8,7 @@ import {
     CreateCategoryDTO,
     UpdateCategoryDTO,
     Brand,
+    VariantAttributeOption,
     CategoryDeletionPreview,
 } from '../types';
 
@@ -30,6 +31,33 @@ export const brandsApi = {
     },
     delete: async (id: string) => {
         const response = await api.delete<{ message: string; productsAffected: number }>(`/api/brands/${id}`);
+        return response.data;
+    },
+};
+
+export const attributeOptionsApi = {
+    getAll: async (type?: 'color' | 'size'): Promise<VariantAttributeOption[]> => {
+        const response = await api.get<VariantAttributeOption[]>('/api/variant-attribute-options', { params: { type } });
+        return response.data;
+    },
+    search: async (type: 'color' | 'size', q: string): Promise<VariantAttributeOption[]> => {
+        const response = await api.get<VariantAttributeOption[]>('/api/variant-attribute-options/search', { params: { q, type } });
+        return response.data;
+    },
+    getUsageCount: async (id: string): Promise<{ usageCount: number }> => {
+        const response = await api.get<{ usageCount: number }>(`/api/variant-attribute-options/${id}/usage-count`);
+        return response.data;
+    },
+    create: async (data: { type: 'color' | 'size'; name: string; colorHex?: string | null }): Promise<VariantAttributeOption> => {
+        const response = await api.post<VariantAttributeOption>('/api/variant-attribute-options', data);
+        return response.data;
+    },
+    update: async (id: string, data: { name?: string; colorHex?: string | null }): Promise<VariantAttributeOption> => {
+        const response = await api.patch<VariantAttributeOption>(`/api/variant-attribute-options/${id}`, data);
+        return response.data;
+    },
+    delete: async (id: string): Promise<{ message: string; usageCount: number }> => {
+        const response = await api.delete<{ message: string; usageCount: number }>(`/api/variant-attribute-options/${id}`);
         return response.data;
     },
 };
