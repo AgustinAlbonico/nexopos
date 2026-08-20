@@ -11,6 +11,7 @@ import { LoginAudit } from '../src/modules/auth/entities/login-audit.entity';
 import { Product } from '../src/modules/products/entities/product.entity';
 import { Category } from '../src/modules/products/entities/category.entity';
 import { Brand } from '../src/modules/products/entities/brand.entity';
+import { VariantAttributeOption } from '../src/modules/products/entities/variant-attribute-option.entity';
 import { Sale } from '../src/modules/sales/entities/sale.entity';
 import { SaleItem } from '../src/modules/sales/entities/sale-item.entity';
 import { SalePayment } from '../src/modules/sales/entities/sale-payment.entity';
@@ -21,6 +22,9 @@ import { CustomerCategory } from '../src/modules/customers/entities/customer-cat
 import { CustomerAccount } from '../src/modules/customer-accounts/entities/customer-account.entity';
 import { AccountMovement } from '../src/modules/customer-accounts/entities/account-movement.entity';
 import { StockMovement } from '../src/modules/inventory/entities/stock-movement.entity';
+import { Location } from '../src/modules/inventory/entities/location.entity';
+import { ProductLocationStock } from '../src/modules/inventory/entities/product-location-stock.entity';
+import { StockTransfer } from '../src/modules/inventory/entities/stock-transfer.entity';
 import { PaymentMethod } from '../src/modules/configuration/entities/payment-method.entity';
 import { FiscalConfiguration } from '../src/modules/configuration/entities/fiscal-configuration.entity';
 import { SystemConfiguration } from '../src/modules/configuration/entities/system-configuration.entity';
@@ -38,16 +42,24 @@ import { PurchaseItem } from '../src/modules/purchases/entities/purchase-item.en
 import { Backup } from '../src/modules/backup/entities/backup.entity';
 import { AuditLog } from '../src/modules/audit/entities/audit-log.entity';
 
+// Configuración de la BD de tests — defaults = docker-compose.test.yml.
+// Override con env vars TEST_DB_* si Docker no está disponible.
+const TEST_DB_HOST = process.env.TEST_DB_HOST ?? 'localhost';
+const TEST_DB_PORT = Number(process.env.TEST_DB_PORT ?? 5433);
+const TEST_DB_USER = process.env.TEST_DB_USER ?? 'test';
+const TEST_DB_PASS = process.env.TEST_DB_PASS ?? 'test';
+const TEST_DB_NAME = process.env.TEST_DB_NAME ?? 'nexopos_test';
+
 export let testDataSource: DataSource;
 
 beforeAll(async () => {
     testDataSource = new DataSource({
         type: 'postgres',
-        host: 'localhost',
-        port: 5433,
-        username: 'test',
-        password: 'test',
-        database: 'nexopos_test',
+        host: TEST_DB_HOST,
+        port: TEST_DB_PORT,
+        username: TEST_DB_USER,
+        password: TEST_DB_PASS,
+        database: TEST_DB_NAME,
         entities: [
             User,
             RefreshToken,
@@ -55,6 +67,7 @@ beforeAll(async () => {
             Product,
             Category,
             Brand,
+            VariantAttributeOption,
             Sale,
             SaleItem,
             SalePayment,
@@ -65,6 +78,9 @@ beforeAll(async () => {
             CustomerAccount,
             AccountMovement,
             StockMovement,
+            Location,
+            ProductLocationStock,
+            StockTransfer,
             PaymentMethod,
             FiscalConfiguration,
             SystemConfiguration,
