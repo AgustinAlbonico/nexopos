@@ -154,4 +154,83 @@ describe('VariantAttributeOptionsService', () => {
         expect(result).toEqual(matches);
         expect(mockRepository.searchByName).toHaveBeenCalledWith('color', 'az');
     });
+
+    describe('aislamiento de rubro: STRUCTURAL.variants = false → ForbiddenException', () => {
+        beforeEach(() => {
+            jest.clearAllMocks();
+            arrangeCapabilityOff();
+        });
+
+        const expectRepoUntouched = () => {
+            expect(mockRepository.findAllByType).not.toHaveBeenCalled();
+            expect(mockRepository.findOrCreateByName).not.toHaveBeenCalled();
+            expect(mockRepository.searchByName).not.toHaveBeenCalled();
+            expect(mockRepository.findOne).not.toHaveBeenCalled();
+            expect(mockRepository.countUsage).not.toHaveBeenCalled();
+            expect(mockRepository.save).not.toHaveBeenCalled();
+            expect(mockRepository.remove).not.toHaveBeenCalled();
+        };
+
+        it('1) findAll lanza ForbiddenException y no toca el repository', async () => {
+            await expect(service.findAll('color')).rejects.toThrow(ForbiddenException);
+            expect(mockRepository.findAllByType).not.toHaveBeenCalled();
+        });
+
+        it('2) findOne lanza ForbiddenException y no toca el repository', async () => {
+            await expect(service.findOne('cualquier-id')).rejects.toThrow(ForbiddenException);
+            expect(mockRepository.findOne).not.toHaveBeenCalled();
+        });
+
+        it('3) search lanza ForbiddenException y no toca el repository', async () => {
+            await expect(service.search('color', 'az')).rejects.toThrow(ForbiddenException);
+            expect(mockRepository.searchByName).not.toHaveBeenCalled();
+        });
+
+        it('4) findOrCreate lanza ForbiddenException y no toca el repository', async () => {
+            await expect(service.findOrCreate('color', 'Negro', '#000')).rejects.toThrow(ForbiddenException);
+            expect(mockRepository.findOrCreateByName).not.toHaveBeenCalled();
+        });
+
+        it('5) create lanza ForbiddenException y no toca el repository', async () => {
+            await expect(
+                service.create({ type: 'color', name: 'Negro', colorHex: '#000' }),
+            ).rejects.toThrow(ForbiddenException);
+            expect(mockRepository.findOrCreateByName).not.toHaveBeenCalled();
+        });
+
+        it('6) update lanza ForbiddenException y no toca el repository', async () => {
+            await expect(
+                service.update('cualquier-id', { name: 'Negro' }),
+            ).rejects.toThrow(ForbiddenException);
+            expect(mockRepository.findOne).not.toHaveBeenCalled();
+            expect(mockRepository.save).not.toHaveBeenCalled();
+        });
+
+        it('7) remove lanza ForbiddenException y no toca el repository', async () => {
+            await expect(service.remove('cualquier-id')).rejects.toThrow(ForbiddenException);
+            expect(mockRepository.findOne).not.toHaveBeenCalled();
+            expect(mockRepository.countUsage).not.toHaveBeenCalled();
+            expect(mockRepository.remove).not.toHaveBeenCalled();
+        });
+
+        it('8) getUsageCount lanza ForbiddenException y no toca el repository', async () => {
+            await expect(service.getUsageCount('cualquier-id')).rejects.toThrow(ForbiddenException);
+            expect(mockRepository.findOne).not.toHaveBeenCalled();
+            expect(mockRepository.countUsage).not.toHaveBeenCalled();
+        });
+
+        it('resumen: ninguna operación del CRUD toca el repository cuando el capability está OFF', async () => {
+            await Promise.allSettled([
+                service.findAll('color'),
+                service.findOne('x'),
+                service.search('color', 'az'),
+                service.findOrCreate('color', 'Negro'),
+                service.create({ type: 'color', name: 'Negro' }),
+                service.update('x', { name: 'Negro' }),
+                service.remove('x'),
+                service.getUsageCount('x'),
+            ]);
+            expectRepoUntouched();
+        });
+    });
 });
