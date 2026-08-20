@@ -49,6 +49,7 @@ export type CapabilityKey =
 
 export type CapabilitiesManifest = Record<CapabilityKey, boolean>;
 
+
 /**
  * Servicio de configuración del sistema
  */
