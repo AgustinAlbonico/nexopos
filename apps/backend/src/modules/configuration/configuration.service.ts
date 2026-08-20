@@ -1,10 +1,28 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
+import { Injectable, ForbiddenException, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource } from 'typeorm';
 import { SystemConfiguration } from './entities/system-configuration.entity';
 import { UpdateConfigurationDto } from './dto/update-configuration.dto';
 import { Product } from '../products/entities/product.entity';
 import { Category } from '../products/entities/category.entity';
+
+/**
+ * Capacidades del motor de capabilities.
+ * Claves agrupadas por dominio; cada una se evalúa por
+ * `assertCapabilityEnabled(key)` en el servicio correspondiente.
+ *
+ * Por defecto todas están habilitadas. Para desactivarlas en runtime se
+ * persiste en `system_configuration.capabilitiesDisabled` (jsonb) — pendiente
+ * de migración. Mientras tanto, los servicios pueden mockear
+ * `getCapabilitiesManifest()` en sus tests para forzar el camino OFF.
+ */
+export type CapabilityKey =
+    | 'STRUCTURAL.variants'
+    | 'STRUCTURAL.weight'
+    | 'STRUCTURAL.expiry'
+    | (string & { readonly _brand: 'CapabilityKey' });
+
+export type CapabilitiesManifest = Record<CapabilityKey, boolean>;
 
 /**
  * Servicio de configuración del sistema
@@ -142,5 +160,26 @@ export class ConfigurationService implements OnModuleInit {
             skipped,
             skippedByCategory
         };
+    }
+
+    // ============ Motor de Capabilities ============
+
+    private readonly defaultCapabilitiesManifest: CapabilitiesManifest = {
+        'STRUCTURAL.variants': true,
+        'STRUCTURAL.weight': false,
+        'STRUCTURAL.expiry': false,
+    };
+
+    async getCapabilitiesManifest(): Promise<CapabilitiesManifest> {
+        return { ...this.defaultCapabilitiesManifest };
+    }
+
+    async assertCapabilityEnabled(capability: CapabilityKey): Promise<void> {
+        const manifest = await this.getCapabilitiesManifest();
+        if (manifest[capability] === false) {
+            throw new ForbiddenException(
+                `La capacidad "${capability}" no está habilitada para el perfil de negocio activo.`,
+            );
+        }
     }
 }
