@@ -1,0 +1,99 @@
+RUNTIME REQUIREMENTS — variant-attribute-options-catalog.spec.ts
+==================================================================
+
+Este spec NO se puede ejecutar en este host sin levantar servidores manualmente.
+Por AGENTS.md §"Servidores de desarrollo", el operador los levanta a mano.
+
+Estado actual (verificado con Test-NetConnection -Port 3000/5173):
+  - backend:3000  = DOWN (closed)
+  - frontend:5173 = DOWN (closed)
+
+PLAYWRIGHT TEST LISTING (validación estática del spec)
+======================================================
+$ npx playwright test --list e2e/tests/variant-attribute-options-catalog.spec.ts
+
+Listing tests:
+  [chromium] tests\variant-attribute-options-catalog.spec.ts:206:13
+    Catálogo de colores/talles — matriz de variantes
+    > Contrato REST (no requiere UI)
+    > GET /api/variant-attribute-options?type=color devuelve 7 colores seed
+
+  [chromium] tests\variant-attribute-options-catalog.spec.ts:220:13
+    > Contrato REST (no requiere UI)
+    > GET /api/variant-attribute-options?type=size devuelve 14 talles seed
+
+  [chromium] tests\variant-attribute-options-catalog.spec.ts:243:13
+    > UI — Modal montado vía dev server (F3 wired-up = next)
+    > Happy path: catalog loads from API (7 colors + 14 sizes from seed)
+
+  [chromium] tests\variant-attribute-options-catalog.spec.ts:265:13
+    > UI — Modal montado vía dev server (F3 wired-up = next)
+    > On-the-fly add: "Camel" + Enter aparece en chips y persiste vía REST
+
+  [chromium] tests\variant-attribute-options-catalog.spec.ts:295:13
+    > UI — Modal montado vía dev server (F3 wired-up = next)
+    > Case-insensitive dedupe: tipear "azul" cuando ya existe "Azul" NO crea duplicado
+
+  [chromium] tests\variant-attribute-options-catalog.spec.ts:331:13
+    > UI — Modal montado vía dev server (F3 wired-up = next)
+    > Delete con usage-count > 0 → AlertDialog muestra "N variantes usan este color"
+
+  [chromium] tests\variant-attribute-options-catalog.spec.ts:352:13
+    > Pre-existing gaps documentados (SKIP)
+    > SKIP — generateVariants() FE: productsApi.generateVariants is not a function
+
+  [chromium] tests\variant-attribute-options-catalog.spec.ts:360:13
+    > Pre-existing gaps documentados (SKIP)
+    > SKIP — Aislamiento por rubro: capability OFF requiere endpoint /api/configuration/manifest
+
+  [chromium] tests\variant-attribute-options-catalog.spec.ts:378:13
+    > Pre-existing gaps documentados (SKIP)
+    > SKIP — Wired-up from product form: ningún consumer abre el modal todavía
+
+Total: 9 tests in 1 file (después de filtrar el setup de auth).
+
+PREREQUISITOS para ejecución real
+==================================
+
+1. Base de datos + Redis:
+     docker compose up -d
+     # Postgres en 5432, Redis en 6379
+
+2. Backend NestJS (terminal A):
+     pnpm --filter @sistema/backend dev
+     # Default: http://localhost:3000
+     # El AppModule corre migrationsRun=true, así que la migración
+     # 1787200000000-AddVariantAttributeOptions aplica automáticamente.
+
+3. Frontend Vite (terminal B):
+     pnpm --filter @sistema/frontend dev
+     # Default: http://localhost:5173
+     # Variable VITE_API_URL=http://localhost:3000 en .env del monorepo.
+
+4. Usuario E2E sembrado por defecto:
+     - Username: admin   (env: E2E_USERNAME)
+     - Password: Admin123 (env: E2E_PASSWORD)
+
+5. Ejecutar:
+     pnpm --filter @sistema/frontend exec playwright test \
+       e2e/tests/variant-attribute-options-catalog.spec.ts --project=chromium
+
+   El spec:
+     a) probeServers() detecta backend:3000 y frontend:5173.
+     b) loginBackend() hace POST /api/auth/login y obtiene Bearer.
+     c) test.beforeAll() llama test.skip() si alguno falla.
+     d) Contrato REST: 2 tests pasan contra backend real (no requiere UI).
+     e) UI: 4 tests montan el modal vía dynamic import del Vite dev server
+        (path /src/features/products/components/VariantMatrixModal).
+     f) Pre-existing gaps: 3 tests con test.skip(true) documentando G1/G2/G3.
+
+QUÉ PASA SI SE EJECUTA AHORA (dev servers caídos)
+=================================================
+
+Test run: skipping all tests via test.beforeAll → test.skip()
+Output esperado (resumen):
+  9 skipped (dev servers not running)
+  0 failed
+  0 passed
+
+Esto es lo correcto: el spec detecta el entorno y NO inicia servidores.
