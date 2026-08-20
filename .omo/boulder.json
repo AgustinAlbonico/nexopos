@@ -1,0 +1,28 @@
+{
+  "schema_version": 2,
+  "active_work_id": null,
+  "works": {
+    "bm-colores-talles-cddb7fd9": {
+      "work_id": "bm-colores-talles-cddb7fd9",
+      "active_plan": "C:\\Proyectos\\punto_de_venta\\.omo\\plans\\bm-colores-talles.md",
+      "plan_name": "bm-colores-talles",
+      "status": "completed",
+      "started_at": "2026-08-20T00:50:33.827Z",
+      "updated_at": "2026-08-20T02:30:00.000Z",
+      "ended_at": "2026-08-20T02:30:00.000Z",
+      "elapsed_ms": 5952000,
+      "session_ids": [
+        "opencode:ses_fe35a09f0ffexqybD1sF4R9NWo",
+        "opencode:ses_fe35649d0ffe8mza74TWSC70No"
+      ],
+      "session_origins": {
+        "opencode:ses_fe35a09f0ffexqybD1sF4R9NWo": "direct",
+        "opencode:ses_fe35649d0ffe8mza74TWSC70No": "direct"
+      },
+      "agent": "atlas",
+      "worktree_path": null,
+      "task_sessions": {},
+      "completion_note": "Todos 1-7 completados y mergeados a main (commits 9beaf46..1d56a78, merges 6685851/464613c). F1/F2/F4 APPROVE con evidencia en .omo/evidence/. F3 bloqueado: requiere dev servers levantados por el usuario (AGENTS.md lo prohíbe al agente) y el modal es huérfano (gap G2 pre-existente). Worktree eliminado a pedido del usuario; trabajo restaurado del stash y commiteado en main @ 74b6901 (push a origin)."
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "stage": "S3 - Returns & retail primitives",
+  "date": "2026-08-11",
+  "verdict": "implementation_complete_runtime_qa_blocked",
+  "implementation": {
+    "T12": "Sale returns implement draft/preview/commit/cancel/receipt behavior with transactional stock, cash, and account effects.",
+    "T13": "Credit notes support fiscal and non-fiscal returns, AFIP associated documents, and NC A/B/C codes 3/8/13.",
+    "T14": "Sellable packs and bundles apply deterministic inventory effects, including return reversal.",
+    "T15": "Typed promotion primitives and auditable reasons are implemented without premature persistence or policy enforcement."
+  },
+  "verification": {
+    "backendUnit": "68/68 suites and 1250/1250 tests pass",
+    "migrationConsistency": "included in backend unit gate and passes",
+    "backendBuild": "passed",
+    "frontendReturnDialog": "1/1 focused Vitest test passes",
+    "frontendBuild": "passed",
+    "frontendDiagnostics": "LSP reports no diagnostics in six modified sales files",
+    "reactDoctor": "No errors after correcting the missing RotateCcw import; two existing/useReducer-style warnings remain",
+    "frontendFullSuite": "blocked: one benchmark requires a user-managed backend at http://localhost:3000/api/health; it fails with ECONNREFUSED because no backend server is running",
+    "visualQA": "blocked: no user-managed frontend server was available; project rules prohibit starting Vite automatically"
+  },
+  "softFindings": [
+    "The full frontend suite cannot be treated as green while its HTTP benchmark requires a backend server that project rules reserve for the user to start.",
+    "Visual browser QA remains required once a user-managed frontend server is available.",
+    "React Doctor reports two non-blocking prefer-useReducer warnings in SalesPage and SettingsPage; no undefined JSX errors remain."
+  ],
+  "migrations": [
+    "1786405840943-S3AddSaleReturnFoundations.ts (sale_returns + sale_return_items)",
+    "1786405840944-S3AddCreditNotes.ts (credit_notes)",
+    "1786405840946-S3AddSellablePacksAndBundles.ts (product packs and bundles)"
+  ],
+  "nextAction": "When the user starts backend and frontend servers, run the HTTP benchmark and visual QA to close the remaining runtime verification blockers."
+}

@@ -1,0 +1,53 @@
+{
+  "task": "T1 - Lock legacy behavior and checkout performance baseline",
+  "date": "2026-08-10",
+  "status": "blocked",
+  "regressionChecks": {
+    "backendUnit": {
+      "status": "passed",
+      "suites": 7,
+      "tests": 199,
+      "command": "npm run test:unit -- --runTestsByPath src/modules/products/products.service.spec.ts src/modules/sales/sales.service.spec.ts src/modules/inventory/inventory.service.spec.ts src/modules/configuration/capabilities.spec.ts src/modules/configuration/configuration.service.spec.ts src/modules/configuration/configuration.controller.spec.ts src/migrations.consistency.spec.ts"
+    },
+    "frontend": {
+      "status": "passed",
+      "files": 7,
+      "tests": 32,
+      "command": "npm test -- --run src/features/sales/components/SaleForm.spec.tsx src/hooks/useBarcodeScanner.spec.ts src/pages/settings/CapabilitiesTab.spec.tsx src/components/ProtectedRoute.spec.tsx src/components/Sidebar.spec.tsx src/hooks/useCapabilities.spec.tsx src/App.spec.tsx"
+    }
+  },
+  "benchmark": {
+    "status": "measured",
+    "method": "In-process Vitest + Node performance hooks",
+    "spec": "apps/frontend/src/hooks/useBarcodeScanner.benchmark.spec.tsx",
+    "backendUrl": "http://localhost:3000/api/health",
+    "frontendProcess": "5173",
+    "scanToLine": {
+      "iterations": 1000,
+      "p50Ms": 40.52,
+      "p95Ms": 41.51,
+      "maxMs": 44.12,
+      "meanMs": 40.62,
+      "budgetMs": 300,
+      "status": "pass"
+    },
+    "twentyLineRecalculation": {
+      "iterations": 1000,
+      "p50Ms": 0.0002,
+      "p95Ms": 0.0005,
+      "maxMs": 0.0177,
+      "meanMs": 0.0003,
+      "budgetMs": 100,
+      "status": "pass"
+    },
+    "localSubmit": {
+      "iterations": 100,
+      "p50Ms": 0.65,
+      "p95Ms": 1.30,
+      "maxMs": 2.83,
+      "meanMs": 0.74,
+      "budgetMs": 2000,
+      "status": "pass"
+    }
+  }
+}

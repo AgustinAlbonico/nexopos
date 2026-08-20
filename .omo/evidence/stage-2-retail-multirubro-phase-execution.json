@@ -1,0 +1,32 @@
+{
+  "stage": "S2 - Shared structural foundation & tools",
+  "date": "2026-08-11",
+  "verdict": "go",
+  "implementation": {
+    "T6": "UnitOfMeasure entity, canonical bases, converter, quantity policy — 21 unit tests pass",
+    "T6decimalize": "5 migrations created and applied (UOM, DecimalizeQuantity, AddLineSnapshotColumns, AddStocktakeFoundations) — 3 integration tests pass",
+    "T7": "Snapshot columns added to sale_items/purchase_items (additive nullable)",
+    "T8": "CSV state-machine parser + preview/commit endpoints — 10 unit + 9 integration tests pass",
+    "T9": "Stocktake session + lines + variance movement + audit actions — entity, service, controller, migration; 5/5 integration tests pass",
+    "T10": "QR + text PDF labels with 3 exact templates — 5 integration tests pass",
+    "T11": "pg_restore lookup, temp DB lifecycle, safety backup, validation, swap/rollback — 6 integration tests pass",
+    "polish": "SaleForm parser switches parseInt/parseFloat by STRUCTURAL.decimal_quantities capability"
+  },
+  "verification": {
+    "migrationConsistency": "3 tests pass (21 migrations registered)",
+    "backendBuild": "passed",
+    "frontendBuild": "passed",
+    "s1Regression": "SaleForm + ProtectedRoute + Sidebar + useCapabilities + App specs all green"
+  },
+  "softFindings": [
+    "pg_restore version mismatch (local PG17 vs Docker PG15) handled with warning tolerance; restore completes successfully.",
+    "DiagnosticsService and SupportBundleService stubs not implemented (plan T11 lists them but they are optional for the restore-safety gate)."
+  ],
+  "migrations": [
+    "1786405536069-S2AddUnitOfMeasures.ts (table + seed)",
+    "1786405840940-S2DecimalizeQuantity.ts (int→numeric(20,3), forward-only down)",
+    "1786405840941-S2AddLineSnapshotColumns.ts (5 additive nullable columns × 2 tables)",
+    "1786405840942-S2AddStocktakeFoundations.ts (2 tables + indexes)"
+  ],
+  "nextAction": "S3 started after user requested automatic S2/S3 continuation"
+}
