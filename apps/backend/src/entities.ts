@@ -49,7 +49,6 @@ import { StockTransfer } from './modules/inventory/entities/stock-transfer.entit
 import { Category } from './modules/products/entities/category.entity';
 import { Product } from './modules/products/entities/product.entity';
 import { Brand } from './modules/products/entities/brand.entity';
-import { VariantAttributeOption } from './modules/products/entities/variant-attribute-option.entity';
 
 // Purchases
 import { PurchaseItem } from './modules/purchases/entities/purchase-item.entity';
@@ -94,7 +93,6 @@ export const entities = [
     Category,
     Product,
     Brand,
-    VariantAttributeOption,
     PurchaseItem,
     Purchase,
     Invoice,

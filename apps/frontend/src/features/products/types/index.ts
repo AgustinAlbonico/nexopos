@@ -3,15 +3,6 @@ export interface Brand {
     name: string;
 }
 
-export interface VariantAttributeOption {
-    id: string;
-    type: 'color' | 'size';
-    name: string;
-    colorHex: string | null;
-    createdAt: string;
-    updatedAt: string;
-}
-
 export interface Product {
     id: string;
     name: string;

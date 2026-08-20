@@ -39,7 +39,6 @@ import { AddUniqueSkuAndBarcodeConstraints1786405840955 } from './migrations/178
 import { AddApparelProductColumns1786405840956 } from './migrations/1786405840956-AddApparelProductColumns';
 import { AddUserRoleColumn1786405840957 } from './migrations/1786405840957-AddUserRoleColumn';
 import { AddApparelAdvancedFeatures1786405840958 } from './migrations/1786405840958-AddApparelAdvancedFeatures';
-import { AddVariantAttributeOptions1787200000000 } from './migrations/1787200000000-AddVariantAttributeOptions';
 
 export const migrations: (new () => MigrationInterface)[] = [
     InitialSchema1734450000000,
@@ -79,5 +78,4 @@ export const migrations: (new () => MigrationInterface)[] = [
     AddApparelProductColumns1786405840956,
     AddUserRoleColumn1786405840957,
     AddApparelAdvancedFeatures1786405840958,
-    AddVariantAttributeOptions1787200000000,
 ];

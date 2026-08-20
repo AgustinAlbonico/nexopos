@@ -16,14 +16,9 @@ import { BrandsController } from './brands.controller';
 import { BrandsService } from './brands.service';
 import { BrandsRepository } from './brands.repository';
 
-import { VariantAttributeOption } from './entities/variant-attribute-option.entity';
-import { VariantAttributeOptionsController } from './variant-attribute-options.controller';
-import { VariantAttributeOptionsService } from './variant-attribute-options.service';
-import { VariantAttributeOptionsRepository } from './variant-attribute-options.repository';
-
 @Module({
     imports: [
-        TypeOrmModule.forFeature([Product, Category, Brand, VariantAttributeOption]),
+        TypeOrmModule.forFeature([Product, Category, Brand]),
         ConfigurationModule,
         forwardRef(() => InventoryModule),
     ],
@@ -31,7 +26,6 @@ import { VariantAttributeOptionsRepository } from './variant-attribute-options.r
         ProductsController,
         CategoriesController,
         BrandsController,
-        VariantAttributeOptionsController,
     ],
     providers: [
         ProductsService,
@@ -40,14 +34,11 @@ import { VariantAttributeOptionsRepository } from './variant-attribute-options.r
         CategoriesRepository,
         BrandsService,
         BrandsRepository,
-        VariantAttributeOptionsService,
-        VariantAttributeOptionsRepository,
     ],
     exports: [
         ProductsService,
         CategoriesService,
         BrandsService,
-        VariantAttributeOptionsService,
     ],
 })
 export class ProductsModule { }
