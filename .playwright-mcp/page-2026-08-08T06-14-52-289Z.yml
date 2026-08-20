@@ -1,0 +1,265 @@
+- generic [active] [ref=f10e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=f10e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=f10e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=f10e8]:
+    - search [ref=f10e9]:
+      - generic [ref=f10e12]:
+        - link [ref=f10e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=f10e14]
+        - generic [ref=f10e19]:
+          - combobox "Buscar" [ref=f10e22]: site:incaa.gob.ar informe anual cines Argentina 2026 site:incaa.gob.ar informe anual cines Argentina 2026
+          - generic [ref=f10e23]:
+            - button "Borrar" [ref=f10e25] [cursor=pointer]
+            - generic [ref=f10e30]:
+              - button "Búsqueda por voz" [ref=f10e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=f10e34] [cursor=pointer]
+        - button "Buscar" [ref=f10e37] [cursor=pointer]
+    - generic [ref=f10e42]:
+      - button "Configuración" [ref=f10e44] [cursor=pointer]
+      - button "Compartir" [ref=f10e50] [cursor=pointer]
+      - generic [ref=f10e56]:
+        - button "Aplicaciones de Google" [ref=f10e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=f10e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3Dsite%253Aincaa.gob.ar%2Binforme%2Banual%2Bcines%2BArgentina%2B2026&ec=futura_srp_og_si_72236_p
+  - generic [ref=f10e65]:
+    - navigation [ref=f10e71]:
+      - generic [ref=f10e77]:
+        - list [ref=f10e78]:
+          - listitem [ref=f10e79]:
+            - link "Modo IA" [ref=f10e82] [cursor=pointer]:
+              - /url: /search?q=site:incaa.gob.ar+informe+anual+cines+Argentina+2026&sca_esv=0096a2a1340d2922&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQ2J8OegQIExAD
+          - listitem [ref=f10e86]:
+            - link "Todo" [disabled] [ref=f10e87]
+          - listitem [ref=f10e90]:
+            - link "Noticias" [ref=f10e91] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&q=site:incaa.gob.ar+informe+anual+cines+Argentina+2026&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&sa=X&ved=2ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQ0pQJegQIGRAB
+          - listitem [ref=f10e94]:
+            - link "Imágenes" [ref=f10e95] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&q=site:incaa.gob.ar+informe+anual+cines+Argentina+2026&sa=X&ved=2ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQtKgLegQIFRAB
+          - listitem [ref=f10e98]:
+            - link "Vídeos" [ref=f10e99] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&q=site:incaa.gob.ar+informe+anual+cines+Argentina+2026&sa=X&ved=2ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQtKgLegQIFhAB
+          - listitem [ref=f10e102]:
+            - link "Shopping" [ref=f10e103] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&q=site:incaa.gob.ar+informe+anual+cines+Argentina+2026&ved=1t:220175&ictx=111
+          - listitem [ref=f10e106]:
+            - link "Vídeos cortos" [ref=f10e107] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&q=site:incaa.gob.ar+informe+anual+cines+Argentina+2026&sa=X&ved=2ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQs6gLegQIGBAB
+          - listitem [ref=f10e110]:
+            - button [ref=f10e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=f10e112]: Más
+        - button "Herramientas" [ref=f10e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=f10e126]
+    - main [ref=f10e132]:
+      - generic [ref=f10e136]:
+        - generic [ref=f10e139]:
+          - heading "Resultados web" [level=2] [ref=f10e140]
+          - generic [ref=f10e141]:
+            - generic [ref=f10e144]:
+              - link "Espectadores semanales por Provincia INCAA https://fiscalizacion.incaa.gob.ar › index_estadisticas" [ref=f10e146] [cursor=pointer]:
+                - /url: https://fiscalizacion.incaa.gob.ar/index_estadisticas.php
+                - heading "Espectadores semanales por Provincia" [level=3] [ref=f10e147]
+                - generic [ref=f10e153]:
+                  - generic [ref=f10e154]: INCAA
+                  - generic [ref=f10e156]: https://fiscalizacion.incaa.gob.ar › index_estadisticas
+              - button "Acerca de este resultado" [ref=f10e160] [cursor=pointer]
+            - generic [ref=f10e167]:
+              - text: Evolución espectadores · Espectadores semanales por Provincia ·
+              - emphasis [ref=f10e168]: Informe
+              - text: "Semanal. Datos actualizados al: 5/8/"
+              - emphasis [ref=f10e169]: "2026"
+              - text: 2:05:35 p. m.
+            - generic [ref=f10e171]:
+              - text: "Falta(n): anual ‎| Realizar una búsqueda con lo siguiente:"
+              - link "anual" [ref=f10e172] [cursor=pointer]:
+                - /url: /search?sca_esv=0096a2a1340d2922&q=site:incaa.gob.ar+informe+%22anual%22+cines+Argentina+2026&sa=X&ved=2ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQ5t4CegQILRAB
+        - generic [ref=f10e176]:
+          - generic [ref=f10e179]:
+            - link "Películas estrenadas INCAA https://fiscalizacion.incaa.gob.ar › index_estadisticas_pe..." [ref=f10e181] [cursor=pointer]:
+              - /url: https://fiscalizacion.incaa.gob.ar/index_estadisticas_peliculas.php
+              - heading "Películas estrenadas" [level=3] [ref=f10e182]
+              - generic [ref=f10e188]:
+                - generic [ref=f10e189]: INCAA
+                - generic [ref=f10e191]: https://fiscalizacion.incaa.gob.ar › index_estadisticas_pe...
+            - button "Acerca de este resultado" [ref=f10e195] [cursor=pointer]
+          - generic [ref=f10e202]:
+            - text: "Películas estrenadas: Extranjeras, Festivales, Muestras y Otros, Nacionales. Año de estreno:"
+            - emphasis [ref=f10e203]: "2026"
+            - text: ". Datos actualizados al: 8/5/"
+            - emphasis [ref=f10e204]: "2026"
+            - text: 2:06:59 PM · Total entradas ...
+          - generic [ref=f10e206]:
+            - text: "Falta(n): anual ‎| Realizar una búsqueda con lo siguiente:"
+            - link "anual" [ref=f10e207] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&q=site:incaa.gob.ar+informe+%22anual%22+cines+Argentina+2026&sa=X&ved=2ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQ5t4CegQILhAB
+        - generic [ref=f10e211]:
+          - generic [ref=f10e214]:
+            - link "Resumen consolidado de Informes de Auditoría 2026 ... INCAA https://www.incaa.gob.ar › uploads › 2026/07" [ref=f10e216] [cursor=pointer]:
+              - /url: https://www.incaa.gob.ar/wp-content/uploads/2026/07/Resumen_Consolidado_Informes_2026_UAI_INCAA-Junio_2026.pdf
+              - heading "Resumen consolidado de Informes de Auditoría 2026 ..." [level=3] [ref=f10e217]
+              - generic [ref=f10e223]:
+                - generic [ref=f10e224]: INCAA
+                - generic [ref=f10e226]: https://www.incaa.gob.ar › uploads › 2026/07
+            - generic [ref=f10e228]: PDF
+            - button "Acerca de este resultado" [ref=f10e231] [cursor=pointer]
+          - generic [ref=f10e237]:
+            - generic [ref=f10e238]: 30 jun 2026 —
+            - generic [ref=f10e239]:
+              - emphasis [ref=f10e240]: INFORME
+              - text: DE AUDITORIA N° 01/
+              - emphasis [ref=f10e241]: "2026"
+              - text: “CIERRE DE EJERCICIO 2025”. Tipo de
+              - emphasis [ref=f10e242]: Informe
+              - text: ": Planificado. Tipo de Actividad: Apoyo."
+        - generic [ref=f10e246]:
+          - generic [ref=f10e249]:
+            - link "PLAN ANUAL DE AUDITORÍA 2026 INCAA https://www.incaa.gob.ar › uploads › 2026/02" [ref=f10e251] [cursor=pointer]:
+              - /url: https://www.incaa.gob.ar/wp-content/uploads/2026/02/PAT-2026-UAI-INCAA-IF-2025-127470943-APN-UAIINCAA.pdf
+              - heading "PLAN ANUAL DE AUDITORÍA 2026" [level=3] [ref=f10e252]
+              - generic [ref=f10e258]:
+                - generic [ref=f10e259]: INCAA
+                - generic [ref=f10e261]: https://www.incaa.gob.ar › uploads › 2026/02
+            - generic [ref=f10e263]: PDF
+            - button "Acerca de este resultado" [ref=f10e266] [cursor=pointer]
+          - generic [ref=f10e271]:
+            - generic [ref=f10e272]:
+              - generic [ref=f10e273]: 15 feb 2026 —
+              - generic [ref=f10e274]:
+                - emphasis [ref=f10e275]: INTRODUCCIÓN
+                - text: . El Plan Anual de Trabajo 2026 de la Unidad de Auditoría Interna del Instituto Nacional de Cine y Artes Audiovisuales, ...
+            - generic [ref=f10e276]: 51 páginas
+        - generic [ref=f10e280]:
+          - generic [ref=f10e283]:
+            - link "Fiscalización - Instituto Nacional de Cine y Artes Audiovisuales INCAA https://fiscalizacion.incaa.gob.ar › index_informe_sema..." [ref=f10e285] [cursor=pointer]:
+              - /url: https://fiscalizacion.incaa.gob.ar/index_informe_semanal_199.php
+              - heading "Fiscalización - Instituto Nacional de Cine y Artes Audiovisuales" [level=3] [ref=f10e286]
+              - generic [ref=f10e292]:
+                - generic [ref=f10e293]: INCAA
+                - generic [ref=f10e295]: https://fiscalizacion.incaa.gob.ar › index_informe_sema...
+            - button "Acerca de este resultado" [ref=f10e299] [cursor=pointer]
+          - generic [ref=f10e306]:
+            - text: El
+            - emphasis [ref=f10e307]: informe
+            - text: semanal surge de la Declaraciones Juradas efectuadas por los Exhibidores y realiza un corte a la fecha de realización. Para acceder a un
+            - emphasis [ref=f10e308]: informe
+            - text: ...
+        - generic [ref=f10e312]:
+          - generic [ref=f10e315]:
+            - link "Cantidad de espectadores por película estrenada INCAA https://www.incaa.gob.ar › cantidad-de-espectadores-po..." [ref=f10e317] [cursor=pointer]:
+              - /url: https://www.incaa.gob.ar/cantidad-de-espectadores-por-pelicula-estrenada/
+              - heading "Cantidad de espectadores por película estrenada" [level=3] [ref=f10e318]
+              - generic [ref=f10e324]:
+                - generic [ref=f10e325]: INCAA
+                - generic [ref=f10e327]: https://www.incaa.gob.ar › cantidad-de-espectadores-po...
+            - button "Acerca de este resultado" [ref=f10e331] [cursor=pointer]
+          - generic [ref=f10e338]:
+            - text: "Películas estrenadas: Extranjeras, Festivales, Muestras y Otros, Nacionales. Año de estreno:"
+            - emphasis [ref=f10e339]: "2026"
+            - text: ". Datos actualizados al: 8/6/"
+            - emphasis [ref=f10e340]: "2026"
+            - text: 12:43:39 PM · Total entradas ...
+          - generic [ref=f10e342]:
+            - text: "Falta(n): anual ‎| Realizar una búsqueda con lo siguiente:"
+            - link "anual" [ref=f10e343] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&q=site:incaa.gob.ar+informe+%22anual%22+cines+Argentina+2026&sa=X&ved=2ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQ5t4CegQILBAB
+        - generic [ref=f10e347]:
+          - generic [ref=f10e350]:
+            - link "concurso ópera prima y segundas películas regional - 2026 INCAA https://www.incaa.gob.ar › uploads › 2026/05" [ref=f10e352] [cursor=pointer]:
+              - /url: https://www.incaa.gob.ar/wp-content/uploads/2026/05/IF-2026-56175366-APN-SGPINCAA-ANEXO-I-Concurso-Opera-Prima-y-Segundas-Peliculas-Regional-2026.pdf
+              - heading "concurso ópera prima y segundas películas regional - 2026" [level=3] [ref=f10e353]
+              - generic [ref=f10e359]:
+                - generic [ref=f10e360]: INCAA
+                - generic [ref=f10e362]: https://www.incaa.gob.ar › uploads › 2026/05
+            - generic [ref=f10e364]: PDF
+            - button "Acerca de este resultado" [ref=f10e367] [cursor=pointer]
+          - generic [ref=f10e372]:
+            - generic [ref=f10e374]:
+              - text: ARTÍCULO 1º.- EL INSTITUTO NACIONAL DE
+              - emphasis [ref=f10e375]: CINE
+              - text: Y ARTES AUDIOVISUALES (el “INCAA”), a través de la. Gerencia de Políticas Públicas, convoca a PRODUCTORES de ...
+            - generic [ref=f10e376]: 12 páginas
+        - generic [ref=f10e380]:
+          - generic [ref=f10e383]:
+            - link "República Argentina - Poder Ejecutivo Nacional Año de la ... INCAA https://www.incaa.gob.ar › uploads › 2026/07" [ref=f10e385] [cursor=pointer]:
+              - /url: https://www.incaa.gob.ar/wp-content/uploads/2026/07/Anexo1-RESOL-2026-255-APN-INCAASC.pdf
+              - heading "República Argentina - Poder Ejecutivo Nacional Año de la ..." [level=3] [ref=f10e386]
+              - generic [ref=f10e392]:
+                - generic [ref=f10e393]: INCAA
+                - generic [ref=f10e395]: https://www.incaa.gob.ar › uploads › 2026/07
+            - generic [ref=f10e397]: PDF
+            - button "Acerca de este resultado" [ref=f10e400] [cursor=pointer]
+          - generic [ref=f10e405]:
+            - generic [ref=f10e406]:
+              - generic [ref=f10e407]: 1 jul 2026 —
+              - generic [ref=f10e408]:
+                - text: ARTÍCULO 1º.- EL INSTITUTO NACIONAL DE
+                - emphasis [ref=f10e409]: CINE
+                - text: Y ARTES AUDIOVISUALES (el “INCAA”), a través de la. Gerencia de Políticas Públicas, ...
+            - generic [ref=f10e410]: 9 páginas
+        - generic [ref=f10e414]:
+          - generic [ref=f10e417]:
+            - link "Fiscalización - Instituto Nacional de Cine y Artes Audiovisuales INCAA https://fiscalizacion.incaa.gob.ar › index_registro_renov..." [ref=f10e419] [cursor=pointer]:
+              - /url: https://fiscalizacion.incaa.gob.ar/index_registro_renovacion_por_internet.php
+              - heading "Fiscalización - Instituto Nacional de Cine y Artes Audiovisuales" [level=3] [ref=f10e420]
+              - generic [ref=f10e426]:
+                - generic [ref=f10e427]: INCAA
+                - generic [ref=f10e429]: https://fiscalizacion.incaa.gob.ar › index_registro_renov...
+            - button "Acerca de este resultado" [ref=f10e433] [cursor=pointer]
+          - generic [ref=f10e438]: "Como envío la documentación: Toda la documentación debe ser enviada desde la dirección de correo electrónico declarada en los formularios de su última ..."
+        - generic [ref=f10e443]:
+          - generic [ref=f10e446]:
+            - 'link "Referencia: EX-2026-05446915- -APN-SGTYC# ... INCAA https://www.incaa.gob.ar › presupuesto-2026" [ref=f10e448] [cursor=pointer]':
+              - /url: https://www.incaa.gob.ar/wp-content/uploads/2026/06/presupuesto-2026.pdf
+              - 'heading "Referencia: EX-2026-05446915- -APN-SGTYC# ..." [level=3] [ref=f10e449]'
+              - generic [ref=f10e455]:
+                - generic [ref=f10e456]: INCAA
+                - generic [ref=f10e458]: https://www.incaa.gob.ar › presupuesto-2026
+            - generic [ref=f10e460]: PDF
+            - button "Acerca de este resultado" [ref=f10e463] [cursor=pointer]
+          - generic [ref=f10e470]:
+            - text: para el ejercicio
+            - emphasis [ref=f10e471]: "2026"
+            - text: del INSTITUTO NACIONAL DE
+            - emphasis [ref=f10e472]: CINE
+            - text: Y ARTES AUDIOVISUALES que obra en el. ANEXO identificado con N° GDE IF-
+            - emphasis [ref=f10e473]: "2026"
+            - text: "-05795635-APN-SGGPYF#INCAA."
+      - navigation [ref=f10e476]:
+        - heading "Navegación de páginas" [level=1] [ref=f10e477]
+        - text: "1"
+        - link "Page 2" [ref=f10e480] [cursor=pointer]:
+          - /url: /search?q=site:incaa.gob.ar+informe+anual+cines+Argentina+2026&sca_esv=0096a2a1340d2922&ei=XMl2avd6q6vWxA-EocjQAg&start=10&sa=N&sstk=AU9db-A7lvSI_lzZ48VPAfd5XT8r_7pMDXilZIwxjnHtPJP6rn5ggeT_hhOXaZW1kQfOtkRQvWY-UtTxQPf_QDlsiyXS_q7KykZihA&ved=2ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQ8tMDegQILxAE
+          - text: "2"
+        - link "Page 3" [ref=f10e482] [cursor=pointer]:
+          - /url: /search?q=site:incaa.gob.ar+informe+anual+cines+Argentina+2026&sca_esv=0096a2a1340d2922&ei=XMl2avd6q6vWxA-EocjQAg&start=20&sa=N&sstk=AU9db-A7lvSI_lzZ48VPAfd5XT8r_7pMDXilZIwxjnHtPJP6rn5ggeT_hhOXaZW1kQfOtkRQvWY-UtTxQPf_QDlsiyXS_q7KykZihA&ved=2ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQ8tMDegQILxAG
+          - text: "3"
+        - heading [level=2] [ref=f10e484]:
+          - link "Siguiente" [ref=f10e485] [cursor=pointer]:
+            - /url: /search?q=site:incaa.gob.ar+informe+anual+cines+Argentina+2026&sca_esv=0096a2a1340d2922&ei=XMl2avd6q6vWxA-EocjQAg&start=10&sa=N&sstk=AU9db-A7lvSI_lzZ48VPAfd5XT8r_7pMDXilZIwxjnHtPJP6rn5ggeT_hhOXaZW1kQfOtkRQvWY-UtTxQPf_QDlsiyXS_q7KykZihA&ved=2ahUKEwj3mIHQsJCWAxWrlZUCHYQQEioQ8NMDegQILxAI
+      - navigation
+    - contentinfo [ref=f10e488]:
+      - heading "Vínculos a pie de página" [level=1] [ref=f10e489]
+      - generic [ref=f10e493]:
+        - generic [ref=f10e495]:
+          - text: Argentina
+          - generic [ref=f10e497]:
+            - button "Iriondo, Santa Fe - Según tu actividad anterior" [ref=f10e499] [cursor=pointer]:
+              - generic [ref=f10e500]: Iriondo, Santa Fe
+              - generic [ref=f10e502]:
+                - text: "-"
+                - generic [ref=f10e503]: Según tu actividad anterior
+            - text: "-"
+            - button "Actualizar ubicación" [ref=f10e505] [cursor=pointer]
+        - generic [ref=f10e508]:
+          - link "Ayuda" [ref=f10e509] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=f10e510] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=f10e511] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=f10e512] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

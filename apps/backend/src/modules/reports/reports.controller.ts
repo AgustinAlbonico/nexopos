@@ -7,16 +7,34 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { ReportsService } from './reports.service';
 import { ReportFiltersDto, TopProductsFiltersDto, TopCustomersFiltersDto, ProductsByIdReportDto } from './dto';
 
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { UserRole } from '../auth/entities/user.entity';
+
 @Controller('reports')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles(UserRole.ADMIN, UserRole.MANAGER)
 export class ReportsController {
     constructor(private readonly reportsService: ReportsService) {}
+
+    /**
+     * GET /api/reports/apparel
+     * Obtiene indicadores específicos de indumentaria (curva de talles, sell-through, colores, curvas rotas)
+     */
+    @Get('apparel')
+    getApparelMetrics(@Query() filters: ReportFiltersDto) {
+        return this.reportsService.getApparelMetrics(
+            filters.startDate,
+            filters.endDate
+        );
+    }
 
     /**
      * GET /api/reports/dashboard
      * Obtiene resumen del dashboard con métricas clave
      */
     @Get('dashboard')
+    @Roles(UserRole.ADMIN, UserRole.MANAGER, UserRole.CASHIER)
     getDashboardSummary() {
         return this.reportsService.getDashboardSummary();
     }
@@ -139,5 +157,18 @@ export class ReportsController {
             filters.startDate,
             filters.endDate
         );
+    }
+
+    /**
+     * GET /api/reports/seller-commissions
+     * Reporte de comisiones por vendedor
+     */
+    @Get('seller-commissions')
+    getSellerCommissions(
+        @Query('startDate') startDate?: string,
+        @Query('endDate') endDate?: string,
+        @Query('commissionRate') commissionRate?: number,
+    ) {
+        return this.reportsService.getSellerCommissions(startDate, endDate, commissionRate ? Number(commissionRate) : 3);
     }
 }

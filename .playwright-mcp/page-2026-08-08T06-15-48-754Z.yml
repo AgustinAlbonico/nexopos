@@ -1,0 +1,10 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "Mercado Pago" [ref=e4] [cursor=pointer]:
+      - /url: https://www.mercadopago.com.ar
+      - img "Mercado Pago" [ref=e5]
+  - main [ref=e6]:
+    - heading "Esta página no existe" [level=1] [ref=e21]
+    - paragraph [ref=e22]: Volvé al inicio y seguí navegando.
+    - link "Ir al inicio" [ref=e23] [cursor=pointer]:
+      - /url: https://www.mercadopago.com.ar

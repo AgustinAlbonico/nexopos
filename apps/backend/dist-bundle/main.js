@@ -230,6 +230,127 @@ module.exports = /*#__PURE__*/function () {
 
 /***/ },
 
+/***/ 220
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AddStockSectorizadoConfig1772000000000 = void 0;
+/**
+ * Migración: AddStockSectorizadoConfig
+ *
+ * Agrega a `system_configuration` los campos que el modo sectorizado necesita:
+ *  - `stockSectorizado` (boolean default false) — interruptor global del modo.
+ *  - `primarySaleLocationId` (uuid FK a locations, nullable) — ubicación que
+ *    abastece ventas; seteada por el ActivationService al activar el modo.
+ *  - `defaultReceiveLocationId` (uuid FK a locations, nullable) — destino
+ *    predeterminado de compras; seteada por el ActivationService.
+ *  - `stockMinimoVenta` (int default 5) — mínimo de reposición del salón;
+ *    distinto del `minStockAlert` global (umbral de compra).
+ *
+ * Idempotente: cada cambio se aplica solo si la columna no existe. `down`
+ * revierte en orden inverso y respeta las FKs que dependen de las columnas.
+ */
+class AddStockSectorizadoConfig1772000000000 {
+    name = 'AddStockSectorizadoConfig1772000000000';
+    async columnExists(queryRunner, tableName, columnName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.columns
+                WHERE table_schema = 'public'
+                AND table_name = '${tableName}'
+                AND column_name = '${columnName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async constraintExists(queryRunner, constraintName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.table_constraints
+                WHERE constraint_schema = 'public'
+                AND constraint_name = '${constraintName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async up(queryRunner) {
+        // 1. stockSectorizado
+        if (!await this.columnExists(queryRunner, 'system_configuration', 'stockSectorizado')) {
+            await queryRunner.query(`
+                ALTER TABLE "system_configuration"
+                ADD COLUMN "stockSectorizado" boolean NOT NULL DEFAULT false
+            `);
+        }
+        // 2. primarySaleLocationId (FK nullable a locations)
+        if (!await this.columnExists(queryRunner, 'system_configuration', 'primarySaleLocationId')) {
+            await queryRunner.query(`
+                ALTER TABLE "system_configuration"
+                ADD COLUMN "primarySaleLocationId" uuid NULL
+            `);
+            await queryRunner.query(`
+                ALTER TABLE "system_configuration"
+                ADD CONSTRAINT "FK_system_configuration_primary_sale_location"
+                FOREIGN KEY ("primarySaleLocationId") REFERENCES "locations"("id")
+                ON DELETE RESTRICT ON UPDATE NO ACTION
+            `);
+        }
+        // 3. defaultReceiveLocationId (FK nullable a locations)
+        if (!await this.columnExists(queryRunner, 'system_configuration', 'defaultReceiveLocationId')) {
+            await queryRunner.query(`
+                ALTER TABLE "system_configuration"
+                ADD COLUMN "defaultReceiveLocationId" uuid NULL
+            `);
+            await queryRunner.query(`
+                ALTER TABLE "system_configuration"
+                ADD CONSTRAINT "FK_system_configuration_default_receive_location"
+                FOREIGN KEY ("defaultReceiveLocationId") REFERENCES "locations"("id")
+                ON DELETE RESTRICT ON UPDATE NO ACTION
+            `);
+        }
+        // 4. stockMinimoVenta
+        if (!await this.columnExists(queryRunner, 'system_configuration', 'stockMinimoVenta')) {
+            await queryRunner.query(`
+                ALTER TABLE "system_configuration"
+                ADD COLUMN "stockMinimoVenta" integer NOT NULL DEFAULT 5
+            `);
+        }
+    }
+    async down(queryRunner) {
+        // Drop en orden inverso: primero dropeamos FKs para no romper la
+        // restricción al eliminar columnas.
+        if (await this.constraintExists(queryRunner, 'FK_system_configuration_default_receive_location')) {
+            await queryRunner.query(`
+                ALTER TABLE "system_configuration"
+                DROP CONSTRAINT "FK_system_configuration_default_receive_location"
+            `);
+        }
+        if (await this.constraintExists(queryRunner, 'FK_system_configuration_primary_sale_location')) {
+            await queryRunner.query(`
+                ALTER TABLE "system_configuration"
+                DROP CONSTRAINT "FK_system_configuration_primary_sale_location"
+            `);
+        }
+        if (await this.columnExists(queryRunner, 'system_configuration', 'stockMinimoVenta')) {
+            await queryRunner.query(`ALTER TABLE "system_configuration" DROP COLUMN "stockMinimoVenta"`);
+        }
+        if (await this.columnExists(queryRunner, 'system_configuration', 'defaultReceiveLocationId')) {
+            await queryRunner.query(`ALTER TABLE "system_configuration" DROP COLUMN "defaultReceiveLocationId"`);
+        }
+        if (await this.columnExists(queryRunner, 'system_configuration', 'primarySaleLocationId')) {
+            await queryRunner.query(`ALTER TABLE "system_configuration" DROP COLUMN "primarySaleLocationId"`);
+        }
+        if (await this.columnExists(queryRunner, 'system_configuration', 'stockSectorizado')) {
+            await queryRunner.query(`ALTER TABLE "system_configuration" DROP COLUMN "stockSectorizado"`);
+        }
+    }
+}
+exports.AddStockSectorizadoConfig1772000000000 = AddStockSectorizadoConfig1772000000000;
+
+
+/***/ },
+
 /***/ 265
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -1922,6 +2043,12 @@ const _1768412960845_IncreaseProfitMarginPrecision_1 = __webpack_require__(85400
 const _1768413296219_MassiveNumericPrecisionStandardization_1 = __webpack_require__(70720);
 const _1768413297000_AddBarcodeScannerConfig_1 = __webpack_require__(75374);
 const _1769113297000_AddAuditLogCompositeIndexes_1 = __webpack_require__(698);
+const _1769200000000_AllowOutOfStockSale_1 = __webpack_require__(96843);
+const _1770000000000_AddStockSectorizadoFoundations_1 = __webpack_require__(25844);
+const _1771000000000_AddLocationIdToInventoryMovements_1 = __webpack_require__(13715);
+const _1772000000000_AddStockSectorizadoConfig_1 = __webpack_require__(220);
+const _1773000000000_AddPurchaseLocationId_1 = __webpack_require__(16345);
+const _1786387763156_AddCapabilitiesColumns_1 = __webpack_require__(15734);
 exports.migrations = [
     _1734450000000_InitialSchema_1.InitialSchema1734450000000,
     _1735498200000_UpdateAccountDateColumnsToTimestamp_1.UpdateAccountDateColumnsToTimestamp1735498200000,
@@ -1933,6 +2060,12 @@ exports.migrations = [
     _1768413296219_MassiveNumericPrecisionStandardization_1.MassiveNumericPrecisionStandardization1768413296219,
     _1768413297000_AddBarcodeScannerConfig_1.AddBarcodeScannerConfig1768413297000,
     _1769113297000_AddAuditLogCompositeIndexes_1.AddAuditLogCompositeIndexes1769113297000,
+    _1769200000000_AllowOutOfStockSale_1.AllowOutOfStockSale1769200000000,
+    _1770000000000_AddStockSectorizadoFoundations_1.AddStockSectorizadoFoundations1770000000000,
+    _1771000000000_AddLocationIdToInventoryMovements_1.AddLocationIdToInventoryMovements1771000000000,
+    _1772000000000_AddStockSectorizadoConfig_1.AddStockSectorizadoConfig1772000000000,
+    _1773000000000_AddPurchaseLocationId_1.AddPurchaseLocationId1773000000000,
+    _1786387763156_AddCapabilitiesColumns_1.AddCapabilitiesColumns1786387763156,
 ];
 
 
@@ -8508,33 +8641,164 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e, _f;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.InventoryService = void 0;
 const common_1 = __webpack_require__(42909);
 const typeorm_1 = __webpack_require__(88220);
 const typeorm_2 = __webpack_require__(86118);
 const stock_movement_entity_1 = __webpack_require__(83356);
+const location_entity_1 = __webpack_require__(65653);
+const product_location_stock_entity_1 = __webpack_require__(8738);
+const stock_transfer_entity_1 = __webpack_require__(76718);
 const product_entity_1 = __webpack_require__(38335);
 const configuration_service_1 = __webpack_require__(56300);
 /**
- * Servicio de inventario - Gestiona movimientos de stock y alertas
+ * Servicio de inventario - Gestiona movimientos de stock y alertas.
+ *
+ * Modo simple (default): `Product.stock` es la única verdad y se escribe
+ * directamente acá, igual que antes.
+ *
+ * Modo sectorizado: cada escritura pasa por `recordMovementInLocation`, que
+ * debita/acredita `product_location_stock`, recalcula el cache
+ * `Product.stock = SUM(...)`, y registra `StockMovement.locationId`.
+ * Los traslados entre ubicaciones van por `transfer`, atómico.
  */
 let InventoryService = class InventoryService {
     stockMovementRepository;
     productRepository;
+    locationRepository;
+    plsRepository;
     dataSource;
     configurationService;
-    constructor(stockMovementRepository, productRepository, dataSource, configurationService) {
+    constructor(stockMovementRepository, productRepository, locationRepository, plsRepository, dataSource, configurationService) {
         this.stockMovementRepository = stockMovementRepository;
         this.productRepository = productRepository;
+        this.locationRepository = locationRepository;
+        this.plsRepository = plsRepository;
         this.dataSource = dataSource;
         this.configurationService = configurationService;
     }
+    // Modo sectorizado: detectores de configuración. Sin cache intencionalmente:
+    // el volumen no lo justifica; si en el futuro el costo es relevante, cachear
+    // en una capa superior. ponytail: skip cache, add when measured.
+    async isSectorizedMode() {
+        const config = await this.configurationService.getConfiguration();
+        return Boolean(config?.stockSectorizado);
+    }
+    async getPrimarySaleLocationId() {
+        const config = await this.configurationService.getConfiguration();
+        return config?.primarySaleLocationId ?? null;
+    }
+    async getDefaultReceiveLocationId() {
+        const config = await this.configurationService.getConfiguration();
+        return config?.defaultReceiveLocationId ?? null;
+    }
+    async getStockMinimoVenta() {
+        const config = await this.configurationService.getConfiguration();
+        return Number(config?.stockMinimoVenta ?? 5);
+    }
     /**
-     * Crea un movimiento de stock (entrada o salida)
+     * Lista ubicaciones alternativas (distintas de la primaria de venta)
+     * que tienen stock del producto. Si hay coincidencias exactas
+     * (available >= qty), devuelve esas, ordenadas de mayor a menor
+     * disponible. Si no hay ninguna coincidencia exacta, devuelve el top-3
+     * por disponible (parciales) para que la UI muestre opciones aunque
+     * ninguna cubra el total.
+     *
+     * Solo aplica en modo sectorizado; en modo simple devuelve [].
+     * Read-only; sin side-effects.
+     */
+    async findReplenishmentOptions(productId, qty) {
+        if (!(await this.isSectorizedMode())) {
+            return [];
+        }
+        const primaryId = await this.getPrimarySaleLocationId();
+        const locations = await this.dataSource.getRepository(location_entity_1.Location).find({
+            where: { isActive: true },
+        });
+        const candidateLocations = locations.filter((l) => l.id !== primaryId);
+        if (candidateLocations.length === 0) {
+            return [];
+        }
+        const pls = await this.dataSource.getRepository(product_location_stock_entity_1.ProductLocationStock).find({
+            where: {
+                productId,
+                locationId: (0, typeorm_2.In)(candidateLocations.map((l) => l.id)),
+            },
+        });
+        const enriched = candidateLocations.map((loc) => {
+            const stock = pls.find((s) => s.locationId === loc.id);
+            return {
+                locationId: loc.id,
+                locationName: loc.name,
+                available: stock ? Number(stock.quantity) : 0,
+            };
+        });
+        const full = enriched
+            .filter((o) => o.available >= qty)
+            .sort((a, b) => b.available - a.available);
+        if (full.length > 0) {
+            return full;
+        }
+        return enriched
+            .filter((o) => o.available > 0)
+            .sort((a, b) => b.available - a.available)
+            .slice(0, 3);
+    }
+    /**
+     * Saldo de un producto en una ubicación.
+     * - Modo sectorizado: lee `product_location_stock`.
+     * - Modo simple: el stock vive en `Product.stock`; sin
+     *   desglose por ubicación.
+     */
+    async findStockByLocation(productId, locationId) {
+        const pls = await this.productRepository
+            .createQueryBuilder()
+            .relation(product_entity_1.Product, 'productLocationStocks')
+            .of(productId)
+            .loadMany()
+            .catch(() => null);
+        // Más directo: query al repo via manager (sectorizado) o
+        // product.stock (simple).
+        if (await this.isSectorizedMode()) {
+            const stock = await this.dataSource
+                .getRepository(product_location_stock_entity_1.ProductLocationStock)
+                .findOne({ where: { productId, locationId } });
+            return stock ? Number(stock.quantity) : 0;
+        }
+        // Modo simple: no hay desglose; lo dejamos explícito.
+        if (pls === null)
+            return null;
+        return null;
+    }
+    /**
+     * Crea un movimiento de stock (entrada o salida).
+     * Back-compat: la firma y el comportamiento simple-mode son idénticos a la
+     * versión previa. Si el modo sectorizado está activo, delega en
+     * `recordMovementInLocation` para escribir el saldo por ubicación.
      */
     async createMovement(dto) {
+        if (await this.isSectorizedMode()) {
+            const locationId = await this.getPrimarySaleLocationId();
+            if (!locationId) {
+                throw new common_1.BadRequestException('Modo sectorizado activo pero no hay ubicación principal de venta configurada');
+            }
+            const allowOutOfStock = dto.source === stock_movement_entity_1.StockMovementSource.SALE &&
+                await this.configurationService.isOutOfStockSaleAllowed();
+            return this.recordMovementInLocation({
+                productId: dto.productId,
+                locationId,
+                type: dto.type,
+                source: dto.source ?? stock_movement_entity_1.StockMovementSource.ADJUSTMENT,
+                quantity: dto.quantity,
+                cost: dto.cost,
+                notes: dto.notes,
+                allowOutOfStock,
+                date: new Date(dto.date),
+            });
+        }
+        // --- Modo simple: comportamiento original intacto ---
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
         await queryRunner.startTransaction();
@@ -8543,9 +8807,13 @@ let InventoryService = class InventoryService {
             if (!product) {
                 throw new common_1.NotFoundException('Producto no encontrado');
             }
-            // Validar stock suficiente para salidas
+            // Validar stock suficiente para salidas (los movimientos de venta respetan allowOutOfStockSale)
             if (dto.type === stock_movement_entity_1.StockMovementType.OUT && product.stock < dto.quantity) {
-                throw new common_1.BadRequestException(`Stock insuficiente. Disponible: ${product.stock}, Solicitado: ${dto.quantity}`);
+                const allowOutOfStock = dto.source === stock_movement_entity_1.StockMovementSource.SALE &&
+                    await this.configurationService.isOutOfStockSaleAllowed();
+                if (!allowOutOfStock) {
+                    throw new common_1.BadRequestException(`Stock insuficiente. Disponible: ${product.stock}, Solicitado: ${dto.quantity}`);
+                }
             }
             // Crear movimiento con source (default: ADJUSTMENT)
             const movement = this.stockMovementRepository.create({
@@ -8591,6 +8859,310 @@ let InventoryService = class InventoryService {
         }
     }
     /**
+     * Registra un movimiento tocando `product_location_stock` y
+     * `Product.stock` (modo sectorizado) o solo `Product.stock` (modo simple).
+     * Una sola transacción.
+     *
+     * Acepta `locationId` opcional: si no viene y el modo sectorizado está
+     * activo, usa la ubicación principal de venta.
+     * Acepta `manager` opcional: si viene, NO abre tx propia — opera dentro
+     * de la transacción del caller (usado por `completeSaleAfterReplenishment`
+     * para garantizar atomicidad total).
+     */
+    async recordMovementInLocation(opts) {
+        if (opts.manager) {
+            return this.executeRecordMovement(opts, opts.manager);
+        }
+        const queryRunner = this.dataSource.createQueryRunner();
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            const result = await this.executeRecordMovement(opts, queryRunner.manager);
+            await queryRunner.commitTransaction();
+            return result;
+        }
+        catch (err) {
+            await queryRunner.rollbackTransaction();
+            throw err;
+        }
+        finally {
+            await queryRunner.release();
+        }
+    }
+    async executeRecordMovement(opts, manager) {
+        const product = await manager.findOne(product_entity_1.Product, { where: { id: opts.productId } });
+        if (!product) {
+            throw new common_1.NotFoundException('Producto no encontrado');
+        }
+        const sectorized = await this.isSectorizedMode();
+        const source = opts.source ?? stock_movement_entity_1.StockMovementSource.ADJUSTMENT;
+        const allowOutOfStock = opts.allowOutOfStock ?? false;
+        const date = opts.date ?? new Date();
+        let locationId = null;
+        if (sectorized) {
+            locationId = opts.locationId ?? null;
+            if (!locationId) {
+                locationId = await this.getPrimarySaleLocationId();
+                if (!locationId) {
+                    throw new common_1.BadRequestException('Modo sectorizado activo pero no hay ubicación principal de venta configurada');
+                }
+            }
+        }
+        // Saldo por ubicación (solo sectorizado).
+        let locationStock = null;
+        if (sectorized && locationId) {
+            locationStock = await manager.findOne(product_location_stock_entity_1.ProductLocationStock, {
+                where: { productId: opts.productId, locationId },
+            }) ?? null;
+            if (!locationStock) {
+                locationStock = manager.create(product_location_stock_entity_1.ProductLocationStock, {
+                    productId: opts.productId,
+                    locationId,
+                    quantity: 0,
+                });
+            }
+        }
+        // Validación de stock (sale contra el saldo aplicable: ubicación en
+        // sectorizado, total en simple).
+        const currentAvailable = sectorized && locationStock
+            ? Number(locationStock.quantity)
+            : product.stock;
+        if (opts.type === stock_movement_entity_1.StockMovementType.OUT && currentAvailable < opts.quantity && !allowOutOfStock) {
+            const msg = sectorized
+                ? `Stock insuficiente en la ubicación. Disponible: ${currentAvailable}, Solicitado: ${opts.quantity}`
+                : `Stock insuficiente. Disponible: ${currentAvailable}, Solicitado: ${opts.quantity}`;
+            throw new common_1.BadRequestException(msg);
+        }
+        // Aplicar el cambio sobre el saldo correspondiente.
+        if (opts.type === stock_movement_entity_1.StockMovementType.IN) {
+            product.stock += opts.quantity;
+            if (opts.cost && source === stock_movement_entity_1.StockMovementSource.PURCHASE) {
+                product.cost = opts.cost;
+                if (product.profitMargin) {
+                    product.price = Math.round(product.cost * (1 + product.profitMargin / 100) * 100) / 100;
+                }
+            }
+            if (locationStock) {
+                locationStock.quantity = Number(locationStock.quantity) + opts.quantity;
+            }
+        }
+        else {
+            product.stock -= opts.quantity;
+            if (locationStock) {
+                locationStock.quantity = Number(locationStock.quantity) - opts.quantity;
+            }
+        }
+        await manager.save(product);
+        if (locationStock) {
+            await manager.save(locationStock);
+        }
+        // Movimiento (con locationId en sectorizado, null en simple).
+        const movement = manager.create(stock_movement_entity_1.StockMovement, {
+            productId: opts.productId,
+            type: opts.type,
+            source,
+            quantity: opts.quantity,
+            cost: opts.cost,
+            notes: opts.notes,
+            date,
+            locationId,
+        });
+        await manager.save(movement);
+        return {
+            ...movement,
+            product: {
+                id: product.id,
+                name: product.name,
+                stock: product.stock,
+            },
+        };
+    }
+    /**
+     * Traslado atómico entre dos ubicaciones (modo sectorizado).
+     *
+     * En una sola transacción:
+     *  - valida origen y destino (activos, distintos)
+     *  - valida saldo suficiente en origen
+     *  - debita `ProductLocationStock` origen
+     *  - acredita `ProductLocationStock` destino
+     *  - recalcula `Product.stock = SUM(...)` (sin cambio: traslados no
+     *    modifican el total)
+     *  - registra `StockTransfer` (status COMPLETADO)
+     *  - registra dos `StockMovement` (OUT en origen, IN en destino) con
+     *    `source = TRANSFER`
+     *
+     * Acepta `manager` opcional: si viene, NO abre tx propia — opera dentro
+     * de la transacción del caller. Usado por `SalesService.completeSaleAfterReplenishment`
+     * para garantizar atomicidad total (transfer + sale en una sola tx).
+     *
+     * Falla rápido: cualquier validación rota la transacción entera y
+     * devuelve el error original.
+     */
+    async transfer(opts) {
+        if (opts.quantity <= 0) {
+            throw new common_1.BadRequestException('La cantidad a trasladar debe ser mayor a 0');
+        }
+        if (opts.fromLocationId === opts.toLocationId) {
+            throw new common_1.BadRequestException('La ubicación de origen y destino deben ser distintas');
+        }
+        if (opts.manager) {
+            return this.executeTransfer(opts, opts.manager);
+        }
+        const queryRunner = this.dataSource.createQueryRunner();
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            const saved = await this.executeTransfer(opts, queryRunner.manager);
+            await queryRunner.commitTransaction();
+            return saved;
+        }
+        catch (err) {
+            await queryRunner.rollbackTransaction();
+            throw err;
+        }
+        finally {
+            await queryRunner.release();
+        }
+    }
+    /**
+     * Cuerpo de `transfer` reutilizable por callers que ya tienen un
+     * `EntityManager` (sin abrir/cerrar tx propia).
+     */
+    async executeTransfer(opts, manager) {
+        // Verificar producto.
+        const product = await manager.findOne(product_entity_1.Product, { where: { id: opts.productId } });
+        if (!product) {
+            throw new common_1.NotFoundException('Producto no encontrado');
+        }
+        // Verificar ubicaciones activas.
+        const from = await manager.findOne(location_entity_1.Location, { where: { id: opts.fromLocationId } });
+        const to = await manager.findOne(location_entity_1.Location, { where: { id: opts.toLocationId } });
+        if (!from || !from.isActive) {
+            throw new common_1.BadRequestException('Ubicación de origen inactiva o inexistente');
+        }
+        if (!to || !to.isActive) {
+            throw new common_1.BadRequestException('Ubicación de destino inactiva o inexistente');
+        }
+        // Obtener/crear saldos por ubicación.
+        const fromStock = await this.getOrCreatePls(manager, opts.productId, opts.fromLocationId);
+        const toStock = await this.getOrCreatePls(manager, opts.productId, opts.toLocationId);
+        // Validar saldo.
+        if (Number(fromStock.quantity) < opts.quantity) {
+            throw new common_1.BadRequestException(`Saldo insuficiente en origen. Disponible: ${fromStock.quantity}, Solicitado: ${opts.quantity}`);
+        }
+        // Aplicar el traslado.
+        fromStock.quantity = Number(fromStock.quantity) - opts.quantity;
+        toStock.quantity = Number(toStock.quantity) + opts.quantity;
+        await manager.save([fromStock, toStock]);
+        // Recalcular Product.stock = SUM(product_location_stock) — el
+        // total no cambia, pero lo persistimos igual para mantener el
+        // cache en sync.
+        const rows = await manager.query(`SELECT COALESCE(SUM("quantity"), 0)::text AS total
+             FROM "product_location_stocks"
+             WHERE "productId" = $1`, [opts.productId]);
+        product.stock = Number.parseFloat(rows[0]?.total ?? '0');
+        await manager.save(product);
+        // Registrar el StockTransfer (status COMPLETADO por default).
+        const transfer = manager.create(stock_transfer_entity_1.StockTransfer, {
+            productId: opts.productId,
+            fromLocationId: opts.fromLocationId,
+            toLocationId: opts.toLocationId,
+            quantity: opts.quantity,
+            reason: opts.reason ?? null,
+            createdById: opts.userId ?? null,
+            status: stock_transfer_entity_1.StockTransferStatus.COMPLETADO,
+        });
+        const savedTransfer = await manager.save(transfer);
+        // Dos movimientos: OUT en origen, IN en destino (source = TRANSFER).
+        const movements = [
+            manager.create(stock_movement_entity_1.StockMovement, {
+                productId: opts.productId,
+                type: stock_movement_entity_1.StockMovementType.OUT,
+                source: stock_movement_entity_1.StockMovementSource.TRANSFER,
+                quantity: opts.quantity,
+                locationId: opts.fromLocationId,
+                notes: `Traslado a ${to.name}`,
+                date: new Date(),
+            }),
+            manager.create(stock_movement_entity_1.StockMovement, {
+                productId: opts.productId,
+                type: stock_movement_entity_1.StockMovementType.IN,
+                source: stock_movement_entity_1.StockMovementSource.TRANSFER,
+                quantity: opts.quantity,
+                locationId: opts.toLocationId,
+                notes: `Traslado desde ${from.name}`,
+                date: new Date(),
+            }),
+        ];
+        await manager.save(movements);
+        return savedTransfer;
+    }
+    /**
+     * Helper interno: obtiene o crea la fila de `product_location_stock` para
+     * el par (producto, ubicación) dentro del manager transaccional.
+     */
+    async getOrCreatePls(manager, productId, locationId) {
+        const existing = await manager.findOne(product_location_stock_entity_1.ProductLocationStock, { where: { productId, locationId } });
+        if (existing)
+            return existing;
+        return manager.create(product_location_stock_entity_1.ProductLocationStock, {
+            productId,
+            locationId,
+            quantity: 0,
+        });
+    }
+    /**
+     * Wrapper público de `transfer` para el endpoint `POST /inventory/transfers`
+     * (PR9). Toma el usuario autenticado del request y delega. Misma
+     * atomicidad que el flujo POS (PR4/8).
+     */
+    async createTransfer(dto, userId) {
+        return this.transfer({
+            productId: dto.productId,
+            fromLocationId: dto.fromLocationId,
+            toLocationId: dto.toLocationId,
+            quantity: dto.quantity,
+            reason: dto.reason,
+            userId,
+        });
+    }
+    /**
+     * Desglose de stock por ubicación para un producto (PR9).
+     * Devuelve TODAS las ubicaciones activas con su saldo; el frontend
+     * decide si mostrar la primaria como referencia o no. En modo simple
+     * devuelve un solo row "global" derivado de `Product.stock` con
+     * `locationId: null` para que la UI pueda degradar el componente sin
+     * condicionales por modo.
+     */
+    async getProductStockByLocation(productId) {
+        const product = await this.productRepository.findOne({ where: { id: productId } });
+        if (!product) {
+            throw new common_1.NotFoundException('Producto no encontrado');
+        }
+        if (!(await this.isSectorizedMode())) {
+            return [
+                {
+                    locationId: '',
+                    locationName: 'Stock total',
+                    function: 'SALE',
+                    quantity: Number(product.stock),
+                },
+            ];
+        }
+        const locations = await this.locationRepository.find({
+            where: { isActive: true },
+            order: { name: 'ASC' },
+        });
+        const plsRows = await this.plsRepository.find({ where: { productId } });
+        const plsMap = new Map(plsRows.map((p) => [p.locationId, Number(p.quantity)]));
+        return locations.map((l) => ({
+            locationId: l.id,
+            locationName: l.name,
+            function: l.function,
+            quantity: plsMap.get(l.id) ?? 0,
+        }));
+    }
+    /**
      * Obtiene el historial de movimientos de un producto
      */
     async getProductHistory(productId) {
@@ -8612,7 +9184,10 @@ let InventoryService = class InventoryService {
         };
     }
     /**
-     * Obtiene productos con stock bajo (menor o igual al mínimo configurado globalmente)
+     * Obtiene productos con stock bajo (menor o igual al mínimo configurado globalmente).
+     *
+     * @deprecated Mantenido para back-compat del endpoint `GET /inventory/low-stock`.
+     * Usar `getStockAlerts()` que separa compra (total) vs reposición (salón).
      */
     async getLowStockProducts() {
         const globalMinStock = await this.configurationService.getMinStockAlert();
@@ -8624,6 +9199,90 @@ let InventoryService = class InventoryService {
             .orderBy('product.stock', 'ASC')
             .getMany();
         return products;
+    }
+    /**
+         * Alertas separadas para modo sectorizado.
+         *
+         * - `purchaseAlerts`: productos con `product.stock <= minStockAlert`.
+         *   Lista plana de productos a reponer vía compra. Mismo cálculo que
+         *   `getLowStockProducts` (total consolidado), con shape explícito.
+         * - `replenishmentAlerts`: solo modo sectorizado. Productos donde el
+         *   stock en la ubicación principal de venta es `<= stockMinimoVenta`.
+         *   En modo simple la lista es siempre vacía.
+         *
+         * Cada `replenishmentAlert` viene enriquecida (PR9) con:
+         *  - `suggestedSourceLocationId`: ubicación (≠ primaria de venta) con
+         *    mayor saldo del producto. `null` si no hay de dónde sacar.
+         *  - `suggestedQuantity`: `max(0, minimum - currentLocationStock)`.
+         *  - `reserveStock`: suma de saldos en ubicaciones distintas de la
+         *    primaria (incluye orígenes inactivos solo si su `quantity > 0`,
+         *    no se filtran acá — `findReplenishmentOptions` ya filtra activas).
+         *
+         * El cálculo se hace con UNA consulta adicional por producto usando
+         * `In(productIds)` para mantener el costo acotado.
+         */
+    async getStockAlerts() {
+        const globalMinStock = await this.configurationService.getMinStockAlert();
+        const lowStockProducts = await this.productRepository
+            .createQueryBuilder('product')
+            .where('product.isActive = :isActive', { isActive: true })
+            .andWhere('product.stock <= :globalMinStock', { globalMinStock })
+            .orderBy('product.stock', 'ASC')
+            .getMany();
+        const purchaseAlerts = lowStockProducts.map((p) => ({
+            productId: p.id,
+            productName: p.name,
+            currentStock: Number(p.stock),
+            minimum: globalMinStock,
+        }));
+        let replenishmentAlerts = [];
+        if (await this.isSectorizedMode()) {
+            const primaryId = await this.getPrimarySaleLocationId();
+            if (primaryId) {
+                const stockMinimoVenta = await this.getStockMinimoVenta();
+                const rows = await this.dataSource
+                    .getRepository(product_location_stock_entity_1.ProductLocationStock)
+                    .createQueryBuilder('pls')
+                    .innerJoinAndSelect('pls.product', 'product')
+                    .where('pls.locationId = :locId', { locId: primaryId })
+                    .andWhere('product.isActive = :isActive', { isActive: true })
+                    .andWhere('pls.quantity <= :min', { min: stockMinimoVenta })
+                    .orderBy('pls.quantity', 'ASC')
+                    .getMany();
+                if (rows.length > 0) {
+                    const productIds = rows.map((r) => r.productId);
+                    const altRows = await this.dataSource
+                        .getRepository(product_location_stock_entity_1.ProductLocationStock)
+                        .createQueryBuilder('pls')
+                        .where('pls.productId IN (:...productIds)', { productIds })
+                        .andWhere('pls.locationId <> :primaryId', { primaryId })
+                        .orderBy('pls.quantity', 'DESC')
+                        .getMany();
+                    const byProduct = new Map();
+                    for (const r of altRows) {
+                        const arr = byProduct.get(r.productId) ?? [];
+                        arr.push(r);
+                        byProduct.set(r.productId, arr);
+                    }
+                    replenishmentAlerts = rows.map((r) => {
+                        const alts = byProduct.get(r.productId) ?? [];
+                        const top = alts[0] ?? null;
+                        const reserveStock = alts.reduce((sum, a) => sum + Number(a.quantity), 0);
+                        const currentLocationStock = Number(r.quantity);
+                        return {
+                            productId: r.productId,
+                            productName: r.product.name,
+                            currentLocationStock,
+                            minimum: stockMinimoVenta,
+                            suggestedSourceLocationId: top ? top.locationId : null,
+                            suggestedQuantity: Math.max(0, stockMinimoVenta - currentLocationStock),
+                            reserveStock,
+                        };
+                    });
+                }
+            }
+        }
+        return { purchaseAlerts, replenishmentAlerts };
     }
     /**
      * Obtiene productos sin stock
@@ -8701,13 +9360,111 @@ let InventoryService = class InventoryService {
             insufficientProducts,
         };
     }
+    // --- Locations CRUD (PR7) -------------------------------------------
+    // CRUD mínimo de ubicaciones para el frontend (PR7). Las partial unique
+    // indexes UQ_locations_name / UQ_locations_primary_sale /
+    // UQ_locations_default_receive ya están definidas en la migración
+    // 1770000000000; este servicio solo traduce las QueryFailedError en 409.
+    // ponytail: si la lista crece, extraer a LocationsService. Por ahora
+    // conviven con el resto del módulo de inventario.
+    /** Lista ubicaciones (activas primero, inactivas al final). */
+    async listLocations() {
+        return this.locationRepository.find({
+            order: { isActive: 'DESC', name: 'ASC' },
+        });
+    }
+    /** Crea una ubicación. */
+    async createLocation(dto) {
+        try {
+            const loc = this.locationRepository.create({
+                name: dto.name.trim(),
+                function: dto.function,
+                isActive: true,
+                isPrimarySale: Boolean(dto.isPrimarySale),
+                isDefaultReceive: Boolean(dto.isDefaultReceive),
+            });
+            return await this.locationRepository.save(loc);
+        }
+        catch (err) {
+            if (this.isUniqueViolation(err)) {
+                throw new common_1.ConflictException('Ya existe una ubicación con ese nombre o con ese rol (primaria de venta / destino de compras)');
+            }
+            throw err;
+        }
+    }
+    /** Actualiza una ubicación. */
+    async updateLocation(id, dto) {
+        const loc = await this.locationRepository.findOne({ where: { id } });
+        if (!loc) {
+            throw new common_1.NotFoundException('Ubicación no encontrada');
+        }
+        if (dto.name !== undefined) {
+            loc.name = dto.name.trim();
+        }
+        if (dto.function !== undefined) {
+            loc.function = dto.function;
+        }
+        if (dto.isPrimarySale !== undefined) {
+            // Solo se puede promover a primaria si la ubicación está activa.
+            if (dto.isPrimarySale && !loc.isActive) {
+                throw new common_1.BadRequestException('No se puede marcar como primaria de venta una ubicación inactiva');
+            }
+            loc.isPrimarySale = dto.isPrimarySale;
+        }
+        if (dto.isDefaultReceive !== undefined) {
+            if (dto.isDefaultReceive && !loc.isActive) {
+                throw new common_1.BadRequestException('No se puede marcar como destino de compras una ubicación inactiva');
+            }
+            loc.isDefaultReceive = dto.isDefaultReceive;
+        }
+        try {
+            return await this.locationRepository.save(loc);
+        }
+        catch (err) {
+            if (this.isUniqueViolation(err)) {
+                throw new common_1.ConflictException('Ya existe una ubicación con ese nombre o con ese rol');
+            }
+            throw err;
+        }
+    }
+    /**
+     * Desactiva una ubicación. Falla con 409 si tiene saldo > 0 en
+     * cualquier producto (no se puede desactivar sin vaciarla primero —
+     * los traslados los maneja PR9).
+     */
+    async deactivateLocation(id) {
+        const loc = await this.locationRepository.findOne({ where: { id } });
+        if (!loc) {
+            throw new common_1.NotFoundException('Ubicación no encontrada');
+        }
+        if (!loc.isActive) {
+            return loc; // idempotente
+        }
+        const nonZero = await this.plsRepository
+            .createQueryBuilder('pls')
+            .where('pls.locationId = :id', { id })
+            .andWhere('pls.quantity <> 0')
+            .getCount();
+        if (nonZero > 0) {
+            throw new common_1.ConflictException('No se puede desactivar la ubicación: tiene productos con saldo distinto de 0. Trasladá o vendé todo el stock antes de desactivarla.');
+        }
+        loc.isActive = false;
+        return this.locationRepository.save(loc);
+    }
+    isUniqueViolation(err) {
+        // postgres unique_violation = 23510; sqlite CONSTRAINT = 'SQLITE_CONSTRAINT'
+        const code = err?.code;
+        return code === '23510' || code === 'SQLITE_CONSTRAINT' || code === '23505';
+    }
 };
 exports.InventoryService = InventoryService;
 exports.InventoryService = InventoryService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(stock_movement_entity_1.StockMovement)),
     __param(1, (0, typeorm_1.InjectRepository)(product_entity_1.Product)),
-    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object, typeof (_b = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _b : Object, typeof (_c = typeof typeorm_2.DataSource !== "undefined" && typeorm_2.DataSource) === "function" ? _c : Object, typeof (_d = typeof configuration_service_1.ConfigurationService !== "undefined" && configuration_service_1.ConfigurationService) === "function" ? _d : Object])
+    __param(2, (0, typeorm_1.InjectRepository)(location_entity_1.Location)),
+    __param(3, (0, typeorm_1.InjectRepository)(product_location_stock_entity_1.ProductLocationStock)),
+    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object, typeof (_b = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _b : Object, typeof (_c = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _c : Object, typeof (_d = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _d : Object, typeof (_e = typeof typeorm_2.DataSource !== "undefined" && typeorm_2.DataSource) === "function" ? _e : Object, typeof (_f = typeof configuration_service_1.ConfigurationService !== "undefined" && configuration_service_1.ConfigurationService) === "function" ? _f : Object])
 ], InventoryService);
 
 
@@ -9372,7 +10129,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a, _b;
+var _a, _b, _c;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SystemConfiguration = void 0;
 const typeorm_1 = __webpack_require__(86118);
@@ -9387,6 +10144,29 @@ let SystemConfiguration = class SystemConfiguration {
     sistemaHabilitado;
     barcodeScannerEnabled;
     barcodeScannerTimeoutMs;
+    /** Si es true, permite vender productos con stock ≤ 0 (el stock queda negativo) */
+    allowOutOfStockSale;
+    /**
+     * Modo sectorizado opcional — interruptor global del modo por ubicación.
+     * Mientras sea false, `Product.stock` es la única verdad y los flujos de
+     * venta/compra no tocan `product_location_stock`. PR3 lo flippea a true
+     * dentro de la transacción de activación (ver `ActivationService`).
+     */
+    stockSectorizado;
+    /** Ubicación primaria de venta (modo sectorizado). */
+    primarySaleLocationId;
+    /** Destino predeterminado para compras (modo sectorizado). */
+    defaultReceiveLocationId;
+    /**
+     * Mínimo de reposición del salón — dispara la alerta de reposición
+     * cuando el stock en la ubicación principal de venta cae por debajo.
+     * Distinto del `minStockAlert` global (que alerta sobre el total).
+     */
+    stockMinimoVenta;
+    profileKey;
+    profileVersion;
+    capabilitiesJson;
+    capabilitiesSchemaVersion;
     createdAt;
     updatedAt;
 };
@@ -9416,12 +10196,48 @@ __decorate([
     __metadata("design:type", Number)
 ], SystemConfiguration.prototype, "barcodeScannerTimeoutMs", void 0);
 __decorate([
+    (0, typeorm_1.Column)('boolean', { default: false }),
+    __metadata("design:type", Boolean)
+], SystemConfiguration.prototype, "allowOutOfStockSale", void 0);
+__decorate([
+    (0, typeorm_1.Column)('boolean', { default: false }),
+    __metadata("design:type", Boolean)
+], SystemConfiguration.prototype, "stockSectorizado", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'uuid', nullable: true }),
+    __metadata("design:type", Object)
+], SystemConfiguration.prototype, "primarySaleLocationId", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'uuid', nullable: true }),
+    __metadata("design:type", Object)
+], SystemConfiguration.prototype, "defaultReceiveLocationId", void 0);
+__decorate([
+    (0, typeorm_1.Column)('int', { default: 5 }),
+    __metadata("design:type", Number)
+], SystemConfiguration.prototype, "stockMinimoVenta", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'profile_key', type: 'varchar', length: 64, default: 'legacy' }),
+    __metadata("design:type", Object)
+], SystemConfiguration.prototype, "profileKey", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'profile_version', type: 'int', default: 1 }),
+    __metadata("design:type", Number)
+], SystemConfiguration.prototype, "profileVersion", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'capabilities_json', type: 'jsonb', default: () => "'{}'::jsonb" }),
+    __metadata("design:type", typeof (_a = typeof Partial !== "undefined" && Partial) === "function" ? _a : Object)
+], SystemConfiguration.prototype, "capabilitiesJson", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'capabilities_schema_version', type: 'int', default: 1 }),
+    __metadata("design:type", Number)
+], SystemConfiguration.prototype, "capabilitiesSchemaVersion", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)(),
-    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+    __metadata("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
 ], SystemConfiguration.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
-    __metadata("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
+    __metadata("design:type", typeof (_c = typeof Date !== "undefined" && Date) === "function" ? _c : Object)
 ], SystemConfiguration.prototype, "updatedAt", void 0);
 exports.SystemConfiguration = SystemConfiguration = __decorate([
     (0, typeorm_1.Entity)('system_configuration')
@@ -13322,6 +14138,7 @@ const cash_register_service_1 = __webpack_require__(84628);
 const suppliers_service_1 = __webpack_require__(14128);
 const date_utils_1 = __webpack_require__(68167);
 const stock_movement_entity_1 = __webpack_require__(83356);
+const location_entity_1 = __webpack_require__(65653);
 const audit_service_1 = __webpack_require__(12052);
 const enums_1 = __webpack_require__(11371);
 let PurchasesService = class PurchasesService {
@@ -13348,6 +14165,10 @@ let PurchasesService = class PurchasesService {
      */
     async create(dto, userId) {
         await this.ensureOpenCashRegisterForPaidPurchase(dto.status);
+        const sectorized = await this.inventoryService.isSectorizedMode();
+        const resolvedLocationId = sectorized
+            ? await this.resolvePurchaseDestinationLocation(dto.locationId)
+            : null;
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
         await queryRunner.startTransaction();
@@ -13377,6 +14198,7 @@ let PurchasesService = class PurchasesService {
                 invoiceNumber: dto.invoiceNumber ?? null,
                 notes: dto.notes ?? null,
                 createdById: userId ?? null,
+                locationId: resolvedLocationId,
             });
             // Guardar compra
             const savedPurchase = await queryRunner.manager.save(purchase);
@@ -13384,11 +14206,11 @@ let PurchasesService = class PurchasesService {
             const purchaseItems = this.buildPurchaseItems(savedPurchase.id, dto.items);
             await queryRunner.manager.save(purchaseItems);
             // Si se marca como pagada, actualizar inventario y registrar en caja
-            await this.processPaidPurchaseIfNeeded(dto, savedPurchase, queryRunner.manager, userId);
+            await this.processPaidPurchaseIfNeeded(dto, savedPurchase, queryRunner.manager, userId, sectorized ? resolvedLocationId : null);
             // Cargar la compra con relaciones usando el manager de la transacción
             const result = await queryRunner.manager.findOne(purchase_entity_1.Purchase, {
                 where: { id: savedPurchase.id },
-                relations: ['items', 'items.product', 'createdBy', 'paymentMethod'],
+                relations: ['items', 'items.product', 'createdBy', 'paymentMethod', 'location'],
             });
             if (!result) {
                 throw new common_1.NotFoundException(`Compra con ID ${savedPurchase.id} no encontrada`);
@@ -13455,7 +14277,7 @@ let PurchasesService = class PurchasesService {
             notes: itemDto.notes ?? null,
         }));
     }
-    async processPaidPurchaseIfNeeded(dto, savedPurchase, manager, userId) {
+    async processPaidPurchaseIfNeeded(dto, savedPurchase, manager, userId, sectorizedLocationId) {
         if (dto.status !== purchase_entity_1.PurchaseStatus.PAID)
             return;
         const purchaseWithItems = await manager.findOne(purchase_entity_1.Purchase, {
@@ -13464,7 +14286,12 @@ let PurchasesService = class PurchasesService {
         });
         if (!purchaseWithItems)
             return;
-        await this.updateInventoryFromPurchase(purchaseWithItems);
+        if (sectorizedLocationId) {
+            await this.updateInventoryFromPurchaseInLocation(purchaseWithItems, sectorizedLocationId, manager);
+        }
+        else {
+            await this.updateInventoryFromPurchase(purchaseWithItems);
+        }
         savedPurchase.inventoryUpdated = true;
         savedPurchase.paidAt = savedPurchase.paidAt ?? new Date();
         await manager.save(savedPurchase);
@@ -13475,6 +14302,41 @@ let PurchasesService = class PurchasesService {
             total: savedPurchase.total,
             paymentMethodId: dto.paymentMethodId,
         }, userId || 'system');
+    }
+    async updateInventoryFromPurchaseInLocation(purchase, locationId, manager) {
+        const dateString = typeof purchase.purchaseDate === 'string'
+            ? purchase.purchaseDate
+            : purchase.purchaseDate.toISOString();
+        for (const item of purchase.items) {
+            await this.inventoryService.recordMovementInLocation({
+                productId: item.productId,
+                locationId,
+                type: stock_movement_entity_1.StockMovementType.IN,
+                source: stock_movement_entity_1.StockMovementSource.PURCHASE,
+                quantity: item.quantity,
+                cost: item.unitPrice,
+                notes: `Ingreso por compra ${purchase.purchaseNumber}`,
+                date: new Date(dateString),
+                allowOutOfStock: false,
+                manager,
+            });
+        }
+    }
+    async resolvePurchaseDestinationLocation(dtoLocationId) {
+        if (dtoLocationId) {
+            const loc = await this.dataSource
+                .getRepository(location_entity_1.Location)
+                .findOne({ where: { id: dtoLocationId } });
+            if (!loc || !loc.isActive) {
+                throw new common_1.BadRequestException('destination is inactive');
+            }
+            return dtoLocationId;
+        }
+        const defaultId = await this.inventoryService.getDefaultReceiveLocationId();
+        if (!defaultId) {
+            throw new common_1.BadRequestException('destination required in sectorized mode');
+        }
+        return defaultId;
     }
     /**
      * Obtiene compras con filtros y paginación
@@ -18713,6 +19575,96 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 
 /***/ },
 
+/***/ 8738
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a, _b, _c;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ProductLocationStock = void 0;
+const typeorm_1 = __webpack_require__(86118);
+const product_entity_1 = __webpack_require__(38335);
+const location_entity_1 = __webpack_require__(65653);
+/**
+ * Saldo de un producto en una ubicación específica.
+ *
+ * Invariantes:
+ * - Exactamente una fila por par (productId, locationId) cuando el modo
+ *   sectorizado está activo y la ubicación recibió stock.
+ * - Sólo `InventoryService` escribe en esta tabla; ningún otro módulo.
+ */
+let ProductLocationStock = class ProductLocationStock {
+    id;
+    productId;
+    product;
+    locationId;
+    location;
+    quantity;
+    updatedAt;
+};
+exports.ProductLocationStock = ProductLocationStock;
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
+    __metadata("design:type", String)
+], ProductLocationStock.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'uuid' }),
+    __metadata("design:type", String)
+], ProductLocationStock.prototype, "productId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => product_entity_1.Product, { eager: false, nullable: false }),
+    (0, typeorm_1.JoinColumn)({ name: 'productId' }),
+    __metadata("design:type", typeof (_a = typeof product_entity_1.Product !== "undefined" && product_entity_1.Product) === "function" ? _a : Object)
+], ProductLocationStock.prototype, "product", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'uuid' }),
+    __metadata("design:type", String)
+], ProductLocationStock.prototype, "locationId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => location_entity_1.Location, (location) => location.productLocationStocks, {
+        eager: false,
+        nullable: false,
+    }),
+    (0, typeorm_1.JoinColumn)({ name: 'locationId' }),
+    __metadata("design:type", typeof (_b = typeof location_entity_1.Location !== "undefined" && location_entity_1.Location) === "function" ? _b : Object)
+], ProductLocationStock.prototype, "location", void 0);
+__decorate([
+    (0, typeorm_1.Column)({
+        type: 'decimal',
+        precision: 14,
+        scale: 3,
+        default: 0,
+        transformer: {
+            to: (value) => value,
+            from: (value) => Number.parseFloat(value),
+        },
+    }),
+    __metadata("design:type", Number)
+], ProductLocationStock.prototype, "quantity", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp' }),
+    __metadata("design:type", typeof (_c = typeof Date !== "undefined" && Date) === "function" ? _c : Object)
+], ProductLocationStock.prototype, "updatedAt", void 0);
+exports.ProductLocationStock = ProductLocationStock = __decorate([
+    (0, typeorm_1.Entity)('product_location_stocks'),
+    (0, typeorm_1.Unique)('UQ_product_location_stock_product_location', ['productId', 'locationId']),
+    (0, typeorm_1.Index)(['productId']),
+    (0, typeorm_1.Index)(['locationId'])
+], ProductLocationStock);
+
+
+/***/ },
+
 /***/ 8808
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -18729,13 +19681,61 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var _a;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.CreateSaleDto = exports.CreateSaleTaxDto = exports.CreateSalePaymentDto = exports.CreateSaleItemDto = void 0;
+exports.CreateSaleDto = exports.CreateSaleTaxDto = exports.CreateSalePaymentDto = exports.CreateSaleItemDto = exports.CheckReplenishmentItemDto = exports.ReplenishmentTransferDto = void 0;
 /**
  * DTOs para crear ventas
  */
 const class_validator_1 = __webpack_require__(15521);
 const class_transformer_1 = __webpack_require__(72407);
 const sale_entity_1 = __webpack_require__(31121);
+/**
+ * Traslado previo a la venta, usado por el flujo "Reponer y continuar"
+ * del POS en modo sectorizado. Se ejecuta dentro de la misma transacción
+ * que la venta.
+ */
+class ReplenishmentTransferDto {
+    productId;
+    fromLocationId;
+    quantity;
+    reason;
+}
+exports.ReplenishmentTransferDto = ReplenishmentTransferDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ReplenishmentTransferDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], ReplenishmentTransferDto.prototype, "fromLocationId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], ReplenishmentTransferDto.prototype, "quantity", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.MaxLength)(255),
+    __metadata("design:type", String)
+], ReplenishmentTransferDto.prototype, "reason", void 0);
+/**
+ * Item para `POST /sales/check-replenishment` (read-only).
+ */
+class CheckReplenishmentItemDto {
+    productId;
+    quantity;
+}
+exports.CheckReplenishmentItemDto = CheckReplenishmentItemDto;
+__decorate([
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CheckReplenishmentItemDto.prototype, "productId", void 0);
+__decorate([
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.Min)(1),
+    __metadata("design:type", Number)
+], CheckReplenishmentItemDto.prototype, "quantity", void 0);
 /**
  * DTO para crear un item de venta
  */
@@ -18882,6 +19882,12 @@ class CreateSaleDto {
     notes;
     items;
     payments;
+    /**
+     * Traslados previos a la venta, opcionales. Si están presentes, el
+     * backend los ejecuta en la misma transacción antes de registrar la
+     * venta. Sólo se usan en modo sectorizado; en modo simple se ignoran.
+     */
+    replenishmentTransfers;
 }
 exports.CreateSaleDto = CreateSaleDto;
 __decorate([
@@ -18964,6 +19970,13 @@ __decorate([
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Array)
 ], CreateSaleDto.prototype, "payments", void 0);
+__decorate([
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => ReplenishmentTransferDto),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", Array)
+], CreateSaleDto.prototype, "replenishmentTransfers", void 0);
 
 
 /***/ },
@@ -21551,6 +22564,58 @@ let ReportsService = class ReportsService {
             .sort((a, b) => b.revenue - a.revenue)
             .slice(0, limit);
         return topProducts;
+    }
+    async getProductsByIds(productIds, period, startDate, endDate) {
+        if (productIds.length === 0)
+            return [];
+        const { start, end } = this.getPeriodDates(period, startDate, endDate);
+        const startStr = start.toISOString().split('T')[0];
+        const endStr = end.toISOString().split('T')[0];
+        // Obtener items de ventas completadas filtrando por ids de producto
+        const items = await this.saleItemRepo
+            .createQueryBuilder('item')
+            .innerJoin('item.sale', 'sale')
+            .leftJoinAndSelect('item.product', 'product')
+            .where('sale.deletedAt IS NULL')
+            .andWhere('sale.status = :status', { status: sale_entity_1.SaleStatus.COMPLETED })
+            .andWhere('DATE(sale.saleDate) BETWEEN :start AND :end', { start: startStr, end: endStr })
+            .andWhere('item.productId IN (:...ids)', { ids: productIds })
+            .getMany();
+        // Agrupar por producto
+        const productMap = new Map();
+        for (const item of items) {
+            if (!item.product)
+                continue;
+            const productId = item.productId;
+            if (!productMap.has(productId)) {
+                productMap.set(productId, {
+                    product: item.product,
+                    quantity: 0,
+                    revenue: 0,
+                    cost: 0,
+                });
+            }
+            const prod = productMap.get(productId);
+            prod.quantity += item.quantity;
+            prod.revenue += Number(item.subtotal);
+            prod.cost += item.quantity * Number(item.product.cost);
+        }
+        const result = Array.from(productMap.values())
+            .map(data => {
+            const profit = data.revenue - data.cost;
+            return {
+                productId: data.product.id,
+                productName: data.product.name,
+                productSku: data.product.sku ?? null,
+                quantitySold: data.quantity,
+                revenue: data.revenue,
+                cost: data.cost,
+                profit,
+                margin: data.revenue > 0 ? (profit / data.revenue) * 100 : 0,
+            };
+        })
+            .sort((a, b) => b.revenue - a.revenue);
+        return result;
     }
     // ============================================
     // REPORTE DE PRODUCTOS
@@ -26580,6 +27645,73 @@ exports.TimeInterval = TimeInterval;
 
 /***/ },
 
+/***/ 10525
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CreateStockTransferDto = void 0;
+const swagger_1 = __webpack_require__(77504);
+const class_validator_1 = __webpack_require__(15521);
+/**
+ * DTO de creación de traslado (`POST /api/inventory/transfers`, PR9).
+ *
+ * Wrap del método interno `InventoryService.transfer()` para que la UI de
+ * reposición proactiva pueda crear traslados sin tener que pasar por el
+ * flujo POS (PR8). El backend mantiene su invariante de atomicidad (origen,
+ * destino, recálculo de `Product.stock`, dos `stock_movements` y un
+ * `stock_transfer`) — este endpoint solo abre la puerta HTTP.
+ */
+class CreateStockTransferDto {
+    productId;
+    fromLocationId;
+    toLocationId;
+    quantity;
+    reason;
+}
+exports.CreateStockTransferDto = CreateStockTransferDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({ format: 'uuid' }),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateStockTransferDto.prototype, "productId", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ format: 'uuid' }),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateStockTransferDto.prototype, "fromLocationId", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ format: 'uuid' }),
+    (0, class_validator_1.IsUUID)(),
+    __metadata("design:type", String)
+], CreateStockTransferDto.prototype, "toLocationId", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ minimum: 0.0001, example: 5 }),
+    (0, class_validator_1.IsNumber)(),
+    (0, class_validator_1.Min)(0.0001),
+    __metadata("design:type", Number)
+], CreateStockTransferDto.prototype, "quantity", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: false, maxLength: 255 }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MaxLength)(255),
+    __metadata("design:type", String)
+], CreateStockTransferDto.prototype, "reason", void 0);
+
+
+/***/ },
+
 /***/ 10586
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -30741,6 +31873,7 @@ class UpdateConfigurationDto {
     minStockAlert;
     barcodeScannerEnabled;
     barcodeScannerTimeoutMs;
+    allowOutOfStockSale;
 }
 exports.UpdateConfigurationDto = UpdateConfigurationDto;
 __decorate([
@@ -30771,6 +31904,12 @@ __decorate([
     (0, class_validator_1.Min)(0),
     __metadata("design:type", Number)
 ], UpdateConfigurationDto.prototype, "barcodeScannerTimeoutMs", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({ example: false, description: 'Permitir ventas de productos con stock agotado (queda negativo)' }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], UpdateConfigurationDto.prototype, "allowOutOfStockSale", void 0);
 
 
 /***/ },
@@ -31603,6 +32742,72 @@ function hash(input, options = {}) {
 
 /***/ },
 
+/***/ 13524
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CapabilitiesManifestResponseDto = exports.AppRoutesManifestDto = exports.CapabilitiesResponseDto = void 0;
+const swagger_1 = __webpack_require__(77504);
+const presets_1 = __webpack_require__(69030);
+class CapabilitiesResponseDto {
+    profileKey;
+    profileVersion;
+    capabilitiesSchemaVersion;
+    capabilities;
+}
+exports.CapabilitiesResponseDto = CapabilitiesResponseDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({ enum: presets_1.CAPABILITY_PROFILE_KEYS }),
+    __metadata("design:type", Object)
+], CapabilitiesResponseDto.prototype, "profileKey", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 1 }),
+    __metadata("design:type", Number)
+], CapabilitiesResponseDto.prototype, "profileVersion", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 1 }),
+    __metadata("design:type", Number)
+], CapabilitiesResponseDto.prototype, "capabilitiesSchemaVersion", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: 'object', additionalProperties: { type: 'boolean' } }),
+    __metadata("design:type", Object)
+], CapabilitiesResponseDto.prototype, "capabilities", void 0);
+class AppRoutesManifestDto {
+    enabled;
+    disabled;
+}
+exports.AppRoutesManifestDto = AppRoutesManifestDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: [String], example: ['dashboard', 'products'] }),
+    __metadata("design:type", Array)
+], AppRoutesManifestDto.prototype, "enabled", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: [String], example: ['inventory/replenishment'] }),
+    __metadata("design:type", Array)
+], AppRoutesManifestDto.prototype, "disabled", void 0);
+class CapabilitiesManifestResponseDto extends CapabilitiesResponseDto {
+    appRoutes;
+}
+exports.CapabilitiesManifestResponseDto = CapabilitiesManifestResponseDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: AppRoutesManifestDto }),
+    __metadata("design:type", AppRoutesManifestDto)
+], CapabilitiesManifestResponseDto.prototype, "appRoutes", void 0);
+
+
+/***/ },
+
 /***/ 13678
 (module) {
 
@@ -32285,6 +33490,137 @@ Sha512.prototype._hash = function () {
 };
 
 module.exports = Sha512;
+
+
+/***/ },
+
+/***/ 13715
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AddLocationIdToInventoryMovements1771000000000 = void 0;
+/**
+ * Migración: AddLocationIdToInventoryMovements
+ *
+ * Extiende `stock_movements` con la columna `locationId` (uuid, nullable,
+ * FK -> locations(id)) para registrar la ubicación afectada cuando el modo
+ * sectorizado está activo. En modo simple queda en null y el comportamiento
+ * actual no cambia.
+ *
+ * Además agrega el valor `TRANSFER` al enum `stock_movements.source` para que
+ * los traslados puedan identificarse como origen del movimiento (escenarios S3
+ * y S5 de `inventory-movements.md`).
+ *
+ * Crea un índice compuesto `(productId, locationId, createdAt DESC)` para la
+ * consulta típica de historial por producto y ubicación.
+ *
+ * Es idempotente: cada cambio se aplica solo si la columna / índice / valor
+ * de enum no existe todavía. El `down` revierte en orden inverso.
+ */
+class AddLocationIdToInventoryMovements1771000000000 {
+    name = 'AddLocationIdToInventoryMovements1771000000000';
+    async columnExists(queryRunner, tableName, columnName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.columns
+                WHERE table_schema = 'public'
+                AND table_name = '${tableName}'
+                AND column_name = '${columnName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async indexExists(queryRunner, indexName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM pg_indexes
+                WHERE schemaname = 'public'
+                AND indexname = '${indexName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async enumValueExists(queryRunner, enumTypeName, value) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM pg_enum e
+                JOIN pg_type t ON t.oid = e.enumtypid
+                WHERE t.typname = '${enumTypeName}'
+                AND e.enumlabel = '${value}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async up(queryRunner) {
+        // 1. locationId en stock_movements (nullable para back-compat).
+        if (!await this.columnExists(queryRunner, 'stock_movements', 'locationId')) {
+            await queryRunner.query(`
+                ALTER TABLE "stock_movements"
+                ADD COLUMN "locationId" uuid NULL
+            `);
+            await queryRunner.query(`
+                ALTER TABLE "stock_movements"
+                ADD CONSTRAINT "FK_stock_movements_location"
+                FOREIGN KEY ("locationId") REFERENCES "locations"("id")
+                ON DELETE RESTRICT ON UPDATE NO ACTION
+            `);
+        }
+        // 2. Índice compuesto (productId, locationId, createdAt DESC) para la
+        // consulta típica de historial por producto/ubicación.
+        if (!await this.indexExists(queryRunner, 'IDX_stock_movements_product_location_created')) {
+            await queryRunner.query(`
+                CREATE INDEX "IDX_stock_movements_product_location_created"
+                ON "stock_movements" ("productId", "locationId", "createdAt" DESC)
+            `);
+        }
+        // 3. Valor TRANSFER en el enum de source. TypeORM genera el tipo
+        // siguiendo el patrón {table}_{column}_enum.
+        // PG 12+ permite ALTER TYPE ... ADD VALUE dentro de transacción;
+        // usamos IF NOT EXISTS para que la migración sea idempotente.
+        const enumName = 'stock_movements_source_enum';
+        if (!await this.enumValueExists(queryRunner, enumName, 'TRANSFER')) {
+            await queryRunner.query(`
+                ALTER TYPE "${enumName}" ADD VALUE IF NOT EXISTS 'TRANSFER'
+            `);
+        }
+    }
+    async down(queryRunner) {
+        // 3. Quitar el valor TRANSFER del enum.
+        // PostgreSQL no permite DROP VALUE de un enum; recreamos el tipo.
+        // Sólo se hace si el valor existe; si no, no-op.
+        const enumName = 'stock_movements_source_enum';
+        if (await this.enumValueExists(queryRunner, enumName, 'TRANSFER')) {
+            // Renombrar el enum actual, crear uno nuevo sin TRANSFER,
+            // convertir la columna, borrar el viejo. Si en el futuro se agregan
+            // más valores, ajustar acá.
+            await queryRunner.query(`ALTER TABLE "stock_movements" ALTER COLUMN "source" TYPE varchar`);
+            await queryRunner.query(`DROP TYPE IF EXISTS "${enumName}"`);
+            await queryRunner.query(`
+                CREATE TYPE "${enumName}"
+                AS ENUM ('INITIAL_LOAD', 'PURCHASE', 'SALE', 'ADJUSTMENT', 'RETURN')
+            `);
+            await queryRunner.query(`
+                ALTER TABLE "stock_movements"
+                ALTER COLUMN "source" TYPE "${enumName}"
+                USING "source"::text::"${enumName}"
+            `);
+        }
+        // 2. Drop index
+        if (await this.indexExists(queryRunner, 'IDX_stock_movements_product_location_created')) {
+            await queryRunner.query(`DROP INDEX "IDX_stock_movements_product_location_created"`);
+        }
+        // 1. Drop FK + column
+        await queryRunner.query(`
+            ALTER TABLE "stock_movements" DROP CONSTRAINT IF EXISTS "FK_stock_movements_location"
+        `);
+        if (await this.columnExists(queryRunner, 'stock_movements', 'locationId')) {
+            await queryRunner.query(`ALTER TABLE "stock_movements" DROP COLUMN "locationId"`);
+        }
+    }
+}
+exports.AddLocationIdToInventoryMovements1771000000000 = AddLocationIdToInventoryMovements1771000000000;
 
 
 /***/ },
@@ -45309,6 +46645,50 @@ module.exports["default"] = exports.default;
 
 /***/ },
 
+/***/ 15734
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AddCapabilitiesColumns1786387763156 = void 0;
+class AddCapabilitiesColumns1786387763156 {
+    name = 'AddCapabilitiesColumns1786387763156';
+    async up(queryRunner) {
+        await queryRunner.query(`
+            ALTER TABLE "system_configuration"
+            ADD COLUMN "profile_key" character varying(64) NOT NULL DEFAULT 'legacy',
+            ADD COLUMN "profile_version" integer NOT NULL DEFAULT 1,
+            ADD COLUMN "capabilities_json" jsonb NOT NULL DEFAULT '{}'::jsonb,
+            ADD COLUMN "capabilities_schema_version" integer NOT NULL DEFAULT 1
+        `);
+    }
+    async down(queryRunner) {
+        const result = await queryRunner.query(`
+            SELECT COUNT(*)::int AS "nonLegacyCount"
+            FROM "system_configuration"
+            WHERE "profile_key" <> 'legacy'
+               OR "profile_version" <> 1
+               OR "capabilities_json" <> '{}'::jsonb
+               OR "capabilities_schema_version" <> 1
+        `);
+        if (Number(result[0]?.nonLegacyCount ?? 0) > 0) {
+            throw new Error('Cannot drop capability metadata columns while non-legacy configuration data exists');
+        }
+        await queryRunner.query(`
+            ALTER TABLE "system_configuration"
+            DROP COLUMN "capabilities_schema_version",
+            DROP COLUMN "capabilities_json",
+            DROP COLUMN "profile_version",
+            DROP COLUMN "profile_key"
+        `);
+    }
+}
+exports.AddCapabilitiesColumns1786387763156 = AddCapabilitiesColumns1786387763156;
+
+
+/***/ },
+
 /***/ 15736
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -45636,6 +47016,59 @@ function state(list, sortMethod)
 
 /***/ },
 
+/***/ 16130
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.resolveCapabilities = resolveCapabilities;
+const keys_1 = __webpack_require__(49692);
+const presets_1 = __webpack_require__(69030);
+function resolveCapabilities(profileKey, overrides, capabilitiesSchemaVersion) {
+    const errors = [];
+    const resolvedProfileKey = typeof profileKey === 'string' && (0, presets_1.isCapabilityProfileKey)(profileKey)
+        ? profileKey
+        : null;
+    if (capabilitiesSchemaVersion !== presets_1.CURRENT_CAPABILITIES_SCHEMA_VERSION) {
+        errors.push(`capabilitiesSchemaVersion must be ${presets_1.CURRENT_CAPABILITIES_SCHEMA_VERSION}`);
+    }
+    if (resolvedProfileKey === null) {
+        errors.push('profileKey must be a known capability profile');
+    }
+    if (!isStringRecord(overrides)) {
+        errors.push('capabilities must be an object');
+        return { ok: false, errors };
+    }
+    for (const key of Object.keys(overrides).sort()) {
+        const value = overrides[key];
+        if (!(0, keys_1.isCapabilityKey)(key)) {
+            errors.push(`capabilities.${key} is not a known capability key`);
+            continue;
+        }
+        if (typeof value !== 'boolean') {
+            errors.push(`capabilities.${key} must be boolean`);
+        }
+    }
+    if (errors.length > 0 || resolvedProfileKey === null) {
+        return { ok: false, errors };
+    }
+    const capabilities = { ...presets_1.CAPABILITY_PRESETS[resolvedProfileKey] };
+    for (const key of keys_1.ALL_CAPABILITY_KEYS) {
+        const value = overrides[key];
+        if (typeof value === 'boolean') {
+            capabilities[key] = value;
+        }
+    }
+    return { ok: true, capabilities };
+}
+function isStringRecord(value) {
+    return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+
+
+/***/ },
+
 /***/ 16195
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -45870,6 +47303,78 @@ exports.immediateProvider = {
     delegate: undefined,
 };
 //# sourceMappingURL=immediateProvider.js.map
+
+/***/ },
+
+/***/ 16345
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AddPurchaseLocationId1773000000000 = void 0;
+/**
+ * PR5: Add `locationId` (nullable) to `purchases` para trazabilidad del
+ * destino físico en modo sectorizado.
+ *
+ *  - En modo simple la columna queda en null (comportamiento actual intacto).
+ *  - En modo sectorizado `PurchasesService.create` la completa con la
+ *    ubicación resuelta (DTO o `defaultReceiveLocationId`).
+ *  - FK a `locations(id)` ON DELETE RESTRICT: preserva el historial; no se
+ *    permite borrar una ubicación referenciada por una compra.
+ *
+ * Idempotente: aplica solo si la columna / FK no existen.
+ */
+class AddPurchaseLocationId1773000000000 {
+    name = 'AddPurchaseLocationId1773000000000';
+    async columnExists(queryRunner, tableName, columnName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.columns
+                WHERE table_schema = 'public'
+                AND table_name = '${tableName}'
+                AND column_name = '${columnName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async constraintExists(queryRunner, constraintName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.table_constraints
+                WHERE constraint_schema = 'public'
+                AND constraint_name = '${constraintName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async up(queryRunner) {
+        if (!await this.columnExists(queryRunner, 'purchases', 'locationId')) {
+            await queryRunner.query(`
+                ALTER TABLE "purchases"
+                ADD COLUMN "locationId" uuid NULL
+            `);
+            await queryRunner.query(`
+                ALTER TABLE "purchases"
+                ADD CONSTRAINT "FK_purchases_location"
+                FOREIGN KEY ("locationId") REFERENCES "locations"("id")
+                ON DELETE RESTRICT ON UPDATE NO ACTION
+            `);
+        }
+    }
+    async down(queryRunner) {
+        if (await this.constraintExists(queryRunner, 'FK_purchases_location')) {
+            await queryRunner.query(`
+                ALTER TABLE "purchases" DROP CONSTRAINT "FK_purchases_location"
+            `);
+        }
+        if (await this.columnExists(queryRunner, 'purchases', 'locationId')) {
+            await queryRunner.query(`ALTER TABLE "purchases" DROP COLUMN "locationId"`);
+        }
+    }
+}
+exports.AddPurchaseLocationId1773000000000 = AddPurchaseLocationId1773000000000;
+
 
 /***/ },
 
@@ -59549,6 +61054,57 @@ var CountryCodes = exports.CountryCodes = validISO31661Alpha2CountriesCodes;
 
 /***/ },
 
+/***/ 22828
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UpdateCapabilitiesDto = void 0;
+const swagger_1 = __webpack_require__(77504);
+const class_validator_1 = __webpack_require__(15521);
+const keys_1 = __webpack_require__(49692);
+const presets_1 = __webpack_require__(69030);
+class UpdateCapabilitiesDto {
+    profileKey;
+    capabilities;
+    capabilitiesSchemaVersion;
+}
+exports.UpdateCapabilitiesDto = UpdateCapabilitiesDto;
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({ enum: presets_1.CAPABILITY_PROFILE_KEYS }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsIn)(presets_1.CAPABILITY_PROFILE_KEYS),
+    __metadata("design:type", Object)
+], UpdateCapabilitiesDto.prototype, "profileKey", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({ enum: keys_1.ALL_CAPABILITY_KEYS, type: 'object', additionalProperties: { type: 'boolean' } }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsObject)(),
+    __metadata("design:type", typeof (_a = typeof Readonly !== "undefined" && Readonly) === "function" ? _a : Object)
+], UpdateCapabilitiesDto.prototype, "capabilities", void 0);
+__decorate([
+    (0, swagger_1.ApiPropertyOptional)({ example: 1, minimum: 1 }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.Min)(1),
+    __metadata("design:type", Number)
+], UpdateCapabilitiesDto.prototype, "capabilitiesSchemaVersion", void 0);
+
+
+/***/ },
+
 /***/ 22886
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -61607,6 +63163,108 @@ module.exports = new Type('tag:yaml.org,2002:binary', {
 
 /***/ },
 
+/***/ 23815
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a, _b;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.UpdateLocationDto = exports.CreateLocationDto = void 0;
+const swagger_1 = __webpack_require__(77504);
+const class_validator_1 = __webpack_require__(15521);
+const location_entity_1 = __webpack_require__(65653);
+/**
+ * DTO de creación de ubicación.
+ *
+ * `isPrimarySale` / `isDefaultReceive` son opcionales; cuando llegan en
+ * `true`, las partial unique indexes en `locations` (UQ_locations_primary_sale
+ * / UQ_locations_default_receive) garantizan que a lo sumo una ubicación
+ * los tenga en true. El servicio traduce el `QueryFailedError` correspondiente
+ * a un 409.
+ */
+class CreateLocationDto {
+    name;
+    function;
+    isPrimarySale;
+    isDefaultReceive;
+}
+exports.CreateLocationDto = CreateLocationDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'Depósito', maxLength: 120 }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(1),
+    (0, class_validator_1.MaxLength)(120),
+    __metadata("design:type", String)
+], CreateLocationDto.prototype, "name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ enum: location_entity_1.LocationFunction, example: location_entity_1.LocationFunction.STORAGE }),
+    (0, class_validator_1.IsEnum)(location_entity_1.LocationFunction),
+    __metadata("design:type", typeof (_a = typeof location_entity_1.LocationFunction !== "undefined" && location_entity_1.LocationFunction) === "function" ? _a : Object)
+], CreateLocationDto.prototype, "function", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: false, default: false }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], CreateLocationDto.prototype, "isPrimarySale", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: false, default: false }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], CreateLocationDto.prototype, "isDefaultReceive", void 0);
+/**
+ * DTO de edición de ubicación. Todos los campos son opcionales: solo se
+ * actualiza lo que llega. Los flags `isPrimarySale` / `isDefaultReceive`
+ * siguen gobernados por las partial unique indexes.
+ */
+class UpdateLocationDto {
+    name;
+    function;
+    isPrimarySale;
+    isDefaultReceive;
+}
+exports.UpdateLocationDto = UpdateLocationDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: false, maxLength: 120 }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(1),
+    (0, class_validator_1.MaxLength)(120),
+    __metadata("design:type", String)
+], UpdateLocationDto.prototype, "name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: false, enum: location_entity_1.LocationFunction }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsEnum)(location_entity_1.LocationFunction),
+    __metadata("design:type", typeof (_b = typeof location_entity_1.LocationFunction !== "undefined" && location_entity_1.LocationFunction) === "function" ? _b : Object)
+], UpdateLocationDto.prototype, "function", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], UpdateLocationDto.prototype, "isPrimarySale", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: false }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], UpdateLocationDto.prototype, "isDefaultReceive", void 0);
+
+
+/***/ },
+
 /***/ 23887
 (module, exports) {
 
@@ -63175,7 +64833,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ReportsController = void 0;
 /**
@@ -63225,6 +64883,13 @@ let ReportsController = class ReportsController {
      */
     getTopProducts(filters) {
         return this.reportsService.getTopProducts(filters.period, filters.startDate, filters.endDate, filters.limit);
+    }
+    /**
+     * GET /api/reports/products-by-ids
+     * Obtiene reporte de productos seleccionados por id
+     */
+    getProductsByIds(filters) {
+        return this.reportsService.getProductsByIds(filters.productIds, filters.period, filters.startDate, filters.endDate);
     }
     /**
      * GET /api/reports/customers
@@ -63291,31 +64956,38 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], ReportsController.prototype, "getTopProducts", null);
 __decorate([
+    (0, common_1.Get)('products-by-ids'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_f = typeof dto_1.ProductsByIdReportDto !== "undefined" && dto_1.ProductsByIdReportDto) === "function" ? _f : Object]),
+    __metadata("design:returntype", void 0)
+], ReportsController.prototype, "getProductsByIds", null);
+__decorate([
     (0, common_1.Get)('customers'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_f = typeof dto_1.ReportFiltersDto !== "undefined" && dto_1.ReportFiltersDto) === "function" ? _f : Object]),
+    __metadata("design:paramtypes", [typeof (_g = typeof dto_1.ReportFiltersDto !== "undefined" && dto_1.ReportFiltersDto) === "function" ? _g : Object]),
     __metadata("design:returntype", void 0)
 ], ReportsController.prototype, "getCustomersReport", null);
 __decorate([
     (0, common_1.Get)('top-customers'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_g = typeof dto_1.TopCustomersFiltersDto !== "undefined" && dto_1.TopCustomersFiltersDto) === "function" ? _g : Object]),
+    __metadata("design:paramtypes", [typeof (_h = typeof dto_1.TopCustomersFiltersDto !== "undefined" && dto_1.TopCustomersFiltersDto) === "function" ? _h : Object]),
     __metadata("design:returntype", void 0)
 ], ReportsController.prototype, "getTopCustomers", null);
 __decorate([
     (0, common_1.Get)('expenses'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_h = typeof dto_1.ReportFiltersDto !== "undefined" && dto_1.ReportFiltersDto) === "function" ? _h : Object]),
+    __metadata("design:paramtypes", [typeof (_j = typeof dto_1.ReportFiltersDto !== "undefined" && dto_1.ReportFiltersDto) === "function" ? _j : Object]),
     __metadata("design:returntype", void 0)
 ], ReportsController.prototype, "getExpensesReport", null);
 __decorate([
     (0, common_1.Get)('cash-flow'),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_j = typeof dto_1.ReportFiltersDto !== "undefined" && dto_1.ReportFiltersDto) === "function" ? _j : Object]),
+    __metadata("design:paramtypes", [typeof (_k = typeof dto_1.ReportFiltersDto !== "undefined" && dto_1.ReportFiltersDto) === "function" ? _k : Object]),
     __metadata("design:returntype", void 0)
 ], ReportsController.prototype, "getCashFlowReport", null);
 exports.ReportsController = ReportsController = __decorate([
@@ -64304,6 +65976,186 @@ module.exports = ConnectionParameters
 
 /***/ },
 
+/***/ 25500
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+var _a, _b, _c, _d;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ActivationService = void 0;
+const common_1 = __webpack_require__(42909);
+const typeorm_1 = __webpack_require__(88220);
+const typeorm_2 = __webpack_require__(86118);
+const location_entity_1 = __webpack_require__(65653);
+const product_location_stock_entity_1 = __webpack_require__(8738);
+const product_entity_1 = __webpack_require__(38335);
+const system_configuration_entity_1 = __webpack_require__(5848);
+/**
+ * Servicio de activación del modo sectorizado.
+ *
+ * Una sola transacción ejecuta los pasos del asistente (ver
+ * `openspec/changes/stock-sectorizado/specs/inventory-locations.md`,
+ * escenarios S2 y S3):
+ *
+ *   1. Rechaza si el modo ya está activo.
+ *   2. Valida la entrada (una primaria, un destino de compras, ubicación
+ *      inicial existe).
+ *   3. Crea las ubicaciones con sus flags (las partial unique indexes en
+ *      `locations` garantizan la unicidad; cualquier duplicado hace rollback).
+ *   4. Snapshotea el stock de cada producto.
+ *   5. Para cada producto crea una fila en `product_location_stock` con
+ *      `quantity = product.stock` en la ubicación inicial.
+ *   6. Verifica `SUM(product_location_stock WHERE locationId = initial) ==
+ *      SUM(product.stock snapshot)` y que ningún producto se haya perdido.
+ *   7. Flipp ea el flag en `system_configuration` con los IDs resueltos.
+ *   8. Commit; cualquier error hace rollback total.
+ *
+ * El método `deactivate()` no existe en v1 — el diseño lo defiere a una
+ * versión futura.
+ */
+let ActivationService = class ActivationService {
+    locationRepository;
+    plsRepository;
+    configRepository;
+    dataSource;
+    constructor(locationRepository, plsRepository, configRepository, dataSource) {
+        this.locationRepository = locationRepository;
+        this.plsRepository = plsRepository;
+        this.configRepository = configRepository;
+        this.dataSource = dataSource;
+    }
+    async activate(dto) {
+        // --- Validaciones previas (no requieren transacción) -----------------
+        const primarySales = dto.locations.filter(l => l.isPrimarySale);
+        const defaultReceives = dto.locations.filter(l => l.isDefaultReceive);
+        if (primarySales.length !== 1) {
+            throw new common_1.BadRequestException(`Debe haber exactamente una ubicación marcada como primaria de venta (hay ${primarySales.length})`);
+        }
+        if (defaultReceives.length !== 1) {
+            throw new common_1.BadRequestException(`Debe haber exactamente una ubicación marcada como destino predeterminado de compras (hay ${defaultReceives.length})`);
+        }
+        const initialLocation = dto.locations.find(l => l.name === dto.initialStockLocationName);
+        if (!initialLocation) {
+            throw new common_1.BadRequestException(`La ubicación inicial "${dto.initialStockLocationName}" no está en la lista`);
+        }
+        const names = dto.locations.map(l => l.name);
+        if (new Set(names).size !== names.length) {
+            throw new common_1.BadRequestException('Los nombres de ubicación deben ser únicos');
+        }
+        // --- Transacción única ----------------------------------------------
+        const queryRunner = this.dataSource.createQueryRunner();
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            // 1. Rechazar si el modo ya está activo.
+            const configRows = await queryRunner.manager.find(system_configuration_entity_1.SystemConfiguration);
+            const config = configRows[0];
+            if (!config) {
+                throw new common_1.BadRequestException('No existe configuración del sistema');
+            }
+            if (config.stockSectorizado) {
+                throw new common_1.ConflictException('El modo sectorizado ya está activo');
+            }
+            // 2. Crear ubicaciones. Las partial unique indexes en `locations`
+            //    (UQ_locations_primary_sale, UQ_locations_default_receive)
+            //    lanzan si hay duplicados de flags; dejamos que TypeORM
+            //    propague la QueryFailedError.
+            const createdLocations = [];
+            for (const input of dto.locations) {
+                const loc = queryRunner.manager.create(location_entity_1.Location, {
+                    name: input.name,
+                    function: input.function,
+                    isActive: true,
+                    isPrimarySale: Boolean(input.isPrimarySale),
+                    isDefaultReceive: Boolean(input.isDefaultReceive),
+                });
+                const saved = await queryRunner.manager.save(loc);
+                createdLocations.push(saved);
+            }
+            const primarySale = createdLocations.find(l => l.isPrimarySale);
+            const defaultReceive = createdLocations.find(l => l.isDefaultReceive);
+            const initial = createdLocations.find(l => l.name === dto.initialStockLocationName);
+            if (!primarySale || !defaultReceive || !initial) {
+                // Defensa: no debería pasar porque validamos antes.
+                throw new common_1.BadRequestException('Error interno: ubicaciones no resueltas');
+            }
+            // 3. Snapshot del stock y distribución. La verificación del
+            //    total se hace al final con un SUM aggregate, así no
+            //    necesitamos cargar todos los productos a memoria más de una vez.
+            const products = await queryRunner.manager.find(product_entity_1.Product, {
+                select: ['id', 'stock'],
+            });
+            let snapshotTotal = 0;
+            for (const p of products) {
+                snapshotTotal += Number(p.stock) || 0;
+                if (Number(p.stock) > 0) {
+                    const pls = queryRunner.manager.create(product_location_stock_entity_1.ProductLocationStock, {
+                        productId: p.id,
+                        locationId: initial.id,
+                        quantity: p.stock,
+                    });
+                    await queryRunner.manager.save(pls);
+                }
+            }
+            // 4. Verificación post-distribución: SUM(product_location_stock
+            //    WHERE locationId = initial) == snapshotTotal.
+            const sumRows = await queryRunner.manager.query(`SELECT COALESCE(SUM("quantity"), 0)::text AS total
+                 FROM "product_location_stocks"
+                 WHERE "locationId" = $1`, [initial.id]);
+            const distributedTotal = Number.parseFloat(sumRows[0]?.total ?? '0');
+            // Tolerancia 1e-6 para evitar issues de coma flotante; los
+            // decimales se persisten con scale 3, así que la tolerancia es
+            // muy generosa.
+            if (Math.abs(distributedTotal - snapshotTotal) > 1e-6) {
+                throw new common_1.BadRequestException(`Distribución inconsistente: stock total ${snapshotTotal} != suma distribuida ${distributedTotal}`);
+            }
+            // 5. Flippear el flag y persistir las referencias a ubicaciones.
+            await queryRunner.manager.update(system_configuration_entity_1.SystemConfiguration, config.id, {
+                stockSectorizado: true,
+                primarySaleLocationId: primarySale.id,
+                defaultReceiveLocationId: defaultReceive.id,
+            });
+            await queryRunner.commitTransaction();
+            return {
+                ok: true,
+                products: products.length,
+                locations: createdLocations.length,
+            };
+        }
+        catch (err) {
+            await queryRunner.rollbackTransaction();
+            throw err;
+        }
+        finally {
+            await queryRunner.release();
+        }
+    }
+};
+exports.ActivationService = ActivationService;
+exports.ActivationService = ActivationService = __decorate([
+    (0, common_1.Injectable)(),
+    __param(0, (0, typeorm_1.InjectRepository)(location_entity_1.Location)),
+    __param(1, (0, typeorm_1.InjectRepository)(product_location_stock_entity_1.ProductLocationStock)),
+    __param(2, (0, typeorm_1.InjectRepository)(system_configuration_entity_1.SystemConfiguration)),
+    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object, typeof (_b = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _b : Object, typeof (_c = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _c : Object, typeof (_d = typeof typeorm_2.DataSource !== "undefined" && typeorm_2.DataSource) === "function" ? _d : Object])
+], ActivationService);
+
+
+/***/ },
+
 /***/ 25506
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -65004,6 +66856,206 @@ function removeUploadedFiles (uploadedFiles, remove, cb) {
 }
 
 module.exports = removeUploadedFiles
+
+
+/***/ },
+
+/***/ 25844
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AddStockSectorizadoFoundations1770000000000 = void 0;
+/**
+ * Migración: AddStockSectorizadoFoundations
+ *
+ * Crea las tablas que sostienen el modo sectorizado opcional:
+ *  - locations (con flags isPrimarySale / isDefaultReceive, a lo sumo uno true cada uno)
+ *  - product_location_stocks (saldo por par producto/ubicación, único)
+ *  - stock_transfers (auditoría de traslados entre ubicaciones)
+ *
+ * No agrega columnas a stock_movements ni a system_configuration: esos cambios
+ * llegan en migraciones posteriores para mantener el PR1 dentro del scope
+ * "foundations".
+ */
+class AddStockSectorizadoFoundations1770000000000 {
+    name = 'AddStockSectorizadoFoundations1770000000000';
+    async tableExists(queryRunner, tableName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.tables
+                WHERE table_schema = 'public'
+                AND table_name = '${tableName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async columnExists(queryRunner, tableName, columnName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.columns
+                WHERE table_schema = 'public'
+                AND table_name = '${tableName}'
+                AND column_name = '${columnName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async indexExists(queryRunner, indexName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM pg_indexes
+                WHERE schemaname = 'public'
+                AND indexname = '${indexName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async up(queryRunner) {
+        // 1. Tabla locations
+        if (!await this.tableExists(queryRunner, 'locations')) {
+            await queryRunner.query(`
+                CREATE TABLE "locations" (
+                    "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
+                    "name" character varying(120) NOT NULL,
+                    "function" varchar NOT NULL DEFAULT 'STORAGE',
+                    "isActive" boolean NOT NULL DEFAULT true,
+                    "isPrimarySale" boolean NOT NULL DEFAULT false,
+                    "isDefaultReceive" boolean NOT NULL DEFAULT false,
+                    "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
+                    "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
+                    CONSTRAINT "PK_locations" PRIMARY KEY ("id")
+                )
+            `);
+            // name único
+            if (!await this.indexExists(queryRunner, 'UQ_locations_name')) {
+                await queryRunner.query(`
+                    CREATE UNIQUE INDEX "UQ_locations_name"
+                    ON "locations" ("name")
+                `);
+            }
+            // A lo sumo una ubicación primaria de venta.
+            if (!await this.indexExists(queryRunner, 'UQ_locations_primary_sale')) {
+                await queryRunner.query(`
+                    CREATE UNIQUE INDEX "UQ_locations_primary_sale"
+                    ON "locations" ("isPrimarySale")
+                    WHERE "isPrimarySale" = true
+                `);
+            }
+            // A lo sumo una ubicación destino predeterminado de compras.
+            if (!await this.indexExists(queryRunner, 'UQ_locations_default_receive')) {
+                await queryRunner.query(`
+                    CREATE UNIQUE INDEX "UQ_locations_default_receive"
+                    ON "locations" ("isDefaultReceive")
+                    WHERE "isDefaultReceive" = true
+                `);
+            }
+        }
+        // 2. Tabla product_location_stocks
+        if (!await this.tableExists(queryRunner, 'product_location_stocks')) {
+            await queryRunner.query(`
+                CREATE TABLE "product_location_stocks" (
+                    "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
+                    "productId" uuid NOT NULL,
+                    "locationId" uuid NOT NULL,
+                    "quantity" numeric(14,3) NOT NULL DEFAULT 0,
+                    "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
+                    CONSTRAINT "PK_product_location_stocks" PRIMARY KEY ("id"),
+                    CONSTRAINT "UQ_product_location_stocks_product_location"
+                        UNIQUE ("productId", "locationId"),
+                    CONSTRAINT "FK_product_location_stocks_product"
+                        FOREIGN KEY ("productId") REFERENCES "products"("id")
+                        ON DELETE RESTRICT ON UPDATE NO ACTION,
+                    CONSTRAINT "FK_product_location_stocks_location"
+                        FOREIGN KEY ("locationId") REFERENCES "locations"("id")
+                        ON DELETE RESTRICT ON UPDATE NO ACTION
+                )
+            `);
+            if (!await this.indexExists(queryRunner, 'IDX_product_location_stocks_product')) {
+                await queryRunner.query(`
+                    CREATE INDEX "IDX_product_location_stocks_product"
+                    ON "product_location_stocks" ("productId")
+                `);
+            }
+            if (!await this.indexExists(queryRunner, 'IDX_product_location_stocks_location')) {
+                await queryRunner.query(`
+                    CREATE INDEX "IDX_product_location_stocks_location"
+                    ON "product_location_stocks" ("locationId")
+                `);
+            }
+        }
+        // 3. Tabla stock_transfers
+        if (!await this.tableExists(queryRunner, 'stock_transfers')) {
+            await queryRunner.query(`
+                CREATE TABLE "stock_transfers" (
+                    "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
+                    "productId" uuid NOT NULL,
+                    "fromLocationId" uuid NOT NULL,
+                    "toLocationId" uuid NOT NULL,
+                    "quantity" numeric(14,3) NOT NULL,
+                    "reason" character varying(255),
+                    "createdById" uuid,
+                    "status" varchar NOT NULL DEFAULT 'COMPLETADO',
+                    "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
+                    CONSTRAINT "PK_stock_transfers" PRIMARY KEY ("id"),
+                    CONSTRAINT "CHK_stock_transfers_quantity_positive" CHECK ("quantity" > 0),
+                    CONSTRAINT "CHK_stock_transfers_different_locations"
+                        CHECK ("fromLocationId" <> "toLocationId"),
+                    CONSTRAINT "FK_stock_transfers_product"
+                        FOREIGN KEY ("productId") REFERENCES "products"("id")
+                        ON DELETE RESTRICT ON UPDATE NO ACTION,
+                    CONSTRAINT "FK_stock_transfers_from_location"
+                        FOREIGN KEY ("fromLocationId") REFERENCES "locations"("id")
+                        ON DELETE RESTRICT ON UPDATE NO ACTION,
+                    CONSTRAINT "FK_stock_transfers_to_location"
+                        FOREIGN KEY ("toLocationId") REFERENCES "locations"("id")
+                        ON DELETE RESTRICT ON UPDATE NO ACTION
+                )
+            `);
+            if (!await this.indexExists(queryRunner, 'IDX_stock_transfers_product')) {
+                await queryRunner.query(`
+                    CREATE INDEX "IDX_stock_transfers_product"
+                    ON "stock_transfers" ("productId")
+                `);
+            }
+            if (!await this.indexExists(queryRunner, 'IDX_stock_transfers_from')) {
+                await queryRunner.query(`
+                    CREATE INDEX "IDX_stock_transfers_from"
+                    ON "stock_transfers" ("fromLocationId")
+                `);
+            }
+            if (!await this.indexExists(queryRunner, 'IDX_stock_transfers_to')) {
+                await queryRunner.query(`
+                    CREATE INDEX "IDX_stock_transfers_to"
+                    ON "stock_transfers" ("toLocationId")
+                `);
+            }
+            if (!await this.indexExists(queryRunner, 'IDX_stock_transfers_created_at')) {
+                await queryRunner.query(`
+                    CREATE INDEX "IDX_stock_transfers_created_at"
+                    ON "stock_transfers" ("createdAt" DESC)
+                `);
+            }
+        }
+    }
+    async down(queryRunner) {
+        // Eliminar en orden inverso: stock_transfers → product_location_stocks → locations.
+        // 3. stock_transfers
+        if (await this.tableExists(queryRunner, 'stock_transfers')) {
+            await queryRunner.query(`DROP TABLE "stock_transfers"`);
+        }
+        // 2. product_location_stocks
+        if (await this.tableExists(queryRunner, 'product_location_stocks')) {
+            await queryRunner.query(`DROP TABLE "product_location_stocks"`);
+        }
+        // 1. locations
+        if (await this.tableExists(queryRunner, 'locations')) {
+            await queryRunner.query(`DROP TABLE "locations"`);
+        }
+    }
+}
+exports.AddStockSectorizadoFoundations1770000000000 = AddStockSectorizadoFoundations1770000000000;
 
 
 /***/ },
@@ -76690,7 +78742,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l;
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.SalesService = void 0;
 /**
@@ -76710,9 +78762,11 @@ const invoice_service_1 = __webpack_require__(65636);
 const cash_register_service_1 = __webpack_require__(84628);
 const customer_accounts_service_1 = __webpack_require__(15028);
 const stock_movement_entity_1 = __webpack_require__(83356);
+const product_location_stock_entity_1 = __webpack_require__(8738);
 const date_utils_1 = __webpack_require__(68167);
 const audit_service_1 = __webpack_require__(12052);
 const enums_1 = __webpack_require__(11371);
+const configuration_service_1 = __webpack_require__(56300);
 let SalesService = class SalesService {
     saleRepo;
     saleItemRepo;
@@ -76725,7 +78779,8 @@ let SalesService = class SalesService {
     customerAccountsService;
     dataSource;
     auditService;
-    constructor(saleRepo, saleItemRepo, salePaymentRepo, saleTaxRepo, inventoryService, productsService, invoiceService, cashRegisterService, customerAccountsService, dataSource, auditService) {
+    configurationService;
+    constructor(saleRepo, saleItemRepo, salePaymentRepo, saleTaxRepo, inventoryService, productsService, invoiceService, cashRegisterService, customerAccountsService, dataSource, auditService, configurationService) {
         this.saleRepo = saleRepo;
         this.saleItemRepo = saleItemRepo;
         this.salePaymentRepo = salePaymentRepo;
@@ -76737,6 +78792,7 @@ let SalesService = class SalesService {
         this.customerAccountsService = customerAccountsService;
         this.dataSource = dataSource;
         this.auditService = auditService;
+        this.configurationService = configurationService;
     }
     // ============ Métodos auxiliares para reducir complejidad cognitiva ============
     /**
@@ -76757,16 +78813,64 @@ let SalesService = class SalesService {
     /**
      * Valida que todos los productos existan y tengan stock suficiente
      */
-    validateProductsStock(items, productsById) {
+    async validateProductsStock(items, productsById) {
+        const allowOutOfStock = await this.configurationService.isOutOfStockSaleAllowed();
         for (const item of items) {
             const product = productsById.get(item.productId);
             if (!product) {
                 throw new common_1.NotFoundException(`Producto con ID ${item.productId} no encontrado`);
             }
+            if (allowOutOfStock) {
+                continue;
+            }
             if (product.stock < item.quantity) {
                 throw new common_1.BadRequestException(`Stock insuficiente para "${product.name}". Disponible: ${product.stock}, Solicitado: ${item.quantity}`);
             }
         }
+    }
+    /**
+     * Modo sectorizado: lee el saldo por producto en la ubicación principal
+     * de venta y, si alguno no alcanza, lanza `ConflictException` (HTTP 409)
+     * con la lista estructurada de faltantes y opciones de reposición. Si
+     * `allowOutOfStock` es true, no lanza: el saldo puede quedar negativo.
+     */
+    async validateStockAtPrimaryLocation(items, productsById, allowOutOfStock) {
+        const primaryId = await this.inventoryService.getPrimarySaleLocationId();
+        if (!primaryId) {
+            throw new common_1.BadRequestException('Modo sectorizado activo pero no hay ubicación principal de venta configurada');
+        }
+        const productIds = Array.from(new Set(items.map((i) => i.productId)));
+        const plsRows = await this.dataSource
+            .getRepository(product_location_stock_entity_1.ProductLocationStock)
+            .find({ where: productIds.map((pid) => ({ productId: pid, locationId: primaryId })) });
+        const availableByProduct = new Map();
+        for (const row of plsRows) {
+            availableByProduct.set(row.productId, Number(row.quantity));
+        }
+        const shortages = [];
+        for (const item of items) {
+            const available = availableByProduct.get(item.productId) ?? 0;
+            if (available < item.quantity) {
+                const product = productsById.get(item.productId);
+                const options = await this.inventoryService.findReplenishmentOptions(item.productId, item.quantity);
+                shortages.push({
+                    productId: item.productId,
+                    productName: product.name,
+                    requested: item.quantity,
+                    primarySaleAvailable: available,
+                    options,
+                });
+            }
+        }
+        if (shortages.length === 0 || allowOutOfStock) {
+            return;
+        }
+        throw new common_1.ConflictException({
+            statusCode: 409,
+            error: 'Stock insuficiente en ubicación principal de venta',
+            message: 'Uno o más productos no alcanzan en la ubicación principal. Elegí una reposición o activá allowOutOfStockSale.',
+            items: shortages,
+        });
     }
     /**
      * Calcula los totales de la venta (subtotal, impuestos, total)
@@ -76912,7 +79016,14 @@ let SalesService = class SalesService {
         }
         // Validar productos y stock
         const productsById = await this.getProductsById(dto.items);
-        this.validateProductsStock(dto.items, productsById);
+        const sectorized = await this.inventoryService.isSectorizedMode();
+        const allowOutOfStock = await this.configurationService.isOutOfStockSaleAllowed();
+        if (sectorized) {
+            await this.validateStockAtPrimaryLocation(dto.items, productsById, allowOutOfStock);
+        }
+        else {
+            await this.validateProductsStock(dto.items, productsById);
+        }
         // Calcular totales
         const { subtotal, totalTax, total } = this.calculateSaleTotals(dto);
         // Determinar estado
@@ -76951,7 +79062,13 @@ let SalesService = class SalesService {
             // Actualizar inventario siempre que la venta no esté cancelada
             // (las ventas en cuenta corriente también deben descontar stock)
             if (status !== sale_entity_1.SaleStatus.CANCELLED) {
-                await this.updateInventoryFromSale(savedSale.id, queryRunner.manager);
+                if (sectorized) {
+                    const primaryId = await this.inventoryService.getPrimarySaleLocationId();
+                    await this.updateInventoryFromSaleInLocation(savedSale.id, queryRunner.manager, primaryId, allowOutOfStock);
+                }
+                else {
+                    await this.updateInventoryFromSale(savedSale.id, queryRunner.manager);
+                }
                 savedSale.inventoryUpdated = true;
                 await queryRunner.manager.save(savedSale);
             }
@@ -77482,6 +79599,37 @@ let SalesService = class SalesService {
         }
     }
     /**
+     * Variante sectorizada: debita `ProductLocationStock(primaryLocationId)`
+     * vía `recordMovementInLocation`, pasando `allowOutOfStock` para que el
+     * saldo pueda quedar negativo si así lo permite la config.
+     */
+    async updateInventoryFromSaleInLocation(saleId, manager, primaryLocationId, allowOutOfStock) {
+        const sale = await manager.findOne(sale_entity_1.Sale, {
+            where: { id: saleId },
+            relations: ['items'],
+        });
+        if (!sale) {
+            throw new common_1.NotFoundException(`Venta con ID ${saleId} no encontrada`);
+        }
+        const saleDateStr = sale.saleDate instanceof Date
+            ? sale.saleDate.toISOString()
+            : String(sale.saleDate);
+        for (const item of sale.items) {
+            await this.inventoryService.recordMovementInLocation({
+                productId: item.productId,
+                locationId: primaryLocationId ?? undefined,
+                type: stock_movement_entity_1.StockMovementType.OUT,
+                source: stock_movement_entity_1.StockMovementSource.SALE,
+                quantity: item.quantity,
+                cost: item.unitPrice,
+                notes: `Venta ${sale.saleNumber}`,
+                allowOutOfStock,
+                date: new Date(saleDateStr),
+                manager,
+            });
+        }
+    }
+    /**
      * Revierte inventario de una venta cancelada (suma stock)
      */
     async revertInventoryFromSale(sale) {
@@ -77537,6 +79685,148 @@ let SalesService = class SalesService {
         }
         return `${prefix}${String(nextNumber).padStart(5, '0')}`;
     }
+    /**
+     * Lee opciones de reposición para una lista de productos (read-only).
+     * Pensado para que el POS consulte antes de pedirle al usuario aceptar
+     * traslados.
+     */
+    async checkReplenishment(items) {
+        const primaryId = await this.inventoryService.getPrimarySaleLocationId();
+        const out = [];
+        const productIds = Array.from(new Set(items.map((i) => i.productId)));
+        const plsRows = primaryId
+            ? await this.dataSource
+                .getRepository(product_location_stock_entity_1.ProductLocationStock)
+                .find({ where: productIds.map((pid) => ({ productId: pid, locationId: primaryId })) })
+            : [];
+        const availableByProduct = new Map();
+        for (const row of plsRows) {
+            availableByProduct.set(row.productId, Number(row.quantity));
+        }
+        for (const item of items) {
+            const available = availableByProduct.get(item.productId) ?? 0;
+            const options = await this.inventoryService.findReplenishmentOptions(item.productId, item.quantity);
+            out.push({
+                productId: item.productId,
+                quantity: item.quantity,
+                primarySaleAvailable: available,
+                needsReplenishment: available < item.quantity,
+                options,
+            });
+        }
+        return out;
+    }
+    /**
+     * Crea una venta ejecutando primero una lista de traslados
+     * (`replenishmentTransfers`) y luego el descuento de la venta, todo en
+     * UNA sola transacción. Si cualquier traslado falla (saldo insuficiente,
+     * destino inactivo, etc.) la venta no se persiste y los traslados ya
+     * aplicados se rollbackean.
+     *
+     * Pensado para el botón "Reponer y continuar" del POS. Si
+     * `replenishmentTransfers` viene vacío, se comporta como `create()`.
+     */
+    async completeSaleAfterReplenishment(dto, transfers, userId) {
+        const openCashRegister = await this.cashRegisterService.getOpenRegister();
+        if (!openCashRegister) {
+            throw new common_1.BadRequestException('No hay caja abierta. Debe abrir la caja antes de registrar ventas.');
+        }
+        const productsById = await this.getProductsById(dto.items);
+        const sectorized = await this.inventoryService.isSectorizedMode();
+        const allowOutOfStock = await this.configurationService.isOutOfStockSaleAllowed();
+        if (!sectorized) {
+            // En modo simple no hay reposición: caemos al flujo normal.
+            return this.create(dto, userId);
+        }
+        // Validar stock (post-traslado será suficiente). Esto es una
+        // pre-validación barata; el `recordMovementInLocation` interno
+        // revalidará bajo lock pesimista.
+        await this.validateStockAtPrimaryLocation(dto.items, productsById, allowOutOfStock);
+        const { subtotal, totalTax, total } = this.calculateSaleTotals(dto);
+        const status = this.determineSaleStatus(dto);
+        this.validatePayments(dto, total);
+        this.validateNoDuplicateTaxes(dto.taxes);
+        const queryRunner = this.dataSource.createQueryRunner();
+        await queryRunner.connect();
+        await queryRunner.startTransaction();
+        try {
+            // 1) Traslados dentro del MISMO manager para garantizar
+            // atomicidad total. Si uno falla, el rollback borra los previos.
+            for (const t of transfers) {
+                await this.inventoryService.transfer({
+                    productId: t.productId,
+                    fromLocationId: t.fromLocationId,
+                    toLocationId: (await this.inventoryService.getPrimarySaleLocationId()),
+                    quantity: t.quantity,
+                    reason: t.reason ?? `Reposición previa a venta`,
+                    userId: userId ?? undefined,
+                    manager: queryRunner.manager,
+                });
+            }
+            const saleNumber = await this.generateSaleNumberTransactional(queryRunner.manager);
+            const sale = this.saleRepo.create({
+                saleNumber,
+                customerId: dto.customerId ?? null,
+                customerName: dto.customerName ?? null,
+                saleDate: dto.saleDate ? (0, date_utils_1.parseLocalDate)(dto.saleDate) : new Date(),
+                subtotal,
+                discount: dto.discount ?? 0,
+                surcharge: dto.surcharge ?? 0,
+                tax: totalTax,
+                total,
+                status,
+                isOnAccount: dto.isOnAccount ?? false,
+                notes: dto.notes ?? null,
+                createdById: userId ?? null,
+            });
+            const savedSale = await queryRunner.manager.save(sale);
+            await this.createSaleItems(queryRunner.manager, savedSale.id, dto.items, productsById);
+            await this.createSaleTaxes(queryRunner.manager, savedSale.id, dto.taxes);
+            await this.createSalePayments(queryRunner.manager, savedSale.id, dto.payments);
+            if (status !== sale_entity_1.SaleStatus.CANCELLED) {
+                const primaryId = await this.inventoryService.getPrimarySaleLocationId();
+                await this.updateInventoryFromSaleInLocation(savedSale.id, queryRunner.manager, primaryId, allowOutOfStock);
+                savedSale.inventoryUpdated = true;
+                await queryRunner.manager.save(savedSale);
+            }
+            if (dto.isOnAccount && dto.customerId) {
+                await this.customerAccountsService.createCharge(dto.customerId, {
+                    amount: total,
+                    description: `Venta ${saleNumber}`,
+                    saleId: savedSale.id,
+                    notes: dto.notes || undefined,
+                }, userId);
+            }
+            await queryRunner.commitTransaction();
+            const completed = await queryRunner.manager.findOne(sale_entity_1.Sale, {
+                where: { id: savedSale.id },
+                relations: ['items', 'items.product', 'payments', 'customer', 'createdBy', 'invoice'],
+            });
+            if (userId && completed) {
+                await this.auditService.logSilent({
+                    entityType: enums_1.AuditEntityType.SALE,
+                    entityId: completed.id,
+                    action: enums_1.AuditAction.CREATE,
+                    userId,
+                    newValues: {
+                        saleNumber: completed.saleNumber,
+                        total: completed.total,
+                        status: completed.status,
+                        replenishmentTransfers: transfers.length,
+                    },
+                    description: audit_service_1.AuditService.generateDescription(enums_1.AuditAction.CREATE, enums_1.AuditEntityType.SALE, completed.saleNumber),
+                });
+            }
+            return completed;
+        }
+        catch (err) {
+            await queryRunner.rollbackTransaction();
+            throw err;
+        }
+        finally {
+            await queryRunner.release();
+        }
+    }
 };
 exports.SalesService = SalesService;
 exports.SalesService = SalesService = __decorate([
@@ -77545,7 +79835,7 @@ exports.SalesService = SalesService = __decorate([
     __param(1, (0, typeorm_1.InjectRepository)(sale_item_entity_1.SaleItem)),
     __param(2, (0, typeorm_1.InjectRepository)(sale_payment_entity_1.SalePayment)),
     __param(3, (0, typeorm_1.InjectRepository)(sale_tax_entity_1.SaleTax)),
-    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object, typeof (_b = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _b : Object, typeof (_c = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _c : Object, typeof (_d = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _d : Object, typeof (_e = typeof inventory_service_1.InventoryService !== "undefined" && inventory_service_1.InventoryService) === "function" ? _e : Object, typeof (_f = typeof products_service_1.ProductsService !== "undefined" && products_service_1.ProductsService) === "function" ? _f : Object, typeof (_g = typeof invoice_service_1.InvoiceService !== "undefined" && invoice_service_1.InvoiceService) === "function" ? _g : Object, typeof (_h = typeof cash_register_service_1.CashRegisterService !== "undefined" && cash_register_service_1.CashRegisterService) === "function" ? _h : Object, typeof (_j = typeof customer_accounts_service_1.CustomerAccountsService !== "undefined" && customer_accounts_service_1.CustomerAccountsService) === "function" ? _j : Object, typeof (_k = typeof typeorm_2.DataSource !== "undefined" && typeorm_2.DataSource) === "function" ? _k : Object, typeof (_l = typeof audit_service_1.AuditService !== "undefined" && audit_service_1.AuditService) === "function" ? _l : Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _a : Object, typeof (_b = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _b : Object, typeof (_c = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _c : Object, typeof (_d = typeof typeorm_2.Repository !== "undefined" && typeorm_2.Repository) === "function" ? _d : Object, typeof (_e = typeof inventory_service_1.InventoryService !== "undefined" && inventory_service_1.InventoryService) === "function" ? _e : Object, typeof (_f = typeof products_service_1.ProductsService !== "undefined" && products_service_1.ProductsService) === "function" ? _f : Object, typeof (_g = typeof invoice_service_1.InvoiceService !== "undefined" && invoice_service_1.InvoiceService) === "function" ? _g : Object, typeof (_h = typeof cash_register_service_1.CashRegisterService !== "undefined" && cash_register_service_1.CashRegisterService) === "function" ? _h : Object, typeof (_j = typeof customer_accounts_service_1.CustomerAccountsService !== "undefined" && customer_accounts_service_1.CustomerAccountsService) === "function" ? _j : Object, typeof (_k = typeof typeorm_2.DataSource !== "undefined" && typeorm_2.DataSource) === "function" ? _k : Object, typeof (_l = typeof audit_service_1.AuditService !== "undefined" && audit_service_1.AuditService) === "function" ? _l : Object, typeof (_m = typeof configuration_service_1.ConfigurationService !== "undefined" && configuration_service_1.ConfigurationService) === "function" ? _m : Object])
 ], SalesService);
 
 
@@ -77568,21 +79858,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a, _b;
+var _a, _b, _c, _d, _e, _f, _g;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.InventoryController = void 0;
 const common_1 = __webpack_require__(42909);
 const swagger_1 = __webpack_require__(77504);
 const inventory_service_1 = __webpack_require__(5568);
+const activation_service_1 = __webpack_require__(25500);
 const create_stock_movement_dto_1 = __webpack_require__(1607);
+const activate_stock_sectorizado_dto_1 = __webpack_require__(36886);
+const location_dto_1 = __webpack_require__(23815);
+const create_stock_transfer_dto_1 = __webpack_require__(10525);
 const jwt_auth_guard_1 = __webpack_require__(75711);
 /**
  * Controlador de inventario - Gestiona stock y movimientos
  */
 let InventoryController = class InventoryController {
     inventoryService;
-    constructor(inventoryService) {
+    activationService;
+    constructor(inventoryService, activationService) {
         this.inventoryService = inventoryService;
+        this.activationService = activationService;
     }
     getStats() {
         return this.inventoryService.getInventoryStats();
@@ -77592,6 +79888,9 @@ let InventoryController = class InventoryController {
     }
     getLowStock() {
         return this.inventoryService.getLowStockProducts();
+    }
+    getStockAlerts() {
+        return this.inventoryService.getStockAlerts();
     }
     getOutOfStock() {
         return this.inventoryService.getOutOfStockProducts();
@@ -77604,6 +79903,29 @@ let InventoryController = class InventoryController {
     }
     validateStock(items) {
         return this.inventoryService.validateStockAvailability(items);
+    }
+    activate(dto) {
+        return this.activationService.activate(dto);
+    }
+    // --- Locations CRUD (PR7) ------------------------------------------
+    listLocations() {
+        return this.inventoryService.listLocations();
+    }
+    createLocation(dto) {
+        return this.inventoryService.createLocation(dto);
+    }
+    updateLocation(id, dto) {
+        return this.inventoryService.updateLocation(id, dto);
+    }
+    deactivateLocation(id) {
+        return this.inventoryService.deactivateLocation(id);
+    }
+    // --- Transfers + per-product breakdown (PR9) -----------------------
+    createTransfer(dto, req) {
+        return this.inventoryService.createTransfer(dto, req.user?.id);
+    }
+    getProductStockByLocation(productId) {
+        return this.inventoryService.getProductStockByLocation(productId);
     }
 };
 exports.InventoryController = InventoryController;
@@ -77632,6 +79954,16 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], InventoryController.prototype, "getLowStock", null);
 __decorate([
+    (0, common_1.Get)('stock-alerts'),
+    (0, swagger_1.ApiOperation)({
+        summary: 'Obtener alertas separadas de compra (total vs minStockAlert) y reposición (salón vs stockMinimoVenta)',
+    }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Alertas separadas de compra y reposición' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getStockAlerts", null);
+__decorate([
     (0, common_1.Get)('out-of-stock'),
     (0, swagger_1.ApiOperation)({ summary: 'Obtener productos sin stock' }),
     (0, swagger_1.ApiResponse)({ status: 200, description: 'Lista de productos sin stock' }),
@@ -77646,7 +79978,7 @@ __decorate([
     (0, swagger_1.ApiResponse)({ status: 400, description: 'Stock insuficiente o datos inválidos' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_b = typeof create_stock_movement_dto_1.CreateStockMovementDto !== "undefined" && create_stock_movement_dto_1.CreateStockMovementDto) === "function" ? _b : Object]),
+    __metadata("design:paramtypes", [typeof (_c = typeof create_stock_movement_dto_1.CreateStockMovementDto !== "undefined" && create_stock_movement_dto_1.CreateStockMovementDto) === "function" ? _c : Object]),
     __metadata("design:returntype", void 0)
 ], InventoryController.prototype, "createMovement", null);
 __decorate([
@@ -77668,12 +80000,85 @@ __decorate([
     __metadata("design:paramtypes", [Array]),
     __metadata("design:returntype", void 0)
 ], InventoryController.prototype, "validateStock", null);
+__decorate([
+    (0, common_1.Post)('activate'),
+    (0, swagger_1.ApiOperation)({ summary: 'Activar el modo sectorizado (asistente transaccional)' }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: 'Modo sectorizado activado' }),
+    (0, swagger_1.ApiResponse)({ status: 400, description: 'Datos inválidos o distribución inconsistente' }),
+    (0, swagger_1.ApiResponse)({ status: 409, description: 'El modo sectorizado ya está activo' }),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_d = typeof activate_stock_sectorizado_dto_1.ActivateStockSectorizadoDto !== "undefined" && activate_stock_sectorizado_dto_1.ActivateStockSectorizadoDto) === "function" ? _d : Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "activate", null);
+__decorate([
+    (0, common_1.Get)('locations'),
+    (0, swagger_1.ApiOperation)({ summary: 'Listar ubicaciones (activas primero, inactivas al final)' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Lista de ubicaciones' }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "listLocations", null);
+__decorate([
+    (0, common_1.Post)('locations'),
+    (0, swagger_1.ApiOperation)({ summary: 'Crear una ubicación' }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: 'Ubicación creada' }),
+    (0, swagger_1.ApiResponse)({ status: 409, description: 'Nombre duplicado o flag primario/destino ya tomado' }),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_e = typeof location_dto_1.CreateLocationDto !== "undefined" && location_dto_1.CreateLocationDto) === "function" ? _e : Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "createLocation", null);
+__decorate([
+    (0, common_1.Patch)('locations/:id'),
+    (0, swagger_1.ApiOperation)({ summary: 'Editar una ubicación (nombre, función, flags)' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Ubicación actualizada' }),
+    (0, swagger_1.ApiResponse)({ status: 404, description: 'Ubicación no encontrada' }),
+    (0, swagger_1.ApiResponse)({ status: 409, description: 'Conflicto de unicidad' }),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, typeof (_f = typeof location_dto_1.UpdateLocationDto !== "undefined" && location_dto_1.UpdateLocationDto) === "function" ? _f : Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "updateLocation", null);
+__decorate([
+    (0, common_1.Post)('locations/:id/deactivate'),
+    (0, swagger_1.ApiOperation)({ summary: 'Desactivar una ubicación (rechaza si tiene saldo > 0)' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Ubicación desactivada' }),
+    (0, swagger_1.ApiResponse)({ status: 404, description: 'Ubicación no encontrada' }),
+    (0, swagger_1.ApiResponse)({ status: 409, description: 'La ubicación tiene stock' }),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "deactivateLocation", null);
+__decorate([
+    (0, common_1.Post)('transfers'),
+    (0, swagger_1.ApiOperation)({ summary: 'Crear un traslado entre dos ubicaciones (modo sectorizado)' }),
+    (0, swagger_1.ApiResponse)({ status: 201, description: 'Traslado creado' }),
+    (0, swagger_1.ApiResponse)({ status: 400, description: 'Datos inválidos, saldo insuficiente o ubicaciones inactivas' }),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_g = typeof create_stock_transfer_dto_1.CreateStockTransferDto !== "undefined" && create_stock_transfer_dto_1.CreateStockTransferDto) === "function" ? _g : Object, Object]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "createTransfer", null);
+__decorate([
+    (0, common_1.Get)('products/:productId/stock-by-location'),
+    (0, swagger_1.ApiOperation)({ summary: 'Desglose de stock por ubicación para un producto (PR9)' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Lista de ubicaciones con su saldo para el producto' }),
+    (0, swagger_1.ApiResponse)({ status: 404, description: 'Producto no encontrado' }),
+    __param(0, (0, common_1.Param)('productId')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], InventoryController.prototype, "getProductStockByLocation", null);
 exports.InventoryController = InventoryController = __decorate([
     (0, swagger_1.ApiTags)('inventory'),
     (0, common_1.Controller)('inventory'),
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, swagger_1.ApiBearerAuth)(),
-    __metadata("design:paramtypes", [typeof (_a = typeof inventory_service_1.InventoryService !== "undefined" && inventory_service_1.InventoryService) === "function" ? _a : Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof inventory_service_1.InventoryService !== "undefined" && inventory_service_1.InventoryService) === "function" ? _a : Object, typeof (_b = typeof activation_service_1.ActivationService !== "undefined" && activation_service_1.ActivationService) === "function" ? _b : Object])
 ], InventoryController);
 
 
@@ -89727,6 +92132,100 @@ module.exports = function sign(number) {
 
 /***/ },
 
+/***/ 36886
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ActivateStockSectorizadoDto = exports.LocationInput = void 0;
+const swagger_1 = __webpack_require__(77504);
+const class_validator_1 = __webpack_require__(15521);
+const class_transformer_1 = __webpack_require__(72407);
+const location_entity_1 = __webpack_require__(65653);
+/**
+ * Una ubicación a crear durante la activación del modo sectorizado.
+ *
+ * Notas:
+ * - `isPrimarySale` y `isDefaultReceive` se infieren por nombre (debe haber
+ *   exactamente uno true de cada uno). El servicio resuelve los IDs finales.
+ */
+class LocationInput {
+    name;
+    function;
+    isPrimarySale;
+    isDefaultReceive;
+}
+exports.LocationInput = LocationInput;
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 'Salón', maxLength: 120 }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.MinLength)(1),
+    (0, class_validator_1.MaxLength)(120),
+    __metadata("design:type", String)
+], LocationInput.prototype, "name", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ enum: location_entity_1.LocationFunction, example: location_entity_1.LocationFunction.SALE }),
+    (0, class_validator_1.IsEnum)(location_entity_1.LocationFunction),
+    __metadata("design:type", typeof (_a = typeof location_entity_1.LocationFunction !== "undefined" && location_entity_1.LocationFunction) === "function" ? _a : Object)
+], LocationInput.prototype, "function", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: false, default: false }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], LocationInput.prototype, "isPrimarySale", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ required: false, default: false }),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.IsBoolean)(),
+    __metadata("design:type", Boolean)
+], LocationInput.prototype, "isDefaultReceive", void 0);
+/**
+ * DTO del asistente de activación del modo sectorizado.
+ *
+ * El servicio:
+ *  1. Valida que haya exactamente una primaria de venta y un destino de compras.
+ *  2. Crea las ubicaciones, marca los flags, snapshot del stock, distribuye
+ *     todo a `initialStockLocationName`, flipea `stockSectorizado`.
+ *  3. Verifica `SUM(pre) == SUM(post)` por producto antes de commitear.
+ */
+class ActivateStockSectorizadoDto {
+    locations;
+    initialStockLocationName;
+}
+exports.ActivateStockSectorizadoDto = ActivateStockSectorizadoDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: [LocationInput] }),
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ArrayMinSize)(1),
+    (0, class_validator_1.ValidateNested)({ each: true }),
+    (0, class_transformer_1.Type)(() => LocationInput),
+    __metadata("design:type", Array)
+], ActivateStockSectorizadoDto.prototype, "locations", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({
+        description: 'Nombre (único) de la ubicación que recibe todo el stock existente',
+        example: 'Salón',
+    }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], ActivateStockSectorizadoDto.prototype, "initialStockLocationName", void 0);
+
+
+/***/ },
+
 /***/ 36907
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -94023,6 +96522,8 @@ exports.Product = void 0;
 const typeorm_1 = __webpack_require__(86118);
 const category_entity_1 = __webpack_require__(35738);
 const brand_entity_1 = __webpack_require__(16609);
+const stock_movement_entity_1 = __webpack_require__(83356);
+const product_location_stock_entity_1 = __webpack_require__(8738);
 let Product = class Product {
     id;
     name;
@@ -94032,6 +96533,14 @@ let Product = class Product {
     cost;
     price;
     profitMargin;
+    /**
+     * Stock total consolidado.
+     * - En modo simple: única verdad, se modifica como hasta ahora.
+     * - En modo sectorizado: derivado de la suma de
+     *   `ProductLocationStock.quantity`. NO se escribe directamente;
+     *   `InventoryService` lo recalcula dentro de la misma transacción que
+     *   toca `product_location_stock`.
+     */
     stock;
     // Relación ManyToOne: Un producto pertenece a UNA categoría (opcional)
     categoryId;
@@ -94039,6 +96548,10 @@ let Product = class Product {
     // Relación ManyToOne: Un producto tiene UNA marca (opcional)
     brandId;
     brand;
+    // Movimientos de stock que afectaron este producto (modo simple o sectorizado).
+    stockMovements;
+    // Saldos por ubicación cuando el modo sectorizado está activo.
+    productLocationStocks;
     // Indica si el producto usa un margen de ganancia personalizado (no afectado por actualización masiva)
     useCustomMargin;
     isActive;
@@ -94135,6 +96648,14 @@ __decorate([
     (0, typeorm_1.JoinColumn)({ name: 'brandId' }),
     __metadata("design:type", Object)
 ], Product.prototype, "brand", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => stock_movement_entity_1.StockMovement, (movement) => movement.product),
+    __metadata("design:type", Array)
+], Product.prototype, "stockMovements", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => product_location_stock_entity_1.ProductLocationStock, (pls) => pls.product),
+    __metadata("design:type", Array)
+], Product.prototype, "productLocationStocks", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'boolean', default: false }),
     __metadata("design:type", Boolean)
@@ -104645,7 +107166,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TopCustomersFiltersDto = exports.TopProductsFiltersDto = exports.ReportFiltersDto = exports.ReportPeriod = void 0;
+exports.ProductsByIdReportDto = exports.TopCustomersFiltersDto = exports.TopProductsFiltersDto = exports.ReportFiltersDto = exports.ReportPeriod = void 0;
 /**
  * DTOs para filtros de reportes
  */
@@ -104710,6 +107231,22 @@ __decorate([
     (0, class_transformer_1.Type)(() => Number),
     __metadata("design:type", Number)
 ], TopCustomersFiltersDto.prototype, "limit", void 0);
+class ProductsByIdReportDto extends ReportFiltersDto {
+    productIds;
+}
+exports.ProductsByIdReportDto = ProductsByIdReportDto;
+__decorate([
+    (0, class_transformer_1.Transform)(({ value }) => {
+        if (Array.isArray(value))
+            return value;
+        if (typeof value !== 'string')
+            return value;
+        return value.split(',').map((id) => id.trim()).filter(Boolean);
+    }),
+    (0, class_validator_1.IsArray)(),
+    (0, class_validator_1.ArrayMinSize)(1),
+    __metadata("design:type", Array)
+], ProductsByIdReportDto.prototype, "productIds", void 0);
 
 
 /***/ },
@@ -137945,6 +140482,88 @@ exports.concatWith = concatWith;
 
 /***/ },
 
+/***/ 49692
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.ALL_CAPABILITY_KEYS = exports.APP_ROUTE_CAPABILITY_KEYS = exports.FISCALITY_CAPABILITY_KEYS = exports.COMMERCIAL_CAPABILITY_KEYS = exports.TOOLING_CAPABILITY_KEYS = exports.STRUCTURAL_CAPABILITY_KEYS = exports.POLICY_CAPABILITY_KEYS = void 0;
+exports.isCapabilityKey = isCapabilityKey;
+exports.POLICY_CAPABILITY_KEYS = [
+    'POLICY.manual_discount_reason',
+    'POLICY.price_override_reason',
+    'POLICY.whole_sale_only_cancellation',
+];
+exports.STRUCTURAL_CAPABILITY_KEYS = [
+    'STRUCTURAL.decimal_quantities',
+    'STRUCTURAL.weight_scale',
+    'STRUCTURAL.variants',
+    'STRUCTURAL.lot_expiry',
+    'STRUCTURAL.serial_warranty',
+    'STRUCTURAL.consignment',
+    'STRUCTURAL.wholesale_price_lists',
+    'STRUCTURAL.unit_pack',
+    'STRUCTURAL.sellable_pack',
+    'STRUCTURAL.bundle',
+];
+exports.TOOLING_CAPABILITY_KEYS = [
+    'TOOLING.catalog_import',
+    'TOOLING.product_labels',
+    'TOOLING.stocktake',
+    'TOOLING.inventory_audit',
+    'TOOLING.restore_safety',
+    'TOOLING.updater_recovery',
+    'TOOLING.peripheral_diagnostics',
+];
+exports.COMMERCIAL_CAPABILITY_KEYS = [
+    'COMMERCIAL.quantity_breaks',
+    'COMMERCIAL.time_bound_promotion',
+    'COMMERCIAL.coupon',
+    'COMMERCIAL.loyalty',
+    'COMMERCIAL.store_credit',
+];
+exports.FISCALITY_CAPABILITY_KEYS = [
+    'FISCALITY.credit_notes_a',
+    'FISCALITY.credit_notes_b',
+    'FISCALITY.credit_notes_c',
+];
+exports.APP_ROUTE_CAPABILITY_KEYS = [
+    'APP_ROUTES.dashboard',
+    'APP_ROUTES.products',
+    'APP_ROUTES.customers',
+    'APP_ROUTES.suppliers',
+    'APP_ROUTES.purchases',
+    'APP_ROUTES.sales',
+    'APP_ROUTES.expenses',
+    'APP_ROUTES.incomes',
+    'APP_ROUTES.cash_register',
+    'APP_ROUTES.customer_accounts',
+    'APP_ROUTES.reports',
+    'APP_ROUTES.settings',
+    'APP_ROUTES.settings_fiscal',
+    'APP_ROUTES.settings_users',
+    'APP_ROUTES.settings_backup',
+    'APP_ROUTES.inventory_locations',
+    'APP_ROUTES.inventory_locations_activate',
+    'APP_ROUTES.inventory_replenishment',
+];
+exports.ALL_CAPABILITY_KEYS = [
+    ...exports.POLICY_CAPABILITY_KEYS,
+    ...exports.STRUCTURAL_CAPABILITY_KEYS,
+    ...exports.TOOLING_CAPABILITY_KEYS,
+    ...exports.COMMERCIAL_CAPABILITY_KEYS,
+    ...exports.FISCALITY_CAPABILITY_KEYS,
+    ...exports.APP_ROUTE_CAPABILITY_KEYS,
+];
+const CAPABILITY_KEY_SET = new Set(exports.ALL_CAPABILITY_KEYS);
+function isCapabilityKey(value) {
+    return CAPABILITY_KEY_SET.has(value);
+}
+
+
+/***/ },
+
 /***/ 49747
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -156681,6 +159300,10 @@ const common_1 = __webpack_require__(42909);
 const typeorm_1 = __webpack_require__(88220);
 const typeorm_2 = __webpack_require__(86118);
 const system_configuration_entity_1 = __webpack_require__(5848);
+const app_routes_1 = __webpack_require__(65608);
+const keys_1 = __webpack_require__(49692);
+const presets_1 = __webpack_require__(69030);
+const resolve_1 = __webpack_require__(16130);
 const product_entity_1 = __webpack_require__(38335);
 const category_entity_1 = __webpack_require__(35738);
 /**
@@ -156697,11 +159320,17 @@ let ConfigurationService = class ConfigurationService {
         // Asegurar que existe la configuración por defecto
         const count = await this.configRepository.count();
         if (count === 0) {
+            const envProfileKey = process.env.NEXOPOS_PROFILE_KEY;
             await this.configRepository.save({
                 defaultProfitMargin: 30,
                 minStockAlert: 5,
                 barcodeScannerEnabled: false,
                 barcodeScannerTimeoutMs: 100,
+                allowOutOfStockSale: false,
+                profileKey: typeof envProfileKey === 'string' && (0, presets_1.isCapabilityProfileKey)(envProfileKey) ? envProfileKey : 'legacy',
+                profileVersion: 1,
+                capabilitiesJson: {},
+                capabilitiesSchemaVersion: presets_1.CURRENT_CAPABILITIES_SCHEMA_VERSION,
             });
         }
     }
@@ -156716,6 +159345,108 @@ let ConfigurationService = class ConfigurationService {
         await this.configRepository.update(config.id, updateDto);
         return this.getConfiguration();
     }
+    async getLegacyResponse(config) {
+        const resolvedConfig = config ?? await this.getConfiguration();
+        return {
+            id: resolvedConfig.id,
+            defaultProfitMargin: resolvedConfig.defaultProfitMargin,
+            minStockAlert: resolvedConfig.minStockAlert,
+            sistemaHabilitado: resolvedConfig.sistemaHabilitado,
+            barcodeScannerEnabled: resolvedConfig.barcodeScannerEnabled,
+            barcodeScannerTimeoutMs: resolvedConfig.barcodeScannerTimeoutMs,
+            allowOutOfStockSale: resolvedConfig.allowOutOfStockSale,
+            stockSectorizado: resolvedConfig.stockSectorizado,
+            primarySaleLocationId: resolvedConfig.primarySaleLocationId,
+            defaultReceiveLocationId: resolvedConfig.defaultReceiveLocationId,
+            stockMinimoVenta: resolvedConfig.stockMinimoVenta,
+            createdAt: resolvedConfig.createdAt,
+            updatedAt: resolvedConfig.updatedAt,
+        };
+    }
+    async getCapabilitiesResponse(config) {
+        const resolvedConfig = config ?? await this.getConfiguration();
+        const capabilities = this.resolveStoredCapabilities(resolvedConfig);
+        return {
+            profileKey: resolvedConfig.profileKey,
+            profileVersion: resolvedConfig.profileVersion,
+            capabilitiesSchemaVersion: resolvedConfig.capabilitiesSchemaVersion,
+            capabilities,
+        };
+    }
+    async getCapabilitiesManifest() {
+        const response = await this.getCapabilitiesResponse();
+        return {
+            ...response,
+            appRoutes: (0, app_routes_1.getAppRouteManifest)(response.capabilities),
+        };
+    }
+    async updateCapabilities(input) {
+        return this.updateCapabilitiesInternal(input);
+    }
+    async setProfile(profileKey) {
+        return this.updateCapabilitiesInternal({ profileKey });
+    }
+    async setCapabilityOverrides(capabilities) {
+        return this.updateCapabilitiesInternal({ capabilities });
+    }
+    async assertCapabilityEnabled(capabilityKey) {
+        const { capabilities } = await this.getCapabilitiesResponse();
+        if (!capabilities[capabilityKey]) {
+            throw new common_1.ForbiddenException(`${capabilityKey} capability is disabled`);
+        }
+    }
+    async updateCapabilitiesInternal(input) {
+        const config = await this.getConfiguration();
+        const profileKey = input.profileKey ?? config.profileKey;
+        const capabilities = input.capabilities ?? config.capabilitiesJson;
+        const capabilitiesSchemaVersion = input.capabilitiesSchemaVersion ?? config.capabilitiesSchemaVersion;
+        this.resolveOrThrow(profileKey, capabilities, capabilitiesSchemaVersion);
+        const nextProfileKey = typeof input.profileKey === 'string' && (0, presets_1.isCapabilityProfileKey)(input.profileKey)
+            ? input.profileKey
+            : config.profileKey;
+        const nextCapabilitiesJson = input.capabilities === undefined
+            ? config.capabilitiesJson
+            : this.normalizeCapabilityOverrides(input.capabilities);
+        const nextCapabilitiesSchemaVersion = typeof input.capabilitiesSchemaVersion === 'number'
+            ? input.capabilitiesSchemaVersion
+            : config.capabilitiesSchemaVersion;
+        await this.configRepository.update(config.id, {
+            profileKey: nextProfileKey,
+            capabilitiesJson: nextCapabilitiesJson,
+            capabilitiesSchemaVersion: nextCapabilitiesSchemaVersion,
+        });
+        return this.getCapabilitiesResponse();
+    }
+    resolveStoredCapabilities(config) {
+        return this.resolveOrThrow(config.profileKey, config.capabilitiesJson, config.capabilitiesSchemaVersion);
+    }
+    resolveOrThrow(profileKey, capabilities, capabilitiesSchemaVersion) {
+        const result = (0, resolve_1.resolveCapabilities)(profileKey, capabilities, capabilitiesSchemaVersion);
+        if (result.ok) {
+            return result.capabilities;
+        }
+        const message = result.errors.join('; ');
+        if (result.errors.some(error => error.startsWith('capabilitiesSchemaVersion'))) {
+            throw new common_1.ConflictException(message);
+        }
+        throw new common_1.BadRequestException(message);
+    }
+    normalizeCapabilityOverrides(value) {
+        if (!this.isRecord(value)) {
+            return {};
+        }
+        const overrides = {};
+        for (const key of keys_1.ALL_CAPABILITY_KEYS) {
+            const override = value[key];
+            if (typeof override === 'boolean') {
+                overrides[key] = override;
+            }
+        }
+        return overrides;
+    }
+    isRecord(value) {
+        return typeof value === 'object' && value !== null && !Array.isArray(value);
+    }
     async getDefaultProfitMargin() {
         const config = await this.getConfiguration();
         return Number(config.defaultProfitMargin);
@@ -156723,6 +159454,10 @@ let ConfigurationService = class ConfigurationService {
     async getMinStockAlert() {
         const config = await this.getConfiguration();
         return Number(config.minStockAlert);
+    }
+    async isOutOfStockSaleAllowed() {
+        const config = await this.getConfiguration();
+        return Boolean(config.allowOutOfStockSale);
     }
     /**
      * Actualiza el precio de productos según el % de ganancia configurado
@@ -179740,6 +182475,47 @@ exports.UpdateExpenseCategoryDto = UpdateExpenseCategoryDto;
 
 /***/ },
 
+/***/ 65608
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getAppRouteManifest = getAppRouteManifest;
+const keys_1 = __webpack_require__(49692);
+const APP_ROUTE_PATHS = {
+    'APP_ROUTES.dashboard': ['dashboard'],
+    'APP_ROUTES.products': ['products'],
+    'APP_ROUTES.customers': ['customers'],
+    'APP_ROUTES.suppliers': ['suppliers'],
+    'APP_ROUTES.purchases': ['purchases'],
+    'APP_ROUTES.sales': ['sales'],
+    'APP_ROUTES.expenses': ['expenses'],
+    'APP_ROUTES.incomes': ['incomes'],
+    'APP_ROUTES.cash_register': ['cash-register'],
+    'APP_ROUTES.customer_accounts': ['customer-accounts', 'customer-accounts/:customerId'],
+    'APP_ROUTES.reports': ['reports'],
+    'APP_ROUTES.settings': ['settings'],
+    'APP_ROUTES.settings_fiscal': ['settings/fiscal'],
+    'APP_ROUTES.settings_users': ['settings/users'],
+    'APP_ROUTES.settings_backup': ['settings/backup'],
+    'APP_ROUTES.inventory_locations': ['inventory/locations'],
+    'APP_ROUTES.inventory_locations_activate': ['inventory/locations/activate'],
+    'APP_ROUTES.inventory_replenishment': ['inventory/replenishment'],
+};
+function getAppRouteManifest(capabilities) {
+    const enabled = [];
+    const disabled = [];
+    for (const key of keys_1.APP_ROUTE_CAPABILITY_KEYS) {
+        const target = capabilities[key] ? enabled : disabled;
+        target.push(...APP_ROUTE_PATHS[key]);
+    }
+    return { enabled, disabled };
+}
+
+
+/***/ },
+
 /***/ 65636
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -180555,6 +183331,103 @@ var root = __webpack_require__(78942);
 var Symbol = root.Symbol;
 
 module.exports = Symbol;
+
+
+/***/ },
+
+/***/ 65653
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a, _b;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.Location = exports.LocationFunction = void 0;
+const typeorm_1 = __webpack_require__(86118);
+const product_location_stock_entity_1 = __webpack_require__(8738);
+/**
+ * Función lógica de una ubicación física.
+ * - SALE: abastece el punto de venta (salón, mostrador).
+ * - STORAGE: almacenamiento / depósito.
+ */
+var LocationFunction;
+(function (LocationFunction) {
+    LocationFunction["SALE"] = "SALE";
+    LocationFunction["STORAGE"] = "STORAGE";
+})(LocationFunction || (exports.LocationFunction = LocationFunction = {}));
+/**
+ * Ubicación física de stock (salón, depósito, etc.).
+ * Una ubicación activa puede ser la primaria de venta o el destino
+ * predeterminado de compras; a lo sumo una fila por cada rol (partial
+ * unique index garantiza la unicidad).
+ */
+let Location = class Location {
+    id;
+    name;
+    function;
+    isActive;
+    /** Marca la ubicación primaria que abastece ventas (a lo sumo una true). */
+    isPrimarySale;
+    /** Marca el destino predeterminado para compras (a lo sumo una true). */
+    isDefaultReceive;
+    productLocationStocks;
+    createdAt;
+    updatedAt;
+};
+exports.Location = Location;
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
+    __metadata("design:type", String)
+], Location.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 120, unique: true }),
+    __metadata("design:type", String)
+], Location.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.Column)({
+        type: 'enum',
+        enum: LocationFunction,
+        default: LocationFunction.STORAGE,
+    }),
+    __metadata("design:type", String)
+], Location.prototype, "function", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'boolean', default: true }),
+    __metadata("design:type", Boolean)
+], Location.prototype, "isActive", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
+    __metadata("design:type", Boolean)
+], Location.prototype, "isPrimarySale", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'boolean', default: false }),
+    __metadata("design:type", Boolean)
+], Location.prototype, "isDefaultReceive", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => product_location_stock_entity_1.ProductLocationStock, (pls) => pls.location),
+    __metadata("design:type", Array)
+], Location.prototype, "productLocationStocks", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
+    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+], Location.prototype, "createdAt", void 0);
+__decorate([
+    (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp' }),
+    __metadata("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
+], Location.prototype, "updatedAt", void 0);
+exports.Location = Location = __decorate([
+    (0, typeorm_1.Entity)('locations'),
+    (0, typeorm_1.Index)(['name'], { unique: true })
+], Location);
 
 
 /***/ },
@@ -182210,6 +185083,7 @@ class CreatePurchaseDto {
     invoiceNumber;
     notes;
     items;
+    locationId;
 }
 exports.CreatePurchaseDto = CreatePurchaseDto;
 __decorate([
@@ -182286,6 +185160,11 @@ __decorate([
     (0, class_transformer_1.Type)(() => CreatePurchaseItemDto),
     __metadata("design:type", Array)
 ], CreatePurchaseDto.prototype, "items", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], CreatePurchaseDto.prototype, "locationId", void 0);
 
 
 /***/ },
@@ -184149,6 +187028,96 @@ exports.SqliteDriver = SqliteDriver;
 
 /***/ },
 
+/***/ 68280
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a, _b;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.SystemConfigurationLegacyResponseDto = void 0;
+const swagger_1 = __webpack_require__(77504);
+class SystemConfigurationLegacyResponseDto {
+    id;
+    defaultProfitMargin;
+    minStockAlert;
+    sistemaHabilitado;
+    barcodeScannerEnabled;
+    barcodeScannerTimeoutMs;
+    allowOutOfStockSale;
+    stockSectorizado;
+    primarySaleLocationId;
+    defaultReceiveLocationId;
+    stockMinimoVenta;
+    createdAt;
+    updatedAt;
+}
+exports.SystemConfigurationLegacyResponseDto = SystemConfigurationLegacyResponseDto;
+__decorate([
+    (0, swagger_1.ApiProperty)({ format: 'uuid' }),
+    __metadata("design:type", String)
+], SystemConfigurationLegacyResponseDto.prototype, "id", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 30 }),
+    __metadata("design:type", Number)
+], SystemConfigurationLegacyResponseDto.prototype, "defaultProfitMargin", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 5 }),
+    __metadata("design:type", Number)
+], SystemConfigurationLegacyResponseDto.prototype, "minStockAlert", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: true }),
+    __metadata("design:type", Boolean)
+], SystemConfigurationLegacyResponseDto.prototype, "sistemaHabilitado", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: false }),
+    __metadata("design:type", Boolean)
+], SystemConfigurationLegacyResponseDto.prototype, "barcodeScannerEnabled", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 100 }),
+    __metadata("design:type", Number)
+], SystemConfigurationLegacyResponseDto.prototype, "barcodeScannerTimeoutMs", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: false }),
+    __metadata("design:type", Boolean)
+], SystemConfigurationLegacyResponseDto.prototype, "allowOutOfStockSale", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: false }),
+    __metadata("design:type", Boolean)
+], SystemConfigurationLegacyResponseDto.prototype, "stockSectorizado", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ format: 'uuid', nullable: true }),
+    __metadata("design:type", Object)
+], SystemConfigurationLegacyResponseDto.prototype, "primarySaleLocationId", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ format: 'uuid', nullable: true }),
+    __metadata("design:type", Object)
+], SystemConfigurationLegacyResponseDto.prototype, "defaultReceiveLocationId", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ example: 5 }),
+    __metadata("design:type", Number)
+], SystemConfigurationLegacyResponseDto.prototype, "stockMinimoVenta", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: String, format: 'date-time' }),
+    __metadata("design:type", typeof (_a = typeof Date !== "undefined" && Date) === "function" ? _a : Object)
+], SystemConfigurationLegacyResponseDto.prototype, "createdAt", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: String, format: 'date-time' }),
+    __metadata("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
+], SystemConfigurationLegacyResponseDto.prototype, "updatedAt", void 0);
+
+
+/***/ },
+
 /***/ 68362
 (module) {
 
@@ -184959,6 +187928,155 @@ function memoize(func, resolver) {
 memoize.Cache = MapCache;
 
 module.exports = memoize;
+
+
+/***/ },
+
+/***/ 69030
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.CAPABILITY_PRESETS = exports.BASE_CAPABILITIES = exports.CAPABILITY_PROFILE_KEYS = exports.CURRENT_CAPABILITIES_SCHEMA_VERSION = void 0;
+exports.isCapabilityProfileKey = isCapabilityProfileKey;
+exports.CURRENT_CAPABILITIES_SCHEMA_VERSION = 1;
+exports.CAPABILITY_PROFILE_KEYS = [
+    'legacy',
+    'unit-retail',
+    'fast-packaged',
+    'weight',
+    'apparel',
+    'lot-retail',
+    'electronics',
+    'wholesale',
+    'consignment',
+];
+exports.BASE_CAPABILITIES = {
+    'POLICY.manual_discount_reason': false,
+    'POLICY.price_override_reason': false,
+    'POLICY.whole_sale_only_cancellation': false,
+    'STRUCTURAL.decimal_quantities': false,
+    'STRUCTURAL.weight_scale': false,
+    'STRUCTURAL.variants': false,
+    'STRUCTURAL.lot_expiry': false,
+    'STRUCTURAL.serial_warranty': false,
+    'STRUCTURAL.consignment': false,
+    'STRUCTURAL.wholesale_price_lists': false,
+    'STRUCTURAL.unit_pack': false,
+    'STRUCTURAL.sellable_pack': false,
+    'STRUCTURAL.bundle': false,
+    'TOOLING.catalog_import': false,
+    'TOOLING.product_labels': false,
+    'TOOLING.stocktake': false,
+    'TOOLING.inventory_audit': false,
+    'TOOLING.restore_safety': false,
+    'TOOLING.updater_recovery': false,
+    'TOOLING.peripheral_diagnostics': false,
+    'COMMERCIAL.quantity_breaks': false,
+    'COMMERCIAL.time_bound_promotion': false,
+    'COMMERCIAL.coupon': false,
+    'COMMERCIAL.loyalty': false,
+    'COMMERCIAL.store_credit': false,
+    'FISCALITY.credit_notes_a': false,
+    'FISCALITY.credit_notes_b': false,
+    'FISCALITY.credit_notes_c': false,
+    'APP_ROUTES.dashboard': false,
+    'APP_ROUTES.products': false,
+    'APP_ROUTES.customers': false,
+    'APP_ROUTES.suppliers': false,
+    'APP_ROUTES.purchases': false,
+    'APP_ROUTES.sales': false,
+    'APP_ROUTES.expenses': false,
+    'APP_ROUTES.incomes': false,
+    'APP_ROUTES.cash_register': false,
+    'APP_ROUTES.customer_accounts': false,
+    'APP_ROUTES.reports': false,
+    'APP_ROUTES.settings': false,
+    'APP_ROUTES.settings_fiscal': false,
+    'APP_ROUTES.settings_users': false,
+    'APP_ROUTES.settings_backup': false,
+    'APP_ROUTES.inventory_locations': false,
+    'APP_ROUTES.inventory_locations_activate': false,
+    'APP_ROUTES.inventory_replenishment': false,
+};
+const ALL_APP_ROUTES_ON = {
+    'APP_ROUTES.dashboard': true,
+    'APP_ROUTES.products': true,
+    'APP_ROUTES.customers': true,
+    'APP_ROUTES.suppliers': true,
+    'APP_ROUTES.purchases': true,
+    'APP_ROUTES.sales': true,
+    'APP_ROUTES.expenses': true,
+    'APP_ROUTES.incomes': true,
+    'APP_ROUTES.cash_register': true,
+    'APP_ROUTES.customer_accounts': true,
+    'APP_ROUTES.reports': true,
+    'APP_ROUTES.settings': true,
+    'APP_ROUTES.settings_fiscal': true,
+    'APP_ROUTES.settings_users': true,
+    'APP_ROUTES.settings_backup': true,
+    'APP_ROUTES.inventory_locations': true,
+    'APP_ROUTES.inventory_locations_activate': true,
+    'APP_ROUTES.inventory_replenishment': true,
+};
+exports.CAPABILITY_PRESETS = {
+    legacy: {
+        ...exports.BASE_CAPABILITIES,
+        ...ALL_APP_ROUTES_ON,
+        'POLICY.whole_sale_only_cancellation': true,
+    },
+    'unit-retail': {
+        ...exports.BASE_CAPABILITIES,
+        ...ALL_APP_ROUTES_ON,
+        'STRUCTURAL.decimal_quantities': true,
+    },
+    'fast-packaged': {
+        ...exports.BASE_CAPABILITIES,
+        ...ALL_APP_ROUTES_ON,
+        'STRUCTURAL.decimal_quantities': true,
+        'STRUCTURAL.unit_pack': true,
+        'STRUCTURAL.sellable_pack': true,
+    },
+    weight: {
+        ...exports.BASE_CAPABILITIES,
+        ...ALL_APP_ROUTES_ON,
+        'STRUCTURAL.decimal_quantities': true,
+        'STRUCTURAL.weight_scale': true,
+    },
+    apparel: {
+        ...exports.BASE_CAPABILITIES,
+        ...ALL_APP_ROUTES_ON,
+        'STRUCTURAL.variants': true,
+    },
+    'lot-retail': {
+        ...exports.BASE_CAPABILITIES,
+        ...ALL_APP_ROUTES_ON,
+        'STRUCTURAL.decimal_quantities': true,
+        'STRUCTURAL.lot_expiry': true,
+    },
+    electronics: {
+        ...exports.BASE_CAPABILITIES,
+        ...ALL_APP_ROUTES_ON,
+        'STRUCTURAL.serial_warranty': true,
+    },
+    wholesale: {
+        ...exports.BASE_CAPABILITIES,
+        ...ALL_APP_ROUTES_ON,
+        'STRUCTURAL.decimal_quantities': true,
+        'STRUCTURAL.wholesale_price_lists': true,
+        'COMMERCIAL.quantity_breaks': true,
+    },
+    consignment: {
+        ...exports.BASE_CAPABILITIES,
+        ...ALL_APP_ROUTES_ON,
+        'STRUCTURAL.consignment': true,
+    },
+};
+const CAPABILITY_PROFILE_KEY_SET = new Set(exports.CAPABILITY_PROFILE_KEYS);
+function isCapabilityProfileKey(value) {
+    return CAPABILITY_PROFILE_KEY_SET.has(value);
+}
 
 
 /***/ },
@@ -207437,6 +210555,134 @@ exports.ConnectionOptionsEnvReader = ConnectionOptionsEnvReader;
 
 /***/ },
 
+/***/ 76718
+(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var _a, _b, _c, _d;
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.StockTransfer = exports.StockTransferStatus = void 0;
+const typeorm_1 = __webpack_require__(86118);
+const product_entity_1 = __webpack_require__(38335);
+const location_entity_1 = __webpack_require__(65653);
+/**
+ * Estado de una transferencia de stock entre ubicaciones.
+ */
+var StockTransferStatus;
+(function (StockTransferStatus) {
+    StockTransferStatus["COMPLETADO"] = "COMPLETADO";
+    StockTransferStatus["ANULADO"] = "ANULADO";
+})(StockTransferStatus || (exports.StockTransferStatus = StockTransferStatus = {}));
+/**
+ * Traslado de mercadería entre dos ubicaciones.
+ *
+ * Invariantes (aplicadas a nivel servicio y reflejadas en CHECK constraint):
+ * - quantity > 0
+ * - fromLocationId <> toLocationId
+ * - ambas ubicaciones activas al momento del traslado
+ * - saldo suficiente en origen
+ */
+let StockTransfer = class StockTransfer {
+    id;
+    productId;
+    product;
+    fromLocationId;
+    fromLocation;
+    toLocationId;
+    toLocation;
+    quantity;
+    reason;
+    createdById;
+    status;
+    createdAt;
+};
+exports.StockTransfer = StockTransfer;
+__decorate([
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
+    __metadata("design:type", String)
+], StockTransfer.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'uuid' }),
+    __metadata("design:type", String)
+], StockTransfer.prototype, "productId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => product_entity_1.Product, { eager: false, nullable: false }),
+    (0, typeorm_1.JoinColumn)({ name: 'productId' }),
+    __metadata("design:type", typeof (_a = typeof product_entity_1.Product !== "undefined" && product_entity_1.Product) === "function" ? _a : Object)
+], StockTransfer.prototype, "product", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'uuid' }),
+    __metadata("design:type", String)
+], StockTransfer.prototype, "fromLocationId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => location_entity_1.Location, { eager: false, nullable: false }),
+    (0, typeorm_1.JoinColumn)({ name: 'fromLocationId' }),
+    __metadata("design:type", typeof (_b = typeof location_entity_1.Location !== "undefined" && location_entity_1.Location) === "function" ? _b : Object)
+], StockTransfer.prototype, "fromLocation", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'uuid' }),
+    __metadata("design:type", String)
+], StockTransfer.prototype, "toLocationId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => location_entity_1.Location, { eager: false, nullable: false }),
+    (0, typeorm_1.JoinColumn)({ name: 'toLocationId' }),
+    __metadata("design:type", typeof (_c = typeof location_entity_1.Location !== "undefined" && location_entity_1.Location) === "function" ? _c : Object)
+], StockTransfer.prototype, "toLocation", void 0);
+__decorate([
+    (0, typeorm_1.Column)({
+        type: 'decimal',
+        precision: 14,
+        scale: 3,
+        transformer: {
+            to: (value) => value,
+            from: (value) => Number.parseFloat(value),
+        },
+    }),
+    __metadata("design:type", Number)
+], StockTransfer.prototype, "quantity", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255, nullable: true }),
+    __metadata("design:type", Object)
+], StockTransfer.prototype, "reason", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'uuid', nullable: true }),
+    __metadata("design:type", Object)
+], StockTransfer.prototype, "createdById", void 0);
+__decorate([
+    (0, typeorm_1.Column)({
+        type: 'enum',
+        enum: StockTransferStatus,
+        default: StockTransferStatus.COMPLETADO,
+    }),
+    __metadata("design:type", String)
+], StockTransfer.prototype, "status", void 0);
+__decorate([
+    (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
+    __metadata("design:type", typeof (_d = typeof Date !== "undefined" && Date) === "function" ? _d : Object)
+], StockTransfer.prototype, "createdAt", void 0);
+exports.StockTransfer = StockTransfer = __decorate([
+    (0, typeorm_1.Entity)('stock_transfers'),
+    (0, typeorm_1.Check)(`"quantity" > 0`),
+    (0, typeorm_1.Check)(`"fromLocationId" <> "toLocationId"`),
+    (0, typeorm_1.Index)(['productId']),
+    (0, typeorm_1.Index)(['fromLocationId']),
+    (0, typeorm_1.Index)(['toLocationId']),
+    (0, typeorm_1.Index)(['createdAt'])
+], StockTransfer);
+
+
+/***/ },
+
 /***/ 76732
 (module, __unused_webpack_exports, __webpack_require__) {
 
@@ -208407,8 +211653,13 @@ const common_1 = __webpack_require__(42909);
 const typeorm_1 = __webpack_require__(88220);
 const inventory_controller_1 = __webpack_require__(30707);
 const inventory_service_1 = __webpack_require__(5568);
+const activation_service_1 = __webpack_require__(25500);
 const stock_movement_entity_1 = __webpack_require__(83356);
+const location_entity_1 = __webpack_require__(65653);
+const product_location_stock_entity_1 = __webpack_require__(8738);
+const stock_transfer_entity_1 = __webpack_require__(76718);
 const product_entity_1 = __webpack_require__(38335);
+const system_configuration_entity_1 = __webpack_require__(5848);
 const configuration_module_1 = __webpack_require__(9491);
 let InventoryModule = class InventoryModule {
 };
@@ -208416,12 +211667,19 @@ exports.InventoryModule = InventoryModule;
 exports.InventoryModule = InventoryModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forFeature([stock_movement_entity_1.StockMovement, product_entity_1.Product]),
+            typeorm_1.TypeOrmModule.forFeature([
+                stock_movement_entity_1.StockMovement,
+                location_entity_1.Location,
+                product_location_stock_entity_1.ProductLocationStock,
+                stock_transfer_entity_1.StockTransfer,
+                product_entity_1.Product,
+                system_configuration_entity_1.SystemConfiguration,
+            ]),
             configuration_module_1.ConfigurationModule,
         ],
         controllers: [inventory_controller_1.InventoryController],
-        providers: [inventory_service_1.InventoryService],
-        exports: [inventory_service_1.InventoryService],
+        providers: [inventory_service_1.InventoryService, activation_service_1.ActivationService],
+        exports: [inventory_service_1.InventoryService, activation_service_1.ActivationService],
     })
 ], InventoryModule);
 
@@ -223739,11 +226997,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a, _b, _c;
+var _a, _b, _c, _d;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.StockMovement = exports.StockMovementSource = exports.StockMovementType = void 0;
 const typeorm_1 = __webpack_require__(86118);
 const product_entity_1 = __webpack_require__(38335);
+const location_entity_1 = __webpack_require__(65653);
 /**
  * Tipos de movimiento de stock
  */
@@ -223762,9 +227021,14 @@ var StockMovementSource;
     StockMovementSource["SALE"] = "SALE";
     StockMovementSource["ADJUSTMENT"] = "ADJUSTMENT";
     StockMovementSource["RETURN"] = "RETURN";
+    StockMovementSource["TRANSFER"] = "TRANSFER";
 })(StockMovementSource || (exports.StockMovementSource = StockMovementSource = {}));
 /**
- * Entidad para registrar movimientos de inventario
+ * Entidad para registrar movimientos de inventario.
+ *
+ * En modo sectorizado la columna `locationId` identifica la ubicación
+ * afectada; en modo simple queda en null (back-compat con el historial
+ * previo a la activación).
  */
 let StockMovement = class StockMovement {
     id;
@@ -223778,6 +227042,12 @@ let StockMovement = class StockMovement {
     referenceId; // ID de referencia (compra, venta, etc.)
     notes;
     date;
+    /**
+     * Ubicación afectada por el movimiento (modo sectorizado).
+     * Null en modo simple y en movimientos históricos previos a la activación.
+     */
+    locationId;
+    location;
     createdAt;
 };
 exports.StockMovement = StockMovement;
@@ -223834,15 +227104,25 @@ __decorate([
     __metadata("design:type", typeof (_b = typeof Date !== "undefined" && Date) === "function" ? _b : Object)
 ], StockMovement.prototype, "date", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: 'uuid', nullable: true }),
+    __metadata("design:type", Object)
+], StockMovement.prototype, "locationId", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => location_entity_1.Location, { eager: false, nullable: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'locationId' }),
+    __metadata("design:type", Object)
+], StockMovement.prototype, "location", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)(),
-    __metadata("design:type", typeof (_c = typeof Date !== "undefined" && Date) === "function" ? _c : Object)
+    __metadata("design:type", typeof (_d = typeof Date !== "undefined" && Date) === "function" ? _d : Object)
 ], StockMovement.prototype, "createdAt", void 0);
 exports.StockMovement = StockMovement = __decorate([
     (0, typeorm_1.Entity)('stock_movements'),
     (0, typeorm_1.Index)(['productId']),
     (0, typeorm_1.Index)(['date']),
     (0, typeorm_1.Index)(['type']),
-    (0, typeorm_1.Index)(['source'])
+    (0, typeorm_1.Index)(['source']),
+    (0, typeorm_1.Index)(['productId', 'locationId', 'createdAt'])
 ], StockMovement);
 
 
@@ -246068,7 +249348,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a, _b, _c, _d, _e, _f, _g, _h;
+var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.Purchase = exports.PaymentMethod = exports.PurchaseStatus = void 0;
 /**
@@ -246080,6 +249360,7 @@ const user_entity_1 = __webpack_require__(81465);
 const purchase_item_entity_1 = __webpack_require__(64199);
 const supplier_entity_1 = __webpack_require__(99895);
 const payment_method_entity_1 = __webpack_require__(58482);
+const location_entity_1 = __webpack_require__(65653);
 /**
  * Estados posibles de una compra
  */
@@ -246125,6 +249406,8 @@ let Purchase = class Purchase {
     items;
     createdBy;
     createdById;
+    location;
+    locationId;
     createdAt;
     updatedAt;
     deletedAt;
@@ -246265,12 +249548,21 @@ __decorate([
     __metadata("design:type", Object)
 ], Purchase.prototype, "createdById", void 0);
 __decorate([
+    (0, typeorm_1.ManyToOne)(() => location_entity_1.Location, { nullable: true }),
+    (0, typeorm_1.JoinColumn)({ name: 'locationId' }),
+    __metadata("design:type", Object)
+], Purchase.prototype, "location", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'locationId', type: 'uuid', nullable: true }),
+    __metadata("design:type", Object)
+], Purchase.prototype, "locationId", void 0);
+__decorate([
     (0, typeorm_1.CreateDateColumn)({ type: 'timestamp' }),
-    __metadata("design:type", typeof (_f = typeof Date !== "undefined" && Date) === "function" ? _f : Object)
+    __metadata("design:type", typeof (_g = typeof Date !== "undefined" && Date) === "function" ? _g : Object)
 ], Purchase.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)({ type: 'timestamp' }),
-    __metadata("design:type", typeof (_g = typeof Date !== "undefined" && Date) === "function" ? _g : Object)
+    __metadata("design:type", typeof (_h = typeof Date !== "undefined" && Date) === "function" ? _h : Object)
 ], Purchase.prototype, "updatedAt", void 0);
 __decorate([
     (0, typeorm_1.DeleteDateColumn)({ type: 'timestamp', nullable: true }),
@@ -253887,7 +257179,10 @@ const expense_entity_1 = __webpack_require__(30471);
 const income_category_entity_1 = __webpack_require__(19806);
 const income_entity_1 = __webpack_require__(97897);
 // Inventory
+const location_entity_1 = __webpack_require__(65653);
+const product_location_stock_entity_1 = __webpack_require__(8738);
 const stock_movement_entity_1 = __webpack_require__(83356);
+const stock_transfer_entity_1 = __webpack_require__(76718);
 // Products
 const category_entity_1 = __webpack_require__(35738);
 const product_entity_1 = __webpack_require__(38335);
@@ -253925,7 +257220,10 @@ exports.entities = [
     expense_entity_1.Expense,
     income_category_entity_1.IncomeCategory,
     income_entity_1.Income,
+    location_entity_1.Location,
+    product_location_stock_entity_1.ProductLocationStock,
     stock_movement_entity_1.StockMovement,
+    stock_transfer_entity_1.StockTransfer,
     category_entity_1.Category,
     product_entity_1.Product,
     brand_entity_1.Brand,
@@ -255436,13 +258734,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var _a, _b, _c;
+var _a, _b, _c, _d, _e, _f, _g;
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.ConfigurationController = void 0;
 const common_1 = __webpack_require__(42909);
 const swagger_1 = __webpack_require__(77504);
 const configuration_service_1 = __webpack_require__(56300);
+const capabilities_response_dto_1 = __webpack_require__(13524);
+const update_capabilities_dto_1 = __webpack_require__(22828);
 const update_configuration_dto_1 = __webpack_require__(13096);
+const system_configuration_legacy_response_dto_1 = __webpack_require__(68280);
 const jwt_auth_guard_1 = __webpack_require__(75711);
 /**
  * Controlador de configuración del sistema
@@ -255453,10 +258754,20 @@ let ConfigurationController = class ConfigurationController {
         this.configService = configService;
     }
     getConfiguration() {
-        return this.configService.getConfiguration();
+        return this.configService.getLegacyResponse();
     }
-    updateConfiguration(updateDto) {
-        return this.configService.updateConfiguration(updateDto);
+    getCapabilities() {
+        return this.configService.getCapabilitiesResponse();
+    }
+    getCapabilitiesManifest() {
+        return this.configService.getCapabilitiesManifest();
+    }
+    async updateConfiguration(updateDto) {
+        const config = await this.configService.updateConfiguration(updateDto);
+        return this.configService.getLegacyResponse(config);
+    }
+    updateCapabilities(updateDto) {
+        return this.configService.updateCapabilities(updateDto);
     }
     updateAllPrices(body) {
         return this.configService.updateAllProductsPrices(body.defaultProfitMargin);
@@ -255466,25 +258777,52 @@ exports.ConfigurationController = ConfigurationController;
 __decorate([
     (0, common_1.Get)(),
     (0, swagger_1.ApiOperation)({ summary: 'Obtener configuración del sistema' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: system_configuration_legacy_response_dto_1.SystemConfigurationLegacyResponseDto }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], ConfigurationController.prototype, "getConfiguration", null);
 __decorate([
+    (0, common_1.Get)('capabilities'),
+    (0, swagger_1.ApiOperation)({ summary: 'Obtener capacidades activas' }),
+    (0, swagger_1.ApiOkResponse)({ type: capabilities_response_dto_1.CapabilitiesResponseDto }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", typeof (_b = typeof Promise !== "undefined" && Promise) === "function" ? _b : Object)
+], ConfigurationController.prototype, "getCapabilities", null);
+__decorate([
+    (0, common_1.Get)('manifest'),
+    (0, swagger_1.ApiOperation)({ summary: 'Obtener manifiesto de capacidades' }),
+    (0, swagger_1.ApiOkResponse)({ type: capabilities_response_dto_1.CapabilitiesManifestResponseDto }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", typeof (_c = typeof Promise !== "undefined" && Promise) === "function" ? _c : Object)
+], ConfigurationController.prototype, "getCapabilitiesManifest", null);
+__decorate([
     (0, common_1.Patch)(),
     (0, swagger_1.ApiOperation)({ summary: 'Actualizar configuración del sistema' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: system_configuration_legacy_response_dto_1.SystemConfigurationLegacyResponseDto }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_b = typeof update_configuration_dto_1.UpdateConfigurationDto !== "undefined" && update_configuration_dto_1.UpdateConfigurationDto) === "function" ? _b : Object]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:paramtypes", [typeof (_d = typeof update_configuration_dto_1.UpdateConfigurationDto !== "undefined" && update_configuration_dto_1.UpdateConfigurationDto) === "function" ? _d : Object]),
+    __metadata("design:returntype", Promise)
 ], ConfigurationController.prototype, "updateConfiguration", null);
+__decorate([
+    (0, common_1.Patch)('capabilities'),
+    (0, swagger_1.ApiOperation)({ summary: 'Actualizar perfil y overrides de capacidades' }),
+    (0, swagger_1.ApiOkResponse)({ type: capabilities_response_dto_1.CapabilitiesResponseDto }),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [typeof (_e = typeof update_capabilities_dto_1.UpdateCapabilitiesDto !== "undefined" && update_capabilities_dto_1.UpdateCapabilitiesDto) === "function" ? _e : Object]),
+    __metadata("design:returntype", typeof (_f = typeof Promise !== "undefined" && Promise) === "function" ? _f : Object)
+], ConfigurationController.prototype, "updateCapabilities", null);
 __decorate([
     (0, common_1.Post)('update-all-prices'),
     (0, swagger_1.ApiOperation)({ summary: 'Actualizar precio de todos los productos según el % de ganancia' }),
     (0, swagger_1.ApiResponse)({ status: 200, description: 'Productos actualizados' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [typeof (_c = typeof update_configuration_dto_1.UpdateConfigurationDto !== "undefined" && update_configuration_dto_1.UpdateConfigurationDto) === "function" ? _c : Object]),
+    __metadata("design:paramtypes", [typeof (_g = typeof update_configuration_dto_1.UpdateConfigurationDto !== "undefined" && update_configuration_dto_1.UpdateConfigurationDto) === "function" ? _g : Object]),
     __metadata("design:returntype", void 0)
 ], ConfigurationController.prototype, "updateAllPrices", null);
 exports.ConfigurationController = ConfigurationController = __decorate([
@@ -273037,6 +276375,52 @@ function TreeLevelColumn() {
 
 /***/ },
 
+/***/ 96843
+(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.AllowOutOfStockSale1769200000000 = void 0;
+/**
+ * Migración: Agregar configuración allowOutOfStockSale
+ *
+ * Agrega columna "allowOutOfStockSale" (boolean, default false) a system_configuration.
+ * Cuando es true, permite vender productos con stock ≤ 0 (el stock queda negativo).
+ */
+class AllowOutOfStockSale1769200000000 {
+    name = 'AllowOutOfStockSale1769200000000';
+    async columnExists(queryRunner, tableName, columnName) {
+        const result = await queryRunner.query(`
+            SELECT EXISTS (
+                SELECT 1 FROM information_schema.columns
+                WHERE table_schema = 'public'
+                AND table_name = '${tableName}'
+                AND column_name = '${columnName}'
+            )
+        `);
+        return result[0]?.exists || false;
+    }
+    async up(queryRunner) {
+        if (!await this.columnExists(queryRunner, 'system_configuration', 'allowOutOfStockSale')) {
+            await queryRunner.query(`
+                ALTER TABLE "system_configuration"
+                ADD COLUMN "allowOutOfStockSale" boolean NOT NULL DEFAULT false
+            `);
+        }
+    }
+    async down(queryRunner) {
+        await queryRunner.query(`
+            ALTER TABLE "system_configuration"
+            DROP COLUMN IF EXISTS "allowOutOfStockSale"
+        `);
+    }
+}
+exports.AllowOutOfStockSale1769200000000 = AllowOutOfStockSale1769200000000;
+
+
+/***/ },
+
 /***/ 96963
 (__unused_webpack_module, exports, __webpack_require__) {
 
@@ -274835,10 +278219,23 @@ let SalesController = class SalesController {
         this.salesService = salesService;
     }
     /**
-     * Crea una nueva venta
+     * Crea una nueva venta. Si el DTO trae `replenishmentTransfers`, se
+     * enruta al flujo "Reponer y continuar" (sectorizado): los traslados
+     * y la venta se ejecutan en una sola transacción.
      */
     create(dto, req) {
+        if (dto.replenishmentTransfers && dto.replenishmentTransfers.length > 0) {
+            return this.salesService.completeSaleAfterReplenishment(dto, dto.replenishmentTransfers, req.user?.userId);
+        }
         return this.salesService.create(dto, req.user?.userId);
+    }
+    /**
+     * Lee opciones de reposición por ítem para el POS (read-only).
+     * Devuelve por cada producto: stock en la primaria, si requiere
+     * reposición, y alternativas en otras ubicaciones activas.
+     */
+    checkReplenishment(body) {
+        return this.salesService.checkReplenishment(body.items ?? []);
     }
     /**
      * Obtiene ventas con filtros y paginación
@@ -274905,6 +278302,13 @@ __decorate([
     __metadata("design:paramtypes", [typeof (_b = typeof dto_1.CreateSaleDto !== "undefined" && dto_1.CreateSaleDto) === "function" ? _b : Object, typeof (_c = typeof interfaces_1.AuthenticatedRequest !== "undefined" && interfaces_1.AuthenticatedRequest) === "function" ? _c : Object]),
     __metadata("design:returntype", void 0)
 ], SalesController.prototype, "create", null);
+__decorate([
+    (0, common_1.Post)('check-replenishment'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], SalesController.prototype, "checkReplenishment", null);
 __decorate([
     (0, common_1.Get)(),
     __param(0, (0, common_1.Query)()),

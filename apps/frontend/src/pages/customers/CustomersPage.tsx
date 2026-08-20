@@ -276,7 +276,7 @@ export default function CustomersPage() {
                 description="Ingresá los datos del nuevo cliente"
                 icon={Users}
                 variant="primary"
-                maxWidth="lg"
+                maxWidth="2xl"
             >
                 <div className="max-h-[60vh] overflow-y-auto pr-2">
                     <CustomerForm
@@ -294,7 +294,7 @@ export default function CustomersPage() {
                 description="Modificá los datos del cliente"
                 icon={Users}
                 variant="primary"
-                maxWidth="lg"
+                maxWidth="2xl"
             >
                 <div className="max-h-[60vh] overflow-y-auto pr-2">
                     {editingCustomer ? (

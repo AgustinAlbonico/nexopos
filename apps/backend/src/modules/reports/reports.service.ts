@@ -4,7 +4,7 @@
  */
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Not, IsNull } from 'typeorm';
 import { Sale, SaleStatus } from '../sales/entities/sale.entity';
 import { SaleItem } from '../sales/entities/sale-item.entity';
 import { SalePayment } from '../sales/entities/sale-payment.entity';
@@ -779,9 +779,10 @@ export class ReportsService {
                 });
             }
             const prod = productMap.get(productId)!;
-            prod.quantity += item.quantity;
+            const qty = item.netQuantity ?? item.quantity;
+            prod.quantity += qty;
             prod.revenue += Number(item.subtotal);
-            prod.cost += item.quantity * Number(item.product.cost);
+            prod.cost += qty * Number(item.product.cost);
         }
 
         // Convertir y ordenar
@@ -1606,5 +1607,156 @@ export class ReportsService {
                 overdueAccountsCount: overdueAccounts,
             },
         };
+    }
+
+    async getApparelMetrics(startDate?: string, endDate?: string) {
+        const { start, end } = this.getPeriodDates(undefined, startDate, endDate);
+        const startStr = start.toISOString().split('T')[0];
+        const endStr = end.toISOString().split('T')[0];
+
+        const products = await this.productRepo.find({
+            relations: ['variantAttributes'],
+        });
+
+        const items = await this.saleItemRepo
+            .createQueryBuilder('item')
+            .innerJoin('item.sale', 'sale')
+            .leftJoinAndSelect('item.product', 'product')
+            .leftJoinAndSelect('product.variantAttributes', 'attrs')
+            .where('sale.deletedAt IS NULL')
+            .andWhere('sale.status = :status', { status: SaleStatus.COMPLETED })
+            .andWhere('DATE(sale.saleDate) BETWEEN :start AND :end', { start: startStr, end: endStr })
+            .getMany();
+
+        const sizeCurveMap = new Map<string, number>();
+        const colorCurveMap = new Map<string, number>();
+        let totalUnitsSold = 0;
+
+        for (const item of items) {
+            const qty = item.netQuantity ?? item.quantity;
+            totalUnitsSold += qty;
+            const attrs = item.product?.variantAttributes ?? [];
+            for (const attr of attrs) {
+                const keyLower = attr.attributeKey.toLowerCase();
+                if (keyLower.includes('talle') || keyLower.includes('size')) {
+                    sizeCurveMap.set(attr.attributeValue, (sizeCurveMap.get(attr.attributeValue) ?? 0) + qty);
+                } else if (keyLower.includes('color')) {
+                    colorCurveMap.set(attr.attributeValue, (colorCurveMap.get(attr.attributeValue) ?? 0) + qty);
+                }
+            }
+        }
+
+        const currentStockTotal = products.reduce((sum, p) => sum + Number(p.stock), 0);
+        const sellThroughRate = (totalUnitsSold + currentStockTotal) > 0
+            ? Math.round((totalUnitsSold / (totalUnitsSold + currentStockTotal)) * 10000) / 100
+            : 0;
+
+        const sizeCurve = Array.from(sizeCurveMap.entries())
+            .map(([size, quantity]) => ({ size, quantity, percentage: totalUnitsSold > 0 ? Math.round((quantity / totalUnitsSold) * 10000) / 100 : 0 }))
+            .sort((a, b) => b.quantity - a.quantity);
+
+        const colorCurve = Array.from(colorCurveMap.entries())
+            .map(([color, quantity]) => ({ color, quantity, percentage: totalUnitsSold > 0 ? Math.round((quantity / totalUnitsSold) * 10000) / 100 : 0 }))
+            .sort((a, b) => b.quantity - a.quantity);
+
+        // B.1: Detección de Curvas Rotas (modelos con variantes agotadas pero stock en otras variantes)
+        const parentModels = await this.productRepo.find({
+            where: { isVariantParent: true, isActive: true },
+        });
+
+        const allChildVariants = await this.productRepo.find({
+            where: { parentProductId: Not(IsNull()) as any, isActive: true },
+            relations: ['variantAttributes'],
+        });
+
+        const variantsByParent = new Map<string, Product[]>();
+        for (const v of allChildVariants) {
+            if (v.parentProductId) {
+                const list = variantsByParent.get(v.parentProductId) || [];
+                list.push(v);
+                variantsByParent.set(v.parentProductId, list);
+            }
+        }
+
+        const brokenCurves = parentModels.flatMap((parent) => {
+            const childVariants = variantsByParent.get(parent.id) || [];
+            if (childVariants.length === 0) return [];
+
+            const totalStock = childVariants.reduce((sum, v) => sum + Number(v.stock || 0), 0);
+            const availableVariants = childVariants.filter((v) => Number(v.stock) > 0);
+            const outOfStockVariants = childVariants.filter((v) => Number(v.stock) <= 0);
+
+            if (availableVariants.length > 0 && outOfStockVariants.length > 0) {
+                const missingSizes = Array.from(new Set(
+                    outOfStockVariants.flatMap((v) =>
+                        (v.variantAttributes || [])
+                            .filter((a) => a.attributeKey.toLowerCase().includes('talle') || a.attributeKey.toLowerCase().includes('size'))
+                            .map((a) => a.attributeValue)
+                    )
+                ));
+
+                const availableSizes = Array.from(new Set(
+                    availableVariants.flatMap((v) =>
+                        (v.variantAttributes || [])
+                            .filter((a) => a.attributeKey.toLowerCase().includes('talle') || a.attributeKey.toLowerCase().includes('size'))
+                            .map((a) => a.attributeValue)
+                    )
+                ));
+
+                return [{
+                    parentId: parent.id,
+                    parentName: parent.name,
+                    season: parent.season ?? undefined,
+                    collection: parent.collection ?? undefined,
+                    totalStock,
+                    totalVariantsCount: childVariants.length,
+                    availableVariantsCount: availableVariants.length,
+                    outOfStockVariantsCount: outOfStockVariants.length,
+                    missingSizes: missingSizes.length > 0 ? missingSizes : outOfStockVariants.map((v) => v.name),
+                    availableSizes: availableSizes.length > 0 ? availableSizes : availableVariants.map((v) => v.name),
+                }];
+            }
+            return [];
+        });
+
+        return {
+            period: { startDate: start, endDate: end },
+            totalUnitsSold,
+            currentStockTotal,
+            sellThroughRate,
+            sizeCurve,
+            colorCurve,
+            brokenCurves,
+        };
+    }
+
+    async getSellerCommissions(startDate?: string, endDate?: string, commissionRate: number = 3) {
+        const { start, end } = this.getPeriodDates(undefined, startDate, endDate);
+        const startStr = start.toISOString().split('T')[0];
+        const endStr = end.toISOString().split('T')[0];
+
+        const sales = await this.saleRepo
+            .createQueryBuilder('sale')
+            .where('sale.deletedAt IS NULL')
+            .andWhere('sale.status = :status', { status: SaleStatus.COMPLETED })
+            .andWhere('DATE(sale.saleDate) BETWEEN :start AND :end', { start: startStr, end: endStr })
+            .andWhere('sale.sellerName IS NOT NULL')
+            .getMany();
+
+        const sellerMap = new Map<string, { sellerName: string; totalSales: number; salesCount: number }>();
+
+        for (const sale of sales) {
+            const name = sale.sellerName || 'Sin Vendedor';
+            const existing = sellerMap.get(name) || { sellerName: name, totalSales: 0, salesCount: 0 };
+            existing.totalSales += Number(sale.total);
+            existing.salesCount += 1;
+            sellerMap.set(name, existing);
+        }
+
+        return Array.from(sellerMap.values()).map((seller) => ({
+            ...seller,
+            commissionAmount: Math.round(seller.totalSales * (commissionRate / 100) * 100) / 100,
+            commissionRate,
+        }));
     }
 }

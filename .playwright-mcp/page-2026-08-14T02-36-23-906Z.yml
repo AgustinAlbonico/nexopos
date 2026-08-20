@@ -1,0 +1,211 @@
+- generic [active] [ref=e12]:
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - link "NP" [ref=e17] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=e19]:
+          - generic [ref=e20]:
+            - link [ref=e22] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=e29] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=e35] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=e41] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=e45] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=e50] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=e57] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=e62] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=e69] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=e75] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=e81] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=e85] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=e90] [cursor=pointer]
+      - main [ref=e95]:
+        - generic [ref=e662]:
+          - generic [ref=e663]:
+            - generic [ref=e664]:
+              - heading "Productos" [level=1] [ref=e665]
+              - paragraph [ref=e666]: Cargá productos con nombre, costo y stock
+            - generic [ref=e667]:
+              - button "Categorías" [ref=e668] [cursor=pointer]
+              - button "Nuevo Producto" [ref=e672] [cursor=pointer]
+          - generic [ref=e675]:
+            - generic [ref=e676]:
+              - generic [ref=e677]:
+                - textbox "Buscar producto..." [ref=e678]: Remera
+                - generic [ref=e679]:
+                  - combobox [ref=e680] [cursor=pointer]:
+                    - generic: Todas las categorías
+                  - combobox [ref=e683] [cursor=pointer]:
+                    - generic [ref=e684]: Todas las marcas
+                  - combobox [ref=e685] [cursor=pointer]:
+                    - generic: Todo el stock
+              - generic [ref=e688]: 69 registro(s)
+            - table [ref=e691]:
+              - rowgroup [ref=e692]:
+                - row [ref=e693]:
+                  - columnheader [ref=e694]:
+                    - button "Producto" [ref=e1499] [cursor=pointer]
+                  - columnheader "Categoría" [ref=e699]
+                  - columnheader "Marca" [ref=e700]
+                  - columnheader "Costo" [ref=e701]
+                  - columnheader [ref=e702]:
+                    - button "Precio" [ref=e1503] [cursor=pointer]
+                  - columnheader [ref=e707]:
+                    - button "Stock" [ref=e1507] [cursor=pointer]
+                  - columnheader [ref=e712]
+              - rowgroup [ref=e713]:
+                - row [ref=e1178]:
+                  - cell [ref=e1179]:
+                    - paragraph [ref=e1512]: Remera E2E 1786627854399
+                  - cell "-" [ref=e1182]
+                  - cell "-" [ref=e1183]
+                  - cell "$ 0,00" [ref=e1184]
+                  - cell "$ 18.500,00 0.0% ganancia" [ref=e1185]:
+                    - generic [ref=e1513]:
+                      - generic [ref=e1514]: $ 18.500,00
+                      - generic [ref=e1515]: 0.0% ganancia
+                  - cell "0" [ref=e1189]
+                  - cell [ref=e1194]:
+                    - button "Abrir menú" [ref=e1520] [cursor=pointer]
+                - row [ref=e1201]:
+                  - cell [ref=e1202]:
+                    - paragraph [ref=e1527]: Remera E2E 1786627926521
+                  - cell "-" [ref=e1205]
+                  - cell "-" [ref=e1206]
+                  - cell "$ 0,00" [ref=e1207]
+                  - cell "$ 18.500,00 0.0% ganancia" [ref=e1208]:
+                    - generic [ref=e1528]:
+                      - generic [ref=e1529]: $ 18.500,00
+                      - generic [ref=e1530]: 0.0% ganancia
+                  - cell "0" [ref=e1212]
+                  - cell [ref=e1217]:
+                    - button "Abrir menú" [ref=e1535] [cursor=pointer]
+                - row [ref=e1224]:
+                  - cell [ref=e1225]:
+                    - paragraph [ref=e1542]: Remera E2E 1786628001552
+                  - cell "-" [ref=e1228]
+                  - cell "-" [ref=e1229]
+                  - cell "$ 0,00" [ref=e1230]
+                  - cell "$ 18.500,00 0.0% ganancia" [ref=e1231]:
+                    - generic [ref=e1543]:
+                      - generic [ref=e1544]: $ 18.500,00
+                      - generic [ref=e1545]: 0.0% ganancia
+                  - cell "0" [ref=e1235]
+                  - cell [ref=e1240]:
+                    - button "Abrir menú" [ref=e1550] [cursor=pointer]
+                - row [ref=e1247]:
+                  - cell [ref=e1248]:
+                    - paragraph [ref=e1557]: Remera E2E 1786628158475
+                  - cell "-" [ref=e1251]
+                  - cell "-" [ref=e1252]
+                  - cell "$ 0,00" [ref=e1253]
+                  - cell "$ 18.500,00 0.0% ganancia" [ref=e1254]:
+                    - generic [ref=e1558]:
+                      - generic [ref=e1559]: $ 18.500,00
+                      - generic [ref=e1560]: 0.0% ganancia
+                  - cell "0" [ref=e1258]
+                  - cell [ref=e1263]:
+                    - button "Abrir menú" [ref=e1565] [cursor=pointer]
+                - row [ref=e1270]:
+                  - cell [ref=e1271]:
+                    - paragraph [ref=e1572]: Remera E2E 1786628233413
+                  - cell "-" [ref=e1274]
+                  - cell "-" [ref=e1275]
+                  - cell "$ 0,00" [ref=e1276]
+                  - cell "$ 18.500,00 0.0% ganancia" [ref=e1277]:
+                    - generic [ref=e1573]:
+                      - generic [ref=e1574]: $ 18.500,00
+                      - generic [ref=e1575]: 0.0% ganancia
+                  - cell "0" [ref=e1281]
+                  - cell [ref=e1286]:
+                    - button "Abrir menú" [ref=e1580] [cursor=pointer]
+                - row [ref=e1293]:
+                  - cell [ref=e1294]:
+                    - paragraph [ref=e1587]: Remera E2E 1786628344465
+                  - cell "-" [ref=e1297]
+                  - cell "-" [ref=e1298]
+                  - cell "$ 0,00" [ref=e1299]
+                  - cell "$ 18.500,00 0.0% ganancia" [ref=e1300]:
+                    - generic [ref=e1588]:
+                      - generic [ref=e1589]: $ 18.500,00
+                      - generic [ref=e1590]: 0.0% ganancia
+                  - cell "0" [ref=e1304]
+                  - cell [ref=e1309]:
+                    - button "Abrir menú" [ref=e1595] [cursor=pointer]
+                - row [ref=e1316]:
+                  - cell [ref=e1317]:
+                    - paragraph [ref=e1602]: Remera E2E 1786628403269
+                  - cell "-" [ref=e1320]
+                  - cell "-" [ref=e1321]
+                  - cell "$ 0,00" [ref=e1322]
+                  - cell "$ 18.500,00 0.0% ganancia" [ref=e1323]:
+                    - generic [ref=e1603]:
+                      - generic [ref=e1604]: $ 18.500,00
+                      - generic [ref=e1605]: 0.0% ganancia
+                  - cell "0" [ref=e1327]
+                  - cell [ref=e1332]:
+                    - button "Abrir menú" [ref=e1610] [cursor=pointer]
+                - row [ref=e1339]:
+                  - cell [ref=e1340]:
+                    - paragraph [ref=e1617]: Remera E2E 1786628595591
+                  - cell "-" [ref=e1343]
+                  - cell "-" [ref=e1344]
+                  - cell "$ 0,00" [ref=e1345]
+                  - cell "$ 18.500,00 0.0% ganancia" [ref=e1346]:
+                    - generic [ref=e1618]:
+                      - generic [ref=e1619]: $ 18.500,00
+                      - generic [ref=e1620]: 0.0% ganancia
+                  - cell "0" [ref=e1350]
+                  - cell [ref=e1355]:
+                    - button "Abrir menú" [ref=e1625] [cursor=pointer]
+                - row [ref=e1362]:
+                  - cell [ref=e1363]:
+                    - paragraph [ref=e1632]: Remera E2E 1786628684300
+                  - cell "-" [ref=e1366]
+                  - cell "-" [ref=e1367]
+                  - cell "$ 0,00" [ref=e1368]
+                  - cell "$ 18.500,00 0.0% ganancia" [ref=e1369]:
+                    - generic [ref=e1633]:
+                      - generic [ref=e1634]: $ 18.500,00
+                      - generic [ref=e1635]: 0.0% ganancia
+                  - cell "0" [ref=e1373]
+                  - cell [ref=e1378]:
+                    - button "Abrir menú" [ref=e1640] [cursor=pointer]
+                - row [ref=e1385]:
+                  - cell [ref=e1386]:
+                    - paragraph [ref=e1647]: Remera E2E 1786628768265
+                  - cell "-" [ref=e1389]
+                  - cell "-" [ref=e1390]
+                  - cell "$ 0,00" [ref=e1391]
+                  - cell "$ 18.500,00 0.0% ganancia" [ref=e1392]:
+                    - generic [ref=e1648]:
+                      - generic [ref=e1649]: $ 18.500,00
+                      - generic [ref=e1650]: 0.0% ganancia
+                  - cell "0" [ref=e1396]
+                  - cell [ref=e1401]:
+                    - button "Abrir menú" [ref=e1655] [cursor=pointer]
+            - generic [ref=e930]:
+              - generic [ref=e931]:
+                - generic [ref=e932]: Página 1 de 7
+                - generic [ref=e933]:
+                  - generic [ref=e934]: "Mostrar:"
+                  - combobox [ref=e935] [cursor=pointer]:
+                    - generic: "10"
+                  - generic [ref=e938]: registros
+              - generic [ref=e939]:
+                - button "Anterior" [disabled]
+                - button "Siguiente" [ref=e940] [cursor=pointer]
+    - region "Notifications alt+T"
+  - generic [ref=e325]: $0k

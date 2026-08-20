@@ -1,0 +1,277 @@
+- generic [active] [ref=f39e1]:
+  - generic [ref=f39e2]:
+    - generic [ref=f39e5]:
+      - link [ref=f39e7] [cursor=pointer]:
+        - /url: /
+        - img "Eventive" [ref=f39e8]
+      - button [ref=f39e10] [cursor=pointer]
+    - main [ref=f39e13]:
+      - generic [ref=f39e14]:
+        - generic [ref=f39e17]:
+          - heading "Pricing" [level=2] [ref=f39e18]
+          - generic [ref=f39e19]: Simple, no-contract pricing for all our products
+          - generic [ref=f39e21]:
+            - text: No commitment. No hidden fees. Mix and match our products to build the independent film experience of your dreams. Eventive is available everywhere in the world, with native payments in over 135 currencies as well as country-specific pricing –
+            - button "get in touch" [ref=f39e22] [cursor=pointer]
+            - text: .
+        - generic [ref=f39e23]:
+          - generic [ref=f39e27]:
+            - generic [ref=f39e28]:
+              - heading "Eventive Platform" [level=3] [ref=f39e29]
+              - paragraph [ref=f39e30]: Full access to the Eventive event management platform (does not include Eventive Virtual).
+              - generic [ref=f39e31]:
+                - heading "What's included" [level=4] [ref=f39e33]
+                - list [ref=f39e35]:
+                  - listitem [ref=f39e36]:
+                    - paragraph [ref=f39e40]: Online schedule of events and film guide
+                  - listitem [ref=f39e41]:
+                    - paragraph [ref=f39e45]: Free audience registration for free events
+                  - listitem [ref=f39e46]:
+                    - paragraph [ref=f39e50]: In-person box office and unified inventory management
+                  - listitem [ref=f39e51]:
+                    - paragraph [ref=f39e55]: Thousands of integrations including Mailchimp and Salesforce
+            - generic [ref=f39e56]:
+              - paragraph
+              - generic [ref=f39e57]: FREE
+              - paragraph [ref=f39e59]: No contract. No setup fee. No annual fee. The full power of the Eventive Platform.
+              - link "Get started free" [ref=f39e62] [cursor=pointer]:
+                - /url: /start
+          - generic [ref=f39e65]:
+            - generic [ref=f39e66]:
+              - heading "Eventive Ticketing" [level=3] [ref=f39e67]
+              - paragraph [ref=f39e68]: Sell tickets, passes, and items – online, at-the-door and anywhere in between. All below fees can be passed to customers and organizers can use Eventive for free.
+              - generic [ref=f39e69]:
+                - heading "What's included" [level=4] [ref=f39e71]
+                - list [ref=f39e73]:
+                  - listitem [ref=f39e74]:
+                    - paragraph [ref=f39e78]: Credit card processing included – discounts available for non-profits and/or volume over $100k/month
+                  - listitem [ref=f39e79]:
+                    - paragraph [ref=f39e83]: No ticketing fees on donations, concessions, or on-site merch sales
+                  - listitem [ref=f39e84]:
+                    - paragraph [ref=f39e88]: Desktop, mobile, and iPad Box Office
+                  - listitem [ref=f39e89]:
+                    - paragraph [ref=f39e93]: Seamless integration with Eventive Scanner, Eventive Terminal, ticket and pass printing, and full physical point-of-sale
+            - generic [ref=f39e94]:
+              - paragraph [ref=f39e95]: Paid credit card sales
+              - generic [ref=f39e96]:
+                - generic [ref=f39e97]: 5% + 99c
+                - combobox [ref=f39e100] [cursor=pointer]:
+                  - option "USD" [selected]
+                  - option "GBP"
+                  - option "CAD"
+                  - option "EUR"
+                  - option "NOK"
+                  - option "SEK"
+                  - option "AUD"
+                  - option "NZD"
+                  - option "DKK"
+              - paragraph [ref=f39e101]: Per item. No fees on free tickets or free passes. No fees on cash or check sales. No ticketing fees on donations. All-inclusive – includes all credit card processing fees.
+              - link "Start selling" [ref=f39e104] [cursor=pointer]:
+                - /url: /start
+              - generic [ref=f39e106]:
+                - text: Don't see your currency?
+                - button "Contact us." [ref=f39e107] [cursor=pointer]
+          - generic [ref=f39e110]:
+            - generic [ref=f39e111]:
+              - heading "Eventive Virtual Unlimited" [level=3] [ref=f39e112]
+              - paragraph [ref=f39e113]:
+                - text: One platform to make all your films and live events easily accessible for secure, ticketed viewing by audiences anywhere. Protected by
+                - link "Eventive Advanced Antipiracy" [ref=f39e114] [cursor=pointer]:
+                  - /url: /antipiracy
+                - text: .
+              - generic [ref=f39e115]:
+                - heading "What's included" [level=4] [ref=f39e117]
+                - list [ref=f39e119]:
+                  - listitem [ref=f39e120]:
+                    - paragraph [ref=f39e124]: Invisible forensic watermark and full multi-DRM on every screening
+                  - listitem [ref=f39e125]:
+                    - paragraph [ref=f39e129]: Unlimited free trailers & pre-rolls
+                  - listitem [ref=f39e130]:
+                    - paragraph [ref=f39e134]: $350 ingest credit covers 10 feature films & 20 shorts with multi-DRM playout on all devices
+                  - listitem [ref=f39e135]:
+                    - paragraph [ref=f39e139]: Unlimited free external links for non-DRM content
+                  - listitem [ref=f39e140]:
+                    - paragraph [ref=f39e144]: Additional feature films – $25; shorts – $5
+                  - listitem [ref=f39e145]:
+                    - paragraph [ref=f39e149]: Unlimited free livestreams
+                  - listitem [ref=f39e150]:
+                    - paragraph [ref=f39e154]: $0.99 per DRM unlock streaming bandwidth fee (local currency pricing available)
+                  - listitem [ref=f39e155]:
+                    - paragraph [ref=f39e159]: Custom domain add-on (watch.yoursite.com) – $500
+                  - listitem [ref=f39e160]:
+                    - paragraph [ref=f39e164]: Premium 1080p DRM-protected livestreams with optional live automated closed captioning – $10/hr
+                  - listitem [ref=f39e165]:
+                    - paragraph [ref=f39e169]: Integrated Eventive Ticketing (standard fees apply)
+            - generic [ref=f39e170]:
+              - paragraph [ref=f39e171]: Annual activation fee
+              - generic [ref=f39e172]:
+                - generic [ref=f39e173]: $975
+                - generic [ref=f39e174]: USD
+              - paragraph [ref=f39e175]: Satisfaction guaranteed or we'll send you a full refund.
+              - link "Get started" [ref=f39e178] [cursor=pointer]:
+                - /url: /start?goal=activate
+              - link "Request a demo" [ref=f39e181] [cursor=pointer]:
+                - /url: /start?goal=learn_more&message=I%27d%20like%20to%20see%20a%20demo%20of%20Eventive%20Virtual.
+          - generic [ref=f39e184]:
+            - generic [ref=f39e185]:
+              - heading "Eventive Virtual Single Film" [level=3] [ref=f39e186]
+              - paragraph [ref=f39e187]:
+                - text: Launch your film on Eventive. Everything you need for virtual distribution of a single title, from DRM-protected screenings to live Q&As. Secured by
+                - link "Eventive Advanced Antipiracy" [ref=f39e188] [cursor=pointer]:
+                  - /url: /antipiracy
+                - text: .
+              - generic [ref=f39e189]:
+                - heading "What's included" [level=4] [ref=f39e191]
+                - list [ref=f39e193]:
+                  - listitem [ref=f39e194]:
+                    - paragraph [ref=f39e198]: Ingest a single title with full DRM protection and forensic watermarking encoded for playout on all devices
+                  - listitem [ref=f39e199]:
+                    - paragraph [ref=f39e203]: Create unlimited screenings with co-branding, unlimited ticket types, discounts, and more
+                  - listitem [ref=f39e204]:
+                    - paragraph [ref=f39e208]: Host live Q&As that are automatically recorded and archived for on-demand viewing
+                  - listitem [ref=f39e209]:
+                    - paragraph [ref=f39e213]: 100 free unlocks included for giveaways and screeners ($0.99 per DRM unlock streaming bandwidth fee thereafter)
+                  - listitem [ref=f39e214]:
+                    - paragraph [ref=f39e218]: Promote your film in the Eventive Virtual Catalog
+                  - listitem [ref=f39e219]:
+                    - paragraph [ref=f39e223]: Make your film available for viewing via the web and TV apps
+            - generic [ref=f39e224]:
+              - paragraph [ref=f39e225]: One-time fee
+              - generic [ref=f39e226]:
+                - generic [ref=f39e227]: $299
+                - generic [ref=f39e228]: USD
+              - paragraph [ref=f39e229]: Release a single title on the Eventive platform.
+              - link "Launch your film" [ref=f39e232] [cursor=pointer]:
+                - /url: /start?goal=activate&type=filmmaker&activation_type=virtual_single
+          - generic [ref=f39e235]:
+            - generic [ref=f39e236]:
+              - heading "Eventive for Distributors" [level=3] [ref=f39e237]
+              - paragraph [ref=f39e238]: Manage your entire virtual theatrical and VOD distribution channel using the only virtual screening platform designed for independent film.
+              - generic [ref=f39e239]:
+                - heading "What's included" [level=4] [ref=f39e241]
+                - list [ref=f39e243]:
+                  - listitem [ref=f39e244]:
+                    - paragraph [ref=f39e248]: MPAA-certified content protection and watermarking
+                  - listitem [ref=f39e249]:
+                    - paragraph [ref=f39e253]: Unlimited screenings all from a single film upload
+                  - listitem [ref=f39e254]:
+                    - paragraph [ref=f39e258]: Automated reporting and exhibitor revenue sharing
+                  - listitem [ref=f39e259]:
+                    - paragraph [ref=f39e263]: White-label screening experience and custom apps
+            - generic [ref=f39e264]:
+              - paragraph
+              - generic [ref=f39e265]: Custom volume-based pricing options available
+              - paragraph
+              - link "Contact us" [ref=f39e268] [cursor=pointer]:
+                - /url: /start?goal=learn_more&type=distributor
+          - generic [ref=f39e271]:
+            - generic [ref=f39e272]:
+              - heading "Eventive Balloting" [level=3] [ref=f39e273]
+              - paragraph [ref=f39e274]: A complete solution for audience awards and polling, both on-site and online. Generate, record, and tabulate using mobile, printed, and virtual ballots.
+            - generic [ref=f39e275]:
+              - paragraph
+              - generic [ref=f39e276]: FREE
+              - paragraph
+              - link "Get started free" [ref=f39e280] [cursor=pointer]:
+                - /url: /start
+          - generic [ref=f39e283]:
+            - generic [ref=f39e284]:
+              - heading "Eventive Premium Support" [level=3] [ref=f39e285]
+              - paragraph [ref=f39e286]: Trust our experts to go above and beyond to take care of every step of your event.
+              - generic [ref=f39e287]:
+                - heading "What's included" [level=4] [ref=f39e289]
+                - list [ref=f39e291]:
+                  - listitem [ref=f39e292]:
+                    - paragraph [ref=f39e296]: Dedicated account manager
+                  - listitem [ref=f39e297]:
+                    - paragraph [ref=f39e301]: Guaranteed response time agreement
+                  - listitem [ref=f39e302]:
+                    - paragraph [ref=f39e306]: Video and phone support
+                  - listitem [ref=f39e307]:
+                    - paragraph [ref=f39e311]: "Optional: Full concierge setup"
+                  - listitem [ref=f39e312]:
+                    - paragraph [ref=f39e316]: "Optional: On-site box office management"
+                  - listitem [ref=f39e317]:
+                    - paragraph [ref=f39e321]: "Optional: Event staffing"
+            - generic [ref=f39e322]:
+              - paragraph [ref=f39e323]: Monthly starting at
+              - generic [ref=f39e324]:
+                - generic [ref=f39e325]: $1,800
+                - generic [ref=f39e326]: USD
+              - paragraph
+              - link "Design your support plan" [ref=f39e329] [cursor=pointer]:
+                - /url: /start?goal=learn_more&message=I%27d%20like%20to%20learn%20more%20about%20Eventive%27s%20premium%20support%20offerings!
+    - generic [ref=f39e331]:
+      - generic [ref=f39e332]:
+        - generic [ref=f39e333]:
+          - img "Eventive" [ref=f39e334]
+          - paragraph [ref=f39e335]: Smarter experiences for independent film.
+          - generic [ref=f39e336]:
+            - link "Facebook" [ref=f39e337] [cursor=pointer]:
+              - /url: https://www.facebook.com/eventive.org/
+            - link "Instagram" [ref=f39e341] [cursor=pointer]:
+              - /url: https://instagram.com/eventive_org
+            - link "Twitter" [ref=f39e345] [cursor=pointer]:
+              - /url: https://twitter.com/eventive_org
+            - link "GitHub" [ref=f39e349] [cursor=pointer]:
+              - /url: https://github.com/eventive-org
+        - generic [ref=f39e353]:
+          - generic [ref=f39e354]:
+            - generic [ref=f39e355]:
+              - heading "Offerings" [level=4] [ref=f39e356]
+              - list [ref=f39e357]:
+                - listitem [ref=f39e358]:
+                  - link "Eventive Virtual" [ref=f39e359] [cursor=pointer]:
+                    - /url: /virtual
+                - listitem [ref=f39e360]:
+                  - link "Film Festivals" [ref=f39e361] [cursor=pointer]:
+                    - /url: /film-festivals
+                - listitem [ref=f39e362]:
+                  - link "Distributors" [ref=f39e363] [cursor=pointer]:
+                    - /url: /distributors
+                - listitem [ref=f39e364]:
+                  - link "Arthouse Cinema" [ref=f39e365] [cursor=pointer]:
+                    - /url: /cinema
+            - generic [ref=f39e366]:
+              - heading "Support" [level=4] [ref=f39e367]
+              - list [ref=f39e368]:
+                - listitem [ref=f39e369]:
+                  - link "Pricing" [ref=f39e370] [cursor=pointer]:
+                    - /url: /pricing
+                - listitem [ref=f39e371]:
+                  - link "User Guide" [ref=f39e372] [cursor=pointer]:
+                    - /url: https://help.eventive.org
+                - listitem [ref=f39e373]:
+                  - link "System Status" [ref=f39e374] [cursor=pointer]:
+                    - /url: https://status.eventive.org
+          - generic [ref=f39e375]:
+            - generic [ref=f39e376]:
+              - heading "Company" [level=4] [ref=f39e377]
+              - list [ref=f39e378]:
+                - listitem [ref=f39e379]:
+                  - link "Our Story" [ref=f39e380] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=f39e381]:
+                  - link "Careers" [ref=f39e382] [cursor=pointer]:
+                    - /url: /careers
+                - listitem [ref=f39e383]:
+                  - link "Antipiracy" [ref=f39e384] [cursor=pointer]:
+                    - /url: /antipiracy
+                - listitem [ref=f39e385]:
+                  - link "Security" [ref=f39e386] [cursor=pointer]:
+                    - /url: /security
+            - generic [ref=f39e387]:
+              - heading "Legal" [level=4] [ref=f39e388]
+              - list [ref=f39e389]:
+                - listitem [ref=f39e390]:
+                  - link "Privacy" [ref=f39e391] [cursor=pointer]:
+                    - /url: /privacy
+                - listitem [ref=f39e392]:
+                  - link "Terms" [ref=f39e393] [cursor=pointer]:
+                    - /url: /terms
+                - listitem [ref=f39e394]:
+                  - link "DMCA" [ref=f39e395] [cursor=pointer]:
+                    - /url: /dmca
+      - paragraph [ref=f39e397]: © 2026 Eventive. All rights reserved.
+    - text: ;;;
+  - alert [ref=f39e398]

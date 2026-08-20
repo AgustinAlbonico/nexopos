@@ -206,6 +206,8 @@ export class AuditService {
             [AuditEntityType.PURCHASE]: 'compra',
             [AuditEntityType.CASH_REGISTER]: 'caja',
             [AuditEntityType.CASH_MOVEMENT]: 'movimiento de caja',
+            [AuditEntityType.STOCKTAKE_SESSION]: 'conteo de inventario',
+            [AuditEntityType.CREDIT_NOTE]: 'nota de crédito',
         };
 
         const actionNames: Record<AuditAction, string> = {
@@ -216,6 +218,11 @@ export class AuditService {
             [AuditAction.PAY]: 'Pago de',
             [AuditAction.OPEN]: 'Apertura de',
             [AuditAction.CLOSE]: 'Cierre de',
+            [AuditAction.STOCKTAKE_START]: 'Inicio de',
+            [AuditAction.STOCKTAKE_COUNT]: 'Conteo de',
+            [AuditAction.STOCKTAKE_APPROVE]: 'Aprobación de',
+            [AuditAction.STOCKTAKE_CANCEL]: 'Cancelación de',
+            [AuditAction.ATTEMPT]: 'Intento de',
         };
 
         const entityName = entityNames[entityType] || entityType;

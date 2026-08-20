@@ -68,6 +68,12 @@ export interface WSFEIvaItem {
     Importe: number;
 }
 
+export interface WSFECbteAsoc {
+    Tipo: number;
+    PtoVta: number;
+    Nro: number;
+}
+
 /**
  * Interface para request de autorización
  */
@@ -84,7 +90,9 @@ export interface WSFEAuthRequest {
     netAmount: number;
     exemptAmount: number;
     ivaAmount: number;
+    otherTaxes?: number;
     ivaItems: WSFEIvaItem[];
+    associatedDocument?: WSFECbteAsoc;
 }
 
 /**
@@ -107,6 +115,15 @@ export function createFECAESolicitarRequest(
                   <ar:BaseImp>${item.BaseImp.toFixed(2)}</ar:BaseImp>
                   <ar:Importe>${item.Importe.toFixed(2)}</ar:Importe>
                </ar:AlicIva>`).join('');
+
+    const associatedDocumentXml = request.associatedDocument ? `
+                  <ar:CbtesAsoc>
+                     <ar:CbteAsoc>
+                        <ar:Tipo>${request.associatedDocument.Tipo}</ar:Tipo>
+                        <ar:PtoVta>${request.associatedDocument.PtoVta}</ar:PtoVta>
+                        <ar:Nro>${request.associatedDocument.Nro}</ar:Nro>
+                     </ar:CbteAsoc>
+                  </ar:CbtesAsoc>` : '';
 
     return `<?xml version="1.0" encoding="UTF-8"?>
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ar="http://ar.gov.afip.dif.FEV1/">
@@ -136,11 +153,11 @@ export function createFECAESolicitarRequest(
                   <ar:ImpTotConc>0.00</ar:ImpTotConc>
                   <ar:ImpNeto>${request.netAmount.toFixed(2)}</ar:ImpNeto>
                   <ar:ImpOpEx>${request.exemptAmount.toFixed(2)}</ar:ImpOpEx>
-                  <ar:ImpTrib>0.00</ar:ImpTrib>
+                  <ar:ImpTrib>${(request.otherTaxes || 0).toFixed(2)}</ar:ImpTrib>
                   <ar:ImpIVA>${request.ivaAmount.toFixed(2)}</ar:ImpIVA>
                   <ar:MonId>PES</ar:MonId>
                   <ar:MonCotiz>1</ar:MonCotiz>
-                  <ar:CondicionIVAReceptorId>${request.receiverIvaCondition}</ar:CondicionIVAReceptorId>${ivaItemsXml ? `
+                  <ar:CondicionIVAReceptorId>${request.receiverIvaCondition}</ar:CondicionIVAReceptorId>${associatedDocumentXml}${ivaItemsXml ? `
                   <ar:Iva>${ivaItemsXml}
                   </ar:Iva>` : ''}
                </ar:FECAEDetRequest>

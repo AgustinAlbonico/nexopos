@@ -1,0 +1,19 @@
+- banner [ref=f13e2]:
+  - button "Ir al contenido" [ref=f13e3] [cursor=pointer]
+  - button "Comentarios de accesibilidad" [ref=f13e6] [cursor=pointer]
+  - generic [ref=f13e9]:
+    - link [ref=f13e10] [cursor=pointer]:
+      - /url: /?FORM=Z9FD1
+      - heading "Volver a la búsqueda de Bing" [level=1] [ref=f13e11]
+    - search [ref=f13e12]:
+      - button "Buscar" [ref=f13e15] [cursor=pointer]
+      - searchbox "Escribe tu búsqueda aquí; irán apareciendo sugerencias de búsqueda a medida que escribes" [ref=f13e16]: site:veezi.com independent cinema ticketing pricing
+      - button "Borrar texto" [ref=f13e18]
+      - button "Buscar con una imagen" [ref=f13e22] [cursor=pointer]
+  - complementary "Premios y preferencias de la cuenta" [ref=f13e24]:
+    - button "Microsoft Rewards" [ref=f13e25] [cursor=pointer]
+    - link "Iniciar sesión" [ref=f13e26] [cursor=pointer]:
+      - /url: javascript:void(0)
+  - generic [ref=f13e28]:
+    - generic [ref=f13e29]: Un último paso
+    - generic [ref=f13e30]: Resuelve el desafío siguiente para continuar.

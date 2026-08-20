@@ -75,6 +75,8 @@ DATABASE_PASSWORD=${config.password}
 BACKEND_PORT=3000
 FRONTEND_PORT=5173
 NODE_ENV=production
+NEXOPOS_PROFILE_KEY=${config.profileKey || 'simple-retail'}
+NEXOPOS_TECHNICIAN_KEY=${config.technicianKey || 'admin1234'}
 
 # Seguridad JWT
 JWT_SECRET=${config.jwtSecret || randomBytes(32).toString('hex')}

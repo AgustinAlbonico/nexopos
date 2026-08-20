@@ -143,7 +143,7 @@ export default function SuppliersPage() {
                 description="Ingresa los datos del nuevo proveedor"
                 icon={Truck}
                 variant="info"
-                maxWidth="lg"
+                maxWidth="2xl"
             >
                 <div className="max-h-[60vh] overflow-y-auto pr-2">
                     <SupplierForm
@@ -161,7 +161,7 @@ export default function SuppliersPage() {
                 description="Modifica los datos del proveedor"
                 icon={Truck}
                 variant="info"
-                maxWidth="lg"
+                maxWidth="2xl"
             >
                 <div className="max-h-[60vh] overflow-y-auto pr-2">
                     {editingSupplier ? (

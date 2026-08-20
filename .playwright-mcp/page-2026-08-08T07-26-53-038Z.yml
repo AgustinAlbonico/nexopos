@@ -1,0 +1,162 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwjK8bPcwJCWAxXcALkGHYQUJUkQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"CineClú Rosario\" Instagram sitio web \"CineClú Rosario\" Instagram sitio web"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522CineCl%25C3%25BA%2BRosario%2522%2BInstagram%2Bsitio%2Bweb&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=%22CineCl%C3%BA+Rosario%22+Instagram+sitio+web&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESinmr8NkDJcfL_fUVF8RVUJ7RRKmhnHIL5Sfh03OLf-OKu1B1RGr47fqWOb569rw8oZ9T8EgGtHqmm7dotayTZehVuG0N2ACa6ER53RPAgYYPthN1zw3gBe8UcpoxIV02coaEIsW29qS7DrC1Om4KNlrt5LqiCMIPTyZ2Slu-I7UFUbhoQ&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwjK8bPcwJCWAxXcALkGHYQUJUkQ2J8OegQIFBAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESinmr8NkDJcfL_fUVF8RVUJ7RRKmhnHIL5Sfh03OLf-OKu1B1RGr47fqWOb569rw8oZ9T8EgGtHqmm7dotayTZehVuG0N2ACa6ER53RPAgYYPthN1zw3gBe8UcpoxIV02coaEIsW29qS7DrC1Om4KNlrt5LqiCMIPTyZ2Slu-I7UFUbhoQ&q=%22CineCl%C3%BA+Rosario%22+Instagram+sitio+web&sa=X&ved=2ahUKEwjK8bPcwJCWAxXcALkGHYQUJUkQtKgLegQIGhAB
+          - listitem [ref=e94]:
+            - link "Vídeos" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESinmr8NkDJcfL_fUVF8RVUJ7RRKmhnHIL5Sfh03OLf-OKu1B1RGr47fqWOb569rw8oZ9T8EgGtHqmm7dotayTZehVuG0N2ACa6ER53RPAgYYPthN1zw3gBe8UcpoxIV02coaEIsW29qS7DrC1Om4KNlrt5LqiCMIPTyZ2Slu-I7UFUbhoQ&q=%22CineCl%C3%BA+Rosario%22+Instagram+sitio+web&sa=X&ved=2ahUKEwjK8bPcwJCWAxXcALkGHYQUJUkQtKgLegQIHBAB
+          - listitem [ref=e98]:
+            - link "Shopping" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESinmr8NkDJcfL_fUVF8RVUJ7RRKmhnHIL5Sfh03OLf-OKu1B1RGr47fqWOb569rw8oZ9T8EgGtHqmm7dotayTZehVuG0N2ACa6ER53RPAgYYPthN1zw3gBe8UcpoxIV02coaEIsW29qS7DrC1Om4KNlrt5LqiCMIPTyZ2Slu-I7UFUbhoQ&q=%22CineCl%C3%BA+Rosario%22+Instagram+sitio+web&ved=1t:220175&ictx=111
+          - listitem [ref=e102]:
+            - link "Vídeos cortos" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESinmr8NkDJcfL_fUVF8RVUJ7RRKmhnHIL5Sfh03OLf-OKu1B1RGr47fqWOb569rw8oZ9T8EgGtHqmm7dotayTZehVuG0N2ACa6ER53RPAgYYPthN1zw3gBe8UcpoxIV02coaEIsW29qS7DrC1Om4KNlrt5LqiCMIPTyZ2Slu-I7UFUbhoQ&q=%22CineCl%C3%BA+Rosario%22+Instagram+sitio+web&sa=X&ved=2ahUKEwjK8bPcwJCWAxXcALkGHYQUJUkQs6gLegQIGBAB
+          - listitem [ref=e106]:
+            - link "Noticias" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=%22CineCl%C3%BA+Rosario%22+Instagram+sitio+web&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESinmr8NkDJcfL_fUVF8RVUJ7RRKmhnHIL5Sfh03OLf-OKu1B1RGr47fqWOb569rw8oZ9T8EgGtHqmm7dotayTZehVuG0N2ACa6ER53RPAgYYPthN1zw3gBe8UcpoxIV02coaEIsW29qS7DrC1Om4KNlrt5LqiCMIPTyZ2Slu-I7UFUbhoQ&sa=X&ved=2ahUKEwjK8bPcwJCWAxXcALkGHYQUJUkQ0pQJegQIGRAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - generic [ref=e131]:
+      - generic [ref=e150]:
+        - heading "Pensando" [level=2] [ref=e154]
+        - progressbar "Generando" [ref=e157]
+      - main [ref=e159]:
+        - generic [ref=e163]:
+          - generic [ref=e166]:
+            - heading "Resultados web" [level=2] [ref=e167]
+            - generic [ref=e168]:
+              - generic [ref=e171]:
+                - link "Isabelle Huppert, Benoît Magimel, Annie Girardot, ... Instagram · teatroaec 3 me gusta · hace 11 meses" [ref=e173] [cursor=pointer]:
+                  - /url: https://www.instagram.com/p/DNi65hSTnP_/
+                  - heading "Isabelle Huppert, Benoît Magimel, Annie Girardot, ..." [level=3] [ref=e174]
+                  - generic [ref=e180]:
+                    - generic [ref=e181]: Instagram · teatroaec
+                    - generic [ref=e183]: 3 me gusta · hace 11 meses
+                - button "Acerca de este resultado" [ref=e187] [cursor=pointer]
+              - generic [ref=e194]:
+                - text: "... +54 341 5669752 ☎️ Te esperamos 🏛️ Teatro: Corrientes 450. #teatroaec #"
+                - emphasis [ref=e195]: "cineclú #rosario"
+                - text: "#cine #CicloCine\"."
+          - generic [ref=e199]:
+            - generic [ref=e202]:
+              - 'link "\"Muerte en Venecia\" (1971) Dirección: Luchino Visconti ... Instagram · teatroaec 1 me gusta · hace 11 meses" [ref=e204] [cursor=pointer]':
+                - /url: https://www.instagram.com/p/DOgKqOKgLQe/
+                - 'heading "\"Muerte en Venecia\" (1971) Dirección: Luchino Visconti ..." [level=3] [ref=e205]'
+                - generic [ref=e211]:
+                  - generic [ref=e212]: Instagram · teatroaec
+                  - generic [ref=e214]: 1 me gusta · hace 11 meses
+              - button "Acerca de este resultado" [ref=e218] [cursor=pointer]
+            - generic [ref=e225]:
+              - text: "... +54 341 5669752 ☎️ Te esperamos 🏛️ Teatro: Corrientes 450. #teatroaec #"
+              - emphasis [ref=e226]: "cineclú #rosario"
+              - text: "#cine\"."
+          - generic [ref=e230]:
+            - generic [ref=e233]:
+              - link "CineClú Rosario invita a una función imperdible con el ... El Ciudadano https://elciudadanoweb.com › Espectáculos" [ref=e235] [cursor=pointer]:
+                - /url: https://elciudadanoweb.com/cineclu-rosario-invita-a-una-funcion-imperdible-con-el-clasico-de-roman-polanski/
+                - heading "CineClú Rosario invita a una función imperdible con el ..." [level=3] [ref=e236]
+                - generic [ref=e242]:
+                  - generic [ref=e243]: El Ciudadano
+                  - generic [ref=e245]: https://elciudadanoweb.com › Espectáculos
+              - button "Acerca de este resultado" [ref=e249] [cursor=pointer]
+            - generic [ref=e255]:
+              - generic [ref=e256]: 23 jun 2026 —
+              - generic [ref=e257]:
+                - emphasis [ref=e258]: CineClú Rosario
+                - text: invita a una función imperdible con el clásico de Roman Polanski. Será este miércoles, a las 20.30, con la proyección de “El ...
+          - generic [ref=e263]:
+            - heading "Más preguntas" [level=2] [ref=e265]
+            - button "¿IG que recomienda películas?" [ref=e272] [cursor=pointer]
+          - generic [ref=e282]:
+            - heading "Resultados web" [level=2] [ref=e283]
+            - generic [ref=e284]:
+              - generic [ref=e287]:
+                - link "Secretaría Derechos Humanos HyA (@secretariaddhh.fhyar) Instagram · secretariaddhh.fhyar Más de 2,6 K seguidores" [ref=e289] [cursor=pointer]:
+                  - /url: https://www.instagram.com/secretariaddhh.fhyar/
+                  - heading "Secretaría Derechos Humanos HyA (@secretariaddhh.fhyar)" [level=3] [ref=e290]
+                  - generic [ref=e296]:
+                    - generic [ref=e297]: Instagram · secretariaddhh.fhyar
+                    - generic [ref=e299]: Más de 2,6 K seguidores
+                - button "Acerca de este resultado" [ref=e303] [cursor=pointer]
+              - generic [ref=e310]:
+                - text: "Organizan: -Abuelas de Plaza de Mayo – Rosario -El"
+                - emphasis [ref=e311]: Cineclú Rosario
+                - text: ". Invitan: -Secretaría de Derechos Humanos de la Facultad de Humanidades y Artes. UNR ..."
+          - generic [ref=e315]:
+            - generic [ref=e318]:
+              - link "Playboy le dice adiós a las fotos de mujeres desnudas Diario Digital Conclusión https://www.conclusion.com.ar › internet › playboy-le-..." [ref=e320] [cursor=pointer]:
+                - /url: https://www.conclusion.com.ar/internet/playboy-le-dice-adios-a-las-fotos-de-mujeres-desnudas/10/2015/
+                - heading "Playboy le dice adiós a las fotos de mujeres desnudas" [level=3] [ref=e321]
+                - generic [ref=e327]:
+                  - generic [ref=e328]: Diario Digital Conclusión
+                  - generic [ref=e330]: https://www.conclusion.com.ar › internet › playboy-le-...
+              - button "Acerca de este resultado" [ref=e334] [cursor=pointer]
+            - generic [ref=e340]:
+              - generic [ref=e341]: 13 oct 2015 —
+              - generic [ref=e342]:
+                - emphasis [ref=e343]: CineClú Rosario
+                - text: proyectará «El joven Frankenstein», una delirante parodia del clásico de Mary Shelley · Estilo que une tradición y vanguardia ...
+        - generic:
+          - generic:
+            - navigation
+        - navigation
+    - contentinfo [ref=e344]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e345]
+      - generic [ref=e349]:
+        - generic [ref=e351]:
+          - text: Argentina
+          - generic [ref=e353]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e355] [cursor=pointer]:
+              - generic [ref=e356]: Iriondo, Santa Fe
+              - generic [ref=e358]:
+                - text: "-"
+                - generic [ref=e359]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e361] [cursor=pointer]
+        - generic [ref=e364]:
+          - link "Ayuda" [ref=e365] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e366] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e367] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e368] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

@@ -16,6 +16,7 @@ import {
     CheckReplenishmentItemDTO,
     CheckReplenishmentResultDTO,
     ReplenishmentTransferDTO,
+    CreateSaleReturnDTO,
 } from '../types';
 
 export const salesApi = {
@@ -96,6 +97,21 @@ export const salesApi = {
     getTodaySales: async (): Promise<Sale[]> => {
         const response = await api.get<Sale[]>('/api/sales/today');
         return response.data;
+    },
+
+    previewReturn: async (data: CreateSaleReturnDTO): Promise<{ totalRefund: number }> => {
+        const response = await api.post<{ totalRefund: number }>('/api/sales/returns/preview', data);
+        return response.data;
+    },
+
+    createReturn: async (data: CreateSaleReturnDTO): Promise<{ id: string }> => {
+        const { originalSaleId, ...body } = data;
+        const response = await api.post<{ id: string }>(`/api/sales/${originalSaleId}/returns`, body);
+        return response.data;
+    },
+
+    commitReturn: async (returnId: string): Promise<void> => {
+        await api.patch(`/api/sales/returns/${returnId}/commit`);
     },
 };
 

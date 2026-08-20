@@ -1,0 +1,212 @@
+- generic [active] [ref=e12]:
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - link "NP" [ref=e17] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=e19]:
+          - generic [ref=e20]:
+            - link [ref=e22] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=e29] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=e35] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=e41] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=e45] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=e50] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=e57] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=e62] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=e69] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=e75] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=e81] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=e85] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=e90] [cursor=pointer]
+      - main [ref=e95]:
+        - generic [ref=e3179]:
+          - generic [ref=e3180]:
+            - generic [ref=e3181]:
+              - heading "Productos" [level=1] [ref=e3182]
+              - paragraph [ref=e3183]: Cargá productos con nombre, costo y stock
+            - generic [ref=e3184]:
+              - button "Categorías" [ref=e3185] [cursor=pointer]
+              - button "Importar Matriz 2D" [ref=e3189] [cursor=pointer]
+              - button "Nuevo Producto" [ref=e3193] [cursor=pointer]
+          - generic [ref=e3197]:
+            - generic [ref=e3198]:
+              - generic [ref=e3199]:
+                - textbox "Buscar producto..." [ref=e3200]
+                - generic [ref=e3201]:
+                  - combobox [ref=e3202] [cursor=pointer]:
+                    - generic: Todas las categorías
+                  - combobox [ref=e3205] [cursor=pointer]:
+                    - generic [ref=e3206]: Todas las marcas
+                  - combobox [ref=e3207] [cursor=pointer]:
+                    - generic: Todo el stock
+              - generic [ref=e3210]: 119 registro(s)
+            - table [ref=e3213]:
+              - rowgroup [ref=e3214]:
+                - row [ref=e3215]:
+                  - columnheader [ref=e3216]:
+                    - button "Producto" [ref=e3498] [cursor=pointer]
+                  - columnheader "Categoría" [ref=e3221]
+                  - columnheader "Marca" [ref=e3222]
+                  - columnheader "Costo" [ref=e3223]
+                  - columnheader [ref=e3224]:
+                    - button "Precio" [ref=e3502] [cursor=pointer]
+                  - columnheader [ref=e3229]:
+                    - button "Stock" [ref=e3506] [cursor=pointer]
+                  - columnheader [ref=e3234]
+              - rowgroup [ref=e3235]:
+                - row [ref=e3236]:
+                  - cell [ref=e3237]:
+                    - paragraph [ref=e3511]: Agua Kin 500ml
+                  - cell "-" [ref=e3240]
+                  - cell "-" [ref=e3241]
+                  - cell "$ 0,00" [ref=e3242]
+                  - cell "$ 800,00 0.0% ganancia" [ref=e3243]:
+                    - generic [ref=e3512]:
+                      - generic [ref=e3513]: $ 800,00
+                      - generic [ref=e3514]: 0.0% ganancia
+                  - cell "96" [ref=e3247]
+                  - cell [ref=e3250]:
+                    - button "Abrir menú" [ref=e3517] [cursor=pointer]
+                - row [ref=e3257]:
+                  - cell [ref=e3258]:
+                    - paragraph [ref=e3524]: Alfajor Havanna E2E 4673
+                  - cell "-" [ref=e3261]
+                  - cell "-" [ref=e3262]
+                  - cell "$ 1.000,00" [ref=e3263]
+                  - cell "$ 1.300,00 30.0% ganancia" [ref=e3264]:
+                    - generic [ref=e3525]:
+                      - generic [ref=e3526]: $ 1.300,00
+                      - generic [ref=e3527]: 30.0% ganancia
+                  - cell "48" [ref=e3268]
+                  - cell [ref=e3271]:
+                    - button "Abrir menú" [ref=e3530] [cursor=pointer]
+                - row [ref=e3278]:
+                  - cell [ref=e3279]:
+                    - paragraph [ref=e3537]: Campera Rompeviento Denver
+                  - cell "Camperas" [ref=e3282]
+                  - cell "Denver" [ref=e3284]
+                  - cell "$ 18.000,00" [ref=e3285]
+                  - cell "$ 29.899,80 66.1% ganancia" [ref=e3286]:
+                    - generic [ref=e3539]:
+                      - generic [ref=e3540]: $ 29.899,80
+                      - generic [ref=e3541]: 66.1% ganancia
+                  - cell "0" [ref=e3290]
+                  - cell [ref=e3295]:
+                    - button "Abrir menú" [ref=e3546] [cursor=pointer]
+                - row [ref=e3302]:
+                  - cell [ref=e3303]:
+                    - paragraph [ref=e3553]: Campera Rompeviento Denver Azul L
+                  - cell "Camperas" [ref=e3306]
+                  - cell "Denver" [ref=e3308]
+                  - cell "$ 18.000,00" [ref=e3309]
+                  - cell "$ 23.400,00 30.0% ganancia" [ref=e3310]:
+                    - generic [ref=e3555]:
+                      - generic [ref=e3556]: $ 23.400,00
+                      - generic [ref=e3557]: 30.0% ganancia
+                  - cell "8" [ref=e3314]
+                  - cell [ref=e3317]:
+                    - button "Abrir menú" [ref=e3560] [cursor=pointer]
+                - row [ref=e3324]:
+                  - cell [ref=e3325]:
+                    - paragraph [ref=e3567]: Campera Rompeviento Denver Azul M
+                  - cell "Camperas" [ref=e3328]
+                  - cell "Denver" [ref=e3330]
+                  - cell "$ 18.000,00" [ref=e3331]
+                  - cell "$ 23.400,00 30.0% ganancia" [ref=e3332]:
+                    - generic [ref=e3569]:
+                      - generic [ref=e3570]: $ 23.400,00
+                      - generic [ref=e3571]: 30.0% ganancia
+                  - cell "10" [ref=e3336]
+                  - cell [ref=e3339]:
+                    - button "Abrir menú" [ref=e3574] [cursor=pointer]
+                - row [ref=e3346]:
+                  - cell [ref=e3347]:
+                    - paragraph [ref=e3581]: Campera Rompeviento Denver Azul S
+                  - cell "Camperas" [ref=e3350]
+                  - cell "Denver" [ref=e3352]
+                  - cell "$ 18.000,00" [ref=e3353]
+                  - cell "$ 23.400,00 30.0% ganancia" [ref=e3354]:
+                    - generic [ref=e3583]:
+                      - generic [ref=e3584]: $ 23.400,00
+                      - generic [ref=e3585]: 30.0% ganancia
+                  - cell "6" [ref=e3358]
+                  - cell [ref=e3361]:
+                    - button "Abrir menú" [ref=e3588] [cursor=pointer]
+                - row [ref=e3368]:
+                  - cell [ref=e3369]:
+                    - paragraph [ref=e3595]: Campera Rompeviento Denver Azul XL
+                  - cell "Camperas" [ref=e3372]
+                  - cell "Denver" [ref=e3374]
+                  - cell "$ 18.000,00" [ref=e3375]
+                  - cell "$ 23.400,00 30.0% ganancia" [ref=e3376]:
+                    - generic [ref=e3597]:
+                      - generic [ref=e3598]: $ 23.400,00
+                      - generic [ref=e3599]: 30.0% ganancia
+                  - cell "4" [ref=e3380]
+                  - cell [ref=e3385]:
+                    - button "Abrir menú" [ref=e3604] [cursor=pointer]
+                - row [ref=e3392]:
+                  - cell [ref=e3393]:
+                    - paragraph [ref=e3611]: Campera Rompeviento Denver Negro L
+                  - cell "Camperas" [ref=e3396]
+                  - cell "Denver" [ref=e3398]
+                  - cell "$ 18.000,00" [ref=e3399]
+                  - cell "$ 23.400,00 30.0% ganancia" [ref=e3400]:
+                    - generic [ref=e3613]:
+                      - generic [ref=e3614]: $ 23.400,00
+                      - generic [ref=e3615]: 30.0% ganancia
+                  - cell "10" [ref=e3404]
+                  - cell [ref=e3407]:
+                    - button "Abrir menú" [ref=e3618] [cursor=pointer]
+                - row [ref=e3414]:
+                  - cell [ref=e3415]:
+                    - paragraph [ref=e3625]: Campera Rompeviento Denver Negro M
+                  - cell "Camperas" [ref=e3418]
+                  - cell "Denver" [ref=e3420]
+                  - cell "$ 18.000,00" [ref=e3421]
+                  - cell "$ 23.400,00 30.0% ganancia" [ref=e3422]:
+                    - generic [ref=e3627]:
+                      - generic [ref=e3628]: $ 23.400,00
+                      - generic [ref=e3629]: 30.0% ganancia
+                  - cell "12" [ref=e3426]
+                  - cell [ref=e3429]:
+                    - button "Abrir menú" [ref=e3632] [cursor=pointer]
+                - row [ref=e3436]:
+                  - cell [ref=e3437]:
+                    - paragraph [ref=e3639]: Campera Rompeviento Denver Negro S
+                  - cell "Camperas" [ref=e3440]
+                  - cell "Denver" [ref=e3442]
+                  - cell "$ 18.000,00" [ref=e3443]
+                  - cell "$ 23.400,00 30.0% ganancia" [ref=e3444]:
+                    - generic [ref=e3641]:
+                      - generic [ref=e3642]: $ 23.400,00
+                      - generic [ref=e3643]: 30.0% ganancia
+                  - cell "8" [ref=e3448]
+                  - cell [ref=e3451]:
+                    - button "Abrir menú" [ref=e3646] [cursor=pointer]
+            - generic [ref=e3458]:
+              - generic [ref=e3459]:
+                - generic [ref=e3460]: Página 1 de 12
+                - generic [ref=e3461]:
+                  - generic [ref=e3462]: "Mostrar:"
+                  - combobox [ref=e3463] [cursor=pointer]:
+                    - generic: "10"
+                  - generic [ref=e3466]: registros
+              - generic [ref=e3467]:
+                - button "Anterior" [disabled]
+                - button "Siguiente" [ref=e3468] [cursor=pointer]
+    - region "Notifications alt+T"
+  - generic [ref=e319]: $0k

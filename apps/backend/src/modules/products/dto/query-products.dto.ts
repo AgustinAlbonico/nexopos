@@ -13,6 +13,7 @@ export const QueryProductsSchema = z.object({
     stockStatus: z.enum(['all', 'critical']).optional(),
     sortBy: z.enum(['name', 'price', 'cost', 'stock', 'createdAt']).default('name'),
     order: z.enum(['ASC', 'DESC']).default('ASC'),
+    excludeVariantParents: z.coerce.boolean().optional(),
 });
 
 export type QueryProductsDTO = z.infer<typeof QueryProductsSchema>;
@@ -72,4 +73,14 @@ export class QueryProductsDto implements QueryProductsDTO {
     @IsOptional()
     @IsEnum(['ASC', 'DESC'])
     order: 'ASC' | 'DESC' = 'ASC';
+
+    @ApiPropertyOptional({ description: 'Excluir productos padre de variantes de los resultados' })
+    @IsOptional()
+    @Transform(({ value }) => {
+        if (value === 'true') return true;
+        if (value === 'false') return false;
+        return value;
+    })
+    @IsBoolean()
+    excludeVariantParents?: boolean;
 }

@@ -1,0 +1,379 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Saltar al contenido" [ref=e4] [cursor=pointer]:
+        - /url: "#root-app"
+      - generic [ref=e6]:
+        - link "Procesamos los pagos online de compradores y vendedores - Mercado Pago" [ref=e7] [cursor=pointer]:
+          - /url: https://www.mercadopago.com.ar
+        - navigation [ref=e8]:
+          - generic [ref=e9]:
+            - navigation [ref=e11]:
+              - list [ref=e12]:
+                - listitem [ref=e13]:
+                  - button "Abrir menu de Para vos" [ref=e14]: Para vos
+                - listitem [ref=e15]:
+                  - button "Abrir menu de Para tu negocio" [ref=e16]: Para tu negocio
+                - listitem [ref=e17]:
+                  - button "Abrir menu de Ayuda y Seguridad" [ref=e18]: Ayuda y Seguridad
+            - list [ref=e19]:
+              - listitem [ref=e20]:
+                - link "Iniciar sesión" [ref=e21] [cursor=pointer]:
+                  - /url: https://www.mercadolibre.com/jms/mla/lgz/login?platform_id=MP&go=https%3A%2F%2Fwww.mercadopago.com.ar%2F&loginType=explicit
+              - listitem [ref=e22]:
+                - link "Abrir cuenta gratis" [ref=e23] [cursor=pointer]:
+                  - /url: https://www.mercadopago.com.ar/hub/registration/landing
+  - main [ref=e25]:
+    - generic [ref=e27]:
+      - region "Carousel with threshold slide" [ref=e31]:
+        - generic [ref=e32]:
+          - button "Anterior" [ref=e33] [cursor=pointer]
+          - generic [ref=e37]:
+            - group [ref=e38]:
+              - generic [ref=e39]:
+                - generic [ref=e40]:
+                  - heading [level=1] [ref=e41]: Potenciá tu negocio al vender con Point
+                  - link [ref=e43] [cursor=pointer]:
+                    - /url: https://852u.adj.st/home/?adj_t=mqo65e0&adj_deep_link=mercadopago%3A%2F%2Fhome&adj_campaign=landing_home_hero_mla&adj_label=landing_home_hero_mla&adj_fallback=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar%252Fcuenta&adj_redirect_macos=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar%252Fcuenta
+                    - generic [ref=e44]: Abrir cuenta gratis
+                - figure [ref=e45]
+            - group "1 de 3" [ref=e47]:
+              - generic [ref=e48]:
+                - generic [ref=e49]:
+                  - heading "Hacé crecer tu dinero y usalo cuando quieras" [level=1] [ref=e50]
+                  - link "Abrir cuenta gratis" [ref=e52] [cursor=pointer]:
+                    - /url: https://852u.adj.st/home/?adj_t=mqo65e0&adj_deep_link=mercadopago%3A%2F%2Fhome&adj_campaign=landing_home_hero_mla&adj_label=landing_home_hero_mla&adj_fallback=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar%252Fcuenta&adj_redirect_macos=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar%252Fcuenta
+                - figure [ref=e54]
+            - group [ref=e56]:
+              - generic [ref=e57]:
+                - generic [ref=e58]:
+                  - heading [level=1] [ref=e59]: Disfrutá de una tarjeta de crédito 100% gratis
+                  - link [ref=e61] [cursor=pointer]:
+                    - /url: https://852u.adj.st/home/?adj_t=mqo65e0&adj_deep_link=mercadopago%3A%2F%2Fhome&adj_campaign=landing_home_hero_mla&adj_label=landing_home_hero_mla&adj_fallback=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar%252Fcuenta&adj_redirect_macos=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar%252Fcuenta
+                    - generic [ref=e62]: Abrir cuenta gratis
+                - figure [ref=e63]
+            - group [ref=e65]:
+              - generic [ref=e66]:
+                - generic [ref=e67]:
+                  - heading [level=1] [ref=e68]: Potenciá tu negocio al vender con Point
+                  - link [ref=e70] [cursor=pointer]:
+                    - /url: https://852u.adj.st/home/?adj_t=mqo65e0&adj_deep_link=mercadopago%3A%2F%2Fhome&adj_campaign=landing_home_hero_mla&adj_label=landing_home_hero_mla&adj_fallback=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar%252Fcuenta&adj_redirect_macos=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar%252Fcuenta
+                    - generic [ref=e71]: Abrir cuenta gratis
+                - figure [ref=e72]
+            - group [ref=e74]:
+              - generic [ref=e75]:
+                - generic [ref=e76]:
+                  - heading [level=1] [ref=e77]: Hacé crecer tu dinero y usalo cuando quieras
+                  - link [ref=e79] [cursor=pointer]:
+                    - /url: https://852u.adj.st/home/?adj_t=mqo65e0&adj_deep_link=mercadopago%3A%2F%2Fhome&adj_campaign=landing_home_hero_mla&adj_label=landing_home_hero_mla&adj_fallback=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar%252Fcuenta&adj_redirect_macos=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar%252Fcuenta
+                    - generic [ref=e80]: Abrir cuenta gratis
+                - figure [ref=e81]
+          - button "Siguiente" [ref=e83] [cursor=pointer]
+        - list [ref=e86]:
+          - listitem [ref=e87]:
+            - button [ref=e88]:
+              - generic [ref=e89]: Página 1
+          - listitem [ref=e90]:
+            - button [ref=e91]:
+              - generic [ref=e92]: Página 2
+          - listitem [ref=e93]:
+            - button [ref=e94]:
+              - generic [ref=e95]: Página 3
+      - generic [ref=e103]:
+        - heading "Tu dinero rinde y está siempre disponible" [level=3] [ref=e104]
+        - paragraph [ref=e105]: Generá rendimientos todos los días en pesos y en dólares.
+      - generic [ref=e109]:
+        - generic:
+          - generic [ref=e110]:
+            - heading "Tarjeta de crédito 100% gratis" [level=2] [ref=e111]
+            - link "Conocer tarjeta de crédito ➔" [ref=e112] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/tarjeta-de-credito#from=home_landing
+              - generic [ref=e113]: Conocer tarjeta de crédito
+              - text: ➔
+          - generic [ref=e114]:
+            - generic [ref=e115]:
+              - generic [ref=e116]: 3 cuotas sin interésen Mercado Libre*
+              - generic [ref=e120]: Gratis en serio,sin gastos fijos
+              - generic [ref=e124]: 3 cuotas sin interéscon QR*
+            - paragraph [ref=e128]: "* Válido para compras desde $ 150.000 con QR de Mercado Pago."
+      - generic [ref=e132]:
+        - generic [ref=e133]:
+          - heading "Todo lo que podés hacer con tu dinero" [level=2] [ref=e135]
+          - link "Conocer cuenta digital ➔" [ref=e138] [cursor=pointer]:
+            - /url: https://www.mercadopago.com.ar/cuenta#from=home_landing
+            - generic [ref=e139]: Conocer cuenta digital
+            - text: ➔
+        - generic [ref=e141]:
+          - generic [ref=e164]:
+            - generic [ref=e165]: Créditos
+            - generic [ref=e166]: Comprá en cuotas sin tarjeta o pedí un préstamo personal.
+          - generic [ref=e195]:
+            - generic [ref=e196]: Compras con QR
+            - generic [ref=e197]: Hacé pagos sin contacto desde tu celular.
+          - generic [ref=e216]:
+            - generic [ref=e217]: Transferencias
+            - generic [ref=e218]: Enviá y recibí dinero gratis y al instante.
+          - generic [ref=e239]:
+            - generic [ref=e240]: Dólares
+            - generic [ref=e241]: Comprá y vendé, transferí e ingresá dólares.
+          - generic [ref=e262]:
+            - generic [ref=e263]: Recargas y servicios
+            - generic [ref=e264]: Mantené tus cuentas al día desde la app.
+          - generic [ref=e288]:
+            - generic [ref=e289]: Transporte
+            - generic [ref=e290]: Pagá en colectivos y subtes con QR de Mercado Pago.
+        - generic [ref=e292]:
+          - button "Previous slide" [disabled] [ref=e293] [cursor=pointer]
+          - button "Next slide" [ref=e296] [cursor=pointer]
+      - generic [ref=e303]:
+        - generic [ref=e304]:
+          - heading [level=3]
+          - heading "Soluciones para que tu negocio crezca" [level=2] [ref=e305]
+        - generic [ref=e306]:
+          - generic [ref=e307]:
+            - generic [ref=e308]:
+              - button [ref=e309] [cursor=pointer]:
+                - heading "Ventas" [level=2] [ref=e311]
+                - paragraph [ref=e312]: Lectores Point, Link de pago, Point Tap, vos elegís cómo cobrar.
+              - button [ref=e313] [cursor=pointer]:
+                - heading "Crédito" [level=2] [ref=e314]
+                - paragraph: Ofertas de crédito exclusivas para potenciar tu negocio.
+              - button [ref=e315] [cursor=pointer]:
+                - heading "Gestión" [level=2] [ref=e316]
+                - paragraph: Herramientas para resolver tus tareas del día a día.
+            - link "Conocer soluciones para tu negocio ➔" [ref=e317] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/herramientas-para-vender#from=home_landing
+              - generic [ref=e318]: Conocer soluciones para tu negocio
+              - text: ➔
+          - generic [ref=e319]:
+            - generic:
+              - generic:
+                - img "Alt imagen Hero"
+              - generic:
+                - img "Alt imagen Hero"
+              - generic:
+                - img "Alt imagen Hero"
+      - generic [ref=e324]:
+        - generic:
+          - img "Un celular con la app de Mercado Pago instalada"
+        - generic [ref=e325]:
+          - heading "Descargar la app te conviene" [level=2] [ref=e326]
+          - paragraph [ref=e327]: Abrí tu cuenta en minutos desde el celular.
+          - generic [ref=e328]:
+            - link [ref=e330] [cursor=pointer]:
+              - /url: https://852u.adj.st/home/?adj_t=1wte3qzw&adj_campaign=MLA_MODULO_DESCARGA
+              - img "Descargar Mercado Pago en Google Play" [ref=e331]
+            - link [ref=e333] [cursor=pointer]:
+              - /url: https://852u.adj.st/home/?adj_t=1wte3qzw&adj_campaign=MLA_MODULO_DESCARGA
+              - img "Descargar Mercado Pago en App Store" [ref=e334]
+      - generic [ref=e339]:
+        - generic [ref=e341]:
+          - heading "En caso de dudas, acá estamos" [level=2] [ref=e342]
+          - paragraph [ref=e344]: Encontrá ayuda o comunícate con nuestro equipo las 24 horas, todos los días.
+        - link "Ir al centro de Ayuda" [ref=e347] [cursor=pointer]:
+          - /url: https://www.mercadopago.com.ar/ayuda
+      - generic [ref=e353]:
+        - link "Ir arriba" [ref=e354] [cursor=pointer]:
+          - /url: "#root-app"
+        - generic [ref=e360]:
+          - heading "En mi país, ganamos todos con Mercado Pago" [level=2] [ref=e361]
+          - link "Abrir cuenta gratis en Mercado Pago" [ref=e362] [cursor=pointer]:
+            - /url: https://852u.adj.st/home?adj_t=1cao6zgg&adj_fallback=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar&adj_redirect_macos=https%3A%2F%2Fwww.mercadopago.com.ar%2Fhub%2Fregistration%2Flanding%3Fredirect_url%3Dhttps%253A%252F%252Fwww.mercadopago.com.ar
+            - generic [ref=e363]: Abrir cuenta gratis
+      - generic [ref=e367]:
+        - heading "‍‍Información para las personas usuarias" [level=2] [ref=e371]
+        - generic [ref=e373]:
+          - generic [ref=e375]:
+            - figure [ref=e379]
+            - generic [ref=e380]:
+              - paragraph [ref=e383]: ¿Necesitás cancelar un producto?
+              - link "Botón de arrepentimiento" [ref=e384] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/ayuda/30885
+          - generic [ref=e389]:
+            - figure [ref=e393]
+            - link "Información usuario financiero" [ref=e395] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/ayuda/18700
+          - generic [ref=e400]:
+            - figure [ref=e404]
+            - link "Información sobre seguros" [ref=e406] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/ayuda/23303
+          - generic [ref=e411]:
+            - figure [ref=e415]
+            - link "ayuda@mercadopago.com.ar" [ref=e417] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/ayuda/27824
+      - generic [ref=e424]:
+        - paragraph [ref=e425]: Mercado Pago ofrece servicios de pago y no está autorizado por el Banco Central a operar como entidad financiera. Los fondos acreditados en cuentas de pago no constituyen depósitos en una entidad financiera ni están garantizados conforme legislación aplicable a depósitos en entidades financieras.
+        - paragraph [ref=e426]
+        - paragraph [ref=e427]:
+          - text: No se asegura ni garantiza el resultado de la inversión en Mercado Fondo. Mercado Pago Asset Management S.A. actuará como Sociedad Gerente y Banco Industrial S.A. actuará como Sociedad Depositaria. El valor de la cuotaparte será neto de gastos ordinarios de gestión y de los honorarios de la sociedad gerente y la sociedad depositaria. Los honorarios, gastos y demás información se encuentran disponibles en
+          - link "https://inversiones.mercadopago.com.ar" [ref=e428] [cursor=pointer]:
+            - /url: https://inversiones.mercadopago.com.ar.
+          - text: . No existen honorarios de éxito. Las inversiones en cuotapartes del fondo no constituyen depósito en el Banco Industrial S.A. a los fines de la Ley de Entidades Financieras ni cuenta con ninguna de las garantías que tales depósitos a la vista o a plazo pueden gozar de acuerdo a la legislación y reglamentación aplicables en materia de depósitos en entidades financieras. Asimismo, Banco Industrial S.A. se encuentra impedido por el Banco Central de la República Argentina de asumir tácita o expresamente compromiso alguno en cuanto al mantenimiento, en cualquier momento, del valor del capital invertido, el rendimiento, el valor de rescate de las cuotapartes o el otorgamiento de liquidez a tal fin.
+        - paragraph [ref=e429]
+        - paragraph [ref=e430]: Otorgamiento de préstamos y tarjeta de crédito sujeto a revisión crediticia, comercial y de riesgos al momento de la solicitud efectuada por el usuario. La presente no implica una obligación de otorgar el préstamo o la tarjeta de crédito, cuya aprobación definitiva quedará condicionada al cumplimiento de las condiciones exigibles por MercadoLibre S.R.L.
+        - paragraph [ref=e431]
+        - paragraph [ref=e432]: Las marcas de los productos y servicios que pueden abonarse usando la cuenta de Mercado Pago no son propiedad de Mercado Libre, perteneciendo a sus respectivos titulares.
+  - contentinfo [ref=e433]:
+    - generic [ref=e434]:
+      - link "Procesamos los pagos online de compradores y vendedores - Mercado Pago" [ref=e436] [cursor=pointer]:
+        - /url: https://www.mercadopago.com.ar
+      - generic [ref=e437]:
+        - link "Para vos" [ref=e438] [cursor=pointer]:
+          - /url: https://www.mercadopago.com.ar/cuenta#from=public_navigation
+        - navigation [ref=e439]:
+          - list [ref=e440]:
+            - listitem [ref=e441]:
+              - link "En pesos" [ref=e442] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/cuenta#s-profits
+            - listitem [ref=e443]:
+              - link "En dólares" [ref=e444] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/cuenta#s-profits-usd
+            - listitem [ref=e445]:
+              - link "Tarjeta de crédito" [ref=e446] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/tarjeta-de-credito#from=account_landing
+            - listitem [ref=e447]:
+              - link "Línea de crédito" [ref=e448] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/cuenta#s-loan
+            - listitem [ref=e449]:
+              - link "Pagos y transferencias" [ref=e450] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/cuenta#s-banking
+            - listitem [ref=e451]:
+              - link "Cuenta +10" [ref=e452] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/landing/menores#from=digital_account_landing
+            - listitem [ref=e453]:
+              - link "Asistente personal" [ref=e454] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/asistente-personal
+      - generic [ref=e455]:
+        - link "Para tu negocio" [ref=e456] [cursor=pointer]:
+          - /url: https://www.mercadopago.com.ar/herramientas-para-vender#from=public_navigation
+        - navigation [ref=e457]:
+          - list [ref=e458]:
+            - listitem [ref=e459]:
+              - link "Lector Point Smart" [ref=e460] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/herramientas-para-vender/lectores-point/point-smart
+            - listitem [ref=e461]:
+              - link "Point Tap" [ref=e462] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/herramientas-para-vender/point-tap
+            - listitem [ref=e463]:
+              - link "Código QR" [ref=e464] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/herramientas-para-vender/cobrar-con-qr
+            - listitem [ref=e465]:
+              - link "Link de pago" [ref=e466] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/herramientas-para-vender/link-de-pago
+            - listitem [ref=e467]:
+              - link "Checkout para sitio web" [ref=e468] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/herramientas-para-vender/check-out#benefits-checkout
+            - listitem [ref=e469]:
+              - link "Planes de suscripción" [ref=e470] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/herramientas-para-vender/suscripciones
+            - listitem [ref=e471]:
+              - link "Créditos" [ref=e472] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/mercado-credito/prestamos-negocio-online
+            - listitem [ref=e473]:
+              - link "Asistente personal" [ref=e474] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/asistente-personal
+            - listitem [ref=e475]:
+              - link "Material promocional" [ref=e476] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/c/materialesdigitales
+            - listitem [ref=e477]:
+              - link "Revendedores Point" [ref=e478] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/revendedores
+            - listitem [ref=e479]:
+              - link "Partners Program" [ref=e480] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/partners/es
+            - listitem [ref=e481]:
+              - link "Developers" [ref=e482] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/developers/es
+      - generic [ref=e483]:
+        - link "Ayuda y Seguridad" [ref=e484] [cursor=pointer]:
+          - /url: https://www.mercadopago.com.ar/ayuda/v2
+        - navigation [ref=e485]:
+          - list [ref=e486]:
+            - listitem [ref=e487]:
+              - link "Preguntas frecuentes" [ref=e488] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/ayuda/40797
+            - listitem [ref=e489]:
+              - link "Me robaron" [ref=e490] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/ato-complaint/classifier?origin=SECURITY_HELP_MENU&step=1
+            - listitem [ref=e491]:
+              - link "Creo que están usando mi cuenta" [ref=e492] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/ato-complaint/classifier?origin=SECURITY_HELP_MENU&step=1
+            - listitem [ref=e493]:
+              - link "Consejos de seguridad" [ref=e494] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/seguridad
+      - generic [ref=e495]:
+        - heading "Acerca de" [level=2] [ref=e496]
+        - navigation [ref=e497]:
+          - list [ref=e498]:
+            - listitem [ref=e499]:
+              - link "Ayuda" [ref=e500] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/ayuda
+            - listitem [ref=e501]:
+              - link "Términos y políticas" [ref=e502] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/ayuda/terminos-y-politicas_194
+            - listitem [ref=e503]:
+              - link "Invita y gana" [ref=e504] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/invita-y-gana
+            - listitem [ref=e505]:
+              - link "Investor relations" [ref=e506] [cursor=pointer]:
+                - /url: https://investor.mercadolibre.com
+            - listitem [ref=e507]:
+              - link "Cómo usar tu cuenta de forma segura" [ref=e508] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/seguridad?utm_source=landing-mp&utm_medium=footer&utm_campaign=landing-seguridad
+            - listitem [ref=e509]:
+              - link "Cómo cuidamos tu privacidad" [ref=e510] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/privacidad/declaracion-privacidad
+            - listitem [ref=e511]:
+              - link "Accesibilidad" [ref=e512] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/accesibilidad
+            - listitem [ref=e513]:
+              - link "Defensa del Consumidor" [ref=e514] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/ayuda/Informacion-defensa-del-consumidor_1008
+            - listitem [ref=e515]:
+              - link "Comisiones y cargos" [ref=e516] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/ayuda/26748
+            - listitem [ref=e517]:
+              - link "Libro de quejas online" [ref=e518] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/ayuda/19273
+            - listitem [ref=e519]:
+              - link "Descargar logo oficial" [ref=e520] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/mp/logo-oficial
+    - generic [ref=e521]:
+      - navigation [ref=e523]:
+        - list [ref=e524]:
+          - listitem [ref=e525]:
+            - link "Accedé a un crédito" [ref=e526] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/mercado-credito/comprar-cuotas-sin-tarjeta
+          - listitem [ref=e527]:
+            - link "Pedí delivery de comida" [ref=e528] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/delivery
+          - listitem [ref=e529]:
+            - link "Cobrá tu prestación ANSES" [ref=e530] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/landing/cobro-prestacion-anses
+      - generic [ref=e531]:
+        - paragraph [ref=e532]: Copyright © 2026 MercadoLibre S.R.L. Caseros 3039, Piso 2, Ciudad Autónoma de Buenos Aires, Argentina
+        - navigation [ref=e533]:
+          - list [ref=e534]:
+            - listitem [ref=e535]:
+              - link "Facebook" [ref=e536] [cursor=pointer]:
+                - /url: https://www.facebook.com/MercadoPago
+            - listitem [ref=e537]:
+              - link "X" [ref=e538] [cursor=pointer]:
+                - /url: https://x.com/mercadopago
+            - listitem [ref=e539]:
+              - link "Linkedin" [ref=e540] [cursor=pointer]:
+                - /url: https://www.linkedin.com/showcase/mercado-pago/
+            - listitem [ref=e541]:
+              - link "YouTube" [ref=e542] [cursor=pointer]:
+                - /url: https://www.youtube.com/channel/UC4fvWBwnNs0d97Kwp_6Y64g
+    - link "Mercado Libre" [ref=e543] [cursor=pointer]:
+      - /url: https://hp.mercadolibre.com/?p=MP&s=MLA&d=desktop
+  - region [ref=e544]:
+    - generic [ref=e545]:
+      - paragraph [ref=e547]:
+        - text: Usamos cookies para mejorar tu experiencia en Mercado Pago. Consultar más en nuestro
+        - link "Centro de Privacidad." [ref=e548] [cursor=pointer]:
+          - /url: https://www.mercadopago.com.ar/privacidad#tech-and-cookies
+      - generic [ref=e549]:
+        - button "Aceptar cookies" [ref=e550] [cursor=pointer]
+        - button "Configurar cookies" [ref=e551] [cursor=pointer]

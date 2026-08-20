@@ -1,0 +1,316 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Compras
+                  - paragraph: Registra compras a proveedores y actualiza automáticamente el stock
+                - generic:
+                  - button: Nueva Compra
+              - generic:
+                - paragraph: Mostrando compras del mes actual (01/08/2026 - 31/08/2026)
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=3]: Total Compras
+                  - generic: "0"
+                - generic:
+                  - generic:
+                    - heading [level=3]: Monto Total
+                  - generic: $ 0,00
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pagado
+                  - generic: $ 0,00
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pendiente
+                  - generic: $ 0,00
+              - generic:
+                - generic:
+                  - heading [level=3]: Filtros
+                - generic:
+                  - generic:
+                    - generic:
+                      - button: Hoy
+                      - button: Esta Semana
+                      - button: Mes Actual
+                      - button: Todas las Fechas
+                    - generic:
+                      - generic:
+                        - text: Buscar
+                        - textbox:
+                          - /placeholder: Nº, proveedor, factura...
+                      - generic:
+                        - text: Estado
+                        - combobox:
+                          - generic: Todos
+                      - generic:
+                        - text: Desde
+                        - textbox: 2026-08-01
+                      - generic:
+                        - text: Hasta
+                        - textbox: 2026-08-31
+                      - generic:
+                        - generic:
+                          - paragraph: Producto incluido
+                        - combobox:
+                          - generic: Buscar producto...
+                      - button: Restablecer
+              - generic:
+                - generic:
+                  - heading [level=3]: Listado de Compras
+                - generic:
+                  - generic:
+                    - paragraph: No hay compras registradas
+                    - paragraph: Las compras que registres aparecerán aquí
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog:
+    - generic:
+      - generic:
+        - generic:
+          - heading [level=2]: Registrar Compra
+          - paragraph: Completa los datos de la compra. El stock se actualizará al marcar como pagada.
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - heading [level=3]: Datos del Proveedor
+            - generic:
+              - generic: Proveedor Registrado *
+              - combobox:
+                - generic: Bordados Express Srl
+          - generic:
+            - heading [level=3]: Datos de la Compra
+            - generic:
+              - generic:
+                - generic: Fecha *
+                - textbox: 2026-08-19
+              - generic:
+                - text: Nº Factura
+                - textbox:
+                  - /placeholder: 0001-00001234
+              - generic:
+                - text: Estado
+                - combobox:
+                  - generic: Pendiente
+                - combobox
+              - generic:
+                - generic: Método de Pago
+                - combobox [disabled]:
+                  - generic: Seleccione método de pago
+                - combobox [disabled]
+          - generic:
+            - generic:
+              - generic:
+                - textbox:
+                  - /placeholder: Escaneá el código de barras o escribí + Enter
+              - button [disabled]
+            - generic:
+              - heading [level=3]: Productos *
+              - generic:
+                - button: Cargar por Matriz (Curvero)
+                - button: Agregar Línea
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: Producto
+                        - combobox:
+                          - generic: Buscar producto...
+                    - generic:
+                      - generic:
+                        - text: Cantidad
+                        - textbox: "1"
+                    - generic:
+                      - generic:
+                        - text: Precio Unit.
+                        - textbox: "0"
+                    - generic:
+                      - text: Subtotal
+                      - generic: $ 0,00
+          - generic:
+            - generic:
+              - text: Impuestos (+)
+              - textbox: "0"
+            - generic:
+              - text: Descuento (-)
+              - textbox: "0"
+            - generic:
+              - text: Subtotal
+              - generic: $ 0,00
+            - generic:
+              - text: TOTAL
+              - generic: $ 0,00
+          - generic:
+            - text: Notas / Observaciones
+            - textbox:
+              - /placeholder: Notas adicionales sobre la compra...
+          - generic:
+            - button [disabled]: Registrar Compra
+    - button:
+      - generic: Close
+  - dialog [ref=e2680]:
+    - generic [ref=e2681]:
+      - heading "Crear Producto Nuevo" [level=2] [ref=e2682]
+      - paragraph [ref=e2687]: Completá los datos del producto o modelo con matriz. Se agregará al catálogo para seleccionarlo en la compra.
+    - generic [ref=e2688]:
+      - generic [ref=e2689]:
+        - generic [ref=e2694]:
+          - heading "Modo de Carga Textil" [level=3] [ref=e2695]
+          - paragraph [ref=e2696]: Seleccioná si ingresás un artículo individual o un modelo con matriz de talles y colores.
+        - generic [ref=e2697]:
+          - button "Producto Simple" [ref=e2698] [cursor=pointer]
+          - button "Matriz de Talles y Colores" [ref=e2699] [cursor=pointer]
+      - generic [ref=e2700]:
+        - generic [ref=e2701]:
+          - heading "Información Principal" [level=3] [ref=e2702]
+          - generic [ref=e2703]:
+            - generic [ref=e2704]: Nombre del Producto *
+            - textbox "Nombre del Producto *" [ref=e2705]:
+              - /placeholder: "Ej: Shampoo Sedal 400ml"
+              - text: Polera Bordada Manhattan
+          - generic [ref=e2706]:
+            - text: Descripción
+            - textbox "Descripción" [ref=e2707]:
+              - /placeholder: "Ej: Confeccionada en algodón peinado premium"
+            - paragraph [ref=e2708]: Información adicional (opcional)
+          - generic [ref=e2709]:
+            - generic [ref=e2710]: Marca
+            - combobox [active] [ref=e2711] [cursor=pointer]: Manhattan
+            - paragraph [ref=e2715]: Selecciona una existente o escribe para crear una nueva
+          - generic [ref=e2716]:
+            - text: Categoría
+            - generic [ref=e2717]:
+              - combobox "Categoría" [ref=e2718] [cursor=pointer]:
+                - generic: Sin categoría
+              - combobox [ref=e2721]
+              - button "Crear nueva categoría" [ref=e2722] [cursor=pointer]
+            - paragraph [ref=e2724]: Categoría del producto (opcional)
+          - generic [ref=e2725]:
+            - text: Código de Barras
+            - textbox "Código de Barras" [ref=e2726]:
+              - /placeholder: "Ej: 7791234567890"
+              - text: "7790310000208"
+            - paragraph [ref=e2727]: Código de barras del producto (opcional)
+          - generic [ref=e2728]:
+            - heading "Ficha Técnica de Indumentaria & Calzado" [level=3] [ref=e2729]
+            - generic [ref=e2732]:
+              - generic [ref=e2733]:
+                - text: Temporada
+                - combobox "Temporada" [ref=e2734]
+                - generic [ref=e2735]:
+                  - button "+ Primavera-Verano 2026" [ref=e2736] [cursor=pointer]
+                  - button "+ Otoño-Invierno 2026" [ref=e2737] [cursor=pointer]
+                  - button "+ Atemporal" [ref=e2738] [cursor=pointer]
+              - generic [ref=e2739]:
+                - text: Colección / Línea
+                - combobox "Colección / Línea" [ref=e2740]
+                - generic [ref=e2741]:
+                  - button "+ Cápsula E2E" [ref=e2742] [cursor=pointer]
+                  - button "+ Línea Básica" [ref=e2743] [cursor=pointer]
+                  - button "+ Línea Urbana" [ref=e2744] [cursor=pointer]
+            - generic [ref=e2745]:
+              - generic [ref=e2746]:
+                - text: Composición Textil
+                - combobox "Composición Textil" [ref=e2747]
+                - generic [ref=e2748]:
+                  - button "+ 100% Algodón Peinado 24/1" [ref=e2749] [cursor=pointer]
+                  - button "+ 98% Algodón / 2% Elastano" [ref=e2750] [cursor=pointer]
+                  - button "+ Rústico con Lycra" [ref=e2751] [cursor=pointer]
+              - generic [ref=e2752]:
+                - text: Instrucciones de Cuidado / Lavado
+                - combobox "Instrucciones de Cuidado / Lavado" [ref=e2753]
+                - generic [ref=e2754]:
+                  - button "+ Lavar con agua fría a mano" [ref=e2755] [cursor=pointer]
+                  - button "+ No usar blanqueador / cloro" [ref=e2756] [cursor=pointer]
+            - generic [ref=e2757]:
+              - generic [ref=e2758]:
+                - generic [ref=e2759]: Política de Cambio
+                - combobox "Política de Cambio" [ref=e2762] [cursor=pointer]:
+                  - generic: Estándar (30 días de cambio)
+                - combobox [ref=e2765]
+              - generic [ref=e2766]:
+                - text: País de Origen
+                - textbox "País de Origen" [ref=e2767]:
+                  - /placeholder: "Ej: Argentina"
+        - generic [ref=e2768]:
+          - heading "Precios, Ganancia y Stock" [level=3] [ref=e2769]
+          - generic [ref=e2771]:
+            - generic [ref=e2772]:
+              - generic [ref=e2773]: Precio Fijo
+              - paragraph [ref=e2776]: Cuando está activado, cargás el precio de venta directamente. Cuando está desactivado, el sistema calcula el precio desde el costo y el margen.
+            - checkbox "Precio Fijo" [checked] [ref=e2777] [cursor=pointer]
+            - checkbox [checked]
+          - generic [ref=e2778]:
+            - generic [ref=e2779]:
+              - generic [ref=e2780]: Precio Final *
+              - textbox "Precio Final *" [ref=e2781]:
+                - /placeholder: "0.00"
+              - paragraph [ref=e2782]: Precio de venta directo
+            - generic [ref=e2783]:
+              - generic [ref=e2784]: Stock Inicial *
+              - textbox "Stock Inicial *" [ref=e2785]:
+                - /placeholder: "0"
+                - text: "0"
+              - paragraph [ref=e2786]: Cantidad disponible
+          - generic [ref=e2788]:
+            - generic [ref=e2789]:
+              - text: Venta por peso o medida
+              - paragraph [ref=e2790]: Permite decimales y códigos pesables.
+            - checkbox "Venta por peso o medida" [ref=e2791] [cursor=pointer]
+            - checkbox
+      - button "Guardar Producto" [ref=e2793] [cursor=pointer]
+    - button "Close" [ref=e2794] [cursor=pointer]

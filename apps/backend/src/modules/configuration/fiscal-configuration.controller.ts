@@ -20,6 +20,9 @@ import {
     ApiParam,
 } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
+import { UserRole } from '../auth/entities/user.entity';
 import { FiscalConfigurationService } from './fiscal-configuration.service';
 import { CertificateGenerationService } from './certificate-generation.service';
 import {
@@ -34,7 +37,8 @@ import { AfipEnvironment } from './entities/fiscal-configuration.entity';
 
 @ApiTags('Configuración Fiscal (AFIP)')
 @ApiBearerAuth()
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
+@Roles(UserRole.ADMIN, UserRole.MANAGER)
 @Controller('configuration/fiscal')
 export class FiscalConfigurationController {
     constructor(

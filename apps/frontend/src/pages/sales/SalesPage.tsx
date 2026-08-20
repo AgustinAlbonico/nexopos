@@ -2,7 +2,7 @@
  * Página de Ventas (POS)
  * Gestión completa de ventas con punto de venta integrado
  */
-import { useMemo, useState, useCallback } from 'react';
+import { useMemo, useState, useCallback, useRef, useEffect } from 'react';
 import { useConfirm } from '@/hooks/useConfirm';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
@@ -82,7 +82,10 @@ export default function SalesPage() {
     const confirm = useConfirm();
 
     // Estado de la caja actual (si hay caja abierta hoy)
-    const { data: openRegister } = useOpenCashRegister();
+    const { data: openRegister, isLoading: isOpenRegisterLoading, isFetching: isOpenRegisterFetching } = useOpenCashRegister();
+    const isCashCheckPending = isOpenRegisterLoading || (isOpenRegisterFetching && openRegister === undefined);
+
+    const pendingOpenModalRef = useRef(false);
 
     // Estado de la caja para detectar si es del día anterior
     const { data: cashStatus, isLoading: isCashStatusLoading } = useCashStatus();
@@ -108,16 +111,32 @@ export default function SalesPage() {
 
     useReplenishmentOptions(checkItems, isSectorized && checkItems.length > 0);
 
-    // Callback para abrir modal de nueva venta (usado por botón y atajo F1)
+    // Callback para abrir modal de nueva venta (usado por botón y atajo F2)
     const openCreateModal = useCallback(() => {
+        if (isCashCheckPending) {
+            pendingOpenModalRef.current = true;
+            return;
+        }
+
         if (!openRegister) {
             toast.error('La caja de hoy está cerrada. Abrí la caja para registrar ventas.');
             return;
         }
         setIsCreateOpen(true);
-    }, [openRegister]);
+    }, [openRegister, isCashCheckPending]);
 
-    // Atajo de teclado F1 para nueva venta
+    useEffect(() => {
+        if (!isCashCheckPending && pendingOpenModalRef.current) {
+            pendingOpenModalRef.current = false;
+            if (!openRegister) {
+                toast.error('La caja de hoy está cerrada. Abrí la caja para registrar ventas.');
+            } else {
+                setIsCreateOpen(true);
+            }
+        }
+    }, [isCashCheckPending, openRegister]);
+
+    // Atajo de teclado F2 para nueva venta
     useShortcutAction('NEW_SALE', openCreateModal);
 
     // Mutaciones

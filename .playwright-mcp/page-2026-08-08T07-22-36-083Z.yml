@@ -1,0 +1,148 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwjSp8Thv5CWAxXjJ7kGHbviGa0QpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Club de Cine y Basta\" Rosario \"Club de Cine y Basta\" Rosario"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Club%2Bde%2BCine%2By%2BBasta%2522%2BRosario&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=%22Club+de+Cine+y+Basta%22+Rosario&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_C9FerCFwBxk6f_uIZxg7bKjM_7ENPxLI1BfB412QI3M66oEmQtgWJonQHfe_rKdjoJR5Uqh67aKPZL6JAowYdgzTntn1J1J7IFKLZlO-8N5NqwetKxfBktcGtSZ_gi88rTxe-0skMnqjUPHSX1wewhp2Tems&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwjSp8Thv5CWAxXjJ7kGHbviGa0Q2J8OegQIDRAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_C9FerCFwBxk6f_uIZxg7bKjM_7ENPxLI1BfB412QI3M66oEmQtgWJonQHfe_rKdjoJR5Uqh67aKPZL6JAowYdgzTntn1J1J7IFKLZlO-8N5NqwetKxfBktcGtSZ_gi88rTxe-0skMnqjUPHSX1wewhp2Tems&q=%22Club+de+Cine+y+Basta%22+Rosario&sa=X&ved=2ahUKEwjSp8Thv5CWAxXjJ7kGHbviGa0QtKgLegQIFBAB
+          - listitem [ref=e94]:
+            - link "Vídeos cortos" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_C9FerCFwBxk6f_uIZxg7bKjM_7ENPxLI1BfB412QI3M66oEmQtgWJonQHfe_rKdjoJR5Uqh67aKPZL6JAowYdgzTntn1J1J7IFKLZlO-8N5NqwetKxfBktcGtSZ_gi88rTxe-0skMnqjUPHSX1wewhp2Tems&q=%22Club+de+Cine+y+Basta%22+Rosario&sa=X&ved=2ahUKEwjSp8Thv5CWAxXjJ7kGHbviGa0Qs6gLegQIExAB
+          - listitem [ref=e98]:
+            - link "Noticias" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=%22Club+de+Cine+y+Basta%22+Rosario&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_C9FerCFwBxk6f_uIZxg7bKjM_7ENPxLI1BfB412QI3M66oEmQtgWJonQHfe_rKdjoJR5Uqh67aKPZL6JAowYdgzTntn1J1J7IFKLZlO-8N5NqwetKxfBktcGtSZ_gi88rTxe-0skMnqjUPHSX1wewhp2Tems&sa=X&ved=2ahUKEwjSp8Thv5CWAxXjJ7kGHbviGa0Q0pQJegQIEhAB
+          - listitem [ref=e102]:
+            - link "Maps" [ref=e103] [cursor=pointer]:
+              - /url: https://maps.google.com/maps?sca_esv=569d465b5b1d57df&output=search&q=%22Club+de+Cine+y+Basta%22+Rosario&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_C9FerCFwBxk6f_uIZxg7bKjM_7ENPxLI1BfB412QI3M66oEmQtgWJonQHfe_rKdjoJR5Uqh67aKPZL6JAowYdgzTntn1J1J7IFKLZlO-8N5NqwetKxfBktcGtSZ_gi88rTxe-0skMnqjUPHSX1wewhp2Tems&entry=mc&ved=1t:200715&ictx=111
+          - listitem [ref=e106]:
+            - link "Vídeos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_C9FerCFwBxk6f_uIZxg7bKjM_7ENPxLI1BfB412QI3M66oEmQtgWJonQHfe_rKdjoJR5Uqh67aKPZL6JAowYdgzTntn1J1J7IFKLZlO-8N5NqwetKxfBktcGtSZ_gi88rTxe-0skMnqjUPHSX1wewhp2Tems&q=%22Club+de+Cine+y+Basta%22+Rosario&sa=X&ved=2ahUKEwjSp8Thv5CWAxXjJ7kGHbviGa0QtKgLegQIEBAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - generic [ref=e131]:
+      - main [ref=e132]:
+        - generic:
+          - generic:
+            - navigation
+        - navigation
+      - complementary [ref=e133]:
+        - heading "Resultados adicionales" [level=2] [ref=e134]
+        - generic [ref=e137]:
+          - generic [ref=e141]:
+            - generic [ref=e149]:
+              - link "Ver por fuera" [ref=e155] [cursor=pointer]:
+                - /url: /local/place/fid/0x95b7abbee565878b:0x7c205d3137814c25/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3DGtmqxJDXGCHunXOEQ26miw%26cb_client%3Dsearch.gws-prod.gps%26yaw%3D292.22922%26pitch%3D0%26thumbfov%3D100%26w%3D0%26h%3D0&ik=CAISFkd0bXF4SkRYR0NIdW5YT0VRMjZtaXc%3D&sa=X&ved=2ahUKEwjSp8Thv5CWAxXjJ7kGHbviGa0Qpx96BAglEAQ
+              - link [ref=e160] [cursor=pointer]:
+                - /url: /maps/place/Club+de+Cine+y+Basta/data=!4m2!3m1!1s0x0:0x7c205d3137814c25?sa=X&ved=1t:2428&ictx=111
+                - img "Mapa de Club de Cine y Basta" [ref=e162]
+            - generic [ref=e166]:
+              - heading "Club de Cine y Basta" [level=2] [ref=e169]
+              - generic [ref=e170]: Club social en Rosario
+            - generic [ref=e179]:
+              - generic [ref=e191]:
+                - link "Cómo llegar" [ref=e193]
+                - button "Escribir una opinión" [ref=e203] [cursor=pointer]
+                - button "Guardar" [ref=e213] [cursor=pointer]
+                - button "Compartir" [ref=e219] [cursor=pointer]
+              - generic [ref=e229]:
+                - generic [ref=e231]:
+                  - generic [ref=e232]:
+                    - link "Dirección" [ref=e233] [cursor=pointer]:
+                      - /url: /search?sca_esv=569d465b5b1d57df&q=club+de+cine+y+basta+rosario+direcci%C3%B3n&ludocid=8944251325923806245&sa=X&ved=2ahUKEwjSp8Thv5CWAxXjJ7kGHbviGa0Q6BN6BAgdEAI
+                    - text: ":"
+                  - text: Buenos Aires 1054, S2000 Rosario, Santa Fe
+                - generic [ref=e234]:
+                  - generic [ref=e235]:
+                    - link "Horario" [ref=e236] [cursor=pointer]:
+                      - /url: /search?sca_esv=569d465b5b1d57df&q=club+de+cine+y+basta+rosario+horario&ludocid=8944251325923806245&sa=X&ved=2ahUKEwjSp8Thv5CWAxXjJ7kGHbviGa0Q6BN6BAgeEAI
+                    - text: ":"
+                  - button "Cerrado · Abre a las 8 p. m. del jue" [ref=e238]
+                - generic [ref=e248]:
+                  - generic [ref=e249]:
+                    - link "Provincia" [ref=e250] [cursor=pointer]:
+                      - /url: /search?sca_esv=569d465b5b1d57df&q=club+de+cine+y+basta+rosario+provincia&stick=H4sIAAAAAAAAAOPgE-LVT9c3NKy0KDdKsrAs0pLLTrbSz8lPTizJzM-DM6wKivLLMvOSUxexqiXnlCYppKQqJGfmpSpUKiQlFpckKhTlFycWZeYrQNVlJgIAX_zHs1oAAAA&sa=X&ved=2ahUKEwjSp8Thv5CWAxXjJ7kGHbviGa0Q6BN6BAggEAI
+                    - text: ":"
+                  - link "Provincia de Santa Fe" [ref=e253] [cursor=pointer]:
+                    - /url: /search?sca_esv=569d465b5b1d57df&q=Provincia+de+Santa+Fe&si=APenkKlisoOXLiCMwraINHtdqOQii4CK9kOlkQc8Apn-pS60ybgOg0JEOGJhvAVM0X3IAlkyRmJLJju7tSY_mEqkVyT9YFZEclfIkEFLCOXnEXpklgS6S5-Oymtc4_TiwvatdMW_SJYlElN45ZFBmKSDN0T1BtSWxd7fwnGtrwPkdaTv4mGASp4zJFN54Cz-Nu_z1kxckulwrADe8gez5ob6_oeJF5qE5Q%3D%3D&sa=X&ved=2ahUKEwjSp8Thv5CWAxXjJ7kGHbviGa0QmxN6BAggEAM
+                - generic [ref=e256]:
+                  - generic [ref=e257]:
+                    - button "Sugerir una edición" [ref=e260] [cursor=pointer]
+                    - text: ·
+                    - link "¿Eres propietario de esta empresa?" [ref=e261] [cursor=pointer]:
+                      - /url: https://business.google.com/create?hl=es&getstarted&authuser=0&fp=8944251325923806245&gmbsrc=ar-es-et-ip-z-gmb-s-z-l~skp%7Cclaimbz_aoc_a%7Cu&ppsrc=GMBSI
+                  - generic [ref=e262]:
+                    - generic [ref=e263]: Agregar la información que falta
+                    - link "Agrega el número de teléfono del lugar" [ref=e264] [cursor=pointer]
+                    - link "Agregar sitio web" [ref=e265] [cursor=pointer]
+              - generic [ref=e273]:
+                - generic [ref=e274]:
+                  - heading "Opiniones" [level=3] [ref=e275]
+                  - button "Más información" [ref=e280] [cursor=pointer]
+                  - generic [ref=e284]:
+                    - button "Escribir una opinión" [ref=e288] [cursor=pointer]
+                    - link "Agregar fotos" [ref=e291] [cursor=pointer]:
+                      - /url: "#"
+                - button "Puedes ser la primera persona en opinar." [ref=e296] [cursor=pointer]
+              - generic [ref=e302]:
+                - heading "Perfiles" [level=3] [ref=e303]
+                - link "Instagram" [ref=e308] [cursor=pointer]:
+                  - /url: https://www.instagram.com/cdc.ybasta/
+          - link "Información sobre estos datos" [ref=e316] [cursor=pointer]:
+            - /url: https://support.google.com/local-listings?p=how_google_sources
+    - contentinfo [ref=e317]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e318]
+      - generic [ref=e322]:
+        - generic [ref=e324]:
+          - text: Argentina
+          - generic [ref=e326]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e328] [cursor=pointer]:
+              - generic [ref=e329]: Iriondo, Santa Fe
+              - generic [ref=e331]:
+                - text: "-"
+                - generic [ref=e332]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e334] [cursor=pointer]
+        - generic [ref=e337]:
+          - link "Ayuda" [ref=e338] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e339] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e340] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e341] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

@@ -1,0 +1,84 @@
+- generic [active] [ref=e12]:
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - link "NP" [ref=e17] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=e19]:
+          - generic [ref=e20]:
+            - link [ref=e22] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=e29] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=e35] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=e41] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=e45] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=e50] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=e57] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=e62] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=e69] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=e75] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=e81] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=e85] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=e90] [cursor=pointer]
+      - main [ref=e95]:
+        - generic [ref=e3179]:
+          - generic [ref=e3180]:
+            - generic [ref=e3181]:
+              - heading "Productos" [level=1] [ref=e3182]
+              - paragraph [ref=e3183]: Cargá productos con nombre, costo y stock
+            - generic [ref=e3184]:
+              - button "Categorías" [ref=e3185] [cursor=pointer]
+              - button "Importar Matriz 2D" [ref=e3189] [cursor=pointer]
+              - button "Nuevo Producto" [ref=e3193] [cursor=pointer]
+          - generic [ref=e3197]:
+            - generic [ref=e3198]:
+              - generic [ref=e3199]:
+                - textbox "Buscar producto..." [ref=e3200]: Duplicado
+                - generic [ref=e3201]:
+                  - combobox [ref=e3202] [cursor=pointer]:
+                    - generic: Todas las categorías
+                  - combobox [ref=e3205] [cursor=pointer]:
+                    - generic [ref=e3206]: Todas las marcas
+                  - combobox [ref=e3207] [cursor=pointer]:
+                    - generic: Todo el stock
+              - generic [ref=e3210]: 0 registro(s)
+            - table [ref=e3213]:
+              - rowgroup [ref=e3214]:
+                - row [ref=e3215]:
+                  - columnheader [ref=e3216]:
+                    - button "Producto" [ref=e3777] [cursor=pointer]
+                  - columnheader "Categoría" [ref=e3221]
+                  - columnheader "Marca" [ref=e3222]
+                  - columnheader "Costo" [ref=e3223]
+                  - columnheader [ref=e3224]:
+                    - button "Precio" [ref=e3781] [cursor=pointer]
+                  - columnheader [ref=e3229]:
+                    - button "Stock" [ref=e3785] [cursor=pointer]
+                  - columnheader [ref=e3234]
+              - rowgroup [ref=e3235]:
+                - row [ref=e3652]:
+                  - cell "No hay resultados" [ref=e3653]
+            - generic [ref=e3458]:
+              - generic [ref=e3459]:
+                - generic [ref=e3460]: Página 1 de 0
+                - generic [ref=e3461]:
+                  - generic [ref=e3462]: "Mostrar:"
+                  - combobox [ref=e3463] [cursor=pointer]:
+                    - generic: "10"
+                  - generic [ref=e3466]: registros
+              - generic [ref=e3467]:
+                - button "Anterior" [disabled]
+                - button "Siguiente" [disabled]
+    - region "Notifications alt+T"
+  - generic [ref=e319]: $0k

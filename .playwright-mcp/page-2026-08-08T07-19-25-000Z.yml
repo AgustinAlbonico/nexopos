@@ -1,0 +1,94 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwj5vNiGv5CWAxVlF7kGHelAOLgQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: site:cines.com.ar Rosario cines site:cines.com.ar Rosario cines
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3Dsite%253Acines.com.ar%2BRosario%2Bcines&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=site:cines.com.ar+Rosario+cines&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uL-GpF2LBV_OPmrpOKQa3IP5D7BrJg3HNnXT9w_Pn_N3n_FCX9-1oc6wTsfjtijGm0otgp8Jk005g_KDKJYKGBozxNPwx8aSHLWvnz-GqguWTh5GUKW7jKqjJt8c5FCVOHkzqlA&aep=1&ntc=1&cs=1&sa=X&ved=2ahUKEwj5vNiGv5CWAxVlF7kGHelAOLgQ2J8OegQIDhAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uL-GpF2LBV_OPmrpOKQa3IP5D7BrJg3HNnXT9w_Pn_N3n_FCX9-1oc6wTsfjtijGm0otgp8Jk005g_KDKJYKGBozxNPwx8aSHLWvnz-GqguWTh5GUKW7jKqjJt8c5FCVOHkzqlA&q=site:cines.com.ar+Rosario+cines&sa=X&ved=2ahUKEwj5vNiGv5CWAxVlF7kGHelAOLgQtKgLegQIFBAB
+          - listitem [ref=e94]:
+            - link "Noticias" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=site:cines.com.ar+Rosario+cines&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uL-GpF2LBV_OPmrpOKQa3IP5D7BrJg3HNnXT9w_Pn_N3n_FCX9-1oc6wTsfjtijGm0otgp8Jk005g_KDKJYKGBozxNPwx8aSHLWvnz-GqguWTh5GUKW7jKqjJt8c5FCVOHkzqlA&sa=X&ved=2ahUKEwj5vNiGv5CWAxVlF7kGHelAOLgQ0pQJegQIExAB
+          - listitem [ref=e98]:
+            - link "Vídeos" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uL-GpF2LBV_OPmrpOKQa3IP5D7BrJg3HNnXT9w_Pn_N3n_FCX9-1oc6wTsfjtijGm0otgp8Jk005g_KDKJYKGBozxNPwx8aSHLWvnz-GqguWTh5GUKW7jKqjJt8c5FCVOHkzqlA&q=site:cines.com.ar+Rosario+cines&sa=X&ved=2ahUKEwj5vNiGv5CWAxVlF7kGHelAOLgQtKgLegQIEBAB
+          - listitem [ref=e102]:
+            - link "Maps" [ref=e103] [cursor=pointer]:
+              - /url: https://maps.google.com/maps?sca_esv=569d465b5b1d57df&output=search&q=site:cines.com.ar+Rosario+cines&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uL-GpF2LBV_OPmrpOKQa3IP5D7BrJg3HNnXT9w_Pn_N3n_FCX9-1oc6wTsfjtijGm0otgp8Jk005g_KDKJYKGBozxNPwx8aSHLWvnz-GqguWTh5GUKW7jKqjJt8c5FCVOHkzqlA&entry=mc&ved=1t:200715&ictx=111
+          - listitem [ref=e106]:
+            - link "Shopping" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uL-GpF2LBV_OPmrpOKQa3IP5D7BrJg3HNnXT9w_Pn_N3n_FCX9-1oc6wTsfjtijGm0otgp8Jk005g_KDKJYKGBozxNPwx8aSHLWvnz-GqguWTh5GUKW7jKqjJt8c5FCVOHkzqlA&q=site:cines.com.ar+Rosario+cines&ved=1t:220175&ictx=111
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - main [ref=e132]:
+      - generic [ref=e134]:
+        - generic [ref=e136]:
+          - heading [level=3] [ref=e137]:
+            - text: No se han encontrado resultados para tu búsqueda (
+            - emphasis [ref=e139]: site:cines.com.ar Rosario cines
+            - text: ).
+          - paragraph [ref=e140]: "Sugerencias:"
+          - list [ref=e141]:
+            - listitem [ref=e142]: Asegúrate de que todas las palabras estén escritas correctamente.
+            - listitem [ref=e143]: Prueba diferentes palabras clave.
+            - listitem [ref=e144]: Prueba palabras clave más generales.
+            - listitem [ref=e145]: Prueba menos palabras clave.
+          - img "Imagen de un yeti pescando en el hielo" [ref=e149]
+        - navigation
+      - navigation
+    - contentinfo [ref=e236]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e237]
+      - generic [ref=e241]:
+        - generic [ref=e243]:
+          - text: Argentina
+          - generic [ref=e245]:
+            - button "Iriondo, Santa Fe - Según tu actividad anterior" [ref=e247] [cursor=pointer]:
+              - generic [ref=e248]: Iriondo, Santa Fe
+              - generic [ref=e250]:
+                - text: "-"
+                - generic [ref=e251]: Según tu actividad anterior
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e253] [cursor=pointer]
+        - generic [ref=e256]:
+          - link "Ayuda" [ref=e257] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e258] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e259] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e260] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

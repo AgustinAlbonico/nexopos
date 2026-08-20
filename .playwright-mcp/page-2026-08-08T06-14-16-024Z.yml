@@ -1,0 +1,235 @@
+- generic [active] [ref=f35e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=f35e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=f35e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=f35e8]:
+    - search [ref=f35e9]:
+      - generic [ref=f35e12]:
+        - link [ref=f35e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=f35e14]
+        - generic [ref=f35e19]:
+          - combobox "Buscar" [ref=f35e22]: site:afip.gob.ar factura electrónica Argentina site:afip.gob.ar factura electrónica Argentina
+          - generic [ref=f35e23]:
+            - button "Borrar" [ref=f35e25] [cursor=pointer]
+            - generic [ref=f35e30]:
+              - button "Búsqueda por voz" [ref=f35e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=f35e34] [cursor=pointer]
+        - button "Buscar" [ref=f35e37] [cursor=pointer]
+    - generic [ref=f35e42]:
+      - button "Configuración" [ref=f35e44] [cursor=pointer]
+      - button "Compartir" [ref=f35e50] [cursor=pointer]
+      - generic [ref=f35e56]:
+        - button "Aplicaciones de Google" [ref=f35e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=f35e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3Dsite%253Aafip.gob.ar%2Bfactura%2Belectr%25C3%25B3nica%2BArgentina&ec=futura_srp_og_si_72236_p
+  - generic [ref=f35e65]:
+    - navigation [ref=f35e71]:
+      - generic [ref=f35e77]:
+        - list [ref=f35e78]:
+          - listitem [ref=f35e79]:
+            - link "Modo IA" [ref=f35e82] [cursor=pointer]:
+              - /url: /search?q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sca_esv=0096a2a1340d2922&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkouQidfkZFfR6aYKY9ukA6upMNG-f4_7A7uqn0niGQw81Va2ocyU6MWJbQTETE6MDXDEN0egfqzVzbXtMYiVc5QFdSzouBMoSFzegywfyjrG-S229g&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ2J8OegQIDxAD
+          - listitem [ref=f35e86]:
+            - link "Todo" [disabled] [ref=f35e87]
+          - listitem [ref=f35e90]:
+            - link "Imágenes" [ref=f35e91] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkouQidfkZFfR6aYKY9ukA6upMNG-f4_7A7uqn0niGQw81Va2ocyU6MWJbQTETE6MDXDEN0egfqzVzbXtMYiVc5QFdSzouBMoSFzegywfyjrG-S229g&q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sa=X&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQtKgLegQIFBAB
+          - listitem [ref=f35e94]:
+            - link "Vídeos" [ref=f35e95] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkouQidfkZFfR6aYKY9ukA6upMNG-f4_7A7uqn0niGQw81Va2ocyU6MWJbQTETE6MDXDEN0egfqzVzbXtMYiVc5QFdSzouBMoSFzegywfyjrG-S229g&q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sa=X&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQtKgLegQIFRAB
+          - listitem [ref=f35e98]:
+            - link "Noticias" [ref=f35e99] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkouQidfkZFfR6aYKY9ukA6upMNG-f4_7A7uqn0niGQw81Va2ocyU6MWJbQTETE6MDXDEN0egfqzVzbXtMYiVc5QFdSzouBMoSFzegywfyjrG-S229g&sa=X&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ0pQJegQIExAB
+          - listitem [ref=f35e102]:
+            - link "Shopping" [ref=f35e103] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkouQidfkZFfR6aYKY9ukA6upMNG-f4_7A7uqn0niGQw81Va2ocyU6MWJbQTETE6MDXDEN0egfqzVzbXtMYiVc5QFdSzouBMoSFzegywfyjrG-S229g&q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&ved=1t:220175&ictx=111
+          - listitem [ref=f35e106]:
+            - link "Vídeos cortos" [ref=f35e107] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkouQidfkZFfR6aYKY9ukA6upMNG-f4_7A7uqn0niGQw81Va2ocyU6MWJbQTETE6MDXDEN0egfqzVzbXtMYiVc5QFdSzouBMoSFzegywfyjrG-S229g&q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sa=X&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQs6gLegQIERAB
+          - listitem [ref=f35e110]:
+            - button [ref=f35e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=f35e112]: Más
+        - button "Herramientas" [ref=f35e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=f35e126]
+    - main [ref=f35e132]:
+      - generic [ref=f35e136]:
+        - generic [ref=f35e139]:
+          - heading "Resultados web" [level=2] [ref=f35e140]
+          - generic [ref=f35e141]:
+            - generic [ref=f35e144]:
+              - link "Factura electrónica ARCA https://www.afip.gob.ar › ..." [ref=f35e146] [cursor=pointer]:
+                - /url: https://www.afip.gob.ar/fe/
+                - heading "Factura electrónica" [level=3] [ref=f35e147]
+                - generic [ref=f35e153]:
+                  - generic [ref=f35e154]: ARCA
+                  - generic [ref=f35e156]: https://www.afip.gob.ar › ...
+              - button "Acerca de este resultado" [ref=f35e160] [cursor=pointer]
+            - generic [ref=f35e167]:
+              - emphasis [ref=f35e168]: Factura electrónica
+              - text: . Conocé los comprobantes de formato digital y enterate cómo operar con este sistema de facturación. Ingresá a comprobantes en línea ...
+        - generic [ref=f35e172]:
+          - generic [ref=f35e175]:
+            - link "Facturación ARCA https://www.afip.gob.ar › facturacion" [ref=f35e177] [cursor=pointer]:
+              - /url: https://www.afip.gob.ar/facturacion/
+              - heading "Facturación" [level=3] [ref=f35e178]
+              - generic [ref=f35e184]:
+                - generic [ref=f35e185]: ARCA
+                - generic [ref=f35e187]: https://www.afip.gob.ar › facturacion
+            - button "Acerca de este resultado" [ref=f35e191] [cursor=pointer]
+          - generic [ref=f35e198]:
+            - emphasis [ref=f35e199]: Tipos de comprobantes a emitir
+            - text: ", solicitud de autorizaciones, modalidades y procedimientos para la facturación."
+        - generic [ref=f35e203]:
+          - generic [ref=f35e206]:
+            - link "Emisión y autorización - Factura electrónica ARCA https://www.afip.gob.ar › emision-autorizacion" [ref=f35e208] [cursor=pointer]:
+              - /url: https://www.afip.gob.ar/fe/emision-autorizacion/
+              - heading "Emisión y autorización - Factura electrónica" [level=3] [ref=f35e209]
+              - generic [ref=f35e215]:
+                - generic [ref=f35e216]: ARCA
+                - generic [ref=f35e218]: https://www.afip.gob.ar › emision-autorizacion
+            - button "Acerca de este resultado" [ref=f35e222] [cursor=pointer]
+          - generic [ref=f35e227]: Este medio de facturación permite la gestión, almacenamiento e intercambio de comprobantes por medios electrónicos o digitales sin necesidad de su impresión, ...
+        - generic [ref=f35e232]:
+          - generic [ref=f35e235]:
+            - link "Facturación - Ayuda sobre el monotributo ARCA https://www.afip.gob.ar › ayuda › facturacion" [ref=f35e237] [cursor=pointer]:
+              - /url: https://www.afip.gob.ar/monotributo/ayuda/facturacion.asp
+              - heading "Facturación - Ayuda sobre el monotributo" [level=3] [ref=f35e238]
+              - generic [ref=f35e244]:
+                - generic [ref=f35e245]: ARCA
+                - generic [ref=f35e247]: https://www.afip.gob.ar › ayuda › facturacion
+            - button "Acerca de este resultado" [ref=f35e251] [cursor=pointer]
+          - generic [ref=f35e258]:
+            - emphasis [ref=f35e259]: Para comenzar a facturar hay que dar de alta un punto de venta
+            - text: ", que es un código de 4 o 5 dígitos que identifica el método de facturación que utilizará el ..."
+        - generic [ref=f35e263]:
+          - generic [ref=f35e266]:
+            - 'link "Factura electrónica: ¿qué es? - AFIP ARCA https://servicioscf.afip.gob.ar › contenido › novedad › ver" [ref=f35e268] [cursor=pointer]':
+              - /url: https://servicioscf.afip.gob.ar/publico/sitio/contenido/novedad/ver.aspx?id=5204
+              - 'heading "Factura electrónica: ¿qué es? - AFIP" [level=3] [ref=f35e269]'
+              - generic [ref=f35e278]:
+                - generic [ref=f35e279]: ARCA
+                - generic [ref=f35e281]: https://servicioscf.afip.gob.ar › contenido › novedad › ver
+            - button "Acerca de este resultado" [ref=f35e285] [cursor=pointer]
+          - generic [ref=f35e291]:
+            - generic [ref=f35e292]: 6 oct 2025 —
+            - generic [ref=f35e293]:
+              - emphasis [ref=f35e294]: ¿Qué necesito para hacer una factura electrónica
+              - text: "? • CUIT / CUIL / CDI. • Clave fiscal habilitada con nivel 3. • Contar con los servicios ..."
+        - generic [ref=f35e298]:
+          - generic [ref=f35e301]:
+            - link "¿Cómo emito la factura electrónica? - Servicios Web AFIP Servicios Web AFIP https://serviciosweb.afip.gob.ar › guiaspasopaso › VerGuia" [ref=f35e303] [cursor=pointer]:
+              - /url: https://serviciosweb.afip.gob.ar/genericos/guiaspasopaso/VerGuia.aspx?id=163
+              - heading "¿Cómo emito la factura electrónica? - Servicios Web AFIP" [level=3] [ref=f35e304]
+              - generic [ref=f35e313]:
+                - generic [ref=f35e314]: Servicios Web AFIP
+                - generic [ref=f35e316]: https://serviciosweb.afip.gob.ar › guiaspasopaso › VerGuia
+            - button "Acerca de este resultado" [ref=f35e320] [cursor=pointer]
+          - generic [ref=f35e327]:
+            - emphasis [ref=f35e328]: Para emitir factura electrónica, primero tenés que habilitar un punto de venta
+            - text: . Conocé cómo habilitarlo ingresando a la guía paso a paso.
+        - generic [ref=f35e332]:
+          - generic [ref=f35e335]:
+            - link "Facturador AFIP Facturador AFIP https://facturador.afip.gob.ar" [ref=f35e337] [cursor=pointer]:
+              - /url: https://facturador.afip.gob.ar/
+              - heading "Facturador AFIP" [level=3] [ref=f35e338]
+              - generic [ref=f35e344]:
+                - generic [ref=f35e345]: Facturador AFIP
+                - generic [ref=f35e347]: https://facturador.afip.gob.ar
+            - button "Acerca de este resultado" [ref=f35e351] [cursor=pointer]
+          - generic [ref=f35e356]: Lo sentimos, pero Facturador no funciona correctamente con JavaScript deshabilitado. Por favor habilítelo para continuar.
+        - generic [ref=f35e361]:
+          - generic [ref=f35e364]:
+            - link "Comprobantes | Facturación ARCA https://www.afip.gob.ar › facturacion › comprobantes" [ref=f35e366] [cursor=pointer]:
+              - /url: https://www.afip.gob.ar/facturacion/comprobantes/
+              - heading "Comprobantes | Facturación" [level=3] [ref=f35e367]
+              - generic [ref=f35e373]:
+                - generic [ref=f35e374]: ARCA
+                - generic [ref=f35e376]: https://www.afip.gob.ar › facturacion › comprobantes
+            - button "Acerca de este resultado" [ref=f35e380] [cursor=pointer]
+          - generic [ref=f35e387]:
+            - emphasis [ref=f35e388]: Recibos, comprobantes que respalda el pago, total o parcial
+            - text: ", de una operación que debe ser documentada mediante la emisión de facturas."
+        - generic [ref=f35e392]:
+          - generic [ref=f35e395]:
+            - link "Monotributo | Facturación ARCA https://www.afip.gob.ar › factura-electronica" [ref=f35e397] [cursor=pointer]:
+              - /url: https://www.afip.gob.ar/facturacion/monotributo/factura-electronica.asp
+              - heading "Monotributo | Facturación" [level=3] [ref=f35e398]
+              - generic [ref=f35e404]:
+                - generic [ref=f35e405]: ARCA
+                - generic [ref=f35e407]: https://www.afip.gob.ar › factura-electronica
+            - button "Acerca de este resultado" [ref=f35e411] [cursor=pointer]
+          - generic [ref=f35e418]:
+            - text: ¿Cómo facturar electrónicamente? Como primer paso vas a tener que
+            - emphasis [ref=f35e419]: ingresar al Registro Único Tributario
+            - text: y dar de alta un punto de venta nuevo ya que no podés ...
+        - generic [ref=f35e423]:
+          - generic [ref=f35e426]:
+            - link "Facturador Móvil ARCA https://www.afip.gob.ar › facturadormovil" [ref=f35e428] [cursor=pointer]:
+              - /url: https://www.afip.gob.ar/facturadormovil/
+              - heading "Facturador Móvil" [level=3] [ref=f35e429]
+              - generic [ref=f35e435]:
+                - generic [ref=f35e436]: ARCA
+                - generic [ref=f35e438]: https://www.afip.gob.ar › facturadormovil
+            - button "Acerca de este resultado" [ref=f35e442] [cursor=pointer]
+          - generic [ref=f35e449]:
+            - emphasis [ref=f35e450]: Generación de comprobantes electrónicos
+            - text: ", administración de la base de clientes, productos, servicios y plantillas para personalizar la aplicación a las ..."
+      - navigation [ref=f35e453]:
+        - heading "Navegación de páginas" [level=1] [ref=f35e454]
+        - text: "1"
+        - link "Page 2" [ref=f35e457] [cursor=pointer]:
+          - /url: /search?q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sca_esv=0096a2a1340d2922&ei=N8l2aregJ6_01sQPvuC6uQ4&start=10&sa=N&sstk=AU9db-Bp1vA5ElfggMBtPbu7_oRyAN6XL2IFFCh-EFuoj9DgIrhDkOVYnv4CQf7arMDC1m8f2TT5KxW3Vve9o5haqnxgYKeAAFdegQ&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ8tMDegQIKBAE
+          - text: "2"
+        - link "Page 3" [ref=f35e459] [cursor=pointer]:
+          - /url: /search?q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sca_esv=0096a2a1340d2922&ei=N8l2aregJ6_01sQPvuC6uQ4&start=20&sa=N&sstk=AU9db-Bp1vA5ElfggMBtPbu7_oRyAN6XL2IFFCh-EFuoj9DgIrhDkOVYnv4CQf7arMDC1m8f2TT5KxW3Vve9o5haqnxgYKeAAFdegQ&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ8tMDegQIKBAG
+          - text: "3"
+        - link "Page 4" [ref=f35e461] [cursor=pointer]:
+          - /url: /search?q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sca_esv=0096a2a1340d2922&ei=N8l2aregJ6_01sQPvuC6uQ4&start=30&sa=N&sstk=AU9db-Bp1vA5ElfggMBtPbu7_oRyAN6XL2IFFCh-EFuoj9DgIrhDkOVYnv4CQf7arMDC1m8f2TT5KxW3Vve9o5haqnxgYKeAAFdegQ&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ8tMDegQIKBAI
+          - text: "4"
+        - link "Page 5" [ref=f35e463] [cursor=pointer]:
+          - /url: /search?q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sca_esv=0096a2a1340d2922&ei=N8l2aregJ6_01sQPvuC6uQ4&start=40&sa=N&sstk=AU9db-Bp1vA5ElfggMBtPbu7_oRyAN6XL2IFFCh-EFuoj9DgIrhDkOVYnv4CQf7arMDC1m8f2TT5KxW3Vve9o5haqnxgYKeAAFdegQ&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ8tMDegQIKBAK
+          - text: "5"
+        - link "Page 6" [ref=f35e465] [cursor=pointer]:
+          - /url: /search?q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sca_esv=0096a2a1340d2922&ei=N8l2aregJ6_01sQPvuC6uQ4&start=50&sa=N&sstk=AU9db-Bp1vA5ElfggMBtPbu7_oRyAN6XL2IFFCh-EFuoj9DgIrhDkOVYnv4CQf7arMDC1m8f2TT5KxW3Vve9o5haqnxgYKeAAFdegQ&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ8tMDegQIKBAM
+          - text: "6"
+        - link "Page 7" [ref=f35e467] [cursor=pointer]:
+          - /url: /search?q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sca_esv=0096a2a1340d2922&ei=N8l2aregJ6_01sQPvuC6uQ4&start=60&sa=N&sstk=AU9db-Bp1vA5ElfggMBtPbu7_oRyAN6XL2IFFCh-EFuoj9DgIrhDkOVYnv4CQf7arMDC1m8f2TT5KxW3Vve9o5haqnxgYKeAAFdegQ&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ8tMDegQIKBAO
+          - text: "7"
+        - link "Page 8" [ref=f35e469] [cursor=pointer]:
+          - /url: /search?q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sca_esv=0096a2a1340d2922&ei=N8l2aregJ6_01sQPvuC6uQ4&start=70&sa=N&sstk=AU9db-Bp1vA5ElfggMBtPbu7_oRyAN6XL2IFFCh-EFuoj9DgIrhDkOVYnv4CQf7arMDC1m8f2TT5KxW3Vve9o5haqnxgYKeAAFdegQ&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ8tMDegQIKBAQ
+          - text: "8"
+        - link "Page 9" [ref=f35e471] [cursor=pointer]:
+          - /url: /search?q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sca_esv=0096a2a1340d2922&ei=N8l2aregJ6_01sQPvuC6uQ4&start=80&sa=N&sstk=AU9db-Bp1vA5ElfggMBtPbu7_oRyAN6XL2IFFCh-EFuoj9DgIrhDkOVYnv4CQf7arMDC1m8f2TT5KxW3Vve9o5haqnxgYKeAAFdegQ&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ8tMDegQIKBAS
+          - text: "9"
+        - link "Page 10" [ref=f35e473] [cursor=pointer]:
+          - /url: /search?q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sca_esv=0096a2a1340d2922&ei=N8l2aregJ6_01sQPvuC6uQ4&start=90&sa=N&sstk=AU9db-Bp1vA5ElfggMBtPbu7_oRyAN6XL2IFFCh-EFuoj9DgIrhDkOVYnv4CQf7arMDC1m8f2TT5KxW3Vve9o5haqnxgYKeAAFdegQ&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ8tMDegQIKBAU
+          - text: "10"
+        - heading [level=2] [ref=f35e475]:
+          - link "Siguiente" [ref=f35e476] [cursor=pointer]:
+            - /url: /search?q=site:afip.gob.ar+factura+electr%C3%B3nica+Argentina&sca_esv=0096a2a1340d2922&ei=N8l2aregJ6_01sQPvuC6uQ4&start=10&sa=N&sstk=AU9db-Bp1vA5ElfggMBtPbu7_oRyAN6XL2IFFCh-EFuoj9DgIrhDkOVYnv4CQf7arMDC1m8f2TT5KxW3Vve9o5haqnxgYKeAAFdegQ&ved=2ahUKEwj3l9W-sJCWAxUvupUCHT6wLucQ8NMDegQIKBAW
+      - navigation
+    - contentinfo [ref=f35e479]:
+      - heading "Vínculos a pie de página" [level=1] [ref=f35e480]
+      - generic [ref=f35e484]:
+        - generic [ref=f35e486]:
+          - text: Argentina
+          - generic [ref=f35e488]:
+            - button "Iriondo, Santa Fe - Según tu actividad anterior" [ref=f35e490] [cursor=pointer]:
+              - generic [ref=f35e491]: Iriondo, Santa Fe
+              - generic [ref=f35e493]:
+                - text: "-"
+                - generic [ref=f35e494]: Según tu actividad anterior
+            - text: "-"
+            - button "Actualizar ubicación" [ref=f35e496] [cursor=pointer]
+        - generic [ref=f35e499]:
+          - link "Ayuda" [ref=f35e500] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=f35e501] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=f35e502] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=f35e503] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

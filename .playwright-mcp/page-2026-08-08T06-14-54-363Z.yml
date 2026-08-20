@@ -1,0 +1,98 @@
+- generic [active] [ref=f14e1]:
+  - generic [ref=f14e2]:
+    - generic [ref=f14e5]:
+      - link [ref=f14e7] [cursor=pointer]:
+        - /url: /
+        - img "Eventive" [ref=f14e8]
+      - button [ref=f14e10] [cursor=pointer]
+    - main [ref=f14e13]:
+      - generic [ref=f14e16]:
+        - heading "404 error" [level=2] [ref=f14e17]
+        - generic [ref=f14e18]: Page not found
+        - generic [ref=f14e19]: Sorry, the requested page could not be found.
+    - generic [ref=f14e22]:
+      - generic [ref=f14e23]:
+        - generic [ref=f14e24]:
+          - img "Eventive" [ref=f14e25]
+          - paragraph [ref=f14e26]: Smarter experiences for independent film.
+          - generic [ref=f14e27]:
+            - link "Facebook" [ref=f14e28] [cursor=pointer]:
+              - /url: https://www.facebook.com/eventive.org/
+            - link "Instagram" [ref=f14e32] [cursor=pointer]:
+              - /url: https://instagram.com/eventive_org
+            - link "Twitter" [ref=f14e36] [cursor=pointer]:
+              - /url: https://twitter.com/eventive_org
+            - link "GitHub" [ref=f14e40] [cursor=pointer]:
+              - /url: https://github.com/eventive-org
+        - generic [ref=f14e44]:
+          - generic [ref=f14e45]:
+            - generic [ref=f14e46]:
+              - heading "Offerings" [level=4] [ref=f14e47]
+              - list [ref=f14e48]:
+                - listitem [ref=f14e49]:
+                  - link "Eventive Virtual" [ref=f14e50] [cursor=pointer]:
+                    - /url: /virtual
+                - listitem [ref=f14e51]:
+                  - link "Film Festivals" [ref=f14e52] [cursor=pointer]:
+                    - /url: /film-festivals
+                - listitem [ref=f14e53]:
+                  - link "Distributors" [ref=f14e54] [cursor=pointer]:
+                    - /url: /distributors
+                - listitem [ref=f14e55]:
+                  - link "Arthouse Cinema" [ref=f14e56] [cursor=pointer]:
+                    - /url: /cinema
+            - generic [ref=f14e57]:
+              - heading "Support" [level=4] [ref=f14e58]
+              - list [ref=f14e59]:
+                - listitem [ref=f14e60]:
+                  - link "Pricing" [ref=f14e61] [cursor=pointer]:
+                    - /url: /pricing
+                - listitem [ref=f14e62]:
+                  - link "User Guide" [ref=f14e63] [cursor=pointer]:
+                    - /url: https://help.eventive.org
+                - listitem [ref=f14e64]:
+                  - link "System Status" [ref=f14e65] [cursor=pointer]:
+                    - /url: https://status.eventive.org
+          - generic [ref=f14e66]:
+            - generic [ref=f14e67]:
+              - heading "Company" [level=4] [ref=f14e68]
+              - list [ref=f14e69]:
+                - listitem [ref=f14e70]:
+                  - link "Our Story" [ref=f14e71] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=f14e72]:
+                  - link "Careers" [ref=f14e73] [cursor=pointer]:
+                    - /url: /careers
+                - listitem [ref=f14e74]:
+                  - link "Antipiracy" [ref=f14e75] [cursor=pointer]:
+                    - /url: /antipiracy
+                - listitem [ref=f14e76]:
+                  - link "Security" [ref=f14e77] [cursor=pointer]:
+                    - /url: /security
+            - generic [ref=f14e78]:
+              - heading "Legal" [level=4] [ref=f14e79]
+              - list [ref=f14e80]:
+                - listitem [ref=f14e81]:
+                  - link "Privacy" [ref=f14e82] [cursor=pointer]:
+                    - /url: /privacy
+                - listitem [ref=f14e83]:
+                  - link "Terms" [ref=f14e84] [cursor=pointer]:
+                    - /url: /terms
+                - listitem [ref=f14e85]:
+                  - link "DMCA" [ref=f14e86] [cursor=pointer]:
+                    - /url: /dmca
+      - paragraph [ref=f14e88]: © 2026 Eventive. All rights reserved.
+    - text: ;;;
+  - alert [ref=f14e89]
+  - dialog [ref=f14e90]:
+    - generic [ref=f14e91]:
+      - generic [ref=f14e92]:
+        - heading "Manage cookie preferences" [level=2] [ref=f14e93]
+        - paragraph [ref=f14e94]: We use cookies to improve your experience. Some cookies are necessary for our website and services to function properly. Other cookies are optional and help personalize your experience, including advertising and analytics. You can consent to all cookies, decline all optional cookies, or manage optional cookies. Without a selection, our default cookie settings will apply.
+      - generic [ref=f14e95]:
+        - generic [ref=f14e96]:
+          - button "Accept all" [ref=f14e97] [cursor=pointer]
+          - button "Reject all" [ref=f14e98] [cursor=pointer]
+        - button "Manage Individual preferences" [ref=f14e100] [cursor=pointer]
+  - iframe [ref=f14e101]:
+    

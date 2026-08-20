@@ -1,0 +1,213 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwjGxrjEv5CWAxV1O7kGHVPAGQsQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Sala AMR\" Rosario sitio web \"Sala AMR\" Rosario sitio web"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e45] [cursor=pointer]
+      - generic [ref=e51]:
+        - button "Aplicaciones de Google" [ref=e53] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e58] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Sala%2BAMR%2522%2BRosario%2Bsitio%2Bweb&ec=futura_srp_og_si_72236_p
+  - generic [ref=e60]:
+    - navigation [ref=e66]:
+      - list [ref=e69]:
+        - listitem [ref=e70]:
+          - link "Modo IA" [ref=e73] [cursor=pointer]:
+            - /url: /search?q=%22Sala+AMR%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJW9nYH1tIzPMHgGcjcfql5Rx_XgnYxVkcER8p5NbSTRkooCiLzfdajGDmeZZI9psA6qBqxfkRepRWEmfQViDNFkKE1oCQUMMrmdulkwavoVEmGEHeymqbdRlhRvtwLoqmDLOGINyRd7m04jngXe8ZrqA-4lVBCFHk0qcttyhzfXEajejK8&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwjGxrjEv5CWAxV1O7kGHVPAGQsQ2J8OegQIERAD
+        - listitem [ref=e77]:
+          - link "Todo" [disabled] [ref=e78]
+        - listitem [ref=e81]:
+          - link "Imágenes" [ref=e82] [cursor=pointer]:
+            - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJW9nYH1tIzPMHgGcjcfql5Rx_XgnYxVkcER8p5NbSTRkooCiLzfdajGDmeZZI9psA6qBqxfkRepRWEmfQViDNFkKE1oCQUMMrmdulkwavoVEmGEHeymqbdRlhRvtwLoqmDLOGINyRd7m04jngXe8ZrqA-4lVBCFHk0qcttyhzfXEajejK8&q=%22Sala+AMR%22+Rosario+sitio+web&sa=X&ved=2ahUKEwjGxrjEv5CWAxV1O7kGHVPAGQsQtKgLegQIFxAB
+        - listitem [ref=e85]:
+          - link "Noticias" [ref=e86] [cursor=pointer]:
+            - /url: /search?sca_esv=569d465b5b1d57df&q=%22Sala+AMR%22+Rosario+sitio+web&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJW9nYH1tIzPMHgGcjcfql5Rx_XgnYxVkcER8p5NbSTRkooCiLzfdajGDmeZZI9psA6qBqxfkRepRWEmfQViDNFkKE1oCQUMMrmdulkwavoVEmGEHeymqbdRlhRvtwLoqmDLOGINyRd7m04jngXe8ZrqA-4lVBCFHk0qcttyhzfXEajejK8&sa=X&ved=2ahUKEwjGxrjEv5CWAxV1O7kGHVPAGQsQ0pQJegQIExAB
+        - listitem [ref=e89]:
+          - link "Maps" [ref=e90] [cursor=pointer]:
+            - /url: https://maps.google.com/maps?sca_esv=569d465b5b1d57df&output=search&q=%22Sala+AMR%22+Rosario+sitio+web&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJW9nYH1tIzPMHgGcjcfql5Rx_XgnYxVkcER8p5NbSTRkooCiLzfdajGDmeZZI9psA6qBqxfkRepRWEmfQViDNFkKE1oCQUMMrmdulkwavoVEmGEHeymqbdRlhRvtwLoqmDLOGINyRd7m04jngXe8ZrqA-4lVBCFHk0qcttyhzfXEajejK8&entry=mc&ved=1t:200715&ictx=111
+        - listitem [ref=e93]:
+          - link "Vídeos" [ref=e94] [cursor=pointer]:
+            - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJW9nYH1tIzPMHgGcjcfql5Rx_XgnYxVkcER8p5NbSTRkooCiLzfdajGDmeZZI9psA6qBqxfkRepRWEmfQViDNFkKE1oCQUMMrmdulkwavoVEmGEHeymqbdRlhRvtwLoqmDLOGINyRd7m04jngXe8ZrqA-4lVBCFHk0qcttyhzfXEajejK8&q=%22Sala+AMR%22+Rosario+sitio+web&sa=X&ved=2ahUKEwjGxrjEv5CWAxV1O7kGHVPAGQsQtKgLegQIFRAB
+        - listitem [ref=e97]:
+          - link "Shopping" [ref=e98] [cursor=pointer]:
+            - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJW9nYH1tIzPMHgGcjcfql5Rx_XgnYxVkcER8p5NbSTRkooCiLzfdajGDmeZZI9psA6qBqxfkRepRWEmfQViDNFkKE1oCQUMMrmdulkwavoVEmGEHeymqbdRlhRvtwLoqmDLOGINyRd7m04jngXe8ZrqA-4lVBCFHk0qcttyhzfXEajejK8&q=%22Sala+AMR%22+Rosario+sitio+web&ved=1t:220175&ictx=111
+        - listitem [ref=e101]:
+          - button [ref=e102] [cursor=pointer]:
+            - generic "Más filtros" [ref=e103]: Más
+    - heading "Resultados de búsqueda" [level=1] [ref=e109]
+    - generic [ref=e114]:
+      - generic [ref=e133]:
+        - heading "Pensando" [level=2] [ref=e137]
+        - progressbar "Generando" [ref=e140]
+      - main [ref=e142]:
+        - generic [ref=e146]:
+          - generic [ref=e149]:
+            - heading "Resultados web" [level=2] [ref=e150]
+            - generic [ref=e151]:
+              - generic [ref=e154]:
+                - link "JUEVES 20/8 El día 1 arranca con todo! En Cine El Cairo ... Instagram · baficirosario Más de 60 \"me gusta\" · hace 2 días" [ref=e156] [cursor=pointer]:
+                  - /url: https://www.instagram.com/baficirosario/p/Dbq7WyruQPF/
+                  - heading "JUEVES 20/8 El día 1 arranca con todo! En Cine El Cairo ..." [level=3] [ref=e157]
+                  - generic [ref=e163]:
+                    - generic [ref=e164]: Instagram · baficirosario
+                    - generic [ref=e166]: Más de 60 "me gusta" · hace 2 días
+                - button "Acerca de este resultado" [ref=e170] [cursor=pointer]
+              - generic [ref=e177]:
+                - text: En Cine El Cairo, el cortometraje 'Easter day' abre la pantalla para el film Mención especial FEISAL 'El tren fluvial'. A las 19 en la
+                - emphasis [ref=e178]: sala AMR
+                - text: ...
+          - generic [ref=e183]:
+            - heading "Más preguntas" [level=2] [ref=e185]
+            - generic [ref=e186]:
+              - button "¿Cuánto cuesta la entrada al cine Rosario?" [ref=e192] [cursor=pointer]
+              - button "¿Cuáles son algunos de los cines más antiguos de Rosario?" [ref=e206] [cursor=pointer]
+              - button "¿Dónde estaba el cine Gran Rex en Rosario?" [ref=e220] [cursor=pointer]
+              - button "¿Cuántos cines hubo en Rosario?" [ref=e234] [cursor=pointer]
+          - generic [ref=e244]:
+            - heading "Resultados web" [level=2] [ref=e245]
+            - generic [ref=e246]:
+              - generic [ref=e249]:
+                - link "⭕Rosario se prepara para recibir la 21° edición del BAFICI ... Facebook · Radiofonica 100.7 4 reacciones · hace 12 meses" [ref=e251] [cursor=pointer]:
+                  - /url: https://www.facebook.com/Radiofonica/posts/rosario-se-prepara-para-recibir-la-21-edici%C3%B3n-del-bafici-rosario-una-extensi%C3%B3n-d/1326511028843362/
+                  - heading "⭕Rosario se prepara para recibir la 21° edición del BAFICI ..." [level=3] [ref=e252]
+                  - generic [ref=e258]:
+                    - generic [ref=e259]: Facebook · Radiofonica 100.7
+                    - generic [ref=e261]: 4 reacciones · hace 12 meses
+                - button "Acerca de este resultado" [ref=e265] [cursor=pointer]
+              - generic [ref=e272]:
+                - text: "La programación de este año se proyectará simultáneamente en cuatro espacios emblemáticos de la ciudad: Cine El Cairo,"
+                - emphasis [ref=e273]: Sala AMR
+                - text: ... en
+                - emphasis [ref=e274]: web
+                - text: ...
+          - generic [ref=e278]:
+            - generic [ref=e281]:
+              - link "Llega a Rosario la 20° edición de BAFICI 2024 Muestra ... LA HORA DE SANTA FE https://lahoradesantafe.com.ar › contenido › llega-a-rosar..." [ref=e283] [cursor=pointer]:
+                - /url: https://lahoradesantafe.com.ar/contenido/1989/llega-a-rosario-la-20-edicion-de-bafici-2024-muestra-itinerante
+                - heading "Llega a Rosario la 20° edición de BAFICI 2024 Muestra ..." [level=3] [ref=e284]
+                - generic [ref=e290]:
+                  - generic [ref=e291]: LA HORA DE SANTA FE
+                  - generic [ref=e293]: https://lahoradesantafe.com.ar › contenido › llega-a-rosar...
+              - button "Acerca de este resultado" [ref=e297] [cursor=pointer]
+            - generic [ref=e303]:
+              - generic [ref=e304]: 16 ago 2024 —
+              - generic [ref=e305]:
+                - text: Las sedes rosarinas son Cine Lumière (Veléz Sarsfield 1027), El Cairo Cine Público (Santa Fe 1120) , la
+                - emphasis [ref=e306]: sala AMR
+                - text: Asociación Médica de
+                - emphasis [ref=e307]: Rosario
+                - text: ( ...
+          - generic [ref=e311]:
+            - generic [ref=e314]:
+              - link "101 min. ⏰ 17:00 hs. SALA 1. _Cortometrajes_ Instagram · festivaldecine.villaelisa Más de 100 \"me gusta\" · hace 3 meses" [ref=e316] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DXhON2hFrJt/
+                - heading "101 min. ⏰ 17:00 hs. SALA 1. _Cortometrajes_" [level=3] [ref=e317]
+                - generic [ref=e323]:
+                  - generic [ref=e324]: Instagram · festivaldecine.villaelisa
+                  - generic [ref=e326]: Más de 100 "me gusta" · hace 3 meses
+              - button "Acerca de este resultado" [ref=e330] [cursor=pointer]
+            - generic [ref=e337]:
+              - text: ...
+              - emphasis [ref=e338]: sitio web
+              - text: . Te esperamos para celebrar una semana de cine y ...
+              - emphasis [ref=e339]: SALA AMR
+              - text: "| ESPAÑA 401 19 H THE BRAZILIAN INFERNO / ET HELVETE UTEN ..."
+          - generic [ref=e345]:
+            - generic [ref=e348]:
+              - 'link "CINE EL CAIRO: PROGRAMACIÓN ESPECIAL POR LA ... Instagram · somosrosariook Más de 70 \"me gusta\" · hace 4 meses" [ref=e350] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DWB-kfqErM8/?hl=es
+                - 'heading "CINE EL CAIRO: PROGRAMACIÓN ESPECIAL POR LA ..." [level=3] [ref=e351]'
+                - generic [ref=e357]:
+                  - generic [ref=e358]: Instagram · somosrosariook
+                  - generic [ref=e360]: Más de 70 "me gusta" · hace 4 meses
+              - button "Acerca de este resultado" [ref=e364] [cursor=pointer]
+            - generic [ref=e369]:
+              - 'link "CINE EL CAIRO: PROGRAMACIÓN ESPECIAL POR LA ... de Somos Rosario en Instagram. Reproducir en Instagram. 1:57" [ref=e370] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DWB-kfqErM8/?hl=es
+                - generic [ref=e371]: 1:57
+              - generic [ref=e380]: ... sitio web. Te esperamos para celebrar una semana de cine y ... SALA AMR | ESPAÑA 401 19 H THE BRAZILIAN INFERNO / ET HELVETE UTEN ...
+          - generic [ref=e385]:
+            - generic [ref=e388]:
+              - link "19.30 hs (en biblioteca) 🎬 \"Mi nueva ... Instagram · cclaexperimental 9 me gusta · hace 11 horas" [ref=e390] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DbwCYbYlJ7S/
+                - heading "19.30 hs (en biblioteca) 🎬 \"Mi nueva ..." [level=3] [ref=e391]
+                - generic [ref=e397]:
+                  - generic [ref=e398]: Instagram · cclaexperimental
+                  - generic [ref=e400]: 9 me gusta · hace 11 horas
+              - button "Acerca de este resultado" [ref=e404] [cursor=pointer]
+            - generic [ref=e411]:
+              - text: ...
+              - emphasis [ref=e412]: sitio web
+              - text: . Te esperamos para celebrar una semana de cine y ...
+              - emphasis [ref=e413]: SALA AMR
+              - text: "| ESPAÑA 401 19 H THE BRAZILIAN INFERNO / ET HELVETE UTEN ..."
+          - generic [ref=e419]:
+            - generic [ref=e422]:
+              - link "¡No te pierdas el estreno de Tres Tiempos en la 17.ª edición ... Instagram · alestefestival Más de 100 \"me gusta\" · hace 1 mes" [ref=e424] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DaA5Ke-ldA9/
+                - heading "¡No te pierdas el estreno de Tres Tiempos en la 17.ª edición ..." [level=3] [ref=e425]
+                - generic [ref=e431]:
+                  - generic [ref=e432]: Instagram · alestefestival
+                  - generic [ref=e434]: Más de 100 "me gusta" · hace 1 mes
+              - button "Acerca de este resultado" [ref=e438] [cursor=pointer]
+            - generic [ref=e443]:
+              - link "¡No te pierdas el estreno de Tres Tiempos en la 17.ª edición ... de AL ESTE FESTIVAL INTERNACIONAL DE CINE DE SAN MARCOS en Instagram. Reproducir en Instagram. 0:25" [ref=e444] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DaA5Ke-ldA9/
+                - generic [ref=e445]: 0:25
+              - generic [ref=e454]: Conocé todas las películas, fechas y horarios de esta nueva edición en nuestro sitio web. ... SALA AMR | ESPAÑA 401 19 H THE BRAZILIAN INFERNO / ...
+          - generic [ref=e459]:
+            - generic [ref=e462]:
+              - link "Muebles La Primavera | Tlalnepantla de Baz Wix.com https://muebleslaprimavera.wixsite.com › tlalnepantla" [ref=e464] [cursor=pointer]:
+                - /url: https://muebleslaprimavera.wixsite.com/tlalnepantla
+                - heading "Muebles La Primavera | Tlalnepantla de Baz" [level=3] [ref=e465]
+                - generic [ref=e471]:
+                  - generic [ref=e472]: Wix.com
+                  - generic [ref=e474]: https://muebleslaprimavera.wixsite.com › tlalnepantla
+              - button "Acerca de este resultado" [ref=e478] [cursor=pointer]
+            - generic [ref=e485]:
+              - emphasis [ref=e486]: SALA AMR
+              - text: VERONA. press to zoom. Mostrar más. ROPERO HOLLYWOOD. ROPERO JIREH MIXTO. ROPERO ...
+          - generic [ref=e490]:
+            - generic [ref=e493]:
+              - link "📍ATENCIÓN SANTA CLARA DEL MAR!!!!!!!!! ¿QUÉ ... Instagram · cinemch 6 me gusta · hace 1 día" [ref=e495] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DbspduOOKFD/
+                - heading "📍ATENCIÓN SANTA CLARA DEL MAR!!!!!!!!! ¿QUÉ ..." [level=3] [ref=e496]
+                - generic [ref=e502]:
+                  - generic [ref=e503]: Instagram · cinemch
+                  - generic [ref=e505]: 6 me gusta · hace 1 día
+              - button "Acerca de este resultado" [ref=e509] [cursor=pointer]
+            - generic [ref=e516]:
+              - text: Las inscripciones se gestionan mediante los formularios disponibles en el
+              - emphasis [ref=e517]: sitio web
+              - text: oficial del festival. ...
+              - emphasis [ref=e518]: SALA AMR
+              - text: "| ESPAÑA 401 19 H THE ..."
+        - navigation [ref=e521]:
+          - heading "Navegación de páginas" [level=1] [ref=e522]
+          - text: "1"
+          - link "Page 2" [ref=e525] [cursor=pointer]:
+            - /url: /search?q=%22Sala+AMR%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2asbPEfX25OUP04DnWA&start=10&sa=N&sstk=AU9db-C4C8xRqvqQ5dB6e8UQ8mQ1g3JbfASEVY4jyLG4ZQltPzKc75mdipdqvW0SfcXVordsc6h4SPK7yho8Q2oD-B1p1yx0T-7vdg&ved=2ahUKEwjGxrjEv5CWAxV1O7kGHVPAGQsQ8tMDegQIJhAE
+            - text: "2"
+          - heading [level=2] [ref=e527]:
+            - link "Siguiente" [ref=e528] [cursor=pointer]:
+              - /url: /search?q=%22Sala+AMR%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2asbPEfX25OUP04DnWA&start=10&sa=N&sstk=AU9db-C4C8xRqvqQ5dB6e8UQ8mQ1g3JbfASEVY4jyLG4ZQltPzKc75mdipdqvW0SfcXVordsc6h4SPK7yho8Q2oD-B1p1yx0T-7vdg&ved=2ahUKEwjGxrjEv5CWAxV1O7kGHVPAGQsQ8NMDegQIJhAG
+        - navigation
+    - contentinfo [ref=e531]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e532]

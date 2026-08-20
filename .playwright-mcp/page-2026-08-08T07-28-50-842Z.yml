@@ -1,0 +1,249 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Complejo Cultural Atlas\" Rosario instagram sitio web \"Complejo Cultural Atlas\" Rosario instagram sitio web"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Complejo%2BCultural%2BAtlas%2522%2BRosario%2Binstagram%2Bsitio%2Bweb&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ2J8OegQIExAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sa=X&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQtKgLegQIGRAB
+          - listitem [ref=e94]:
+            - link "Noticias" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&sa=X&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ0pQJegQIGBAB
+          - listitem [ref=e98]:
+            - link "Shopping" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&ved=1t:220175&ictx=111
+          - listitem [ref=e102]:
+            - link "Vídeos" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sa=X&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQtKgLegQIFRAB
+          - listitem [ref=e106]:
+            - link "Vídeos cortos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sa=X&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQs6gLegQIFhAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - generic [ref=e131]:
+      - generic [ref=e150]:
+        - heading "Pensando Buscando Pensando un poco más" [level=2] [ref=e154]:
+          - generic [ref=e155]:
+            - generic [ref=e156]: Pensando
+            - generic [ref=e158]: Buscando
+            - generic [ref=e160]: Pensando un poco más
+        - progressbar "Generando" [ref=e163]
+      - main [ref=e214]:
+        - generic [ref=e218]:
+          - generic [ref=e221]:
+            - heading "Resultados web" [level=2] [ref=e222]
+            - generic [ref=e223]:
+              - generic [ref=e226]:
+                - 'link "Esta semana en el #Atlas: 🗓️ Martes 26 de agosto ... Instagram · ccatlas Más de 10 \"me gusta\" · hace 11 meses" [ref=e228] [cursor=pointer]':
+                  - /url: https://www.instagram.com/p/DNzEvMn4j1y/
+                  - 'heading "Esta semana en el #Atlas: 🗓️ Martes 26 de agosto ..." [level=3] [ref=e229]'
+                  - generic [ref=e235]:
+                    - generic [ref=e236]: Instagram · ccatlas
+                    - generic [ref=e238]: Más de 10 "me gusta" · hace 11 meses
+                - button "Acerca de este resultado" [ref=e242] [cursor=pointer]
+              - generic [ref=e249]:
+                - emphasis [ref=e250]: Complejo Cultural Atlas
+                - text: – Mitre 645,
+                - emphasis [ref=e251]: Rosario
+                - text: ". Organiza: Juan D ... Adquirí tus tickets a través de nuestro"
+                - emphasis [ref=e252]: sitio web
+                - text: ": paseshow.com.ar ..."
+          - generic [ref=e258]:
+            - generic [ref=e261]:
+              - link "@ccatlas entradas en centroticket Instagram · leomasliah Más de 410 \"me gusta\" · hace 5 meses" [ref=e263] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DU3Jh22DQrm/
+                - heading "@ccatlas entradas en centroticket" [level=3] [ref=e264]
+                - generic [ref=e270]:
+                  - generic [ref=e271]: Instagram · leomasliah
+                  - generic [ref=e273]: Más de 410 "me gusta" · hace 5 meses
+              - button "Acerca de este resultado" [ref=e277] [cursor=pointer]
+            - generic [ref=e282]:
+              - link "@ccatlas entradas en centroticket de Leo Maslíah en Instagram. Reproducir en Instagram. 0:28" [ref=e283] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DU3Jh22DQrm/
+                - generic [ref=e284]: 0:28
+              - generic [ref=e293]: Vuelvo a tocar en Rosario de Santa Fe en el Complejo Cultural Atlas. ... Disponibles en la boletería del teatro y a través de la página web del ...
+          - generic [ref=e298]:
+            - generic [ref=e301]:
+              - link "El Hilo Invisible. • Conducción del Lic. Gastón Raggio. • ... Instagram · ccatlas 8 me gusta · hace 1 semana" [ref=e303] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DbRZh-AkY-m/
+                - heading "El Hilo Invisible. • Conducción del Lic. Gastón Raggio. • ..." [level=3] [ref=e304]
+                - generic [ref=e310]:
+                  - generic [ref=e311]: Instagram · ccatlas
+                  - generic [ref=e313]: 8 me gusta · hace 1 semana
+              - button "Acerca de este resultado" [ref=e317] [cursor=pointer]
+            - generic [ref=e324]:
+              - text: ...
+              - emphasis [ref=e325]: Complejo Cultural Atlas
+              - text: ". 🗓️ Martes 28 de julio: El Marne Milonga. • 20.30 hs. Clases para todos los niveles con Laureano Álvarez & Carito ..."
+          - generic [ref=e329]:
+            - generic [ref=e332]:
+              - link "¡Abierta la convocatoria! 👉 Si buscas un lugar para dar tu ... Instagram · ccatlas Más de 70 \"me gusta\" · hace 3 meses" [ref=e334] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DXpu1kRgJgr/?__d=1%252F%252F
+                - heading "¡Abierta la convocatoria! 👉 Si buscas un lugar para dar tu ..." [level=3] [ref=e335]
+                - generic [ref=e341]:
+                  - generic [ref=e342]: Instagram · ccatlas
+                  - generic [ref=e344]: Más de 70 "me gusta" · hace 3 meses
+              - button "Acerca de este resultado" [ref=e348] [cursor=pointer]
+            - generic [ref=e355]:
+              - text: ¡Abierta la convocatoria! Si buscas un lugar para dar tu taller o ensayar, en el
+              - emphasis [ref=e356]: Complejo Cultural Atlas
+              - text: tenemos un espacio ideal para que ...
+          - generic [ref=e360]:
+            - generic [ref=e363]:
+              - 'link "Esta semana en el #Atlas: 🗓️ Martes 30 de septiembre a ... Instagram · ccatlas Más de 10 \"me gusta\" · hace 10 meses" [ref=e365] [cursor=pointer]':
+                - /url: https://www.instagram.com/p/DPNHR1dkTyw/
+                - 'heading "Esta semana en el #Atlas: 🗓️ Martes 30 de septiembre a ..." [level=3] [ref=e366]'
+                - generic [ref=e372]:
+                  - generic [ref=e373]: Instagram · ccatlas
+                  - generic [ref=e375]: Más de 10 "me gusta" · hace 10 meses
+              - button "Acerca de este resultado" [ref=e379] [cursor=pointer]
+            - generic [ref=e386]:
+              - text: EL MARNE. UN DÍA SOÑÉ.
+              - emphasis [ref=e387]: Complejo Cultural Atlas
+              - text: CCA. Mitre 645. Otra de Princesas y Piratas. Con la participación especial de las Cazadoras del ...
+          - generic [ref=e393]:
+            - generic [ref=e396]:
+              - 'link "Complejo Cultural Atlas on Instagram: \"El Complejo Cultural ... Instagram · ccatlas Más de 30 \"me gusta\" · hace 5 meses" [ref=e398] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DVHkHuKDamu/
+                - 'heading "Complejo Cultural Atlas on Instagram: \"El Complejo Cultural ..." [level=3] [ref=e399]'
+                - generic [ref=e405]:
+                  - generic [ref=e406]: Instagram · ccatlas
+                  - generic [ref=e408]: Más de 30 "me gusta" · hace 5 meses
+              - button "Acerca de este resultado" [ref=e412] [cursor=pointer]
+            - generic [ref=e417]:
+              - 'link "Complejo Cultural Atlas on Instagram: \"El Complejo Cultural ... de Complejo Cultural Atlas en Instagram. Reproducir en Instagram. 0:42" [ref=e418] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DVHkHuKDamu/
+                - generic [ref=e419]: 0:42
+              - generic [ref=e428]: "En nuestro sitio web: www.cineteatrohelios.com.ar O en ... Join Complejo Cultural Atlas on Instagram. Sign up for Instagram · Sign ..."
+          - generic [ref=e436]:
+            - generic [ref=e439]:
+              - link "Complejo Cultural Atlas Rosario YouTube · CCAtlas Más de 2,2 K vistas · hace 8 años" [ref=e441] [cursor=pointer]:
+                - /url: https://www.youtube.com/watch?v=E74FGMmEzFQ
+                - heading "Complejo Cultural Atlas Rosario" [level=3] [ref=e442]
+                - generic [ref=e448]:
+                  - generic [ref=e449]: YouTube · CCAtlas
+                  - generic [ref=e451]: Más de 2,2 K vistas · hace 8 años
+              - button "Acerca de este resultado" [ref=e455] [cursor=pointer]
+            - generic [ref=e460]:
+              - button "Complejo Cultural Atlas Rosario de CCAtlas en YouTube. Reproducir en Google. 0:44" [ref=e461] [cursor=pointer]:
+                - generic [ref=e462]: 0:44
+              - generic [ref=e478]: "Sobre el Complejo Cultural Atlas: Descubre el corazón cultural de Rosario en el Complejo Cultural Atlas ... Sitio web: https://ccatlas.org.ar/ ..."
+          - generic [ref=e483]:
+            - generic [ref=e486]:
+              - 'link "Esta semana en el #Atlas: 🗓️ Martes 4 de noviembre: El ... Instagram · ccatlas 3 me gusta · hace 9 meses" [ref=e488] [cursor=pointer]':
+                - /url: https://www.instagram.com/p/DQmZGR2keja/
+                - 'heading "Esta semana en el #Atlas: 🗓️ Martes 4 de noviembre: El ..." [level=3] [ref=e489]'
+                - generic [ref=e495]:
+                  - generic [ref=e496]: Instagram · ccatlas
+                  - generic [ref=e498]: 3 me gusta · hace 9 meses
+              - button "Acerca de este resultado" [ref=e502] [cursor=pointer]
+            - generic [ref=e509]:
+              - text: ...
+              - emphasis [ref=e510]: Complejo Cultural Atlas
+              - text: . 🗓️ Viernes 7 de noviembre a las 21 hs ...
+              - emphasis [ref=e511]: Rosario rosario
+              - text: .gob.ar/cultura. buenosairescultura's profile ...
+          - generic [ref=e517]:
+            - generic [ref=e520]:
+              - link "Resumen de las actividades que disfrutamos la semana ... Instagram · ccatlas Más de 10 \"me gusta\" · hace 4 meses" [ref=e522] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DWToKljEerU/
+                - heading "Resumen de las actividades que disfrutamos la semana ..." [level=3] [ref=e523]
+                - generic [ref=e529]:
+                  - generic [ref=e530]: Instagram · ccatlas
+                  - generic [ref=e532]: Más de 10 "me gusta" · hace 4 meses
+              - button "Acerca de este resultado" [ref=e536] [cursor=pointer]
+            - generic [ref=e541]:
+              - link "Resumen de las actividades que disfrutamos la semana ... de Complejo Cultural Atlas en Instagram. Reproducir en Instagram. 0:45" [ref=e542] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DWToKljEerU/
+                - generic [ref=e543]: 0:45
+              - generic [ref=e552]: "DÓNDE: Complejo Cultural ATLAS - Mitre 645, Rosario. ... Join Complejo Cultural Atlas on Instagram. Sign up for Instagram · Sign ..."
+        - navigation [ref=e556]:
+          - heading "Navegación de páginas" [level=1] [ref=e557]
+          - text: "1"
+          - link "Page 2" [ref=e560] [cursor=pointer]:
+            - /url: /search?q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=stp2atPuCIq35OUPn83DiQE&start=10&sa=N&sstk=AU9db-AcAw0mwC2jnUSD_7zZ1WzyBQnKmlp2bpKs2rTubPy7Jnc0tExUzA9qfHcF6HAhKVevleQzdW_owrOLw_1EFsJUHSaNw67jCQ&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ8tMDegQIIBAE
+            - text: "2"
+          - link "Page 3" [ref=e562] [cursor=pointer]:
+            - /url: /search?q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=stp2atPuCIq35OUPn83DiQE&start=20&sa=N&sstk=AU9db-AcAw0mwC2jnUSD_7zZ1WzyBQnKmlp2bpKs2rTubPy7Jnc0tExUzA9qfHcF6HAhKVevleQzdW_owrOLw_1EFsJUHSaNw67jCQ&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ8tMDegQIIBAG
+            - text: "3"
+          - link "Page 4" [ref=e564] [cursor=pointer]:
+            - /url: /search?q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=stp2atPuCIq35OUPn83DiQE&start=30&sa=N&sstk=AU9db-AcAw0mwC2jnUSD_7zZ1WzyBQnKmlp2bpKs2rTubPy7Jnc0tExUzA9qfHcF6HAhKVevleQzdW_owrOLw_1EFsJUHSaNw67jCQ&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ8tMDegQIIBAI
+            - text: "4"
+          - link "Page 5" [ref=e566] [cursor=pointer]:
+            - /url: /search?q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=stp2atPuCIq35OUPn83DiQE&start=40&sa=N&sstk=AU9db-AcAw0mwC2jnUSD_7zZ1WzyBQnKmlp2bpKs2rTubPy7Jnc0tExUzA9qfHcF6HAhKVevleQzdW_owrOLw_1EFsJUHSaNw67jCQ&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ8tMDegQIIBAK
+            - text: "5"
+          - link "Page 6" [ref=e568] [cursor=pointer]:
+            - /url: /search?q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=stp2atPuCIq35OUPn83DiQE&start=50&sa=N&sstk=AU9db-AcAw0mwC2jnUSD_7zZ1WzyBQnKmlp2bpKs2rTubPy7Jnc0tExUzA9qfHcF6HAhKVevleQzdW_owrOLw_1EFsJUHSaNw67jCQ&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ8tMDegQIIBAM
+            - text: "6"
+          - link "Page 7" [ref=e570] [cursor=pointer]:
+            - /url: /search?q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=stp2atPuCIq35OUPn83DiQE&start=60&sa=N&sstk=AU9db-AcAw0mwC2jnUSD_7zZ1WzyBQnKmlp2bpKs2rTubPy7Jnc0tExUzA9qfHcF6HAhKVevleQzdW_owrOLw_1EFsJUHSaNw67jCQ&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ8tMDegQIIBAO
+            - text: "7"
+          - link "Page 8" [ref=e572] [cursor=pointer]:
+            - /url: /search?q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=stp2atPuCIq35OUPn83DiQE&start=70&sa=N&sstk=AU9db-AcAw0mwC2jnUSD_7zZ1WzyBQnKmlp2bpKs2rTubPy7Jnc0tExUzA9qfHcF6HAhKVevleQzdW_owrOLw_1EFsJUHSaNw67jCQ&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ8tMDegQIIBAQ
+            - text: "8"
+          - link "Page 9" [ref=e574] [cursor=pointer]:
+            - /url: /search?q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=stp2atPuCIq35OUPn83DiQE&start=80&sa=N&sstk=AU9db-AcAw0mwC2jnUSD_7zZ1WzyBQnKmlp2bpKs2rTubPy7Jnc0tExUzA9qfHcF6HAhKVevleQzdW_owrOLw_1EFsJUHSaNw67jCQ&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ8tMDegQIIBAS
+            - text: "9"
+          - link "Page 10" [ref=e576] [cursor=pointer]:
+            - /url: /search?q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=stp2atPuCIq35OUPn83DiQE&start=90&sa=N&sstk=AU9db-AcAw0mwC2jnUSD_7zZ1WzyBQnKmlp2bpKs2rTubPy7Jnc0tExUzA9qfHcF6HAhKVevleQzdW_owrOLw_1EFsJUHSaNw67jCQ&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ8tMDegQIIBAU
+            - text: "10"
+          - heading [level=2] [ref=e578]:
+            - link "Siguiente" [ref=e579] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Cultural+Atlas%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=stp2atPuCIq35OUPn83DiQE&start=10&sa=N&sstk=AU9db-AcAw0mwC2jnUSD_7zZ1WzyBQnKmlp2bpKs2rTubPy7Jnc0tExUzA9qfHcF6HAhKVevleQzdW_owrOLw_1EFsJUHSaNw67jCQ&ved=2ahUKEwjTj6OUwZCWAxWKG7kGHZ_mMBEQ8NMDegQIIBAW
+        - navigation
+    - contentinfo [ref=e582]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e583]
+      - generic [ref=e587]:
+        - generic [ref=e589]:
+          - text: Argentina
+          - generic [ref=e591]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e593] [cursor=pointer]:
+              - generic [ref=e594]: Iriondo, Santa Fe
+              - generic [ref=e596]:
+                - text: "-"
+                - generic [ref=e597]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e599] [cursor=pointer]
+        - generic [ref=e602]:
+          - link "Ayuda" [ref=e603] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e604] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e605] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e606] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

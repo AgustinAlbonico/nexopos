@@ -13,6 +13,7 @@ import {
     IsBoolean,
     MaxLength,
     IsUUID,
+    IsIn,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 
@@ -48,7 +49,7 @@ export class CheckReplenishmentItemDto {
     productId!: string;
 
     @IsNumber()
-    @Min(1)
+    @Min(0.001)
     quantity!: number;
 }
 
@@ -60,9 +61,32 @@ export class CreateSaleItemDto {
     @IsNotEmpty()
     productId!: string;
 
+    @IsUUID()
+    @IsOptional()
+    packId?: string;
+
     @IsNumber()
-    @Min(1)
+    @Min(0.001)
     quantity!: number;
+
+    @IsOptional()
+    @IsIn(['manual', 'barcode', 'scale'])
+    enterMode?: 'manual' | 'barcode' | 'scale';
+
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    grossQuantity?: number;
+
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    tareGrams?: number;
+
+    @IsOptional()
+    @IsNumber()
+    @Min(0)
+    netQuantity?: number;
 
     @IsNumber()
     @Min(0)
@@ -123,9 +147,6 @@ export class CreateSalePaymentDto {
 }
 
 /**
- * DTO para crear una venta
- */
-/**
  * DTO para crear un impuesto de venta
  */
 export class CreateSaleTaxDto {
@@ -166,12 +187,21 @@ export class CreateSaleDto {
     @IsOptional()
     discount?: number;
 
+    @IsString()
+    @IsOptional()
+    @MaxLength(500)
+    manualDiscountReason?: string;
+
+    @IsString()
+    @IsOptional()
+    @MaxLength(500)
+    priceOverrideReason?: string;
+
     @IsNumber()
     @Min(0)
     @IsOptional()
     surcharge?: number;
 
-    // Se mantiene por compatibilidad, pero se calculará desde taxes si se envían
     @IsNumber()
     @Min(0)
     @IsOptional()
@@ -215,6 +245,28 @@ export class CreateSaleDto {
     @IsOptional()
     payments?: CreateSalePaymentDto[];
 
+    @IsUUID()
+    @IsOptional()
+    sellerId?: string;
+
+    @IsString()
+    @IsOptional()
+    @MaxLength(255)
+    sellerName?: string;
+
+    @IsBoolean()
+    @IsOptional()
+    isReservation?: boolean;
+
+    @IsNumber()
+    @Min(0)
+    @IsOptional()
+    reservationDeposit?: number;
+
+    @IsString()
+    @IsOptional()
+    reservationExpiresAt?: string; // ISO Date String
+
     /**
      * Traslados previos a la venta, opcionales. Si están presentes, el
      * backend los ejecuta en la misma transacción antes de registrar la
@@ -226,4 +278,3 @@ export class CreateSaleDto {
     @IsOptional()
     replenishmentTransfers?: ReplenishmentTransferDto[];
 }
-

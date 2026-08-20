@@ -1,0 +1,268 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: Rosario festival de cine sedes El Cairo Lumiere Cines del Centro Instagram Rosario festival de cine sedes El Cairo Lumiere Cines del Centro Instagram
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3DRosario%2Bfestival%2Bde%2Bcine%2Bsedes%2BEl%2BCairo%2BLumiere%2BCines%2Bdel%2BCentro%2BInstagram&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDYA5WktO3cDixokzCf5xEYSTIJvL5LhBpTxDv3UWzvAXY2t_0f5fxMe6ji7ge7XiZ10uhasK7rb5HGgaBpnAg6-1-_FDZOSB8TdiYkoZIHWehKGVMM0hRXDxeHAOUNsJc5dkPeEUsgVy2xaghc9sYbnodX9mYYbuGQRoUJPXCBi-4_xXv75d0b9g1_UubHwGxqKOd_UHO-qcPd97CQ4KGY2LoMaE&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ2J8OegQIEhAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Vídeos cortos" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDYA5WktO3cDixokzCf5xEYSTIJvL5LhBpTxDv3UWzvAXY2t_0f5fxMe6ji7ge7XiZ10uhasK7rb5HGgaBpnAg6-1-_FDZOSB8TdiYkoZIHWehKGVMM0hRXDxeHAOUNsJc5dkPeEUsgVy2xaghc9sYbnodX9mYYbuGQRoUJPXCBi-4_xXv75d0b9g1_UubHwGxqKOd_UHO-qcPd97CQ4KGY2LoMaE&q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQs6gLegQIGBAB
+          - listitem [ref=e94]:
+            - link "Noticias" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDYA5WktO3cDixokzCf5xEYSTIJvL5LhBpTxDv3UWzvAXY2t_0f5fxMe6ji7ge7XiZ10uhasK7rb5HGgaBpnAg6-1-_FDZOSB8TdiYkoZIHWehKGVMM0hRXDxeHAOUNsJc5dkPeEUsgVy2xaghc9sYbnodX9mYYbuGQRoUJPXCBi-4_xXv75d0b9g1_UubHwGxqKOd_UHO-qcPd97CQ4KGY2LoMaE&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ0pQJegQIFhAB
+          - listitem [ref=e98]:
+            - link "Imágenes" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDYA5WktO3cDixokzCf5xEYSTIJvL5LhBpTxDv3UWzvAXY2t_0f5fxMe6ji7ge7XiZ10uhasK7rb5HGgaBpnAg6-1-_FDZOSB8TdiYkoZIHWehKGVMM0hRXDxeHAOUNsJc5dkPeEUsgVy2xaghc9sYbnodX9mYYbuGQRoUJPXCBi-4_xXv75d0b9g1_UubHwGxqKOd_UHO-qcPd97CQ4KGY2LoMaE&q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQtKgLegQIFBAB
+          - listitem [ref=e102]:
+            - link "Shopping" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDYA5WktO3cDixokzCf5xEYSTIJvL5LhBpTxDv3UWzvAXY2t_0f5fxMe6ji7ge7XiZ10uhasK7rb5HGgaBpnAg6-1-_FDZOSB8TdiYkoZIHWehKGVMM0hRXDxeHAOUNsJc5dkPeEUsgVy2xaghc9sYbnodX9mYYbuGQRoUJPXCBi-4_xXv75d0b9g1_UubHwGxqKOd_UHO-qcPd97CQ4KGY2LoMaE&q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&ved=1t:220175&ictx=111
+          - listitem [ref=e106]:
+            - link "Vídeos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDYA5WktO3cDixokzCf5xEYSTIJvL5LhBpTxDv3UWzvAXY2t_0f5fxMe6ji7ge7XiZ10uhasK7rb5HGgaBpnAg6-1-_FDZOSB8TdiYkoZIHWehKGVMM0hRXDxeHAOUNsJc5dkPeEUsgVy2xaghc9sYbnodX9mYYbuGQRoUJPXCBi-4_xXv75d0b9g1_UubHwGxqKOd_UHO-qcPd97CQ4KGY2LoMaE&q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQtKgLegQIFRAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - main [ref=e132]:
+      - generic [ref=e136]:
+        - generic [ref=e139]:
+          - heading "Resultados web" [level=2] [ref=e140]
+          - generic [ref=e141]:
+            - generic [ref=e144]:
+              - link "Cine Lumière (@cccinelumiere) - Instagram Instagram · cccinelumiere Más de 24,1 k seguidores" [ref=e146] [cursor=pointer]:
+                - /url: https://www.instagram.com/cccinelumiere/?hl=es
+                - heading "Cine Lumière (@cccinelumiere) - Instagram" [level=3] [ref=e147]
+                - generic [ref=e153]:
+                  - generic [ref=e154]: Instagram · cccinelumiere
+                  - generic [ref=e156]: Más de 24,1 k seguidores
+              - button "Acerca de este resultado" [ref=e160] [cursor=pointer]
+            - generic [ref=e167]:
+              - text: "@kinoglaz_distribucion 🎟️ ENTRADA GRATUITA (Boletería abierta 30 minutos antes de cada función) Programación por día en"
+              - emphasis [ref=e168]: rosario
+              - text: .gob.ar/cultura | ...
+            - link [ref=e171] [cursor=pointer]:
+              - /url: https://www.instagram.com/cccinelumiere/?hl=es
+              - img "Rosario festival de cine sedes El Cairo Lumiere Cines del Centro Instagram de www.instagram.com" [ref=e173]
+        - generic [ref=e184]:
+          - heading "Pensando" [level=2] [ref=e188]
+          - progressbar "Generando" [ref=e191]
+        - generic [ref=e195]:
+          - heading "Resultados web" [level=2] [ref=e196]
+          - generic [ref=e197]:
+            - generic [ref=e200]:
+              - link "Muy felices de formar parte de la selección 2026 del ... Instagram · notmomma Más de 50 \"me gusta\" · hace 2 meses" [ref=e202] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DYxO1w3t_Sb/?__d=1%E5%BC%80%E7%9B%92%E7%A4%BE%E5%B7%A5%E5%BA%93%E2%9C%8C%2B%E3%80%90chachafa.com%E3%80%91%E2%9C%94%EF%B8%8F%E7%81%AB%E7%AE%AD%E8%88%AC%E6%9F%A5%E8%AF%A2%E6%B7%98%E5%AE%9D%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%E5%8F%8A%E6%B7%98%E5%AE%9D%E8%B4%AD%E7%89%A9%E8%AE%B0%E5%BD%95%E6%9C%80%E4%BD%B3%E7%9A%84%E9%80%89%E6%8B%A9%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
+                - heading "Muy felices de formar parte de la selección 2026 del ..." [level=3] [ref=e203]
+                - generic [ref=e209]:
+                  - generic [ref=e210]: Instagram · notmomma
+                  - generic [ref=e212]: Más de 50 "me gusta" · hace 2 meses
+              - button "Acerca de este resultado" [ref=e216] [cursor=pointer]
+            - generic [ref=e223]:
+              - text: Del 29 de mayo al 6 de junio
+              - emphasis [ref=e224]: "Sedes: Cine Lumière, El Cairo Cine Público, Cines del Centro"
+              - text: y Complejo Astronómico Municipal. Una invitación ...
+            - link [ref=e227] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/DYxO1w3t_Sb/?__d=1%E5%BC%80%E7%9B%92%E7%A4%BE%E5%B7%A5%E5%BA%93%E2%9C%8C%2B%E3%80%90chachafa.com%E3%80%91%E2%9C%94%EF%B8%8F%E7%81%AB%E7%AE%AD%E8%88%AC%E6%9F%A5%E8%AF%A2%E6%B7%98%E5%AE%9D%E6%94%B6%E8%B4%A7%E5%9C%B0%E5%9D%80%E5%8F%8A%E6%B7%98%E5%AE%9D%E8%B4%AD%E7%89%A9%E8%AE%B0%E5%BD%95%E6%9C%80%E4%BD%B3%E7%9A%84%E9%80%89%E6%8B%A9%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%BF%83
+              - img "Rosario festival de cine sedes El Cairo Lumiere Cines del Centro Instagram de www.instagram.com" [ref=e229]
+        - generic [ref=e235]:
+          - generic [ref=e238]:
+            - link "ROSARIO VIVE EL CINE LATINOAMERICANO 🎞️ La ciudad ... Instagram · tomatetutiempo_ros Más de 40 \"me gusta\" · hace 2 meses" [ref=e240] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DY5Yph_xMA0/
+              - heading "ROSARIO VIVE EL CINE LATINOAMERICANO 🎞️ La ciudad ..." [level=3] [ref=e241]
+              - generic [ref=e247]:
+                - generic [ref=e248]: Instagram · tomatetutiempo_ros
+                - generic [ref=e250]: Más de 40 "me gusta" · hace 2 meses
+            - button "Acerca de este resultado" [ref=e254] [cursor=pointer]
+          - generic [ref=e259]:
+            - link "ROSARIO VIVE EL CINE LATINOAMERICANO 🎞️ La ciudad ... de TOMATE TU TIEMPO | Canal de streaming en Instagram. Reproducir en Instagram. 1:56" [ref=e260] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DY5Yph_xMA0/
+              - generic [ref=e261]: 1:56
+            - generic [ref=e270]: Cine Lumière El Cairo Cine Público Cines del Centro Cultural Fontanarrosa Complejo Astronómico Municipal En el streaming nos ...
+        - generic [ref=e275]:
+          - generic [ref=e278]:
+            - link "FESTIVAL DE CINE LATINOAMERICANO El evento se ... Instagram · antesdesalirtv Más de 50 \"me gusta\" · hace 2 meses" [ref=e280] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/DY7Zx3gBdBD/?__d=1%2F%3Fhidemenu%3Dtrue
+              - heading "FESTIVAL DE CINE LATINOAMERICANO El evento se ..." [level=3] [ref=e281]
+              - generic [ref=e287]:
+                - generic [ref=e288]: Instagram · antesdesalirtv
+                - generic [ref=e290]: Más de 50 "me gusta" · hace 2 meses
+            - button "Acerca de este resultado" [ref=e294] [cursor=pointer]
+          - generic [ref=e299]: EN COMPETENCIA 864 películas inscriptas de 18 países latinoamericanos. 8 largometrajes, 4 santafesinos y 44 cortometrajes en cartelera. 5 ...
+        - generic [ref=e304]:
+          - generic [ref=e307]:
+            - link "El Cairo Cine Público 🎞 (@cineelcairo) · Rosario Instagram · cineelcairo Más de 44,4 k seguidores" [ref=e309] [cursor=pointer]:
+              - /url: https://www.instagram.com/cineelcairo/?hl=es
+              - heading "El Cairo Cine Público 🎞 (@cineelcairo) · Rosario" [level=3] [ref=e310]
+              - generic [ref=e316]:
+                - generic [ref=e317]: Instagram · cineelcairo
+                - generic [ref=e319]: Más de 44,4 k seguidores
+            - button "Acerca de este resultado" [ref=e323] [cursor=pointer]
+          - generic [ref=e330]:
+            - emphasis [ref=e331]: "Nuestra programación es de jueves a domingo, con tres funciones por día: 18:00, 20:30, y 22:30"
+            - text: . Las entradas se adquieren el mismo día de la función, desde las ...
+          - link [ref=e334] [cursor=pointer]:
+            - /url: https://www.instagram.com/cineelcairo/?hl=es
+            - img "Rosario festival de cine sedes El Cairo Lumiere Cines del Centro Instagram de www.instagram.com" [ref=e336]
+        - generic [ref=e340]:
+          - generic [ref=e343]:
+            - link "Hoy comienza el Festival de Cine Latinoamericano ... Instagram · rosarioturismo Más de 180 \"me gusta\" · hace 1 año" [ref=e345] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/DKhZ0HNsbTt/
+              - heading "Hoy comienza el Festival de Cine Latinoamericano ..." [level=3] [ref=e346]
+              - generic [ref=e352]:
+                - generic [ref=e353]: Instagram · rosarioturismo
+                - generic [ref=e355]: Más de 180 "me gusta" · hace 1 año
+            - button "Acerca de este resultado" [ref=e359] [cursor=pointer]
+          - generic [ref=e366]:
+            - emphasis [ref=e367]: "Sedes: Cine Lumière, El Cairo, Cines del Centro"
+            - text: "y Complejo Astronómico. Mas Info www.desarrollozonal.com Link in Bio #DZ #Rosaro ..."
+          - link [ref=e370] [cursor=pointer]:
+            - /url: https://www.instagram.com/p/DKhZ0HNsbTt/
+            - img "Rosario festival de cine sedes El Cairo Lumiere Cines del Centro Instagram de www.instagram.com" [ref=e372]
+        - generic [ref=e376]:
+          - generic [ref=e379]:
+            - link "Rosarinos, preparen el pororó. El ... Instagram · radiofonica100.7 Más de 340 \"me gusta\" · hace 2 meses" [ref=e381] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/DY40cnbkdqG/
+              - heading "Rosarinos, preparen el pororó. El ..." [level=3] [ref=e382]
+              - generic [ref=e388]:
+                - generic [ref=e389]: Instagram · radiofonica100.7
+                - generic [ref=e391]: Más de 340 "me gusta" · hace 2 meses
+            - button "Acerca de este resultado" [ref=e395] [cursor=pointer]
+          - generic [ref=e402]:
+            - emphasis [ref=e403]: La función de apertura tendrá lugar el viernes 29 a las 19:00 en el Lumière
+            - text: con Nuestra Tierra, documental de Lucrecia Martel que tuvo su ...
+        - generic [ref=e409]:
+          - generic [ref=e412]:
+            - 'link "31° FESTIVAL DE CINE LATINOAMERICANO: MÁS DE 800 ... Instagram · somosrosariook Más de 140 \"me gusta\" · hace 3 meses" [ref=e414] [cursor=pointer]':
+              - /url: https://www.instagram.com/reel/DYBHRwgkxlA/
+              - 'heading "31° FESTIVAL DE CINE LATINOAMERICANO: MÁS DE 800 ..." [level=3] [ref=e415]'
+              - generic [ref=e421]:
+                - generic [ref=e422]: Instagram · somosrosariook
+                - generic [ref=e424]: Más de 140 "me gusta" · hace 3 meses
+            - button "Acerca de este resultado" [ref=e428] [cursor=pointer]
+          - generic [ref=e433]:
+            - 'link "31° FESTIVAL DE CINE LATINOAMERICANO: MÁS DE 800 ... de Somos Rosario en Instagram. Reproducir en Instagram. 3:44" [ref=e434] [cursor=pointer]':
+              - /url: https://www.instagram.com/reel/DYBHRwgkxlA/
+              - generic [ref=e435]: 3:44
+            - generic [ref=e444]: Con funciones gratuitas, totalmente gratuitas en Cine Lumière como sede principal... ... We are a few days away, four weeks from starting the 31st ...
+        - generic [ref=e449]:
+          - generic [ref=e452]:
+            - 'link "🎬 Del 5 al 15 de junio, #Rosario celebra la 30° edición del ... Instagram · ojodeprensa Más de 280 \"me gusta\" · hace 1 año" [ref=e454] [cursor=pointer]':
+              - /url: https://www.instagram.com/p/DKcNtBKJdsS/
+              - 'heading "🎬 Del 5 al 15 de junio, #Rosario celebra la 30° edición del ..." [level=3] [ref=e455]'
+              - generic [ref=e461]:
+                - generic [ref=e462]: Instagram · ojodeprensa
+                - generic [ref=e464]: Más de 280 "me gusta" · hace 1 año
+            - button "Acerca de este resultado" [ref=e468] [cursor=pointer]
+          - generic [ref=e475]:
+            - text: Durante diez días, el festival
+            - emphasis [ref=e476]: ofrece más de 40 funciones gratuitas
+            - text: ", proyecciones en competencia, películas invitadas, homenajes, experiencias ..."
+      - generic [ref=e478]:
+        - generic [ref=e483]:
+          - heading "También se buscó" [level=2] [ref=e485]
+          - generic [ref=e487]:
+            - generic [ref=e488]:
+              - link "Qué película dan hoy en el Cine Lumière" [ref=e492] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Qu%C3%A9+pel%C3%ADcula+dan+hoy+en+el+Cine+Lumi%C3%A8re&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ1QJ6BAglEAE
+              - link "Cine lumiere en rosario" [ref=e506] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+lumiere+en+rosario&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ1QJ6BAg0EAE
+              - link "Lumier cine" [ref=e520] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Lumier+cine&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ1QJ6BAgzEAE
+              - link "Agenda Lumière" [ref=e534] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Agenda+Lumi%C3%A8re&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ1QJ6BAgvEAE
+            - generic [ref=e545]:
+              - link "Cine teatro lumiere" [ref=e549] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+teatro+lumiere&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ1QJ6BAguEAE
+              - link "Cine gratuito Rosario" [ref=e563] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+gratuito+Rosario&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ1QJ6BAgrEAE
+              - link "Taller de cine Rosario" [ref=e577] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Taller+de+cine+Rosario&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ1QJ6BAgnEAE
+              - link "Lumine cine" [ref=e591] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Lumine+cine&sa=X&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ1QJ6BAgmEAE
+        - navigation [ref=e602]:
+          - heading "Navegación de páginas" [level=1] [ref=e603]
+          - text: "1"
+          - link "Page 2" [ref=e606] [cursor=pointer]:
+            - /url: /search?q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sca_esv=569d465b5b1d57df&ei=Ldt2atLMCvn75OUP0-XegQs&start=10&sa=N&sstk=AU9db-Bf0uI4O53ia8m_nuIMumGJ9tIXM9dG1Q8Y0tqAgpnX1MlBLNXkYvvxJPvuz8vyWUwOtGWdnaGHWVAeRNm03gQbbnAdg51hqQ&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ8tMDegQIIRAE
+            - text: "2"
+          - link "Page 3" [ref=e608] [cursor=pointer]:
+            - /url: /search?q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sca_esv=569d465b5b1d57df&ei=Ldt2atLMCvn75OUP0-XegQs&start=20&sa=N&sstk=AU9db-Bf0uI4O53ia8m_nuIMumGJ9tIXM9dG1Q8Y0tqAgpnX1MlBLNXkYvvxJPvuz8vyWUwOtGWdnaGHWVAeRNm03gQbbnAdg51hqQ&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ8tMDegQIIRAG
+            - text: "3"
+          - link "Page 4" [ref=e610] [cursor=pointer]:
+            - /url: /search?q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sca_esv=569d465b5b1d57df&ei=Ldt2atLMCvn75OUP0-XegQs&start=30&sa=N&sstk=AU9db-Bf0uI4O53ia8m_nuIMumGJ9tIXM9dG1Q8Y0tqAgpnX1MlBLNXkYvvxJPvuz8vyWUwOtGWdnaGHWVAeRNm03gQbbnAdg51hqQ&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ8tMDegQIIRAI
+            - text: "4"
+          - link "Page 5" [ref=e612] [cursor=pointer]:
+            - /url: /search?q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sca_esv=569d465b5b1d57df&ei=Ldt2atLMCvn75OUP0-XegQs&start=40&sa=N&sstk=AU9db-Bf0uI4O53ia8m_nuIMumGJ9tIXM9dG1Q8Y0tqAgpnX1MlBLNXkYvvxJPvuz8vyWUwOtGWdnaGHWVAeRNm03gQbbnAdg51hqQ&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ8tMDegQIIRAK
+            - text: "5"
+          - link "Page 6" [ref=e614] [cursor=pointer]:
+            - /url: /search?q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sca_esv=569d465b5b1d57df&ei=Ldt2atLMCvn75OUP0-XegQs&start=50&sa=N&sstk=AU9db-Bf0uI4O53ia8m_nuIMumGJ9tIXM9dG1Q8Y0tqAgpnX1MlBLNXkYvvxJPvuz8vyWUwOtGWdnaGHWVAeRNm03gQbbnAdg51hqQ&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ8tMDegQIIRAM
+            - text: "6"
+          - link "Page 7" [ref=e616] [cursor=pointer]:
+            - /url: /search?q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sca_esv=569d465b5b1d57df&ei=Ldt2atLMCvn75OUP0-XegQs&start=60&sa=N&sstk=AU9db-Bf0uI4O53ia8m_nuIMumGJ9tIXM9dG1Q8Y0tqAgpnX1MlBLNXkYvvxJPvuz8vyWUwOtGWdnaGHWVAeRNm03gQbbnAdg51hqQ&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ8tMDegQIIRAO
+            - text: "7"
+          - link "Page 8" [ref=e618] [cursor=pointer]:
+            - /url: /search?q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sca_esv=569d465b5b1d57df&ei=Ldt2atLMCvn75OUP0-XegQs&start=70&sa=N&sstk=AU9db-Bf0uI4O53ia8m_nuIMumGJ9tIXM9dG1Q8Y0tqAgpnX1MlBLNXkYvvxJPvuz8vyWUwOtGWdnaGHWVAeRNm03gQbbnAdg51hqQ&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ8tMDegQIIRAQ
+            - text: "8"
+          - link "Page 9" [ref=e620] [cursor=pointer]:
+            - /url: /search?q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sca_esv=569d465b5b1d57df&ei=Ldt2atLMCvn75OUP0-XegQs&start=80&sa=N&sstk=AU9db-Bf0uI4O53ia8m_nuIMumGJ9tIXM9dG1Q8Y0tqAgpnX1MlBLNXkYvvxJPvuz8vyWUwOtGWdnaGHWVAeRNm03gQbbnAdg51hqQ&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ8tMDegQIIRAS
+            - text: "9"
+          - link "Page 10" [ref=e622] [cursor=pointer]:
+            - /url: /search?q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sca_esv=569d465b5b1d57df&ei=Ldt2atLMCvn75OUP0-XegQs&start=90&sa=N&sstk=AU9db-Bf0uI4O53ia8m_nuIMumGJ9tIXM9dG1Q8Y0tqAgpnX1MlBLNXkYvvxJPvuz8vyWUwOtGWdnaGHWVAeRNm03gQbbnAdg51hqQ&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ8tMDegQIIRAU
+            - text: "10"
+          - heading [level=2] [ref=e624]:
+            - link "Siguiente" [ref=e625] [cursor=pointer]:
+              - /url: /search?q=Rosario+festival+de+cine+sedes+El+Cairo+Lumiere+Cines+del+Centro+Instagram&sca_esv=569d465b5b1d57df&ei=Ldt2atLMCvn75OUP0-XegQs&start=10&sa=N&sstk=AU9db-Bf0uI4O53ia8m_nuIMumGJ9tIXM9dG1Q8Y0tqAgpnX1MlBLNXkYvvxJPvuz8vyWUwOtGWdnaGHWVAeRNm03gQbbnAdg51hqQ&ved=2ahUKEwiSl_jOwZCWAxX5PbkGHdOyN7AQ8NMDegQIIRAW
+      - navigation
+    - contentinfo [ref=e628]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e629]
+      - generic [ref=e633]:
+        - generic [ref=e635]:
+          - text: Argentina
+          - generic [ref=e637]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e639] [cursor=pointer]:
+              - generic [ref=e640]: Iriondo, Santa Fe
+              - generic [ref=e642]:
+                - text: "-"
+                - generic [ref=e643]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e645] [cursor=pointer]
+        - generic [ref=e648]:
+          - link "Ayuda" [ref=e649] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e650] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e651] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e652] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

@@ -40,12 +40,20 @@ const createMockQueryRunner = () => ({
                 return { id: 'generated-id' };
             }
             const typedEntity = entity as Record<string, unknown>;
-            const savedEntity = { ...typedEntity, id: typedEntity.id || `generated-${Date.now()}-${Math.random()}` };
+            const generatedId = 'saleNumber' in typedEntity ? 'generated-id' : `generated-${Date.now()}-${Math.random()}`;
+            const savedEntity = { ...typedEntity, id: typedEntity.id || generatedId };
 
             if (entity && typeof entity === 'object' && 'paymentMethodId' in entity && 'amount' in entity) {
                 const payments = savedEntities.get('payments') || [];
                 payments.push(savedEntity);
                 savedEntities.set('payments', payments);
+            }
+
+            if (entity && typeof entity === 'object' && 'productId' in entity && 'quantity' in entity && 'unitPrice' in entity) {
+                const sale = mockCompletedSaleForFindOne as { items?: unknown[] } | null;
+                if (sale && (sale.items ?? []).length === 0) {
+                    sale.items = [...(sale.items ?? []), savedEntity];
+                }
             }
 
             return savedEntity;
@@ -74,6 +82,12 @@ beforeEach(() => {
         const products = await Promise.all(ids.map((id) => mockProductsService.findOne(id)));
         return products.filter(Boolean);
     });
+    mockConfigurationService.getCapabilitiesResponse.mockResolvedValue({
+        capabilities: {
+            'POLICY.manual_discount_reason': false,
+            'POLICY.price_override_reason': false,
+        },
+    });
 });
 
 afterEach(() => {
@@ -83,7 +97,7 @@ afterEach(() => {
 });
 
 const mockRepository = () => ({
-    create: jest.fn(),
+    create: jest.fn((value) => value),
     save: jest.fn(),
     findOne: jest.fn(),
     find: jest.fn(),
@@ -139,6 +153,12 @@ const mockAuditService = {
 
 const mockConfigurationService = {
     isOutOfStockSaleAllowed: jest.fn().mockResolvedValue(false),
+    getCapabilitiesResponse: jest.fn().mockResolvedValue({
+        capabilities: {
+            'POLICY.manual_discount_reason': false,
+            'POLICY.price_override_reason': false,
+        },
+    }),
 };
 
 describe('SalesService - critical flows', () => {
@@ -421,8 +441,94 @@ describe('SalesService - critical flows', () => {
                     productId: 'product-1',
                     quantity: 2,
                     type: 'OUT',
-                })
+                }),
+                expect.anything(),
             );
+        });
+
+        it('debe descontar unidades base al vender un pack', async () => {
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+            mockProductsService.findByIds.mockResolvedValue([
+                {
+                    id: 'product-1',
+                    stock: 10,
+                    sku: 'SKU1',
+                    name: 'Gaseosa lata',
+                    packs: [{ id: 'pack-1', packBarcode: 'PACK-6', unitsPerPack: 6 }],
+                },
+            ]);
+            mockCompletedSaleForFindOne = {
+                id: 'sale-1',
+                saleNumber: 'VENTA-2026-00001',
+                status: SaleStatus.COMPLETED,
+                saleDate: new Date(),
+                items: [],
+                payments: [],
+                customer: null,
+                createdBy: null,
+                invoice: null,
+            };
+            mockPaymentsForSale = [
+                { id: 'payment-1', paymentMethodId: 'pm-1', amount: 500, saleId: 'sale-1' },
+            ];
+
+            const dto = {
+                items: [{ productId: 'product-1', packId: 'pack-1', quantity: 1, unitPrice: 500 }],
+                payments: [{ paymentMethodId: 'pm-1', amount: 500 }],
+            } as CreateSaleDto;
+
+            await service.create(dto, 'user-1');
+
+            expect(mockInventoryService.createMovement).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    productId: 'product-1',
+                    quantity: 6,
+                    type: 'OUT',
+                }),
+                expect.anything(),
+            );
+        });
+
+        it('debe descontar componentes al vender un bundle', async () => {
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+            mockProductsService.findByIds.mockResolvedValue([
+                {
+                    id: 'bundle-1',
+                    stock: 10,
+                    sku: 'BUNDLE1',
+                    name: 'Kit desayuno',
+                    bundleComponents: [
+                        { componentProductId: 'coffee-1', componentQuantity: 1, componentProduct: { id: 'coffee-1', name: 'Café', stock: 10 } },
+                        { componentProductId: 'milk-1', componentQuantity: 2, componentProduct: { id: 'milk-1', name: 'Leche', stock: 10 } },
+                        { componentProductId: 'sugar-1', componentQuantity: 3, componentProduct: { id: 'sugar-1', name: 'Azúcar', stock: 10 } },
+                    ],
+                },
+            ]);
+            mockCompletedSaleForFindOne = {
+                id: 'sale-1',
+                saleNumber: 'VENTA-2026-00001',
+                status: SaleStatus.COMPLETED,
+                saleDate: new Date(),
+                items: [],
+                payments: [],
+                customer: null,
+                createdBy: null,
+                invoice: null,
+            };
+            mockPaymentsForSale = [
+                { id: 'payment-1', paymentMethodId: 'pm-1', amount: 1000, saleId: 'sale-1' },
+            ];
+
+            const dto: CreateSaleDto = {
+                items: [{ productId: 'bundle-1', quantity: 1, unitPrice: 1000 }],
+                payments: [{ paymentMethodId: 'pm-1', amount: 1000 }],
+            };
+
+            await service.create(dto, 'user-1');
+
+            expect(mockInventoryService.createMovement).toHaveBeenCalledWith(expect.objectContaining({ productId: 'coffee-1', quantity: 1, type: 'OUT' }), expect.anything());
+            expect(mockInventoryService.createMovement).toHaveBeenCalledWith(expect.objectContaining({ productId: 'milk-1', quantity: 2, type: 'OUT' }), expect.anything());
+            expect(mockInventoryService.createMovement).toHaveBeenCalledWith(expect.objectContaining({ productId: 'sugar-1', quantity: 3, type: 'OUT' }), expect.anything());
         });
 
         it('debe permitir venta sin stock cuando allowOutOfStockSale está activo', async () => {
@@ -478,6 +584,44 @@ describe('SalesService - critical flows', () => {
             await expect(service.create(dto)).rejects.toThrow(
                 new BadRequestException('Stock insuficiente para "Producto Test". Disponible: 0, Solicitado: 1')
             );
+        });
+
+        it('debe rechazar bundle con componente inexistente', async () => {
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+            mockProductsService.findByIds.mockResolvedValue([
+                {
+                    id: 'bundle-1',
+                    stock: 10,
+                    sku: 'BUNDLE1',
+                    name: 'Kit inválido',
+                    bundleComponents: [{ componentProductId: 'missing-1', componentQuantity: 1, componentProduct: null }],
+                },
+            ]);
+
+            await expect(service.create({
+                items: [{ productId: 'bundle-1', quantity: 1, unitPrice: 100 }],
+                payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+            })).rejects.toThrow(BadRequestException);
+        });
+
+        it('debe rechazar bundle con componentes insuficientes cuando allowOutOfStockSale está apagado', async () => {
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+            mockProductsService.findByIds.mockResolvedValue([
+                {
+                    id: 'bundle-1',
+                    stock: 10,
+                    sku: 'BUNDLE1',
+                    name: 'Kit desayuno',
+                    bundleComponents: [
+                        { componentProductId: 'coffee-1', componentQuantity: 2, componentProduct: { id: 'coffee-1', name: 'Café', stock: 1 } },
+                    ],
+                },
+            ]);
+
+            await expect(service.create({
+                items: [{ productId: 'bundle-1', quantity: 1, unitPrice: 100 }],
+                payments: [{ paymentMethodId: 'pm-1', amount: 100 }],
+            })).rejects.toThrow(new BadRequestException('Stock insuficiente para "Café". Disponible: 1, Solicitado: 2'));
         });
     });
 
@@ -792,9 +936,152 @@ describe('SalesService - critical flows', () => {
             expect(result.discount).toBe(30);
             expect(result.total).toBe(170);
         });
+
+        it('no debe romper con DTO mínimo sin taxes ni payments (regresión HTTP 500)', async () => {
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+            mockProductsService.findOne.mockResolvedValue({
+                id: 'product-1',
+                stock: 10,
+                sku: 'SKU1',
+                name: 'Producto Test'
+            });
+
+            mockCompletedSaleForFindOne = {
+                id: 'sale-1',
+                saleNumber: 'VENTA-2026-00001',
+                status: SaleStatus.COMPLETED,
+                items: [],
+                payments: [],
+                customer: null,
+                createdBy: null,
+                invoice: null,
+                subtotal: 100,
+                discount: 0,
+                tax: 0,
+                total: 100,
+            };
+
+            const dto: CreateSaleDto = {
+                items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+            };
+
+            await expect(service.create(dto, 'user-1')).resolves.toBeTruthy();
+        });
+
+        it('debe rechazar con 400 si el descuento supera el subtotal', async () => {
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+            mockProductsService.findOne.mockResolvedValue({
+                id: 'product-1',
+                stock: 10,
+                sku: 'SKU1',
+                name: 'Producto Test'
+            });
+
+            const dto: CreateSaleDto = {
+                items: [{ productId: 'product-1', quantity: 2, unitPrice: 150 }],
+                discount: 400,
+                payments: [{ paymentMethodId: 'pm-1', amount: 400 }],
+            };
+
+            await expect(service.create(dto, 'user-1')).rejects.toThrow(
+                'El descuento no puede superar el subtotal de la venta'
+            );
+        });
     });
 
     describe('auditoría', () => {
+        it('debe exigir razón cuando el descuento manual está habilitado', async () => {
+            // Given
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+            mockConfigurationService.getCapabilitiesResponse.mockResolvedValue({
+                capabilities: {
+                    'POLICY.manual_discount_reason': true,
+                    'POLICY.price_override_reason': false,
+                },
+            });
+            mockProductsService.findOne.mockResolvedValue({
+                id: 'product-1',
+                stock: 10,
+                sku: 'SKU1',
+                name: 'Producto',
+                price: 100,
+            });
+
+            const dto = {
+                discount: 10,
+                items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+                payments: [{ paymentMethodId: 'pm-1', amount: 90 }],
+            } as CreateSaleDto;
+
+            // When / Then
+            await expect(service.create(dto, 'user-1')).rejects.toThrow(
+                new BadRequestException('Debe indicar una razón para aplicar descuento manual')
+            );
+        });
+
+        it('debe auditar descuento manual y precio modificado cuando tienen razón', async () => {
+            // Given
+            mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
+            mockConfigurationService.getCapabilitiesResponse.mockResolvedValue({
+                capabilities: {
+                    'POLICY.manual_discount_reason': true,
+                    'POLICY.price_override_reason': true,
+                },
+            });
+            mockProductsService.findOne.mockResolvedValue({
+                id: 'product-1',
+                stock: 10,
+                sku: 'SKU1',
+                name: 'Producto',
+                price: 120,
+            });
+            mockCompletedSaleForFindOne = {
+                id: 'sale-1',
+                saleNumber: 'VENTA-2026-00001',
+                status: SaleStatus.COMPLETED,
+                items: [],
+                payments: [],
+                customer: null,
+                createdBy: null,
+                invoice: null,
+            };
+
+            const dto = {
+                discount: 10,
+                manualDiscountReason: 'Cliente frecuente',
+                priceOverrideReason: 'Precio de góndola',
+                items: [{ productId: 'product-1', quantity: 1, unitPrice: 100 }],
+                payments: [{ paymentMethodId: 'pm-1', amount: 90 }],
+            } as CreateSaleDto;
+
+            // When
+            await service.create(dto, 'user-1');
+
+            // Then
+            expect(mockAuditService.logSilent).toHaveBeenCalledWith(expect.objectContaining({
+                entityType: 'sale',
+                entityId: 'sale-1',
+                action: 'UPDATE',
+                userId: 'user-1',
+                metadata: {
+                    policy: 'POLICY.manual_discount_reason',
+                    reason: 'Cliente frecuente',
+                    discount: 10,
+                },
+            }));
+            expect(mockAuditService.logSilent).toHaveBeenCalledWith(expect.objectContaining({
+                entityType: 'sale',
+                entityId: 'sale-1',
+                action: 'UPDATE',
+                userId: 'user-1',
+                metadata: {
+                    policy: 'POLICY.price_override_reason',
+                    reason: 'Precio de góndola',
+                    items: [{ productId: 'product-1', expectedUnitPrice: 120, actualUnitPrice: 100 }],
+                },
+            }));
+        });
+
         it('debe registrar auditoría al crear venta', async () => {
             mockCashRegisterService.getOpenRegister.mockResolvedValue({ id: 'cash-1' });
             mockProductsService.findOne.mockResolvedValue({
@@ -2938,6 +3225,30 @@ describe('SalesService - completeSaleAfterReplenishment', () => {
         expect(mockInventoryService.recordMovementInLocation).toHaveBeenCalledWith(
             expect.objectContaining({ productId: 'product-1', locationId: 'loc-primary', quantity: 3, manager: expect.anything() }),
         );
+    });
+
+    it('rechaza una tara inconsistente antes de reponer y vender un producto medible', async () => {
+        mockProductsService.findByIds.mockResolvedValue([{
+            id: 'product-1',
+            stock: 5,
+            sku: 'SKU1',
+            name: 'Producto medible',
+            isMeasure: true,
+            tareGrams: 125,
+        }]);
+
+        await expect(
+            service.completeSaleAfterReplenishment(
+                {
+                    items: [{ productId: 'product-1', quantity: 0.5, grossQuantity: 0.75, unitPrice: 100 }],
+                    payments: [{ paymentMethodId: 'pm-1', amount: 50 }],
+                },
+                [{ productId: 'product-1', fromLocationId: 'loc-storage', quantity: 1 }],
+                'user-1',
+            ),
+        ).rejects.toThrow('La cantidad neta no coincide con el peso bruto menos la tara');
+
+        expect(mockInventoryService.transfer).not.toHaveBeenCalled();
     });
 
     it('rollbackea todo si un traslado falla (la venta no se persiste)', async () => {

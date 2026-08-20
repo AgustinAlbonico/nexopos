@@ -67,7 +67,15 @@ export class StockMovement {
     })
     source!: StockMovementSource;
 
-    @Column('int')
+    @Column({
+        type: 'decimal',
+        precision: 20,
+        scale: 3,
+        transformer: {
+            to: (value: number) => value,
+            from: (value: string) => Number.parseFloat(value) || 0,
+        },
+    })
     quantity!: number;
 
     @Column('decimal', { precision: 20, scale: 2, nullable: true })

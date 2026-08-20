@@ -1,0 +1,231 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4QpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: Funes cine club Instagram sitio Funes cine club Instagram sitio
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3DFunes%2Bcine%2Bclub%2BInstagram%2Bsitio&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=Funes+cine+club+Instagram+sitio&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q2J8OegQIExAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Funes+cine+club+Instagram+sitio&sa=X&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4QtKgLegQIGRAB
+          - listitem [ref=e94]:
+            - link "Vídeos cortos" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Funes+cine+club+Instagram+sitio&sa=X&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Qs6gLegQIFhAB
+          - listitem [ref=e98]:
+            - link "Noticias" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=Funes+cine+club+Instagram+sitio&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&sa=X&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q0pQJegQIFxAB
+          - listitem [ref=e102]:
+            - link "Vídeos" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Funes+cine+club+Instagram+sitio&sa=X&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4QtKgLegQIFRAB
+          - listitem [ref=e106]:
+            - link "Shopping" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Funes+cine+club+Instagram+sitio&ved=1t:220175&ictx=111
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - generic [ref=e131]:
+      - generic [ref=e150]:
+        - heading "Pensando" [level=2] [ref=e154]
+        - progressbar "Generando" [ref=e157]
+      - main [ref=e159]:
+        - generic [ref=e163]:
+          - generic [ref=e166]:
+            - heading "Resultados web" [level=2] [ref=e167]
+            - generic [ref=e168]:
+              - generic [ref=e171]:
+                - link "🎥🍿La Clínica de Cine de Funes invita a disfrutar de ... Instagram · infofunes Más de 260 \"me gusta\" · hace 10 meses" [ref=e173] [cursor=pointer]:
+                  - /url: https://www.instagram.com/p/DPhnUR7DKf5/
+                  - heading "🎥🍿La Clínica de Cine de Funes invita a disfrutar de ..." [level=3] [ref=e174]
+                  - generic [ref=e180]:
+                    - generic [ref=e181]: Instagram · infofunes
+                    - generic [ref=e183]: Más de 260 "me gusta" · hace 10 meses
+                - button "Acerca de este resultado" [ref=e187] [cursor=pointer]
+              - generic [ref=e194]:
+                - emphasis [ref=e195]: La Clínica de Cine de Funes
+                - text: "invita a disfrutar de una noche especial con el estreno de sus dos nuevas producciones audiovisuales: La ..."
+          - generic [ref=e201]:
+            - generic [ref=e204]:
+              - link "📽️ Se estrena la primer película hecha en Funes, “La Fiesta ... Instagram · infofunes Más de 490 \"me gusta\" · hace 2 años" [ref=e206] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/C4Y4CdNRtqh/?hl=es
+                - heading "📽️ Se estrena la primer película hecha en Funes, “La Fiesta ..." [level=3] [ref=e207]
+                - generic [ref=e213]:
+                  - generic [ref=e214]: Instagram · infofunes
+                  - generic [ref=e216]: Más de 490 "me gusta" · hace 2 años
+              - button "Acerca de este resultado" [ref=e220] [cursor=pointer]
+            - generic [ref=e225]:
+              - link "📽️ Se estrena la primer película hecha en Funes, “La Fiesta ... de InfoFunes | Portal de noticias en Instagram. Reproducir en Instagram. 5:23" [ref=e226] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/C4Y4CdNRtqh/?hl=es
+                - generic [ref=e227]: 5:23
+              - generic [ref=e239]: ... Cine Club, participa Provincia y también Municipalidad en la organización del evento. Les pedimos que todos aquellos quieran proyectar algo ...
+          - generic [ref=e244]:
+            - generic [ref=e247]:
+              - link "UNRaf | 📽️ Nueva función del @cineclub ... Instagram · unraf.rafaela Más de 20 \"me gusta\" · hace 1 semana" [ref=e249] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DbTaxbEFSnN/
+                - heading "UNRaf | 📽️ Nueva función del @cineclub ..." [level=3] [ref=e250]
+                - generic [ref=e256]:
+                  - generic [ref=e257]: Instagram · unraf.rafaela
+                  - generic [ref=e259]: Más de 20 "me gusta" · hace 1 semana
+              - button "Acerca de este resultado" [ref=e263] [cursor=pointer]
+            - generic [ref=e268]: "Te esperamos para disfrutar de tres películas que harán viajar a grandes y chicos. Programación de la primera semana: Martes 7 | 16:30 hs."
+          - generic [ref=e273]:
+            - generic [ref=e276]:
+              - link "CINE EN VACACIONES DE INVIERNO Disfrutá de tardes a ... Instagram · deanfunesciudad 7 me gusta · hace 3 semanas" [ref=e278] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DavU_TUkX_Q/
+                - heading "CINE EN VACACIONES DE INVIERNO Disfrutá de tardes a ..." [level=3] [ref=e279]
+                - generic [ref=e285]:
+                  - generic [ref=e286]: Instagram · deanfunesciudad
+                  - generic [ref=e288]: 7 me gusta · hace 3 semanas
+              - button "Acerca de este resultado" [ref=e292] [cursor=pointer]
+            - generic [ref=e299]:
+              - emphasis [ref=e300]: CINE EN VACACIONES DE INVIERNO
+              - text: Disfrutá de tardes a puro cine en estas vacaciones. Vení a compartir funciónes especiales en el Centro ...
+          - generic [ref=e306]:
+            - generic [ref=e309]:
+              - 'link "FINCI CINE CLUB | SER O NO SER Dirección: @0800brb ... Instagram · mdm_filmdistribution 8 me gusta · hace 6 meses" [ref=e311] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DTx6Cc-kamG/
+                - 'heading "FINCI CINE CLUB | SER O NO SER Dirección: @0800brb ..." [level=3] [ref=e312]'
+                - generic [ref=e318]:
+                  - generic [ref=e319]: Instagram · mdm_filmdistribution
+                  - generic [ref=e321]: 8 me gusta · hace 6 meses
+              - button "Acerca de este resultado" [ref=e325] [cursor=pointer]
+            - generic [ref=e330]:
+              - 'link "FINCI CINE CLUB | SER O NO SER Dirección: @0800brb ... de MDM FILM DISTRIBUTION en Instagram. Reproducir en Instagram. 4:04" [ref=e331] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DTx6Cc-kamG/
+                - generic [ref=e332]: 4:04
+              - generic [ref=e341]: "FINCI CINE CLUB | SER O NO SER Dirección: @0800brb · @ddigitalaila · @thomattwell · @nahuelportrait cámara y edición."
+          - generic [ref=e346]:
+            - generic [ref=e349]:
+              - link "MADRES Cineclub Podrido (@madrescineclub) Instagram · madrescineclub Más de 71,8 k seguidores" [ref=e351] [cursor=pointer]:
+                - /url: https://www.instagram.com/madrescineclub/?hl=es
+                - heading "MADRES Cineclub Podrido (@madrescineclub)" [level=3] [ref=e352]
+                - generic [ref=e358]:
+                  - generic [ref=e359]: Instagram · madrescineclub
+                  - generic [ref=e361]: Más de 71,8 k seguidores
+              - button "Acerca de este resultado" [ref=e365] [cursor=pointer]
+            - generic [ref=e372]:
+              - emphasis [ref=e373]: Otra manera de vivir el cine que nos gusta
+              - text: . Ciclo nómade, locaciones especiales. Toda fantasía es posible en MADRES. Follow. Message.
+          - generic [ref=e377]:
+            - generic [ref=e380]:
+              - link "¡MIGUEL ÁNGEL SOLÁ Y MERCEDES FUNES LLEGAN A ... Instagram · donaji_diariodigital 6 me gusta · hace 2 meses" [ref=e382] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DYuc3NRFoAF/
+                - heading "¡MIGUEL ÁNGEL SOLÁ Y MERCEDES FUNES LLEGAN A ..." [level=3] [ref=e383]
+                - generic [ref=e389]:
+                  - generic [ref=e390]: Instagram · donaji_diariodigital
+                  - generic [ref=e392]: 6 me gusta · hace 2 meses
+              - button "Acerca de este resultado" [ref=e396] [cursor=pointer]
+            - generic [ref=e401]: "Filas 13 a 19: $60.000. Filas 20 a 24: $55.000. Platea Alta: $40.000 Podés adquirirlas a través del siguiente enlace: https://www.entradaweb."
+          - generic [ref=e408]:
+            - generic [ref=e411]:
+              - link "Quedan las dos últimas funciones de julio en el ... Instagram · puntodefuga.cine Más de 40 \"me gusta\" · hace 2 semanas" [ref=e413] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DbJyadbvWud/
+                - heading "Quedan las dos últimas funciones de julio en el ..." [level=3] [ref=e414]
+                - generic [ref=e420]:
+                  - generic [ref=e421]: Instagram · puntodefuga.cine
+                  - generic [ref=e423]: Más de 40 "me gusta" · hace 2 semanas
+              - button "Acerca de este resultado" [ref=e427] [cursor=pointer]
+            - generic [ref=e432]:
+              - link "Quedan las dos últimas funciones de julio en el ... de Punto de Fuga Cine en Instagram. Reproducir en Instagram. 0:44" [ref=e433] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DbJyadbvWud/
+                - generic [ref=e434]: 0:44
+              - generic [ref=e443]: Qué buen lugar, este cineclub!!! . July 17. Transcript. Cine... cine club... English Transcript. Cinema... cinema club... OCR. CINE CLUB LOS ...
+          - generic [ref=e448]:
+            - generic [ref=e451]:
+              - link "SushiClub Funes (@sushiclubfunes) Instagram · sushiclubfunes Más de 7,4 K seguidores" [ref=e453] [cursor=pointer]:
+                - /url: https://www.instagram.com/sushiclubfunes/?hl=es
+                - heading "SushiClub Funes (@sushiclubfunes)" [level=3] [ref=e454]
+                - generic [ref=e460]:
+                  - generic [ref=e461]: Instagram · sushiclubfunes
+                  - generic [ref=e463]: Más de 7,4 K seguidores
+              - button "Acerca de este resultado" [ref=e467] [cursor=pointer]
+            - generic [ref=e474]:
+              - text: Exclusivo TakeAway Abierto todos los días
+              - emphasis [ref=e475]: Av. Fuerza aérea 2130, Funes
+              - text: "TakeAway | 19 a 23 hs Teléfono: 341 231 0406 · 30 piezas ⏩️ 35% OFF!! ✨Los ..."
+        - navigation [ref=e478]:
+          - heading "Navegación de páginas" [level=1] [ref=e479]
+          - text: "1"
+          - link "Page 2" [ref=e482] [cursor=pointer]:
+            - /url: /search?q=Funes+cine+club+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=X9p2ar7kLbXa5OUPndGe8AM&start=10&sa=N&sstk=AU9db-C4SBs2iN5hgHzOQQrmk0nR-rsY-Ghns_-EtgzrHJWOUqRNc0X5tMIHcW3HaOgmViEDvDc0XlH5Tkp5J65cGgD3jp2l5wYwiA&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q8tMDegQIIBAE
+            - text: "2"
+          - link "Page 3" [ref=e484] [cursor=pointer]:
+            - /url: /search?q=Funes+cine+club+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=X9p2ar7kLbXa5OUPndGe8AM&start=20&sa=N&sstk=AU9db-C4SBs2iN5hgHzOQQrmk0nR-rsY-Ghns_-EtgzrHJWOUqRNc0X5tMIHcW3HaOgmViEDvDc0XlH5Tkp5J65cGgD3jp2l5wYwiA&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q8tMDegQIIBAG
+            - text: "3"
+          - link "Page 4" [ref=e486] [cursor=pointer]:
+            - /url: /search?q=Funes+cine+club+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=X9p2ar7kLbXa5OUPndGe8AM&start=30&sa=N&sstk=AU9db-C4SBs2iN5hgHzOQQrmk0nR-rsY-Ghns_-EtgzrHJWOUqRNc0X5tMIHcW3HaOgmViEDvDc0XlH5Tkp5J65cGgD3jp2l5wYwiA&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q8tMDegQIIBAI
+            - text: "4"
+          - link "Page 5" [ref=e488] [cursor=pointer]:
+            - /url: /search?q=Funes+cine+club+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=X9p2ar7kLbXa5OUPndGe8AM&start=40&sa=N&sstk=AU9db-C4SBs2iN5hgHzOQQrmk0nR-rsY-Ghns_-EtgzrHJWOUqRNc0X5tMIHcW3HaOgmViEDvDc0XlH5Tkp5J65cGgD3jp2l5wYwiA&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q8tMDegQIIBAK
+            - text: "5"
+          - link "Page 6" [ref=e490] [cursor=pointer]:
+            - /url: /search?q=Funes+cine+club+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=X9p2ar7kLbXa5OUPndGe8AM&start=50&sa=N&sstk=AU9db-C4SBs2iN5hgHzOQQrmk0nR-rsY-Ghns_-EtgzrHJWOUqRNc0X5tMIHcW3HaOgmViEDvDc0XlH5Tkp5J65cGgD3jp2l5wYwiA&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q8tMDegQIIBAM
+            - text: "6"
+          - link "Page 7" [ref=e492] [cursor=pointer]:
+            - /url: /search?q=Funes+cine+club+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=X9p2ar7kLbXa5OUPndGe8AM&start=60&sa=N&sstk=AU9db-C4SBs2iN5hgHzOQQrmk0nR-rsY-Ghns_-EtgzrHJWOUqRNc0X5tMIHcW3HaOgmViEDvDc0XlH5Tkp5J65cGgD3jp2l5wYwiA&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q8tMDegQIIBAO
+            - text: "7"
+          - link "Page 8" [ref=e494] [cursor=pointer]:
+            - /url: /search?q=Funes+cine+club+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=X9p2ar7kLbXa5OUPndGe8AM&start=70&sa=N&sstk=AU9db-C4SBs2iN5hgHzOQQrmk0nR-rsY-Ghns_-EtgzrHJWOUqRNc0X5tMIHcW3HaOgmViEDvDc0XlH5Tkp5J65cGgD3jp2l5wYwiA&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q8tMDegQIIBAQ
+            - text: "8"
+          - link "Page 9" [ref=e496] [cursor=pointer]:
+            - /url: /search?q=Funes+cine+club+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=X9p2ar7kLbXa5OUPndGe8AM&start=80&sa=N&sstk=AU9db-C4SBs2iN5hgHzOQQrmk0nR-rsY-Ghns_-EtgzrHJWOUqRNc0X5tMIHcW3HaOgmViEDvDc0XlH5Tkp5J65cGgD3jp2l5wYwiA&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q8tMDegQIIBAS
+            - text: "9"
+          - link "Page 10" [ref=e498] [cursor=pointer]:
+            - /url: /search?q=Funes+cine+club+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=X9p2ar7kLbXa5OUPndGe8AM&start=90&sa=N&sstk=AU9db-C4SBs2iN5hgHzOQQrmk0nR-rsY-Ghns_-EtgzrHJWOUqRNc0X5tMIHcW3HaOgmViEDvDc0XlH5Tkp5J65cGgD3jp2l5wYwiA&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q8tMDegQIIBAU
+            - text: "10"
+          - heading [level=2] [ref=e500]:
+            - link "Siguiente" [ref=e501] [cursor=pointer]:
+              - /url: /search?q=Funes+cine+club+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=X9p2ar7kLbXa5OUPndGe8AM&start=10&sa=N&sstk=AU9db-C4SBs2iN5hgHzOQQrmk0nR-rsY-Ghns_-EtgzrHJWOUqRNc0X5tMIHcW3HaOgmViEDvDc0XlH5Tkp5J65cGgD3jp2l5wYwiA&ved=2ahUKEwj-j_7swJCWAxU1LbkGHZ2oBz4Q8NMDegQIIBAW
+        - navigation
+    - contentinfo [ref=e504]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e505]
+      - generic [ref=e509]:
+        - generic [ref=e511]:
+          - text: Argentina
+          - generic [ref=e513]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e515] [cursor=pointer]:
+              - generic [ref=e516]: Iriondo, Santa Fe
+              - generic [ref=e518]:
+                - text: "-"
+                - generic [ref=e519]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e521] [cursor=pointer]
+        - generic [ref=e524]:
+          - link "Ayuda" [ref=e525] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e526] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e527] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e528] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

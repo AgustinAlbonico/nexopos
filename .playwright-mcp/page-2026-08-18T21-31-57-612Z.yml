@@ -1,0 +1,128 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                        - text: Coca
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 1 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Coca-Cola 1.5L
+                            - cell:
+                              - generic: Limpieza
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 0,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "1"
+                            - cell:
+                              - button [expanded]:
+                                - generic: Abrir menú
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 1
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button [disabled]: Siguiente
+    - region "Notifications alt+T"
+  - generic: $0k
+  - menu "Abrir menú" [active] [ref=e681]:
+    - generic [ref=e682]: Acciones
+    - menuitem "Ver Detalle" [ref=e683]
+    - menuitem "Generar Variantes (Talles/Colores)" [ref=e687]
+    - menuitem "Historial de Stock" [ref=e690]
+    - menuitem "Editar" [ref=e695]
+    - separator [ref=e699]
+    - menuitem "Eliminar" [ref=e700]

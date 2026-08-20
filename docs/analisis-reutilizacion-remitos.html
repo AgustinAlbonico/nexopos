@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Reutilización AFIP → Remitos / COT</title>
+  <style>
+    @page { size: A4; margin: 14mm 16mm; }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.35;
+      color: #1a1a1a;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 14pt;
+      margin: 0 0 2px 0;
+      font-weight: 700;
+    }
+    .sub {
+      font-size: 9pt;
+      color: #555;
+      margin: 0 0 10px 0;
+    }
+    .verdict {
+      background: #f3f4f6;
+      border-left: 3px solid #2563eb;
+      padding: 8px 10px;
+      margin-bottom: 12px;
+      font-size: 10pt;
+    }
+    h2 {
+      font-size: 11pt;
+      margin: 10px 0 6px 0;
+      padding-bottom: 2px;
+      border-bottom: 1px solid #ddd;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 4px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 5px 8px;
+      text-align: left;
+      vertical-align: top;
+      font-size: 9.5pt;
+    }
+    th { background: #f0f0f0; font-weight: 600; width: 28%; }
+    .ok { color: #166534; }
+    .no { color: #991b1b; }
+    ul {
+      margin: 4px 0 0 0;
+      padding-left: 16px;
+    }
+    li { margin-bottom: 2px; }
+    .cols {
+      display: flex;
+      gap: 12px;
+      margin-top: 4px;
+    }
+    .col { flex: 1; }
+    .box {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      min-height: 120px;
+    }
+    .box h3 {
+      margin: 0 0 6px 0;
+      font-size: 10.5pt;
+    }
+    .note {
+      margin-top: 10px;
+      font-size: 9pt;
+      color: #444;
+    }
+    .foot {
+      margin-top: 8px;
+      font-size: 8pt;
+      color: #777;
+      border-top: 1px solid #e5e5e5;
+      padding-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Remitos electrónicos / COT — qué se reutiliza y qué construir</h1>
+  <p class="sub">Base: módulo fiscal de Yomemimo (AFIP Factura A/B) · Destino: sistema simple para transporte de arena</p>
+
+  <div class="verdict">
+    <strong>Veredicto:</strong> Se puede reutilizar la autenticación AFIP (WSAA + certificados + homologación/producción).
+    El flujo de facturas (CAE / WSFE) <strong>no sirve</strong> para remitos. COT es de ARBA, no de AFIP.
+  </div>
+
+  <h2>Qué hay hoy en Yomemimo</h2>
+  <table>
+    <tr><th>Pieza</th><td>WSAA (login con certificado) + WSFEv1 (emisión Factura A/B/C con CAE)</td></tr>
+    <tr><th>Ambientes</th><td>Homologación y producción (certs, URLs y tokens separados)</td></tr>
+    <tr><th>No existe</th><td>Remitos, COT, guía minera, carta de porte</td></tr>
+  </table>
+
+  <div class="cols">
+    <div class="col">
+      <div class="box">
+        <h3 class="ok">✓ Reutilizar</h3>
+        <ul>
+          <li>Login WSAA (TRA firmado, token/sign)</li>
+          <li>Gestión de certificados .crt/.key</li>
+          <li>Switch homologación ↔ producción</li>
+          <li>Patrón de config fiscal (CUIT, PV, UI)</li>
+          <li>Idea de PDF digital del comprobante</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="box">
+        <h3 class="no">✗ No reutilizar / construir nuevo</h3>
+        <ul>
+          <li>Emisión FECAESolicitar / CAE / QR factura</li>
+          <li>Acoplamiento a ventas / IVA / Factura A-B</li>
+          <li><strong>Remito</strong> con CAI (RG 1415 / 5678) + peso de carga</li>
+          <li><strong>COT ARBA</strong> (si ruta PBA/adheridas y ≥4.500 kg)</li>
+          <li>Alta de viaje: origen, destino, patente, kg</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h2>Aclaraciones clave</h2>
+  <table>
+    <tr>
+      <th>Remito digital</th>
+      <td>Documento de traslado genérico. Usa <strong>CAI</strong> (no CAE). Puede ser PDF; no usa el WS de facturas.</td>
+    </tr>
+    <tr>
+      <th>Remito electrónico ARCA</th>
+      <td>Webservices por rubro (carne, azúcar, harina…). <strong>No hay</strong> uno genérico para arena.</td>
+    </tr>
+    <tr>
+      <th>COT</th>
+      <td>Código de ARBA para amparar el transporte. Obligatorio por peso/valor y jurisdicción. Se evita solo con docs equivalentes (ej. guía minera).</td>
+    </tr>
+  </table>
+
+  <p class="note">
+    <strong>MVP sugerido:</strong> viaje (peso + ruta + camión) → remito digital con CAI → COT ARBA si aplica → PDF e historial.
+    Validar con el contador del cliente si corresponde guía minera u otra exención de COT.
+  </p>
+
+  <p class="foot">Resumen interno · Julio 2026 · Basado en análisis del código Yomemimo + normativa ARCA/ARBA vigente</p>
+</body>
+</html>

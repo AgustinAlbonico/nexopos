@@ -1,0 +1,126 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                        - text: Remera Verano E2E Test
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 1 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Remera Verano E2E Test
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 18.500,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "0"
+                            - cell:
+                              - button [expanded]:
+                                - generic: Abrir menú
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 1
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button [disabled]: Siguiente
+    - region "Notifications alt+T"
+  - menu "Abrir menú" [active] [ref=f1e376]:
+    - generic [ref=f1e377]: Acciones
+    - menuitem "Ver Detalle" [ref=f1e378]
+    - menuitem "Generar Variantes (Talles/Colores)" [ref=f1e382]
+    - menuitem "Historial de Stock" [ref=f1e385]
+    - menuitem "Editar" [ref=f1e390]
+    - separator [ref=f1e394]
+    - menuitem "Eliminar" [ref=f1e395]

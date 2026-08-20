@@ -1,0 +1,214 @@
+- generic [active] [ref=e12]:
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - link "NP" [ref=e17] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=e19]:
+          - generic [ref=e20]:
+            - link [ref=e22] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=e29] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=e35] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=e41] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=e45] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=e50] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=e57] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=e62] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=e69] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=e75] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=e81] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=e85] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=e90] [cursor=pointer]
+      - main [ref=e95]:
+        - generic [ref=e662]:
+          - generic [ref=e663]:
+            - generic [ref=e664]:
+              - heading "Productos" [level=1] [ref=e665]
+              - paragraph [ref=e666]: Cargá productos con nombre, costo y stock
+            - generic [ref=e667]:
+              - button "Categorías" [ref=e668] [cursor=pointer]
+              - button "Nuevo Producto" [ref=e672] [cursor=pointer]
+          - generic [ref=e675]:
+            - generic [ref=e676]:
+              - generic [ref=e677]:
+                - textbox "Buscar producto..." [ref=e678]
+                - generic [ref=e679]:
+                  - combobox [ref=e680] [cursor=pointer]:
+                    - generic: Todas las categorías
+                  - combobox [ref=e683] [cursor=pointer]:
+                    - generic [ref=e684]: Todas las marcas
+                  - combobox [ref=e685] [cursor=pointer]:
+                    - generic: Todo el stock
+              - generic [ref=e688]: 87 registro(s)
+            - table [ref=e691]:
+              - rowgroup [ref=e692]:
+                - row [ref=e693]:
+                  - columnheader [ref=e694]:
+                    - button "Producto" [ref=e1030] [cursor=pointer]
+                  - columnheader "Categoría" [ref=e699]
+                  - columnheader "Marca" [ref=e700]
+                  - columnheader "Costo" [ref=e701]
+                  - columnheader [ref=e702]:
+                    - button "Precio" [ref=e1034] [cursor=pointer]
+                  - columnheader [ref=e707]:
+                    - button "Stock" [ref=e1038] [cursor=pointer]
+                  - columnheader [ref=e712]
+              - rowgroup [ref=e713]:
+                - row [ref=e714]:
+                  - cell [ref=e715]:
+                    - paragraph [ref=e1043]: Alfajor Havanna E2E 4673
+                  - cell "-" [ref=e718]
+                  - cell "-" [ref=e719]
+                  - cell "$ 1.000,00" [ref=e720]
+                  - cell "$ 1.300,00 30.0% ganancia" [ref=e721]:
+                    - generic [ref=e1044]:
+                      - generic [ref=e1045]: $ 1.300,00
+                      - generic [ref=e1046]: 30.0% ganancia
+                  - cell "48" [ref=e725]
+                  - cell [ref=e728]:
+                    - button "Abrir menú" [ref=e1049] [cursor=pointer]
+                - row [ref=e735]:
+                  - cell [ref=e736]:
+                    - paragraph [ref=e1056]: Coca-Cola 1.5L
+                  - cell "Limpieza" [ref=e739]
+                  - cell "-" [ref=e741]
+                  - cell "$ 0,00" [ref=e742]
+                  - cell "$ 0,00 30.0% ganancia" [ref=e743]:
+                    - generic [ref=e1058]:
+                      - generic [ref=e1059]: $ 0,00
+                      - generic [ref=e1060]: 30.0% ganancia
+                  - cell "1" [ref=e747]
+                  - cell [ref=e752]:
+                    - button "Abrir menú" [ref=e1065] [cursor=pointer]
+                - row [ref=e759]:
+                  - cell [ref=e760]:
+                    - paragraph [ref=e1072]: Detergente Ala 750ml
+                  - cell "Bebidas (50%)" [ref=e763]:
+                    - generic [ref=e1073]:
+                      - text: Bebidas
+                      - generic [ref=e1074]: (50%)
+                  - cell "-" [ref=e766]
+                  - cell "$ 100,00" [ref=e767]
+                  - cell "$ 150,00 50.0% ganancia" [ref=e768]:
+                    - generic [ref=e1075]:
+                      - generic [ref=e1076]: $ 150,00
+                      - generic [ref=e1077]: 50.0% ganancia
+                  - cell "8" [ref=e772]
+                  - cell [ref=e775]:
+                    - button "Abrir menú" [ref=e1080] [cursor=pointer]
+                - row [ref=e782]:
+                  - cell [ref=e783]:
+                    - paragraph [ref=e1087]: Lavandina Ayudín 1L
+                  - cell "Limpieza" [ref=e786]
+                  - cell "-" [ref=e788]
+                  - cell "$ 100,00" [ref=e789]
+                  - cell "$ 140,00 40.0% ganancia" [ref=e790]:
+                    - generic [ref=e1089]:
+                      - generic [ref=e1090]: $ 140,00
+                      - generic [ref=e1091]: 40.0% ganancia
+                  - cell "12" [ref=e794]
+                  - cell [ref=e797]:
+                    - button "Abrir menú" [ref=e1094] [cursor=pointer]
+                - row [ref=e804]:
+                  - cell [ref=e805]:
+                    - paragraph [ref=e1101]: Lector
+                  - cell "-" [ref=e808]
+                  - cell "-" [ref=e809]
+                  - cell "$ 10.000,00" [ref=e810]
+                  - cell "$ 13.000,00 30.0% ganancia" [ref=e811]:
+                    - generic [ref=e1102]:
+                      - generic [ref=e1103]: $ 13.000,00
+                      - generic [ref=e1104]: 30.0% ganancia
+                  - cell "-16" [ref=e815]
+                  - cell [ref=e818]:
+                    - button "Abrir menú" [ref=e1107] [cursor=pointer]
+                - row [ref=e825]:
+                  - cell [ref=e826]:
+                    - paragraph [ref=e1114]: preuba
+                  - cell "-" [ref=e829]
+                  - cell "-" [ref=e830]
+                  - cell "$ 0,00" [ref=e831]
+                  - cell "$ 1.000,00 0.0% ganancia" [ref=e832]:
+                    - generic [ref=e1115]:
+                      - generic [ref=e1116]: $ 1.000,00
+                      - generic [ref=e1117]: 0.0% ganancia
+                  - cell "990" [ref=e836]
+                  - cell [ref=e839]:
+                    - button "Abrir menú" [ref=e1120] [cursor=pointer]
+                - row [ref=e846]:
+                  - cell [ref=e847]:
+                    - paragraph [ref=e1127]: Queso Tybo Fiambrería E2E 0884
+                  - cell "-" [ref=e850]
+                  - cell "-" [ref=e851]
+                  - cell "$ 8.000,00" [ref=e852]
+                  - cell "$ 10.400,00 30.0% ganancia" [ref=e853]:
+                    - generic [ref=e1128]:
+                      - generic [ref=e1129]: $ 10.400,00
+                      - generic [ref=e1130]: 30.0% ganancia
+                  - cell "255" [ref=e857]
+                  - cell [ref=e860]:
+                    - button "Abrir menú" [ref=e1133] [cursor=pointer]
+                - row [ref=e867]:
+                  - cell [ref=e868]:
+                    - paragraph [ref=e1140]: Queso Tybo Fiambrería E2E 1496
+                  - cell "-" [ref=e871]
+                  - cell "-" [ref=e872]
+                  - cell "$ 8.000,00" [ref=e873]
+                  - cell "$ 10.400,00 30.0% ganancia" [ref=e874]:
+                    - generic [ref=e1141]:
+                      - generic [ref=e1142]: $ 10.400,00
+                      - generic [ref=e1143]: 30.0% ganancia
+                  - cell "255" [ref=e878]
+                  - cell [ref=e881]:
+                    - button "Abrir menú" [ref=e1146] [cursor=pointer]
+                - row [ref=e888]:
+                  - cell [ref=e889]:
+                    - paragraph [ref=e1153]: Queso Tybo Fiambrería E2E 2026
+                  - cell "-" [ref=e892]
+                  - cell "-" [ref=e893]
+                  - cell "$ 8.000,00" [ref=e894]
+                  - cell "$ 10.400,00 30.0% ganancia" [ref=e895]:
+                    - generic [ref=e1154]:
+                      - generic [ref=e1155]: $ 10.400,00
+                      - generic [ref=e1156]: 30.0% ganancia
+                  - cell "255" [ref=e899]
+                  - cell [ref=e902]:
+                    - button "Abrir menú" [ref=e1159] [cursor=pointer]
+                - row [ref=e909]:
+                  - cell [ref=e910]:
+                    - paragraph [ref=e1166]: Queso Tybo Fiambrería E2E 4135
+                  - cell "-" [ref=e913]
+                  - cell "-" [ref=e914]
+                  - cell "$ 8.000,00" [ref=e915]
+                  - cell "$ 10.400,00 30.0% ganancia" [ref=e916]:
+                    - generic [ref=e1167]:
+                      - generic [ref=e1168]: $ 10.400,00
+                      - generic [ref=e1169]: 30.0% ganancia
+                  - cell "255" [ref=e920]
+                  - cell [ref=e923]:
+                    - button "Abrir menú" [ref=e1172] [cursor=pointer]
+            - generic [ref=e930]:
+              - generic [ref=e931]:
+                - generic [ref=e932]: Página 1 de 9
+                - generic [ref=e933]:
+                  - generic [ref=e934]: "Mostrar:"
+                  - combobox [ref=e935] [cursor=pointer]:
+                    - generic: "10"
+                  - generic [ref=e938]: registros
+              - generic [ref=e939]:
+                - button "Anterior" [disabled]
+                - button "Siguiente" [ref=e940] [cursor=pointer]
+    - region "Notifications alt+T"
+  - generic [ref=e325]: $0k

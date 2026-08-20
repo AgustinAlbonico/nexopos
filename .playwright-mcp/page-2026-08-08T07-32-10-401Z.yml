@@ -1,0 +1,639 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Cultural Fontanarrosa\" Rosario cine \"Cultural Fontanarrosa\" Rosario cine"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Cultural%2BFontanarrosa%2522%2BRosario%2Bcine&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=%22Cultural+Fontanarrosa%22+Rosario+cine&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ2J8OegQIExAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&q=%22Cultural+Fontanarrosa%22+Rosario+cine&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQtKgLegQIGRAB
+          - listitem [ref=e94]:
+            - link "Noticias" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=%22Cultural+Fontanarrosa%22+Rosario+cine&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ0pQJegQIFxAB
+          - listitem [ref=e98]:
+            - link "Vídeos" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&q=%22Cultural+Fontanarrosa%22+Rosario+cine&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQtKgLegQIGhAB
+          - listitem [ref=e102]:
+            - link "Shopping" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&q=%22Cultural+Fontanarrosa%22+Rosario+cine&ved=1t:220175&ictx=111
+          - listitem [ref=e106]:
+            - link "Vídeos cortos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&q=%22Cultural+Fontanarrosa%22+Rosario+cine&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQs6gLegQIHBAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - generic [ref=e131]:
+      - generic [ref=e150]:
+        - generic [ref=e152]:
+          - generic [ref=e154]:
+            - heading "Visión general creada por IA" [level=2] [ref=e158]
+            - button "Acerca de este resultado" [ref=e162]
+          - generic [ref=e184]:
+            - generic [ref=e187]:
+              - generic [ref=e188]:
+                - text: El
+                - link "Centro Cultural Roberto Fontanarrosa" [ref=e190] [cursor=pointer]:
+                  - /url: https://www.rosario.gob.ar/inicio/lucrecia-martel-en-el-cultural-fontanarrosa
+                - text: (San Martín 1080, Rosario) no es una sala de cine comercial fija, pero funciona como subsede habitual de ciclos de cine independiente, charlas magistrales y festivales de la ciudad, como el Festival de Cine Latinoamericano y muestras especiales en formatos alternativos.
+                - generic [ref=e192]:
+                  - link "Centro Cultural Cine Lumière (más de 3) - Ver vínculos relacionados" [ref=e193] [cursor=pointer]:
+                    - /url: https://lumiererosario.gob.ar/web/comienza-el-31-festival-de-cine-latinoamericano-rosario/
+                  - button "Centro Cultural Cine Lumière (más de 3) - Ver vínculos relacionados" [ref=e194] [cursor=pointer]:
+                    - generic [ref=e196]:
+                      - generic [ref=e197]: Centro Cultural Cine Lumière
+                      - generic [ref=e198]: "+3"
+              - heading "Programación y Ciclos" [level=3] [ref=e203]
+              - list [ref=e204]:
+                - listitem [ref=e206]:
+                  - generic [ref=e207]:
+                    - strong [ref=e208]: "Festivales de Cine:"
+                    - text: Participa como sede activa de proyecciones y charlas con figuras de la industria audiovisual.
+                  - generic [ref=e210]:
+                    - link "Centro Cultural Cine Lumière (más de 1) - Ver vínculos relacionados" [ref=e211] [cursor=pointer]:
+                      - /url: https://lumiererosario.gob.ar/web/comienza-el-31-festival-de-cine-latinoamericano-rosario/
+                    - button "Centro Cultural Cine Lumière (más de 1) - Ver vínculos relacionados" [ref=e212] [cursor=pointer]:
+                      - generic [ref=e214]:
+                        - generic [ref=e215]: Centro Cultural Cine Lumière
+                        - generic [ref=e216]: "+1"
+                - listitem [ref=e222]:
+                  - generic [ref=e223]:
+                    - strong [ref=e224]: "Ciclos Especiales:"
+                    - text: Aloja muestras temáticas, retrospectivas y proyecciones especiales de cine local y nacional con entrada libre y gratuita.
+                  - generic [ref=e226]:
+                    - link [ref=e227] [cursor=pointer]:
+                      - /url: https://www.pagina12.com.ar/2026/07/16/cinta-magnetica-para-la-comunidad/
+                    - button [ref=e228] [cursor=pointer]:
+                      - generic [ref=e229]: Página|12
+                - listitem [ref=e237]:
+                  - generic [ref=e238]:
+                    - strong [ref=e239]: "Encuentros y Charlas:"
+                    - text: Recibe de forma frecuente a directores, actores y referentes del cine para clases magistrales y presentaciones de libros.
+                  - generic [ref=e241]:
+                    - link [ref=e242] [cursor=pointer]:
+                      - /url: https://www.lacanciondelpais.com.ar/notas/audiovisuales/audiovisuales/31-festival-de-cine-latinoamericano-rosario-2026.html
+                    - button [ref=e243] [cursor=pointer]:
+                      - generic [ref=e245]:
+                        - generic [ref=e246]: La Canción del País
+                        - generic [ref=e247]: "+2"
+              - generic [ref=e254]:
+                - text: Si buscas la
+                - strong [ref=e255]: programación de una función específica
+                - text: o el
+                - strong [ref=e256]: horario de un ciclo de cine
+                - text: en particular para esta semana, dime el título o la temática para confirmarte los detalles.
+            - generic [ref=e261]:
+              - generic [ref=e263]:
+                - button [ref=e264] [cursor=pointer]:
+                  - generic [ref=e272]: 7 sitios
+                - button [ref=e278] [cursor=pointer]
+              - list [ref=e283]:
+                - listitem [ref=e284]:
+                  - generic [ref=e285]:
+                    - link [ref=e286] [cursor=pointer]:
+                      - /url: https://www.rosario.gob.ar/inicio/talleres-pov-en-el-fontanarrosa
+                    - generic [ref=e287]:
+                      - generic [ref=e289]:
+                        - generic [ref=e290]: Inscripción a los Talleres POV en el Fontanarrosa
+                        - generic [ref=e291]: 3 ago 2026 — Cuándo y dónde. DEL 3 DE Agosto AL 29 DE Septiembre. El Cultural Fontanarrosa continúa con su ciclo formativo para diferentes públ...
+                      - generic [ref=e294]:
+                        - generic [ref=e297]: Rosario.gob
+                        - button [ref=e303] [cursor=pointer]
+                - listitem [ref=e309]:
+                  - generic [ref=e310]:
+                    - link [ref=e311] [cursor=pointer]:
+                      - /url: https://lumiererosario.gob.ar/web/comienza-el-31-festival-de-cine-latinoamericano-rosario/
+                    - generic [ref=e312]:
+                      - generic [ref=e314]:
+                        - generic [ref=e315]: Comienza el 31° Festival de Cine Latinoamericano Rosario
+                        - generic [ref=e316]: 26 may 2026 — En su 31° edición el Festival de Cine Latinoamericano Rosario presenta más de 35 funciones gratuitas programadas en 5 salas rosari...
+                      - generic [ref=e319]:
+                        - generic [ref=e322]: Centro Cultural Cine Lumière
+                        - button [ref=e328] [cursor=pointer]
+              - button [ref=e334] [cursor=pointer]:
+                - generic [ref=e335]: Mostrar todo
+        - button "Mostrar más Visión general creada por IA" [ref=e339]:
+          - generic [ref=e340] [cursor=pointer]: Mostrar más
+      - main [ref=e347]:
+        - generic [ref=e351]:
+          - generic [ref=e352]:
+            - generic [ref=e355]:
+              - generic [ref=e359]:
+                - generic [ref=e367]:
+                  - button "Ver fotos" [ref=e371] [cursor=pointer]
+                  - generic [ref=e375]:
+                    - generic [ref=e376]:
+                      - link [ref=e378] [cursor=pointer]:
+                        - /url: /maps/place/Centro+Cultural+Roberto+Fontanarrosa/data=!4m2!3m1!1s0x0:0x9612d0b26b23de?sa=X&ved=1t:2428&ictx=111
+                        - img "Mapa de Centro Cultural Roberto Fontanarrosa" [ref=e380]
+                      - link [ref=e382] [cursor=pointer]:
+                        - /url: /maps/place/Centro+Cultural+Roberto+Fontanarrosa/data=!4m2!3m1!1s0x0:0x9612d0b26b23de?sa=X&ved=1t:2428&ictx=111
+                        - img "Mapa de Centro Cultural Roberto Fontanarrosa" [ref=e384]
+                    - link "Ver por fuera" [ref=e392] [cursor=pointer]:
+                      - /url: /local/place/fid/0x95b7ab1a51783971:0x9612d0b26b23de/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3DRjmZIwuLoaR7pKqfQoGNBw%26cb_client%3Dsearch.gws-prod.gps%26yaw%3D340.94955%26pitch%3D0%26thumbfov%3D100%26w%3D0%26h%3D0&ik=CAISFlJqbVpJd3VMb2FSN3BLcWZRb0dOQnc%3D&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQpx96BAg8EBE
+                - generic [ref=e397]:
+                  - heading "Centro Cultural Roberto Fontanarrosa" [level=2] [ref=e400]
+                  - generic [ref=e403]:
+                    - text: 4,4
+                    - 'img "Calificación: 4,4 de 5," [ref=e404]'
+                    - button "4.625 opiniones en Google" [ref=e409] [cursor=pointer]
+                    - text: Centro cultural en Rosario
+                - generic [ref=e416]:
+                  - generic [ref=e428]:
+                    - link "Sitio web" [ref=e430] [cursor=pointer]:
+                      - /url: http://www.rosario.gob.ar/
+                    - link "Cómo llegar" [ref=e437]
+                    - button "Escribir una opinión" [ref=e447] [cursor=pointer]
+                    - button "Guardar Centro Cultural Roberto Fontanarrosa en una colección" [ref=e457] [cursor=pointer]:
+                      - generic [ref=e460]: Guardar
+                    - button "Compartir" [ref=e463] [cursor=pointer]
+                    - button "Llamar" [ref=e470] [cursor=pointer]
+                  - generic [ref=e480]:
+                    - generic [ref=e483]:
+                      - heading "Descripción" [level=3] [ref=e484]
+                      - generic [ref=e485]: El Centro Cultural Roberto Fontanarrosa es un centro cultural de la ciudad de Rosario, Argentina.
+                      - link "Wikipedia" [ref=e487] [cursor=pointer]:
+                        - /url: https://es.wikipedia.org/wiki/Centro_Cultural_Roberto_Fontanarrosa
+                    - generic [ref=e489]:
+                      - text: "Ubicado en:"
+                      - link "Plaza Montenegro" [ref=e490] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Plaza+Montenegro&ludocid=14951221159122516278&lsig=AB86z5UoUlsw4c_mrb1lcaUCGIqN&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8G0oAHoECDEQAQ
+                    - generic [ref=e492]:
+                      - generic [ref=e493]:
+                        - link "Dirección" [ref=e494] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=centro+cultural+roberto+fontanarrosa+direcci%C3%B3n&ludocid=42241934062461918&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ6BN6BAgsEAI
+                        - text: ":"
+                      - text: Av. San Martín 1080, S2000 Rosario, Santa Fe
+                    - generic [ref=e497]:
+                      - generic [ref=e498]:
+                        - link "Provincia" [ref=e499] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=centro+cultural+roberto+fontanarrosa+provincia&stick=H4sIAAAAAAAAAOPgE-LRT9c3NKwwLys0TSvWkstOttLPyU9OLMnMz4MzrAqK8ssy85JTF7HqJafmlRTlKySX5pSUFiXmKBTlJ6UWleQrpOXnlSTmJRYV5RcnKkDVZyYCAIB_EqhhAAAA&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ6BN6BAgwEAI
+                        - text: ":"
+                      - link "Provincia de Santa Fe" [ref=e502] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Provincia+de+Santa+Fe&si=APenkKlisoOXLiCMwraINHtdqOQii4CK9kOlkQc8Apn-pS60ybgOg0JEOGJhvAVM0X3IAlmdKOozLpdDD_K40QYsFv5HgGzX-nfHQo5GEwBfzq52EN2Voh_L8-MCaAoSkaDD_oKzNH9qqprO2eqYx_0Jcp0Lxg184fMmoO6qKiy_i5_R88IpeG06YzCOKDQQJIBeO8dsCMoSVGI7H1GGz8T1eSAUdAv26w%3D%3D&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQmxN6BAgwEAM
+                    - generic [ref=e505]:
+                      - generic [ref=e506]:
+                        - link "Teléfono" [ref=e507] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=centro+cultural+roberto+fontanarrosa+tel%C3%A9fono&ludocid=42241934062461918&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ6BN6BAgvEAI
+                        - text: ":"
+                      - link "Llamar al número de teléfono 0341 480-2401" [ref=e510] [cursor=pointer]:
+                        - /url: "#"
+                        - text: 0341 480-2401
+                    - generic [ref=e511]:
+                      - generic [ref=e512]:
+                        - link "Horario" [ref=e513] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=centro+cultural+roberto+fontanarrosa+horario&ludocid=42241934062461918&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ6BN6BAguEAI
+                        - text: ":"
+                      - button "Cerrado · Abre a las 10 a. m." [ref=e515]
+                    - generic [ref=e526]:
+                      - button "Sugerir una edición" [ref=e529] [cursor=pointer]
+                      - text: ·
+                      - link "¿Eres propietario de esta empresa?" [ref=e530] [cursor=pointer]:
+                        - /url: https://business.google.com/create?hl=es&getstarted&authuser=0&fp=42241934062461918&gmbsrc=ar-es-et-ip-z-gmb-s-z-l~skp%7Cclaimbz_aoc_a%7Cu&ppsrc=GMBSI
+                  - generic [ref=e538]:
+                    - generic [ref=e539]:
+                      - heading "Horario de mayor concurrencia" [level=3] [ref=e541]
+                      - button "Más información sobre los horario de mayor concurrencia" [ref=e544] [cursor=pointer]
+                    - generic [ref=e547]:
+                      - radiogroup [ref=e549]:
+                        - radio "lunes" [ref=e550] [cursor=pointer]:
+                          - generic [ref=e551]: lun
+                        - radio "martes" [ref=e552] [cursor=pointer]:
+                          - generic [ref=e553]: mar
+                        - radio "miércoles" [ref=e554] [cursor=pointer]:
+                          - generic [ref=e555]: mié
+                        - radio "jueves" [ref=e556] [cursor=pointer]:
+                          - generic [ref=e557]: jue
+                        - radio "viernes" [ref=e558] [cursor=pointer]:
+                          - generic [ref=e559]: vie
+                        - radio "sábado" [checked] [ref=e560] [cursor=pointer]:
+                          - generic [ref=e561]: sáb
+                        - radio "domingo" [ref=e563] [cursor=pointer]:
+                          - generic [ref=e564]: dom
+                      - generic [ref=e565]:
+                        - region [ref=e567]:
+                          - generic [ref=e568]: "12 p. m.: Por lo general, es cuando está más concurrido"
+                        - radiogroup [ref=e574]:
+                          - radio [disabled] [ref=e576] [cursor=pointer]
+                          - radio [disabled] [ref=e578] [cursor=pointer]
+                          - radio [disabled] [ref=e580] [cursor=pointer]
+                          - radio [disabled] [ref=e582] [cursor=pointer]
+                          - radio "10 a. m." [ref=e584] [cursor=pointer]
+                          - radio "11 a. m." [ref=e587] [cursor=pointer]
+                          - radio "12 p. m." [checked] [ref=e590] [cursor=pointer]
+                          - radio "1 p. m." [ref=e593] [cursor=pointer]
+                          - radio "2 p. m." [ref=e596] [cursor=pointer]
+                          - radio "3 p. m." [ref=e599] [cursor=pointer]
+                          - radio "4 p. m." [ref=e602] [cursor=pointer]
+                          - radio "5 p. m." [ref=e605] [cursor=pointer]
+                          - radio "6 p. m." [ref=e608] [cursor=pointer]
+                          - radio [disabled] [ref=e611] [cursor=pointer]
+                          - radio [disabled] [ref=e613] [cursor=pointer]
+                          - radio [disabled] [ref=e615] [cursor=pointer]
+                          - radio [disabled] [ref=e617] [cursor=pointer]
+                          - radio [disabled] [ref=e619] [cursor=pointer]
+                        - generic [ref=e621]:
+                          - generic [ref=e625]: 9a. m.
+                          - generic [ref=e631]: 12p. m.
+                          - generic [ref=e637]: 3p. m.
+                          - generic [ref=e643]: 6p. m.
+                          - generic [ref=e649]: 9p. m.
+                    - generic [ref=e655]: "Promedio de permanencia: 10-45 min"
+                  - generic [ref=e669]:
+                    - generic [ref=e671]:
+                      - heading "Opiniones de la Web" [level=3] [ref=e672]
+                      - link "Centro Cultural Roberto Fontanarrosa recibió una opinión con 4,8 estrellas en Facebook. 76 votos" [ref=e675] [cursor=pointer]:
+                        - /url: https://www.facebook.com/CentroCulturalRobertoFontanarrosa/?locale=es_LA
+                        - text: 4,8/5Facebook · 76 votos
+                    - generic [ref=e678]:
+                      - generic [ref=e679]:
+                        - heading "Opiniones" [level=3] [ref=e680]
+                        - button "Más información" [ref=e685] [cursor=pointer]
+                        - generic [ref=e689]:
+                          - button "Escribir una opinión" [ref=e693] [cursor=pointer]
+                          - link "Agregar fotos" [ref=e696] [cursor=pointer]:
+                            - /url: "#"
+                      - generic [ref=e697]:
+                        - generic [ref=e698]:
+                          - generic [ref=e699]:
+                            - link "alejandra suarez":
+                              - /url: https://www.google.com/maps/contrib/115826798617553790459?hl=es-AR&ved=1t:31296&ictx=111
+                              - img "alejandra suarez" [ref=e701] [cursor=pointer]
+                          - generic [ref=e702]:
+                            - link "\"Fuimos con mi hijo a desayunar y la atención es buenísima muy recomendable\"" [ref=e703] [cursor=pointer]:
+                              - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s115826798617553790459!2s0x95b7ab1a51783971:0x9612d0b26b23de?ved=1t:31295&ictx=111
+                            - 'img "Calificación: 5,0 de 5," [ref=e705]'
+                        - generic [ref=e708]:
+                          - generic [ref=e709]:
+                            - link "Miguel Juarez":
+                              - /url: https://www.google.com/maps/contrib/101059632592146237274?hl=es-AR&ved=1t:31296&ictx=111
+                              - img "Miguel Juarez" [ref=e711] [cursor=pointer]
+                          - generic [ref=e712]:
+                            - link "\"Fui a la feria del libro y estaba todo más organizado que otros años\"" [ref=e713] [cursor=pointer]:
+                              - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s101059632592146237274!2s0x95b7ab1a51783971:0x9612d0b26b23de?ved=1t:31295&ictx=111
+                            - 'img "Calificación: 5,0 de 5," [ref=e715]'
+                        - generic [ref=e718]:
+                          - generic [ref=e719]:
+                            - link "Agustín Suarez":
+                              - /url: https://www.google.com/maps/contrib/110710374720055115529?hl=es-AR&ved=1t:31296&ictx=111
+                              - img "Agustín Suarez" [ref=e721] [cursor=pointer]
+                          - generic [ref=e722]:
+                            - link "\"Lugar grande, estuve varias veces y hay mucha gente en los eventos, recomendable\"" [ref=e723] [cursor=pointer]:
+                              - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s110710374720055115529!2s0x95b7ab1a51783971:0x9612d0b26b23de?ved=1t:31295&ictx=111
+                            - 'img "Calificación: 4,0 de 5," [ref=e725]'
+                      - button "Ver todas las opiniones en Google" [ref=e730] [cursor=pointer]
+                  - generic [ref=e735]:
+                    - heading "Perfiles" [level=3] [ref=e736]
+                    - generic [ref=e737]:
+                      - link "LinkedIn" [ref=e741] [cursor=pointer]:
+                        - /url: https://ar.linkedin.com/in/centro-cultural-roberto-fontanarrosa-20812724
+                      - link "Facebook" [ref=e751] [cursor=pointer]:
+                        - /url: https://www.facebook.com/CentroCulturalRobertoFontanarrosa/
+                      - link "YouTube" [ref=e761] [cursor=pointer]:
+                        - /url: https://www.youtube.com/@centroculturalrobertofonta4768/null
+                      - link "Instagram" [ref=e771] [cursor=pointer]:
+                        - /url: https://www.instagram.com/culturalfontanarrosa/
+              - link "Información sobre estos datos" [ref=e779] [cursor=pointer]:
+                - /url: https://support.google.com/local-listings?p=how_google_sources
+            - generic [ref=e781]:
+              - heading "Resultados web" [level=2] [ref=e782]
+              - generic [ref=e783]:
+                - generic [ref=e786]:
+                  - link "Inscripción a los Talleres POV en el Fontanarrosa Rosario.gob https://www.rosario.gob.ar › inicio › talleres-pov-en-el-..." [ref=e788] [cursor=pointer]:
+                    - /url: https://www.rosario.gob.ar/inicio/talleres-pov-en-el-fontanarrosa
+                    - heading "Inscripción a los Talleres POV en el Fontanarrosa" [level=3] [ref=e789]
+                    - generic [ref=e795]:
+                      - generic [ref=e796]: Rosario.gob
+                      - generic [ref=e798]: https://www.rosario.gob.ar › inicio › talleres-pov-en-el-...
+                  - button "Acerca de este resultado" [ref=e802] [cursor=pointer]
+                - generic [ref=e808]:
+                  - generic [ref=e809]: hace 5 días —
+                  - generic [ref=e810]:
+                    - text: El
+                    - emphasis [ref=e811]: Cultural Fontanarrosa
+                    - text: continúa con su ciclo formativo para diferentes públicos, iniciado en 2024. POV se organiza a través de cápsulas de ...
+          - generic [ref=e815]:
+            - generic [ref=e818]:
+              - link "Cultural Fontanarrosa (@culturalfontanarrosa) Instagram · culturalfontanarrosa Más de 27 k seguidores" [ref=e820] [cursor=pointer]:
+                - /url: https://www.instagram.com/culturalfontanarrosa/?hl=es
+                - heading "Cultural Fontanarrosa (@culturalfontanarrosa)" [level=3] [ref=e821]
+                - generic [ref=e827]:
+                  - generic [ref=e828]: Instagram · culturalfontanarrosa
+                  - generic [ref=e830]: Más de 27 k seguidores
+              - button "Acerca de este resultado" [ref=e834] [cursor=pointer]
+            - generic [ref=e841]:
+              - text: De
+              - emphasis [ref=e842]: Rosario
+              - text: al mundo Hoy el
+              - emphasis [ref=e843]: Cultural Fontanarrosa
+              - text: volvió a ser el ...
+          - generic [ref=e847]:
+            - generic [ref=e849]:
+              - heading "Videos" [level=2] [ref=e850]
+              - button "Acerca de este resultado" [ref=e851] [cursor=pointer]
+            - generic [ref=e857]:
+              - generic [ref=e862]:
+                - generic [ref=e863]:
+                  - link [ref=e865] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DbrKYF0B88Y/
+                    - heading "Municipalidad de Rosario | ¿Escuchaste hablar del Club ... Instagram Municipalidad de Rosario hace 2 días" [level=3] [ref=e866]:
+                      - generic [ref=e867]: Municipalidad de Rosario | ¿Escuchaste hablar del Club ...
+                      - generic [ref=e871]:
+                        - generic [ref=e872]:
+                          - text: Instagram
+                          - generic [ref=e873]: · Municipalidad de Rosario
+                        - generic [ref=e874]: hace 2 días
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · Municipalidad de Rosario
+                      - button "Acerca de este resultado" [ref=e875] [cursor=pointer]
+                - link "Municipalidad de Rosario | ¿Escuchaste hablar del Club ... de Municipalidad de Rosario en Instagram. Reproducir en Instagram. 1:25" [ref=e880] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DbrKYF0B88Y/
+                  - generic [ref=e881]: 1:25
+              - generic [ref=e893]:
+                - generic [ref=e894]:
+                  - link [ref=e896] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DWh4iuEDvN5/
+                    - heading "En modo cine… Hoy nos refugiamos del calor en el ... Instagram Rosario, Santa Fe. 30 mar 2026" [level=3] [ref=e897]:
+                      - generic [ref=e898]: En modo cine… Hoy nos refugiamos del calor en el ...
+                      - generic [ref=e902]:
+                        - generic [ref=e903]:
+                          - text: Instagram
+                          - generic [ref=e904]: · Rosario, Santa Fe.
+                        - generic [ref=e905]: 30 mar 2026
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · Rosario, Santa Fe.
+                      - button "Acerca de este resultado" [ref=e906] [cursor=pointer]
+                - link "En modo cine… Hoy nos refugiamos del calor en el ... de Rosario, Santa Fe. en Instagram. Reproducir en Instagram. 0:23" [ref=e911] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DWh4iuEDvN5/
+                  - generic [ref=e912]: 0:23
+              - generic [ref=e924]:
+                - generic [ref=e925]:
+                  - link [ref=e927] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DaqDf7Kxgee/
+                    - 'heading "Cultural Fontanarrosa on Instagram: \"El Cultural Fontanarrosa ... Instagram Cultural Fontanarrosa hace 4 semanas" [level=3] [ref=e928]':
+                      - generic [ref=e929]: "Cultural Fontanarrosa on Instagram: \"El Cultural Fontanarrosa ..."
+                      - generic [ref=e933]:
+                        - generic [ref=e934]:
+                          - text: Instagram
+                          - generic [ref=e935]: · Cultural Fontanarrosa
+                        - generic [ref=e936]: hace 4 semanas
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · Cultural Fontanarrosa
+                      - button "Acerca de este resultado" [ref=e937] [cursor=pointer]
+                - 'link "Cultural Fontanarrosa on Instagram: \"El Cultural Fontanarrosa ... de Cultural Fontanarrosa en Instagram. Reproducir en Instagram. 1:25" [ref=e942] [cursor=pointer]':
+                  - /url: https://www.instagram.com/reel/DaqDf7Kxgee/
+                  - generic [ref=e943]: 1:25
+              - generic [ref=e955]:
+                - generic [ref=e956]:
+                  - link [ref=e958] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DajLs5Ix4Wa/
+                    - 'heading "Cultural Fontanarrosa on Instagram: \"⚡️Este viernes desde ... Instagram Cultural Fontanarrosa hace 1 mes" [level=3] [ref=e959]':
+                      - generic [ref=e960]: "Cultural Fontanarrosa on Instagram: \"⚡️Este viernes desde ..."
+                      - generic [ref=e964]:
+                        - generic [ref=e965]:
+                          - text: Instagram
+                          - generic [ref=e966]: · Cultural Fontanarrosa
+                        - generic [ref=e967]: hace 1 mes
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · Cultural Fontanarrosa
+                      - button "Acerca de este resultado" [ref=e968] [cursor=pointer]
+                - 'link "Cultural Fontanarrosa on Instagram: \"⚡️Este viernes desde ... de Cultural Fontanarrosa en Instagram. Reproducir en Instagram. 0:50" [ref=e973] [cursor=pointer]':
+                  - /url: https://www.instagram.com/reel/DajLs5Ix4Wa/
+                  - generic [ref=e974]: 0:50
+            - link "Ver todos los videos" [ref=e984] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&q=%22Cultural+Fontanarrosa%22+Rosario+cine&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8ccDKAJ6BAgPEAQ
+              - separator [ref=e985]
+              - generic [ref=e986]: Ver más
+          - generic [ref=e993]:
+            - heading "Resultados web" [level=2] [ref=e994]
+            - generic [ref=e995]:
+              - generic [ref=e998]:
+                - link "Lucrecia Martel presenta 'Un destino común', su nuevo libro Noticias MR https://rosarionoticias.gob.ar › page › noticias › title › C..." [ref=e1000] [cursor=pointer]:
+                  - /url: https://rosarionoticias.gob.ar/page/noticias/id/702188/title/Cultural-Fontanarrosa%3A-Lucrecia-Martel-presenta-%27Un-destino-com%C3%BAn%27%2C-su-nuevo-libro
+                  - heading "Lucrecia Martel presenta 'Un destino común', su nuevo libro" [level=3] [ref=e1001]
+                  - generic [ref=e1007]:
+                    - generic [ref=e1008]: Noticias MR
+                    - generic [ref=e1010]: https://rosarionoticias.gob.ar › page › noticias › title › C...
+                - button "Acerca de este resultado" [ref=e1014] [cursor=pointer]
+              - generic [ref=e1020]:
+                - generic [ref=e1021]: hace 3 días —
+                - generic [ref=e1022]:
+                  - emphasis [ref=e1023]: Cultural Fontanarrosa
+                  - text: ": Lucrecia Martel presenta 'Un destino común', su nuevo libro · La cineasta y escritora estará en la ciudad el fin de semana ..."
+          - generic [ref=e1027]:
+            - generic [ref=e1030]:
+              - link "Cultural Fontanarrosa | Rosario Facebook · Cultural Fontanarrosa Más de 23,4 k seguidores" [ref=e1032] [cursor=pointer]:
+                - /url: https://www.facebook.com/CentroCulturalRobertoFontanarrosa/?locale=es_LA
+                - heading "Cultural Fontanarrosa | Rosario" [level=3] [ref=e1033]
+                - generic [ref=e1039]:
+                  - generic [ref=e1040]: Facebook · Cultural Fontanarrosa
+                  - generic [ref=e1042]: Más de 23,4 k seguidores
+              - button "Acerca de este resultado" [ref=e1046] [cursor=pointer]
+            - generic [ref=e1053]:
+              - text: ¡LUCRECIA MARTEL EN
+              - emphasis [ref=e1054]: ROSARIO
+              - text: "! El sábado 8 de agosto a las 18:00, en el"
+              - emphasis [ref=e1055]: Cultural Fontanarrosa
+              - text: ", presentamos UN DESTINO COMÚN de #LucreciaMartel, en conversación ..."
+            - 'img "Calificación: 4,8 de 5, (76) opiniones de usuarios" [ref=e1060]': 4,8(76)
+          - generic [ref=e1067]:
+            - generic [ref=e1070]:
+              - link "Comienza el 31° Festival de Cine Latinoamericano Rosario Centro Cultural Cine Lumière https://lumiererosario.gob.ar › Portada › NOTICIAS" [ref=e1072] [cursor=pointer]:
+                - /url: https://lumiererosario.gob.ar/web/comienza-el-31-festival-de-cine-latinoamericano-rosario/
+                - heading "Comienza el 31° Festival de Cine Latinoamericano Rosario" [level=3] [ref=e1073]
+                - generic [ref=e1079]:
+                  - generic [ref=e1080]: Centro Cultural Cine Lumière
+                  - generic [ref=e1082]: https://lumiererosario.gob.ar › Portada › NOTICIAS
+              - button "Acerca de este resultado" [ref=e1086] [cursor=pointer]
+            - generic [ref=e1092]:
+              - generic [ref=e1093]: 26 may 2026 —
+              - generic [ref=e1094]:
+                - emphasis [ref=e1095]: Cine
+                - text: Lumière como sede principal junto a El Cairo
+                - emphasis [ref=e1096]: Cine
+                - text: Público,
+                - emphasis [ref=e1097]: Cines
+                - text: del Centro,
+                - emphasis [ref=e1098]: Cultural Fontanarrosa
+                - text: y Complejo Astronómico Municipal.
+          - generic [ref=e1103]:
+            - heading "Más preguntas" [level=2] [ref=e1105]
+            - generic [ref=e1106]:
+              - button "¿Dónde queda el centro cultural Fontanarrosa?" [ref=e1112] [cursor=pointer]
+              - button "¿Cuáles son algunos de los antiguos cines de Rosario?" [ref=e1126] [cursor=pointer]
+              - button "¿Dónde estaba el cine Gran Rex en Rosario?" [ref=e1140] [cursor=pointer]
+              - button "¿Quién es el director del Centro Cultural Fontanarrosa?" [ref=e1154] [cursor=pointer]
+          - generic [ref=e1164]:
+            - heading "Resultados web" [level=2] [ref=e1165]
+            - generic [ref=e1166]:
+              - generic [ref=e1169]:
+                - link "Lucrecia Martel en el Cultural Fontanarrosa | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › lucrecia-martel-en..." [ref=e1171] [cursor=pointer]:
+                  - /url: https://www.rosario.gob.ar/inicio/lucrecia-martel-en-el-cultural-fontanarrosa
+                  - heading "Lucrecia Martel en el Cultural Fontanarrosa | rosario.gob.ar" [level=3] [ref=e1172]
+                  - generic [ref=e1178]:
+                    - generic [ref=e1179]: Rosario.gob
+                    - generic [ref=e1181]: https://www.rosario.gob.ar › inicio › lucrecia-martel-en...
+                - button "Acerca de este resultado" [ref=e1185] [cursor=pointer]
+              - generic [ref=e1192]:
+                - text: Lucrecia Martel en el
+                - emphasis [ref=e1193]: Cultural Fontanarrosa
+                - text: . Image. Lucrecia Martel. Literatura. Lucrecia Martel en el
+                - emphasis [ref=e1194]: Cultural Fontanarrosa
+                - text: . 8 DE AgostoSábado. DE 18 a 19:30 ...
+          - generic [ref=e1198]:
+            - generic [ref=e1201]:
+              - link "Cinta magnética para la comunidad Página|12 https://www.pagina12.com.ar › Rosario|12" [ref=e1203] [cursor=pointer]:
+                - /url: https://www.pagina12.com.ar/2026/07/16/cinta-magnetica-para-la-comunidad/
+                - heading "Cinta magnética para la comunidad" [level=3] [ref=e1204]
+                - generic [ref=e1210]:
+                  - generic [ref=e1211]: Página|12
+                  - generic [ref=e1213]: https://www.pagina12.com.ar › Rosario|12
+              - button "Acerca de este resultado" [ref=e1217] [cursor=pointer]
+            - generic [ref=e1223]:
+              - generic [ref=e1224]: 15 jul 2026 —
+              - generic [ref=e1225]:
+                - text: "La próxima: este viernes a las 19 en"
+                - emphasis [ref=e1226]: Cultural Fontanarrosa
+                - text: (San Martín 1080), con entrada libre y gratuita, para una modalidad de exhibición que ...
+          - generic [ref=e1230]:
+            - generic [ref=e1233]:
+              - link "Secretaría de Cultura y Educación Rosario Facebook · Secretaría de Cultura y Educación Rosario 4 reacciones · hace 1 mes" [ref=e1235] [cursor=pointer]:
+                - /url: https://www.facebook.com/culturarosarioMR/posts/un-culturalfontanarrosa-entero-para-vos-%EF%B8%8F-este-viernes-desde-las-13-h-se-activa-/1475730767916144/
+                - heading "Secretaría de Cultura y Educación Rosario" [level=3] [ref=e1236]
+                - generic [ref=e1242]:
+                  - generic [ref=e1243]: Facebook · Secretaría de Cultura y Educación Rosario
+                  - generic [ref=e1245]: 4 reacciones · hace 1 mes
+              - button "Acerca de este resultado" [ref=e1249] [cursor=pointer]
+            - generic [ref=e1256]:
+              - text: Las actividades principales tendrán lugar en el
+              - emphasis [ref=e1257]: Cultural Fontanarrosa
+              - text: ", ubicado en la calle San Martín, epicentro de esta celebración, y se ..."
+        - generic [ref=e1259]:
+          - generic [ref=e1264]:
+            - heading "También se buscó" [level=2] [ref=e1266]
+            - generic [ref=e1268]:
+              - generic [ref=e1269]:
+                - link "Centro Cultural Fontanarrosa agenda" [ref=e1273] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+Cultural+Fontanarrosa+agenda&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ1QJ6BAhbEAE
+                - link "Centro Cultural Fontanarrosa Rosario" [ref=e1287] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+Cultural+Fontanarrosa+Rosario&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ1QJ6BAhoEAE
+                - link "Centro Cultural Fontanarrosa hoy" [ref=e1301] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+Cultural+Fontanarrosa+hoy&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ1QJ6BAhnEAE
+                - link "Plaza Fontanarrosa Rosario" [ref=e1315] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Plaza+Fontanarrosa+Rosario&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ1QJ6BAhmEAE
+              - generic [ref=e1326]:
+                - link "Centro Cultural Roberto Fontanarrosa fotos" [ref=e1330] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+Cultural+Roberto+Fontanarrosa+fotos&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ1QJ6BAhjEAE
+                - link "Centro Cultural Fontanarrosa planos" [ref=e1344] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+Cultural+Fontanarrosa+planos&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ1QJ6BAheEAE
+                - link "Agenda cultural Rosario" [ref=e1358] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Agenda+cultural+Rosario&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ1QJ6BAhdEAE
+                - link "Fontanarrosa personajes" [ref=e1372] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Fontanarrosa+personajes&sa=X&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ1QJ6BAhcEAE
+          - navigation [ref=e1383]:
+            - heading "Navegación de páginas" [level=1] [ref=e1384]
+            - text: "1"
+            - link "Page 2" [ref=e1387] [cursor=pointer]:
+              - /url: /search?q=%22Cultural+Fontanarrosa%22+Rosario+cine&sca_esv=569d465b5b1d57df&ei=d9t2arDaBoLB5OUP7v6voAk&start=10&sa=N&sstk=AU9db-ATnV7mmWzQdn2TtLeDRcIybJJZhiSRUpjKr_2G_XPq9l9vHit1e7VWgj4t_VELThtK_HXLOv30vo_zFbNdDKSjDwvBVnL-vg&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8tMDegQIWRAE
+              - text: "2"
+            - link "Page 3" [ref=e1389] [cursor=pointer]:
+              - /url: /search?q=%22Cultural+Fontanarrosa%22+Rosario+cine&sca_esv=569d465b5b1d57df&ei=d9t2arDaBoLB5OUP7v6voAk&start=20&sa=N&sstk=AU9db-ATnV7mmWzQdn2TtLeDRcIybJJZhiSRUpjKr_2G_XPq9l9vHit1e7VWgj4t_VELThtK_HXLOv30vo_zFbNdDKSjDwvBVnL-vg&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8tMDegQIWRAG
+              - text: "3"
+            - link "Page 4" [ref=e1391] [cursor=pointer]:
+              - /url: /search?q=%22Cultural+Fontanarrosa%22+Rosario+cine&sca_esv=569d465b5b1d57df&ei=d9t2arDaBoLB5OUP7v6voAk&start=30&sa=N&sstk=AU9db-ATnV7mmWzQdn2TtLeDRcIybJJZhiSRUpjKr_2G_XPq9l9vHit1e7VWgj4t_VELThtK_HXLOv30vo_zFbNdDKSjDwvBVnL-vg&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8tMDegQIWRAI
+              - text: "4"
+            - link "Page 5" [ref=e1393] [cursor=pointer]:
+              - /url: /search?q=%22Cultural+Fontanarrosa%22+Rosario+cine&sca_esv=569d465b5b1d57df&ei=d9t2arDaBoLB5OUP7v6voAk&start=40&sa=N&sstk=AU9db-ATnV7mmWzQdn2TtLeDRcIybJJZhiSRUpjKr_2G_XPq9l9vHit1e7VWgj4t_VELThtK_HXLOv30vo_zFbNdDKSjDwvBVnL-vg&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8tMDegQIWRAK
+              - text: "5"
+            - link "Page 6" [ref=e1395] [cursor=pointer]:
+              - /url: /search?q=%22Cultural+Fontanarrosa%22+Rosario+cine&sca_esv=569d465b5b1d57df&ei=d9t2arDaBoLB5OUP7v6voAk&start=50&sa=N&sstk=AU9db-ATnV7mmWzQdn2TtLeDRcIybJJZhiSRUpjKr_2G_XPq9l9vHit1e7VWgj4t_VELThtK_HXLOv30vo_zFbNdDKSjDwvBVnL-vg&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8tMDegQIWRAM
+              - text: "6"
+            - link "Page 7" [ref=e1397] [cursor=pointer]:
+              - /url: /search?q=%22Cultural+Fontanarrosa%22+Rosario+cine&sca_esv=569d465b5b1d57df&ei=d9t2arDaBoLB5OUP7v6voAk&start=60&sa=N&sstk=AU9db-ATnV7mmWzQdn2TtLeDRcIybJJZhiSRUpjKr_2G_XPq9l9vHit1e7VWgj4t_VELThtK_HXLOv30vo_zFbNdDKSjDwvBVnL-vg&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8tMDegQIWRAO
+              - text: "7"
+            - link "Page 8" [ref=e1399] [cursor=pointer]:
+              - /url: /search?q=%22Cultural+Fontanarrosa%22+Rosario+cine&sca_esv=569d465b5b1d57df&ei=d9t2arDaBoLB5OUP7v6voAk&start=70&sa=N&sstk=AU9db-ATnV7mmWzQdn2TtLeDRcIybJJZhiSRUpjKr_2G_XPq9l9vHit1e7VWgj4t_VELThtK_HXLOv30vo_zFbNdDKSjDwvBVnL-vg&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8tMDegQIWRAQ
+              - text: "8"
+            - link "Page 9" [ref=e1401] [cursor=pointer]:
+              - /url: /search?q=%22Cultural+Fontanarrosa%22+Rosario+cine&sca_esv=569d465b5b1d57df&ei=d9t2arDaBoLB5OUP7v6voAk&start=80&sa=N&sstk=AU9db-ATnV7mmWzQdn2TtLeDRcIybJJZhiSRUpjKr_2G_XPq9l9vHit1e7VWgj4t_VELThtK_HXLOv30vo_zFbNdDKSjDwvBVnL-vg&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8tMDegQIWRAS
+              - text: "9"
+            - link "Page 10" [ref=e1403] [cursor=pointer]:
+              - /url: /search?q=%22Cultural+Fontanarrosa%22+Rosario+cine&sca_esv=569d465b5b1d57df&ei=d9t2arDaBoLB5OUP7v6voAk&start=90&sa=N&sstk=AU9db-ATnV7mmWzQdn2TtLeDRcIybJJZhiSRUpjKr_2G_XPq9l9vHit1e7VWgj4t_VELThtK_HXLOv30vo_zFbNdDKSjDwvBVnL-vg&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8tMDegQIWRAU
+              - text: "10"
+            - heading [level=2] [ref=e1405]:
+              - link "Siguiente" [ref=e1406] [cursor=pointer]:
+                - /url: /search?q=%22Cultural+Fontanarrosa%22+Rosario+cine&sca_esv=569d465b5b1d57df&ei=d9t2arDaBoLB5OUP7v6voAk&start=10&sa=N&sstk=AU9db-ATnV7mmWzQdn2TtLeDRcIybJJZhiSRUpjKr_2G_XPq9l9vHit1e7VWgj4t_VELThtK_HXLOv30vo_zFbNdDKSjDwvBVnL-vg&ved=2ahUKEwjw8ZjywZCWAxWCILkGHW7_C5QQ8NMDegQIWRAW
+        - navigation
+    - contentinfo [ref=e1410]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e1411]
+      - generic [ref=e1415]:
+        - generic [ref=e1417]:
+          - text: Argentina
+          - generic [ref=e1419]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e1421] [cursor=pointer]:
+              - generic [ref=e1422]: Iriondo, Santa Fe
+              - generic [ref=e1424]:
+                - text: "-"
+                - generic [ref=e1425]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e1427] [cursor=pointer]
+        - generic [ref=e1430]:
+          - link "Ayuda" [ref=e1431] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e1432] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e1433] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e1434] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

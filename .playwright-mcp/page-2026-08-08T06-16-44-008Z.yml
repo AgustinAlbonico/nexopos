@@ -1,0 +1,90 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "home" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "Veezi footer green logo" [ref=e9]
+        - button "menu" [ref=e10] [cursor=pointer]
+  - generic [ref=e25]:
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - heading "V-Tix Internet Ticketing" [level=1] [ref=e33]:
+          - generic [ref=e34]: V-Tix Internet
+          - generic [ref=e35]: Ticketing
+        - paragraph [ref=e36]: Our internet ticketing solution allows you to reach a wider audience and offer your customers a five-star experience both online and in-cinema.
+      - img "Veezi cinema seat selection interface showing seating layout and ticket booking process." [ref=e39]
+    - generic [ref=e45]:
+      - generic [ref=e47]:
+        - paragraph [ref=e48]: Sync online ticketing into your existing website
+        - paragraph [ref=e49]: "Customize V-Tix to fit in with your existing website for a seamless online experience: Simply upload your logo, select the colors you want to use, set-up your merchant account, and away you go. We’re happy to liaise with your web developers directly if necessary and at no cost to you. You could be up and running in less than an hour!"
+        - paragraph [ref=e50]: Enable seat-select and multi-buys
+        - paragraph [ref=e51]: Generate additional revenue and capture customer details for your marketing efforts with V-Tix - a mobile-responsive solution. Your on-the-go customers will be able to book tickets via their mobile devices, and they’ll love our reserved seating functionality that allows them to book their favorite seats in advance.
+        - paragraph [ref=e52]: Our shopping cart feature allows moviegoers to buy tickets to multiple sessions in one easy transaction -handy for film festivals and movie marathons.
+        - paragraph [ref=e53]: Your ushers can use our free UsherPoint app to scan their tickets at the cinema, reducing queue times at POS.
+      - generic [ref=e55]:
+        - paragraph [ref=e56]: Boost revenue and expand your marketing
+        - paragraph [ref=e57]: Increase your revenue through booking fees and capture customer details for marketing purposes via an opt-in check box as part of the online booking process. V-Tix is fully integrated with our Loyalty system.
+        - paragraph [ref=e58]: Pair with Web for a full website solution
+        - paragraph [ref=e59]:
+          - text: Want the dream website?
+          - link "Web" [ref=e60] [cursor=pointer]:
+            - /url: /features/web
+          - text: is the website solution for cinemas that both you and your moviegoers will love. It seamlessly integrates with V-Tix, ensuring every page is as mobile-friendly and easy to navigate as the next!
+        - paragraph [ref=e61]: ‍
+  - generic [ref=e62]:
+    - generic [ref=e65]:
+      - heading "Want to know about pricing? We’ll build a personalized quote that's just right for your cinema." [level=3] [ref=e66]
+      - link "Talk to us" [ref=e68] [cursor=pointer]:
+        - /url: "#"
+    - contentinfo [ref=e70]:
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - img "Veezi footer green logo" [ref=e74]
+          - paragraph [ref=e75]: Cinema solutions for independent thinkers
+        - list [ref=e77]:
+          - listitem [ref=e78]:
+            - heading "Our company" [level=4] [ref=e79]
+          - listitem [ref=e80]:
+            - link "About" [ref=e81] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=e82]:
+            - link "Contact us" [ref=e83] [cursor=pointer]:
+              - /url: /contact
+          - listitem [ref=e84]:
+            - link "Support" [ref=e85] [cursor=pointer]:
+              - /url: /support-and-resources
+        - list [ref=e87]:
+          - listitem [ref=e88]:
+            - heading "Our product" [level=4] [ref=e89]
+          - listitem [ref=e90]:
+            - link "Features" [ref=e91] [cursor=pointer]:
+              - /url: /features
+          - listitem [ref=e92]:
+            - link "Blog" [ref=e93] [cursor=pointer]:
+              - /url: /blog
+        - list [ref=e95]:
+          - listitem [ref=e96]:
+            - heading "Legal" [level=4] [ref=e97]
+          - listitem [ref=e98]:
+            - link "Terms & Conditions" [ref=e99] [cursor=pointer]:
+              - /url: /legal/terms-conditions
+          - listitem [ref=e100]:
+            - link "Cookie Policy" [ref=e101] [cursor=pointer]:
+              - /url: /legal/cookie-policy
+          - listitem [ref=e102]:
+            - link "Website Terms of Use" [ref=e103] [cursor=pointer]:
+              - /url: /legal/website-terms-of-use
+      - generic [ref=e105]:
+        - paragraph [ref=e107]:
+          - text: © 2026. All rights reserved. A company of
+          - link "Vista Group International Ltd" [ref=e108] [cursor=pointer]:
+            - /url: https://www.vistagroup.co/
+          - text: .
+        - generic [ref=e110]:
+          - link [ref=e111] [cursor=pointer]:
+            - /url: https://www.youtube.com/channel/UCmnBL-gNHugRUUW8nL3v7Wg
+          - link [ref=e112] [cursor=pointer]:
+            - /url: https://www.facebook.com/VeezibyVista
+          - link [ref=e113] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/veezi/

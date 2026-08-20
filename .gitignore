@@ -76,3 +76,6 @@ apps/backend/dist-bundle/
 
 # Auto Claude data directory
 .auto-claude/
+
+# Local agent cache
+.atl/

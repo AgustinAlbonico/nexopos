@@ -1,0 +1,65 @@
+- generic [ref=e2]:
+  - img "top banner" [ref=e4]
+  - banner [ref=e5]:
+    - generic [ref=e6]:
+      - link:
+        - /url: index.php
+        - paragraph
+      - navigation [ref=e7]:
+        - link [ref=e8] [cursor=pointer]:
+          - /url: "#"
+          - button "Toggle Navigation" [ref=e10]
+        - generic:     
+  - generic [ref=e12]:
+    - generic:
+      - list
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic:
+        - list:
+          - listitem [ref=e15]:
+            - link "Películas en Cartelera" [ref=e16]:
+              - /url: "#movie1"
+      - generic [ref=e19]:
+        - generic [ref=e20] [cursor=pointer]:
+          - link:
+            - /url: "#"
+            - generic [ref=e21]: 
+        - generic [ref=e22] [cursor=pointer]:
+          - link:
+            - /url: "#"
+            - generic [ref=e23]: 
+        - generic:  
+    - heading "Próximos Estrenos" [level=2] [ref=e24]
+    - complementary [ref=e27]
+  - contentinfo [ref=e32]:
+    - generic:
+      - list [ref=e34]:
+        - listitem [ref=e35]:
+          - link "Inicio" [ref=e36] [cursor=pointer]:
+            - /url: index.php
+        - listitem [ref=e37]:
+          - link "Cartelera / Programación" [ref=e38] [cursor=pointer]:
+            - /url: programacion.php
+        - listitem [ref=e39]:
+          - link "Próximos Estrenos" [ref=e40] [cursor=pointer]:
+            - /url: estrenos.php
+        - listitem [ref=e41]:
+          - link "Contacto" [ref=e42] [cursor=pointer]:
+            - /url: contacto.php
+        - listitem [ref=e43]:
+          - link "Términos y Condiciones" [ref=e44] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e46]:
+        - generic [ref=e47]: Descargar App
+        - list [ref=e49]:
+          - listitem [ref=e50]
+      - generic [ref=e53]:
+        - img "logo" [ref=e54]
+        - generic [ref=e55]:
+          - generic [ref=e56]: 
+          - generic [ref=e57]: 
+          - generic [ref=e58]: 
+          - generic [ref=e59]: 
+        - paragraph [ref=e60]: © Nexo Soluciones, 2026. Todos los derechos reservados.
+        - img "logo" [ref=e62]

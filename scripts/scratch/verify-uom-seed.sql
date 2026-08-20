@@ -1,0 +1,1 @@
+SELECT code, name, category, precision, "conversionToBase" FROM unit_of_measures ORDER BY category, "conversionToBase" DESC;

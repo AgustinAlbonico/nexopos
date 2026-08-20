@@ -184,37 +184,32 @@ describe('JwtStrategy', () => {
     });
 
     describe('validate - payload structure', () => {
-        it('debería usar payload.sub como userId', async () => {
-            const payload: JwtPayload = {
-                sub: 'user-from-sub',
-                username: 'testuser',
-                iat: Date.now() / 1000,
-                exp: Date.now() / 1000 + 3600,
-            };
-
-            jest.spyOn(usersService, 'findOne').mockResolvedValue(mockActiveUser as never);
-
-            const result = await strategy.validate(payload);
-
-            expect(result.userId).toBe('user-from-sub');
-        });
-
-        it('debería usar payload.username como username', async () => {
+        it('debería retornar userId, username y role provenientes de la base de datos', async () => {
             const payload: JwtPayload = {
                 sub: 'user-123',
-                username: 'username-from-payload',
+                username: 'testuser',
+                role: 'cashier',
                 iat: Date.now() / 1000,
                 exp: Date.now() / 1000 + 3600,
             };
 
-            jest.spyOn(usersService, 'findOne').mockResolvedValue(mockActiveUser as never);
+            const mockUser = {
+                ...mockActiveUser,
+                id: 'user-123',
+                username: 'testuser',
+                role: 'cashier',
+            };
+
+            jest.spyOn(usersService, 'findOne').mockResolvedValue(mockUser as never);
 
             const result = await strategy.validate(payload);
 
-            expect(result.username).toBe('username-from-payload');
+            expect(result.userId).toBe('user-123');
+            expect(result.username).toBe('testuser');
+            expect(result.role).toBe('cashier');
         });
 
-        it('debería retornar solo userId y username, no todo el usuario', async () => {
+        it('debería retornar solo userId, username y role, no todo el objeto usuario', async () => {
             const payload: JwtPayload = {
                 sub: 'user-123',
                 username: 'testuser',
@@ -228,6 +223,7 @@ describe('JwtStrategy', () => {
 
             expect(result).toHaveProperty('userId');
             expect(result).toHaveProperty('username');
+            expect(result).toHaveProperty('role');
             expect(result).not.toHaveProperty('email');
             expect(result).not.toHaveProperty('firstName');
             expect(result).not.toHaveProperty('lastName');

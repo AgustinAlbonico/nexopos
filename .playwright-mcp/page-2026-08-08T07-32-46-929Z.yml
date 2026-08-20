@@ -1,0 +1,241 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0QpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: site:rosario.gob.ar Fontanarrosa cine Rosario site:rosario.gob.ar Fontanarrosa cine Rosario
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3Dsite%253Arosario.gob.ar%2BFontanarrosa%2Bcine%2BRosario&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0Q2J8OegQIDxAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sa=X&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0QtKgLegQIFBAB
+          - listitem [ref=e94]:
+            - link "Noticias" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&sa=X&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0Q0pQJegQIFRAB
+          - listitem [ref=e98]:
+            - link "Vídeos" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sa=X&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0QtKgLegQIExAB
+          - listitem [ref=e102]:
+            - link "Shopping" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&ved=1t:220175&ictx=111
+          - listitem [ref=e106]:
+            - link "Vídeos cortos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbZhld-s_GinAeO2THDh4hqT0PZ0OGOeXvBMyjR1Vy3TNeRHiD0alpuxnMsC3a9AuCYhXysDrf7pNcqBE2z2y5r1YUY5Q&q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sa=X&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0Qs6gLegQIERAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - main [ref=e132]:
+      - generic [ref=e136]:
+        - generic [ref=e139]:
+          - heading "Resultados web" [level=2] [ref=e140]
+          - generic [ref=e141]:
+            - generic [ref=e144]:
+              - link "Inscripción a los Talleres POV en el Fontanarrosa Rosario.gob https://www.rosario.gob.ar › inicio › talleres-pov-en-el-..." [ref=e146] [cursor=pointer]:
+                - /url: https://www.rosario.gob.ar/inicio/talleres-pov-en-el-fontanarrosa
+                - heading "Inscripción a los Talleres POV en el Fontanarrosa" [level=3] [ref=e147]
+                - generic [ref=e153]:
+                  - generic [ref=e154]: Rosario.gob
+                  - generic [ref=e156]: https://www.rosario.gob.ar › inicio › talleres-pov-en-el-...
+              - button "Acerca de este resultado" [ref=e160] [cursor=pointer]
+            - generic [ref=e166]:
+              - generic [ref=e167]: hace 5 días —
+              - text: "Descripción de clases: Cuatro encuentros donde los chicos/as aprenderán a construir historias explorándose a través del ojo de la cámara, ..."
+        - generic [ref=e171]:
+          - generic [ref=e174]:
+            - link "Actuación en cine para niñxs | Centro Cultural Fontanarrosa Rosario.gob https://www.rosario.gob.ar › inicio › webform › actuaci..." [ref=e176] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/webform/actuacion_en_cine_para_ninos_fon
+              - heading "Actuación en cine para niñxs | Centro Cultural Fontanarrosa" [level=3] [ref=e177]
+              - generic [ref=e183]:
+                - generic [ref=e184]: Rosario.gob
+                - generic [ref=e186]: https://www.rosario.gob.ar › inicio › webform › actuaci...
+            - button "Acerca de este resultado" [ref=e190] [cursor=pointer]
+          - generic [ref=e197]:
+            - emphasis [ref=e198]: Actuación en cine para niñxs
+            - text: "| Centro Cultural Fontanarrosa · Datos personales del adulto responsable · Intereses culturales · Servicios."
+        - generic [ref=e202]:
+          - generic [ref=e205]:
+            - link "Memorias Cuir en VHS | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › memorias-cuir-en-..." [ref=e207] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/memorias-cuir-en-vhs
+              - heading "Memorias Cuir en VHS | rosario.gob.ar" [level=3] [ref=e208]
+              - generic [ref=e214]:
+                - generic [ref=e215]: Rosario.gob
+                - generic [ref=e217]: https://www.rosario.gob.ar › inicio › memorias-cuir-en-...
+            - button "Acerca de este resultado" [ref=e221] [cursor=pointer]
+          - generic [ref=e228]:
+            - text: Memoria
+            - emphasis [ref=e229]: s
+            - text: Cuir en VHS es una propuesta independiente dedicada a la recuperación, exhibición y reflexión en torno a archivos audiovisuales vinculados al cine ...
+        - generic [ref=e233]:
+          - generic [ref=e236]:
+            - link "Agenda | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › agenda" [ref=e238] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/agenda
+              - heading "Agenda | rosario.gob.ar" [level=3] [ref=e239]
+              - generic [ref=e245]:
+                - generic [ref=e246]: Rosario.gob
+                - generic [ref=e248]: https://www.rosario.gob.ar › inicio › agenda
+            - button "Acerca de este resultado" [ref=e252] [cursor=pointer]
+          - generic [ref=e259]:
+            - text: "Mes del Teatro Independiente: funciones y propuestas +65 · Agosto en"
+            - emphasis [ref=e260]: Cine
+            - text: Lumière · Concierto de la Orquesta de Cámara junto a Escuela Orquesta Barrio Ludueña.
+        - generic [ref=e264]:
+          - generic [ref=e267]:
+            - link "Centros culturales y teatros | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › centros-culturales-..." [ref=e269] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/centros-culturales-y-teatros
+              - heading "Centros culturales y teatros | rosario.gob.ar" [level=3] [ref=e270]
+              - generic [ref=e276]:
+                - generic [ref=e277]: Rosario.gob
+                - generic [ref=e279]: https://www.rosario.gob.ar › inicio › centros-culturales-...
+            - button "Acerca de este resultado" [ref=e283] [cursor=pointer]
+          - generic [ref=e290]:
+            - text: Centro Cultural Roberto Fontanarrosa ,.
+            - emphasis [ref=e291]: Dirección, San Martín 1080
+            - text: . Horario, Lunes a viernes de 11 a 20h, sábados de 13 a 19h. Teléfono, 4802401. Correo, info- ...
+        - generic [ref=e295]:
+          - generic [ref=e298]:
+            - link "Cultura y educación | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › cultura-y-educacion" [ref=e300] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/cultura-y-educacion
+              - heading "Cultura y educación | rosario.gob.ar" [level=3] [ref=e301]
+              - generic [ref=e307]:
+                - generic [ref=e308]: Rosario.gob
+                - generic [ref=e310]: https://www.rosario.gob.ar › inicio › cultura-y-educacion
+            - button "Acerca de este resultado" [ref=e314] [cursor=pointer]
+          - generic [ref=e321]:
+            - text: Cultura y educación · inscripciones y convocatorias abiertas · Un cultural
+            - emphasis [ref=e322]: fontanarrosa
+            - text: entero para vos · Novedades · Noticias · QUE TE GUSTARÍA HACER.
+        - generic [ref=e326]:
+          - generic [ref=e329]:
+            - link "Lucrecia Martel en el Cultural Fontanarrosa | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › lucrecia-martel-en..." [ref=e331] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/lucrecia-martel-en-el-cultural-fontanarrosa
+              - heading "Lucrecia Martel en el Cultural Fontanarrosa | rosario.gob.ar" [level=3] [ref=e332]
+              - generic [ref=e338]:
+                - generic [ref=e339]: Rosario.gob
+                - generic [ref=e341]: https://www.rosario.gob.ar › inicio › lucrecia-martel-en...
+            - button "Acerca de este resultado" [ref=e345] [cursor=pointer]
+          - generic [ref=e352]:
+            - text: Este libro reúne por escrito una serie de intervenciones públicas de la directora de
+            - emphasis [ref=e353]: cine
+            - text: argentina. ¿Cómo podemos involucrarnos sensiblemente con lo que ...
+        - generic [ref=e357]:
+          - generic [ref=e360]:
+            - link "Informe Audiovisual Rosario Datos https://datos.rosario.gob.ar › sites › default › files" [ref=e362] [cursor=pointer]:
+              - /url: https://datos.rosario.gob.ar/sites/default/files/2023-03/Informe%20Audiovisual.pdf
+              - heading "Informe Audiovisual" [level=3] [ref=e363]
+              - generic [ref=e369]:
+                - generic [ref=e370]: Rosario Datos
+                - generic [ref=e372]: https://datos.rosario.gob.ar › sites › default › files
+            - generic [ref=e374]: PDF
+            - button "Acerca de este resultado" [ref=e377] [cursor=pointer]
+          - generic [ref=e382]:
+            - generic [ref=e383]:
+              - generic [ref=e384]: 3 mar 2023 —
+              - generic [ref=e385]:
+                - emphasis [ref=e386]: El Centro Cultural Roberto Fontanarrosa
+                - text: ", organizó este ciclo de cine público y gratuito que retomó la tradición del cine al aire libre e ..."
+            - generic [ref=e387]: 6 páginas
+        - generic [ref=e391]:
+          - generic [ref=e394]:
+            - link "Bibliotecas y Editorial municipal | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › bibliotecas-y-edito..." [ref=e396] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/bibliotecas-y-editorial-municipal
+              - heading "Bibliotecas y Editorial municipal | rosario.gob.ar" [level=3] [ref=e397]
+              - generic [ref=e403]:
+                - generic [ref=e404]: Rosario.gob
+                - generic [ref=e406]: https://www.rosario.gob.ar › inicio › bibliotecas-y-edito...
+            - button "Acerca de este resultado" [ref=e410] [cursor=pointer]
+          - generic [ref=e415]: La Biblioteca Argentina brinda diversos servicios y desarrolla proyectos y actividades para la comunidad. Cuenta con programación anual de talleres ...
+        - generic [ref=e420]:
+          - generic [ref=e423]:
+            - link "Buscador | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › buscar" [ref=e425] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/buscar?palabras=&tematica-n1=4&tematica-n2=All
+              - heading "Buscador | rosario.gob.ar" [level=3] [ref=e426]
+              - generic [ref=e432]:
+                - generic [ref=e433]: Rosario.gob
+                - generic [ref=e435]: https://www.rosario.gob.ar › inicio › buscar
+            - button "Acerca de este resultado" [ref=e439] [cursor=pointer]
+          - generic [ref=e446]:
+            - text: Convocatoria 3NTR3 - Programa público del Cultural
+            - emphasis [ref=e447]: Fontanarrosa
+            - text: para artistas, profesionales de la cultura y agentes creativos de la ciudad de
+            - emphasis [ref=e448]: Rosario
+            - text: .
+      - navigation [ref=e451]:
+        - heading "Navegación de páginas" [level=1] [ref=e452]
+        - text: "1"
+        - link "Page 2" [ref=e455] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sca_esv=569d465b5b1d57df&ei=ntt2aoPsMuHZ5OUP-KPe6AM&start=10&sa=N&sstk=AU9db-BBVxzwjwHlnGRmTXsAu7RZepquHHKRPAXUQe_Fjz8Mo2sZlgoaTpOcdd1EgXH8msIckif_ZynEu2r-JslQorVhdt6iB28NcA&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0Q8tMDegQIKBAE
+          - text: "2"
+        - link "Page 3" [ref=e457] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sca_esv=569d465b5b1d57df&ei=ntt2aoPsMuHZ5OUP-KPe6AM&start=20&sa=N&sstk=AU9db-BBVxzwjwHlnGRmTXsAu7RZepquHHKRPAXUQe_Fjz8Mo2sZlgoaTpOcdd1EgXH8msIckif_ZynEu2r-JslQorVhdt6iB28NcA&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0Q8tMDegQIKBAG
+          - text: "3"
+        - link "Page 4" [ref=e459] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sca_esv=569d465b5b1d57df&ei=ntt2aoPsMuHZ5OUP-KPe6AM&start=30&sa=N&sstk=AU9db-BBVxzwjwHlnGRmTXsAu7RZepquHHKRPAXUQe_Fjz8Mo2sZlgoaTpOcdd1EgXH8msIckif_ZynEu2r-JslQorVhdt6iB28NcA&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0Q8tMDegQIKBAI
+          - text: "4"
+        - link "Page 5" [ref=e461] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sca_esv=569d465b5b1d57df&ei=ntt2aoPsMuHZ5OUP-KPe6AM&start=40&sa=N&sstk=AU9db-BBVxzwjwHlnGRmTXsAu7RZepquHHKRPAXUQe_Fjz8Mo2sZlgoaTpOcdd1EgXH8msIckif_ZynEu2r-JslQorVhdt6iB28NcA&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0Q8tMDegQIKBAK
+          - text: "5"
+        - link "Page 6" [ref=e463] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sca_esv=569d465b5b1d57df&ei=ntt2aoPsMuHZ5OUP-KPe6AM&start=50&sa=N&sstk=AU9db-BBVxzwjwHlnGRmTXsAu7RZepquHHKRPAXUQe_Fjz8Mo2sZlgoaTpOcdd1EgXH8msIckif_ZynEu2r-JslQorVhdt6iB28NcA&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0Q8tMDegQIKBAM
+          - text: "6"
+        - link "Page 7" [ref=e465] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sca_esv=569d465b5b1d57df&ei=ntt2aoPsMuHZ5OUP-KPe6AM&start=60&sa=N&sstk=AU9db-BBVxzwjwHlnGRmTXsAu7RZepquHHKRPAXUQe_Fjz8Mo2sZlgoaTpOcdd1EgXH8msIckif_ZynEu2r-JslQorVhdt6iB28NcA&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0Q8tMDegQIKBAO
+          - text: "7"
+        - link "Page 8" [ref=e467] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sca_esv=569d465b5b1d57df&ei=ntt2aoPsMuHZ5OUP-KPe6AM&start=70&sa=N&sstk=AU9db-BBVxzwjwHlnGRmTXsAu7RZepquHHKRPAXUQe_Fjz8Mo2sZlgoaTpOcdd1EgXH8msIckif_ZynEu2r-JslQorVhdt6iB28NcA&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0Q8tMDegQIKBAQ
+          - text: "8"
+        - heading [level=2] [ref=e469]:
+          - link "Siguiente" [ref=e470] [cursor=pointer]:
+            - /url: /search?q=site:rosario.gob.ar+Fontanarrosa+cine+Rosario&sca_esv=569d465b5b1d57df&ei=ntt2aoPsMuHZ5OUP-KPe6AM&start=10&sa=N&sstk=AU9db-BBVxzwjwHlnGRmTXsAu7RZepquHHKRPAXUQe_Fjz8Mo2sZlgoaTpOcdd1EgXH8msIckif_ZynEu2r-JslQorVhdt6iB28NcA&ved=2ahUKEwiDs5GFwpCWAxXhLLkGHfiRFz0Q8NMDegQIKBAS
+      - navigation
+    - contentinfo [ref=e473]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e474]
+      - generic [ref=e478]:
+        - generic [ref=e480]:
+          - text: Argentina
+          - generic [ref=e482]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e484] [cursor=pointer]:
+              - generic [ref=e485]: Iriondo, Santa Fe
+              - generic [ref=e487]:
+                - text: "-"
+                - generic [ref=e488]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e490] [cursor=pointer]
+        - generic [ref=e493]:
+          - link "Ayuda" [ref=e494] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e495] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e496] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e497] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

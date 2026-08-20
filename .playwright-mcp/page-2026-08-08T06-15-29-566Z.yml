@@ -1,0 +1,241 @@
+- generic [active] [ref=f8e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=f8e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=f8e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=f8e8]:
+    - search [ref=f8e9]:
+      - generic [ref=f8e12]:
+        - link [ref=f8e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=f8e14]
+        - generic [ref=f8e19]:
+          - combobox "Buscar" [ref=f8e22]: site:incaa.gob.ar estadísticas salas cine Argentina site:incaa.gob.ar estadísticas salas cine Argentina
+          - generic [ref=f8e23]:
+            - button "Borrar" [ref=f8e25] [cursor=pointer]
+            - generic [ref=f8e30]:
+              - button "Búsqueda por voz" [ref=f8e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=f8e34] [cursor=pointer]
+        - button "Buscar" [ref=f8e37] [cursor=pointer]
+    - generic [ref=f8e42]:
+      - button "Configuración" [ref=f8e44] [cursor=pointer]
+      - button "Compartir" [ref=f8e50] [cursor=pointer]
+      - generic [ref=f8e56]:
+        - button "Aplicaciones de Google" [ref=f8e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=f8e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3Dsite%253Aincaa.gob.ar%2Bestad%25C3%25ADsticas%2Bsalas%2Bcine%2BArgentina&ec=futura_srp_og_si_72236_p
+  - generic [ref=f8e65]:
+    - navigation [ref=f8e71]:
+      - generic [ref=f8e77]:
+        - list [ref=f8e78]:
+          - listitem [ref=f8e79]:
+            - link "Modo IA" [ref=f8e82] [cursor=pointer]:
+              - /url: /search?q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sca_esv=0096a2a1340d2922&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ2J8OegQIDxAD
+          - listitem [ref=f8e86]:
+            - link "Todo" [disabled] [ref=f8e87]
+          - listitem [ref=f8e90]:
+            - link "Imágenes" [ref=f8e91] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sa=X&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQtKgLegQIFRAB
+          - listitem [ref=f8e94]:
+            - link "Noticias" [ref=f8e95] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&sa=X&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ0pQJegQIFBAB
+          - listitem [ref=f8e98]:
+            - link "Vídeos" [ref=f8e99] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sa=X&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQtKgLegQIExAB
+          - listitem [ref=f8e102]:
+            - link "Shopping" [ref=f8e103] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&ved=1t:220175&ictx=111
+          - listitem [ref=f8e106]:
+            - link "Vídeos cortos" [ref=f8e107] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sa=X&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQs6gLegQIERAB
+          - listitem [ref=f8e110]:
+            - button [ref=f8e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=f8e112]: Más
+        - button "Herramientas" [ref=f8e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=f8e126]
+    - main [ref=f8e132]:
+      - generic [ref=f8e136]:
+        - generic [ref=f8e139]:
+          - heading "Resultados web" [level=2] [ref=f8e140]
+          - generic [ref=f8e141]:
+            - generic [ref=f8e144]:
+              - link "Salas INCAA https://fiscalizacion.incaa.gob.ar › index_estadisticas_salas" [ref=f8e146] [cursor=pointer]:
+                - /url: https://fiscalizacion.incaa.gob.ar/index_estadisticas_salas.php
+                - heading "Salas" [level=3] [ref=f8e147]
+                - generic [ref=f8e153]:
+                  - generic [ref=f8e154]: INCAA
+                  - generic [ref=f8e156]: https://fiscalizacion.incaa.gob.ar › index_estadisticas_salas
+              - button "Acerca de este resultado" [ref=f8e160] [cursor=pointer]
+            - generic [ref=f8e167]:
+              - text: (*) Las
+              - emphasis [ref=f8e168]: estadísticas
+              - text: surgen de las DDJJ que realizan diariamente las empresas de exhibición cinematográfica a través del Sistema de DDJJ online. . Logo ...
+        - generic [ref=f8e172]:
+          - generic [ref=f8e175]:
+            - link "Espectadores semanales por Provincia INCAA https://fiscalizacion.incaa.gob.ar › index_estadisticas" [ref=f8e177] [cursor=pointer]:
+              - /url: https://fiscalizacion.incaa.gob.ar/index_estadisticas.php
+              - heading "Espectadores semanales por Provincia" [level=3] [ref=f8e178]
+              - generic [ref=f8e184]:
+                - generic [ref=f8e185]: INCAA
+                - generic [ref=f8e187]: https://fiscalizacion.incaa.gob.ar › index_estadisticas
+            - button "Acerca de este resultado" [ref=f8e191] [cursor=pointer]
+          - generic [ref=f8e198]:
+            - text: Evolución espectadores ·
+            - emphasis [ref=f8e199]: Espectadores semanales por Provincia
+            - text: "· Informe Semanal. Datos actualizados al: 5/8/2026 2:05:35 p. m."
+        - generic [ref=f8e203]:
+          - generic [ref=f8e206]:
+            - link "Datos y estadísticas INCAA https://www.incaa.gob.ar › datos-y-estadisticas" [ref=f8e208] [cursor=pointer]:
+              - /url: https://www.incaa.gob.ar/datos-y-estadisticas/
+              - heading "Datos y estadísticas" [level=3] [ref=f8e209]
+              - generic [ref=f8e215]:
+                - generic [ref=f8e216]: INCAA
+                - generic [ref=f8e218]: https://www.incaa.gob.ar › datos-y-estadisticas
+            - button "Acerca de este resultado" [ref=f8e222] [cursor=pointer]
+          - generic [ref=f8e229]:
+            - text: Datos y
+            - emphasis [ref=f8e230]: estadísticas
+            - text: · Valor de la entrada promedio · Buscador de calificacion de películas · Series históricas · Cantidad de espectadores por película estrenada.
+        - generic [ref=f8e234]:
+          - generic [ref=f8e237]:
+            - link "Películas estrenadas INCAA https://fiscalizacion.incaa.gob.ar › index_estadisticas_pe..." [ref=f8e239] [cursor=pointer]:
+              - /url: https://fiscalizacion.incaa.gob.ar/index_estadisticas_peliculas.php
+              - heading "Películas estrenadas" [level=3] [ref=f8e240]
+              - generic [ref=f8e246]:
+                - generic [ref=f8e247]: INCAA
+                - generic [ref=f8e249]: https://fiscalizacion.incaa.gob.ar › index_estadisticas_pe...
+            - button "Acerca de este resultado" [ref=f8e253] [cursor=pointer]
+          - generic [ref=f8e260]:
+            - text: (*) Las
+            - emphasis [ref=f8e261]: estadísticas
+            - text: surgen de las DDJJ que realizan diariamente las empresas de exhibición cinematográfica a través del Sistema de DDJJ online. . Logo ...
+        - generic [ref=f8e265]:
+          - generic [ref=f8e268]:
+            - link "Buscador de calificación de películas INCAA https://www.incaa.gob.ar › datos-y-estadisticas › buscad..." [ref=f8e270] [cursor=pointer]:
+              - /url: https://www.incaa.gob.ar/datos-y-estadisticas/buscador-de-calificacion-de-peliculas/
+              - heading "Buscador de calificación de películas" [level=3] [ref=f8e271]
+              - generic [ref=f8e277]:
+                - generic [ref=f8e278]: INCAA
+                - generic [ref=f8e280]: https://www.incaa.gob.ar › datos-y-estadisticas › buscad...
+            - button "Acerca de este resultado" [ref=f8e284] [cursor=pointer]
+          - generic [ref=f8e289]: Buscador de calificación de películas · Calificación Cinematográfica · ¿Para qué sirve? · Buscador de calificación de películas · Contacto · exhibicion@incaa.gob.ar ...
+        - generic [ref=f8e294]:
+          - generic [ref=f8e297]:
+            - link "Fiscalización - Instituto Nacional de Cine y Artes Audiovisuales INCAA https://fiscalizacion.incaa.gob.ar › index_videotutoriales" [ref=f8e299] [cursor=pointer]:
+              - /url: https://fiscalizacion.incaa.gob.ar/index_videotutoriales.php
+              - heading "Fiscalización - Instituto Nacional de Cine y Artes Audiovisuales" [level=3] [ref=f8e300]
+              - generic [ref=f8e306]:
+                - generic [ref=f8e307]: INCAA
+                - generic [ref=f8e309]: https://fiscalizacion.incaa.gob.ar › index_videotutoriales
+            - button "Acerca de este resultado" [ref=f8e313] [cursor=pointer]
+          - generic [ref=f8e320]:
+            - emphasis [ref=f8e321]: ESTADÍSTICAS
+            - text: . Anuarios estadísticos · Informe Semanal · Boletín Semanal · Por películas · Por Provincia · Del Regístro Público · Series Históricas ...
+        - generic [ref=f8e325]:
+          - generic [ref=f8e328]:
+            - link "Cantidad de entradas por provincia 7/23/2026 12:51:15 PM INCAA https://fiscalizacion.incaa.gob.ar › index_estadisticas_pr..." [ref=f8e330] [cursor=pointer]:
+              - /url: https://fiscalizacion.incaa.gob.ar/index_estadisticas_provincias.php
+              - heading "Cantidad de entradas por provincia 7/23/2026 12:51:15 PM" [level=3] [ref=f8e331]
+              - generic [ref=f8e337]:
+                - generic [ref=f8e338]: INCAA
+                - generic [ref=f8e340]: https://fiscalizacion.incaa.gob.ar › index_estadisticas_pr...
+            - button "Acerca de este resultado" [ref=f8e344] [cursor=pointer]
+          - generic [ref=f8e351]:
+            - text: (*) Las
+            - emphasis [ref=f8e352]: estadísticas
+            - text: surgen de las DDJJ que realizan diariamente las empresas de exhibición cinematográfica a través del Sistema de DDJJ online. ...
+        - generic [ref=f8e356]:
+          - generic [ref=f8e359]:
+            - link "Gráficos de media de continuidad de las películas nacionales ... INCAA https://fiscalizacion.incaa.gob.ar › index_media_de_con..." [ref=f8e361] [cursor=pointer]:
+              - /url: https://fiscalizacion.incaa.gob.ar/index_media_de_continuidad.php
+              - heading "Gráficos de media de continuidad de las películas nacionales ..." [level=3] [ref=f8e362]
+              - generic [ref=f8e368]:
+                - generic [ref=f8e369]: INCAA
+                - generic [ref=f8e371]: https://fiscalizacion.incaa.gob.ar › index_media_de_con...
+            - button "Acerca de este resultado" [ref=f8e375] [cursor=pointer]
+          - generic [ref=f8e380]: "Gráficos de media de continuidad de las películas nacionales del tercer trimestre de 2019. Res. 1087/19. Art. 7°: Entiéndase por Media de Continuidad a la ..."
+        - generic [ref=f8e385]:
+          - generic [ref=f8e388]:
+            - link "Fiscalización - Instituto Nacional de Cine y Artes Audiovisuales INCAA https://fiscalizacion.incaa.gob.ar › index_informe_sema..." [ref=f8e390] [cursor=pointer]:
+              - /url: https://fiscalizacion.incaa.gob.ar/index_informe_semanal_198.php
+              - heading "Fiscalización - Instituto Nacional de Cine y Artes Audiovisuales" [level=3] [ref=f8e391]
+              - generic [ref=f8e397]:
+                - generic [ref=f8e398]: INCAA
+                - generic [ref=f8e400]: https://fiscalizacion.incaa.gob.ar › index_informe_sema...
+            - button "Acerca de este resultado" [ref=f8e404] [cursor=pointer]
+          - generic [ref=f8e409]: "ESPECTADORES DE PELÍCULAS NACIONALES. #, Título, Espectadores, Acumulado, Pantallas, Semana (1), Fecha de estreno, Vía, Subsidios a la fecha (2)."
+        - generic [ref=f8e414]:
+          - generic [ref=f8e417]:
+            - link "INCAA – Instituto Nacional de Cine y Artes Audiovisuales INCAA https://www.incaa.gob.ar" [ref=f8e419] [cursor=pointer]:
+              - /url: https://www.incaa.gob.ar/
+              - heading "INCAA – Instituto Nacional de Cine y Artes Audiovisuales" [level=3] [ref=f8e420]
+              - generic [ref=f8e426]:
+                - generic [ref=f8e427]: INCAA
+                - generic [ref=f8e429]: https://www.incaa.gob.ar
+            - button "Acerca de este resultado" [ref=f8e433] [cursor=pointer]
+          - generic [ref=f8e440]:
+            - emphasis [ref=f8e441]: CINE
+            - text: GAUMONT- 2X1 TODOS LOS LUNES en toda la cartelera vigente. Ver ... Pesadillas
+            - emphasis [ref=f8e442]: argentinas
+            - text: ". Noches de Terror: Pesadillas"
+            - emphasis [ref=f8e443]: Argentinas
+            - text: en el
+            - emphasis [ref=f8e444]: Cine
+            - text: Gaumont ...
+      - navigation [ref=f8e447]:
+        - heading "Navegación de páginas" [level=1] [ref=f8e448]
+        - text: "1"
+        - link "Page 2" [ref=f8e451] [cursor=pointer]:
+          - /url: /search?q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sca_esv=0096a2a1340d2922&ei=gcl2aomUFdLn1sQPq_OxqA0&start=10&sa=N&sstk=AU9db-Aoq_9b0_jZIixDmOtNpYMbZPWQLHwAFN5HpkCM-4jSOM_UsYNk02BMZ94LPkCtTS_6AgDBW6wGEh2S4pewFjD9ghoc6yF4fA&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ8tMDegQIKBAE
+          - text: "2"
+        - link "Page 3" [ref=f8e453] [cursor=pointer]:
+          - /url: /search?q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sca_esv=0096a2a1340d2922&ei=gcl2aomUFdLn1sQPq_OxqA0&start=20&sa=N&sstk=AU9db-Aoq_9b0_jZIixDmOtNpYMbZPWQLHwAFN5HpkCM-4jSOM_UsYNk02BMZ94LPkCtTS_6AgDBW6wGEh2S4pewFjD9ghoc6yF4fA&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ8tMDegQIKBAG
+          - text: "3"
+        - link "Page 4" [ref=f8e455] [cursor=pointer]:
+          - /url: /search?q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sca_esv=0096a2a1340d2922&ei=gcl2aomUFdLn1sQPq_OxqA0&start=30&sa=N&sstk=AU9db-Aoq_9b0_jZIixDmOtNpYMbZPWQLHwAFN5HpkCM-4jSOM_UsYNk02BMZ94LPkCtTS_6AgDBW6wGEh2S4pewFjD9ghoc6yF4fA&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ8tMDegQIKBAI
+          - text: "4"
+        - link "Page 5" [ref=f8e457] [cursor=pointer]:
+          - /url: /search?q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sca_esv=0096a2a1340d2922&ei=gcl2aomUFdLn1sQPq_OxqA0&start=40&sa=N&sstk=AU9db-Aoq_9b0_jZIixDmOtNpYMbZPWQLHwAFN5HpkCM-4jSOM_UsYNk02BMZ94LPkCtTS_6AgDBW6wGEh2S4pewFjD9ghoc6yF4fA&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ8tMDegQIKBAK
+          - text: "5"
+        - link "Page 6" [ref=f8e459] [cursor=pointer]:
+          - /url: /search?q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sca_esv=0096a2a1340d2922&ei=gcl2aomUFdLn1sQPq_OxqA0&start=50&sa=N&sstk=AU9db-Aoq_9b0_jZIixDmOtNpYMbZPWQLHwAFN5HpkCM-4jSOM_UsYNk02BMZ94LPkCtTS_6AgDBW6wGEh2S4pewFjD9ghoc6yF4fA&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ8tMDegQIKBAM
+          - text: "6"
+        - link "Page 7" [ref=f8e461] [cursor=pointer]:
+          - /url: /search?q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sca_esv=0096a2a1340d2922&ei=gcl2aomUFdLn1sQPq_OxqA0&start=60&sa=N&sstk=AU9db-Aoq_9b0_jZIixDmOtNpYMbZPWQLHwAFN5HpkCM-4jSOM_UsYNk02BMZ94LPkCtTS_6AgDBW6wGEh2S4pewFjD9ghoc6yF4fA&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ8tMDegQIKBAO
+          - text: "7"
+        - link "Page 8" [ref=f8e463] [cursor=pointer]:
+          - /url: /search?q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sca_esv=0096a2a1340d2922&ei=gcl2aomUFdLn1sQPq_OxqA0&start=70&sa=N&sstk=AU9db-Aoq_9b0_jZIixDmOtNpYMbZPWQLHwAFN5HpkCM-4jSOM_UsYNk02BMZ94LPkCtTS_6AgDBW6wGEh2S4pewFjD9ghoc6yF4fA&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ8tMDegQIKBAQ
+          - text: "8"
+        - link "Page 9" [ref=f8e465] [cursor=pointer]:
+          - /url: /search?q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sca_esv=0096a2a1340d2922&ei=gcl2aomUFdLn1sQPq_OxqA0&start=80&sa=N&sstk=AU9db-Aoq_9b0_jZIixDmOtNpYMbZPWQLHwAFN5HpkCM-4jSOM_UsYNk02BMZ94LPkCtTS_6AgDBW6wGEh2S4pewFjD9ghoc6yF4fA&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ8tMDegQIKBAS
+          - text: "9"
+        - link "Page 10" [ref=f8e467] [cursor=pointer]:
+          - /url: /search?q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sca_esv=0096a2a1340d2922&ei=gcl2aomUFdLn1sQPq_OxqA0&start=90&sa=N&sstk=AU9db-Aoq_9b0_jZIixDmOtNpYMbZPWQLHwAFN5HpkCM-4jSOM_UsYNk02BMZ94LPkCtTS_6AgDBW6wGEh2S4pewFjD9ghoc6yF4fA&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ8tMDegQIKBAU
+          - text: "10"
+        - heading [level=2] [ref=f8e469]:
+          - link "Siguiente" [ref=f8e470] [cursor=pointer]:
+            - /url: /search?q=site:incaa.gob.ar+estad%C3%ADsticas+salas+cine+Argentina&sca_esv=0096a2a1340d2922&ei=gcl2aomUFdLn1sQPq_OxqA0&start=10&sa=N&sstk=AU9db-Aoq_9b0_jZIixDmOtNpYMbZPWQLHwAFN5HpkCM-4jSOM_UsYNk02BMZ94LPkCtTS_6AgDBW6wGEh2S4pewFjD9ghoc6yF4fA&ved=2ahUKEwjJ2OfhsJCWAxXSs5UCHat5DNUQ8NMDegQIKBAW
+      - navigation
+    - contentinfo [ref=f8e473]:
+      - heading "Vínculos a pie de página" [level=1] [ref=f8e474]
+      - generic [ref=f8e478]:
+        - generic [ref=f8e480]:
+          - text: Argentina
+          - generic [ref=f8e482]:
+            - button "Iriondo, Santa Fe - Según tu actividad anterior" [ref=f8e484] [cursor=pointer]:
+              - generic [ref=f8e485]: Iriondo, Santa Fe
+              - generic [ref=f8e487]:
+                - text: "-"
+                - generic [ref=f8e488]: Según tu actividad anterior
+            - text: "-"
+            - button "Actualizar ubicación" [ref=f8e490] [cursor=pointer]
+        - generic [ref=f8e493]:
+          - link "Ayuda" [ref=f8e494] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=f8e495] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=f8e496] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=f8e497] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

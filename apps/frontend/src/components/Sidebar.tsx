@@ -27,6 +27,7 @@ import {
 } from 'lucide-react';
 import { Button } from './ui/button';
 import { useLowStockCount } from '@/features/products/hooks/useLowStock';
+import { useCapabilities } from '@/hooks/useCapabilities';
 import {
     Tooltip,
     TooltipContent,
@@ -50,6 +51,7 @@ interface NavItem {
     icon: React.ElementType;
     badgeKey?: 'lowStock'; // Claves para badges dinámicos
     shortcut?: string; // Atajo de teclado (ej: 'F1')
+    roles?: ('admin' | 'manager' | 'cashier')[];
 }
 
 const navItems: NavItem[] = [
@@ -58,42 +60,49 @@ const navItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutDashboard,
         shortcut: 'F1',
+        roles: ['admin', 'manager', 'cashier'],
     },
     {
         title: 'Ventas',
         href: '/sales',
         icon: ShoppingCart,
         shortcut: 'F2', // Navega + abre modal nueva venta
+        roles: ['admin', 'manager', 'cashier'],
     },
     {
         title: 'Caja',
         href: '/cash-register',
         icon: Wallet,
         shortcut: 'F3',
+        roles: ['admin', 'manager', 'cashier'],
     },
     {
         title: 'Cuentas Corrientes',
         href: '/customer-accounts',
         icon: CreditCard,
         shortcut: 'F4',
+        roles: ['admin', 'manager'],
     },
     {
         title: 'Ingresos',
         href: '/incomes',
         icon: TrendingUp,
         shortcut: 'F5', // Navega + abre modal nuevo ingreso
+        roles: ['admin', 'manager'],
     },
     {
         title: 'Compras',
         href: '/purchases',
         icon: Truck,
         shortcut: 'F6', // Navega + abre modal nueva compra
+        roles: ['admin', 'manager'],
     },
     {
         title: 'Gastos',
         href: '/expenses',
         icon: Receipt,
         shortcut: 'F7', // Navega + abre modal nuevo gasto
+        roles: ['admin', 'manager'],
     },
     {
         title: 'Productos',
@@ -101,46 +110,66 @@ const navItems: NavItem[] = [
         icon: Package,
         badgeKey: 'lowStock',
         shortcut: 'F8',
+        roles: ['admin', 'manager'],
     },
     {
         title: 'Clientes',
         href: '/customers',
         icon: UserCircle,
         shortcut: 'F9',
+        roles: ['admin', 'manager', 'cashier'],
     },
     {
         title: 'Proveedores',
         href: '/suppliers',
         icon: Building2,
         shortcut: 'F10',
+        roles: ['admin', 'manager'],
     },
     {
         title: 'Reportes',
         href: '/reports',
         icon: BarChart3,
         shortcut: 'F11',
+        roles: ['admin', 'manager'],
     },
     {
         title: 'Ubicaciones',
         href: '/inventory/locations',
         icon: Boxes,
+        roles: ['admin', 'manager'],
     },
     {
         title: 'Reposición',
         href: '/inventory/replenishment',
         icon: ArrowRightLeft,
+        roles: ['admin', 'manager'],
     },
     {
         title: 'Configuración',
         href: '/settings',
         icon: Settings,
+        roles: ['admin'],
     },
 ];
 
 export function Sidebar({ user, onLogout, collapsed = false, onToggle, hideToggle = false }: SidebarProps) {
     const location = useLocation();
     const { count: lowStockCount } = useLowStockCount();
+    const { data: capabilities } = useCapabilities();
     const [version, setVersion] = useState<string>('');
+    const enabledRoutes = capabilities?.appRoutes?.enabled ? new Set(capabilities.appRoutes.enabled) : null;
+    const userRole = user?.role || 'admin';
+
+    const visibleNavItems = navItems.filter((item) => {
+        if (item.roles && !item.roles.includes(userRole)) {
+            return false;
+        }
+        if (enabledRoutes && !enabledRoutes.has(item.href.replace(/^\//, ''))) {
+            return false;
+        }
+        return true;
+    });
 
     useEffect(() => {
         const electronAPI = (globalThis as unknown as { electronAPI?: { getAppVersion?: () => Promise<string> } }).electronAPI;
@@ -161,7 +190,7 @@ export function Sidebar({ user, onLogout, collapsed = false, onToggle, hideToggl
             <div
                 className={cn(
                     "flex flex-col h-full bg-card border-r border-border transition-all duration-300 relative",
-                    collapsed ? "w-14 xl:w-16" : "w-48 xl:w-56 wide:w-64"
+                    collapsed ? "w-14 xl:w-16" : "w-44 xl:w-52 wide:w-56"
                 )}
             >
                 {/* Botón de toggle - solo visible cuando no está auto-colapsado */}
@@ -200,7 +229,7 @@ export function Sidebar({ user, onLogout, collapsed = false, onToggle, hideToggl
                 {/* Navigation */}
                 <nav className="flex-1 overflow-y-auto py-3 xl:py-4 px-2 xl:px-3">
                     <div className="space-y-1">
-                        {navItems.map((item) => {
+                        {visibleNavItems.map((item) => {
                             const isActive = location.pathname === item.href;
                             const Icon = item.icon;
                             const badgeCount = item.badgeKey ? badges[item.badgeKey] : 0;
@@ -227,7 +256,7 @@ export function Sidebar({ user, onLogout, collapsed = false, onToggle, hideToggl
                                     />
                                     {!collapsed && (
                                         <>
-                                            <span className="flex-1">{item.title}</span>
+                                            <span className="flex-1 truncate">{item.title}</span>
                                             {item.shortcut && (
                                                 <kbd className="pointer-events-none flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-bold text-foreground opacity-100 shadow-sm ml-auto">
                                                     {item.shortcut}

@@ -15,6 +15,13 @@ import {
     usePaymentAmountSync,
 } from '../hooks/useSaleFormEffects';
 
+vi.mock('@/hooks/useCapabilities', () => ({
+    useCapabilities: () => ({
+        data: { capabilities: { 'STRUCTURAL.decimal_quantities': false } },
+        isLoading: false,
+    }),
+}));
+
 const productFixture: Product = {
     id: 'product-123',
     name: 'Producto Test',
@@ -215,6 +222,51 @@ describe('SaleForm', () => {
                 expect(screen.getAllByText(/\$\s?200/i).length).toBeGreaterThan(0);
             });
         });
+
+        it('debe deshabilitar confirmar venta cuando el total queda en 0 por descuento', async () => {
+            const user = userEvent.setup();
+            renderSaleForm({ onSubmit: mockOnSubmit });
+
+            await user.click(screen.getByTestId('select-product'));
+
+            const percentInput = await screen.findByLabelText('Descuento en porcentaje');
+            await user.clear(percentInput);
+            await user.type(percentInput, '100');
+
+            await waitFor(() => {
+                expect(screen.getByRole('button', { name: /confirmar venta/i })).toBeDisabled();
+            });
+        });
+
+        it('debe recalcular totales en vivo con descuento por ítem', async () => {
+            const user = userEvent.setup();
+            renderSaleForm({ onSubmit: mockOnSubmit });
+
+            await user.click(screen.getByTestId('select-product'));
+
+            const itemDiscountInput = await screen.findByLabelText('Descuento porcentual del ítem 1');
+            await user.clear(itemDiscountInput);
+            await user.type(itemDiscountInput, '10');
+
+            await waitFor(() => {
+                expect(screen.getAllByText(/\$\s?90/i).length).toBeGreaterThan(0);
+            });
+        });
+
+        it('debe capear el descuento porcentual de ítem a 100', async () => {
+            const user = userEvent.setup();
+            renderSaleForm({ onSubmit: mockOnSubmit });
+
+            await user.click(screen.getByTestId('select-product'));
+
+            const itemDiscountInput = await screen.findByLabelText('Descuento porcentual del ítem 1');
+            await user.clear(itemDiscountInput);
+            await user.type(itemDiscountInput, '150');
+
+            await waitFor(() => {
+                expect(screen.getByRole('button', { name: /confirmar venta/i })).toBeDisabled();
+            });
+        });
     });
 
     describe('validación del formulario', () => {
@@ -269,6 +321,35 @@ describe('SaleForm', () => {
             await user.click(screen.getByRole('button', { name: /confirmar venta/i }));
 
             expect(mockOnSubmit).not.toHaveBeenCalled();
+        });
+    });
+
+    describe('atajos de teclado POS (F1, F2, F8, F9, ESC)', () => {
+        it('debe interceptar F9 para posponer venta', async () => {
+            const mockOnParkSale = vi.fn();
+            const user = userEvent.setup();
+            renderSaleForm({ onSubmit: mockOnSubmit, onParkSale: mockOnParkSale });
+
+            // Agregar un producto
+            await user.click(screen.getByTestId('select-product'));
+
+            // Presionar F9
+            await user.keyboard('{F9}');
+
+            expect(mockOnParkSale).toHaveBeenCalled();
+        });
+
+        it('debe asignar el name correcto al input de cantidad y mostrarlo al seleccionar un producto', async () => {
+            const user = userEvent.setup();
+            renderSaleForm({ onSubmit: mockOnSubmit });
+
+            // Agregar un producto
+            await user.click(screen.getByTestId('select-product'));
+
+            // Esperar que el input de cantidad esté disponible y tenga el atributo name
+            const qtyInput = await screen.findByDisplayValue('1');
+            expect(qtyInput).toBeInTheDocument();
+            expect(qtyInput).toHaveAttribute('name', 'items.0.quantity');
         });
     });
 });

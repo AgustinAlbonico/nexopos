@@ -30,16 +30,18 @@ import {
     DialogHeader,
     DialogTitle,
     DialogDescription,
+    DialogFooter,
 } from '@/components/ui/dialog';
 import { Card, CardContent } from '@/components/ui/card';
 import { NumericInput } from '@/components/ui/numeric-input';
+import { Label } from '@/components/ui/label';
 import { CustomerSearch } from '@/components/common/CustomerSearch';
 import { CustomerForm } from '@/features/customers/components/CustomerForm';
 import { CustomerFormValues } from '@/features/customers/schemas/customer.schema';
 import { incomeCategoriesApi } from '../api/incomes.api';
 import { customersApi } from '@/features/customers/api/customers.api';
 import { Customer } from '@/features/customers/types';
-import { Loader2, UserPlus } from 'lucide-react';
+import { Loader2, UserPlus, Plus } from 'lucide-react';
 import { toast } from 'sonner';
 import { PaymentMethodSelect } from '@/components/shared/PaymentMethodSelect';
 import { IvaCondition } from '@/types/iva-condition';
@@ -64,6 +66,11 @@ export function IncomeForm({
     const [createCustomerOpen, setCreateCustomerOpen] = useState(false);
     const [_selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
     void _selectedCustomer; // Se usa para actualización del estado
+
+    // Estado para el diálogo de crear categoría
+    const [createCategoryOpen, setCreateCategoryOpen] = useState(false);
+    const [newCategoryName, setNewCategoryName] = useState('');
+    const [newCategoryDescription, setNewCategoryDescription] = useState('');
 
     const queryClient = useQueryClient();
 
@@ -105,6 +112,36 @@ export function IncomeForm({
             toast.error(error.response?.data?.message || 'Error al crear cliente');
         },
     });
+
+    // Mutación para crear categoría de ingreso
+    const createCategoryMutation = useMutation({
+        mutationFn: (data: { name: string; description?: string }) =>
+            incomeCategoriesApi.create(data),
+        onSuccess: (newCat) => {
+            queryClient.invalidateQueries({ queryKey: ['income-categories'] });
+            form.setValue('categoryId', newCat.id, { shouldDirty: true, shouldValidate: true });
+            toast.success(`Categoría "${newCat.name}" creada`);
+            setCreateCategoryOpen(false);
+            setNewCategoryName('');
+            setNewCategoryDescription('');
+        },
+        onError: (error: any) => {
+            toast.error(error.response?.data?.message || 'Error al crear categoría');
+        },
+    });
+
+    const handleCreateIncomeCategory = (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        const trimmed = newCategoryName.trim();
+        if (!trimmed) {
+            toast.error('Ingresá un nombre para la categoría');
+            return;
+        }
+        createCategoryMutation.mutate({
+            name: trimmed,
+            description: newCategoryDescription.trim() || undefined,
+        });
+    };
 
     const isOnAccount = form.watch('isOnAccount');
     const selectedCustomerId = form.watch('customerId');
@@ -208,24 +245,37 @@ export function IncomeForm({
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>Categoría</FormLabel>
-                                <Select
-                                    onValueChange={(v) => field.onChange(v === '__none__' ? undefined : v)}
-                                    value={field.value ?? '__none__'}
-                                >
-                                    <FormControl>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Sin categoría" />
-                                        </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                        <SelectItem value="__none__">Sin categoría</SelectItem>
-                                        {categories.map((cat) => (
-                                            <SelectItem key={cat.id} value={cat.id}>
-                                                {cat.name}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
+                                <div className="flex gap-2">
+                                    <Select
+                                        onValueChange={(v) => field.onChange(v === '__none__' ? undefined : v)}
+                                        value={field.value ?? '__none__'}
+                                    >
+                                        <FormControl>
+                                            <SelectTrigger className="flex-1">
+                                                <SelectValue placeholder="Sin categoría" />
+                                            </SelectTrigger>
+                                        </FormControl>
+                                        <SelectContent>
+                                            <SelectItem value="__none__">Sin categoría</SelectItem>
+                                            {categories.map((cat) => (
+                                                <SelectItem key={cat.id} value={cat.id}>
+                                                    {cat.name}
+                                                </SelectItem>
+                                            ))}
+                                        </SelectContent>
+                                    </Select>
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="icon"
+                                        onClick={() => setCreateCategoryOpen(true)}
+                                        title="Crear nueva categoría"
+                                        aria-label="Crear nueva categoría"
+                                        className="shrink-0"
+                                    >
+                                        <Plus className="h-4 w-4" />
+                                    </Button>
+                                </div>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -371,6 +421,76 @@ export function IncomeForm({
                         isLoading={createCustomerMutation.isPending}
                         compact
                     />
+                </DialogContent>
+            </Dialog>
+
+            {/* Diálogo para crear categoría */}
+            <Dialog open={createCategoryOpen} onOpenChange={setCreateCategoryOpen}>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Nueva Categoría de Ingresos</DialogTitle>
+                        <DialogDescription>
+                            Creá una categoría para organizar y segmentar los ingresos.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4 py-2">
+                        <div className="space-y-2">
+                            <Label htmlFor="quickIncomeCatName">
+                                Nombre <span className="text-destructive">*</span>
+                            </Label>
+                            <Input
+                                id="quickIncomeCatName"
+                                placeholder="Ej: Servicios, Alquileres, Comisiones..."
+                                value={newCategoryName}
+                                onChange={(e) => setNewCategoryName(e.target.value)}
+                                autoFocus
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        e.preventDefault();
+                                        handleCreateIncomeCategory();
+                                    }
+                                }}
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="quickIncomeCatDesc">Descripción (opcional)</Label>
+                            <Input
+                                id="quickIncomeCatDesc"
+                                placeholder="Detalle de la categoría..."
+                                value={newCategoryDescription}
+                                onChange={(e) => setNewCategoryDescription(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        e.preventDefault();
+                                        handleCreateIncomeCategory();
+                                    }
+                                }}
+                            />
+                        </div>
+                    </div>
+                    <DialogFooter className="gap-2 sm:gap-0">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => {
+                                setCreateCategoryOpen(false);
+                                setNewCategoryName('');
+                                setNewCategoryDescription('');
+                            }}
+                        >
+                            Cancelar
+                        </Button>
+                        <Button
+                            type="button"
+                            onClick={() => handleCreateIncomeCategory()}
+                            disabled={createCategoryMutation.isPending || !newCategoryName.trim()}
+                        >
+                            {createCategoryMutation.isPending && (
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            )}
+                            Crear Categoría
+                        </Button>
+                    </DialogFooter>
                 </DialogContent>
             </Dialog>
         </Form>

@@ -1,0 +1,51 @@
+- generic [ref=f4e2]:
+  - banner [ref=f4e3]:
+    - generic [ref=f4e4]:
+      - link:
+        - /url: index.php
+        - paragraph
+      - navigation [ref=f4e5]:
+        - link [ref=f4e6] [cursor=pointer]:
+          - /url: "#"
+          - button "Toggle Navigation" [ref=f4e8]
+        - generic:     
+  - generic [ref=f4e11]:
+    - heading "Contacto" [level=2] [ref=f4e12]
+    - generic [ref=f4e13]:
+      - paragraph
+      - generic: 
+      - generic: 
+  - generic [ref=f4e17]:
+    - paragraph [ref=f4e18]: Contáctenos
+    - textbox "Nombre y Apellido*" [ref=f4e20]
+    - textbox "E-Mail*" [ref=f4e22]
+    - textbox "Mensaje*" [ref=f4e24]
+    - button "Enviar" [ref=f4e25] [cursor=pointer]
+  - paragraph [ref=f4e28]: Puede encontrarnos aquí...
+  - contentinfo [ref=f4e30]:
+    - generic:
+      - list [ref=f4e32]:
+        - listitem [ref=f4e33]:
+          - link "Inicio" [ref=f4e34] [cursor=pointer]:
+            - /url: index.php
+        - listitem [ref=f4e35]:
+          - link "Cartelera / Programación" [ref=f4e36] [cursor=pointer]:
+            - /url: programacion.php
+        - listitem [ref=f4e37]:
+          - link "Próximos Estrenos" [ref=f4e38] [cursor=pointer]:
+            - /url: estrenos.php
+        - listitem [ref=f4e39]:
+          - link "Contacto" [ref=f4e40] [cursor=pointer]:
+            - /url: contacto.php
+        - listitem [ref=f4e41]:
+          - link "Términos y Condiciones" [ref=f4e42] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=f4e44]:
+        - img "logo" [ref=f4e45]
+        - generic [ref=f4e46]:
+          - generic [ref=f4e47]: 
+          - generic [ref=f4e48]: 
+          - generic [ref=f4e49]: 
+          - generic [ref=f4e50]: 
+        - paragraph [ref=f4e51]: © Nexo Soluciones, 2026. Todos los derechos reservados.
+        - img "logo" [ref=f4e53]

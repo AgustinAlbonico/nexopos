@@ -1,0 +1,606 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Cines del Centro Rosario\" \"Cines del Centro Rosario\""
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Cines%2Bdel%2BCentro%2BRosario%2522&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro+Rosario%22&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozpbg_OLLLxsma9Bn3gNJ05WidtPOy9lXa7uqCSsh0F4nuxGYjrDFxENCSuk8VEyLPuSx6_ucPbF4_n7chAxrZvxFankdbkHpv9vBrGUdd_W-EALpnw&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ2J8OegQICRAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozpbg_OLLLxsma9Bn3gNJ05WidtPOy9lXa7uqCSsh0F4nuxGYjrDFxENCSuk8VEyLPuSx6_ucPbF4_n7chAxrZvxFankdbkHpv9vBrGUdd_W-EALpnw&q=%22Cines+del+Centro+Rosario%22&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQtKgLegQIHRAB
+          - listitem [ref=e94]:
+            - link "Noticias" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=%22Cines+del+Centro+Rosario%22&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozpbg_OLLLxsma9Bn3gNJ05WidtPOy9lXa7uqCSsh0F4nuxGYjrDFxENCSuk8VEyLPuSx6_ucPbF4_n7chAxrZvxFankdbkHpv9vBrGUdd_W-EALpnw&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ0pQJegQIGRAB
+          - listitem [ref=e98]:
+            - link "Vídeos" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozpbg_OLLLxsma9Bn3gNJ05WidtPOy9lXa7uqCSsh0F4nuxGYjrDFxENCSuk8VEyLPuSx6_ucPbF4_n7chAxrZvxFankdbkHpv9vBrGUdd_W-EALpnw&q=%22Cines+del+Centro+Rosario%22&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQtKgLegQIGBAB
+          - listitem [ref=e102]:
+            - link "Shopping" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozpbg_OLLLxsma9Bn3gNJ05WidtPOy9lXa7uqCSsh0F4nuxGYjrDFxENCSuk8VEyLPuSx6_ucPbF4_n7chAxrZvxFankdbkHpv9vBrGUdd_W-EALpnw&q=%22Cines+del+Centro+Rosario%22&ved=1t:220175&ictx=111
+          - listitem [ref=e106]:
+            - link "Maps" [ref=e107] [cursor=pointer]:
+              - /url: https://maps.google.com/maps?sca_esv=569d465b5b1d57df&output=search&q=%22Cines+del+Centro+Rosario%22&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozpbg_OLLLxsma9Bn3gNJ05WidtPOy9lXa7uqCSsh0F4nuxGYjrDFxENCSuk8VEyLPuSx6_ucPbF4_n7chAxrZvxFankdbkHpv9vBrGUdd_W-EALpnw&entry=mc&ved=1t:200715&ictx=111
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - generic [ref=e131]:
+      - main [ref=e132]:
+        - generic [ref=e136]:
+          - generic [ref=e137]:
+            - generic [ref=e140]:
+              - generic [ref=e144]:
+                - generic [ref=e152]:
+                  - button "Ver fotos" [ref=e156] [cursor=pointer]
+                  - generic [ref=e160]:
+                    - generic [ref=e161]:
+                      - link [ref=e163] [cursor=pointer]:
+                        - /url: /maps/place/Cines+del+Centro+Rosario/data=!4m2!3m1!1s0x0:0x9986d440c6d5c193?sa=X&ved=1t:2428&ictx=111
+                        - img "Mapa de Cines del Centro" [ref=e165]
+                      - link [ref=e167] [cursor=pointer]:
+                        - /url: /maps/place/Cines+del+Centro+Rosario/data=!4m2!3m1!1s0x0:0x9986d440c6d5c193?sa=X&ved=1t:2428&ictx=111
+                        - img "Mapa de Cines del Centro" [ref=e169]
+                    - link "Ver por fuera" [ref=e177] [cursor=pointer]:
+                      - /url: /local/place/fid/0x95b7ab15ef4162b9:0x9986d440c6d5c193/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3DGJFgupN0oy00Xkv15VFTkg%26cb_client%3Dsearch.gws-prod.gps%26yaw%3D18.691393%26pitch%3D0%26thumbfov%3D100%26w%3D0%26h%3D0&ik=CAISFkdKRmd1cE4wb3kwMFhrdjE1VkZUa2c%3D&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQpx96BAg6EBE
+                - generic [ref=e182]:
+                  - heading "Cines del Centro Rosario" [level=2] [ref=e185]
+                  - generic [ref=e188]:
+                    - text: 4,0
+                    - 'img "Calificación: 4,0 de 5," [ref=e189]'
+                    - button "2.212 opiniones en Google" [ref=e194] [cursor=pointer]
+                    - text: Cine en Rosario
+                - generic [ref=e201]:
+                  - generic [ref=e213]:
+                    - link "Sitio web" [ref=e215] [cursor=pointer]:
+                      - /url: http://www.cinesdelcentro.com.ar/
+                    - link "Cómo llegar" [ref=e222]
+                    - button "Escribir una opinión" [ref=e232] [cursor=pointer]
+                    - button "Guardar Cines del Centro Rosario en una colección" [ref=e242] [cursor=pointer]:
+                      - generic [ref=e245]: Guardar
+                    - button "Compartir" [ref=e248] [cursor=pointer]
+                    - button "Llamar" [ref=e255] [cursor=pointer]
+                  - generic [ref=e265]:
+                    - generic [ref=e267]:
+                      - text: "Ubicado en:"
+                      - link "Shopping del Siglo" [ref=e268] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Shopping+del+Siglo&ludocid=14857812198243749742&lsig=AB86z5WsrelzSQbkA5lshHqbJ5iF&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8G0oAHoECDQQAQ
+                    - generic [ref=e270]:
+                      - generic [ref=e271]:
+                        - link "Dirección" [ref=e272] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=cines+del+centro+direcci%C3%B3n&ludocid=11062762909361095059&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ6BN6BAgvEAI
+                        - text: ":"
+                      - text: Rioja 1640 1er Piso, S2000AYZ Rosario, Santa Fe
+                    - generic [ref=e275]:
+                      - generic [ref=e276]:
+                        - link "Teléfono" [ref=e277] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=cines+del+centro+tel%C3%A9fono&ludocid=11062762909361095059&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ6BN6BAgxEAI
+                        - text: ":"
+                      - link "Llamar al número de teléfono 0341 500-1071" [ref=e280] [cursor=pointer]:
+                        - /url: "#"
+                        - text: 0341 500-1071
+                    - generic [ref=e283]:
+                      - generic [ref=e284]:
+                        - link "Provincia" [ref=e285] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=cines+del+centro+provincia&stick=H4sIAAAAAAAAAOPgE-LRT9c3zEg2NCuxTCrWkstOttLPyU9OLMnMz4MzrAqK8ssy85JTF7FKJWfmpRYrpKTmKCSn5pUU5StA5TITAd669hFNAAAA&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ6BN6BAgwEAI
+                        - text: ":"
+                      - link "Provincia de Santa Fe" [ref=e288] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Provincia+de+Santa+Fe&si=APenkKlisoOXLiCMwraINHtdqOQii4CK9kOlkQc8Apn-pS60ybgOg0JEOGJhvAVM0X3IAlmdKOozLpdDD_K40QYsFv5HgGzX-nfHQo5GEwBfzq52EN2Voh_L8-MCaAoSkaDD_oI01uFJf5AhapFKtOYY0xHq2Fu-vZrzkyRURX7IoF45igtuQkIQXLUKGps7Llojy7n-LICGcYTK6KFrqMdxvr1LvhbK-Q%3D%3D&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQmxN6BAgwEAM
+                    - generic [ref=e292]:
+                      - button "Sugerir una edición" [ref=e295] [cursor=pointer]
+                      - text: ·
+                      - link "¿Eres propietario de esta empresa?" [ref=e296] [cursor=pointer]:
+                        - /url: https://business.google.com/create?hl=es&getstarted&authuser=0&fp=11062762909361095059&gmbsrc=ar-es-et-ip-z-gmb-s-z-l~skp%7Cclaimbz_aoc_a%7Cu&ppsrc=GMBSI
+                  - generic [ref=e304]:
+                    - generic [ref=e305]:
+                      - heading "Horario de mayor concurrencia" [level=3] [ref=e307]
+                      - button "Más información sobre los horario de mayor concurrencia" [ref=e310] [cursor=pointer]
+                    - generic [ref=e313]:
+                      - radiogroup [ref=e315]:
+                        - radio "lunes" [ref=e316] [cursor=pointer]:
+                          - generic [ref=e317]: lun
+                        - radio "martes" [ref=e318] [cursor=pointer]:
+                          - generic [ref=e319]: mar
+                        - radio "miércoles" [ref=e320] [cursor=pointer]:
+                          - generic [ref=e321]: mié
+                        - radio "jueves" [ref=e322] [cursor=pointer]:
+                          - generic [ref=e323]: jue
+                        - radio "viernes" [ref=e324] [cursor=pointer]:
+                          - generic [ref=e325]: vie
+                        - radio "sábado" [checked] [ref=e326] [cursor=pointer]:
+                          - generic [ref=e327]: sáb
+                        - radio "domingo" [ref=e329] [cursor=pointer]:
+                          - generic [ref=e330]: dom
+                      - generic [ref=e331]:
+                        - region [ref=e333]:
+                          - generic [ref=e334]: "5 p. m.: Por lo general, es cuando está más concurrido"
+                        - radiogroup [ref=e340]:
+                          - radio [disabled] [ref=e342] [cursor=pointer]
+                          - radio [disabled] [ref=e344] [cursor=pointer]
+                          - radio [disabled] [ref=e346] [cursor=pointer]
+                          - radio [disabled] [ref=e348] [cursor=pointer]
+                          - radio [disabled] [ref=e350] [cursor=pointer]
+                          - radio [disabled] [ref=e352] [cursor=pointer]
+                          - radio [disabled] [ref=e354] [cursor=pointer]
+                          - radio [disabled] [ref=e356] [cursor=pointer]
+                          - radio "2 p. m." [ref=e358] [cursor=pointer]
+                          - radio "3 p. m." [ref=e361] [cursor=pointer]
+                          - radio "4 p. m." [ref=e364] [cursor=pointer]
+                          - radio "5 p. m." [checked] [ref=e367] [cursor=pointer]
+                          - radio "6 p. m." [ref=e370] [cursor=pointer]
+                          - radio "7 p. m." [ref=e373] [cursor=pointer]
+                          - radio [disabled] [ref=e376] [cursor=pointer]
+                          - radio [disabled] [ref=e378] [cursor=pointer]
+                          - radio [disabled] [ref=e380] [cursor=pointer]
+                          - radio [disabled] [ref=e382] [cursor=pointer]
+                        - generic [ref=e384]:
+                          - generic [ref=e388]: 9a. m.
+                          - generic [ref=e394]: 12p. m.
+                          - generic [ref=e400]: 3p. m.
+                          - generic [ref=e406]: 6p. m.
+                          - generic [ref=e412]: 9p. m.
+                  - generic [ref=e425]:
+                    - generic [ref=e426]:
+                      - heading "Opiniones" [level=3] [ref=e427]
+                      - button "Más información" [ref=e432] [cursor=pointer]
+                      - generic [ref=e436]:
+                        - button "Escribir una opinión" [ref=e440] [cursor=pointer]
+                        - link "Agregar fotos" [ref=e443] [cursor=pointer]:
+                          - /url: "#"
+                    - generic [ref=e444]:
+                      - generic [ref=e445]:
+                        - generic [ref=e446]:
+                          - link "Veronicaandrea Maraviglia":
+                            - /url: https://www.google.com/maps/contrib/111650172643056694933?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "Veronicaandrea Maraviglia" [ref=e448] [cursor=pointer]
+                        - generic [ref=e449]:
+                          - link "\"Muy buen cine , muy comodas lss butacas , muy buena atencion,muy buenos precios\"" [ref=e450] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s111650172643056694933!2s0x95b7ab15ef4162b9:0x9986d440c6d5c193?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 5,0 de 5," [ref=e452]'
+                      - generic [ref=e455]:
+                        - generic [ref=e456]:
+                          - link "Andres Mauricio Cice":
+                            - /url: https://www.google.com/maps/contrib/108434343996531442100?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "Andres Mauricio Cice" [ref=e458] [cursor=pointer]
+                        - generic [ref=e459]:
+                          - link "\"Economico, pero le faltan brillo a las pantallas, supongo que para ahorrar.\"" [ref=e460] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s108434343996531442100!2s0x95b7ab15ef4162b9:0x9986d440c6d5c193?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 3,0 de 5," [ref=e462]'
+                      - generic [ref=e465]:
+                        - generic [ref=e466]:
+                          - link "Facundo Saravia":
+                            - /url: https://www.google.com/maps/contrib/111647169007390547250?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "Facundo Saravia" [ref=e468] [cursor=pointer]
+                        - generic [ref=e469]:
+                          - link "\"Muy buena opción, mantienen cartelera actualizada, buenos precios.\"" [ref=e470] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s111647169007390547250!2s0x95b7ab15ef4162b9:0x9986d440c6d5c193?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 5,0 de 5," [ref=e472]'
+                    - button "Ver todas las opiniones en Google" [ref=e477] [cursor=pointer]
+                  - generic [ref=e485]:
+                    - generic [ref=e486]:
+                      - heading "De Cines del Centro Rosario" [level=3] [ref=e487]
+                      - button "Denunciar descripción" [ref=e489]
+                    - generic [ref=e492]: "\"Cines del Centro, Rosario. Ubicados en el primer nivel del Shopping del Siglo. Rioja 1640 1° nivel.\""
+                  - generic [ref=e497]:
+                    - heading "Perfiles" [level=3] [ref=e498]
+                    - generic [ref=e499]:
+                      - link "Instagram" [ref=e503] [cursor=pointer]:
+                        - /url: https://www.instagram.com/cinesdelcentrorosario/
+                      - link "Facebook" [ref=e513] [cursor=pointer]:
+                        - /url: https://www.facebook.com/cinesdelcentro
+                  - generic [ref=e525]:
+                    - heading [level=3] [ref=e526]:
+                      - link "También se buscó" [ref=e527] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+del+Centro&stick=H4sIAAAAAAAAAONgFuLRT9c3zEg2NCuxTCpWQuFpCQZnpqSWJ1YW-6VWlASXpBYUL2IVcM7MSy1WSEnNUXBOzSspyt_ByggAXR-QmkcAAAA&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQMSgAegQIKhAB
+                    - generic [ref=e528]:
+                      - link "Cine \"El Cairo\"" [ref=e530] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+El+Cairo&si=APenkKmVGdgpMPDQZoEWS8RIAhsqXAKlNLP0B8DNkkiU9KPI0V8inDOCvnxKbZkXdIXHPFPC94uATEbbThIRJfC7TOyQCJHRwJn8vJ8I3AbHAMhqtHwYrSUDPLHse71UGlomiU4oR8JHNPBlBJpjKWS285KiaUwXkVDQkMcwQJTDTn3JotrPEKZ0760GMmRXIfiKPXM15VWmoMx1d78vWYOPKZwgEgsyvgsmB38OQwdtJk-4a2BP6Izu_RsoYx950x78-TlHGKEdvn9cITzqAzHcF99niAHVNSbnR1FB3U5U-qHQ49jjSAwAeWzbwQluz2_MnxW5XRzy&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQxA16BAgqEAQ
+                      - link "Nuevo Monumental" [ref=e536] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Monumental&si=APenkKllX05q7xl66dAosm6nb1iuMgV7Bv8meTZS-zIzIS3OM32Vu2NN8V89VT4im4kjwwkIHOTdTVRjzwiNXwZUu26N6fd4RqPy6Bmjq3bzciZ-3mrk-ANXqsEB3sZ8T1gbjjIv24XRFiW8WagFfQR5xO5oIVJZ0pxhMbp5DX2Ka5p1jjMAOYZsoIDaXOH_G1mIuMUdAxTipA4gajKTd7xpepCrompl8ZAIjLRKd587kcmmutc4m1HTPgp8YQHtg4EZbVAkaKpDSyKuFC_LJnpELyPXRRbh999eCgfGqIC45lFTAQLcfBPsv081g8l2zUbl_W1r3gXq&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQxA16BAgqEAc
+                      - link "Centro Cultural Cine Lumière" [ref=e542] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+Cultural+Cine+Lumi%C3%A8re&si=APenkKmVGdgpMPDQZoEWS8RIAhsqXAKlNLP0B8DNkkiU9KPI0Ri32L8zGGBs5G_FA25AJNFWWuLMYWT3DnLIXdpABHPgeqUL-vR1_0nA6Nq4zpH0KqZC1noRLv6kLGPUBcgAJh3ehKHNaDQFYmGPEPrkc9gautufDb9FB2g6CvoY1z4vJ3WyJLD8sC7RwAwC6ShtqQRb7orclddKbKPz1RbYa_3HhmiA81vkfX3wHR6cHCxStxJaim6RWAHfpkOYlu5M3NTlbXLjVGBJo35IHCo4zmPLU0yUQvChALOu9_B8pl9kjgM2sEDrF48xZcGjR5V22gDROpuzn5UIUT_eLl1MXJNAAeN8sw%3D%3D&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQxA16BAgqEAo
+                      - link "Multiplex Belgrano" [ref=e548] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Multiplex+Belgrano&si=APenkKllX05q7xl66dAosm6nb1iuMgV7Bv8meTZS-zIzIS3OMwq7zGc1CSWitbRUX5NkTFc59gaBdirRsaeS50jE6YpUKSXb6OmjK27OQUyHHLRjSfW2fLY6QlRfq0S_dua4jqkyl4HUbFHvc7l_yEhsfIuUBXJVwKfj1wIwsMXEZMyDJTA_XJr-NsyJR9rvV889_2AMHmD0Tu94_-_1KcBNoRoapy1fUsOGfcMdzwxVBcH090uyHyoO892S7LFzMyTpGRBksvGpEMU50akD8eQZ7q-xjFUDaaNCt2jiImIcLGZtqpO9oTJ-ZQoBWEjWIygZNKZ9opWD&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQxA16BAgqEA0
+              - link "Información sobre estos datos" [ref=e554] [cursor=pointer]:
+                - /url: https://support.google.com/local-listings?p=how_google_sources
+            - generic [ref=e556]:
+              - heading "Resultados web" [level=2] [ref=e557]
+              - generic [ref=e558]:
+                - generic [ref=e561]:
+                  - link "Cines Del Centro Rosario | Rosario Cines del Centro https://www.cinesdelcentro.com.ar" [ref=e563] [cursor=pointer]:
+                    - /url: https://www.cinesdelcentro.com.ar/
+                    - heading "Cines Del Centro Rosario | Rosario" [level=3] [ref=e564]
+                    - generic [ref=e570]:
+                      - generic [ref=e571]: Cines del Centro
+                      - generic [ref=e573]: https://www.cinesdelcentro.com.ar
+                  - button "Acerca de este resultado" [ref=e577] [cursor=pointer]
+                - generic [ref=e582]: Cines del Centro está ubicado en el centro de la ciudad de Rosario dentro del Shopping Del Siglo. Ofrece amplia variedad de películas en sus salas y ...
+          - generic [ref=e590]:
+            - generic [ref=e594]:
+              - heading "Horarios en Cines del Centro Rosario" [level=2] [ref=e595]:
+                - generic "Cines del Centro Rosario" [ref=e596]: Horarios en Cines del Centro Rosario
+              - generic [ref=e597]: Todos los horarios corresponden a la ART
+              - generic [ref=e598]:
+                - list [ref=e600]:
+                  - tab "Hoy" [selected] [ref=e601] [cursor=pointer]
+                  - tab "Mañana" [ref=e602] [cursor=pointer]
+                  - tab "lun, 10 ago" [ref=e603] [cursor=pointer]
+                  - tab "mar, 11 ago" [ref=e604] [cursor=pointer]
+                  - tab "mié, 12 ago" [ref=e605] [cursor=pointer]
+                - generic [ref=e607]:
+                  - tab "Cualquier hora del día" [selected] [ref=e608]
+                  - tab "Mañana" [disabled] [ref=e609]
+                  - tab "Tarde" [ref=e610] [cursor=pointer]
+                  - tab "Tarde-noche" [ref=e611] [cursor=pointer]
+                  - tab "Por la noche" [ref=e612] [cursor=pointer]
+                - generic [ref=e615]:
+                  - generic [ref=e616]:
+                    - 'heading "Horarios de Spider-Man: Brand New Day" [level=3] [ref=e617]'
+                    - 'link "Spider-Man: Brand New Day" [ref=e619] [cursor=pointer]':
+                      - /url: /search?sca_esv=569d465b5b1d57df&q=Spider-Man:+Brand+New+Day&si=APenkKnBxe4u4X3-4Wg_hofBkolr34OGn-uie4zkHNbwpN5hSze_4m3sh0DVLAK4anG3MebQneumT2f3pUEw0FD7ORpy9OG1tyKXJB5oyR1XDthQZ7KPgXsFexE0UiAK41uZiefVnIhNwMQTK4jGt3WXVtZ62HUAKH72BUGxmNCRYXMCfv4oDxk%3D&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQxyZ6BAgmEBE
+                    - button [ref=e623]:
+                      - group "Comprar entradas para la función de las 10:30 p. m. en Cines del Centro Rosario" [ref=e625]:
+                        - generic [ref=e626]:
+                          - text: 10:30
+                          - generic [ref=e627]: p. m.
+                  - generic [ref=e628]:
+                    - heading "Horarios de La Odisea" [level=3] [ref=e630]
+                    - link "La Odisea" [ref=e632] [cursor=pointer]:
+                      - /url: /search?sca_esv=569d465b5b1d57df&q=La+Odisea&si=APenkKnBxe4u4X3-4Wg_hofBkolr34OGn-uie4zkHNbwpN5hS0ncNzOufUuCSOtMMVK-Eowk80BUlU5m-0tvJHqgeGvUzOo-wMD8YR_ex9zqnrs1mr0eTW9KPKiGC5KVwKERE2v0iIklPJEgMroFAg46l3NP5f0trsopScvTsQ3nCxAwpj9H7zk%3D&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQxyZ6BAgmEBU
+                    - button [ref=e636]:
+                      - group "Comprar entradas para la función de las 10:00 p. m. en Cines del Centro Rosario" [ref=e638]:
+                        - generic [ref=e639]:
+                          - text: 10:00
+                          - generic [ref=e640]: p. m.
+                  - generic [ref=e641]:
+                    - heading "Horarios de Toy Story 5" [level=3] [ref=e643]
+                    - link "Toy Story 5" [ref=e645] [cursor=pointer]:
+                      - /url: /search?sca_esv=569d465b5b1d57df&q=Toy+Story+5&si=APenkKnBxe4u4X3-4Wg_hofBkolr34OGn-uie4zkHNbwpN5hS-yOLw-DeA_mgncMUthBfYoaV_HsAvte-pj01fEA-1yfubmqdJDX9Gr1i4sBstGyOh7OYY4mx4Rx9el8ZYqx2RyFFptOALGGtx48z2WkExRW-NhZo-88IwkiI6gvMX6cF9rxuLI%3D&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQxyZ6BAgmEBk
+                    - button [ref=e649]:
+                      - group "Comprar entradas para la función de las 3:00 p. m. en Cines del Centro Rosario" [ref=e651]:
+                        - generic [ref=e652]:
+                          - text: 3:00
+                          - generic [ref=e653]: p. m.
+                  - heading [level=3] [ref=e655]: Horarios de La Invitacion
+                  - link [ref=e657] [cursor=pointer]:
+                    - /url: /search?sca_esv=569d465b5b1d57df&q=La+Invitacion&si=APenkKkm1mzIb9hoxhGj7Xu9Q6u-NvtWuHJUpFQ49zMoAydVw6d6x409SVez7zQftnIMmq87oiN-T1Jllcr9Av-JkHBSUIJ__il6tHY-tfHuAAvNtBBbG0lDPaMVNbkSbXgBchYbtdS2xAMPqIzeFXGPk1-thzGHgd4HDZ6JNxuLOyYjyK5KzvPvBFt1xWmIl-cVJRETu_JH5fM8eiS4_pnw1iEbLy9FlGJUA4Op28xKFUYmoWTR1bU%3D
+                    - text: La Invitacion
+                  - button [ref=e661]:
+                    - group [ref=e663]:
+                      - generic [ref=e664]:
+                        - text: 10:20
+                        - generic [ref=e665]: p. m.
+                  - heading [level=3] [ref=e667]: Horarios de Pressure
+                  - link [ref=e669] [cursor=pointer]:
+                    - /url: /search?sca_esv=569d465b5b1d57df&q=Pressure&si=APenkKnBxe4u4X3-4Wg_hofBkolr34OGn-uie4zkHNbwpN5hS8XLNxtxY595tfh-kQ-Jx7e0bMgWoRHhvHH_-Lzc9WrPokXNbyJa42GTMw_pgUPvyIMXNZujyevxJAPEqxBaL2X4WZ1AQz9roMR7ntd4SMwxZZDDBjuUk2Ohhaq2NomLmZKHA88%3D
+                    - text: Pressure
+                  - button [ref=e673]:
+                    - group [ref=e675]:
+                      - generic [ref=e676]:
+                        - text: 10:00
+                        - generic [ref=e677]: p. m.
+                  - heading [level=3] [ref=e679]: Horarios de Canelones
+                  - link [ref=e681] [cursor=pointer]:
+                    - /url: /search?sca_esv=569d465b5b1d57df&q=Canelones&si=APenkKkm1mzIb9hoxhGj7Xu9Q6u-NvtWuHJUpFQ49zMoAydVw6d6x409SVez7zQftnIMmq-hoV_o7W-I67zwD3AYJKWoAkg-w035Ouf7i_hEJLOAXJWbVc5Pg9OORyB2wq7k3cqvuXgWlzSXRf9kQ-VzpcbcwZ6Zv6KyPFeJMae-o-mgS7Pf5oJKlyMtFqcd9sL4EKGX2ZOHpnwTcw1nnabMqHgxuB0edA%3D%3D
+                    - text: Canelones
+                  - generic [ref=e683]:
+                    - button [ref=e685]:
+                      - group [ref=e687]:
+                        - generic [ref=e688]:
+                          - text: 5:10
+                          - generic [ref=e689]: p. m.
+                    - button [ref=e691]:
+                      - group [ref=e693]:
+                        - generic [ref=e694]:
+                          - text: 7:10
+                          - generic [ref=e695]: p. m.
+            - button "Más horarios" [ref=e696] [cursor=pointer]
+          - generic [ref=e706]:
+            - heading "Más preguntas" [level=2] [ref=e708]
+            - generic [ref=e709]:
+              - button "¿Qué películas hay en el cine del Rosario?" [ref=e715] [cursor=pointer]
+              - button "¿Cines del Centro Rosario Precio entradas?" [ref=e729] [cursor=pointer]
+              - button "¿Qué día hay 2x1 en el cine center?" [ref=e743] [cursor=pointer]
+              - button "¿Qué cine es el del Town Center de Rosario?" [ref=e757] [cursor=pointer]
+          - generic [ref=e767]:
+            - heading "Resultados web" [level=2] [ref=e768]
+            - generic [ref=e769]:
+              - generic [ref=e772]:
+                - link "Cines Del Centro Rosario (@cinesdelcentrorosario) Instagram · cinesdelcentrorosario Más de 51,2 k seguidores" [ref=e774] [cursor=pointer]:
+                  - /url: https://www.instagram.com/cinesdelcentrorosario/?hl=es
+                  - heading "Cines Del Centro Rosario (@cinesdelcentrorosario)" [level=3] [ref=e775]
+                  - generic [ref=e781]:
+                    - generic [ref=e782]: Instagram · cinesdelcentrorosario
+                    - generic [ref=e784]: Más de 51,2 k seguidores
+                - button "Acerca de este resultado" [ref=e788] [cursor=pointer]
+              - generic [ref=e795]:
+                - emphasis [ref=e796]: cinesdelcentrorosario
+                - text: .
+                - emphasis [ref=e797]: Cines Del Centro Rosario
+                - text: . 53.3K followers. 6 following. Programación curada, los mejores estrenos de cine arte y lo mejor del mainstream ...
+          - generic [ref=e801]:
+            - generic [ref=e803]:
+              - heading "Videos" [level=2] [ref=e804]
+              - button "Acerca de este resultado" [ref=e805] [cursor=pointer]
+            - generic [ref=e811]:
+              - generic [ref=e816]:
+                - generic [ref=e817]:
+                  - link [ref=e819] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DXH0jl9grsa/?hl=es
+                    - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram Cines Del Centro Rosario 14 abr 2026" [level=3] [ref=e820]:
+                      - generic [ref=e821]: Cines Del Centro Rosario | 😎 Ya podés conocer todos los ...
+                      - generic [ref=e825]:
+                        - generic [ref=e826]:
+                          - text: Instagram
+                          - generic [ref=e827]: · Cines Del Centro Rosario
+                        - generic [ref=e828]: 14 abr 2026
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · Cines Del Centro Rosario
+                      - button "Acerca de este resultado" [ref=e829] [cursor=pointer]
+                - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 2:25" [ref=e834] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DXH0jl9grsa/?hl=es
+                  - generic [ref=e835]: 2:25
+              - generic [ref=e847]:
+                - generic [ref=e848]:
+                  - link [ref=e850] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DWUCSL8ArEx/?hl=es
+                    - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram Cines Del Centro Rosario 25 mar 2026" [level=3] [ref=e851]:
+                      - generic [ref=e852]: Cines Del Centro Rosario | 😎 Ya podés conocer todos los ...
+                      - generic [ref=e856]:
+                        - generic [ref=e857]:
+                          - text: Instagram
+                          - generic [ref=e858]: · Cines Del Centro Rosario
+                        - generic [ref=e859]: 25 mar 2026
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · Cines Del Centro Rosario
+                      - button "Acerca de este resultado" [ref=e860] [cursor=pointer]
+                - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 2:20" [ref=e865] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DWUCSL8ArEx/?hl=es
+                  - generic [ref=e866]: 2:20
+              - generic [ref=e878]:
+                - generic [ref=e879]:
+                  - link [ref=e881] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DV_bdWyAo7o/?hl=es
+                    - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram Cines Del Centro Rosario 17 mar 2026" [level=3] [ref=e882]:
+                      - generic [ref=e883]: Cines Del Centro Rosario | 😎 Ya podés conocer todos los ...
+                      - generic [ref=e887]:
+                        - generic [ref=e888]:
+                          - text: Instagram
+                          - generic [ref=e889]: · Cines Del Centro Rosario
+                        - generic [ref=e890]: 17 mar 2026
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · Cines Del Centro Rosario
+                      - button "Acerca de este resultado" [ref=e891] [cursor=pointer]
+                - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:36" [ref=e896] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DV_bdWyAo7o/?hl=es
+                  - generic [ref=e897]: 1:36
+              - generic [ref=e909]:
+                - generic [ref=e910]:
+                  - link [ref=e912] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DUBRnsgApPU/?hl=es-la
+                    - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram Cines Del Centro Rosario 27 ene 2026" [level=3] [ref=e913]:
+                      - generic [ref=e914]: Cines Del Centro Rosario | 😎 Ya podés conocer todos los ...
+                      - generic [ref=e918]:
+                        - generic [ref=e919]:
+                          - text: Instagram
+                          - generic [ref=e920]: · Cines Del Centro Rosario
+                        - generic [ref=e921]: 27 ene 2026
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · Cines Del Centro Rosario
+                      - button "Acerca de este resultado" [ref=e922] [cursor=pointer]
+                - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 2:09" [ref=e927] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DUBRnsgApPU/?hl=es-la
+                  - generic [ref=e928]: 2:09
+            - link "Ver todos los videos" [ref=e938] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&q=%22Cines+del+Centro+Rosario%22&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8ccDKAJ6BAh9EAQ
+              - separator [ref=e939]
+              - generic [ref=e940]: Ver más
+          - generic [ref=e947]:
+            - heading "Resultados web" [level=2] [ref=e948]
+            - generic [ref=e949]:
+              - generic [ref=e952]:
+                - link "CARTELERA Y HORARIOS🎬 👉🏻 Hasta el Miércoles 12/08 ... Instagram · cinesdelcentrorosario Más de 60 \"me gusta\" · hace 1 día" [ref=e954] [cursor=pointer]:
+                  - /url: https://www.instagram.com/p/DbsrsRDkWta/
+                  - heading "CARTELERA Y HORARIOS🎬 👉🏻 Hasta el Miércoles 12/08 ..." [level=3] [ref=e955]
+                  - generic [ref=e961]:
+                    - generic [ref=e962]: Instagram · cinesdelcentrorosario
+                    - generic [ref=e964]: Más de 60 "me gusta" · hace 1 día
+                - button "Acerca de este resultado" [ref=e968] [cursor=pointer]
+              - generic [ref=e975]:
+                - emphasis [ref=e976]: Cines Del Centro Rosario
+                - text: "| CARTELERA Y HORARIOS Hasta el ... Photo by"
+                - emphasis [ref=e977]: Cines Del Centro Rosario
+                - text: on August 06, 2026. May be an ...
+          - generic [ref=e981]:
+            - generic [ref=e984]:
+              - link "Cines Del Centro (Rosario) | Cines | Horarios Cines Argentinos https://m.cinesargentinos.com.ar › horarios › c:82:cines-..." [ref=e986] [cursor=pointer]:
+                - /url: https://m.cinesargentinos.com.ar/horarios/c:82:cines-del-centro-rosario/
+                - heading "Cines Del Centro (Rosario) | Cines | Horarios" [level=3] [ref=e987]
+                - generic [ref=e993]:
+                  - generic [ref=e994]: Cines Argentinos
+                  - generic [ref=e996]: https://m.cinesargentinos.com.ar › horarios › c:82:cines-...
+              - button "Acerca de este resultado" [ref=e1000] [cursor=pointer]
+            - generic [ref=e1005]: "Películas más vistas de la semana ; Spider-Man: Un Nuevo Día. Han pasado cuatro años desde los sucesos de Sin regreso a casa, y Peter ahora es... ; La Odisea."
+          - generic [ref=e1010]:
+            - generic [ref=e1013]:
+              - link "Viajes y Entretenimientos UAI | Universidad Abierta Interamericana https://uai.edu.ar › ... › Viajes y Entretenimientos Rosario" [ref=e1015] [cursor=pointer]:
+                - /url: https://uai.edu.ar/extensi%C3%B3n/grupo-afinidad/viajes-y-entretenimientos-rosario/
+                - heading "Viajes y Entretenimientos" [level=3] [ref=e1016]
+                - generic [ref=e1022]:
+                  - generic [ref=e1023]: UAI | Universidad Abierta Interamericana
+                  - generic [ref=e1025]: https://uai.edu.ar › ... › Viajes y Entretenimientos Rosario
+              - button "Acerca de este resultado" [ref=e1029] [cursor=pointer]
+            - generic [ref=e1036]:
+              - emphasis [ref=e1037]: Cines del Centro Rosario
+              - text: ", se encuentra ubicado en el primer nivel de Shopping de Siglo, en Córdoba y Presidente Roca, allí contamos con 4 salas con ..."
+          - generic [ref=e1041]:
+            - generic [ref=e1044]:
+              - link "https://www.yelp.com.ar/biz/cines-del-centro-rosario Yelp Argentina https://www.yelp.com.ar › biz › ci..." [ref=e1046] [cursor=pointer]:
+                - /url: https://www.yelp.com.ar/biz/cines-del-centro-rosario
+                - heading "https://www.yelp.com.ar/biz/cines-del-centro-rosario" [level=3] [ref=e1047]
+                - generic [ref=e1056]:
+                  - generic [ref=e1057]: Yelp Argentina
+                  - generic [ref=e1059]: https://www.yelp.com.ar › biz › ci...
+              - generic [ref=e1061]:
+                - generic [ref=e1062]: ·
+                - link "Traducir esta página" [ref=e1063] [cursor=pointer]:
+                  - /url: https://translate.google.com/translate?u=https://www.yelp.com.ar/biz/cines-del-centro-rosario&hl=es&sl=en&tl=es&client=search
+              - button "Acerca de este resultado" [ref=e1066] [cursor=pointer]
+            - generic [ref=e1071]:
+              - generic [ref=e1072]: No hay información disponible sobre esta página.
+              - link "Obtener más información" [ref=e1074] [cursor=pointer]:
+                - /url: https://support.google.com/webmasters/answer/7489871?hl=es
+          - generic [ref=e1078]:
+            - generic [ref=e1081]:
+              - link "Volver a la esencia Otros Cines https://www.otroscines.com › nota-6599-volver-a-la-ese..." [ref=e1083] [cursor=pointer]:
+                - /url: https://www.otroscines.com/nota-6599-volver-a-la-esencia
+                - heading "Volver a la esencia" [level=3] [ref=e1084]
+                - generic [ref=e1090]:
+                  - generic [ref=e1091]: Otros Cines
+                  - generic [ref=e1093]: https://www.otroscines.com › nota-6599-volver-a-la-ese...
+              - button "Acerca de este resultado" [ref=e1097] [cursor=pointer]
+            - generic [ref=e1104]:
+              - text: ...
+              - emphasis [ref=e1105]: Cines del Centro (Rosario
+              - text: ). Nicolás Carreras -otro crédito surgido de la FUC- mezcla documental y ficción (o más bien trabaja en el impreciso límite entre ...
+          - generic [ref=e1109]:
+            - generic [ref=e1112]:
+              - link "CARTELERA Y HORARIOS🎬 👉🏻 Hasta el Miércoles 29/07 ... Instagram · cinesdelcentrorosario Más de 110 \"me gusta\" · hace 2 semanas" [ref=e1114] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DbIqCeBEaM8/?hl=es-la
+                - heading "CARTELERA Y HORARIOS🎬 👉🏻 Hasta el Miércoles 29/07 ..." [level=3] [ref=e1115]
+                - generic [ref=e1121]:
+                  - generic [ref=e1122]: Instagram · cinesdelcentrorosario
+                  - generic [ref=e1124]: Más de 110 "me gusta" · hace 2 semanas
+              - button "Acerca de este resultado" [ref=e1128] [cursor=pointer]
+            - generic [ref=e1135]:
+              - emphasis [ref=e1136]: Cines Del Centro Rosario
+              - text: "| CARTELERA Y HORARIOS Hasta el ..."
+        - generic [ref=e1138]:
+          - generic [ref=e1143]:
+            - heading "También se buscó" [level=2] [ref=e1145]
+            - generic [ref=e1147]:
+              - generic [ref=e1148]:
+                - link "Cines del Centro Rosario CARTELERA y HORARIOS" [ref=e1152] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+del+Centro+Rosario+CARTELERA+y+HORARIOS&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ1QJ6BAhdEAE
+                - link "Cine Shopping del siglo - Rosario cartelera" [ref=e1166] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Shopping+del+siglo+-+Rosario+cartelera&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ1QJ6BAh-EAE
+                - link "Cines del centro cartelera y horarios" [ref=e1180] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+del+centro+cartelera+y+horarios&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ1QJ6BAh5EAE
+                - link "Cines rosario" [ref=e1194] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+rosario&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ1QJ6BAh2EAE
+              - generic [ref=e1205]:
+                - link "Cines rosario cartelera" [ref=e1209] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+rosario+cartelera&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ1QJ6BAhrEAE
+                - link "Cines del centro cartelera hoy" [ref=e1223] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+del+centro+cartelera+hoy&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ1QJ6BAhnEAE
+                - link "Las tipas cines Rosario" [ref=e1237] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Las+tipas+cines+Rosario&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ1QJ6BAhmEAE
+                - link "Cinépolis Rosario" [ref=e1251] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cin%C3%A9polis+Rosario&sa=X&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ1QJ6BAhhEAE
+          - navigation [ref=e1262]:
+            - heading "Navegación de páginas" [level=1] [ref=e1263]
+            - text: "1"
+            - link "Page 2" [ref=e1266] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro+Rosario%22&sca_esv=569d465b5b1d57df&ei=Bdl2asuSOe6K5OUPtfaEkA8&start=10&sa=N&sstk=AU9db-AhpKdbMwwLdGUxkov1wr1v_T3RcfysacnCmRORRMCCSwz1-qRBqrk63DBOgk0SNK8LCrm_zQW1DJsGMt1phKR6UeBaVIqbOQ&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8tMDegQIfxAE
+              - text: "2"
+            - link "Page 3" [ref=e1268] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro+Rosario%22&sca_esv=569d465b5b1d57df&ei=Bdl2asuSOe6K5OUPtfaEkA8&start=20&sa=N&sstk=AU9db-AhpKdbMwwLdGUxkov1wr1v_T3RcfysacnCmRORRMCCSwz1-qRBqrk63DBOgk0SNK8LCrm_zQW1DJsGMt1phKR6UeBaVIqbOQ&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8tMDegQIfxAG
+              - text: "3"
+            - link "Page 4" [ref=e1270] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro+Rosario%22&sca_esv=569d465b5b1d57df&ei=Bdl2asuSOe6K5OUPtfaEkA8&start=30&sa=N&sstk=AU9db-AhpKdbMwwLdGUxkov1wr1v_T3RcfysacnCmRORRMCCSwz1-qRBqrk63DBOgk0SNK8LCrm_zQW1DJsGMt1phKR6UeBaVIqbOQ&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8tMDegQIfxAI
+              - text: "4"
+            - link "Page 5" [ref=e1272] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro+Rosario%22&sca_esv=569d465b5b1d57df&ei=Bdl2asuSOe6K5OUPtfaEkA8&start=40&sa=N&sstk=AU9db-AhpKdbMwwLdGUxkov1wr1v_T3RcfysacnCmRORRMCCSwz1-qRBqrk63DBOgk0SNK8LCrm_zQW1DJsGMt1phKR6UeBaVIqbOQ&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8tMDegQIfxAK
+              - text: "5"
+            - link "Page 6" [ref=e1274] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro+Rosario%22&sca_esv=569d465b5b1d57df&ei=Bdl2asuSOe6K5OUPtfaEkA8&start=50&sa=N&sstk=AU9db-AhpKdbMwwLdGUxkov1wr1v_T3RcfysacnCmRORRMCCSwz1-qRBqrk63DBOgk0SNK8LCrm_zQW1DJsGMt1phKR6UeBaVIqbOQ&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8tMDegQIfxAM
+              - text: "6"
+            - link "Page 7" [ref=e1276] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro+Rosario%22&sca_esv=569d465b5b1d57df&ei=Bdl2asuSOe6K5OUPtfaEkA8&start=60&sa=N&sstk=AU9db-AhpKdbMwwLdGUxkov1wr1v_T3RcfysacnCmRORRMCCSwz1-qRBqrk63DBOgk0SNK8LCrm_zQW1DJsGMt1phKR6UeBaVIqbOQ&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8tMDegQIfxAO
+              - text: "7"
+            - link "Page 8" [ref=e1278] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro+Rosario%22&sca_esv=569d465b5b1d57df&ei=Bdl2asuSOe6K5OUPtfaEkA8&start=70&sa=N&sstk=AU9db-AhpKdbMwwLdGUxkov1wr1v_T3RcfysacnCmRORRMCCSwz1-qRBqrk63DBOgk0SNK8LCrm_zQW1DJsGMt1phKR6UeBaVIqbOQ&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8tMDegQIfxAQ
+              - text: "8"
+            - link "Page 9" [ref=e1280] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro+Rosario%22&sca_esv=569d465b5b1d57df&ei=Bdl2asuSOe6K5OUPtfaEkA8&start=80&sa=N&sstk=AU9db-AhpKdbMwwLdGUxkov1wr1v_T3RcfysacnCmRORRMCCSwz1-qRBqrk63DBOgk0SNK8LCrm_zQW1DJsGMt1phKR6UeBaVIqbOQ&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8tMDegQIfxAS
+              - text: "9"
+            - link "Page 10" [ref=e1282] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro+Rosario%22&sca_esv=569d465b5b1d57df&ei=Bdl2asuSOe6K5OUPtfaEkA8&start=90&sa=N&sstk=AU9db-AhpKdbMwwLdGUxkov1wr1v_T3RcfysacnCmRORRMCCSwz1-qRBqrk63DBOgk0SNK8LCrm_zQW1DJsGMt1phKR6UeBaVIqbOQ&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8tMDegQIfxAU
+              - text: "10"
+            - heading [level=2] [ref=e1284]:
+              - link "Siguiente" [ref=e1285] [cursor=pointer]:
+                - /url: /search?q=%22Cines+del+Centro+Rosario%22&sca_esv=569d465b5b1d57df&ei=Bdl2asuSOe6K5OUPtfaEkA8&start=10&sa=N&sstk=AU9db-AhpKdbMwwLdGUxkov1wr1v_T3RcfysacnCmRORRMCCSwz1-qRBqrk63DBOgk0SNK8LCrm_zQW1DJsGMt1phKR6UeBaVIqbOQ&ved=2ahUKEwiLqYvIv5CWAxVuBbkGHTU7AfIQ8NMDegQIfxAW
+        - navigation
+      - complementary [ref=e1288]:
+        - heading "Resultados adicionales" [level=2] [ref=e1289]
+    - contentinfo [ref=e1290]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e1291]
+      - generic [ref=e1295]:
+        - generic [ref=e1297]:
+          - text: Argentina
+          - generic [ref=e1299]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e1301] [cursor=pointer]:
+              - generic [ref=e1302]: Iriondo, Santa Fe
+              - generic [ref=e1304]:
+                - text: "-"
+                - generic [ref=e1305]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e1307] [cursor=pointer]
+        - generic [ref=e1310]:
+          - link "Ayuda" [ref=e1311] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e1312] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e1313] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e1314] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

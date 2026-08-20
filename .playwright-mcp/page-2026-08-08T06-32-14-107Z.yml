@@ -1,0 +1,19 @@
+- banner [ref=f10e2]:
+  - button "Ir al contenido" [ref=f10e3] [cursor=pointer]
+  - button "Comentarios de accesibilidad" [ref=f10e6] [cursor=pointer]
+  - generic [ref=f10e9]:
+    - link [ref=f10e10] [cursor=pointer]:
+      - /url: /?FORM=Z9FD1
+      - heading "Volver a la búsqueda de Bing" [level=1] [ref=f10e11]
+    - search [ref=f10e12]:
+      - button "Buscar" [ref=f10e15] [cursor=pointer]
+      - searchbox "Escribe tu búsqueda aquí; irán apareciendo sugerencias de búsqueda a medida que escribes" [ref=f10e16]: "\"Cine Teatro Libertador\" Casilda site:instagram.com"
+      - button "Borrar texto" [ref=f10e18]
+      - button "Buscar con una imagen" [ref=f10e22] [cursor=pointer]
+  - complementary "Premios y preferencias de la cuenta" [ref=f10e24]:
+    - button "Microsoft Rewards" [ref=f10e25] [cursor=pointer]
+    - link "Iniciar sesión" [ref=f10e26] [cursor=pointer]:
+      - /url: javascript:void(0)
+  - generic [ref=f10e28]:
+    - generic [ref=f10e29]: Un último paso
+    - generic [ref=f10e30]: Resuelve el desafío siguiente para continuar.

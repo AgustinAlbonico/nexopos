@@ -1,0 +1,212 @@
+- generic [ref=f1e13]:
+  - generic [ref=f1e14]:
+    - generic [ref=f1e15]:
+      - link "NP" [ref=f1e17] [cursor=pointer]:
+        - /url: "#/dashboard"
+      - navigation [ref=f1e19]:
+        - generic [ref=f1e20]:
+          - link [ref=f1e22] [cursor=pointer]:
+            - /url: "#/dashboard"
+          - link [ref=f1e29] [cursor=pointer]:
+            - /url: "#/sales"
+          - link [ref=f1e35] [cursor=pointer]:
+            - /url: "#/cash-register"
+          - link [ref=f1e41] [cursor=pointer]:
+            - /url: "#/customer-accounts"
+          - link [ref=f1e45] [cursor=pointer]:
+            - /url: "#/incomes"
+          - link [ref=f1e50] [cursor=pointer]:
+            - /url: "#/purchases"
+          - link [ref=f1e57] [cursor=pointer]:
+            - /url: "#/expenses"
+          - link [ref=f1e62] [cursor=pointer]:
+            - /url: "#/products"
+          - link [ref=f1e69] [cursor=pointer]:
+            - /url: "#/customers"
+          - link [ref=f1e75] [cursor=pointer]:
+            - /url: "#/suppliers"
+          - link [ref=f1e81] [cursor=pointer]:
+            - /url: "#/reports"
+          - link [ref=f1e85] [cursor=pointer]:
+            - /url: "#/settings"
+      - button [ref=f1e90] [cursor=pointer]
+    - main [ref=f1e95]:
+      - generic [ref=f1e97]:
+        - generic [ref=f1e98]:
+          - generic [ref=f1e99]:
+            - heading "Productos" [level=1] [ref=f1e100]
+            - paragraph [ref=f1e101]: Cargá productos con nombre, costo y stock
+          - generic [ref=f1e102]:
+            - button "Categorías" [ref=f1e103] [cursor=pointer]
+            - button "Nuevo Producto" [ref=f1e107] [cursor=pointer]
+        - generic [ref=f1e110]:
+          - generic [ref=f1e111]:
+            - generic [ref=f1e112]:
+              - textbox "Buscar producto..." [ref=f1e113]: Remera Verano E2E Test
+              - generic [ref=f1e114]:
+                - combobox [ref=f1e115] [cursor=pointer]:
+                  - generic: Todas las categorías
+                - combobox [ref=f1e118] [cursor=pointer]:
+                  - generic [ref=f1e119]: Todas las marcas
+                - combobox [ref=f1e120] [cursor=pointer]:
+                  - generic: Todo el stock
+            - generic [ref=f1e123]: 13 registro(s)
+          - table [ref=f1e126]:
+            - rowgroup [ref=f1e127]:
+              - row [ref=f1e128]:
+                - columnheader [ref=f1e129]:
+                  - button "Producto" [ref=f1e467] [cursor=pointer]
+                - columnheader "Categoría" [ref=f1e134]
+                - columnheader "Marca" [ref=f1e135]
+                - columnheader "Costo" [ref=f1e136]
+                - columnheader [ref=f1e137]:
+                  - button "Precio" [ref=f1e471] [cursor=pointer]
+                - columnheader [ref=f1e142]:
+                  - button "Stock" [ref=f1e475] [cursor=pointer]
+                - columnheader [ref=f1e147]
+            - rowgroup [ref=f1e148]:
+              - row [ref=f1e479]:
+                - cell [ref=f1e480]:
+                  - paragraph [ref=f1e482]: Remera Verano E2E Test
+                - cell "-" [ref=f1e483]
+                - cell "-" [ref=f1e484]
+                - cell "$ 0,00" [ref=f1e485]
+                - cell "$ 18.500,00 0.0% ganancia" [ref=f1e486]:
+                  - generic [ref=f1e487]:
+                    - generic [ref=f1e488]: $ 18.500,00
+                    - generic [ref=f1e489]: 0.0% ganancia
+                - cell "0" [ref=f1e490]
+                - cell [ref=f1e495]:
+                  - button "Abrir menú" [ref=f1e496] [cursor=pointer]
+              - row [ref=f1e502]:
+                - cell [ref=f1e503]:
+                  - paragraph [ref=f1e505]: Remera Verano E2E Test L Azul
+                - cell "-" [ref=f1e506]
+                - cell "-" [ref=f1e507]
+                - cell "$ 0,00" [ref=f1e508]
+                - cell "$ 18.500,00 0.0% ganancia" [ref=f1e509]:
+                  - generic [ref=f1e510]:
+                    - generic [ref=f1e511]: $ 18.500,00
+                    - generic [ref=f1e512]: 0.0% ganancia
+                - cell "0" [ref=f1e513]
+                - cell [ref=f1e518]:
+                  - button "Abrir menú" [ref=f1e519] [cursor=pointer]
+              - row [ref=f1e525]:
+                - cell [ref=f1e526]:
+                  - paragraph [ref=f1e528]: Remera Verano E2E Test L Blanco
+                - cell "-" [ref=f1e529]
+                - cell "-" [ref=f1e530]
+                - cell "$ 0,00" [ref=f1e531]
+                - cell "$ 18.500,00 0.0% ganancia" [ref=f1e532]:
+                  - generic [ref=f1e533]:
+                    - generic [ref=f1e534]: $ 18.500,00
+                    - generic [ref=f1e535]: 0.0% ganancia
+                - cell "0" [ref=f1e536]
+                - cell [ref=f1e541]:
+                  - button "Abrir menú" [ref=f1e542] [cursor=pointer]
+              - row [ref=f1e548]:
+                - cell [ref=f1e549]:
+                  - paragraph [ref=f1e551]: Remera Verano E2E Test L Negro
+                - cell "-" [ref=f1e552]
+                - cell "-" [ref=f1e553]
+                - cell "$ 0,00" [ref=f1e554]
+                - cell "$ 18.500,00 0.0% ganancia" [ref=f1e555]:
+                  - generic [ref=f1e556]:
+                    - generic [ref=f1e557]: $ 18.500,00
+                    - generic [ref=f1e558]: 0.0% ganancia
+                - cell "0" [ref=f1e559]
+                - cell [ref=f1e564]:
+                  - button "Abrir menú" [ref=f1e565] [cursor=pointer]
+              - row [ref=f1e571]:
+                - cell [ref=f1e572]:
+                  - paragraph [ref=f1e574]: Remera Verano E2E Test M Azul
+                - cell "-" [ref=f1e575]
+                - cell "-" [ref=f1e576]
+                - cell "$ 0,00" [ref=f1e577]
+                - cell "$ 18.500,00 0.0% ganancia" [ref=f1e578]:
+                  - generic [ref=f1e579]:
+                    - generic [ref=f1e580]: $ 18.500,00
+                    - generic [ref=f1e581]: 0.0% ganancia
+                - cell "0" [ref=f1e582]
+                - cell [ref=f1e587]:
+                  - button "Abrir menú" [ref=f1e588] [cursor=pointer]
+              - row [ref=f1e594]:
+                - cell [ref=f1e595]:
+                  - paragraph [ref=f1e597]: Remera Verano E2E Test M Blanco
+                - cell "-" [ref=f1e598]
+                - cell "-" [ref=f1e599]
+                - cell "$ 0,00" [ref=f1e600]
+                - cell "$ 18.500,00 0.0% ganancia" [ref=f1e601]:
+                  - generic [ref=f1e602]:
+                    - generic [ref=f1e603]: $ 18.500,00
+                    - generic [ref=f1e604]: 0.0% ganancia
+                - cell "0" [ref=f1e605]
+                - cell [ref=f1e610]:
+                  - button "Abrir menú" [ref=f1e611] [cursor=pointer]
+              - row [ref=f1e617]:
+                - cell [ref=f1e618]:
+                  - paragraph [ref=f1e620]: Remera Verano E2E Test M Negro
+                - cell "-" [ref=f1e621]
+                - cell "-" [ref=f1e622]
+                - cell "$ 0,00" [ref=f1e623]
+                - cell "$ 18.500,00 0.0% ganancia" [ref=f1e624]:
+                  - generic [ref=f1e625]:
+                    - generic [ref=f1e626]: $ 18.500,00
+                    - generic [ref=f1e627]: 0.0% ganancia
+                - cell "0" [ref=f1e628]
+                - cell [ref=f1e633]:
+                  - button "Abrir menú" [ref=f1e634] [cursor=pointer]
+              - row [ref=f1e640]:
+                - cell [ref=f1e641]:
+                  - paragraph [ref=f1e643]: Remera Verano E2E Test S Azul
+                - cell "-" [ref=f1e644]
+                - cell "-" [ref=f1e645]
+                - cell "$ 0,00" [ref=f1e646]
+                - cell "$ 18.500,00 0.0% ganancia" [ref=f1e647]:
+                  - generic [ref=f1e648]:
+                    - generic [ref=f1e649]: $ 18.500,00
+                    - generic [ref=f1e650]: 0.0% ganancia
+                - cell "0" [ref=f1e651]
+                - cell [ref=f1e656]:
+                  - button "Abrir menú" [ref=f1e657] [cursor=pointer]
+              - row [ref=f1e663]:
+                - cell [ref=f1e664]:
+                  - paragraph [ref=f1e666]: Remera Verano E2E Test S Blanco
+                - cell "-" [ref=f1e667]
+                - cell "-" [ref=f1e668]
+                - cell "$ 0,00" [ref=f1e669]
+                - cell "$ 18.500,00 0.0% ganancia" [ref=f1e670]:
+                  - generic [ref=f1e671]:
+                    - generic [ref=f1e672]: $ 18.500,00
+                    - generic [ref=f1e673]: 0.0% ganancia
+                - cell "0" [ref=f1e674]
+                - cell [ref=f1e679]:
+                  - button "Abrir menú" [ref=f1e680] [cursor=pointer]
+              - row [ref=f1e686]:
+                - cell [ref=f1e687]:
+                  - paragraph [ref=f1e689]: Remera Verano E2E Test S Negro
+                - cell "-" [ref=f1e690]
+                - cell "-" [ref=f1e691]
+                - cell "$ 0,00" [ref=f1e692]
+                - cell "$ 18.500,00 0.0% ganancia" [ref=f1e693]:
+                  - generic [ref=f1e694]:
+                    - generic [ref=f1e695]: $ 18.500,00
+                    - generic [ref=f1e696]: 0.0% ganancia
+                - cell "0" [ref=f1e697]
+                - cell [ref=f1e702]:
+                  - button "Abrir menú" [ref=f1e703] [cursor=pointer]
+          - generic [ref=f1e365]:
+            - generic [ref=f1e366]:
+              - generic [ref=f1e367]: Página 1 de 2
+              - generic [ref=f1e368]:
+                - generic [ref=f1e369]: "Mostrar:"
+                - combobox [ref=f1e370] [cursor=pointer]:
+                  - generic: "10"
+                - generic [ref=f1e373]: registros
+            - generic [ref=f1e374]:
+              - button "Anterior" [disabled]
+              - button "Siguiente" [ref=f1e375] [cursor=pointer]
+  - region "Notifications alt+T":
+    - list:
+      - listitem [ref=f1e709]:
+        - generic [ref=f1e713]: ¡Se generaron 12 variantes de "Remera Verano E2E Test" con éxito!

@@ -1,0 +1,191 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Compras
+                  - paragraph: Registra compras a proveedores y actualiza automáticamente el stock
+                - generic:
+                  - button: Nueva Compra
+              - generic:
+                - paragraph: Mostrando compras del mes actual (01/08/2026 - 31/08/2026)
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=3]: Total Compras
+                  - generic: "0"
+                - generic:
+                  - generic:
+                    - heading [level=3]: Monto Total
+                  - generic: $ 0,00
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pagado
+                  - generic: $ 0,00
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pendiente
+                  - generic: $ 0,00
+              - generic:
+                - generic:
+                  - heading [level=3]: Filtros
+                - generic:
+                  - generic:
+                    - generic:
+                      - button: Hoy
+                      - button: Esta Semana
+                      - button: Mes Actual
+                      - button: Todas las Fechas
+                    - generic:
+                      - generic:
+                        - text: Buscar
+                        - textbox:
+                          - /placeholder: Nº, proveedor, factura...
+                      - generic:
+                        - text: Estado
+                        - combobox:
+                          - generic: Todos
+                      - generic:
+                        - text: Desde
+                        - textbox: 2026-08-01
+                      - generic:
+                        - text: Hasta
+                        - textbox: 2026-08-31
+                      - generic:
+                        - generic:
+                          - paragraph: Producto incluido
+                        - combobox:
+                          - generic: Buscar producto...
+                      - button: Restablecer
+              - generic:
+                - generic:
+                  - heading [level=3]: Listado de Compras
+                - generic:
+                  - generic:
+                    - paragraph: No hay compras registradas
+                    - paragraph: Las compras que registres aparecerán aquí
+    - region "Notifications alt+T"
+  - dialog [ref=f1e896]:
+    - generic [ref=f1e904]:
+      - heading "Registrar Compra" [level=2] [ref=f1e905]
+      - paragraph [ref=f1e906]: Completa los datos de la compra. El stock se actualizará al marcar como pagada.
+    - generic [ref=f1e909]:
+      - generic [ref=f1e910]:
+        - heading "Datos del Proveedor" [level=3] [ref=f1e911]
+        - generic [ref=f1e912]:
+          - generic [ref=f1e913]: Proveedor Registrado *
+          - combobox [active] [ref=f1e914] [cursor=pointer]:
+            - generic [ref=f1e915]: Buscar proveedor o crear nuevo
+      - generic [ref=f1e919]:
+        - heading "Datos de la Compra" [level=3] [ref=f1e920]
+        - generic [ref=f1e921]:
+          - generic [ref=f1e922]:
+            - generic [ref=f1e923]: Fecha *
+            - textbox "Fecha *" [ref=f1e924]: 2026-08-13
+          - generic [ref=f1e925]:
+            - text: Nº Factura
+            - textbox "Nº Factura" [ref=f1e926]:
+              - /placeholder: 0001-00001234
+          - generic [ref=f1e927]:
+            - text: Estado
+            - combobox "Estado" [ref=f1e928] [cursor=pointer]:
+              - generic: Pagada
+            - combobox [ref=f1e931]
+          - generic [ref=f1e932]:
+            - generic [ref=f1e933]: Método de Pago *
+            - combobox "Método de Pago *" [ref=f1e934] [cursor=pointer]:
+              - generic: Seleccione método de pago
+            - combobox [ref=f1e937]
+      - generic [ref=f1e938]:
+        - generic [ref=f1e939]:
+          - textbox "Escanear código de barras" [ref=f1e941]:
+            - /placeholder: Escaneá el código de barras o escribí + Enter
+          - button "Buscar por código" [disabled]
+        - generic [ref=f1e942]:
+          - heading "Productos *" [level=3] [ref=f1e943]
+          - generic [ref=f1e944]:
+            - button "Cargar por Matriz (Curvero)" [ref=f1e945] [cursor=pointer]
+            - button "Agregar Línea" [ref=f1e950] [cursor=pointer]
+        - generic [ref=f1e955]:
+          - generic [ref=f1e957]:
+            - generic [ref=f1e958]: Producto
+            - combobox [ref=f1e959] [cursor=pointer]:
+              - generic [ref=f1e960]: Buscar producto...
+          - generic [ref=f1e965]:
+            - text: Cantidad
+            - textbox "Cantidad" [ref=f1e966]: "1"
+          - generic [ref=f1e968]:
+            - text: Precio Unit.
+            - textbox "Precio Unit." [ref=f1e969]: "0"
+          - generic [ref=f1e970]:
+            - text: Subtotal
+            - generic [ref=f1e971]: $ 0,00
+      - generic [ref=f1e972]:
+        - generic [ref=f1e973]:
+          - text: Impuestos (+)
+          - textbox "Impuestos (+)" [ref=f1e974]: "0"
+        - generic [ref=f1e975]:
+          - text: Descuento (-)
+          - textbox "Descuento (-)" [ref=f1e976]: "0"
+        - generic [ref=f1e977]:
+          - text: Subtotal
+          - generic [ref=f1e978]: $ 0,00
+        - generic [ref=f1e979]:
+          - text: TOTAL
+          - generic [ref=f1e980]: $ 0,00
+      - generic [ref=f1e981]:
+        - text: Notas / Observaciones
+        - textbox "Notas / Observaciones" [ref=f1e982]:
+          - /placeholder: Notas adicionales sobre la compra...
+      - generic [ref=f1e983]:
+        - button "Registrar Compra" [disabled]
+    - button "Close" [ref=f1e984] [cursor=pointer]

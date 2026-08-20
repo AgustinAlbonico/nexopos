@@ -1,0 +1,275 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 101 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Alfajor Havanna E2E 4673
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 1.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 1.300,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "48"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Coca-Cola 1.5L
+                            - cell:
+                              - generic: Limpieza
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 0,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "1"
+                            - cell:
+                              - button [expanded]:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Detergente Ala 750ml
+                            - cell:
+                              - generic:
+                                - text: Bebidas
+                                - generic: (50%)
+                            - cell: "-"
+                            - cell: $ 100,00
+                            - cell:
+                              - generic:
+                                - generic: $ 150,00
+                                - generic: 50.0% ganancia
+                            - cell:
+                              - generic: "8"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Gorra Trucker Bordada Urban
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 9.500,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "0"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Gorra Trucker Bordada Urban
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 9.500,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "0"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Lavandina Ayudín 1L
+                            - cell:
+                              - generic: Limpieza
+                            - cell: "-"
+                            - cell: $ 100,00
+                            - cell:
+                              - generic:
+                                - generic: $ 140,00
+                                - generic: 40.0% ganancia
+                            - cell:
+                              - generic: "12"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Lector
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 10.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 13.000,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "-16"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: preuba
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 1.000,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "990"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Queso Tybo Fiambrería E2E 0884
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 8.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 10.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "255"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Queso Tybo Fiambrería E2E 1496
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 8.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 10.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "255"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 11
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button: Siguiente
+    - region "Notifications alt+T"
+  - generic: $0k
+  - menu "Abrir menú" [active] [ref=e1459]:
+    - generic [ref=e1460]: Acciones
+    - menuitem "Ver Detalle" [ref=e1461]
+    - menuitem "Generar Variantes (Talles/Colores)" [ref=e1465]
+    - menuitem "Historial de Stock" [ref=e1468]
+    - menuitem "Editar" [ref=e1473]
+    - separator [ref=e1477]
+    - menuitem "Eliminar" [ref=e1478]

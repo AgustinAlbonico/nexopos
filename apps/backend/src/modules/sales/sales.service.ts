@@ -11,7 +11,7 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, DataSource, Like, EntityManager, SelectQueryBuilder, In } from 'typeorm';
 import { Sale, SaleStatus } from './entities/sale.entity';
-import { SaleItem } from './entities/sale-item.entity';
+import { SaleItem, SaleItemInventoryEffect } from './entities/sale-item.entity';
 import { SalePayment } from './entities/sale-payment.entity';
 import { SaleTax } from './entities/sale-tax.entity';
 import {
@@ -34,6 +34,7 @@ import { AuditService } from '../audit/audit.service';
 import { AuditEntityType, AuditAction } from '../audit/enums';
 import { PaymentDto } from '../auth/interfaces';
 import { ConfigurationService } from '../configuration/configuration.service';
+import { resolveMeasuredQuantity, validateMeasuredQuantity } from './policies/measured-quantity.policy';
 
 export interface SaleStats {
     totalSales: number;
@@ -51,6 +52,34 @@ export interface PaginatedSales {
     limit: number;
     totalPages: number;
 }
+
+type ProductPackSnapshot = {
+    readonly id: string;
+    readonly unitsPerPack: number;
+};
+
+type ProductBundleComponentSnapshot = {
+    readonly componentProductId: string;
+    readonly componentQuantity: number;
+    readonly componentProduct?: Product | null;
+};
+
+type SellableProduct = Product & {
+    readonly packs?: readonly ProductPackSnapshot[];
+    readonly bundleComponents?: readonly ProductBundleComponentSnapshot[];
+};
+
+type PriceOverrideAuditItem = {
+    readonly productId: string;
+    readonly expectedUnitPrice: number;
+    readonly actualUnitPrice: number;
+};
+
+type SaleAdjustmentPolicyAudit = {
+    readonly manualDiscountReason?: string;
+    readonly priceOverrideReason?: string;
+    readonly priceOverrideItems: readonly PriceOverrideAuditItem[];
+};
 
 @Injectable()
 export class SalesService {
@@ -88,9 +117,37 @@ export class SalesService {
             if (!product) {
                 throw new NotFoundException(`Producto con ID ${item.productId} no encontrado`);
             }
+            if (product.isVariantParent) {
+                throw new BadRequestException(`El producto "${product.name}" requiere seleccionar una variante`);
+            }
+            validateMeasuredQuantity(item.quantity, product.isMeasure);
         }
 
         return productsById;
+    }
+
+    private normalizeMeasuredItems(
+        items: CreateSaleDto['items'],
+        productsById: Map<string, Product>,
+    ): CreateSaleDto['items'] {
+        return items.map((item) => {
+            const product = productsById.get(item.productId);
+            if (!product?.isMeasure) return item;
+
+            const tareGrams = item.tareGrams ?? product.tareGrams ?? 0;
+            const netQuantity = resolveMeasuredQuantity({
+                quantity: item.quantity,
+                grossQuantity: item.grossQuantity,
+                tareGrams,
+            }, true);
+
+            return {
+                ...item,
+                quantity: netQuantity,
+                netQuantity,
+                tareGrams: tareGrams || undefined,
+            };
+        });
     }
 
     /**
@@ -99,19 +156,47 @@ export class SalesService {
     private async validateProductsStock(items: CreateSaleDto['items'], productsById: Map<string, Product>): Promise<void> {
         const allowOutOfStock = await this.configurationService.isOutOfStockSaleAllowed();
         for (const item of items) {
-            const product = productsById.get(item.productId);
+            const product = productsById.get(item.productId) as SellableProduct | undefined;
             if (!product) {
                 throw new NotFoundException(`Producto con ID ${item.productId} no encontrado`);
             }
             if (allowOutOfStock) {
                 continue;
             }
-            if (product.stock < item.quantity) {
-                throw new BadRequestException(
-                    `Stock insuficiente para "${product.name}". Disponible: ${product.stock}, Solicitado: ${item.quantity}`
-                );
+            const effects = this.getInventoryEffects(item, product);
+            for (const effect of effects) {
+                const stockProduct = effect.product ?? product;
+                if (stockProduct.stock < effect.quantity) {
+                    throw new BadRequestException(
+                        `Stock insuficiente para "${stockProduct.name}". Disponible: ${stockProduct.stock}, Solicitado: ${effect.quantity}`
+                    );
+                }
             }
         }
+    }
+
+    private getInventoryEffects(item: CreateSaleDto['items'][number], product: SellableProduct): Array<SaleItemInventoryEffect & { readonly product?: Product }> {
+        if (product.bundleComponents?.length) {
+            return product.bundleComponents.map((component) => {
+                if (!component.componentProduct) {
+                    throw new BadRequestException(`Bundle "${product.name}" tiene un componente inexistente`);
+                }
+                return {
+                    productId: component.componentProductId,
+                    product: component.componentProduct,
+                    quantity: item.quantity * component.componentQuantity,
+                };
+            });
+        }
+        const pack = item.packId ? product.packs?.find((candidate) => candidate.id === item.packId) : undefined;
+        if (item.packId && !pack) {
+            throw new BadRequestException(`Pack ${item.packId} no existe para "${product.name}"`);
+        }
+        return [{
+            productId: item.productId,
+            product,
+            quantity: item.quantity * (pack?.unitsPerPack ?? 1),
+        }];
     }
 
     /**
@@ -132,7 +217,10 @@ export class SalesService {
             );
         }
 
-        const productIds = Array.from(new Set(items.map((i) => i.productId)));
+        const productIds = Array.from(new Set(items.flatMap((item) => {
+            const product = productsById.get(item.productId) as SellableProduct | undefined;
+            return product ? this.getInventoryEffects(item, product).map((effect) => effect.productId) : [item.productId];
+        })));
         const plsRows = await this.dataSource
             .getRepository(ProductLocationStock)
             .find({ where: productIds.map((pid) => ({ productId: pid, locationId: primaryId })) });
@@ -150,17 +238,24 @@ export class SalesService {
         }> = [];
 
         for (const item of items) {
-            const available = availableByProduct.get(item.productId) ?? 0;
-            if (available < item.quantity) {
-                const product = productsById.get(item.productId)!;
+            const product = productsById.get(item.productId) as SellableProduct | undefined;
+            if (!product) {
+                throw new NotFoundException(`Producto con ID ${item.productId} no encontrado`);
+            }
+            for (const effect of this.getInventoryEffects(item, product)) {
+                const stockProduct = effect.product ?? product;
+                const available = availableByProduct.get(effect.productId) ?? 0;
+                if (available >= effect.quantity) {
+                    continue;
+                }
                 const options = await this.inventoryService.findReplenishmentOptions(
-                    item.productId,
-                    item.quantity,
+                    effect.productId,
+                    effect.quantity,
                 );
                 shortages.push({
-                    productId: item.productId,
-                    productName: product.name,
-                    requested: item.quantity,
+                    productId: effect.productId,
+                    productName: stockProduct.name,
+                    requested: effect.quantity,
                     primarySaleAvailable: available,
                     options,
                 });
@@ -192,6 +287,10 @@ export class SalesService {
         let totalTax = dto.tax || 0;
         if (dto.taxes && dto.taxes.length > 0) {
             totalTax = dto.taxes.reduce((sum, tax) => sum + tax.amount, 0);
+        }
+
+        if ((dto.discount ?? 0) > subtotal + 0.01) {
+            throw new BadRequestException('El descuento no puede superar el subtotal de la venta');
         }
 
         const total = subtotal + totalTax - (dto.discount || 0) + (dto.surcharge || 0);
@@ -238,6 +337,69 @@ export class SalesService {
         }
     }
 
+    private async enforceAdjustmentReasonPolicies(
+        dto: CreateSaleDto,
+        productsById: Map<string, Product>,
+    ): Promise<SaleAdjustmentPolicyAudit> {
+        const { capabilities } = await this.configurationService.getCapabilitiesResponse();
+        const manualDiscountReason = dto.manualDiscountReason?.trim();
+        const priceOverrideReason = dto.priceOverrideReason?.trim();
+        const manualDiscountApplied = (dto.discount ?? 0) > 0
+            || dto.items.some((item) => (item.discount ?? 0) > 0 || (item.discountPercent ?? 0) > 0);
+        const priceOverrideItems = dto.items.flatMap((item): PriceOverrideAuditItem[] => {
+            const expectedUnitPrice = productsById.get(item.productId)?.price;
+            if (typeof expectedUnitPrice !== 'number' || expectedUnitPrice === item.unitPrice) {
+                return [];
+            }
+            return [{ productId: item.productId, expectedUnitPrice, actualUnitPrice: item.unitPrice }];
+        });
+
+        if (capabilities['POLICY.manual_discount_reason'] && manualDiscountApplied && !manualDiscountReason) {
+            throw new BadRequestException('Debe indicar una razón para aplicar descuento manual');
+        }
+        if (capabilities['POLICY.price_override_reason'] && priceOverrideItems.length > 0 && !priceOverrideReason) {
+            throw new BadRequestException('Debe indicar una razón para modificar el precio');
+        }
+
+        return { manualDiscountReason, priceOverrideReason, priceOverrideItems };
+    }
+
+    private async auditAdjustmentReasons(
+        completedSale: Sale,
+        dto: CreateSaleDto,
+        policyAudit: SaleAdjustmentPolicyAudit,
+        userId: string,
+    ): Promise<void> {
+        if (policyAudit.manualDiscountReason) {
+            await this.auditService.logSilent({
+                entityType: AuditEntityType.SALE,
+                entityId: completedSale.id,
+                action: AuditAction.UPDATE,
+                userId,
+                metadata: {
+                    policy: 'POLICY.manual_discount_reason',
+                    reason: policyAudit.manualDiscountReason,
+                    discount: dto.discount ?? 0,
+                },
+                description: `Razón de descuento manual para venta ${completedSale.saleNumber}`,
+            });
+        }
+        if (policyAudit.priceOverrideReason && policyAudit.priceOverrideItems.length > 0) {
+            await this.auditService.logSilent({
+                entityType: AuditEntityType.SALE,
+                entityId: completedSale.id,
+                action: AuditAction.UPDATE,
+                userId,
+                metadata: {
+                    policy: 'POLICY.price_override_reason',
+                    reason: policyAudit.priceOverrideReason,
+                    items: policyAudit.priceOverrideItems,
+                },
+                description: `Razón de modificación de precio para venta ${completedSale.saleNumber}`,
+            });
+        }
+    }
+
     /**
      * Crea los items de la venta
      */
@@ -248,20 +410,27 @@ export class SalesService {
         productsById: Map<string, Product>
     ): Promise<void> {
         for (const itemDto of items) {
-            const product = productsById.get(itemDto.productId);
+            const product = productsById.get(itemDto.productId) as SellableProduct | undefined;
             if (!product) {
                 throw new NotFoundException(`Producto con ID ${itemDto.productId} no encontrado`);
             }
+            const inventoryEffects = this.getInventoryEffects(itemDto, product).map(({ product: _product, ...effect }) => effect);
             const item = this.saleItemRepo.create({
                 saleId,
                 productId: itemDto.productId,
+                packId: itemDto.packId ?? null,
                 productCode: product.sku ?? null,
                 productDescription: product.name,
                 quantity: itemDto.quantity,
+                enterMode: itemDto.enterMode ?? null,
+                grossQuantity: itemDto.grossQuantity ?? null,
+                tareGrams: itemDto.tareGrams ?? null,
+                netQuantity: itemDto.netQuantity ?? null,
                 unitPrice: itemDto.unitPrice,
                 discount: itemDto.discount ?? 0,
                 discountPercent: itemDto.discountPercent ?? 0,
                 subtotal: (itemDto.quantity * itemDto.unitPrice) - (itemDto.discount || 0),
+                inventoryEffects,
             });
             await manager.save(item);
         }
@@ -364,26 +533,29 @@ export class SalesService {
 
         // Validar productos y stock
         const productsById = await this.getProductsById(dto.items);
+        const normalizedDto = { ...dto, items: this.normalizeMeasuredItems(dto.items, productsById) };
 
         const sectorized = await this.inventoryService.isSectorizedMode();
         const allowOutOfStock = await this.configurationService.isOutOfStockSaleAllowed();
         if (sectorized) {
-            await this.validateStockAtPrimaryLocation(dto.items, productsById, allowOutOfStock);
+            await this.validateStockAtPrimaryLocation(normalizedDto.items, productsById, allowOutOfStock);
         } else {
-            await this.validateProductsStock(dto.items, productsById);
+            await this.validateProductsStock(normalizedDto.items, productsById);
         }
 
         // Calcular totales
-        const { subtotal, totalTax, total } = this.calculateSaleTotals(dto);
+        const { subtotal, totalTax, total } = this.calculateSaleTotals(normalizedDto);
 
         // Determinar estado
         const status = this.determineSaleStatus(dto);
 
         // Validar pagos
-        this.validatePayments(dto, total);
+        this.validatePayments(normalizedDto, total);
 
         // Validar impuestos duplicados (FIX 7.8)
-        this.validateNoDuplicateTaxes(dto.taxes);
+        this.validateNoDuplicateTaxes(normalizedDto.taxes);
+
+        const policyAudit = await this.enforceAdjustmentReasonPolicies(normalizedDto, productsById);
 
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
@@ -408,14 +580,21 @@ export class SalesService {
                 isOnAccount: dto.isOnAccount ?? false,
                 notes: dto.notes ?? null,
                 createdById: userId ?? null,
+                ivaPercentage: dto.ivaPercentage ?? null,
+                sellerId: dto.sellerId ?? null,
+                sellerName: dto.sellerName ?? null,
+                isReservation: dto.isReservation ?? false,
+                reservationDeposit: dto.reservationDeposit ?? null,
+                reservationStatus: dto.isReservation ? 'active' : null,
+                reservationExpiresAt: dto.reservationExpiresAt ? new Date(dto.reservationExpiresAt) : null,
             });
 
             const savedSale = await queryRunner.manager.save(sale);
 
             // Crear items, impuestos y pagos usando funciones auxiliares
-            await this.createSaleItems(queryRunner.manager, savedSale.id, dto.items, productsById);
-            await this.createSaleTaxes(queryRunner.manager, savedSale.id, dto.taxes);
-            await this.createSalePayments(queryRunner.manager, savedSale.id, dto.payments);
+            await this.createSaleItems(queryRunner.manager, savedSale.id, normalizedDto.items, productsById);
+            await this.createSaleTaxes(queryRunner.manager, savedSale.id, normalizedDto.taxes);
+            await this.createSalePayments(queryRunner.manager, savedSale.id, normalizedDto.payments);
 
             // Actualizar inventario siempre que la venta no esté cancelada
             // (las ventas en cuenta corriente también deben descontar stock)
@@ -488,6 +667,7 @@ export class SalesService {
 
             // Log de auditoría para creación de venta
             if (userId && completedSale) {
+                await this.auditAdjustmentReasons(completedSale, dto, policyAudit, userId);
                 await this.auditService.logSilent({
                     entityType: AuditEntityType.SALE,
                     entityId: completedSale.id,
@@ -1058,16 +1238,19 @@ export class SalesService {
                 ? sale.saleDate.toISOString()
                 : String(sale.saleDate);
 
-            await this.inventoryService.createMovement({
-                productId: item.productId,
-                type: StockMovementType.OUT,
-                source: StockMovementSource.SALE,
-                quantity: item.quantity,
-                cost: item.unitPrice,
-                referenceId: sale.saleNumber,
-                notes: `Venta ${sale.saleNumber}`,
-                date: saleDateStr,
-            });
+            const effects = item.inventoryEffects ?? [{ productId: item.productId, quantity: item.quantity }];
+            for (const effect of effects) {
+                await this.inventoryService.createMovement({
+                    productId: effect.productId,
+                    type: StockMovementType.OUT,
+                    source: StockMovementSource.SALE,
+                    quantity: effect.quantity,
+                    cost: item.unitPrice,
+                    referenceId: sale.saleNumber,
+                    notes: `Venta ${sale.saleNumber}`,
+                    date: saleDateStr,
+                }, manager);
+            }
         }
     }
 
@@ -1096,18 +1279,21 @@ export class SalesService {
             : String(sale.saleDate);
 
         for (const item of sale.items) {
-            await this.inventoryService.recordMovementInLocation({
-                productId: item.productId,
-                locationId: primaryLocationId ?? undefined,
-                type: StockMovementType.OUT,
-                source: StockMovementSource.SALE,
-                quantity: item.quantity,
-                cost: item.unitPrice,
-                notes: `Venta ${sale.saleNumber}`,
-                allowOutOfStock,
-                date: new Date(saleDateStr),
-                manager,
-            });
+            const effects = item.inventoryEffects ?? [{ productId: item.productId, quantity: item.quantity }];
+            for (const effect of effects) {
+                await this.inventoryService.recordMovementInLocation({
+                    productId: effect.productId,
+                    locationId: primaryLocationId ?? undefined,
+                    type: StockMovementType.OUT,
+                    source: StockMovementSource.SALE,
+                    quantity: effect.quantity,
+                    cost: item.unitPrice,
+                    notes: `Venta ${sale.saleNumber}`,
+                    allowOutOfStock,
+                    date: new Date(saleDateStr),
+                    manager,
+                });
+            }
         }
     }
 
@@ -1249,6 +1435,7 @@ export class SalesService {
         }
 
         const productsById = await this.getProductsById(dto.items);
+        const normalizedDto = { ...dto, items: this.normalizeMeasuredItems(dto.items, productsById) };
         const sectorized = await this.inventoryService.isSectorizedMode();
         const allowOutOfStock = await this.configurationService.isOutOfStockSaleAllowed();
 
@@ -1260,12 +1447,12 @@ export class SalesService {
         // Validar stock (post-traslado será suficiente). Esto es una
         // pre-validación barata; el `recordMovementInLocation` interno
         // revalidará bajo lock pesimista.
-        await this.validateStockAtPrimaryLocation(dto.items, productsById, allowOutOfStock);
+        await this.validateStockAtPrimaryLocation(normalizedDto.items, productsById, allowOutOfStock);
 
-        const { subtotal, totalTax, total } = this.calculateSaleTotals(dto);
-        const status = this.determineSaleStatus(dto);
-        this.validatePayments(dto, total);
-        this.validateNoDuplicateTaxes(dto.taxes);
+        const { subtotal, totalTax, total } = this.calculateSaleTotals(normalizedDto);
+        const status = this.determineSaleStatus(normalizedDto);
+        this.validatePayments(normalizedDto, total);
+        this.validateNoDuplicateTaxes(normalizedDto.taxes);
 
         const queryRunner = this.dataSource.createQueryRunner();
         await queryRunner.connect();
@@ -1304,9 +1491,9 @@ export class SalesService {
             });
             const savedSale = await queryRunner.manager.save(sale);
 
-            await this.createSaleItems(queryRunner.manager, savedSale.id, dto.items, productsById);
-            await this.createSaleTaxes(queryRunner.manager, savedSale.id, dto.taxes);
-            await this.createSalePayments(queryRunner.manager, savedSale.id, dto.payments);
+            await this.createSaleItems(queryRunner.manager, savedSale.id, normalizedDto.items, productsById);
+            await this.createSaleTaxes(queryRunner.manager, savedSale.id, normalizedDto.taxes);
+            await this.createSalePayments(queryRunner.manager, savedSale.id, normalizedDto.payments);
 
             if (status !== SaleStatus.CANCELLED) {
                 const primaryId = await this.inventoryService.getPrimarySaleLocationId();

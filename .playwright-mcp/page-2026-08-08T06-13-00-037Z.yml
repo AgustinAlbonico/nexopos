@@ -1,0 +1,42 @@
+- generic [active] [ref=f10e1]:
+  - banner [ref=f10e2]:
+    - button "Ir al contenido" [ref=f10e3] [cursor=pointer]
+    - button "Comentarios de accesibilidad" [ref=f10e6] [cursor=pointer]
+    - generic [ref=f10e9]:
+      - link [ref=f10e10] [cursor=pointer]:
+        - /url: /?FORM=Z9FD1
+        - heading "Volver a la búsqueda de Bing" [level=1] [ref=f10e11]
+      - search [ref=f10e12]:
+        - button "Buscar" [ref=f10e15] [cursor=pointer]
+        - searchbox "Escribe tu búsqueda aquí; irán apareciendo sugerencias de búsqueda a medida que escribes" [ref=f10e16]: 2026 independent cinema ticketing software seat selection QR pricing official
+        - button "Borrar texto" [ref=f10e18]
+        - button "Buscar con una imagen" [ref=f10e22] [cursor=pointer]
+    - complementary "Premios y preferencias de la cuenta" [ref=f10e24]:
+      - button "Microsoft Rewards" [ref=f10e25] [cursor=pointer]
+      - link "Iniciar sesión" [ref=f10e26] [cursor=pointer]:
+        - /url: javascript:void(0)
+    - navigation "Filtro de búsqueda" [ref=f10e28]:
+      - list [ref=f10e29]:
+        - listitem [ref=f10e30]:
+          - link "Todo" [ref=f10e31] [cursor=pointer]:
+            - /url: /?scope=web&FORM=HDRSC1
+        - listitem [ref=f10e32]:
+          - link "Búsqueda" [ref=f10e33] [cursor=pointer]:
+            - /url: /copilotsearch?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&FORM=CSSCOP
+        - listitem [ref=f10e36]:
+          - link "Imágenes" [ref=f10e37] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=b48a7a20cb0f3b036efe6a6ddea35bf0ae38d42b73d575b1022d363595979c42JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1L2ltYWdlcy9zZWFyY2g_cT0yMDI2K2luZGVwZW5kZW50K2NpbmVtYSt0aWNrZXRpbmcrc29mdHdhcmUrc2VhdCtzZWxlY3Rpb24rUVIrcHJpY2luZytvZmZpY2lhbCZGT1JNPUhEUlNDMg&ntb=1
+        - listitem [ref=f10e38]:
+          - link "Vídeos" [ref=f10e39] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=290c6426741768746af4de3968e8d45a744c1be3c7c0a027be297ab0d84ca9f0JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1L3ZpZGVvcy9zZWFyY2g_cT0yMDI2K2luZGVwZW5kZW50K2NpbmVtYSt0aWNrZXRpbmcrc29mdHdhcmUrc2VhdCtzZWxlY3Rpb24rUVIrcHJpY2luZytvZmZpY2lhbCZGT1JNPUhEUlNDMw&ntb=1
+        - listitem [ref=f10e40]:
+          - button [ref=f10e41] [cursor=pointer]
+  - contentinfo [ref=f10e45]:
+    - generic [ref=f10e46]:
+      - list:
+        - listitem [ref=f10e47]:
+          - link "Privacidad" [ref=f10e48] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=e8efae64cd11f846d1f560ed20b6c19713558ecfe773734e989c4d2ee03b8097JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cDovL2dvLm1pY3Jvc29mdC5jb20vZndsaW5rLz9MaW5rSWQ9NTIxODM5&ntb=1
+        - listitem [ref=f10e49]:
+          - link "Términos" [ref=f10e50] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=573799a483cb4453d4cd222d03d741d74ec986f7e436d2faa786ed43e9fcb1efJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cDovL2dvLm1pY3Jvc29mdC5jb20vZndsaW5rLz9MaW5rSUQ9MjQ2MzM4&ntb=1

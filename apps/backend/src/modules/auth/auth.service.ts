@@ -75,6 +75,7 @@ export class AuthService {
             user: {
                 id: user.id,
                 username: user.username,
+                role: user.role,
                 email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
@@ -101,6 +102,7 @@ export class AuthService {
         return {
             id: user.id,
             username: user.username,
+            role: user.role,
             email: user.email,
             firstName: user.firstName,
             lastName: user.lastName,
@@ -164,6 +166,7 @@ export class AuthService {
         return {
             id: user.id,
             username: user.username,
+            role: user.role,
             email: user.email,
             firstName: user.firstName,
             lastName: user.lastName,
@@ -177,7 +180,8 @@ export class AuthService {
     private async generateTokens(user: User) {
         const payload = {
             sub: user.id,
-            username: user.username, // Cambiado de email a username
+            username: user.username,
+            role: user.role,
         };
 
         const accessToken = this.jwtService.sign(payload, {

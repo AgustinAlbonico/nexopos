@@ -7,6 +7,7 @@ import { UsersService } from '../users.service';
 export interface JwtPayload {
     sub: string;
     username: string;
+    role?: string;
     iat: number;
     exp: number;
 }
@@ -39,8 +40,9 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
         }
 
         return {
-            userId: payload.sub,
-            username: payload.username,
+            userId: user.id,
+            username: user.username,
+            role: user.role,
         };
     }
 }
