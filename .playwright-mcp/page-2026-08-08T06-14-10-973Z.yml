@@ -1,0 +1,344 @@
+- generic [active] [ref=f27e1]:
+  - generic [ref=f27e2]:
+    - generic [ref=f27e6]:
+      - link [ref=f27e8] [cursor=pointer]:
+        - /url: /
+        - img "Eventive" [ref=f27e9]
+      - button [ref=f27e11] [cursor=pointer]
+    - main [ref=f27e14]:
+      - generic [ref=f27e18]:
+        - heading "The seamless platform for independent cinema" [level=1] [ref=f27e19]
+        - paragraph [ref=f27e20]: With a comprehensive package that integrates ticketing, pass management, audience data, year-round member relations, digital promotions, streaming, online film guides, and balloting into a single intelligent platform.
+        - generic [ref=f27e21]:
+          - link "Get started" [ref=f27e23] [cursor=pointer]:
+            - /url: /start
+          - link "Live demo" [ref=f27e25] [cursor=pointer]:
+            - /url: /start?goal=learn_more&message=I%27d%20like%20to%20request%20a%20demo%20of%20Eventive!
+        - generic [ref=f27e26]:
+          - generic [ref=f27e27]: Here to watch a movie?
+          - link "Find your channel" [ref=f27e28] [cursor=pointer]:
+            - /url: https://watch.eventive.org
+      - generic [ref=f27e32]:
+        - generic [ref=f27e35]:
+          - paragraph [ref=f27e36]: "Download our new 2026 white paper THE RESURGENCE OF FILM FESTIVALS: Drivers of Sustainability and Growth"
+          - generic [ref=f27e37] [cursor=pointer]:
+            - text: here
+            - generic [ref=f27e38]: →
+        - generic [ref=f27e41]:
+          - heading "A better experience for your audience and your team" [level=2] [ref=f27e42]
+          - generic [ref=f27e45]:
+            - generic [ref=f27e46]:
+              - heading "Grow your audience" [level=3] [ref=f27e47]
+              - paragraph [ref=f27e48]: Eventive is designed to create better experiences at every touchpoint. Online or in-person.
+            - generic [ref=f27e50]:
+              - generic [ref=f27e52]:
+                - separator [ref=f27e53]
+                - heading "The joy of access" [level=4] [ref=f27e55] [cursor=pointer]
+                - paragraph [ref=f27e57]: Eventive helps you connect audiences more easily to films. Plus we help you connect audiences more effectively to your brand, through targeted messaging tools.
+              - generic [ref=f27e59]:
+                - separator [ref=f27e60]
+                - heading "A beautiful, seamless audience experience" [level=4] [ref=f27e62] [cursor=pointer]
+              - generic [ref=f27e64]:
+                - separator [ref=f27e65]
+                - heading "Automated passholder, member, and sponsor benefits" [level=4] [ref=f27e67] [cursor=pointer]
+              - generic [ref=f27e69]:
+                - separator [ref=f27e70]
+                - heading "High fidelity secure streaming" [level=4] [ref=f27e72] [cursor=pointer]
+          - generic [ref=f27e75]:
+            - generic [ref=f27e76]:
+              - heading "Streamline operations" [level=3] [ref=f27e77]
+              - paragraph [ref=f27e78]: Eventive integrates everything into a single intelligent platform. Ticketing, pass management, audience data, year-round member relations, digital promotions, streaming, online film guides, and even balloting. And more.
+            - generic [ref=f27e80]:
+              - generic [ref=f27e82]:
+                - separator [ref=f27e83]
+                - heading "An intuitive organizer interface" [level=4] [ref=f27e85] [cursor=pointer]
+                - paragraph [ref=f27e87]: You and your team can manage every aspect of any event – from individual screenings to full blown festival experiences – from a single unified dashboard, from which you can search anything.
+              - generic [ref=f27e89]:
+                - separator [ref=f27e90]
+                - heading "Built-in audience support" [level=4] [ref=f27e92] [cursor=pointer]
+              - generic [ref=f27e94]:
+                - separator [ref=f27e95]
+                - heading "Audience insights to drive marketing" [level=4] [ref=f27e97] [cursor=pointer]
+              - generic [ref=f27e99]:
+                - separator [ref=f27e100]
+                - heading "Reporting and analytics at your fingertips" [level=4] [ref=f27e102] [cursor=pointer]
+      - generic [ref=f27e104]:
+        - generic [ref=f27e105]:
+          - link [ref=f27e106] [cursor=pointer]:
+            - /url: /film-festivals
+            - generic [ref=f27e108]:
+              - heading "In-Person and Virtual Film Festivals" [level=3] [ref=f27e109]
+              - paragraph [ref=f27e110]: Sell passes, tickets, merch, and memberships. Display your program and film guide online and on-site. With fully integrated virtual and physical events.
+          - link [ref=f27e111] [cursor=pointer]:
+            - /url: /cinema
+            - generic [ref=f27e113]:
+              - heading "Arthouse Cinema" [level=3] [ref=f27e114]
+              - paragraph [ref=f27e115]: Manage all screenings, memberships, concessions and more - via one comprehensive dashboard. Including online and point-of-sale solutions for exhibitors of all sizes.
+          - link [ref=f27e116] [cursor=pointer]:
+            - /url: /distributors
+            - generic [ref=f27e118]:
+              - heading "Distributors" [level=3] [ref=f27e119]
+              - paragraph [ref=f27e120]: Easily create your own proprietary VOD screenings, branded affiliate links, promotional events, or even awards screenings. All with built-in reporting and revenue sharing.
+        - generic [ref=f27e121]:
+          - generic [ref=f27e125]:
+            - 'link "1946: THE MISTRANSLATION THAT SHIFTED CULTURE thumbnail 1946: THE MISTRANSLATION THAT SHIFTED CULTURE Maximizing reach and impact Read the story" [ref=f27e126] [cursor=pointer]':
+              - /url: /case-studies/1946
+              - generic [ref=f27e127]:
+                - 'img "1946: THE MISTRANSLATION THAT SHIFTED CULTURE thumbnail" [ref=f27e130]'
+                - generic [ref=f27e131]:
+                  - generic [ref=f27e132]: "1946: THE MISTRANSLATION THAT SHIFTED CULTURE"
+                  - paragraph [ref=f27e133]: Maximizing reach and impact
+                  - generic [ref=f27e134]: Read the story
+            - link "AARP thumbnail AARP Bringing generations together through film Read the story" [ref=f27e137] [cursor=pointer]:
+              - /url: /case-studies/aarp
+              - generic [ref=f27e138]:
+                - img "AARP thumbnail" [ref=f27e141]
+                - generic [ref=f27e142]:
+                  - generic [ref=f27e143]: AARP
+                  - paragraph [ref=f27e144]: Bringing generations together through film
+                  - generic [ref=f27e145]: Read the story
+            - link "AFI thumbnail AFI Going virtual, then hybrid, to critical acclaim Read the story" [ref=f27e148] [cursor=pointer]:
+              - /url: /case-studies/afi
+              - generic [ref=f27e149]:
+                - img "AFI thumbnail" [ref=f27e152]
+                - generic [ref=f27e153]:
+                  - generic [ref=f27e154]: AFI
+                  - paragraph [ref=f27e155]: Going virtual, then hybrid, to critical acclaim
+                  - generic [ref=f27e156]: Read the story
+            - link "BendFilm thumbnail BendFilm Giving local sponsors worldwide reach Read the story" [ref=f27e159] [cursor=pointer]:
+              - /url: /case-studies/bendfilm
+              - generic [ref=f27e160]:
+                - img "BendFilm thumbnail" [ref=f27e163]
+                - generic [ref=f27e164]:
+                  - generic [ref=f27e165]: BendFilm
+                  - paragraph [ref=f27e166]: Giving local sponsors worldwide reach
+                  - generic [ref=f27e167]: Read the story
+            - link "Big Sky thumbnail Big Sky Going hybrid to double their pre-pandemic audience Read the story" [ref=f27e170] [cursor=pointer]:
+              - /url: /case-studies/big-sky
+              - generic [ref=f27e171]:
+                - img "Big Sky thumbnail" [ref=f27e174]
+                - generic [ref=f27e175]:
+                  - generic [ref=f27e176]: Big Sky
+                  - paragraph [ref=f27e177]: Going hybrid to double their pre-pandemic audience
+                  - generic [ref=f27e178]: Read the story
+            - link "BlackStar Film Festival thumbnail BlackStar Film Festival Expressing a genuine, unique personality Read the story" [ref=f27e181] [cursor=pointer]:
+              - /url: /case-studies/blackstar
+              - generic [ref=f27e182]:
+                - img "BlackStar Film Festival thumbnail" [ref=f27e185]
+                - generic [ref=f27e186]:
+                  - generic [ref=f27e187]: BlackStar Film Festival
+                  - paragraph [ref=f27e188]: Expressing a genuine, unique personality
+                  - generic [ref=f27e189]: Read the story
+            - link "Fantastic Fest thumbnail Fantastic Fest Designing a simpler and more creative experience Read the story" [ref=f27e192] [cursor=pointer]:
+              - /url: /case-studies/fantastic-fest
+              - generic [ref=f27e193]:
+                - img "Fantastic Fest thumbnail" [ref=f27e196]
+                - generic [ref=f27e197]:
+                  - generic [ref=f27e198]: Fantastic Fest
+                  - paragraph [ref=f27e199]: Designing a simpler and more creative experience
+                  - generic [ref=f27e200]: Read the story
+            - link "Heartland Film thumbnail Heartland Film How Heartland Film simplified ticketing and automated memberships Read the story" [ref=f27e203] [cursor=pointer]:
+              - /url: /case-studies/heartland
+              - generic [ref=f27e204]:
+                - img "Heartland Film thumbnail" [ref=f27e207]
+                - generic [ref=f27e208]:
+                  - generic [ref=f27e209]: Heartland Film
+                  - paragraph [ref=f27e210]: How Heartland Film simplified ticketing and automated memberships
+                  - generic [ref=f27e211]: Read the story
+            - link "IDA thumbnail IDA Going virtual with private balloted screenings Read the story" [ref=f27e214] [cursor=pointer]:
+              - /url: /case-studies/ida
+              - generic [ref=f27e215]:
+                - img "IDA thumbnail" [ref=f27e218]
+                - generic [ref=f27e219]:
+                  - generic [ref=f27e220]: IDA
+                  - paragraph [ref=f27e221]: Going virtual with private balloted screenings
+                  - generic [ref=f27e222]: Read the story
+            - link "Mountainfilm thumbnail Mountainfilm How Mountainfilm successfully shifted to virtual in mere weeks Read the story" [ref=f27e225] [cursor=pointer]:
+              - /url: /case-studies/mountainfilm
+              - generic [ref=f27e226]:
+                - img "Mountainfilm thumbnail" [ref=f27e229]
+                - generic [ref=f27e230]:
+                  - generic [ref=f27e231]: Mountainfilm
+                  - paragraph [ref=f27e232]: How Mountainfilm successfully shifted to virtual in mere weeks
+                  - generic [ref=f27e233]: Read the story
+          - generic [ref=f27e236]:
+            - generic [ref=f27e237] [cursor=pointer]
+            - generic [ref=f27e238] [cursor=pointer]
+            - generic [ref=f27e239] [cursor=pointer]
+            - generic [ref=f27e240] [cursor=pointer]
+            - generic [ref=f27e241] [cursor=pointer]
+            - generic [ref=f27e242] [cursor=pointer]
+            - generic [ref=f27e243] [cursor=pointer]
+            - generic [ref=f27e244] [cursor=pointer]
+            - generic [ref=f27e245] [cursor=pointer]
+            - generic [ref=f27e246] [cursor=pointer]
+      - generic [ref=f27e248]:
+        - generic [ref=f27e249]:
+          - heading "Crafted with care by independent film lovers" [level=2] [ref=f27e250]
+          - paragraph [ref=f27e251]: Eventive started with a question that has become our mission. How can we make independent film more accessible to more people?
+          - link "Read our answer" [ref=f27e253] [cursor=pointer]:
+            - /url: /about
+        - generic [ref=f27e254]: The reviews are in
+        - generic [ref=f27e255]:
+          - generic [ref=f27e257]:
+            - generic [ref=f27e258]:
+              - paragraph [ref=f27e259]: "\"Eventive has been quietly revolutionizing the independent film industry for years. They saw the need to help filmmakers and festivals with a virtual solution for the future of the industry. Eventive helps keep our indie film ecosystem thriving.”"
+              - generic [ref=f27e260]:
+                - paragraph [ref=f27e261]: Melanie Addington
+                - paragraph [ref=f27e262]: Tallgrass Film Association
+            - generic [ref=f27e263]:
+              - paragraph [ref=f27e264]: “By working with Eventive, our overall user experience has improved exponentially! The simplification of Memberships has allowed us to have four festivals happen with ZERO system issues.”
+              - generic [ref=f27e265]:
+                - paragraph [ref=f27e266]: Adam Howell
+                - paragraph [ref=f27e267]: Heartland Film Festival
+            - generic [ref=f27e268]:
+              - paragraph [ref=f27e269]: “Working with Eventive has been a breeze. The team is always available to talk through potential roadblocks and to help us design workarounds. They provide excellent admin support and have always been responsive and helpful!”
+              - generic [ref=f27e270]:
+                - paragraph [ref=f27e271]: Cassidy Dimon
+                - paragraph [ref=f27e272]: IDA
+            - generic [ref=f27e273]:
+              - paragraph [ref=f27e274]: "\"This was our first time using a system that wasn’t our own proprietary platform. It was amazing and it saved us so much time. At the festival, everyone was super happy – all of our feedback was super positive. I just thought Eventive was very simple for our users.”"
+              - generic [ref=f27e275]:
+                - paragraph [ref=f27e276]: Lisa Dreyer
+                - paragraph [ref=f27e277]: Fantastic Fest
+            - generic [ref=f27e278]:
+              - paragraph [ref=f27e279]: “I'd struggled to find anything that can handle the nuances of our festival, but Eventive handles them all.”
+              - generic [ref=f27e280]:
+                - paragraph [ref=f27e281]: Alyx Picard-Davis
+                - paragraph [ref=f27e282]: deadCenter Film
+            - generic [ref=f27e283]:
+              - paragraph [ref=f27e284]: “When Mountainfilm had to make the quick decision to move our 42nd festival online, Eventive was there to guide us and make the transition as painless as possible. The festival went off without a hitch, and we were pleased to have several thousand new viewers who had never been able to attend the festival in the past, expanding our reach and mission.”
+              - generic [ref=f27e285]:
+                - paragraph [ref=f27e286]: Suzan Beraza
+                - paragraph [ref=f27e287]: Mountainfilm
+          - generic [ref=f27e288]:
+            - generic [ref=f27e289] [cursor=pointer]
+            - generic [ref=f27e290] [cursor=pointer]
+            - generic [ref=f27e291] [cursor=pointer]
+            - generic [ref=f27e292] [cursor=pointer]
+            - generic [ref=f27e293] [cursor=pointer]
+            - generic [ref=f27e294] [cursor=pointer]
+        - generic [ref=f27e297]:
+          - img "Mountain Film logo" [ref=f27e299]
+          - img "IDA logo" [ref=f27e301]
+          - img "Abramorama logo" [ref=f27e303]
+          - img "Heartland Film logo" [ref=f27e305]
+          - img "Lionsgate logo" [ref=f27e307]
+          - img "Big Sky Documentary Film Festival logo" [ref=f27e309]
+          - img "BANFF logo" [ref=f27e311]
+          - img "Northwest Film Forum logo" [ref=f27e313]
+          - img "Newport Beach Film Festival logo" [ref=f27e315]
+          - img "Magnolia Pictures logo" [ref=f27e317]
+          - img "ICO logo" [ref=f27e319]
+          - img "LunaFest logo" [ref=f27e321]
+          - img "Montclair Film logo" [ref=f27e323]
+          - img "Gene Siskel Film Center logo" [ref=f27e325]
+          - img "Indie Memphis logo" [ref=f27e327]
+          - img "Starz logo" [ref=f27e329]
+          - img "Atlanta Film Festival logo" [ref=f27e331]
+          - img "Denver Film logo" [ref=f27e333]
+          - img "Array logo" [ref=f27e335]
+          - img "Cork Film Festival logo" [ref=f27e337]
+          - img "CIFF logo" [ref=f27e339]
+          - img "AFI logo" [ref=f27e341]
+          - img "FantasticFest logo" [ref=f27e343]
+          - img "Aspen Film logo" [ref=f27e345]
+          - img "AARP logo" [ref=f27e347]
+          - img "SF Indie Fest logo" [ref=f27e349]
+          - img "A24 logo" [ref=f27e351]
+          - img "Calgary International Film Festival logo" [ref=f27e353]
+          - img "BIFA logo" [ref=f27e355]
+          - img "Sheffield Documentary Festival logo" [ref=f27e357]
+          - img "Telluride logo" [ref=f27e359]
+          - img "DocPoint logo" [ref=f27e361]
+          - img "Strand Releasing logo" [ref=f27e363]
+          - img "Sundance Institute logo" [ref=f27e365]
+          - img "Oscilloscope logo" [ref=f27e367]
+          - img "Bend Film logo" [ref=f27e369]
+          - img "Nordisk Panorama logo" [ref=f27e371]
+          - img "New Orleans Film Festival logo" [ref=f27e373]
+          - img "DIFF logo" [ref=f27e375]
+          - img "SFF logo" [ref=f27e377]
+          - img "Film Pittsburgh logo" [ref=f27e379]
+          - img "Outfest logo" [ref=f27e381]
+          - img "Cinema St. Louis logo" [ref=f27e383]
+          - img "Austin Film Festival logo" [ref=f27e385]
+      - generic [ref=f27e386]:
+        - heading "We’d love to hear from you" [level=3] [ref=f27e389]
+        - link "Contact our team" [ref=f27e391] [cursor=pointer]:
+          - /url: /start?goal=learn_more
+        - paragraph [ref=f27e392]: to schedule a personalized walk-through of the platform.
+    - generic [ref=f27e394]:
+      - generic [ref=f27e395]:
+        - generic [ref=f27e396]:
+          - img "Eventive" [ref=f27e397]
+          - paragraph [ref=f27e398]: Smarter experiences for independent film.
+          - generic [ref=f27e399]:
+            - link "Facebook" [ref=f27e400] [cursor=pointer]:
+              - /url: https://www.facebook.com/eventive.org/
+            - link "Instagram" [ref=f27e404] [cursor=pointer]:
+              - /url: https://instagram.com/eventive_org
+            - link "Twitter" [ref=f27e408] [cursor=pointer]:
+              - /url: https://twitter.com/eventive_org
+            - link "GitHub" [ref=f27e412] [cursor=pointer]:
+              - /url: https://github.com/eventive-org
+        - generic [ref=f27e416]:
+          - generic [ref=f27e417]:
+            - generic [ref=f27e418]:
+              - heading "Offerings" [level=4] [ref=f27e419]
+              - list [ref=f27e420]:
+                - listitem [ref=f27e421]:
+                  - link "Eventive Virtual" [ref=f27e422] [cursor=pointer]:
+                    - /url: /virtual
+                - listitem [ref=f27e423]:
+                  - link "Film Festivals" [ref=f27e424] [cursor=pointer]:
+                    - /url: /film-festivals
+                - listitem [ref=f27e425]:
+                  - link "Distributors" [ref=f27e426] [cursor=pointer]:
+                    - /url: /distributors
+                - listitem [ref=f27e427]:
+                  - link "Arthouse Cinema" [ref=f27e428] [cursor=pointer]:
+                    - /url: /cinema
+            - generic [ref=f27e429]:
+              - heading "Support" [level=4] [ref=f27e430]
+              - list [ref=f27e431]:
+                - listitem [ref=f27e432]:
+                  - link "Pricing" [ref=f27e433] [cursor=pointer]:
+                    - /url: /pricing
+                - listitem [ref=f27e434]:
+                  - link "User Guide" [ref=f27e435] [cursor=pointer]:
+                    - /url: https://help.eventive.org
+                - listitem [ref=f27e436]:
+                  - link "System Status" [ref=f27e437] [cursor=pointer]:
+                    - /url: https://status.eventive.org
+          - generic [ref=f27e438]:
+            - generic [ref=f27e439]:
+              - heading "Company" [level=4] [ref=f27e440]
+              - list [ref=f27e441]:
+                - listitem [ref=f27e442]:
+                  - link "Our Story" [ref=f27e443] [cursor=pointer]:
+                    - /url: /about
+                - listitem [ref=f27e444]:
+                  - link "Careers" [ref=f27e445] [cursor=pointer]:
+                    - /url: /careers
+                - listitem [ref=f27e446]:
+                  - link "Antipiracy" [ref=f27e447] [cursor=pointer]:
+                    - /url: /antipiracy
+                - listitem [ref=f27e448]:
+                  - link "Security" [ref=f27e449] [cursor=pointer]:
+                    - /url: /security
+            - generic [ref=f27e450]:
+              - heading "Legal" [level=4] [ref=f27e451]
+              - list [ref=f27e452]:
+                - listitem [ref=f27e453]:
+                  - link "Privacy" [ref=f27e454] [cursor=pointer]:
+                    - /url: /privacy
+                - listitem [ref=f27e455]:
+                  - link "Terms" [ref=f27e456] [cursor=pointer]:
+                    - /url: /terms
+                - listitem [ref=f27e457]:
+                  - link "DMCA" [ref=f27e458] [cursor=pointer]:
+                    - /url: /dmca
+      - paragraph [ref=f27e460]: © 2026 Eventive. All rights reserved.
+    - text: ;;;
+  - alert [ref=f27e461]

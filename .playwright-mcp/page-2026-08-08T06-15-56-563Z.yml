@@ -1,0 +1,236 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: site:mercadopago.com.ar "Checkout para sitio web" site:mercadopago.com.ar "Checkout para sitio web"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3Dsite%253Amercadopago.com.ar%2B%2522Checkout%2Bpara%2Bsitio%2Bweb%2522&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sca_esv=0096a2a1340d2922&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1VzoHI0KTTsB4VNZ5gMkFYj5hVXnKLsPy2Lg0IRoQUOVZ3sDGOCIu5PewtlX01UmoxZZOXIjPqhJtdMK3MVQydYHnvsMHpNeo0gZX7yBIlZwIyi_PDgQspt9ychLZFldRwHGuUFc5UAY1rTmu3Y6qBOYfUCFaW6iTaKff22TRok1S70hwQ&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ2J8OegQIDxAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Shopping" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1VzoHI0KTTsB4VNZ5gMkFYj5hVXnKLsPy2Lg0IRoQUOVZ3sDGOCIu5PewtlX01UmoxZZOXIjPqhJtdMK3MVQydYHnvsMHpNeo0gZX7yBIlZwIyi_PDgQspt9ychLZFldRwHGuUFc5UAY1rTmu3Y6qBOYfUCFaW6iTaKff22TRok1S70hwQ&q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&ved=1t:220175&ictx=111
+          - listitem [ref=e94]:
+            - link "Imágenes" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1VzoHI0KTTsB4VNZ5gMkFYj5hVXnKLsPy2Lg0IRoQUOVZ3sDGOCIu5PewtlX01UmoxZZOXIjPqhJtdMK3MVQydYHnvsMHpNeo0gZX7yBIlZwIyi_PDgQspt9ychLZFldRwHGuUFc5UAY1rTmu3Y6qBOYfUCFaW6iTaKff22TRok1S70hwQ&q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sa=X&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQtKgLegQIFBAB
+          - listitem [ref=e98]:
+            - link "Vídeos" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1VzoHI0KTTsB4VNZ5gMkFYj5hVXnKLsPy2Lg0IRoQUOVZ3sDGOCIu5PewtlX01UmoxZZOXIjPqhJtdMK3MVQydYHnvsMHpNeo0gZX7yBIlZwIyi_PDgQspt9ychLZFldRwHGuUFc5UAY1rTmu3Y6qBOYfUCFaW6iTaKff22TRok1S70hwQ&q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sa=X&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQtKgLegQIExAB
+          - listitem [ref=e102]:
+            - link "Noticias" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1VzoHI0KTTsB4VNZ5gMkFYj5hVXnKLsPy2Lg0IRoQUOVZ3sDGOCIu5PewtlX01UmoxZZOXIjPqhJtdMK3MVQydYHnvsMHpNeo0gZX7yBIlZwIyi_PDgQspt9ychLZFldRwHGuUFc5UAY1rTmu3Y6qBOYfUCFaW6iTaKff22TRok1S70hwQ&sa=X&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ0pQJegQIEhAB
+          - listitem [ref=e106]:
+            - link "Vídeos cortos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1VzoHI0KTTsB4VNZ5gMkFYj5hVXnKLsPy2Lg0IRoQUOVZ3sDGOCIu5PewtlX01UmoxZZOXIjPqhJtdMK3MVQydYHnvsMHpNeo0gZX7yBIlZwIyi_PDgQspt9ychLZFldRwHGuUFc5UAY1rTmu3Y6qBOYfUCFaW6iTaKff22TRok1S70hwQ&q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sa=X&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQs6gLegQIERAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - main [ref=e132]:
+      - generic [ref=e136]:
+        - generic [ref=e139]:
+          - heading "Resultados web" [level=2] [ref=e140]
+          - generic [ref=e141]:
+            - generic [ref=e144]:
+              - link "Cobrá con el checkout de Mercado Pago en tu sitio web Mercado Pago https://www.mercadopago.com.ar › check-out" [ref=e146] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/herramientas-para-vender/check-out
+                - heading "Cobrá con el checkout de Mercado Pago en tu sitio web" [level=3] [ref=e147]
+                - generic [ref=e153]:
+                  - generic [ref=e154]: Mercado Pago
+                  - generic [ref=e156]: https://www.mercadopago.com.ar › check-out
+              - button "Acerca de este resultado" [ref=e160] [cursor=pointer]
+            - generic [ref=e167]:
+              - emphasis [ref=e168]: Checkout para sitio web
+              - text: · Planes de suscripción · Créditos · Asistente personal · Material promocional · Revendedores Point · Partners Program · Developers.
+        - generic [ref=e172]:
+          - generic [ref=e175]:
+            - link "¿Cuánto cuesta recibir pagos con Checkout? Mercado Pago https://www.mercadopago.com.ar › ayuda › costo-recib..." [ref=e177] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/ayuda/costo-recibir-pagos-con-checkout_33399
+              - heading "¿Cuánto cuesta recibir pagos con Checkout?" [level=3] [ref=e178]
+              - generic [ref=e184]:
+                - generic [ref=e185]: Mercado Pago
+                - generic [ref=e187]: https://www.mercadopago.com.ar › ayuda › costo-recib...
+            - button "Acerca de este resultado" [ref=e191] [cursor=pointer]
+          - generic [ref=e198]:
+            - emphasis [ref=e199]: Checkout para sitio web
+            - text: · Planes de suscripción · Créditos · Asistente personal · Material promocional · Revendedores Point · Partners Program · Developers.
+        - generic [ref=e203]:
+          - generic [ref=e206]:
+            - link "Mercado Pago | De ahora en adelante, hacés más con tu dinero Mercado Pago https://www.mercadopago.com.ar" [ref=e208] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/
+              - heading "Mercado Pago | De ahora en adelante, hacés más con tu dinero" [level=3] [ref=e209]
+              - generic [ref=e215]:
+                - generic [ref=e216]: Mercado Pago
+                - generic [ref=e218]: https://www.mercadopago.com.ar
+            - button "Acerca de este resultado" [ref=e222] [cursor=pointer]
+          - generic [ref=e229]:
+            - emphasis [ref=e230]: Checkout para sitio web
+            - text: · Planes de suscripción · Créditos · Asistente personal · Material promocional · Revendedores Point · Partners Program · Developers.
+        - generic [ref=e234]:
+          - generic [ref=e237]:
+            - link "Mercado Pago México | La cuenta digital de Mercado Libre mercadopago.com.ar https://www.mercadopago.com.ar › preferences › create" [ref=e239] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/calm-api/preferences/create?id=1606d63756d055f5649a6e56335f776586b2a5258efe7f1811090ed650216ea19358b9664fe7c0cd41d845f4d18642eaa3e8ef529c3677d92835f2231927fbb38fa113aec835d7e9153a48e9b61fe3b2776bcb45dec90f12d38d58add6768b27af9ee4f34a050d5ad1c24aadaaef98353b7ea6b44fc5487102800f3960c121e53f959f2460876c6549357d865db1d0ec4af36585b008937ed5a02c21fd2056eb9808a4b123737a0100c1c874b6c0346f4f07435400c69b7ca3eb1327a4668cd9586b7614ccb7da3b91beea0037eed18818759746a1cde71dee91b15159020959e88828ef68b61a1a9a8968fdd42b4aacb3dadce2f3765f0c7e29f656a8c441ac03acd1d8567dbe9ab775c9013bdd90f03b05d44332745bc3e16924e2e6d07e50c201ec5895ab916b5160f179ddadb05663130188aef2bb16e24518b493984c86df98c6f6a757ff31266e2ff595edae193bea19eb8b3b49c40a30ea8019a6840571576f1ab69844c036884ad2a02268e3e40219e406ed1552d7bfceef71cd05e43e71de83792ecf8a960553dfb50aa99a39828473ae42b4fabccf0c75b8cc972e3bd45364c54ad52f8526a724c780d1a5547f789f27cc2ec95a219c63b52f0ea0e09deaf0c48935a0ac03c281b249f9f7be19dad51be553c5a209dae229919ad1f0854b2935af223952dd8e7ee2d3e40f9ba76cc027051bb997147ffec68011e45e9b4c6e6460f7b869ea673d0b92b9936288d79e597bd0b887689488f8c40f9b09a5a1
+              - heading "Mercado Pago México | La cuenta digital de Mercado Libre" [level=3] [ref=e240]
+              - generic [ref=e246]:
+                - generic [ref=e247]: mercadopago.com.ar
+                - generic [ref=e249]: https://www.mercadopago.com.ar › preferences › create
+            - button "Acerca de este resultado" [ref=e253] [cursor=pointer]
+          - generic [ref=e260]:
+            - emphasis [ref=e261]: Checkout para sitio web
+            - text: · Planes de suscripción · Sistema de punto de venta · Créditos · Representantes Point · Partners program · Developers · Ayuda y ...
+        - generic [ref=e265]:
+          - generic [ref=e268]:
+            - link "Encontramos 4 artículos Mercado Pago https://www.mercadopago.com.ar › ayuda › search" [ref=e270] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/ayuda/v2/search?query=Impuesto%20sobre%20los%20cr%C3%A9ditos%20y%20d%C3%A9bitos%20para%20Personas%20Jur%C3%ADdicas&portalId=MP
+              - heading "Encontramos 4 artículos" [level=3] [ref=e271]
+              - generic [ref=e277]:
+                - generic [ref=e278]: Mercado Pago
+                - generic [ref=e280]: https://www.mercadopago.com.ar › ayuda › search
+            - button "Acerca de este resultado" [ref=e284] [cursor=pointer]
+          - generic [ref=e291]:
+            - emphasis [ref=e292]: Checkout para sitio web
+            - text: · Planes de suscripción · Créditos · Asistente personal · Material promocional · Revendedores Point · Partners Program · Developers.
+        - generic [ref=e296]:
+          - generic [ref=e299]:
+            - link "Herramientas para vender Mercado Pago https://www.mercadopago.com.ar › herramientas-para-..." [ref=e301] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/herramientas-para-vender
+              - heading "Herramientas para vender" [level=3] [ref=e302]
+              - generic [ref=e308]:
+                - generic [ref=e309]: Mercado Pago
+                - generic [ref=e311]: https://www.mercadopago.com.ar › herramientas-para-...
+            - button "Acerca de este resultado" [ref=e315] [cursor=pointer]
+          - generic [ref=e322]:
+            - emphasis [ref=e323]: Checkout para sitio web
+            - text: · Planes de suscripción · Créditos · Asistente personal · Material promocional · Revendedores Point · Partners Program · Developers.
+        - generic [ref=e327]:
+          - generic [ref=e330]:
+            - link "Tu Negocio es más Fácil con Mercado Pago Mercado Pago https://www.mercadopago.com.ar › on-boarding-sellers" [ref=e332] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/mp/on-boarding-sellers
+              - heading "Tu Negocio es más Fácil con Mercado Pago" [level=3] [ref=e333]
+              - generic [ref=e339]:
+                - generic [ref=e340]: Mercado Pago
+                - generic [ref=e342]: https://www.mercadopago.com.ar › on-boarding-sellers
+            - button "Acerca de este resultado" [ref=e346] [cursor=pointer]
+          - generic [ref=e353]:
+            - emphasis [ref=e354]: Checkout para sitio web
+            - text: · Planes de suscripción · Créditos · Asistente personal · Material promocional · Revendedores Point · Partners Program · Developers.
+        - generic [ref=e358]:
+          - generic [ref=e361]:
+            - link "Cobrar con código QR Mercado Pago https://www.mercadopago.com.ar › cobrar-con-qr" [ref=e363] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/herramientas-para-vender/cobrar-con-qr
+              - heading "Cobrar con código QR" [level=3] [ref=e364]
+              - generic [ref=e370]:
+                - generic [ref=e371]: Mercado Pago
+                - generic [ref=e373]: https://www.mercadopago.com.ar › cobrar-con-qr
+            - button "Acerca de este resultado" [ref=e377] [cursor=pointer]
+          - generic [ref=e384]:
+            - emphasis [ref=e385]: Checkout para sitio web
+            - text: · Planes de suscripción · Créditos · Asistente personal · Material promocional · Revendedores Point · Partners Program · Developers.
+        - generic [ref=e389]:
+          - generic [ref=e392]:
+            - link "Date el gusto hoy y pagalo después Mercado Pago https://www.mercadopago.com.ar › creditos › categorias" [ref=e394] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/creditos/comprar-cuotas-sin-tarjeta/categorias?ids=5
+              - heading "Date el gusto hoy y pagalo después" [level=3] [ref=e395]
+              - generic [ref=e401]:
+                - generic [ref=e402]: Mercado Pago
+                - generic [ref=e404]: https://www.mercadopago.com.ar › creditos › categorias
+            - button "Acerca de este resultado" [ref=e408] [cursor=pointer]
+          - generic [ref=e415]:
+            - emphasis [ref=e416]: Checkout para sitio web
+            - text: · Planes de suscripción · Créditos · Asistente personal · Material promocional · Revendedores Point · Partners Program · Developers.
+        - generic [ref=e420]:
+          - generic [ref=e423]:
+            - link "Point Tap Mercado Pago https://www.mercadopago.com.ar › point-tap" [ref=e425] [cursor=pointer]:
+              - /url: https://www.mercadopago.com.ar/herramientas-para-vender/point-tap
+              - heading "Point Tap" [level=3] [ref=e426]
+              - generic [ref=e432]:
+                - generic [ref=e433]: Mercado Pago
+                - generic [ref=e435]: https://www.mercadopago.com.ar › point-tap
+            - button "Acerca de este resultado" [ref=e439] [cursor=pointer]
+          - generic [ref=e446]:
+            - emphasis [ref=e447]: Checkout para sitio web
+            - text: · Planes de suscripción · Créditos · Asistente personal · Material promocional · Revendedores Point · Partners Program · Developers.
+      - navigation [ref=e450]:
+        - heading "Navegación de páginas" [level=1] [ref=e451]
+        - text: "1"
+        - link "Page 2" [ref=e454] [cursor=pointer]:
+          - /url: /search?q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sca_esv=0096a2a1340d2922&ei=nMl2aou7FfXS1sQPtM660QM&start=10&sa=N&sstk=AU9db-A_cILpaijXc1QaU9HP2dkRx7UqA3QWISKzq25DKNJmqF2XKTjWc4rVfXuhQekNdnR15q0TG2UCJIJHH60_Opgabs7-lV-4lQ&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ8tMDegQIKBAE
+          - text: "2"
+        - link "Page 3" [ref=e456] [cursor=pointer]:
+          - /url: /search?q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sca_esv=0096a2a1340d2922&ei=nMl2aou7FfXS1sQPtM660QM&start=20&sa=N&sstk=AU9db-A_cILpaijXc1QaU9HP2dkRx7UqA3QWISKzq25DKNJmqF2XKTjWc4rVfXuhQekNdnR15q0TG2UCJIJHH60_Opgabs7-lV-4lQ&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ8tMDegQIKBAG
+          - text: "3"
+        - link "Page 4" [ref=e458] [cursor=pointer]:
+          - /url: /search?q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sca_esv=0096a2a1340d2922&ei=nMl2aou7FfXS1sQPtM660QM&start=30&sa=N&sstk=AU9db-A_cILpaijXc1QaU9HP2dkRx7UqA3QWISKzq25DKNJmqF2XKTjWc4rVfXuhQekNdnR15q0TG2UCJIJHH60_Opgabs7-lV-4lQ&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ8tMDegQIKBAI
+          - text: "4"
+        - link "Page 5" [ref=e460] [cursor=pointer]:
+          - /url: /search?q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sca_esv=0096a2a1340d2922&ei=nMl2aou7FfXS1sQPtM660QM&start=40&sa=N&sstk=AU9db-A_cILpaijXc1QaU9HP2dkRx7UqA3QWISKzq25DKNJmqF2XKTjWc4rVfXuhQekNdnR15q0TG2UCJIJHH60_Opgabs7-lV-4lQ&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ8tMDegQIKBAK
+          - text: "5"
+        - link "Page 6" [ref=e462] [cursor=pointer]:
+          - /url: /search?q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sca_esv=0096a2a1340d2922&ei=nMl2aou7FfXS1sQPtM660QM&start=50&sa=N&sstk=AU9db-A_cILpaijXc1QaU9HP2dkRx7UqA3QWISKzq25DKNJmqF2XKTjWc4rVfXuhQekNdnR15q0TG2UCJIJHH60_Opgabs7-lV-4lQ&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ8tMDegQIKBAM
+          - text: "6"
+        - link "Page 7" [ref=e464] [cursor=pointer]:
+          - /url: /search?q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sca_esv=0096a2a1340d2922&ei=nMl2aou7FfXS1sQPtM660QM&start=60&sa=N&sstk=AU9db-A_cILpaijXc1QaU9HP2dkRx7UqA3QWISKzq25DKNJmqF2XKTjWc4rVfXuhQekNdnR15q0TG2UCJIJHH60_Opgabs7-lV-4lQ&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ8tMDegQIKBAO
+          - text: "7"
+        - link "Page 8" [ref=e466] [cursor=pointer]:
+          - /url: /search?q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sca_esv=0096a2a1340d2922&ei=nMl2aou7FfXS1sQPtM660QM&start=70&sa=N&sstk=AU9db-A_cILpaijXc1QaU9HP2dkRx7UqA3QWISKzq25DKNJmqF2XKTjWc4rVfXuhQekNdnR15q0TG2UCJIJHH60_Opgabs7-lV-4lQ&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ8tMDegQIKBAQ
+          - text: "8"
+        - link "Page 9" [ref=e468] [cursor=pointer]:
+          - /url: /search?q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sca_esv=0096a2a1340d2922&ei=nMl2aou7FfXS1sQPtM660QM&start=80&sa=N&sstk=AU9db-A_cILpaijXc1QaU9HP2dkRx7UqA3QWISKzq25DKNJmqF2XKTjWc4rVfXuhQekNdnR15q0TG2UCJIJHH60_Opgabs7-lV-4lQ&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ8tMDegQIKBAS
+          - text: "9"
+        - link "Page 10" [ref=e470] [cursor=pointer]:
+          - /url: /search?q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sca_esv=0096a2a1340d2922&ei=nMl2aou7FfXS1sQPtM660QM&start=90&sa=N&sstk=AU9db-A_cILpaijXc1QaU9HP2dkRx7UqA3QWISKzq25DKNJmqF2XKTjWc4rVfXuhQekNdnR15q0TG2UCJIJHH60_Opgabs7-lV-4lQ&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ8tMDegQIKBAU
+          - text: "10"
+        - heading [level=2] [ref=e472]:
+          - link "Siguiente" [ref=e473] [cursor=pointer]:
+            - /url: /search?q=site:mercadopago.com.ar+%22Checkout+para+sitio+web%22&sca_esv=0096a2a1340d2922&ei=nMl2aou7FfXS1sQPtM660QM&start=10&sa=N&sstk=AU9db-A_cILpaijXc1QaU9HP2dkRx7UqA3QWISKzq25DKNJmqF2XKTjWc4rVfXuhQekNdnR15q0TG2UCJIJHH60_Opgabs7-lV-4lQ&ved=2ahUKEwiL-dfusJCWAxV1qZUCHTSnLjoQ8NMDegQIKBAW
+      - navigation
+    - contentinfo [ref=e476]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e477]
+      - generic [ref=e481]:
+        - generic [ref=e483]:
+          - text: Argentina
+          - generic [ref=e485]:
+            - button "Iriondo, Santa Fe - Según tu actividad anterior" [ref=e487] [cursor=pointer]:
+              - generic [ref=e488]: Iriondo, Santa Fe
+              - generic [ref=e490]:
+                - text: "-"
+                - generic [ref=e491]: Según tu actividad anterior
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e493] [cursor=pointer]
+        - generic [ref=e496]:
+          - link "Ayuda" [ref=e497] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e498] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e499] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e500] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

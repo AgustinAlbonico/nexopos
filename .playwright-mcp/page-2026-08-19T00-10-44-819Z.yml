@@ -1,0 +1,168 @@
+- generic [active] [ref=e12]:
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - link "NP" [ref=e17] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=e19]:
+          - generic [ref=e20]:
+            - link [ref=e22] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=e29] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=e35] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=e41] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=e45] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=e50] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=e57] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=e62] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=e69] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=e75] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=e81] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=e85] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=e90] [cursor=pointer]
+      - main [ref=e95]:
+        - generic [ref=e329]:
+          - generic [ref=e330]:
+            - generic [ref=e331]:
+              - heading "Ventas" [level=1] [ref=e332]
+              - paragraph [ref=e333]: Punto de venta y registro de ventas
+            - button "Nueva Venta" [ref=e335] [cursor=pointer]
+          - paragraph [ref=e338]: Mostrando ventas del mes actual (01/08/2026 - 31/08/2026)
+          - generic [ref=e339]:
+            - generic [ref=e340]:
+              - heading "Ventas Totales" [level=3] [ref=e342]
+              - generic [ref=e345]:
+                - generic [ref=e346]: $ 169.100,00
+                - paragraph [ref=e347]: 5 ventas
+            - generic [ref=e348]:
+              - heading "Completadas" [level=3] [ref=e350]
+              - generic [ref=e355]:
+                - generic [ref=e356]: $ 169.100,00
+                - paragraph [ref=e357]: 5 ventas
+            - generic [ref=e358]:
+              - heading "Pendientes" [level=3] [ref=e360]
+              - generic [ref=e364]:
+                - generic [ref=e365]: $ 0,00
+                - paragraph [ref=e366]: 0 ventas
+            - generic [ref=e367]:
+              - heading "Canceladas" [level=3] [ref=e369]
+              - generic [ref=e374]:
+                - generic [ref=e375]: "0"
+                - paragraph [ref=e376]: ventas canceladas
+          - generic [ref=e377]:
+            - heading "Filtros" [level=3] [ref=e379]
+            - generic [ref=e383]:
+              - generic [ref=e384]:
+                - button "Hoy" [ref=e385] [cursor=pointer]
+                - button "Esta Semana" [ref=e386] [cursor=pointer]
+                - button "Mes Actual" [ref=e387] [cursor=pointer]
+                - button "Todas las Fechas" [ref=e388] [cursor=pointer]
+              - generic [ref=e389]:
+                - generic [ref=e390]:
+                  - text: Buscar
+                  - textbox "Nº, cliente..." [ref=e391]
+                - generic [ref=e392]:
+                  - text: Estado
+                  - combobox [ref=e393] [cursor=pointer]:
+                    - generic: Todos
+                - generic [ref=e396]:
+                  - text: Facturación
+                  - combobox [ref=e397] [cursor=pointer]:
+                    - generic: Todas
+                - generic [ref=e400]:
+                  - text: Desde
+                  - textbox [ref=e401]: 2026-08-01
+                - generic [ref=e402]:
+                  - text: Hasta
+                  - textbox [ref=e403]: 2026-08-31
+                - button "Restablecer" [ref=e404] [cursor=pointer]
+          - generic [ref=e408]:
+            - heading "Listado de Ventas" [level=3] [ref=e410]
+            - generic [ref=e412]:
+              - table [ref=e414]:
+                - rowgroup [ref=e415]:
+                  - row [ref=e416]:
+                    - columnheader "Nº Venta" [ref=e417]
+                    - columnheader "Fecha" [ref=e418]
+                    - columnheader "Cliente" [ref=e419]
+                    - columnheader "Productos" [ref=e420]
+                    - columnheader "Pago" [ref=e421]
+                    - columnheader "Total" [ref=e422]
+                    - columnheader "Factura" [ref=e423]
+                    - columnheader "Estado" [ref=e424]
+                    - columnheader "Acciones" [ref=e425]
+                - rowgroup [ref=e426]:
+                  - row [ref=e427] [cursor=pointer]:
+                    - cell "VENTA-2026-00009" [ref=e428]
+                    - cell "12/08/2026, 01:21 a. m." [ref=e429]
+                    - cell "Consumidor Final" [ref=e430]
+                    - cell "1 item(s)" [ref=e432]
+                    - cell "Efectivo" [ref=e434]
+                    - cell "$ 1.300,00" [ref=e435]
+                    - cell "No fiscal" [ref=e436]:
+                      - generic "Sin factura fiscal" [ref=e437]: No fiscal
+                    - cell "Completada" [ref=e444]
+                    - cell [ref=e446]:
+                      - button [ref=e447]
+                  - row [ref=e452] [cursor=pointer]:
+                    - cell "VENTA-2026-00008" [ref=e453]
+                    - cell "11/08/2026, 11:54 p. m." [ref=e454]
+                    - cell "Consumidor Final" [ref=e455]
+                    - cell "2 item(s)" [ref=e457]
+                    - cell "Efectivo" [ref=e459]
+                    - cell "$ 65.500,00" [ref=e460]
+                    - cell "No fiscal" [ref=e461]:
+                      - generic "Sin factura fiscal" [ref=e462]: No fiscal
+                    - cell "Completada" [ref=e469]
+                    - cell [ref=e471]:
+                      - button [ref=e472]
+                  - row [ref=e477] [cursor=pointer]:
+                    - cell "VENTA-2026-00007" [ref=e478]
+                    - cell "11/08/2026, 11:03 p. m." [ref=e479]
+                    - cell "Consumidor Final" [ref=e480]
+                    - cell "1 item(s)" [ref=e482]
+                    - cell "Efectivo" [ref=e484]
+                    - cell "$ 1.300,00" [ref=e485]
+                    - cell "No fiscal" [ref=e486]:
+                      - generic "Sin factura fiscal" [ref=e487]: No fiscal
+                    - cell "Completada" [ref=e494]
+                    - cell [ref=e496]:
+                      - button [ref=e497]
+                  - row [ref=e502] [cursor=pointer]:
+                    - cell "VENTA-2026-00006" [ref=e503]
+                    - cell "05/08/2026, 05:22 p. m." [ref=e504]
+                    - cell "Consumidor Final" [ref=e505]
+                    - cell "1 item(s)" [ref=e507]
+                    - cell "Efectivo" [ref=e509]
+                    - cell "$ 10.000,00" [ref=e510]
+                    - cell "No fiscal" [ref=e511]:
+                      - generic "Sin factura fiscal" [ref=e512]: No fiscal
+                    - cell "Completada" [ref=e519]
+                    - cell [ref=e521]:
+                      - button [ref=e522]
+                  - row [ref=e527] [cursor=pointer]:
+                    - cell "VENTA-2026-00005" [ref=e528]
+                    - cell "05/08/2026, 04:43 p. m." [ref=e529]
+                    - cell "Consumidor Final" [ref=e530]
+                    - cell "1 item(s)" [ref=e532]
+                    - cell "Efectivo" [ref=e534]
+                    - cell "$ 91.000,00" [ref=e535]
+                    - cell "No fiscal" [ref=e536]:
+                      - generic "Sin factura fiscal" [ref=e537]: No fiscal
+                    - cell "Completada" [ref=e544]
+                    - cell [ref=e546]:
+                      - button [ref=e547]
+              - paragraph [ref=e553]: Mostrando 1 a 5 de 5 ventas
+    - region "Notifications alt+T"
+  - generic [ref=e325]: $0k

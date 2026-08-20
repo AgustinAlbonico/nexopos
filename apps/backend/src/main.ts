@@ -6,13 +6,20 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { DataSource } from 'typeorm';
 import { seedAdmin } from './scripts/seed-admin';
 import compression from 'compression';
+import { json, urlencoded } from 'express';
 
+// Main NestJS Application Bootstrap
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
+
+  // Límite de tamaño de payload (10mb) para soportar imágenes de logos y comprobantes
+  app.use(json({ limit: '10mb' }));
+  app.use(urlencoded({ limit: '10mb', extended: true }));
 
   // Habilitar compresión Gzip
   app.use(compression());
@@ -25,6 +32,8 @@ async function bootstrap() {
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true }),
   );
+
+  app.useGlobalFilters(new AllExceptionsFilter());
 
   // Swagger configuration
   const config = new DocumentBuilder()

@@ -1,0 +1,288 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Importar Matriz 2D
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 119 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Agua Kin 500ml
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 800,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "96"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Alfajor Havanna E2E 4673
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 1.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 1.300,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "48"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Campera Rompeviento Denver
+                            - cell:
+                              - generic: Camperas
+                            - cell: Denver
+                            - cell: $ 18.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 29.899,80
+                                - generic: 66.1% ganancia
+                            - cell:
+                              - generic: "0"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Campera Rompeviento Denver Azul L
+                            - cell:
+                              - generic: Camperas
+                            - cell: Denver
+                            - cell: $ 18.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 23.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "8"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Campera Rompeviento Denver Azul M
+                            - cell:
+                              - generic: Camperas
+                            - cell: Denver
+                            - cell: $ 18.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 23.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "10"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Campera Rompeviento Denver Azul S
+                            - cell:
+                              - generic: Camperas
+                            - cell: Denver
+                            - cell: $ 18.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 23.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "6"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Campera Rompeviento Denver Azul XL
+                            - cell:
+                              - generic: Camperas
+                            - cell: Denver
+                            - cell: $ 18.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 23.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "4"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Campera Rompeviento Denver Negro L
+                            - cell:
+                              - generic: Camperas
+                            - cell: Denver
+                            - cell: $ 18.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 23.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "10"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Campera Rompeviento Denver Negro M
+                            - cell:
+                              - generic: Camperas
+                            - cell: Denver
+                            - cell: $ 18.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 23.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "12"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Campera Rompeviento Denver Negro S
+                            - cell:
+                              - generic: Camperas
+                            - cell: Denver
+                            - cell: $ 18.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 23.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "8"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 12
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button: Siguiente
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog [ref=e3470]:
+    - generic [ref=e3471]:
+      - heading "Importación Masiva de Indumentaria (Matriz 2D)" [level=2] [ref=e3472]
+      - paragraph [ref=e3476]: Cargá múltiples modelos, colores y curvas de talles en un solo archivo CSV o Excel bidimensional.
+    - generic [ref=e3477]:
+      - generic [ref=e3478]:
+        - generic [ref=e3479]:
+          - heading "¿No tenés la plantilla oficial?" [level=4] [ref=e3480]
+          - paragraph [ref=e3481]: Descargá el formato con ejemplos de modelos, colores y columnas de talles.
+        - button "Descargar Plantilla CSV" [active] [ref=e3482] [cursor=pointer]
+      - generic [ref=e3486] [cursor=pointer]:
+        - generic [ref=e3490]: Seleccioná o arrastrá tu archivo CSV matricial
+        - generic [ref=e3491]: "Formato soportado: .csv delimitado por comas"
+    - generic [ref=e3492]:
+      - button "Cancelar" [ref=e3493] [cursor=pointer]
+      - button "Confirmar e Importar al Catálogo" [disabled]
+    - button "Close" [ref=e3494] [cursor=pointer]

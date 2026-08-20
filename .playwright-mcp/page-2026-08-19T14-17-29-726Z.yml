@@ -1,0 +1,71 @@
+- generic [active] [ref=e12]:
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - link "NP" [ref=e17] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=e19]:
+          - generic [ref=e20]:
+            - link [ref=e22] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=e29] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=e35] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=e41] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=e45] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=e50] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=e57] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=e62] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=e69] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=e75] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=e81] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=e85] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=e90] [cursor=pointer]
+      - main [ref=e95]:
+        - generic [ref=e4552]:
+          - generic [ref=e4553]:
+            - generic [ref=e4554]:
+              - heading "Compras" [level=1] [ref=e4555]
+              - paragraph [ref=e4556]: Registra compras a proveedores y actualiza automáticamente el stock
+            - button "Nueva Compra" [ref=e4558] [cursor=pointer]
+          - paragraph [ref=e4561]: Mostrando compras del mes actual (01/08/2026 - 31/08/2026)
+          - generic [ref=e4583]:
+            - heading "Filtros" [level=3] [ref=e4585]
+            - generic [ref=e4589]:
+              - generic [ref=e4590]:
+                - button "Hoy" [ref=e4591] [cursor=pointer]
+                - button "Esta Semana" [ref=e4592] [cursor=pointer]
+                - button "Mes Actual" [ref=e4593] [cursor=pointer]
+                - button "Todas las Fechas" [ref=e4594] [cursor=pointer]
+              - generic [ref=e4595]:
+                - generic [ref=e4596]:
+                  - text: Buscar
+                  - textbox "Nº, proveedor, factura..." [ref=e4597]
+                - generic [ref=e4598]:
+                  - text: Estado
+                  - combobox [ref=e4599] [cursor=pointer]:
+                    - generic: Todos
+                - generic [ref=e4602]:
+                  - text: Desde
+                  - textbox [ref=e4603]: 2026-08-01
+                - generic [ref=e4604]:
+                  - text: Hasta
+                  - textbox [ref=e4605]: 2026-08-31
+                - generic [ref=e4606]:
+                  - paragraph [ref=e4612]: Producto incluido
+                  - combobox [ref=e4613] [cursor=pointer]:
+                    - generic [ref=e4614]: Buscar producto...
+                - button "Restablecer" [ref=e4618] [cursor=pointer]
+          - heading "Listado de Compras" [level=3] [ref=e4624]
+    - region "Notifications alt+T"
+  - generic [ref=e319]: $0k

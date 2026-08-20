@@ -1,0 +1,336 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/inventory/locations"
+            - generic:
+              - link:
+                - /url: "#/inventory/replenishment"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 12 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Coca-Cola 1.5L
+                            - cell:
+                              - generic: Limpieza
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 500,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "10"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Detergente Ala 750ml
+                            - cell:
+                              - generic:
+                                - text: Bebidas
+                                - generic: (50%)
+                            - cell: "-"
+                            - cell: $ 100,00
+                            - cell:
+                              - generic:
+                                - generic: $ 150,00
+                                - generic: 50.0% ganancia
+                            - cell:
+                              - generic: "8"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Lavandina Ayudín 1L
+                            - cell:
+                              - generic: Limpieza
+                            - cell: "-"
+                            - cell: $ 100,00
+                            - cell:
+                              - generic:
+                                - generic: $ 140,00
+                                - generic: 40.0% ganancia
+                            - cell:
+                              - generic: "12"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Lector
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 10.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 13.000,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "-11"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: preuba
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 1.000,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "990"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Shampoo Sedal 400ml
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 50,00
+                            - cell:
+                              - generic:
+                                - generic: $ 65,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "15"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: TEST-DELETE
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 100,00
+                            - cell:
+                              - generic:
+                                - generic: $ 130,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "1"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: TEST-PRICE
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 200,00
+                            - cell:
+                              - generic:
+                                - generic: $ 500,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "1"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: TEST Producto Clasico
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 100,00
+                            - cell:
+                              - generic:
+                                - generic: $ 999,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "5"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: TEST Producto Precio Fijo
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 200,00
+                            - cell:
+                              - generic:
+                                - generic: $ 300,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "10"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 2
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button: Siguiente
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog [ref=e645]:
+    - generic [ref=e653]:
+      - heading "Nuevo Producto" [level=2] [ref=e654]
+      - paragraph [ref=e655]: El precio se calcula automático según la configuración o categoría
+    - generic [ref=e657]:
+      - generic [ref=e658]:
+        - generic [ref=e659]: Nombre del Producto *
+        - textbox "Nombre del Producto *" [active] [ref=e660]:
+          - /placeholder: "Ej: Shampoo Sedal 400ml"
+      - generic [ref=e661]:
+        - text: Descripción
+        - textbox "Descripción" [ref=e662]:
+          - /placeholder: "Ej: Shampoo reparador para cabello dañado"
+        - paragraph [ref=e663]: Información adicional sobre el producto (opcional)
+      - generic [ref=e664]:
+        - text: Código de Barras
+        - textbox "Código de Barras" [ref=e665]:
+          - /placeholder: "Ej: 7791234567890"
+        - paragraph [ref=e666]: Código de barras del producto (opcional)
+      - generic [ref=e668]:
+        - generic [ref=e669]:
+          - text: Venta por peso o medida
+          - paragraph [ref=e670]: Permite cantidades decimales y códigos variables.
+        - checkbox "Venta por peso o medida" [ref=e671] [cursor=pointer]
+        - checkbox
+      - generic [ref=e672]:
+        - generic [ref=e673]: Marca
+        - combobox [ref=e674] [cursor=pointer]: Buscar o crear marca...
+        - paragraph [ref=e678]: Selecciona una existente o escribe para crear una nueva
+      - generic [ref=e679]:
+        - text: Categoría
+        - combobox "Categoría" [ref=e680] [cursor=pointer]:
+          - generic: Sin categoría
+        - combobox [ref=e683]
+        - paragraph [ref=e684]: Categoría del producto (opcional)
+      - generic [ref=e685]:
+        - generic [ref=e686]:
+          - generic [ref=e687]: Costo *
+          - textbox "Costo *" [ref=e688]:
+            - /placeholder: "0.00"
+            - text: "0"
+          - paragraph [ref=e689]: Precio de compra
+        - generic [ref=e690]:
+          - generic [ref=e691]: Stock Inicial *
+          - textbox "Stock Inicial *" [ref=e692]:
+            - /placeholder: "0"
+            - text: "0"
+          - paragraph [ref=e693]: Cantidad disponible
+      - generic [ref=e695]:
+        - generic [ref=e696]:
+          - paragraph [ref=e697]: Precio de Venta
+          - paragraph [ref=e698]:
+            - text: Costo + 30%
+            - generic [ref=e699]: (margen general)
+        - generic [ref=e700]: $ 0,00
+      - generic [ref=e702]:
+        - generic [ref=e703]:
+          - generic [ref=e704]: Margen de Ganancia Personalizado
+          - paragraph [ref=e709]: Usando margen general del sistema (30%)
+        - checkbox "Margen de Ganancia Personalizado" [ref=e710] [cursor=pointer]
+        - checkbox
+      - button "Guardar Producto" [ref=e711] [cursor=pointer]
+    - button "Close" [ref=e712] [cursor=pointer]

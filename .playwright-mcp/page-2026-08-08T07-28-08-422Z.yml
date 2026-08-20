@@ -1,0 +1,228 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwj8h6CAwZCWAxWKIbkGHVekN8cQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Sala AMR\" Rosario instagram sitio web \"Sala AMR\" Rosario instagram sitio web"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Sala%2BAMR%2522%2BRosario%2Binstagram%2Bsitio%2Bweb&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=%22Sala+AMR%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRafV7XU4oNk8PtngfYio3CEU7dbkdaM6xYBZahms-VJ43Xu2NLJaYZTF44WLB54_okt_yOoBZ0luzSLdY83oPXupg9BCA&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwj8h6CAwZCWAxWKIbkGHVekN8cQ2J8OegQIERAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRafV7XU4oNk8PtngfYio3CEU7dbkdaM6xYBZahms-VJ43Xu2NLJaYZTF44WLB54_okt_yOoBZ0luzSLdY83oPXupg9BCA&q=%22Sala+AMR%22+Rosario+instagram+sitio+web&sa=X&ved=2ahUKEwj8h6CAwZCWAxWKIbkGHVekN8cQtKgLegQIFxAB
+          - listitem [ref=e94]:
+            - link "Noticias" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=%22Sala+AMR%22+Rosario+instagram+sitio+web&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRafV7XU4oNk8PtngfYio3CEU7dbkdaM6xYBZahms-VJ43Xu2NLJaYZTF44WLB54_okt_yOoBZ0luzSLdY83oPXupg9BCA&sa=X&ved=2ahUKEwj8h6CAwZCWAxWKIbkGHVekN8cQ0pQJegQIFhAB
+          - listitem [ref=e98]:
+            - link "Vídeos" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRafV7XU4oNk8PtngfYio3CEU7dbkdaM6xYBZahms-VJ43Xu2NLJaYZTF44WLB54_okt_yOoBZ0luzSLdY83oPXupg9BCA&q=%22Sala+AMR%22+Rosario+instagram+sitio+web&sa=X&ved=2ahUKEwj8h6CAwZCWAxWKIbkGHVekN8cQtKgLegQIFRAB
+          - listitem [ref=e102]:
+            - link "Shopping" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRafV7XU4oNk8PtngfYio3CEU7dbkdaM6xYBZahms-VJ43Xu2NLJaYZTF44WLB54_okt_yOoBZ0luzSLdY83oPXupg9BCA&q=%22Sala+AMR%22+Rosario+instagram+sitio+web&ved=1t:220175&ictx=111
+          - listitem [ref=e106]:
+            - link "Vídeos cortos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRafV7XU4oNk8PtngfYio3CEU7dbkdaM6xYBZahms-VJ43Xu2NLJaYZTF44WLB54_okt_yOoBZ0luzSLdY83oPXupg9BCA&q=%22Sala+AMR%22+Rosario+instagram+sitio+web&sa=X&ved=2ahUKEwj8h6CAwZCWAxWKIbkGHVekN8cQs6gLegQIExAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - generic [ref=e131]:
+      - generic [ref=e150]:
+        - heading "Pensando" [level=2] [ref=e154]
+        - progressbar "Generando" [ref=e157]
+      - main [ref=e159]:
+        - generic [ref=e163]:
+          - generic [ref=e166]:
+            - heading "Resultados web" [level=2] [ref=e167]
+            - generic [ref=e168]:
+              - generic [ref=e171]:
+                - link "JUEVES 20/8 El día 1 arranca con todo! En Cine El Cairo ... Instagram · baficirosario Más de 60 \"me gusta\" · hace 2 días" [ref=e173] [cursor=pointer]:
+                  - /url: https://www.instagram.com/baficirosario/p/Dbq7WyruQPF/
+                  - heading "JUEVES 20/8 El día 1 arranca con todo! En Cine El Cairo ..." [level=3] [ref=e174]
+                  - generic [ref=e180]:
+                    - generic [ref=e181]: Instagram · baficirosario
+                    - generic [ref=e183]: Más de 60 "me gusta" · hace 2 días
+                - button "Acerca de este resultado" [ref=e187] [cursor=pointer]
+              - generic [ref=e194]:
+                - text: En Cine El Cairo, el cortometraje 'Easter day' abre la pantalla para el film Mención especial FEISAL 'El tren fluvial'. A las 19 en la
+                - emphasis [ref=e195]: sala AMR
+                - text: ...
+          - generic [ref=e199]:
+            - generic [ref=e202]:
+              - link "📍ATENCIÓN SANTA CLARA DEL MAR!!!!!!!!! ¿QUÉ ... Instagram · cinemch 6 me gusta · hace 1 día" [ref=e204] [cursor=pointer]:
+                - /url: https://www.instagram.com/cinemch/p/DbspduOOKFD/
+                - heading "📍ATENCIÓN SANTA CLARA DEL MAR!!!!!!!!! ¿QUÉ ..." [level=3] [ref=e205]
+                - generic [ref=e211]:
+                  - generic [ref=e212]: Instagram · cinemch
+                  - generic [ref=e214]: 6 me gusta · hace 1 día
+              - button "Acerca de este resultado" [ref=e218] [cursor=pointer]
+            - generic [ref=e225]:
+              - text: Las inscripciones se gestionan mediante los formularios disponibles en el
+              - emphasis [ref=e226]: sitio web
+              - text: oficial del festival. ...
+              - emphasis [ref=e227]: SALA AMR
+              - text: "| ESPAÑA 401 19 H THE ..."
+          - generic [ref=e231]:
+            - generic [ref=e234]:
+              - link "19.30 hs (en biblioteca) 🎬 \"Mi nueva ... Instagram · cclaexperimental 9 me gusta · hace 12 horas" [ref=e236] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DbwCYbYlJ7S/
+                - heading "19.30 hs (en biblioteca) 🎬 \"Mi nueva ..." [level=3] [ref=e237]
+                - generic [ref=e243]:
+                  - generic [ref=e244]: Instagram · cclaexperimental
+                  - generic [ref=e246]: 9 me gusta · hace 12 horas
+              - button "Acerca de este resultado" [ref=e250] [cursor=pointer]
+            - generic [ref=e257]:
+              - text: ...
+              - emphasis [ref=e258]: sitio web
+              - text: . Te esperamos para celebrar una semana de cine y ...
+              - emphasis [ref=e259]: SALA AMR
+              - text: "| ESPAÑA 401 19 H THE BRAZILIAN INFERNO / ET HELVETE UTEN ..."
+          - generic [ref=e263]:
+            - generic [ref=e266]:
+              - link "101 min. ⏰ 17:00 hs. SALA 1. _Cortometrajes_ Instagram · festivaldecine.villaelisa Más de 100 \"me gusta\" · hace 3 meses" [ref=e268] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DXhON2hFrJt/
+                - heading "101 min. ⏰ 17:00 hs. SALA 1. _Cortometrajes_" [level=3] [ref=e269]
+                - generic [ref=e275]:
+                  - generic [ref=e276]: Instagram · festivaldecine.villaelisa
+                  - generic [ref=e278]: Más de 100 "me gusta" · hace 3 meses
+              - button "Acerca de este resultado" [ref=e282] [cursor=pointer]
+            - generic [ref=e289]:
+              - text: ...
+              - emphasis [ref=e290]: sitio web
+              - text: . Te esperamos para celebrar una semana de cine y ...
+              - emphasis [ref=e291]: SALA AMR
+              - text: "| ESPAÑA 401 19 H THE BRAZILIAN INFERNO / ET HELVETE UTEN ..."
+          - generic [ref=e295]:
+            - generic [ref=e298]:
+              - link "Festival de Cine Nuevo Instagram · detour.uy Más de 120 \"me gusta\" · hace 1 día" [ref=e300] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DbtthPklVMp/
+                - heading "Festival de Cine Nuevo" [level=3] [ref=e301]
+                - generic [ref=e307]:
+                  - generic [ref=e308]: Instagram · detour.uy
+                  - generic [ref=e310]: Más de 120 "me gusta" · hace 1 día
+              - button "Acerca de este resultado" [ref=e314] [cursor=pointer]
+            - generic [ref=e321]:
+              - text: ...
+              - emphasis [ref=e322]: SALA AMR
+              - text: "| ESPAÑA 401 19 H THE BRAZILIAN INFERNO / ET HELVETE UTEN ..."
+              - emphasis [ref=e323]: sitio web
+              - text: oficial del festival, www.fice.com.ar. La 8ª edición ...
+          - generic [ref=e329]:
+            - generic [ref=e332]:
+              - 'link "CINE EL CAIRO: PROGRAMACIÓN ESPECIAL POR LA ... Instagram · somosrosariook Más de 70 \"me gusta\" · hace 4 meses" [ref=e334] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DWB-kfqErM8/?hl=es
+                - 'heading "CINE EL CAIRO: PROGRAMACIÓN ESPECIAL POR LA ..." [level=3] [ref=e335]'
+                - generic [ref=e341]:
+                  - generic [ref=e342]: Instagram · somosrosariook
+                  - generic [ref=e344]: Más de 70 "me gusta" · hace 4 meses
+              - button "Acerca de este resultado" [ref=e348] [cursor=pointer]
+            - generic [ref=e353]:
+              - 'link "CINE EL CAIRO: PROGRAMACIÓN ESPECIAL POR LA ... de Somos Rosario en Instagram. Reproducir en Instagram. 1:57" [ref=e354] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DWB-kfqErM8/?hl=es
+                - generic [ref=e355]: 1:57
+              - generic [ref=e364]: ... SALA AMR | ESPAÑA 401 19 H THE BRAZILIAN INFERNO / ET HELVETE UTEN ... Join Somos Rosario on Instagram. Sign up for Instagram · Sign up ...
+          - generic [ref=e369]:
+            - generic [ref=e372]:
+              - link "✨️ 7° SEMANA MUNDIAL DE LA CINEFILIA Instagram · lavidautil Más de 1,1 K \"me gusta\" · hace 3 meses" [ref=e374] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DXwbfBcDj5x/
+                - heading "✨️ 7° SEMANA MUNDIAL DE LA CINEFILIA" [level=3] [ref=e375]
+                - generic [ref=e381]:
+                  - generic [ref=e382]: Instagram · lavidautil
+                  - generic [ref=e384]: Más de 1,1 K "me gusta" · hace 3 meses
+              - button "Acerca de este resultado" [ref=e388] [cursor=pointer]
+            - generic [ref=e395]:
+              - text: ...
+              - emphasis [ref=e396]: sitio web
+              - text: . Te esperamos para celebrar una semana de cine y ...
+              - emphasis [ref=e397]: SALA AMR
+              - text: "| ESPAÑA 401 19 H THE BRAZILIAN INFERNO / ET HELVETE UTEN ..."
+          - generic [ref=e401]:
+            - generic [ref=e404]:
+              - link "Llega a Rosario la 20° edición de BAFICI 2024 Muestra ... LA HORA DE SANTA FE https://lahoradesantafe.com.ar › contenido › llega-a-rosar..." [ref=e406] [cursor=pointer]:
+                - /url: https://lahoradesantafe.com.ar/contenido/1989/llega-a-rosario-la-20-edicion-de-bafici-2024-muestra-itinerante
+                - heading "Llega a Rosario la 20° edición de BAFICI 2024 Muestra ..." [level=3] [ref=e407]
+                - generic [ref=e413]:
+                  - generic [ref=e414]: LA HORA DE SANTA FE
+                  - generic [ref=e416]: https://lahoradesantafe.com.ar › contenido › llega-a-rosar...
+              - button "Acerca de este resultado" [ref=e420] [cursor=pointer]
+            - generic [ref=e426]:
+              - generic [ref=e427]: 16 ago 2024 —
+              - generic [ref=e428]:
+                - text: Las sedes rosarinas son Cine Lumière (Veléz Sarsfield 1027), El Cairo Cine Público (Santa Fe 1120) , la
+                - emphasis [ref=e429]: sala AMR
+                - text: Asociación Médica de
+                - emphasis [ref=e430]: Rosario
+                - text: ( ...
+          - generic [ref=e434]:
+            - generic [ref=e437]:
+              - link "🎬 Retrospectiva LaBAF Este viernes comienza la ... Instagram · festivalrec.lp Más de 220 \"me gusta\" · hace 3 días" [ref=e439] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/Dbn-tQaEdxR/
+                - heading "🎬 Retrospectiva LaBAF Este viernes comienza la ..." [level=3] [ref=e440]
+                - generic [ref=e446]:
+                  - generic [ref=e447]: Instagram · festivalrec.lp
+                  - generic [ref=e449]: Más de 220 "me gusta" · hace 3 días
+              - button "Acerca de este resultado" [ref=e453] [cursor=pointer]
+            - generic [ref=e460]:
+              - text: En Cine El Cairo, el cortometraje 'Easter day' abre la pantalla para el film Mención especial FEISAL 'El tren fluvial'. A las 19 en la
+              - emphasis [ref=e461]: sala AMR
+              - text: ...
+        - navigation [ref=e464]:
+          - heading "Navegación de páginas" [level=1] [ref=e465]
+          - text: "1"
+          - link "Page 2" [ref=e468] [cursor=pointer]:
+            - /url: /search?q=%22Sala+AMR%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=iNp2avyjCYrD5OUP18jeuQw&start=10&sa=N&sstk=AU9db-BJV_gWarBX43swGJ1H-iC1tcIOdcoN8VCmfKfhyV8NwqZ_YFgxU_6JEryr3bpfsuyieooIbIoOcnPnK4o_zhzRcnjhRz4zOQ&ved=2ahUKEwj8h6CAwZCWAxWKIbkGHVekN8cQ8tMDegQIJBAE
+            - text: "2"
+          - heading [level=2] [ref=e470]:
+            - link "Siguiente" [ref=e471] [cursor=pointer]:
+              - /url: /search?q=%22Sala+AMR%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=iNp2avyjCYrD5OUP18jeuQw&start=10&sa=N&sstk=AU9db-BJV_gWarBX43swGJ1H-iC1tcIOdcoN8VCmfKfhyV8NwqZ_YFgxU_6JEryr3bpfsuyieooIbIoOcnPnK4o_zhzRcnjhRz4zOQ&ved=2ahUKEwj8h6CAwZCWAxWKIbkGHVekN8cQ8NMDegQIJBAG
+        - navigation
+    - contentinfo [ref=e474]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e475]
+      - generic [ref=e479]:
+        - generic [ref=e481]:
+          - text: Argentina
+          - generic [ref=e483]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e485] [cursor=pointer]:
+              - generic [ref=e486]: Iriondo, Santa Fe
+              - generic [ref=e488]:
+                - text: "-"
+                - generic [ref=e489]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e491] [cursor=pointer]
+        - generic [ref=e494]:
+          - link "Ayuda" [ref=e495] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e496] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e497] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e498] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

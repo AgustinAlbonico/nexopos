@@ -1,0 +1,323 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Compras
+                  - paragraph: Registra compras a proveedores y actualiza automáticamente el stock
+                - generic:
+                  - button: Nueva Compra
+              - generic:
+                - paragraph: Mostrando compras del mes actual (01/08/2026 - 31/08/2026)
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=3]: Total Compras
+                  - generic: "0"
+                - generic:
+                  - generic:
+                    - heading [level=3]: Monto Total
+                  - generic: $ 0,00
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pagado
+                  - generic: $ 0,00
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pendiente
+                  - generic: $ 0,00
+              - generic:
+                - generic:
+                  - heading [level=3]: Filtros
+                - generic:
+                  - generic:
+                    - generic:
+                      - button: Hoy
+                      - button: Esta Semana
+                      - button: Mes Actual
+                      - button: Todas las Fechas
+                    - generic:
+                      - generic:
+                        - text: Buscar
+                        - textbox:
+                          - /placeholder: Nº, proveedor, factura...
+                      - generic:
+                        - text: Estado
+                        - combobox:
+                          - generic: Todos
+                      - generic:
+                        - text: Desde
+                        - textbox: 2026-08-01
+                      - generic:
+                        - text: Hasta
+                        - textbox: 2026-08-31
+                      - generic:
+                        - generic:
+                          - paragraph: Producto incluido
+                        - combobox:
+                          - generic: Buscar producto...
+                      - button: Restablecer
+              - generic:
+                - generic:
+                  - heading [level=3]: Listado de Compras
+                - generic:
+                  - generic:
+                    - paragraph: No hay compras registradas
+                    - paragraph: Las compras que registres aparecerán aquí
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog:
+    - generic:
+      - generic:
+        - generic:
+          - heading [level=2]: Registrar Compra
+          - paragraph: Completa los datos de la compra. El stock se actualizará al marcar como pagada.
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - heading [level=3]: Datos del Proveedor
+            - generic:
+              - generic: Proveedor Registrado *
+              - combobox:
+                - generic: Buscar proveedor o crear nuevo
+          - generic:
+            - heading [level=3]: Datos de la Compra
+            - generic:
+              - generic:
+                - generic: Fecha *
+                - textbox: 2026-08-13
+              - generic:
+                - text: Nº Factura
+                - textbox:
+                  - /placeholder: 0001-00001234
+              - generic:
+                - text: Estado
+                - combobox:
+                  - generic: Pagada
+                - combobox
+              - generic:
+                - generic: Método de Pago *
+                - combobox:
+                  - generic: Seleccione método de pago
+                - combobox
+          - generic:
+            - generic:
+              - generic:
+                - textbox:
+                  - /placeholder: Escaneá el código de barras o escribí + Enter
+              - button [disabled]
+            - generic:
+              - heading [level=3]: Productos *
+              - generic:
+                - button: Cargar por Matriz (Curvero)
+                - button: Agregar Línea
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: Producto
+                        - combobox:
+                          - generic: Buscar producto...
+                    - generic:
+                      - generic:
+                        - text: Cantidad
+                        - textbox: "1"
+                    - generic:
+                      - generic:
+                        - text: Precio Unit.
+                        - textbox: "0"
+                    - generic:
+                      - text: Subtotal
+                      - generic: $ 0,00
+          - generic:
+            - generic:
+              - text: Impuestos (+)
+              - textbox: "0"
+            - generic:
+              - text: Descuento (-)
+              - textbox: "0"
+            - generic:
+              - text: Subtotal
+              - generic: $ 0,00
+            - generic:
+              - text: TOTAL
+              - generic: $ 0,00
+          - generic:
+            - text: Notas / Observaciones
+            - textbox:
+              - /placeholder: Notas adicionales sobre la compra...
+          - generic:
+            - button [disabled]: Registrar Compra
+    - button:
+      - generic: Close
+  - dialog [ref=e1852]:
+    - generic [ref=e1853]:
+      - heading "Carga de Compra por Curva / Matriz de Talles" [level=2] [ref=e1858]
+      - paragraph [ref=e1859]: Ingresá cantidades masivas por variante para cargar una curva completa de producto en un solo paso.
+    - generic [ref=e1860]:
+      - generic [ref=e1861]:
+        - text: 1. Seleccionar Modelo / Producto Padre
+        - combobox [active] [ref=e1862]:
+          - option "-- Seleccionar producto padre --"
+          - option "Remera E2E 1786627854399"
+          - option "Remera E2E 1786627926521"
+          - option "Remera E2E 1786628001552"
+          - option "Remera E2E 1786628158475"
+          - option "Remera E2E 1786628233413"
+          - option "Remera E2E 1786628344465"
+          - option "Remera E2E 1786628403269"
+          - option "Remera E2E 1786628595591"
+          - option "Remera E2E 1786628684300"
+          - option "Remera E2E 1786628768265"
+          - option "Remera E2E 1786628894042"
+          - option "Remera E2E 1786628972359"
+          - option "Remera E2E 1786629069457"
+          - option "Remera E2E 1786629222630"
+          - option "Remera E2E 1786629375223"
+          - option "Remera E2E 1786629480861"
+          - option "Remera E2E 1786629540388"
+          - option "Remera E2E 1786629566918"
+          - option "Remera E2E 1786629653735"
+          - option "Remera E2E 1786630418727"
+          - option "Remera E2E 1786630524707"
+          - option "Remera E2E 1786630639421"
+          - option "Remera E2E 1786630753295"
+          - option "Remera E2E 1786630910132"
+          - option "Remera E2E 1786630958651"
+          - option "Remera E2E 1786631023605"
+          - option "Remera E2E 1786631059803"
+          - option "Remera Test Manual Direct"
+          - option "Remera Test ts-node"
+          - option "Remera Test ts-node"
+          - option "Remera Verano E2E Test" [selected]
+      - generic [ref=e1869]:
+        - generic [ref=e1870]:
+          - text: Costo Unitario por Defecto ($)
+          - spinbutton [ref=e1871]: "0"
+        - generic [ref=e1872]:
+          - generic [ref=e1873]: Cargar Curva Uniforme
+          - generic [ref=e1874]:
+            - button "+1 c/u" [ref=e1875] [cursor=pointer]
+            - button "+2 c/u" [ref=e1876] [cursor=pointer]
+            - button "+3 c/u" [ref=e1877] [cursor=pointer]
+            - button "+5 c/u" [ref=e1878] [cursor=pointer]
+            - button "+10 c/u" [ref=e1879] [cursor=pointer]
+      - generic [ref=e1880]:
+        - generic [ref=e1881]: 2. Cantidades por Variante (12 disponibles)
+        - generic [ref=e1884]:
+          - generic [ref=e1885]:
+            - generic [ref=e1886]:
+              - paragraph [ref=e1887]: Remera Verano E2E Test L Azul
+              - paragraph [ref=e1888]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1889]
+          - generic [ref=e1890]:
+            - generic [ref=e1891]:
+              - paragraph [ref=e1892]: Remera Verano E2E Test L Blanco
+              - paragraph [ref=e1893]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1894]
+          - generic [ref=e1895]:
+            - generic [ref=e1896]:
+              - paragraph [ref=e1897]: Remera Verano E2E Test L Negro
+              - paragraph [ref=e1898]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1899]
+          - generic [ref=e1900]:
+            - generic [ref=e1901]:
+              - paragraph [ref=e1902]: Remera Verano E2E Test M Azul
+              - paragraph [ref=e1903]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1904]
+          - generic [ref=e1905]:
+            - generic [ref=e1906]:
+              - paragraph [ref=e1907]: Remera Verano E2E Test M Blanco
+              - paragraph [ref=e1908]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1909]
+          - generic [ref=e1910]:
+            - generic [ref=e1911]:
+              - paragraph [ref=e1912]: Remera Verano E2E Test M Negro
+              - paragraph [ref=e1913]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1914]
+          - generic [ref=e1915]:
+            - generic [ref=e1916]:
+              - paragraph [ref=e1917]: Remera Verano E2E Test S Azul
+              - paragraph [ref=e1918]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1919]
+          - generic [ref=e1920]:
+            - generic [ref=e1921]:
+              - paragraph [ref=e1922]: Remera Verano E2E Test S Blanco
+              - paragraph [ref=e1923]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1924]
+          - generic [ref=e1925]:
+            - generic [ref=e1926]:
+              - paragraph [ref=e1927]: Remera Verano E2E Test S Negro
+              - paragraph [ref=e1928]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1929]
+          - generic [ref=e1930]:
+            - generic [ref=e1931]:
+              - paragraph [ref=e1932]: Remera Verano E2E Test XL Azul
+              - paragraph [ref=e1933]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1934]
+          - generic [ref=e1935]:
+            - generic [ref=e1936]:
+              - paragraph [ref=e1937]: Remera Verano E2E Test XL Blanco
+              - paragraph [ref=e1938]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1939]
+          - generic [ref=e1940]:
+            - generic [ref=e1941]:
+              - paragraph [ref=e1942]: Remera Verano E2E Test XL Negro
+              - paragraph [ref=e1943]: "Stock actual: 0"
+            - spinbutton "0" [ref=e1944]
+    - generic [ref=e1863]:
+      - button "Cancelar" [ref=e1864] [cursor=pointer]
+      - button "Agregar Curva a la Compra" [ref=e1945] [cursor=pointer]
+    - button "Close" [ref=e1865] [cursor=pointer]

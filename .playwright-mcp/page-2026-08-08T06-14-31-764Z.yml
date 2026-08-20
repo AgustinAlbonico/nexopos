@@ -1,0 +1,108 @@
+- generic [active] [ref=f47e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=f47e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=f47e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=f47e8]:
+    - search [ref=f47e9]:
+      - generic [ref=f47e12]:
+        - link [ref=f47e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwio9ovGsJCWAxUzq5UCHSnuA08QpYkNCAo
+          - img "Ir a la página principal de Google" [ref=f47e14]
+        - generic [ref=f47e19]:
+          - combobox "Buscar" [ref=f47e22]: site:veezi.com seat maps cinema ticketing qr official site:veezi.com seat maps cinema ticketing qr official
+          - generic [ref=f47e23]:
+            - button "Borrar" [ref=f47e25] [cursor=pointer]
+            - generic [ref=f47e30]:
+              - button "Búsqueda por voz" [ref=f47e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=f47e34] [cursor=pointer]
+        - button "Buscar" [ref=f47e37] [cursor=pointer]
+    - generic [ref=f47e42]:
+      - button "Configuración" [ref=f47e44] [cursor=pointer]
+      - button "Compartir" [ref=f47e50] [cursor=pointer]
+      - generic [ref=f47e56]:
+        - button "Aplicaciones de Google" [ref=f47e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=f47e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3Dsite%253Aveezi.com%2Bseat%2Bmaps%2Bcinema%2Bticketing%2Bqr%2Bofficial&ec=futura_srp_og_si_72236_p
+  - generic [ref=f47e65]:
+    - navigation [ref=f47e71]:
+      - generic [ref=f47e77]:
+        - list [ref=f47e78]:
+          - listitem [ref=f47e79]:
+            - link "Modo IA" [ref=f47e82] [cursor=pointer]:
+              - /url: /search?q=site:veezi.com+seat+maps+cinema+ticketing+qr+official&sca_esv=0096a2a1340d2922&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdScLx3ol9c1cFkljSkR7a918nOgD56NOkL2Ap2B03wbFfbtZJ5QUgX7vXqWImUFOkZ_h6EVQAFCHOe9PM97GUX-suuf3hPt_SMawzDjD2NTo25ya1SOU_ql9OyB2PDI18T3uEUy-QjOYcyzbGYd6WmE3OtufnGFHAGlLTpWDR-j-D8JWKQ&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwio9ovGsJCWAxUzq5UCHSnuA08Q2J8OegQIDxAD
+          - listitem [ref=f47e86]:
+            - link "Todo" [disabled] [ref=f47e87]
+          - listitem [ref=f47e90]:
+            - link "Imágenes" [ref=f47e91] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdScLx3ol9c1cFkljSkR7a918nOgD56NOkL2Ap2B03wbFfbtZJ5QUgX7vXqWImUFOkZ_h6EVQAFCHOe9PM97GUX-suuf3hPt_SMawzDjD2NTo25ya1SOU_ql9OyB2PDI18T3uEUy-QjOYcyzbGYd6WmE3OtufnGFHAGlLTpWDR-j-D8JWKQ&q=site:veezi.com+seat+maps+cinema+ticketing+qr+official&sa=X&ved=2ahUKEwio9ovGsJCWAxUzq5UCHSnuA08QtKgLegQIExAB
+          - listitem [ref=f47e94]:
+            - link "Shopping" [ref=f47e95] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdScLx3ol9c1cFkljSkR7a918nOgD56NOkL2Ap2B03wbFfbtZJ5QUgX7vXqWImUFOkZ_h6EVQAFCHOe9PM97GUX-suuf3hPt_SMawzDjD2NTo25ya1SOU_ql9OyB2PDI18T3uEUy-QjOYcyzbGYd6WmE3OtufnGFHAGlLTpWDR-j-D8JWKQ&q=site:veezi.com+seat+maps+cinema+ticketing+qr+official&ved=1t:220175&ictx=111
+          - listitem [ref=f47e98]:
+            - link "Noticias" [ref=f47e99] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&q=site:veezi.com+seat+maps+cinema+ticketing+qr+official&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdScLx3ol9c1cFkljSkR7a918nOgD56NOkL2Ap2B03wbFfbtZJ5QUgX7vXqWImUFOkZ_h6EVQAFCHOe9PM97GUX-suuf3hPt_SMawzDjD2NTo25ya1SOU_ql9OyB2PDI18T3uEUy-QjOYcyzbGYd6WmE3OtufnGFHAGlLTpWDR-j-D8JWKQ&sa=X&ved=2ahUKEwio9ovGsJCWAxUzq5UCHSnuA08Q0pQJegQIFRAB
+          - listitem [ref=f47e102]:
+            - link "Vídeos" [ref=f47e103] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdScLx3ol9c1cFkljSkR7a918nOgD56NOkL2Ap2B03wbFfbtZJ5QUgX7vXqWImUFOkZ_h6EVQAFCHOe9PM97GUX-suuf3hPt_SMawzDjD2NTo25ya1SOU_ql9OyB2PDI18T3uEUy-QjOYcyzbGYd6WmE3OtufnGFHAGlLTpWDR-j-D8JWKQ&q=site:veezi.com+seat+maps+cinema+ticketing+qr+official&sa=X&ved=2ahUKEwio9ovGsJCWAxUzq5UCHSnuA08QtKgLegQIFBAB
+          - listitem [ref=f47e106]:
+            - link "Vídeos cortos" [ref=f47e107] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdScLx3ol9c1cFkljSkR7a918nOgD56NOkL2Ap2B03wbFfbtZJ5QUgX7vXqWImUFOkZ_h6EVQAFCHOe9PM97GUX-suuf3hPt_SMawzDjD2NTo25ya1SOU_ql9OyB2PDI18T3uEUy-QjOYcyzbGYd6WmE3OtufnGFHAGlLTpWDR-j-D8JWKQ&q=site:veezi.com+seat+maps+cinema+ticketing+qr+official&sa=X&ved=2ahUKEwio9ovGsJCWAxUzq5UCHSnuA08Qs6gLegQIERAB
+          - listitem [ref=f47e110]:
+            - button [ref=f47e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=f47e112]: Más
+        - button "Herramientas" [ref=f47e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=f47e126]
+    - main [ref=f47e132]:
+      - generic [ref=f47e139]:
+        - heading "Web results" [level=2] [ref=f47e140]
+        - generic [ref=f47e141]:
+          - generic [ref=f47e144]:
+            - link "Working at POS - Help Center veezi.com https://help.veezi.com › articles" [ref=f47e146] [cursor=pointer]:
+              - /url: https://help.veezi.com/hc/en-nz/articles/16575407447193-Working-at-POS
+              - heading "Working at POS - Help Center" [level=3] [ref=f47e147]
+              - generic [ref=f47e153]:
+                - generic [ref=f47e154]: veezi.com
+                - generic [ref=f47e156]: https://help.veezi.com › articles
+            - generic [ref=f47e158]:
+              - generic [ref=f47e159]: ·
+              - link "Traducir esta página" [ref=f47e160] [cursor=pointer]:
+                - /url: https://help.veezi.com/hc/en-nz/articles/16575407447193-Working-at-POS
+            - button "Acerca de este resultado" [ref=f47e163] [cursor=pointer]
+          - generic [ref=f47e169]:
+            - generic [ref=f47e170]: 11 dic 2023 —
+            - generic [ref=f47e171]:
+              - text: Go to More > Swap. · Enter the original transaction number. · Select
+              - emphasis [ref=f47e172]: tickets
+              - text: . · Optionally, tap
+              - emphasis [ref=f47e173]: Seats
+              - text: and select new
+              - emphasis [ref=f47e174]: seats
+              - text: . · Tap the Veezi logo ...
+      - generic:
+        - generic:
+          - navigation
+      - navigation
+    - contentinfo [ref=f47e175]:
+      - heading "Vínculos a pie de página" [level=1] [ref=f47e176]
+      - generic [ref=f47e180]:
+        - generic [ref=f47e182]:
+          - text: Argentina
+          - generic [ref=f47e184]:
+            - button "Iriondo, Santa Fe - Según tu actividad anterior" [ref=f47e186] [cursor=pointer]:
+              - generic [ref=f47e187]: Iriondo, Santa Fe
+              - generic [ref=f47e189]:
+                - text: "-"
+                - generic [ref=f47e190]: Según tu actividad anterior
+            - text: "-"
+            - button "Actualizar ubicación" [ref=f47e192] [cursor=pointer]
+        - generic [ref=f47e195]:
+          - link "Ayuda" [ref=f47e196] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=f47e197] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=f47e198] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=f47e199] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

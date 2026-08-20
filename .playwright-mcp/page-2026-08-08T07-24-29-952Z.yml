@@ -1,0 +1,458 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwih67fEv5CWAxXSBrkGHcfoCw0QpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Cine Lumière\" Rosario sitio web \"Cine Lumière\" Rosario sitio web"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Cine%2BLumi%25C3%25A8re%2522%2BRosario%2Bsitio%2Bweb&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q2J8OegQIIBAD&cshid=1786173869984207
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0QtKgLegQIJRAB&cshid=1786173869984207
+          - listitem [ref=e94]:
+            - link "Noticias" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q0pQJegQIIhAB&cshid=1786173869984207
+          - listitem [ref=e98]:
+            - link "Shopping" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&ved=1t:220175&ictx=111&cshid=1786173869984207
+          - listitem [ref=e102]:
+            - link "Vídeos" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0QtKgLegQIIxAB&cshid=1786173869984207
+          - listitem [ref=e106]:
+            - link "Vídeos cortos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDW7ez5zJteybPOInMroJwODPN8rh3V3R-L3rhXwhfCZ7uo6ez8dXdov4iH1HflUzZ0ycBnA-2ZwIw1G3beJAjnByjUFThN98NOVeCKkJk2MwT_vzlY-5ctHuBU1ubBUd9uQFtzyQ&q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Qs6gLegQIJhAB&cshid=1786173869984207
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - main [ref=e132]:
+      - generic [ref=e136]:
+        - generic [ref=e137]:
+          - generic [ref=e140]:
+            - generic [ref=e144]:
+              - generic [ref=e152]:
+                - button "Ver fotos" [ref=e156] [cursor=pointer]
+                - generic [ref=e160]:
+                  - generic [ref=e161]:
+                    - link [ref=e163] [cursor=pointer]:
+                      - /url: /maps/place/Centro+Cultural+Cine+Lumi%C3%A8re/data=!4m2!3m1!1s0x0:0x85a85941d60a5ef3?sa=X&ved=1t:2428&ictx=111&cshid=1786173869984207
+                      - img "Mapa de Centro Cultural Cine Lumière" [ref=e165]
+                    - link [ref=e167] [cursor=pointer]:
+                      - /url: /maps/place/Centro+Cultural+Cine+Lumi%C3%A8re/data=!4m2!3m1!1s0x0:0x85a85941d60a5ef3?sa=X&ved=1t:2428&ictx=111&cshid=1786173869984207
+                      - img "Mapa de Centro Cultural Cine Lumière" [ref=e169]
+                  - link "Ver por fuera" [ref=e177] [cursor=pointer]:
+                    - /url: /local/place/fid/0x95b6535702877981:0x85a85941d60a5ef3/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3D-VjlBp_ZmXr0BTKzfXRcHQ%26cb_client%3Dsearch.gws-prod.gps%26yaw%3D149.54385%26pitch%3D0%26thumbfov%3D100%26w%3D0%26h%3D0&ik=CAISFi1WamxCcF9abVhyMEJUS3pmWFJjSFE%3D&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Qpx96BAhBEBE&cshid=1786173869984207
+              - generic [ref=e182]:
+                - heading "Centro Cultural Cine Lumière" [level=2] [ref=e185]
+                - generic [ref=e188]:
+                  - text: 4,4
+                  - 'img "Calificación: 4,4 de 5," [ref=e189]'
+                  - button "1.692 opiniones en Google" [ref=e194] [cursor=pointer]
+                  - text: Cine en Rosario
+              - generic [ref=e201]:
+                - generic [ref=e213]:
+                  - link "Sitio web" [ref=e215] [cursor=pointer]:
+                    - /url: http://www.lumiererosario.gob.ar/
+                  - link "Cómo llegar" [ref=e222]
+                  - button "Escribir una opinión" [ref=e232] [cursor=pointer]
+                  - button "Guardar Centro Cultural Cine Lumière en una colección" [ref=e242] [cursor=pointer]:
+                    - generic [ref=e245]: Guardar
+                  - button "Compartir" [ref=e248] [cursor=pointer]
+                  - button "Llamar" [ref=e255] [cursor=pointer]
+                - generic [ref=e265]:
+                  - generic [ref=e267]:
+                    - generic [ref=e268]:
+                      - link "Dirección" [ref=e269] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=centro+cultural+cine+lumi%C3%A8re+direcci%C3%B3n&ludocid=9631045942430555891&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q6BN6BAgvEAI&cshid=1786173869984207
+                      - text: ":"
+                    - text: Vélez Sársfield 1027, S2013CYS Rosario, Santa Fe
+                  - generic [ref=e272]:
+                    - generic [ref=e273]:
+                      - link "Teléfono" [ref=e274] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=centro+cultural+cine+lumi%C3%A8re+tel%C3%A9fono&ludocid=9631045942430555891&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q6BN6BAgxEAI&cshid=1786173869984207
+                      - text: ":"
+                    - link "Llamar al número de teléfono 0341 399-8916" [ref=e277] [cursor=pointer]:
+                      - /url: "#"
+                      - text: 0341 399-8916
+                  - generic [ref=e280]:
+                    - generic [ref=e281]:
+                      - link "Provincia" [ref=e282] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=centro+cultural+cine+lumi%C3%A8re+provincia&stick=H4sIAAAAAAAAAOPgE-LVT9c3NEwyqzLOMjQq0JLLTrbSz8lPTizJzM-DM6wKivLLMvOSUxexqien5pUU5Sskl-aUlBYl5igkZ-alKuSU5mYeXlGUqgBVmJkIAG8Uw3xbAAAA&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q6BN6BAgwEAI&cshid=1786173869984207
+                      - text: ":"
+                    - link "Provincia de Santa Fe" [ref=e285] [cursor=pointer]:
+                      - /url: /search?sca_esv=569d465b5b1d57df&q=Provincia+de+Santa+Fe&si=APenkKlisoOXLiCMwraINHtdqOQii4CK9kOlkQc8Apn-pS60ybgOg0JEOGJhvAVM0X3IAlkyRmJLJju7tSY_mEqkVyT9YFZEclfIkEFLCOXnEXpklgS6S5-Oymtc4_TiwvatdMVRiMM9ieAS-N1U6JM3MeIrSe4Ql8T8ICMzhG9a7sgqliLEH-W-P_bthqbSVoOLGLj36ILjGIqZDTfoGdngc_gsr-d82w%3D%3D&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0QmxN6BAgwEAM&cshid=1786173869984207
+                  - generic [ref=e289]:
+                    - button "Sugerir una edición" [ref=e292] [cursor=pointer]
+                    - text: ·
+                    - link "¿Eres propietario de esta empresa?" [ref=e293] [cursor=pointer]:
+                      - /url: https://business.google.com/create?hl=es&getstarted&authuser=0&fp=9631045942430555891&gmbsrc=ar-es-et-ip-z-gmb-s-z-l~skp%7Cclaimbz_aoc_a%7Cu&ppsrc=GMBSI
+                - generic [ref=e301]:
+                  - generic [ref=e302]:
+                    - heading "Horario de mayor concurrencia" [level=3] [ref=e304]
+                    - button "Más información sobre los horario de mayor concurrencia" [ref=e307] [cursor=pointer]
+                  - generic [ref=e310]:
+                    - radiogroup [ref=e312]:
+                      - radio "lunes" [ref=e313] [cursor=pointer]:
+                        - generic [ref=e314]: lun
+                      - radio "martes" [ref=e315] [cursor=pointer]:
+                        - generic [ref=e316]: mar
+                      - radio "miércoles" [ref=e317] [cursor=pointer]:
+                        - generic [ref=e318]: mié
+                      - radio "jueves" [ref=e319] [cursor=pointer]:
+                        - generic [ref=e320]: jue
+                      - radio "viernes" [ref=e321] [cursor=pointer]:
+                        - generic [ref=e322]: vie
+                      - radio "sábado" [checked] [ref=e323] [cursor=pointer]:
+                        - generic [ref=e324]: sáb
+                      - radio "domingo" [ref=e325] [cursor=pointer]:
+                        - generic [ref=e326]: dom
+                    - generic [ref=e328]:
+                      - region [ref=e330]:
+                        - generic [ref=e331]:
+                          - generic [ref=e337]: "8 p. m.:"
+                          - text: Por lo general, es cuando está más concurrido
+                      - radiogroup [ref=e338]:
+                        - radio [disabled] [ref=e340] [cursor=pointer]
+                        - radio [disabled] [ref=e342] [cursor=pointer]
+                        - radio [disabled] [ref=e344] [cursor=pointer]
+                        - radio [disabled] [ref=e346] [cursor=pointer]
+                        - radio [disabled] [ref=e348] [cursor=pointer]
+                        - radio [disabled] [ref=e350] [cursor=pointer]
+                        - radio [disabled] [ref=e352] [cursor=pointer]
+                        - radio [disabled] [ref=e354] [cursor=pointer]
+                        - radio [disabled] [ref=e356] [cursor=pointer]
+                        - radio [disabled] [ref=e358] [cursor=pointer]
+                        - radio [disabled] [ref=e360] [cursor=pointer]
+                        - radio "5 p. m." [ref=e362] [cursor=pointer]
+                        - radio "6 p. m." [ref=e365] [cursor=pointer]
+                        - radio "7 p. m." [ref=e368] [cursor=pointer]
+                        - radio "8 p. m." [checked] [ref=e371] [cursor=pointer]
+                        - radio "9 p. m." [ref=e374] [cursor=pointer]
+                        - radio "10 p. m." [ref=e377] [cursor=pointer]
+                        - radio [disabled] [ref=e380] [cursor=pointer]
+                      - generic [ref=e382]:
+                        - generic [ref=e386]: 9a. m.
+                        - generic [ref=e392]: 12p. m.
+                        - generic [ref=e398]: 3p. m.
+                        - generic [ref=e404]: 6p. m.
+                        - generic [ref=e410]: 9p. m.
+                - generic [ref=e423]:
+                  - generic [ref=e424]:
+                    - heading "Opiniones" [level=3] [ref=e425]
+                    - button "Más información" [ref=e430] [cursor=pointer]
+                    - generic [ref=e434]:
+                      - button "Escribir una opinión" [ref=e438] [cursor=pointer]
+                      - link "Agregar fotos" [ref=e441] [cursor=pointer]:
+                        - /url: "#"
+                  - generic [ref=e442]:
+                    - generic [ref=e443]:
+                      - generic [ref=e444]:
+                        - link "gisela castillo":
+                          - /url: https://www.google.com/maps/contrib/108362048282405004514?hl=es-AR&ved=1t:31296&ictx=111
+                          - img "gisela castillo" [ref=e446] [cursor=pointer]
+                      - generic [ref=e447]:
+                        - link "\"Lindo centro cultural, por ahi deberian arreglar butacas que estan rotas.\"" [ref=e448] [cursor=pointer]:
+                          - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s108362048282405004514!2s0x95b6535702877981:0x85a85941d60a5ef3?ved=1t:31295&ictx=111
+                        - 'img "Calificación: 4,0 de 5," [ref=e450]'
+                    - generic [ref=e453]:
+                      - generic [ref=e454]:
+                        - link "Guillermina Romani":
+                          - /url: https://www.google.com/maps/contrib/118263397571288327358?hl=es-AR&ved=1t:31296&ictx=111
+                          - img "Guillermina Romani" [ref=e456] [cursor=pointer]
+                      - generic [ref=e457]:
+                        - link "\"Y variados espectaculos los fines de semana.\"" [ref=e458] [cursor=pointer]:
+                          - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s118263397571288327358!2s0x95b6535702877981:0x85a85941d60a5ef3?ved=1t:31295&ictx=111
+                        - 'img "Calificación: 3,0 de 5," [ref=e460]'
+                    - generic [ref=e463]:
+                      - generic [ref=e464]:
+                        - link "maria Itati depintor":
+                          - /url: https://www.google.com/maps/contrib/117169082847007755325?hl=es-AR&ved=1t:31296&ictx=111
+                          - img "maria Itati depintor" [ref=e466] [cursor=pointer]
+                      - generic [ref=e467]:
+                        - link "\"Buen sonido, buen ambiente climatizado.\"" [ref=e468] [cursor=pointer]:
+                          - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s117169082847007755325!2s0x95b6535702877981:0x85a85941d60a5ef3?ved=1t:31295&ictx=111
+                        - 'img "Calificación: 4,0 de 5," [ref=e470]'
+                  - button "Ver todas las opiniones en Google" [ref=e475] [cursor=pointer]
+                - generic [ref=e483]:
+                  - heading "Actualizaciones de Centro Cultural Cine Lumière" [level=3] [ref=e484]
+                  - generic [ref=e485]: Ver actualizaciones anteriores en Google
+                - generic [ref=e491]:
+                  - heading "Perfiles" [level=3] [ref=e492]
+                  - generic [ref=e493]:
+                    - link "Facebook" [ref=e497] [cursor=pointer]:
+                      - /url: https://www.facebook.com/CentroCulturalCineLumiere
+                    - link "Instagram" [ref=e507] [cursor=pointer]:
+                      - /url: https://www.instagram.com/cccinelumiere/
+                    - link "YouTube" [ref=e517] [cursor=pointer]:
+                      - /url: https://www.youtube.com/@centroculturalcinelumiere3284
+            - link "Información sobre estos datos" [ref=e525] [cursor=pointer]:
+              - /url: https://support.google.com/local-listings?p=how_google_sources
+          - generic [ref=e527]:
+            - heading "Resultados web" [level=2] [ref=e528]
+            - generic [ref=e529]:
+              - generic [ref=e532]:
+                - link "Centro Cultural Cine Lumière Centro Cultural Cine Lumière https://lumiererosario.gob.ar › web" [ref=e534] [cursor=pointer]:
+                  - /url: https://lumiererosario.gob.ar/web/
+                  - heading "Centro Cultural Cine Lumière" [level=3] [ref=e535]
+                  - generic [ref=e541]:
+                    - generic [ref=e542]: Centro Cultural Cine Lumière
+                    - generic [ref=e544]: https://lumiererosario.gob.ar › web
+                - button "Acerca de este resultado" [ref=e548] [cursor=pointer]
+              - generic [ref=e555]:
+                - text: Centro Cultural
+                - emphasis [ref=e556]: Cine Lumière
+                - text: · Estreno | La ciudad de los niños. La utopía de Francesco Tonucci · Agosto en
+                - emphasis [ref=e557]: Cine Lumière
+                - text: · CARTELERA · RECIBÍ NUESTRA CARTELERA ...
+        - generic [ref=e561]:
+          - generic [ref=e564]:
+            - link "Cine Lumière (@cccinelumiere) Instagram · cccinelumiere Más de 24,1 k seguidores" [ref=e566] [cursor=pointer]:
+              - /url: https://www.instagram.com/cccinelumiere/?hl=es
+              - heading "Cine Lumière (@cccinelumiere)" [level=3] [ref=e567]
+              - generic [ref=e573]:
+                - generic [ref=e574]: Instagram · cccinelumiere
+                - generic [ref=e576]: Más de 24,1 k seguidores
+            - button "Acerca de este resultado" [ref=e580] [cursor=pointer]
+          - generic [ref=e587]:
+            - emphasis [ref=e588]: Cine Lumière
+            - text: "presenta #FOCO Las tres M del Sr. Lang 🎞️ Tres largometrajes a cincuenta años de la muerte del gran realizador alemán."
+        - generic [ref=e592]:
+          - generic [ref=e595]:
+            - link "El Cine Lumiére vuelve a funcionar exclusivamente como ... Noticias MR https://www.rosarionoticias.gob.ar › page › noticias › title" [ref=e597] [cursor=pointer]:
+              - /url: https://www.rosarionoticias.gob.ar/page/noticias/id/326802/title/El-Cine-Lumi%C3%A9re-vuelve-a-funcionar-exclusivamente-como-centro-cultural
+              - heading "El Cine Lumiére vuelve a funcionar exclusivamente como ..." [level=3] [ref=e598]
+              - generic [ref=e604]:
+                - generic [ref=e605]: Noticias MR
+                - generic [ref=e607]: https://www.rosarionoticias.gob.ar › page › noticias › title
+            - button "Acerca de este resultado" [ref=e611] [cursor=pointer]
+          - generic [ref=e617]:
+            - generic [ref=e618]: 30 sept 2021 —
+            - generic [ref=e619]:
+              - text: La programación completa del Centro Cultural
+              - emphasis [ref=e620]: Cine Lumiére
+              - text: puede encontrarse en su
+              - emphasis [ref=e621]: sitio web
+              - text: lumiererosario.gob.ar. Noticias relacionadas ...
+        - generic [ref=e625]:
+          - generic [ref=e628]:
+            - link "Comienza el 31° Festival de Cine Latinoamericano Rosario Centro Cultural Cine Lumière https://lumiererosario.gob.ar › Portada › NOTICIAS" [ref=e630] [cursor=pointer]:
+              - /url: https://lumiererosario.gob.ar/web/comienza-el-31-festival-de-cine-latinoamericano-rosario/
+              - heading "Comienza el 31° Festival de Cine Latinoamericano Rosario" [level=3] [ref=e631]
+              - generic [ref=e637]:
+                - generic [ref=e638]: Centro Cultural Cine Lumière
+                - generic [ref=e640]: https://lumiererosario.gob.ar › Portada › NOTICIAS
+            - button "Acerca de este resultado" [ref=e644] [cursor=pointer]
+          - generic [ref=e650]:
+            - generic [ref=e651]: 26 may 2026 —
+            - generic [ref=e652]:
+              - text: El Festival de Cine Latinoamericano
+              - emphasis [ref=e653]: Rosario
+              - text: es organizado por la Municipalidad de
+              - emphasis [ref=e654]: Rosario
+              - text: a través de Punto Audiovisual –
+              - emphasis [ref=e655]: Cine Lumière
+              - text: .-.
+        - generic [ref=e661]:
+          - generic [ref=e664]:
+            - link "El encanto del Cine Lumiere de Rosario. Instagram · ulises_roman_rodriguez Más de 30 \"me gusta\" · hace 2 meses" [ref=e666] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DZLoa7uBZYC/
+              - heading "El encanto del Cine Lumiere de Rosario." [level=3] [ref=e667]
+              - generic [ref=e673]:
+                - generic [ref=e674]: Instagram · ulises_roman_rodriguez
+                - generic [ref=e676]: Más de 30 "me gusta" · hace 2 meses
+            - button "Acerca de este resultado" [ref=e680] [cursor=pointer]
+          - generic [ref=e685]:
+            - link "El encanto del Cine Lumiere de Rosario. de Ulises Rodriguez en Instagram. Reproducir en Instagram. 0:37" [ref=e686] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DZLoa7uBZYC/
+              - generic [ref=e687]: 0:37
+            - generic [ref=e696]: ... Cine Lumiere de Rosario ... sitio de Cultura de la Municipalidad de Rosario. . Gracias a cada una de las personas ...
+        - generic [ref=e701]:
+          - generic [ref=e704]:
+            - link "Cine Lumiere lumierefilms.com.ar https://www.lumierefilms.com.ar" [ref=e706] [cursor=pointer]:
+              - /url: https://www.lumierefilms.com.ar/
+              - heading "Cine Lumiere" [level=3] [ref=e707]
+              - generic [ref=e716]:
+                - generic [ref=e717]: lumierefilms.com.ar
+                - generic [ref=e719]: https://www.lumierefilms.com.ar
+            - button "Acerca de este resultado" [ref=e723] [cursor=pointer]
+          - generic [ref=e728]: "Amamos el cine: somos una empresa con un equipo que trabajamos desde hace años y tenemos las herramientas para explotar al máximo el potencial de cada sala."
+        - generic [ref=e734]:
+          - heading "Más preguntas" [level=2] [ref=e736]
+          - generic [ref=e737]:
+            - button "¿Cartelera cine Lumière Rosario?" [ref=e743] [cursor=pointer]
+            - button "¿Qué días hay 2x1 en el cine?" [ref=e757] [cursor=pointer]
+            - button "¿Precio de entradas al cine en Rosario?" [ref=e771] [cursor=pointer]
+            - button "¿Cine Lumière qué es?" [ref=e785] [cursor=pointer]
+        - generic [ref=e795]:
+          - heading "Resultados web" [level=2] [ref=e796]
+          - generic [ref=e797]:
+            - generic [ref=e800]:
+              - link "¿Cómo llegar a Centro Cultural Cine Lumière en Rosario ... Moovit https://moovitapp.com › Argentina › Rosario" [ref=e802] [cursor=pointer]:
+                - /url: https://moovitapp.com/index/es-419/transporte_p%C3%BAblico-Centro_Cultural_Cine_Lumi%C3%A8re-Rosario-site_17941866-2560
+                - heading "¿Cómo llegar a Centro Cultural Cine Lumière en Rosario ..." [level=3] [ref=e803]
+                - generic [ref=e809]:
+                  - generic [ref=e810]: Moovit
+                  - generic [ref=e812]: https://moovitapp.com › Argentina › Rosario
+              - button "Acerca de este resultado" [ref=e816] [cursor=pointer]
+            - generic [ref=e822]:
+              - generic [ref=e823]: hace 7 días —
+              - generic [ref=e824]:
+                - text: Paradas de Colectivo cercanas a Centro Cultural
+                - emphasis [ref=e825]: Cine Lumière
+                - text: en
+                - emphasis [ref=e826]: Rosario
+                - text: · Junín, 1005, 1 min a pie, · Alberdi Y Velez Sarsfield, 1 min a pie,
+        - generic [ref=e830]:
+          - generic [ref=e833]:
+            - link "Arthur Rambo en Cine Lumière | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › arthur-rambo-en-c..." [ref=e835] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/arthur-rambo-en-cine-lumiere
+              - heading "Arthur Rambo en Cine Lumière | rosario.gob.ar" [level=3] [ref=e836]
+              - generic [ref=e842]:
+                - generic [ref=e843]: Rosario.gob
+                - generic [ref=e845]: https://www.rosario.gob.ar › inicio › arthur-rambo-en-c...
+            - button "Acerca de este resultado" [ref=e849] [cursor=pointer]
+          - generic [ref=e856]:
+            - text: Escudo
+            - emphasis [ref=e857]: rosario rosario
+            - text: ... Cuándo y dónde. 9 DE JulioJueves. 19 horas. Centro Cultural
+            - emphasis [ref=e858]: Cine Lumière
+            - text: . VELEZ SARSFIELD DALMACIO 1027. Cómo llego Ver mapa. Gratis.
+        - generic [ref=e862]:
+          - generic [ref=e865]:
+            - link "Cine italiano en el Club Lumière de Rosario, del 04 al 14/08 Istituto Italiano di Cultura di Buenos Aires https://iicbuenosaires.esteri.it › gli_eventi › calendario" [ref=e867] [cursor=pointer]:
+              - /url: https://iicbuenosaires.esteri.it/es/gli_eventi/calendario/cinema-italiano-nel-club-lumiere-2/
+              - heading "Cine italiano en el Club Lumière de Rosario, del 04 al 14/08" [level=3] [ref=e868]
+              - generic [ref=e874]:
+                - generic [ref=e875]: Istituto Italiano di Cultura di Buenos Aires
+                - generic [ref=e877]: https://iicbuenosaires.esteri.it › gli_eventi › calendario
+            - button "Acerca de este resultado" [ref=e881] [cursor=pointer]
+          - generic [ref=e888]:
+            - text: El
+            - emphasis [ref=e889]: Cine Lumière
+            - text: de la ciudad de
+            - emphasis [ref=e890]: Rosario
+            - text: presenta una imperdible muestra de cine italiano organizada junto al Consulado de Italia en
+            - emphasis [ref=e891]: Rosario
+            - text: y el Instituto ...
+        - generic [ref=e895]:
+          - generic [ref=e898]:
+            - link "Los Cines en el Rosario del Ayer fmaeme.com https://www.fmaeme.com › ... › Recuerdo del AYER" [ref=e900] [cursor=pointer]:
+              - /url: https://www.fmaeme.com/apostillas-rosarinas/recuerdo-del-ayer/los-cines/
+              - heading "Los Cines en el Rosario del Ayer" [level=3] [ref=e901]
+              - generic [ref=e907]:
+                - generic [ref=e908]: fmaeme.com
+                - generic [ref=e910]: https://www.fmaeme.com › ... › Recuerdo del AYER
+            - button "Acerca de este resultado" [ref=e914] [cursor=pointer]
+          - generic [ref=e921]:
+            - text: 23 DE DICIEMBRE DE 1898 Se inauguró el
+            - emphasis [ref=e922]: cine Lumiere
+            - text: de calle Rioja 1151. Fue el primer cine que hubo en la ciudad de
+            - emphasis [ref=e923]: Rosario
+            - text: . El diario "La Capital", ...
+      - generic [ref=e925]:
+        - generic [ref=e930]:
+          - heading "También se buscó" [level=2] [ref=e932]
+          - generic [ref=e934]:
+            - generic [ref=e935]:
+              - link "Cine Lumière ROSARIO cartelera" [ref=e939] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Lumi%C3%A8re+ROSARIO+cartelera&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q1QJ6BAhhEAE&cshid=1786173869984207
+              - link "Cine Lumière Rosario talleres" [ref=e953] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Lumi%C3%A8re+Rosario+talleres&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q1QJ6BAhtEAE&cshid=1786173869984207
+              - link "Cine Lumière cartelera" [ref=e967] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Lumi%C3%A8re+cartelera&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q1QJ6BAhvEAE&cshid=1786173869984207
+              - link "Cartelera cine rosario" [ref=e981] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cartelera+cine+rosario&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q1QJ6BAhuEAE&cshid=1786173869984207
+            - generic [ref=e992]:
+              - link "Centro cultural Cine Lumière próximos eventos" [ref=e996] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+cultural+Cine+Lumi%C3%A8re+pr%C3%B3ximos+eventos&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q1QJ6BAhxEAE&cshid=1786173869984207
+              - link "Cine Lumière" [ref=e1010] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Lumi%C3%A8re&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q1QJ6BAhsEAE&cshid=1786173869984207
+              - link "Cine Lumière Rosario historia" [ref=e1024] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Lumi%C3%A8re+Rosario+historia&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q1QJ6BAhrEAE&cshid=1786173869984207
+              - link "Cine el Cairo" [ref=e1038] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+el+Cairo&sa=X&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q1QJ6BAhmEAE&cshid=1786173869984207
+        - navigation [ref=e1049]:
+          - heading "Navegación de páginas" [level=1] [ref=e1050]
+          - text: "1"
+          - link "Page 2" [ref=e1053] [cursor=pointer]:
+            - /url: /search?q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2aqH0ENKN5OUPx9GvaA&start=10&sa=N&sstk=AU9db-AqSNC4s3YKGOJattPes_FraKvn5Z7BvSDCYSOYux0gIAHtr7nMXRC3IlwsCgdsG9JWidzBv3OxF16gVbMNWFLttT7KrqBUjw&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q8tMDegQIWxAE&cshid=1786173869984207
+            - text: "2"
+          - link "Page 3" [ref=e1055] [cursor=pointer]:
+            - /url: /search?q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2aqH0ENKN5OUPx9GvaA&start=20&sa=N&sstk=AU9db-AqSNC4s3YKGOJattPes_FraKvn5Z7BvSDCYSOYux0gIAHtr7nMXRC3IlwsCgdsG9JWidzBv3OxF16gVbMNWFLttT7KrqBUjw&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q8tMDegQIWxAG&cshid=1786173869984207
+            - text: "3"
+          - link "Page 4" [ref=e1057] [cursor=pointer]:
+            - /url: /search?q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2aqH0ENKN5OUPx9GvaA&start=30&sa=N&sstk=AU9db-AqSNC4s3YKGOJattPes_FraKvn5Z7BvSDCYSOYux0gIAHtr7nMXRC3IlwsCgdsG9JWidzBv3OxF16gVbMNWFLttT7KrqBUjw&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q8tMDegQIWxAI&cshid=1786173869984207
+            - text: "4"
+          - link "Page 5" [ref=e1059] [cursor=pointer]:
+            - /url: /search?q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2aqH0ENKN5OUPx9GvaA&start=40&sa=N&sstk=AU9db-AqSNC4s3YKGOJattPes_FraKvn5Z7BvSDCYSOYux0gIAHtr7nMXRC3IlwsCgdsG9JWidzBv3OxF16gVbMNWFLttT7KrqBUjw&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q8tMDegQIWxAK&cshid=1786173869984207
+            - text: "5"
+          - link "Page 6" [ref=e1061] [cursor=pointer]:
+            - /url: /search?q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2aqH0ENKN5OUPx9GvaA&start=50&sa=N&sstk=AU9db-AqSNC4s3YKGOJattPes_FraKvn5Z7BvSDCYSOYux0gIAHtr7nMXRC3IlwsCgdsG9JWidzBv3OxF16gVbMNWFLttT7KrqBUjw&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q8tMDegQIWxAM&cshid=1786173869984207
+            - text: "6"
+          - link "Page 7" [ref=e1063] [cursor=pointer]:
+            - /url: /search?q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2aqH0ENKN5OUPx9GvaA&start=60&sa=N&sstk=AU9db-AqSNC4s3YKGOJattPes_FraKvn5Z7BvSDCYSOYux0gIAHtr7nMXRC3IlwsCgdsG9JWidzBv3OxF16gVbMNWFLttT7KrqBUjw&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q8tMDegQIWxAO&cshid=1786173869984207
+            - text: "7"
+          - link "Page 8" [ref=e1065] [cursor=pointer]:
+            - /url: /search?q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2aqH0ENKN5OUPx9GvaA&start=70&sa=N&sstk=AU9db-AqSNC4s3YKGOJattPes_FraKvn5Z7BvSDCYSOYux0gIAHtr7nMXRC3IlwsCgdsG9JWidzBv3OxF16gVbMNWFLttT7KrqBUjw&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q8tMDegQIWxAQ&cshid=1786173869984207
+            - text: "8"
+          - link "Page 9" [ref=e1067] [cursor=pointer]:
+            - /url: /search?q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2aqH0ENKN5OUPx9GvaA&start=80&sa=N&sstk=AU9db-AqSNC4s3YKGOJattPes_FraKvn5Z7BvSDCYSOYux0gIAHtr7nMXRC3IlwsCgdsG9JWidzBv3OxF16gVbMNWFLttT7KrqBUjw&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q8tMDegQIWxAS&cshid=1786173869984207
+            - text: "9"
+          - link "Page 10" [ref=e1069] [cursor=pointer]:
+            - /url: /search?q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2aqH0ENKN5OUPx9GvaA&start=90&sa=N&sstk=AU9db-AqSNC4s3YKGOJattPes_FraKvn5Z7BvSDCYSOYux0gIAHtr7nMXRC3IlwsCgdsG9JWidzBv3OxF16gVbMNWFLttT7KrqBUjw&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q8tMDegQIWxAU&cshid=1786173869984207
+            - text: "10"
+          - heading [level=2] [ref=e1071]:
+            - link "Siguiente" [ref=e1072] [cursor=pointer]:
+              - /url: /search?q=%22Cine+Lumi%C3%A8re%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=_th2aqH0ENKN5OUPx9GvaA&start=10&sa=N&sstk=AU9db-AqSNC4s3YKGOJattPes_FraKvn5Z7BvSDCYSOYux0gIAHtr7nMXRC3IlwsCgdsG9JWidzBv3OxF16gVbMNWFLttT7KrqBUjw&ved=2ahUKEwih67fEv5CWAxXSBrkGHcfoCw0Q8NMDegQIWxAW&cshid=1786173869984207
+      - navigation
+    - contentinfo [ref=e1076]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e1077]
+      - generic [ref=e1081]:
+        - generic [ref=e1083]:
+          - text: Argentina
+          - generic [ref=e1085]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e1087] [cursor=pointer]:
+              - generic [ref=e1088]: Iriondo, Santa Fe
+              - generic [ref=e1090]:
+                - text: "-"
+                - generic [ref=e1091]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e1093] [cursor=pointer]
+        - generic [ref=e1096]:
+          - link "Ayuda" [ref=e1097] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e1098] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e1099] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e1100] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

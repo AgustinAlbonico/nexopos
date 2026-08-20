@@ -1,0 +1,550 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: Rosario "Cine Lumière" "2026" Rosario "Cine Lumière" "2026"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e45] [cursor=pointer]
+      - generic [ref=e51]:
+        - button "Aplicaciones de Google" [ref=e53] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e58] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3DRosario%2B%2522Cine%2BLumi%25C3%25A8re%2522%2B%25222026%2522&ec=futura_srp_og_si_72236_p
+  - generic [ref=e60]:
+    - navigation [ref=e66]:
+      - generic [ref=e68]:
+        - list [ref=e69]:
+          - listitem [ref=e70]:
+            - link "Modo IA" [ref=e73] [cursor=pointer]:
+              - /url: /search?q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ2J8OegQICRAD
+          - listitem [ref=e77]:
+            - link "Todo" [disabled] [ref=e78]
+          - listitem [ref=e81]:
+            - link "Noticias" [ref=e82] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ0pQJegQIHRAB
+          - listitem [ref=e85]:
+            - link "Imágenes" [ref=e86] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQtKgLegQIHBAB
+          - listitem [ref=e89]:
+            - link "Vídeos" [ref=e90] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQtKgLegQIGhAB
+          - listitem [ref=e93]:
+            - link "Shopping" [ref=e94] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&ved=1t:220175&ictx=111
+          - listitem [ref=e97]:
+            - link "Vídeos cortos" [ref=e98] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQs6gLegQIEhAB
+          - listitem [ref=e101]:
+            - button [ref=e102] [cursor=pointer]:
+              - generic "Más filtros" [ref=e103]: Más
+        - button "Herramientas" [ref=e340] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e109]
+    - generic [ref=e114]:
+      - generic [ref=e348]:
+        - heading "Buscando Pensando un poco más" [level=2] [ref=e352]:
+          - generic [ref=e353]:
+            - generic [ref=e354]: Buscando
+            - generic [ref=e364]: Pensando un poco más
+        - progressbar "Generando" [ref=e367]
+      - main [ref=e142]:
+        - generic [ref=e146]:
+          - generic [ref=e147]:
+            - generic [ref=e150]:
+              - generic [ref=e154]:
+                - generic [ref=e162]:
+                  - button "Ver fotos" [ref=e166] [cursor=pointer]
+                  - generic [ref=e170]:
+                    - generic [ref=e171]:
+                      - link [ref=e418] [cursor=pointer]:
+                        - /url: /maps/place/Centro+Cultural+Cine+Lumi%C3%A8re/data=!4m2!3m1!1s0x0:0x85a85941d60a5ef3?sa=X&ved=1t:2428&ictx=111
+                        - img "Mapa de Centro Cultural Cine Lumière" [ref=e420]
+                      - link [ref=e173] [cursor=pointer]:
+                        - /url: /maps/place/Centro+Cultural+Cine+Lumi%C3%A8re/data=!4m2!3m1!1s0x0:0x85a85941d60a5ef3?sa=X&ved=1t:2428&ictx=111
+                        - img "Mapa de Centro Cultural Cine Lumière" [ref=e175]
+                    - link "Ver por fuera" [ref=e183] [cursor=pointer]:
+                      - /url: /local/place/fid/0x95b6535702877981:0x85a85941d60a5ef3/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3D-VjlBp_ZmXr0BTKzfXRcHQ%26cb_client%3Dsearch.gws-prod.gps%26yaw%3D149.54385%26pitch%3D0%26thumbfov%3D100%26w%3D0%26h%3D0&ik=CAISFi1WamxCcF9abVhyMEJUS3pmWFJjSFE%3D&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQpx96BAhEEBE
+                - generic [ref=e188]:
+                  - heading "Centro Cultural Cine Lumière" [level=2] [ref=e191]
+                  - generic [ref=e194]:
+                    - text: 4,4
+                    - 'img "Calificación: 4,4 de 5," [ref=e195]'
+                    - button "1.692 opiniones en Google" [ref=e200] [cursor=pointer]
+                    - text: Cine en Rosario
+                - generic [ref=e428]:
+                  - generic [ref=e440]:
+                    - link "Sitio web" [ref=e442] [cursor=pointer]:
+                      - /url: http://www.lumiererosario.gob.ar/
+                    - link "Cómo llegar" [ref=e449]
+                    - button "Escribir una opinión" [ref=e459] [cursor=pointer]
+                    - button "Guardar Centro Cultural Cine Lumière en una colección" [ref=e469] [cursor=pointer]:
+                      - generic [ref=e472]: Guardar
+                    - button "Compartir" [ref=e475] [cursor=pointer]
+                    - button "Llamar" [ref=e482] [cursor=pointer]
+                  - generic [ref=e492]:
+                    - generic [ref=e494]:
+                      - generic [ref=e495]:
+                        - link "Dirección" [ref=e496] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=centro+cultural+cine+lumi%C3%A8re+direcci%C3%B3n&ludocid=9631045942430555891&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ6BN6BAg0EAI
+                        - text: ":"
+                      - text: Vélez Sársfield 1027, S2013CYS Rosario, Santa Fe
+                    - generic [ref=e499]:
+                      - generic [ref=e500]:
+                        - link "Teléfono" [ref=e501] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=centro+cultural+cine+lumi%C3%A8re+tel%C3%A9fono&ludocid=9631045942430555891&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ6BN6BAgxEAI
+                        - text: ":"
+                      - link "Llamar al número de teléfono 0341 399-8916" [ref=e504] [cursor=pointer]:
+                        - /url: "#"
+                        - text: 0341 399-8916
+                    - generic [ref=e507]:
+                      - generic [ref=e508]:
+                        - link "Provincia" [ref=e509] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=centro+cultural+cine+lumi%C3%A8re+provincia&stick=H4sIAAAAAAAAAOPgE-LVT9c3NEwyqzLOMjQq0JLLTrbSz8lPTizJzM-DM6wKivLLMvOSUxexqien5pUU5Sskl-aUlBYl5igkZ-alKuSU5mYeXlGUqgBVmJkIAG8Uw3xbAAAA&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ6BN6BAgyEAI
+                        - text: ":"
+                      - link "Provincia de Santa Fe" [ref=e512] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Provincia+de+Santa+Fe&si=APenkKlisoOXLiCMwraINHtdqOQii4CK9kOlkQc8Apn-pS60ybgOg0JEOGJhvAVM0X3IAlkyRmJLJju7tSY_mEqkVyT9YFZEclfIkEFLCOXnEXpklgS6S5-Oymtc4_TiwvatdMVRiMM9ieAS-N1U6JM3MeIrSe4Ql8T8ICMzhG9a7sgqliLEH-W-P_bthqbSVoOLGLj36ILjGIqZDTfoGdngc_gsr-d82w%3D%3D&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQmxN6BAgyEAM
+                    - generic [ref=e516]:
+                      - button "Sugerir una edición" [ref=e519] [cursor=pointer]
+                      - text: ·
+                      - link "¿Eres propietario de esta empresa?" [ref=e520] [cursor=pointer]:
+                        - /url: https://business.google.com/create?hl=es&getstarted&authuser=0&fp=9631045942430555891&gmbsrc=ar-es-et-ip-z-gmb-s-z-l~skp%7Cclaimbz_aoc_a%7Cu&ppsrc=GMBSI
+                  - generic [ref=e528]:
+                    - generic [ref=e529]:
+                      - heading "Horario de mayor concurrencia" [level=3] [ref=e531]
+                      - button "Más información sobre los horario de mayor concurrencia" [ref=e534] [cursor=pointer]
+                    - generic [ref=e537]:
+                      - radiogroup [ref=e539]:
+                        - radio "lunes" [ref=e540] [cursor=pointer]:
+                          - generic [ref=e541]: lun
+                        - radio "martes" [ref=e542] [cursor=pointer]:
+                          - generic [ref=e543]: mar
+                        - radio "miércoles" [ref=e544] [cursor=pointer]:
+                          - generic [ref=e545]: mié
+                        - radio "jueves" [ref=e546] [cursor=pointer]:
+                          - generic [ref=e547]: jue
+                        - radio "viernes" [ref=e548] [cursor=pointer]:
+                          - generic [ref=e549]: vie
+                        - radio "sábado" [checked] [ref=e550] [cursor=pointer]:
+                          - generic [ref=e551]: sáb
+                        - radio "domingo" [ref=e553] [cursor=pointer]:
+                          - generic [ref=e554]: dom
+                      - generic [ref=e555]:
+                        - region [ref=e557]:
+                          - generic [ref=e558]: "8 p. m.: Por lo general, es cuando está más concurrido"
+                        - radiogroup [ref=e564]:
+                          - radio [disabled] [ref=e566] [cursor=pointer]
+                          - radio [disabled] [ref=e568] [cursor=pointer]
+                          - radio [disabled] [ref=e570] [cursor=pointer]
+                          - radio [disabled] [ref=e572] [cursor=pointer]
+                          - radio [disabled] [ref=e574] [cursor=pointer]
+                          - radio [disabled] [ref=e576] [cursor=pointer]
+                          - radio [disabled] [ref=e578] [cursor=pointer]
+                          - radio [disabled] [ref=e580] [cursor=pointer]
+                          - radio [disabled] [ref=e582] [cursor=pointer]
+                          - radio [disabled] [ref=e584] [cursor=pointer]
+                          - radio [disabled] [ref=e586] [cursor=pointer]
+                          - radio "5 p. m." [ref=e588] [cursor=pointer]
+                          - radio "6 p. m." [ref=e591] [cursor=pointer]
+                          - radio "7 p. m." [ref=e594] [cursor=pointer]
+                          - radio "8 p. m." [checked] [ref=e597] [cursor=pointer]
+                          - radio "9 p. m." [ref=e600] [cursor=pointer]
+                          - radio "10 p. m." [ref=e603] [cursor=pointer]
+                          - radio [disabled] [ref=e606] [cursor=pointer]
+                        - generic [ref=e608]:
+                          - generic [ref=e612]: 9a. m.
+                          - generic [ref=e618]: 12p. m.
+                          - generic [ref=e624]: 3p. m.
+                          - generic [ref=e630]: 6p. m.
+                          - generic [ref=e636]: 9p. m.
+                  - generic [ref=e649]:
+                    - generic [ref=e650]:
+                      - heading "Opiniones" [level=3] [ref=e651]
+                      - button "Más información" [ref=e656] [cursor=pointer]
+                      - generic [ref=e660]:
+                        - button "Escribir una opinión" [ref=e664] [cursor=pointer]
+                        - link "Agregar fotos" [ref=e667] [cursor=pointer]:
+                          - /url: "#"
+                    - generic [ref=e668]:
+                      - generic [ref=e669]:
+                        - generic [ref=e670]:
+                          - link "gisela castillo":
+                            - /url: https://www.google.com/maps/contrib/108362048282405004514?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "gisela castillo" [ref=e672] [cursor=pointer]
+                        - generic [ref=e673]:
+                          - link "\"Lindo centro cultural, por ahi deberian arreglar butacas que estan rotas.\"" [ref=e674] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s108362048282405004514!2s0x95b6535702877981:0x85a85941d60a5ef3?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 4,0 de 5," [ref=e676]'
+                      - generic [ref=e679]:
+                        - generic [ref=e680]:
+                          - link "Guillermina Romani":
+                            - /url: https://www.google.com/maps/contrib/118263397571288327358?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "Guillermina Romani" [ref=e682] [cursor=pointer]
+                        - generic [ref=e683]:
+                          - link "\"Y variados espectaculos los fines de semana.\"" [ref=e684] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s118263397571288327358!2s0x95b6535702877981:0x85a85941d60a5ef3?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 3,0 de 5," [ref=e686]'
+                      - generic [ref=e689]:
+                        - generic [ref=e690]:
+                          - link "maria Itati depintor":
+                            - /url: https://www.google.com/maps/contrib/117169082847007755325?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "maria Itati depintor" [ref=e692] [cursor=pointer]
+                        - generic [ref=e693]:
+                          - link "\"Buen sonido, buen ambiente climatizado.\"" [ref=e694] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s117169082847007755325!2s0x95b6535702877981:0x85a85941d60a5ef3?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 4,0 de 5," [ref=e696]'
+                    - button "Ver todas las opiniones en Google" [ref=e701] [cursor=pointer]
+                  - generic [ref=e709]:
+                    - heading "Actualizaciones de Centro Cultural Cine Lumière" [level=3] [ref=e710]
+                    - generic [ref=e711]: Ver actualizaciones anteriores en Google
+                  - generic [ref=e717]:
+                    - heading "Perfiles" [level=3] [ref=e718]
+                    - generic [ref=e719]:
+                      - link "Facebook" [ref=e723] [cursor=pointer]:
+                        - /url: https://www.facebook.com/CentroCulturalCineLumiere
+                      - link "Instagram" [ref=e733] [cursor=pointer]:
+                        - /url: https://www.instagram.com/cccinelumiere/
+                      - link "YouTube" [ref=e743] [cursor=pointer]:
+                        - /url: https://www.youtube.com/@centroculturalcinelumiere3284
+                  - generic [ref=e755]:
+                    - heading [level=3] [ref=e756]:
+                      - link "También se buscó" [ref=e757] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+Cultural+Cine+Lumi%C3%A8re&stick=H4sIAAAAAAAAAONgFuLVT9c3NEwyqzLOMjQqUELlagkGZ6aklidWFvulVpQEl6QWFC9ilXVOzSspyldwLs0pKS1KzFFwzsxLVfApzc08vKIodQcrIwD5LYt9VgAAAA&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQMSgAegQILxAB
+                    - generic [ref=e758]:
+                      - link "Cine \"El Cairo\"" [ref=e760] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+El+Cairo&si=APenkKmVGdgpMPDQZoEWS8RIAhsqXAKlNLP0B8DNkkiU9KPI0V8inDOCvnxKbZkXdIXHPFPW_pEOPb8QLgynDQ6OL1kv5qcvPeb9Jk1ZSGQtUrWsdIE3qfgV0iZz-Prr7sLgp188k5c2F9t4xRHFfBxMWWjHieWvGPGCoaFygMkIQK7MDuaAUnKH-3FgPjamBNqTlNJsQovzauCk-pUsNFJsdsBxfB5H9C8kFBuUtMKULAFAIr4S_XqS2if6Y-uOpcqLmt5vCyAMa4TD5wvA_FmvcvkwO2D62TCnp2OFnsG8Yhc_261CjFOrUv8RvZFwsQllYzH8S4Tt&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQxA16BAgvEAQ
+                      - link "Centro Cultural Roberto Fontanarrosa" [ref=e766] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+Cultural+Roberto+Fontanarrosa&si=APenkKnTl1SNyGw93eJictriFKjA8wrAY1gKp22d_AvA68HEcsGh58dKlVWqnkv0GpaVYwTg2idQtE1nog3sRA_9LlPpCiLH0Cn6NycaFuUG4g5_A88_qdK1FQRh74ZqgpGgIPoLxk-pT02dRvkiJyWzZXwKmbV9GsvQ5Jq6HWimHgPh89eTgVx9jiZ94-2rycva76n-xbpUyTojPiov4b8_IPKZlMnea_SU1981UaGWy7-_-C3VXYZ6G4wgCR4q1yqCXrhndEbT6TlCC5fUIVI_VDpUfy4SwzZPHuKl9opymVc5b_vxiYN8x6o3FS38B8-an8ygRkZEip-m4ZlcZ7f-uS8X-PZ3pw%3D%3D&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQxA16BAgvEAc
+                      - link "Centro Cultural La Casa del Tango" [ref=e772] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+Cultural+La+Casa+del+Tango&si=APenkKllX05q7xl66dAosm6nb1iuMgV7Bv8meTZS-zIzIS3OMzPIsYflyS7WIF9QsFvEPGmFYUKyl118lmBl6iBkwYtUZ9vFPmQkGDjvdqJAMULACQKX131LvMz3qndCUjpIjfQBttizkxgjrk-ZXzzS9BwUC2D15QpJ_REieZVAIJ38gTH4UIZR8LBP-q05dhXuX11bYpKGdlky2ZDOgQPMQnrI-qsBPWzBkZQ6lNp9Ih6zDRjr3H9jAx_VOgMoEgFtzsP1wdnJ6DSTCSI1VtTyyqqbDGt7z1cYGBV1C19Uzjj1DbwQm8WC4y7ueaebsBSPh6VjonrvysqIZTlbrLI4no0jfR_CxQ%3D%3D&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQxA16BAgvEAo
+                      - link "La Ciudad de las Niñas y los Niños - Estación Embarcaderos" [ref=e778] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=La+Ciudad+de+las+Ni%C3%B1as+y+los+Ni%C3%B1os&si=APenkKmVGdgpMPDQZoEWS8RIAhsqXAKlNLP0B8DNkkiU9KPI0V76jj1OIhtjl1edeC_XZ09NT5IDPj40WFLH_cgqnG8ll7NhzeXXsBpMOb782rKuIX7oOODG_5-We4h9hyn0AkgrAk0IjgoArfOlLjfSSPqpj9y14F6TQyA5kQgE7BujvmsNs0wSqeAKmczgrYVlsu32nwYPJ7pmL_SKqPeF1p5eB5nEu4eDhOjAZhrNVcNBXEdhrgveocBoLU18NFr9Iur3DL3hJtsCvvajiiw2ObNr1pEbalQTehjB8367c89scJpVN_Mh3tlyPOfTmyTjDqbqwWf7E-lzQ79_aQgLJ6qusr21U5zLEzkKbFHqHefGgUxe0a0%3D&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQxA16BAgvEA0
+              - link "Información sobre estos datos" [ref=e784] [cursor=pointer]:
+                - /url: https://support.google.com/local-listings?p=how_google_sources
+            - generic [ref=e202]:
+              - heading "Resultados web" [level=2] [ref=e203]
+              - generic [ref=e204]:
+                - generic [ref=e207]:
+                  - link "CARTELERA Centro Cultural Cine Lumière https://lumiererosario.gob.ar › web › cartelera" [ref=e209] [cursor=pointer]:
+                    - /url: https://lumiererosario.gob.ar/web/cartelera/
+                    - heading "CARTELERA" [level=3] [ref=e210]
+                    - generic [ref=e216]:
+                      - generic [ref=e217]: Centro Cultural Cine Lumière
+                      - generic [ref=e219]: https://lumiererosario.gob.ar › web › cartelera
+                  - button "Acerca de este resultado" [ref=e223] [cursor=pointer]
+                - generic [ref=e230]:
+                  - text: C.C.
+                  - emphasis [ref=e231]: Cine Lumière
+                  - text: . Vélez Sarsfield 1027. Ver detalle · Colores perdidos. Animación. Aventuras | Argentina |
+                  - emphasis [ref=e232]: "2026"
+                  - text: "| 80 min. | ... 08 Ago. 6:00 pm. C.C."
+                  - emphasis [ref=e233]: Cine
+                  - text: ...
+          - generic [ref=e237]:
+            - generic [ref=e240]:
+              - link "Cine Lumière (@cccinelumiere) Instagram · cccinelumiere Más de 24,1 k seguidores" [ref=e242] [cursor=pointer]:
+                - /url: https://www.instagram.com/cccinelumiere/?hl=es
+                - heading "Cine Lumière (@cccinelumiere)" [level=3] [ref=e243]
+                - generic [ref=e249]:
+                  - generic [ref=e250]: Instagram · cccinelumiere
+                  - generic [ref=e252]: Más de 24,1 k seguidores
+              - button "Acerca de este resultado" [ref=e256] [cursor=pointer]
+            - generic [ref=e263]:
+              - text: A sala repleta en
+              - emphasis [ref=e264]: Cine Lumière
+              - text: presentamos el FESTIVAL ...
+          - generic [ref=e269]:
+            - heading "Más preguntas" [level=2] [ref=e271]
+            - generic [ref=e272]:
+              - button "¿Cuánto está la entrada del cine 2026?" [ref=e278] [cursor=pointer]
+              - button "¿Cartelera cine Lumière Rosario?" [ref=e292] [cursor=pointer]
+              - button "¿Qué hay en el cine hoy, 2026?" [ref=e306] [cursor=pointer]
+              - button "¿Cuándo es la Fiesta del Cine 2026 en Argentina?" [ref=e320] [cursor=pointer]
+          - generic [ref=e787]:
+            - heading "Resultados web" [level=2] [ref=e788]
+            - generic [ref=e789]:
+              - generic [ref=e792]:
+                - link "Agosto en Cine Lumière | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › agosto-en-cine-lumiere-1" [ref=e794] [cursor=pointer]:
+                  - /url: https://www.rosario.gob.ar/inicio/agosto-en-cine-lumiere-1
+                  - heading "Agosto en Cine Lumière | rosario.gob.ar" [level=3] [ref=e795]
+                  - generic [ref=e801]:
+                    - generic [ref=e802]: Rosario.gob
+                    - generic [ref=e804]: https://www.rosario.gob.ar › agosto-en-cine-lumiere-1
+                - button "Acerca de este resultado" [ref=e808] [cursor=pointer]
+              - generic [ref=e814]:
+                - generic [ref=e815]: hace 7 días —
+                - generic [ref=e816]:
+                  - text: Del jueves 20 al domingo 23 de agosto el
+                  - emphasis [ref=e817]: cine Lumière
+                  - text: recibe la 22° edición de BAFICI
+                  - emphasis [ref=e818]: Rosario
+                  - text: y pone en pantalla la MUESTRA ITINERANTE
+                  - emphasis [ref=e819]: "2026"
+                  - text: .
+          - generic [ref=e823]:
+            - generic [ref=e825]:
+              - heading "Videos" [level=2] [ref=e826]
+              - button "Acerca de este resultado" [ref=e827] [cursor=pointer]
+            - generic [ref=e833]:
+              - generic [ref=e838]:
+                - generic [ref=e839]:
+                  - link [ref=e841] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DY2XgxUs3WM/?hl=es
+                    - heading "Comienza el 31° Festival de Cine Latinoamericano Rosario ... Instagram Cine Lumière 27 may 2026" [level=3] [ref=e842]:
+                      - generic [ref=e843]: Comienza el 31° Festival de Cine Latinoamericano Rosario ...
+                      - generic [ref=e847]:
+                        - generic [ref=e848]:
+                          - text: Instagram
+                          - generic [ref=e849]: · Cine Lumière
+                        - generic [ref=e850]: 27 may 2026
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · Cine Lumière
+                      - button "Acerca de este resultado" [ref=e851] [cursor=pointer]
+                - link "Comienza el 31° Festival de Cine Latinoamericano Rosario ... de Cine Lumière en Instagram. Reproducir en Instagram. 1:32" [ref=e856] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DY2XgxUs3WM/?hl=es
+                  - generic [ref=e857]: 1:32
+              - generic [ref=e869]:
+                - generic [ref=e870]:
+                  - link [ref=e872] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DY4em_AuJcB/
+                    - heading "Comienza el 31° Festival de Cine Latinoamericano Rosario ... Instagram Rosario Turismo 28 may 2026" [level=3] [ref=e873]:
+                      - generic [ref=e874]: Comienza el 31° Festival de Cine Latinoamericano Rosario ...
+                      - generic [ref=e878]:
+                        - generic [ref=e879]:
+                          - text: Instagram
+                          - generic [ref=e880]: · Rosario Turismo
+                        - generic [ref=e881]: 28 may 2026
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · Rosario Turismo
+                      - button "Acerca de este resultado" [ref=e882] [cursor=pointer]
+                - link "Comienza el 31° Festival de Cine Latinoamericano Rosario ... de Rosario Turismo en Instagram. Reproducir en Instagram. 1:32" [ref=e887] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DY4em_AuJcB/
+                  - generic [ref=e888]: 1:32
+              - generic [ref=e900]:
+                - generic [ref=e901]:
+                  - link [ref=e903] [cursor=pointer]:
+                    - /url: https://www.facebook.com/rosarioturismo/videos/-comienza-el-31-festival-de-cine-latinoamericano-rosario-del-29-de-mayo-al-6-de-/930850756666482/
+                    - heading "Comienza el 31° Festival de Cine Latinoamericano Rosario ... Facebook Rosario Turismo 28 may 2026" [level=3] [ref=e904]:
+                      - generic [ref=e905]: Comienza el 31° Festival de Cine Latinoamericano Rosario ...
+                      - generic [ref=e909]:
+                        - generic [ref=e910]:
+                          - text: Facebook
+                          - generic [ref=e911]: · Rosario Turismo
+                        - generic [ref=e912]: 28 may 2026
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Facebook
+                            - generic: · Rosario Turismo
+                      - button "Acerca de este resultado" [ref=e913] [cursor=pointer]
+                - link "Comienza el 31° Festival de Cine Latinoamericano Rosario ... de Rosario Turismo en Facebook. Reproducir en Facebook. 1:33" [ref=e918] [cursor=pointer]:
+                  - /url: https://www.facebook.com/rosarioturismo/videos/-comienza-el-31-festival-de-cine-latinoamericano-rosario-del-29-de-mayo-al-6-de-/930850756666482/
+                  - generic [ref=e919]: 1:33
+              - generic [ref=e931]:
+                - generic [ref=e932]:
+                  - link [ref=e934] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DY5Yph_xMA0/
+                    - heading "ROSARIO VIVE EL CINE LATINOAMERICANO 🎞️ La ciudad ... Instagram TOMATE TU TIEMPO | Canal de streaming 28 may 2026" [level=3] [ref=e935]:
+                      - generic [ref=e936]: ROSARIO VIVE EL CINE LATINOAMERICANO 🎞️ La ciudad ...
+                      - generic [ref=e940]:
+                        - generic [ref=e941]:
+                          - text: Instagram
+                          - generic [ref=e942]: · TOMATE TU TIEMPO | Canal de streaming
+                        - generic [ref=e943]: 28 may 2026
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · TOMATE TU TIEMPO | Canal de streaming
+                      - button "Acerca de este resultado" [ref=e944] [cursor=pointer]
+                - link "ROSARIO VIVE EL CINE LATINOAMERICANO 🎞️ La ciudad ... de TOMATE TU TIEMPO | Canal de streaming en Instagram. Reproducir en Instagram. 1:56" [ref=e949] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DY5Yph_xMA0/
+                  - generic [ref=e950]: 1:56
+            - link "Ver todos los videos" [ref=e960] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ8ccDKAJ6BAh6EAQ
+              - separator [ref=e961]
+              - generic [ref=e962]: Ver más
+          - generic [ref=e969]:
+            - heading "Resultados web" [level=2] [ref=e970]
+            - generic [ref=e971]:
+              - generic [ref=e974]:
+                - link "A sala repleta en Cine Lumière presentamos el FESTIVAL ... Facebook · Cine Lumière Más de 20 reacciones · hace 2 meses" [ref=e976] [cursor=pointer]:
+                  - /url: https://www.facebook.com/CentroCulturalCineLumiere/posts/a-sala-repleta-en-cine-lumi%C3%A8re-presentamos-el-festival-de-cine-latinoamericano-r/1415344513964531/
+                  - heading "A sala repleta en Cine Lumière presentamos el FESTIVAL ..." [level=3] [ref=e977]
+                  - generic [ref=e983]:
+                    - generic [ref=e984]: Facebook · Cine Lumière
+                    - generic [ref=e986]: Más de 20 reacciones · hace 2 meses
+                - button "Acerca de este resultado" [ref=e990] [cursor=pointer]
+              - generic [ref=e997]:
+                - text: A sala repleta en
+                - emphasis [ref=e998]: Cine Lumière
+                - text: presentamos el FESTIVAL de CINE LATINOAMERICANO
+                - emphasis [ref=e999]: ROSARIO 2026
+                - text: con una función única de Nuestra Tierra de la gran ...
+          - generic [ref=e1003]:
+            - generic [ref=e1006]:
+              - link "Abre la inscripción de películas al Festival de Cine ... Centro Cultural Cine Lumière https://lumiererosario.gob.ar › Portada › NOTICIAS" [ref=e1008] [cursor=pointer]:
+                - /url: https://lumiererosario.gob.ar/web/abre-la-inscripcion-de-peliculas-al-festival-de-cine-latinoamericano-rosario-2026/
+                - heading "Abre la inscripción de películas al Festival de Cine ..." [level=3] [ref=e1009]
+                - generic [ref=e1015]:
+                  - generic [ref=e1016]: Centro Cultural Cine Lumière
+                  - generic [ref=e1018]: https://lumiererosario.gob.ar › Portada › NOTICIAS
+              - button "Acerca de este resultado" [ref=e1022] [cursor=pointer]
+            - generic [ref=e1028]:
+              - generic [ref=e1029]: 7 nov 2025 —
+              - generic [ref=e1030]:
+                - text: Abre la inscripción de películas al Festival de Cine Latinoamericano
+                - emphasis [ref=e1031]: Rosario 2026
+                - text: . Noticias. 7 noviembre, 2025 Lumiere 0. La Secretaría de ...
+          - generic [ref=e1035]:
+            - generic [ref=e1038]:
+              - 'link "Festival de Cine Latinoamericano Rosario: continúa la ... Noticias MR https://rosarionoticias.gob.ar › page › noticias › title › F..." [ref=e1040] [cursor=pointer]':
+                - /url: https://rosarionoticias.gob.ar/page/noticias/id/682106/title/Festival-de-Cine-Latinoamericano-Rosario%3A-contin%C3%BAa-la-programaci%C3%B3n-con-cortos%2C-talleres-y-figuras-invitadas
+                - 'heading "Festival de Cine Latinoamericano Rosario: continúa la ..." [level=3] [ref=e1041]'
+                - generic [ref=e1047]:
+                  - generic [ref=e1048]: Noticias MR
+                  - generic [ref=e1050]: https://rosarionoticias.gob.ar › page › noticias › title › F...
+              - button "Acerca de este resultado" [ref=e1054] [cursor=pointer]
+            - generic [ref=e1060]:
+              - generic [ref=e1061]: 2 jun 2026 —
+              - generic [ref=e1062]:
+                - text: Apertura Festival de Cine Latinoamericano
+                - emphasis [ref=e1063]: Rosario 2026
+                - text: en
+                - emphasis [ref=e1064]: Cine Lumière
+                - text: "- Sec. de Cultura y Educación (Guillermo Turin Bootello). La 31 ..."
+          - generic [ref=e1070]:
+            - generic [ref=e1073]:
+              - 'link "ROSARIO SE PONE EN MODO CINE: ARRANCA EL ... Facebook · Telenoche Rosario Más de 10 reacciones · hace 2 meses" [ref=e1075] [cursor=pointer]':
+                - /url: https://www.facebook.com/telenocherosario/videos/-rosario-se-pone-en-modo-cine-arranca-el-festival-latinoamericano-este-viernes-c/1707505353916605/
+                - 'heading "ROSARIO SE PONE EN MODO CINE: ARRANCA EL ..." [level=3] [ref=e1076]'
+                - generic [ref=e1082]:
+                  - generic [ref=e1083]: Facebook · Telenoche Rosario
+                  - generic [ref=e1085]: Más de 10 reacciones · hace 2 meses
+              - button "Acerca de este resultado" [ref=e1089] [cursor=pointer]
+            - generic [ref=e1094]:
+              - 'link "ROSARIO SE PONE EN MODO CINE: ARRANCA EL ... de Telenoche Rosario en Facebook. Reproducir en Facebook. 4:14" [ref=e1095] [cursor=pointer]':
+                - /url: https://www.facebook.com/telenocherosario/videos/-rosario-se-pone-en-modo-cine-arranca-el-festival-latinoamericano-este-viernes-c/1707505353916605/
+                - generic [ref=e1096]: 4:14
+              - generic [ref=e1105]: La edición 2026 del Festival Tucumán Cine quedó oficialmente inaugurada esta noche en el Teatro Rosita ... Cine Lumiere porque primero que ...
+          - generic [ref=e1110]:
+            - generic [ref=e1113]:
+              - link "31° Festival de Cine Latinoamericano Rosario 2026 La Canción del País https://www.lacanciondelpais.com.ar › audiovisuales › 3..." [ref=e1115] [cursor=pointer]:
+                - /url: https://www.lacanciondelpais.com.ar/notas/audiovisuales/audiovisuales/31-festival-de-cine-latinoamericano-rosario-2026.html
+                - heading "31° Festival de Cine Latinoamericano Rosario 2026" [level=3] [ref=e1116]
+                - generic [ref=e1122]:
+                  - generic [ref=e1123]: La Canción del País
+                  - generic [ref=e1125]: https://www.lacanciondelpais.com.ar › audiovisuales › 3...
+              - button "Acerca de este resultado" [ref=e1129] [cursor=pointer]
+            - generic [ref=e1135]:
+              - generic [ref=e1136]: 29 may 2026 —
+              - generic [ref=e1137]:
+                - emphasis [ref=e1138]: "2026"
+                - text: . Durante los nueve días de encuentro y celebración con el cine como protagonista, las funciones y actividades serán en el
+                - emphasis [ref=e1139]: Cine Lumière
+                - text: ...
+        - generic [ref=e1141]:
+          - generic [ref=e1146]:
+            - heading "También se buscó" [level=2] [ref=e1148]
+            - generic [ref=e1150]:
+              - generic [ref=e1151]:
+                - link "Cartelera cine Alto Rosario" [ref=e1155] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cartelera+cine+Alto+Rosario&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ1QJ6BAhmEAE
+                - link "Cine Lumière ROSARIO cartelera" [ref=e1169] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Lumi%C3%A8re+ROSARIO+cartelera&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ1QJ6BAhpEAE
+                - link "Cartelera Cine Lumière hoy" [ref=e1183] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cartelera+Cine+Lumi%C3%A8re+hoy&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ1QJ6BAh9EAE
+                - link "Festival de Cine Latinoamericano Rosario 2026" [ref=e1197] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Festival+de+Cine+Latinoamericano+Rosario+2026&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ1QJ6BAh7EAE
+              - generic [ref=e1208]:
+                - link "Cartelera cine las tipas rosario" [ref=e1212] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cartelera+cine+las+tipas+rosario&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ1QJ6BAh8EAE
+                - link "Cine Lumière Rosario talleres" [ref=e1226] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Lumi%C3%A8re+Rosario+talleres&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ1QJ6BAh1EAE
+                - link "Cartelera de cine en rosario hoy" [ref=e1240] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Cartelera+de+cine+en+rosario+hoy&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ1QJ6BAhvEAE
+                - link "Centro cultural Cine Lumière próximos eventos" [ref=e1254] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+cultural+Cine+Lumi%C3%A8re+pr%C3%B3ximos+eventos&sa=X&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ1QJ6BAhrEAE
+          - navigation [ref=e1265]:
+            - heading "Navegación de páginas" [level=1] [ref=e1266]
+            - text: "1"
+            - link "Page 2" [ref=e1269] [cursor=pointer]:
+              - /url: /search?q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sca_esv=569d465b5b1d57df&ei=Qdh2auijB5P-5OUP0brZyQI&start=10&sa=N&sstk=AU9db-CNuMlsKIgOpctZP5iBJBZaXOWkJx9rU9DH5LVB1OhlSBmDoDMbelDKboIs9Z5yyjWFxamMDMDACHm32pLaElic6yOBuQVjyQ&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ8tMDegQIXxAE
+              - text: "2"
+            - link "Page 3" [ref=e1271] [cursor=pointer]:
+              - /url: /search?q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sca_esv=569d465b5b1d57df&ei=Qdh2auijB5P-5OUP0brZyQI&start=20&sa=N&sstk=AU9db-CNuMlsKIgOpctZP5iBJBZaXOWkJx9rU9DH5LVB1OhlSBmDoDMbelDKboIs9Z5yyjWFxamMDMDACHm32pLaElic6yOBuQVjyQ&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ8tMDegQIXxAG
+              - text: "3"
+            - link "Page 4" [ref=e1273] [cursor=pointer]:
+              - /url: /search?q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sca_esv=569d465b5b1d57df&ei=Qdh2auijB5P-5OUP0brZyQI&start=30&sa=N&sstk=AU9db-CNuMlsKIgOpctZP5iBJBZaXOWkJx9rU9DH5LVB1OhlSBmDoDMbelDKboIs9Z5yyjWFxamMDMDACHm32pLaElic6yOBuQVjyQ&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ8tMDegQIXxAI
+              - text: "4"
+            - link "Page 5" [ref=e1275] [cursor=pointer]:
+              - /url: /search?q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sca_esv=569d465b5b1d57df&ei=Qdh2auijB5P-5OUP0brZyQI&start=40&sa=N&sstk=AU9db-CNuMlsKIgOpctZP5iBJBZaXOWkJx9rU9DH5LVB1OhlSBmDoDMbelDKboIs9Z5yyjWFxamMDMDACHm32pLaElic6yOBuQVjyQ&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ8tMDegQIXxAK
+              - text: "5"
+            - link "Page 6" [ref=e1277] [cursor=pointer]:
+              - /url: /search?q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sca_esv=569d465b5b1d57df&ei=Qdh2auijB5P-5OUP0brZyQI&start=50&sa=N&sstk=AU9db-CNuMlsKIgOpctZP5iBJBZaXOWkJx9rU9DH5LVB1OhlSBmDoDMbelDKboIs9Z5yyjWFxamMDMDACHm32pLaElic6yOBuQVjyQ&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ8tMDegQIXxAM
+              - text: "6"
+            - link "Page 7" [ref=e1279] [cursor=pointer]:
+              - /url: /search?q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sca_esv=569d465b5b1d57df&ei=Qdh2auijB5P-5OUP0brZyQI&start=60&sa=N&sstk=AU9db-CNuMlsKIgOpctZP5iBJBZaXOWkJx9rU9DH5LVB1OhlSBmDoDMbelDKboIs9Z5yyjWFxamMDMDACHm32pLaElic6yOBuQVjyQ&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ8tMDegQIXxAO
+              - text: "7"
+            - link "Page 8" [ref=e1281] [cursor=pointer]:
+              - /url: /search?q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sca_esv=569d465b5b1d57df&ei=Qdh2auijB5P-5OUP0brZyQI&start=70&sa=N&sstk=AU9db-CNuMlsKIgOpctZP5iBJBZaXOWkJx9rU9DH5LVB1OhlSBmDoDMbelDKboIs9Z5yyjWFxamMDMDACHm32pLaElic6yOBuQVjyQ&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ8tMDegQIXxAQ
+              - text: "8"
+            - link "Page 9" [ref=e1283] [cursor=pointer]:
+              - /url: /search?q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sca_esv=569d465b5b1d57df&ei=Qdh2auijB5P-5OUP0brZyQI&start=80&sa=N&sstk=AU9db-CNuMlsKIgOpctZP5iBJBZaXOWkJx9rU9DH5LVB1OhlSBmDoDMbelDKboIs9Z5yyjWFxamMDMDACHm32pLaElic6yOBuQVjyQ&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ8tMDegQIXxAS
+              - text: "9"
+            - link "Page 10" [ref=e1285] [cursor=pointer]:
+              - /url: /search?q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sca_esv=569d465b5b1d57df&ei=Qdh2auijB5P-5OUP0brZyQI&start=90&sa=N&sstk=AU9db-CNuMlsKIgOpctZP5iBJBZaXOWkJx9rU9DH5LVB1OhlSBmDoDMbelDKboIs9Z5yyjWFxamMDMDACHm32pLaElic6yOBuQVjyQ&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ8tMDegQIXxAU
+              - text: "10"
+            - heading [level=2] [ref=e1287]:
+              - link "Siguiente" [ref=e1288] [cursor=pointer]:
+                - /url: /search?q=Rosario+%22Cine+Lumi%C3%A8re%22+%222026%22&sca_esv=569d465b5b1d57df&ei=Qdh2auijB5P-5OUP0brZyQI&start=10&sa=N&sstk=AU9db-CNuMlsKIgOpctZP5iBJBZaXOWkJx9rU9DH5LVB1OhlSBmDoDMbelDKboIs9Z5yyjWFxamMDMDACHm32pLaElic6yOBuQVjyQ&ved=2ahUKEwioyJ7qvpCWAxUTP7kGHVFdNikQ8NMDegQIXxAW
+        - navigation
+    - contentinfo [ref=e1292]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e1293]
+      - generic [ref=e1297]:
+        - generic [ref=e1299]:
+          - text: Argentina
+          - generic [ref=e1301]:
+            - button "Iriondo, Santa Fe - Según tu actividad anterior" [ref=e1303] [cursor=pointer]:
+              - generic [ref=e1304]: Iriondo, Santa Fe
+              - generic [ref=e1306]:
+                - text: "-"
+                - generic [ref=e1307]: Según tu actividad anterior
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e1309] [cursor=pointer]
+        - generic [ref=e1312]:
+          - link "Ayuda" [ref=e1313] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e1314] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e1315] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e1316] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

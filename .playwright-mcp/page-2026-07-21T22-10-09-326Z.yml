@@ -1,0 +1,146 @@
+- generic [active] [ref=e12]:
+  - generic [ref=e13]:
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - link "NP" [ref=e52] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=e54]:
+          - generic [ref=e55]:
+            - link [ref=e57] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=e64] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=e70] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=e76] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=e80] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=e85] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=e92] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=e97] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=e104] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=e110] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=e116] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=e120] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=e125] [cursor=pointer]
+      - main [ref=e130]:
+        - generic [ref=e132]:
+          - generic [ref=e133]:
+            - generic [ref=e134]:
+              - heading "¡Hola, Administrador!" [level=1] [ref=e135]
+              - paragraph [ref=e136]: martes, 21 de julio de 2026
+            - generic [ref=e137]:
+              - button "Nueva Venta" [ref=e138] [cursor=pointer]
+              - button "Registrar Ingreso" [ref=e140] [cursor=pointer]
+          - generic [ref=e142]:
+            - heading "Alertas" [level=3] [ref=e144]
+            - generic [ref=e147]:
+              - generic [ref=e148]:
+                - generic [ref=e149]: No hay ningún backup realizado - Se recomienda crear uno
+                - button "Crear Backup" [ref=e154] [cursor=pointer]
+              - generic [ref=e155]:
+                - generic [ref=e156]: 📦 1 producto(s) sin stock
+                - button "Ver" [ref=e157] [cursor=pointer]
+          - generic [ref=e158]:
+            - generic [ref=e159]:
+              - heading "Ventas Hoy" [level=3] [ref=e162]
+              - generic [ref=e167]:
+                - generic [ref=e168]: $ 0
+                - paragraph [ref=e169]: 0 ventas
+            - generic [ref=e170]:
+              - heading "Ventas Mes" [level=3] [ref=e173]
+              - generic [ref=e177]:
+                - generic [ref=e178]: $ 117.000
+                - generic [ref=e179]: +100.0% vs mes anterior
+            - generic [ref=e184]:
+              - heading "Resultado Mes" [level=3] [ref=e187]
+              - generic [ref=e190]:
+                - generic [ref=e191]: $ 117.000
+                - paragraph [ref=e192]: "Margen: 100.0%"
+            - generic [ref=e193]:
+              - heading "Deudores" [level=3] [ref=e196]
+              - generic [ref=e202]:
+                - generic [ref=e203]: $ 0
+                - paragraph [ref=e204]: Sin cuentas vencidas
+            - generic [ref=e205]:
+              - heading "Inventario" [level=3] [ref=e208]
+              - generic [ref=e213]:
+                - generic [ref=e214]: $ 60.000
+                - paragraph [ref=e215]: 2 productos activos
+          - generic [ref=e216]:
+            - generic [ref=e217]:
+              - heading "Caja Abierta" [level=3] [ref=e219]
+              - generic [ref=e223]:
+                - generic [ref=e224]:
+                  - paragraph [ref=e225]: $ 117.000
+                  - paragraph [ref=e226]: Abierta por Administrador a las 06:56 p. m.
+                - button "Ver Caja" [ref=e227] [cursor=pointer]
+            - generic [ref=e232]:
+              - generic [ref=e233]:
+                - heading "Ventas Últimos 7 Días" [level=3] [ref=e234]
+                - paragraph [ref=e238]: Ingresos diarios de la última semana
+              - application [ref=e242]:
+                - generic [ref=e263]:
+                  - generic [ref=e264]:
+                    - generic [ref=e265]: 15/7
+                    - generic [ref=e267]: 16/7
+                    - generic [ref=e269]: 17/7
+                    - generic [ref=e271]: 18/7
+                    - generic [ref=e273]: 19/7
+                    - generic [ref=e275]: 20/7
+                    - generic [ref=e277]: 21/7
+                  - generic [ref=e279]:
+                    - generic [ref=e280]: $0k
+                    - generic [ref=e282]: $0k
+                    - generic [ref=e284]: $0k
+                    - generic [ref=e286]: $0k
+                    - generic [ref=e288]: $0k
+          - generic [ref=e290]:
+            - generic [ref=e291]:
+              - generic [ref=e292]:
+                - heading "Top 5 Productos del Mes" [level=3] [ref=e300]
+                - link "Ver más" [ref=e301] [cursor=pointer]:
+                  - /url: "#/reports"
+              - paragraph [ref=e304]: Los productos más vendidos este mes
+            - generic [ref=e306]:
+              - generic [ref=e307]:
+                - generic [ref=e308]: "1"
+                - generic [ref=e309]:
+                  - paragraph [ref=e310]: Lector
+                  - paragraph [ref=e311]: 5 unidades vendidas
+                - paragraph [ref=e313]: $ 65.000
+              - generic [ref=e314]:
+                - generic [ref=e315]: "2"
+                - generic [ref=e316]:
+                  - paragraph [ref=e317]: Turron
+                  - paragraph [ref=e318]: 4 unidades vendidas
+                - paragraph [ref=e320]: $ 52.000
+          - generic [ref=e321]:
+            - generic [ref=e322]:
+              - heading "Ingresos Hoy" [level=3] [ref=e324]
+              - generic [ref=e325]:
+                - generic [ref=e326]: $ 0
+                - paragraph [ref=e327]: 0 ventas completadas
+            - generic [ref=e328]:
+              - heading "Egresos Hoy" [level=3] [ref=e330]
+              - generic [ref=e331]:
+                - generic [ref=e332]: $ 0
+                - paragraph [ref=e333]: 0 movimientos
+            - generic [ref=e334]:
+              - heading "Flujo Neto Hoy" [level=3] [ref=e336]
+              - generic [ref=e337]:
+                - generic [ref=e338]: $ 0
+                - paragraph [ref=e339]: Balance positivo
+    - region "Notifications alt+T":
+      - list:
+        - listitem [ref=e340]:
+          - generic [ref=e344]: Bienvenido, Administrador
+  - generic [ref=e346]: $0k

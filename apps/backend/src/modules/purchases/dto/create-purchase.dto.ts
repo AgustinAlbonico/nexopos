@@ -48,9 +48,9 @@ export class CreatePurchaseDto {
     supplierId?: string; // ID del proveedor (relación)
 
     @IsString()
-    @IsNotEmpty({ message: 'El nombre del proveedor es requerido' })
+    @IsOptional()
     @MaxLength(200, { message: 'El nombre del proveedor no puede exceder 200 caracteres' })
-    providerName!: string;
+    providerName?: string;
 
     @IsString()
     @IsOptional()

@@ -1,0 +1,247 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Compras
+                  - paragraph: Registra compras a proveedores y actualiza automáticamente el stock
+                - generic:
+                  - button: Nueva Compra
+              - generic:
+                - paragraph: Mostrando compras del mes actual (01/08/2026 - 31/08/2026)
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=3]: Total Compras
+                  - generic: "0"
+                - generic:
+                  - generic:
+                    - heading [level=3]: Monto Total
+                  - generic: $ 0,00
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pagado
+                  - generic: $ 0,00
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pendiente
+                  - generic: $ 0,00
+              - generic:
+                - generic:
+                  - heading [level=3]: Filtros
+                - generic:
+                  - generic:
+                    - generic:
+                      - button: Hoy
+                      - button: Esta Semana
+                      - button: Mes Actual
+                      - button: Todas las Fechas
+                    - generic:
+                      - generic:
+                        - text: Buscar
+                        - textbox:
+                          - /placeholder: Nº, proveedor, factura...
+                      - generic:
+                        - text: Estado
+                        - combobox:
+                          - generic: Todos
+                      - generic:
+                        - text: Desde
+                        - textbox: 2026-08-01
+                      - generic:
+                        - text: Hasta
+                        - textbox: 2026-08-31
+                      - generic:
+                        - generic:
+                          - paragraph: Producto incluido
+                        - combobox:
+                          - generic: Buscar producto...
+                      - button: Restablecer
+              - generic:
+                - generic:
+                  - heading [level=3]: Listado de Compras
+                - generic:
+                  - generic:
+                    - paragraph: No hay compras registradas
+                    - paragraph: Las compras que registres aparecerán aquí
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog:
+    - generic:
+      - generic:
+        - generic:
+          - heading [level=2]: Registrar Compra
+          - paragraph: Completa los datos de la compra. El stock se actualizará al marcar como pagada.
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - heading [level=3]: Datos del Proveedor
+            - generic:
+              - generic: Proveedor Registrado *
+              - combobox:
+                - generic: Buscar proveedor o crear nuevo
+          - generic:
+            - heading [level=3]: Datos de la Compra
+            - generic:
+              - generic:
+                - generic: Fecha *
+                - textbox: 2026-08-13
+              - generic:
+                - text: Nº Factura
+                - textbox:
+                  - /placeholder: 0001-00001234
+              - generic:
+                - text: Estado
+                - combobox:
+                  - generic: Pagada
+                - combobox
+              - generic:
+                - generic: Método de Pago *
+                - combobox:
+                  - generic: Seleccione método de pago
+                - combobox
+          - generic:
+            - generic:
+              - generic:
+                - textbox:
+                  - /placeholder: Escaneá el código de barras o escribí + Enter
+              - button [disabled]
+            - generic:
+              - heading [level=3]: Productos *
+              - generic:
+                - button: Cargar por Matriz (Curvero)
+                - button: Agregar Línea
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic: Producto
+                        - combobox:
+                          - generic: Buscar producto...
+                    - generic:
+                      - generic:
+                        - text: Cantidad
+                        - textbox: "1"
+                    - generic:
+                      - generic:
+                        - text: Precio Unit.
+                        - textbox: "0"
+                    - generic:
+                      - text: Subtotal
+                      - generic: $ 0,00
+          - generic:
+            - generic:
+              - text: Impuestos (+)
+              - textbox: "0"
+            - generic:
+              - text: Descuento (-)
+              - textbox: "0"
+            - generic:
+              - text: Subtotal
+              - generic: $ 0,00
+            - generic:
+              - text: TOTAL
+              - generic: $ 0,00
+          - generic:
+            - text: Notas / Observaciones
+            - textbox:
+              - /placeholder: Notas adicionales sobre la compra...
+          - generic:
+            - button [disabled]: Registrar Compra
+    - button:
+      - generic: Close
+  - dialog [ref=e1852]:
+    - generic [ref=e1853]:
+      - heading "Carga de Compra por Curva / Matriz de Talles" [level=2] [ref=e1858]
+      - paragraph [ref=e1859]: Ingresá cantidades masivas por variante para cargar una curva completa de producto en un solo paso.
+    - generic [ref=e1861]:
+      - text: 1. Seleccionar Modelo / Producto Padre
+      - combobox [active] [ref=e1862]:
+        - option "-- Seleccionar producto padre --" [selected]
+        - option "Remera E2E 1786627854399"
+        - option "Remera E2E 1786627926521"
+        - option "Remera E2E 1786628001552"
+        - option "Remera E2E 1786628158475"
+        - option "Remera E2E 1786628233413"
+        - option "Remera E2E 1786628344465"
+        - option "Remera E2E 1786628403269"
+        - option "Remera E2E 1786628595591"
+        - option "Remera E2E 1786628684300"
+        - option "Remera E2E 1786628768265"
+        - option "Remera E2E 1786628894042"
+        - option "Remera E2E 1786628972359"
+        - option "Remera E2E 1786629069457"
+        - option "Remera E2E 1786629222630"
+        - option "Remera E2E 1786629375223"
+        - option "Remera E2E 1786629480861"
+        - option "Remera E2E 1786629540388"
+        - option "Remera E2E 1786629566918"
+        - option "Remera E2E 1786629653735"
+        - option "Remera E2E 1786630418727"
+        - option "Remera E2E 1786630524707"
+        - option "Remera E2E 1786630639421"
+        - option "Remera E2E 1786630753295"
+        - option "Remera E2E 1786630910132"
+        - option "Remera E2E 1786630958651"
+        - option "Remera E2E 1786631023605"
+        - option "Remera E2E 1786631059803"
+        - option "Remera Test Manual Direct"
+        - option "Remera Test ts-node"
+        - option "Remera Test ts-node"
+        - option "Remera Verano E2E Test"
+    - generic [ref=e1863]:
+      - button "Cancelar" [ref=e1864] [cursor=pointer]
+      - button "Agregar Curva a la Compra" [disabled]
+    - button "Close" [ref=e1865] [cursor=pointer]

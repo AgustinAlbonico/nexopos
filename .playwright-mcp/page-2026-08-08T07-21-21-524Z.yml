@@ -1,0 +1,494 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Cine El Cairo\" Rosario sitio web \"Cine El Cairo\" Rosario sitio web"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Cine%2BEl%2BCairo%2522%2BRosario%2Bsitio%2Bweb&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=%22Cine+El+Cairo%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXtKMr2YTbKdMXhrjmxznMwetBCT0EjJoPk6zSbyNWeBTvbSVH7d0ZrAbyxujeTlkXOilRfMF58r1yxtxJbVFaWlYDgs5g&aep=1&ntc=1&cs=1&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ2J8OegQICRAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Noticias" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=%22Cine+El+Cairo%22+Rosario+sitio+web&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXtKMr2YTbKdMXhrjmxznMwetBCT0EjJoPk6zSbyNWeBTvbSVH7d0ZrAbyxujeTlkXOilRfMF58r1yxtxJbVFaWlYDgs5g&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ0pQJegQIIBAB
+          - listitem [ref=e94]:
+            - link "Imágenes" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXtKMr2YTbKdMXhrjmxznMwetBCT0EjJoPk6zSbyNWeBTvbSVH7d0ZrAbyxujeTlkXOilRfMF58r1yxtxJbVFaWlYDgs5g&q=%22Cine+El+Cairo%22+Rosario+sitio+web&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQtKgLegQIHRAB
+          - listitem [ref=e98]:
+            - link "Shopping" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXtKMr2YTbKdMXhrjmxznMwetBCT0EjJoPk6zSbyNWeBTvbSVH7d0ZrAbyxujeTlkXOilRfMF58r1yxtxJbVFaWlYDgs5g&q=%22Cine+El+Cairo%22+Rosario+sitio+web&ved=1t:220175&ictx=111
+          - listitem [ref=e102]:
+            - link "Vídeos" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXtKMr2YTbKdMXhrjmxznMwetBCT0EjJoPk6zSbyNWeBTvbSVH7d0ZrAbyxujeTlkXOilRfMF58r1yxtxJbVFaWlYDgs5g&q=%22Cine+El+Cairo%22+Rosario+sitio+web&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQtKgLegQIExAB
+          - listitem [ref=e106]:
+            - link "Vídeos cortos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXtKMr2YTbKdMXhrjmxznMwetBCT0EjJoPk6zSbyNWeBTvbSVH7d0ZrAbyxujeTlkXOilRfMF58r1yxtxJbVFaWlYDgs5g&q=%22Cine+El+Cairo%22+Rosario+sitio+web&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQs6gLegQIEhAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - main [ref=e132]:
+      - generic [ref=e136]:
+        - generic [ref=e137]:
+          - generic [ref=e140]:
+            - generic [ref=e144]:
+              - generic [ref=e152]:
+                - button "Ver fotos" [ref=e156] [cursor=pointer]
+                - generic [ref=e160]:
+                  - generic [ref=e161]:
+                    - link [ref=e163] [cursor=pointer]:
+                      - /url: /maps/place/Cine+%22El+Cairo%22/data=!4m2!3m1!1s0x0:0xac6b28f1c9818dc2?sa=X&ved=1t:2428&ictx=111
+                      - img "Mapa de Cine El Cairo" [ref=e165]
+                    - link [ref=e167] [cursor=pointer]:
+                      - /url: /maps/place/Cine+%22El+Cairo%22/data=!4m2!3m1!1s0x0:0xac6b28f1c9818dc2?sa=X&ved=1t:2428&ictx=111
+                      - img "Mapa de Cine El Cairo" [ref=e169]
+                  - link "Ver por fuera" [ref=e177] [cursor=pointer]:
+                    - /url: /local/place/fid/0x95b7ab184f1e6b13:0xac6b28f1c9818dc2/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3DtD7Lq8j_5-cjOHB6ci6swg%26cb_client%3Dsearch.gws-prod.gps%26yaw%3D76.65408%26pitch%3D0%26thumbfov%3D100%26w%3D0%26h%3D0&ik=CAISFnREN0xxOGpfNS1jak9IQjZjaTZzd2c%3D&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQpx96BAhCEBE
+              - generic [ref=e182]:
+                - heading "Cine \"El Cairo\"" [level=2] [ref=e185]
+                - generic [ref=e188]:
+                  - text: 4,7
+                  - 'img "Calificación: 4,7 de 5," [ref=e189]'
+                  - button "1.729 opiniones en Google" [ref=e194] [cursor=pointer]
+                  - text: Cine en Rosario
+              - generic [ref=e201]:
+                - generic [ref=e213]:
+                  - link "Sitio web" [ref=e215] [cursor=pointer]:
+                    - /url: http://www.elcairocinepublico.gob.ar/
+                  - link "Cómo llegar" [ref=e222]
+                  - button "Escribir una opinión" [ref=e232] [cursor=pointer]
+                  - button "Guardar Cine \"El Cairo\" en una colección" [ref=e242] [cursor=pointer]:
+                    - generic [ref=e245]: Guardar
+                  - button "Compartir" [ref=e248] [cursor=pointer]
+                  - button "Llamar" [ref=e255] [cursor=pointer]
+                - generic [ref=e265]:
+                  - generic [ref=e267]:
+                    - generic [ref=e268]:
+                      - link "Dirección" [ref=e269] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=cine+el+cairo+direcci%C3%B3n&ludocid=12424069015964585410&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ6BN6BAg1EAI
+                      - text: ":"
+                    - text: Sta Fe 1120, S2000ATP Rosario, Santa Fe
+                  - generic [ref=e272]:
+                    - generic [ref=e273]:
+                      - link "Teléfono" [ref=e274] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=cine+el+cairo+tel%C3%A9fono&ludocid=12424069015964585410&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ6BN6BAg0EAI
+                      - text: ":"
+                    - link "Llamar al número de teléfono 0341 472-1851" [ref=e277] [cursor=pointer]:
+                      - /url: "#"
+                      - text: 0341 472-1851
+                  - generic [ref=e280]:
+                    - generic [ref=e281]:
+                      - link "Provincia" [ref=e282] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=cine+el+cairo+provincia&stick=H4sIAAAAAAAAAOPgE-LVT9c3NEwySy40LTTJ1pLLTrbSz8lPTizJzM-DM6wKivLLMvOSUxexiidn5qUqpOYoJCdmFuUrQCUyEwHcvsKESwAAAA&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ6BN6BAg2EAI
+                      - text: ":"
+                    - link "Provincia de Santa Fe" [ref=e285] [cursor=pointer]:
+                      - /url: /search?sca_esv=569d465b5b1d57df&q=Provincia+de+Santa+Fe&si=APenkKlisoOXLiCMwraINHtdqOQii4CK9kOlkQc8Apn-pS60ybgOg0JEOGJhvAVM0X3IAlkyRmJLJju7tSY_mEqkVyT9YFZEclfIkEFLCOXnEXpklgS6S5-Oymtc4_TiwvatdMVhMPodwXizWHaRo64EaQKtbOh1mdq1cZOBBXXaVwRud-yMgrYW2hpZ7q4LS3NbHAi1_zDrr_a3hHnhzlj4ExsYs_MnKg%3D%3D&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQmxN6BAg2EAM
+                  - generic [ref=e289]:
+                    - button "Sugerir una edición" [ref=e292] [cursor=pointer]
+                    - text: ·
+                    - link "¿Eres propietario de esta empresa?" [ref=e293] [cursor=pointer]:
+                      - /url: https://business.google.com/create?hl=es&getstarted&authuser=0&fp=12424069015964585410&gmbsrc=ar-es-et-ip-z-gmb-s-z-l~skp%7Cclaimbz_aoc_a%7Cu&ppsrc=GMBSI
+                - generic [ref=e301]:
+                  - generic [ref=e302]:
+                    - heading "Horario de mayor concurrencia" [level=3] [ref=e304]
+                    - button "Más información sobre los horario de mayor concurrencia" [ref=e307] [cursor=pointer]
+                  - generic [ref=e310]:
+                    - radiogroup [ref=e312]:
+                      - radio "lunes" [ref=e313] [cursor=pointer]:
+                        - generic [ref=e314]: lun
+                      - radio "martes" [ref=e315] [cursor=pointer]:
+                        - generic [ref=e316]: mar
+                      - radio "miércoles" [ref=e317] [cursor=pointer]:
+                        - generic [ref=e318]: mié
+                      - radio "jueves" [ref=e319] [cursor=pointer]:
+                        - generic [ref=e320]: jue
+                      - radio "viernes" [ref=e321] [cursor=pointer]:
+                        - generic [ref=e322]: vie
+                      - radio "sábado" [checked] [ref=e323] [cursor=pointer]:
+                        - generic [ref=e324]: sáb
+                      - radio "domingo" [ref=e326] [cursor=pointer]:
+                        - generic [ref=e327]: dom
+                    - generic [ref=e328]:
+                      - region [ref=e330]:
+                        - generic [ref=e331]: "10 p. m.: Por lo general, está un poco concurrido"
+                      - radiogroup [ref=e337]:
+                        - radio [disabled] [ref=e339] [cursor=pointer]
+                        - radio [disabled] [ref=e341] [cursor=pointer]
+                        - radio [disabled] [ref=e343] [cursor=pointer]
+                        - radio [disabled] [ref=e345] [cursor=pointer]
+                        - radio [disabled] [ref=e347] [cursor=pointer]
+                        - radio [disabled] [ref=e349] [cursor=pointer]
+                        - radio [disabled] [ref=e351] [cursor=pointer]
+                        - radio [disabled] [ref=e353] [cursor=pointer]
+                        - radio [disabled] [ref=e355] [cursor=pointer]
+                        - radio [disabled] [ref=e357] [cursor=pointer]
+                        - radio [disabled] [ref=e359] [cursor=pointer]
+                        - radio [disabled] [ref=e361] [cursor=pointer]
+                        - radio "6 p. m." [ref=e363] [cursor=pointer]
+                        - radio "7 p. m." [ref=e366] [cursor=pointer]
+                        - radio "8 p. m." [ref=e369] [cursor=pointer]
+                        - radio "9 p. m." [ref=e372] [cursor=pointer]
+                        - radio "10 p. m." [checked] [ref=e375] [cursor=pointer]
+                        - radio "11 p. m." [ref=e378] [cursor=pointer]
+                      - generic [ref=e381]:
+                        - generic [ref=e385]: 9a. m.
+                        - generic [ref=e391]: 12p. m.
+                        - generic [ref=e397]: 3p. m.
+                        - generic [ref=e403]: 6p. m.
+                        - generic [ref=e409]: 9p. m.
+                - generic [ref=e419]:
+                  - generic [ref=e421]:
+                    - heading "Opiniones de la Web" [level=3] [ref=e422]
+                    - link "Cine \"El Cairo\" recibió una opinión con 4,3 estrellas en Facebook. 397 votos" [ref=e425] [cursor=pointer]:
+                      - /url: https://www.facebook.com/cineelcairo/?locale=es_LA
+                      - text: 4,3/5Facebook · 397 votos
+                  - generic [ref=e428]:
+                    - generic [ref=e429]:
+                      - heading "Opiniones" [level=3] [ref=e430]
+                      - button "Más información" [ref=e435] [cursor=pointer]
+                      - generic [ref=e439]:
+                        - button "Escribir una opinión" [ref=e443] [cursor=pointer]
+                        - link "Agregar fotos" [ref=e446] [cursor=pointer]:
+                          - /url: "#"
+                    - generic [ref=e447]:
+                      - generic [ref=e448]:
+                        - generic [ref=e449]:
+                          - link "Jhon C. Martínez":
+                            - /url: https://www.google.com/maps/contrib/106595842376714407062?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "Jhon C. Martínez" [ref=e451] [cursor=pointer]
+                        - generic [ref=e452]:
+                          - link "\"El espacio es hermoso y la cartelera de peliculas es muy variada\"" [ref=e453] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s106595842376714407062!2s0x95b7ab184f1e6b13:0xac6b28f1c9818dc2?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 5,0 de 5," [ref=e455]'
+                      - generic [ref=e458]:
+                        - generic [ref=e459]:
+                          - link "Bruno Pace":
+                            - /url: https://www.google.com/maps/contrib/107270459716516921141?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "Bruno Pace" [ref=e461] [cursor=pointer]
+                        - generic [ref=e462]:
+                          - link "\"Estuve unos 20 minutos esperando ser atendido y nunca lo hicieron.\"" [ref=e463] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s107270459716516921141!2s0x95b7ab184f1e6b13:0xac6b28f1c9818dc2?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 1,0 de 5," [ref=e465]'
+                      - generic [ref=e468]:
+                        - generic [ref=e469]:
+                          - link "Marcos Recio":
+                            - /url: https://www.google.com/maps/contrib/107389470404306231078?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "Marcos Recio" [ref=e471] [cursor=pointer]
+                        - generic [ref=e472]:
+                          - link "\"Es un muy lindo cine, al que recuerdo de ver pelis en mí infancia.\"" [ref=e473] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s107389470404306231078!2s0x95b7ab184f1e6b13:0xac6b28f1c9818dc2?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 5,0 de 5," [ref=e475]'
+                    - button "Ver todas las opiniones en Google" [ref=e480] [cursor=pointer]
+                - generic [ref=e485]:
+                  - heading "Perfiles" [level=3] [ref=e486]
+                  - generic [ref=e487]:
+                    - link "Facebook" [ref=e491] [cursor=pointer]:
+                      - /url: https://www.facebook.com/cineelcairo
+                    - link "X (Twitter)" [ref=e501] [cursor=pointer]:
+                      - /url: https://twitter.com/cineelcairo
+                    - link "Instagram" [ref=e511] [cursor=pointer]:
+                      - /url: https://www.instagram.com/cineelcairo/
+            - link "Información sobre estos datos" [ref=e519] [cursor=pointer]:
+              - /url: https://support.google.com/local-listings?p=how_google_sources
+          - generic [ref=e521]:
+            - heading "Resultados web" [level=2] [ref=e522]
+            - generic [ref=e523]:
+              - generic [ref=e526]:
+                - link "El Cairo – Cine Público - Rosario El Cairo – Cine Público https://elcairocinepublico.gob.ar" [ref=e528] [cursor=pointer]:
+                  - /url: https://elcairocinepublico.gob.ar/
+                  - heading "El Cairo – Cine Público - Rosario" [level=3] [ref=e529]
+                  - generic [ref=e535]:
+                    - generic [ref=e536]: El Cairo – Cine Público
+                    - generic [ref=e538]: https://elcairocinepublico.gob.ar
+                - button "Acerca de este resultado" [ref=e542] [cursor=pointer]
+              - generic [ref=e549]:
+                - text: ...
+                - emphasis [ref=e550]: Cine El Cairo
+                - text: de
+                - emphasis [ref=e551]: Rosario
+                - text: ". (Txt: Erika Saita) Dirigido por el director santafesino Andrés […] VER NOTICIA / VER TODAS LAS NOTICIAS. Newsletter. Cómo llegar."
+        - generic [ref=e555]:
+          - generic [ref=e558]:
+            - link "El Cairo Cine Público 🎞 (@cineelcairo) · Rosario Instagram · cineelcairo Más de 44,4 k seguidores" [ref=e560] [cursor=pointer]:
+              - /url: https://www.instagram.com/cineelcairo/?hl=es
+              - heading "El Cairo Cine Público 🎞 (@cineelcairo) · Rosario" [level=3] [ref=e561]
+              - generic [ref=e567]:
+                - generic [ref=e568]: Instagram · cineelcairo
+                - generic [ref=e570]: Más de 44,4 k seguidores
+            - button "Acerca de este resultado" [ref=e574] [cursor=pointer]
+          - generic [ref=e581]:
+            - text: A través de rostros, lugares e historias entre
+            - emphasis [ref=e582]: Rosario
+            - text: ", Santa Fe, Paraná ..."
+            - emphasis [ref=e583]: Rosario
+            - text: ", el"
+            - emphasis [ref=e584]: Cine El Cairo
+            - text: y el Cine Lumière. Jueves 20/11 20:30 LITTLE ...
+        - generic [ref=e588]:
+          - generic [ref=e591]:
+            - link "Cine El Cairo - ETUR Ente Turístico Rosario https://rosario.tur.ar › donde-ir › cultura › cines › cine-..." [ref=e593] [cursor=pointer]:
+              - /url: https://rosario.tur.ar/donde-ir/cultura/cines/cine-el-cairo
+              - heading "Cine El Cairo - ETUR" [level=3] [ref=e594]
+              - generic [ref=e600]:
+                - generic [ref=e601]: Ente Turístico Rosario
+                - generic [ref=e603]: https://rosario.tur.ar › donde-ir › cultura › cines › cine-...
+            - button "Acerca de este resultado" [ref=e607] [cursor=pointer]
+          - generic [ref=e614]:
+            - emphasis [ref=e615]: Cine El Cairo
+            - text: . Desde 1913, la sala pública más antigua de la ciudad. El Cairo ...
+            - emphasis [ref=e616]: Web
+            - text: ": http://www.elcairocinepublico.gob.ar/ Horario: Funciones de ..."
+        - generic [ref=e621]:
+          - heading "Más preguntas" [level=2] [ref=e623]
+          - generic [ref=e624]:
+            - button "¿Qué es el cine El Cairo en Rosario?" [ref=e630] [cursor=pointer]
+            - button "¿Qué días hay 2x1 en el cine?" [ref=e644] [cursor=pointer]
+            - button "¿Cuánto está la entrada para el cine en Rosario?" [ref=e658] [cursor=pointer]
+            - button "¿Cuál es la agenda del Bar El Cairo?" [ref=e672] [cursor=pointer]
+        - generic [ref=e682]:
+          - heading "Resultados web" [level=2] [ref=e683]
+          - generic [ref=e684]:
+            - generic [ref=e687]:
+              - link "Gobierno de Santa Fe - El Cairo Cine Público Gobierno de Santa Fe https://www.santafe.gov.ar › web › view › full › (subtema)" [ref=e689] [cursor=pointer]:
+                - /url: https://www.santafe.gov.ar/index.php/web/content/view/full/113887/(subtema)/93703
+                - heading "Gobierno de Santa Fe - El Cairo Cine Público" [level=3] [ref=e690]
+                - generic [ref=e696]:
+                  - generic [ref=e697]: Gobierno de Santa Fe
+                  - generic [ref=e699]: https://www.santafe.gov.ar › web › view › full › (subtema)
+              - button "Acerca de este resultado" [ref=e703] [cursor=pointer]
+            - generic [ref=e710]:
+              - text: Cine Público. Santa Fe 1120 (2000)
+              - emphasis [ref=e711]: Rosario
+              - text: ". Tel: +54 341 4721851. cineelcairo@santafe.gov.ar. Documentos y Normativas. Enlaces."
+              - emphasis [ref=e712]: Sitio web
+              - text: de
+              - emphasis [ref=e713]: Cine El Cairo
+              - text: ...
+        - generic [ref=e717]:
+          - generic [ref=e720]:
+            - link "Cine El Cairo | Rosario Facebook · Cine El Cairo Más de 33,4 k seguidores" [ref=e722] [cursor=pointer]:
+              - /url: https://www.facebook.com/cineelcairo/?locale=es_LA
+              - heading "Cine El Cairo | Rosario" [level=3] [ref=e723]
+              - generic [ref=e729]:
+                - generic [ref=e730]: Facebook · Cine El Cairo
+                - generic [ref=e732]: Más de 33,4 k seguidores
+            - button "Acerca de este resultado" [ref=e736] [cursor=pointer]
+          - generic [ref=e743]:
+            - emphasis [ref=e744]: Cine El Cairo
+            - text: está en
+            - emphasis [ref=e745]: Cine El Cairo
+            - text: ". 27 de jul.󰞋󱟠. 󳄫. Nuestra programación es de jueves a domingo, con tres funciones por día: 18:00, 20:30, y 22:30. Las ..."
+          - 'img "Calificación: 4,3 de 5, (397) opiniones de usuarios" [ref=e750]': 4,3(397)
+        - generic [ref=e757]:
+          - generic [ref=e760]:
+            - link "EL CAIRO CINE PUBLICO (ACTUALIZADO 2026) Tripadvisor https://www.tripadvisor.com.ar › Attraction_Review-g3..." [ref=e762] [cursor=pointer]:
+              - /url: https://www.tripadvisor.com.ar/Attraction_Review-g312809-d7381288-Reviews-El_Cairo_Cine_Publico-Rosario_Province_of_Santa_Fe_Litoral.html
+              - heading "EL CAIRO CINE PUBLICO (ACTUALIZADO 2026)" [level=3] [ref=e763]
+              - generic [ref=e769]:
+                - generic [ref=e770]: Tripadvisor
+                - generic [ref=e772]: https://www.tripadvisor.com.ar › Attraction_Review-g3...
+            - button "Acerca de este resultado" [ref=e776] [cursor=pointer]
+          - generic [ref=e782]:
+            - generic [ref=e783]: 25 abr 2021 —
+            - generic [ref=e784]:
+              - text: El Cairo Cine Público en
+              - emphasis [ref=e785]: ROSARIO
+              - text: ":"
+              - emphasis [ref=e786]: CINE EL CAIRO
+              - text: . @CineElCairo es uno de los atractivos turísticos de la ciudad de
+              - emphasis [ref=e787]: Rosario
+              - text: ", ..."
+          - 'img "Calificación: 4,1 de 5, (106) opiniones de usuarios" [ref=e792]': 4,1(106)
+        - generic [ref=e799]:
+          - generic [ref=e802]:
+            - link "Ricordi? – Ciclo Al Cinema! – Edición IIC-Rosario-El Cairo Istituto Italiano di Cultura di Buenos Aires https://iicbuenosaires.esteri.it › gli_eventi › calendario › r..." [ref=e804] [cursor=pointer]:
+              - /url: https://iicbuenosaires.esteri.it/es/gli_eventi/calendario/ricordi-ciclo-al-cinema-edizione-2/
+              - heading "Ricordi? – Ciclo Al Cinema! – Edición IIC-Rosario-El Cairo" [level=3] [ref=e805]
+              - generic [ref=e811]:
+                - generic [ref=e812]: Istituto Italiano di Cultura di Buenos Aires
+                - generic [ref=e814]: https://iicbuenosaires.esteri.it › gli_eventi › calendario › r...
+            - button "Acerca de este resultado" [ref=e818] [cursor=pointer]
+          - generic [ref=e825]:
+            - text: "Organizado por: CG"
+            - emphasis [ref=e826]: Rosario
+            - text: "- IIC; En colaboración con:"
+            - emphasis [ref=e827]: Cine El Cairo
+            - text: . Navegar por la sección. Eventos programados · Archivo de eventos. Navegar en la sección ...
+        - generic [ref=e831]:
+          - generic [ref=e834]:
+            - link "¿Cómo llegar en Colectivo a Cine El Cairo en Rosario? Moovit https://moovitapp.com › Argentina › Rosario" [ref=e836] [cursor=pointer]:
+              - /url: https://moovitapp.com/index/es-419/transporte_p%C3%BAblico-Cine_El_Cairo-Rosario-site_348455537-2560
+              - heading "¿Cómo llegar en Colectivo a Cine El Cairo en Rosario?" [level=3] [ref=e837]
+              - generic [ref=e843]:
+                - generic [ref=e844]: Moovit
+                - generic [ref=e846]: https://moovitapp.com › Argentina › Rosario
+            - button "Acerca de este resultado" [ref=e850] [cursor=pointer]
+          - generic [ref=e857]:
+            - text: Obtén fácilmente instrucciones y direcciones desde
+            - emphasis [ref=e858]: Cine El Cairo
+            - text: con la aplicación Moovit o desde el
+            - emphasis [ref=e859]: sitio web
+            - text: . Hacemos que viajar a
+            - emphasis [ref=e860]: Cine El Cairo
+            - text: sea fácil ...
+        - generic [ref=e864]:
+          - generic [ref=e867]:
+            - 'link "Para mirarte mejor: un renovado cine El Cairo reabre sus ... Rosario3 https://www.rosario3.com › ocio › Para-mirarte-mejor-..." [ref=e869] [cursor=pointer]':
+              - /url: https://www.rosario3.com/ocio/Para-mirarte-mejor-un-renovado-cine-El-Cairo-reabre-sus-puertas-20171123-0016.html
+              - 'heading "Para mirarte mejor: un renovado cine El Cairo reabre sus ..." [level=3] [ref=e870]'
+              - generic [ref=e876]:
+                - generic [ref=e877]: Rosario3
+                - generic [ref=e879]: https://www.rosario3.com › ocio › Para-mirarte-mejor-...
+            - button "Acerca de este resultado" [ref=e883] [cursor=pointer]
+          - generic [ref=e889]:
+            - generic [ref=e890]: 23 nov 2017 —
+            - generic [ref=e891]:
+              - text: El
+              - emphasis [ref=e892]: cine El Cairo
+              - text: fue nuevamente remozado y abrirá sus puertas el próximo lunes 27 de noviembre, a las 20. La presentación de la obra tendrá ...
+        - generic [ref=e903]:
+          - heading "Horarios en Cine \"El Cairo\"" [level=2] [ref=e904]:
+            - generic "Cine \"El Cairo\"" [ref=e905]: Horarios en Cine "El Cairo"
+          - generic [ref=e906]: Todos los horarios corresponden a la ART
+          - generic [ref=e907]:
+            - list [ref=e909]:
+              - tab "Hoy" [selected] [ref=e910] [cursor=pointer]
+              - tab "Mañana" [ref=e911] [cursor=pointer]
+            - generic [ref=e913]:
+              - tab "Cualquier hora del día" [selected] [ref=e914]
+              - tab "Mañana" [disabled] [ref=e915]
+              - tab "Tarde" [disabled] [ref=e916]
+              - tab "Tarde-noche" [ref=e917] [cursor=pointer]
+              - tab "Por la noche" [ref=e918] [cursor=pointer]
+            - generic [ref=e922]:
+              - heading "Horarios de El mundo al revés" [level=3] [ref=e923]
+              - link "El mundo al revés" [ref=e925] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=El+mundo+al+rev%C3%A9s&si=APenkKlv8PgQ0XRSDFF0fZp4xTvfPFL4slDM8XRMsZwbi_nR_SvQsxb3L2R73On42eqYFjNA84eULKG4ytGh-NWsJpkXmJAheaqXhBrfB5R0icmCpKTYaca0Qj0vRvhwaNI8nCatvW6J3N1JuQfi_5mndQwOKx7zDEbKB4lMJE2pebYw3GCQDu8%3D&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQxyZ6BAhtEA4
+              - group "Comprar entradas para la función de las 8:30 p. m. en Cine \"El Cairo\"" [ref=e930]:
+                - generic [ref=e931]:
+                  - text: 8:30
+                  - generic [ref=e932]: p. m.
+        - generic [ref=e935]:
+          - heading "Resultados web" [level=2] [ref=e936]
+          - generic [ref=e937]:
+            - generic [ref=e940]:
+              - link "El Cairo. 70 años de cine | rosarioencartel.com Rosario En Cartel https://www.rosarioencartel.com.ar › el-cairo-70-anos-d..." [ref=e942] [cursor=pointer]:
+                - /url: https://www.rosarioencartel.com.ar/el-cairo-70-anos-de-cine-2/
+                - heading "El Cairo. 70 años de cine | rosarioencartel.com" [level=3] [ref=e943]
+                - generic [ref=e949]:
+                  - generic [ref=e950]: Rosario En Cartel
+                  - generic [ref=e952]: https://www.rosarioencartel.com.ar › el-cairo-70-anos-d...
+              - button "Acerca de este resultado" [ref=e956] [cursor=pointer]
+            - generic [ref=e962]:
+              - generic [ref=e963]: 10 may 2026 —
+              - generic [ref=e964]:
+                - text: "Lugar:"
+                - emphasis [ref=e965]: Cine El Cairo
+                - text: . Facebook Email WhatsApp X Telegram Compartir ... sitio rosarioencartel.com (en adelante, el "
+                - emphasis [ref=e966]: Sitio Web
+                - text: "\"). El solo ..."
+      - generic [ref=e968]:
+        - generic [ref=e973]:
+          - heading "También se buscó" [level=2] [ref=e975]
+          - generic [ref=e977]:
+            - generic [ref=e978]:
+              - link "Cartelera Cine el Cairo Rosario hoy" [ref=e982] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cartelera+Cine+el+Cairo+Rosario+hoy&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ1QJ6BAhhEAE
+              - link "Cine El Cairo, La Gratis del domingo" [ref=e996] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+El+Cairo,+La+Gratis+del+domingo&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ1QJ6BAhvEAE
+              - link "Cine el cairo cartelera Online" [ref=e1010] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+el+cairo+cartelera+Online&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ1QJ6BAhnEAE
+              - link "Cine el Cairo La Gratis hoy" [ref=e1024] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+el+Cairo+La+Gratis+hoy&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ1QJ6BAhuEAE
+            - generic [ref=e1035]:
+              - link "Cine el cairo entradas" [ref=e1039] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+el+cairo+entradas&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ1QJ6BAhmEAE
+              - link "Cine el cairo telefono" [ref=e1053] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+el+cairo+telefono&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ1QJ6BAhkEAE
+              - link "El Cairo cine público" [ref=e1067] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=El+Cairo+cine+p%C3%BAblico&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ1QJ6BAhjEAE
+              - link "Cine Lumière" [ref=e1081] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Lumi%C3%A8re&sa=X&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ1QJ6BAhiEAE
+        - navigation [ref=e1092]:
+          - heading "Navegación de páginas" [level=1] [ref=e1093]
+          - text: "1"
+          - link "Page 2" [ref=e1096] [cursor=pointer]:
+            - /url: /search?q=%22Cine+El+Cairo%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=8Nh2auSoHaDJ5OUPkr6w4Ao&start=10&sa=N&sstk=AU9db-CsFfSCFJXpwLAW-9xktB6yZqc20DDCzwMCbM27-UIoea9QxcWwKmR4onR6_3QimqMRtYI0NGVd7HBascKZFI0Prb8iv1v98g&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ8tMDegQIXxAE
+            - text: "2"
+          - link "Page 3" [ref=e1098] [cursor=pointer]:
+            - /url: /search?q=%22Cine+El+Cairo%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=8Nh2auSoHaDJ5OUPkr6w4Ao&start=20&sa=N&sstk=AU9db-CsFfSCFJXpwLAW-9xktB6yZqc20DDCzwMCbM27-UIoea9QxcWwKmR4onR6_3QimqMRtYI0NGVd7HBascKZFI0Prb8iv1v98g&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ8tMDegQIXxAG
+            - text: "3"
+          - link "Page 4" [ref=e1100] [cursor=pointer]:
+            - /url: /search?q=%22Cine+El+Cairo%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=8Nh2auSoHaDJ5OUPkr6w4Ao&start=30&sa=N&sstk=AU9db-CsFfSCFJXpwLAW-9xktB6yZqc20DDCzwMCbM27-UIoea9QxcWwKmR4onR6_3QimqMRtYI0NGVd7HBascKZFI0Prb8iv1v98g&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ8tMDegQIXxAI
+            - text: "4"
+          - link "Page 5" [ref=e1102] [cursor=pointer]:
+            - /url: /search?q=%22Cine+El+Cairo%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=8Nh2auSoHaDJ5OUPkr6w4Ao&start=40&sa=N&sstk=AU9db-CsFfSCFJXpwLAW-9xktB6yZqc20DDCzwMCbM27-UIoea9QxcWwKmR4onR6_3QimqMRtYI0NGVd7HBascKZFI0Prb8iv1v98g&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ8tMDegQIXxAK
+            - text: "5"
+          - link "Page 6" [ref=e1104] [cursor=pointer]:
+            - /url: /search?q=%22Cine+El+Cairo%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=8Nh2auSoHaDJ5OUPkr6w4Ao&start=50&sa=N&sstk=AU9db-CsFfSCFJXpwLAW-9xktB6yZqc20DDCzwMCbM27-UIoea9QxcWwKmR4onR6_3QimqMRtYI0NGVd7HBascKZFI0Prb8iv1v98g&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ8tMDegQIXxAM
+            - text: "6"
+          - link "Page 7" [ref=e1106] [cursor=pointer]:
+            - /url: /search?q=%22Cine+El+Cairo%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=8Nh2auSoHaDJ5OUPkr6w4Ao&start=60&sa=N&sstk=AU9db-CsFfSCFJXpwLAW-9xktB6yZqc20DDCzwMCbM27-UIoea9QxcWwKmR4onR6_3QimqMRtYI0NGVd7HBascKZFI0Prb8iv1v98g&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ8tMDegQIXxAO
+            - text: "7"
+          - link "Page 8" [ref=e1108] [cursor=pointer]:
+            - /url: /search?q=%22Cine+El+Cairo%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=8Nh2auSoHaDJ5OUPkr6w4Ao&start=70&sa=N&sstk=AU9db-CsFfSCFJXpwLAW-9xktB6yZqc20DDCzwMCbM27-UIoea9QxcWwKmR4onR6_3QimqMRtYI0NGVd7HBascKZFI0Prb8iv1v98g&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ8tMDegQIXxAQ
+            - text: "8"
+          - link "Page 9" [ref=e1110] [cursor=pointer]:
+            - /url: /search?q=%22Cine+El+Cairo%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=8Nh2auSoHaDJ5OUPkr6w4Ao&start=80&sa=N&sstk=AU9db-CsFfSCFJXpwLAW-9xktB6yZqc20DDCzwMCbM27-UIoea9QxcWwKmR4onR6_3QimqMRtYI0NGVd7HBascKZFI0Prb8iv1v98g&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ8tMDegQIXxAS
+            - text: "9"
+          - link "Page 10" [ref=e1112] [cursor=pointer]:
+            - /url: /search?q=%22Cine+El+Cairo%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=8Nh2auSoHaDJ5OUPkr6w4Ao&start=90&sa=N&sstk=AU9db-CsFfSCFJXpwLAW-9xktB6yZqc20DDCzwMCbM27-UIoea9QxcWwKmR4onR6_3QimqMRtYI0NGVd7HBascKZFI0Prb8iv1v98g&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ8tMDegQIXxAU
+            - text: "10"
+          - heading [level=2] [ref=e1114]:
+            - link "Siguiente" [ref=e1115] [cursor=pointer]:
+              - /url: /search?q=%22Cine+El+Cairo%22+Rosario+sitio+web&sca_esv=569d465b5b1d57df&ei=8Nh2auSoHaDJ5OUPkr6w4Ao&start=10&sa=N&sstk=AU9db-CsFfSCFJXpwLAW-9xktB6yZqc20DDCzwMCbM27-UIoea9QxcWwKmR4onR6_3QimqMRtYI0NGVd7HBascKZFI0Prb8iv1v98g&ved=2ahUKEwjk4O29v5CWAxWgJLkGHRIfDKwQ8NMDegQIXxAW
+      - navigation
+    - contentinfo [ref=e1119]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e1120]
+      - generic [ref=e1124]:
+        - generic [ref=e1126]:
+          - text: Argentina
+          - generic [ref=e1128]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e1130] [cursor=pointer]:
+              - generic [ref=e1131]: Iriondo, Santa Fe
+              - generic [ref=e1133]:
+                - text: "-"
+                - generic [ref=e1134]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e1136] [cursor=pointer]
+        - generic [ref=e1139]:
+          - link "Ayuda" [ref=e1140] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e1141] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e1142] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e1143] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

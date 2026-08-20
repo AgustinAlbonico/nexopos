@@ -1,0 +1,340 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwiR157dsJCWAxWKuJUCHf5iIX0QpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: Mercado Pago Argentina costos de vender Mercado Pago Argentina costos de vender
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3DMercado%2BPago%2BArgentina%2Bcostos%2Bde%2Bvender&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=Mercado+Pago+Argentina+costos+de+vender&sca_esv=0096a2a1340d2922&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jyrAiMbvvsxrRFO5LTSMvEPLH0IaKeDoFMXyRJSNmGRNgxEMhEstmVAsqdX83iEaLHRf5s_PKFioEDQI9KymcOOzhyGXy1pH3_w-XcGa0ZKcixrOaTSS_-zi39koIII6rpRxlNjAiAmdKzcxNdAc3OGNLSetj8ubsSiZFS8qsF0qENv2hs&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q2J8OegQIERAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Shopping" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jyrAiMbvvsxrRFO5LTSMvEPLH0IaKeDoFMXyRJSNmGRNgxEMhEstmVAsqdX83iEaLHRf5s_PKFioEDQI9KymcOOzhyGXy1pH3_w-XcGa0ZKcixrOaTSS_-zi39koIII6rpRxlNjAiAmdKzcxNdAc3OGNLSetj8ubsSiZFS8qsF0qENv2hs&q=Mercado+Pago+Argentina+costos+de+vender&ved=1t:220175&ictx=111
+          - listitem [ref=e94]:
+            - link "Noticias" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&q=Mercado+Pago+Argentina+costos+de+vender&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jyrAiMbvvsxrRFO5LTSMvEPLH0IaKeDoFMXyRJSNmGRNgxEMhEstmVAsqdX83iEaLHRf5s_PKFioEDQI9KymcOOzhyGXy1pH3_w-XcGa0ZKcixrOaTSS_-zi39koIII6rpRxlNjAiAmdKzcxNdAc3OGNLSetj8ubsSiZFS8qsF0qENv2hs&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q0pQJegQIFhAB
+          - listitem [ref=e98]:
+            - link "Vídeos cortos" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jyrAiMbvvsxrRFO5LTSMvEPLH0IaKeDoFMXyRJSNmGRNgxEMhEstmVAsqdX83iEaLHRf5s_PKFioEDQI9KymcOOzhyGXy1pH3_w-XcGa0ZKcixrOaTSS_-zi39koIII6rpRxlNjAiAmdKzcxNdAc3OGNLSetj8ubsSiZFS8qsF0qENv2hs&q=Mercado+Pago+Argentina+costos+de+vender&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Qs6gLegQIFRAB
+          - listitem [ref=e102]:
+            - link "Imágenes" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jyrAiMbvvsxrRFO5LTSMvEPLH0IaKeDoFMXyRJSNmGRNgxEMhEstmVAsqdX83iEaLHRf5s_PKFioEDQI9KymcOOzhyGXy1pH3_w-XcGa0ZKcixrOaTSS_-zi39koIII6rpRxlNjAiAmdKzcxNdAc3OGNLSetj8ubsSiZFS8qsF0qENv2hs&q=Mercado+Pago+Argentina+costos+de+vender&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0QtKgLegQIExAB
+          - listitem [ref=e106]:
+            - link "Vídeos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jyrAiMbvvsxrRFO5LTSMvEPLH0IaKeDoFMXyRJSNmGRNgxEMhEstmVAsqdX83iEaLHRf5s_PKFioEDQI9KymcOOzhyGXy1pH3_w-XcGa0ZKcixrOaTSS_-zi39koIII6rpRxlNjAiAmdKzcxNdAc3OGNLSetj8ubsSiZFS8qsF0qENv2hs&q=Mercado+Pago+Argentina+costos+de+vender&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0QtKgLegQIFBAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - generic [ref=e131]:
+      - generic [ref=e150]:
+        - heading "Pensando Buscando Pensando un poco más" [level=2] [ref=e154]:
+          - generic [ref=e155]:
+            - generic [ref=e156]: Pensando
+            - generic [ref=e158]: Buscando
+            - generic [ref=e168]: Pensando un poco más
+        - progressbar "Generando" [ref=e171]
+      - main [ref=e222]:
+        - generic [ref=e226]:
+          - generic [ref=e229]:
+            - heading "Resultados web" [level=2] [ref=e230]
+            - generic [ref=e231]:
+              - generic [ref=e234]:
+                - link "Comisiones y cargos para individuos y vendedores Mercado Pago https://www.mercadopago.com.ar › ayuda" [ref=e236] [cursor=pointer]:
+                  - /url: https://www.mercadopago.com.ar/ayuda/26748
+                  - heading "Comisiones y cargos para individuos y vendedores" [level=3] [ref=e237]
+                  - generic [ref=e243]:
+                    - generic [ref=e244]: Mercado Pago
+                    - generic [ref=e246]: https://www.mercadopago.com.ar › ayuda
+                - button "Acerca de este resultado" [ref=e250] [cursor=pointer]
+              - generic [ref=e257]:
+                - text: Procesamos los pagos online de compradores y vendedores -
+                - emphasis [ref=e258]: Mercado Pago
+                - text: Para vos · En pesos · En dólares · Tarjeta de crédito · Línea de crédito · Pagos y ...
+          - generic [ref=e263]:
+            - heading "Más preguntas" [level=2] [ref=e265]
+            - generic [ref=e266]:
+              - button "¿Cuánto te cobran de comisión en Mercado Pago?" [ref=e272] [cursor=pointer]
+              - button "¿Cuánto cobra el mercado por venta?" [ref=e286] [cursor=pointer]
+              - button "¿Cuáles son los aranceles de Mercado Pago?" [ref=e300] [cursor=pointer]
+              - button "¿Qué comisión te cobra Mercado Libre para vender?" [ref=e314] [cursor=pointer]
+          - generic [ref=e324]:
+            - heading "Resultados web" [level=2] [ref=e325]
+            - generic [ref=e326]:
+              - generic [ref=e329]:
+                - 'link "Costos de Mercado Pago: cuáles son y cómo configurarlos Mercado Libre https://vendedores.mercadolibre.com.ar › aprender › nota" [ref=e331] [cursor=pointer]':
+                  - /url: https://vendedores.mercadolibre.com.ar/aprender/nota/costos-de-mercado-pago-cuales-son-y-como-configurarlos
+                  - 'heading "Costos de Mercado Pago: cuáles son y cómo configurarlos" [level=3] [ref=e332]'
+                  - generic [ref=e338]:
+                    - generic [ref=e339]: Mercado Libre
+                    - generic [ref=e341]: https://vendedores.mercadolibre.com.ar › aprender › nota
+                - button "Acerca de este resultado" [ref=e345] [cursor=pointer]
+              - generic [ref=e352]:
+                - text: ¿Cuáles son los
+                - emphasis [ref=e353]: costos
+                - text: de
+                - emphasis [ref=e354]: Mercado Pago
+                - text: "? ·"
+                - emphasis [ref=e355]: Costo
+                - text: "por cobro: es un porcentaje que se descuenta al hacer un cobro con Código QR, Point, Link de pago o Checkout."
+          - generic [ref=e359]:
+            - generic [ref=e361]:
+              - heading "Videos" [level=2] [ref=e362]
+              - button "Acerca de este resultado" [ref=e363] [cursor=pointer]
+            - generic [ref=e369]:
+              - generic [ref=e374]:
+                - generic [ref=e375]:
+                  - generic [ref=e376]:
+                    - link [ref=e378] [cursor=pointer]:
+                      - /url: https://www.youtube.com/watch?v=BLpJdEa3ahE
+                      - heading "YouTube YouTube Agustín Hansen 29 ene 2026" [level=3] [ref=e379]:
+                        - generic [ref=e380]: YouTube
+                        - generic [ref=e384]:
+                          - generic [ref=e385]:
+                            - text: YouTube
+                            - generic [ref=e386]: · Agustín Hansen
+                          - generic [ref=e387]: 29 ene 2026
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - text: YouTube
+                              - generic: · Agustín Hansen
+                        - button "Acerca de este resultado" [ref=e388] [cursor=pointer]
+                  - button "YouTube de Agustín Hansen en YouTube. Reproducir en Google. 12:37" [ref=e393] [cursor=pointer]:
+                    - generic [ref=e394]: 12:37
+                - button "7 momentos clave en este video" [ref=e410] [cursor=pointer]
+              - generic [ref=e430]:
+                - generic [ref=e431]:
+                  - link [ref=e433] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DVzR0PxBnaM/?hl=es
+                    - heading "ESTO COBRA MERCADO PAGO POR TRANSFERENCIA En ... Instagram Rollin News 12 mar 2026" [level=3] [ref=e434]:
+                      - generic [ref=e435]: ESTO COBRA MERCADO PAGO POR TRANSFERENCIA En ...
+                      - generic [ref=e439]:
+                        - generic [ref=e440]:
+                          - text: Instagram
+                          - generic [ref=e441]: · Rollin News
+                        - generic [ref=e442]: 12 mar 2026
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - text: Instagram
+                            - generic: · Rollin News
+                      - button "Acerca de este resultado" [ref=e443] [cursor=pointer]
+                - link "ESTO COBRA MERCADO PAGO POR TRANSFERENCIA En ... de Rollin News en Instagram. Reproducir en Instagram. 0:36" [ref=e448] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DVzR0PxBnaM/?hl=es
+                  - generic [ref=e449]: 0:36
+              - generic [ref=e462]:
+                - generic [ref=e463]:
+                  - generic [ref=e464]:
+                    - link [ref=e466] [cursor=pointer]:
+                      - /url: https://www.youtube.com/watch?v=_6xpHzGMFZY
+                      - heading "GUÍA DEFINITIVA para COBRAR con MERCADO PAGO (en ... YouTube Agustín Hansen 1 may 2025" [level=3] [ref=e467]:
+                        - generic [ref=e468]: GUÍA DEFINITIVA para COBRAR con MERCADO PAGO (en ...
+                        - generic [ref=e472]:
+                          - generic [ref=e473]:
+                            - text: YouTube
+                            - generic [ref=e474]: · Agustín Hansen
+                          - generic [ref=e475]: 1 may 2025
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - text: YouTube
+                              - generic: · Agustín Hansen
+                        - button "Acerca de este resultado" [ref=e476] [cursor=pointer]
+                  - button "GUÍA DEFINITIVA para COBRAR con MERCADO PAGO (en ... de Agustín Hansen en YouTube. Reproducir en Google. 19:13" [ref=e481] [cursor=pointer]:
+                    - generic [ref=e482]: 19:13
+                - button "13 momentos clave en este video" [ref=e501] [cursor=pointer]
+            - link "Ver todos los videos" [ref=e519] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=7&q=Mercado+Pago+Argentina+costos+de+vender&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q8ccDKAJ6BAhIEAQ
+              - separator [ref=e520]
+              - generic [ref=e521]: Ver más
+          - generic [ref=e528]:
+            - heading "Resultados web" [level=2] [ref=e529]
+            - generic [ref=e530]:
+              - generic [ref=e533]:
+                - link "Costos por vender un producto - Montevideo - Mercado Pago mercadopago.com.uy https://www.mercadopago.com.uy › ayuda" [ref=e535] [cursor=pointer]:
+                  - /url: https://www.mercadopago.com.uy/ayuda/870
+                  - heading "Costos por vender un producto - Montevideo - Mercado Pago" [level=3] [ref=e536]
+                  - generic [ref=e542]:
+                    - generic [ref=e543]: mercadopago.com.uy
+                    - generic [ref=e545]: https://www.mercadopago.com.uy › ayuda
+                - button "Acerca de este resultado" [ref=e549] [cursor=pointer]
+              - generic [ref=e556]:
+                - text: Procesamos los pagos online de compradores y vendedores -
+                - emphasis [ref=e557]: Mercado Pago
+                - text: Para vos · Dinero en cuenta · Tarjeta prepaga · Pagos · Para tu negocio · POS Point ...
+          - generic [ref=e561]:
+            - generic [ref=e564]:
+              - link "¿Cuanto cobra Mercado Pago? WEBMEDIA digital https://www.web-media.com.ar › actualidad › cuanto-c..." [ref=e566] [cursor=pointer]:
+                - /url: https://www.web-media.com.ar/nuestro-blog/actualidad/cuanto-cobra-mercado-pago.html
+                - heading "¿Cuanto cobra Mercado Pago?" [level=3] [ref=e567]
+                - generic [ref=e573]:
+                  - generic [ref=e574]: WEBMEDIA digital
+                  - generic [ref=e576]: https://www.web-media.com.ar › actualidad › cuanto-c...
+              - button "Acerca de este resultado" [ref=e580] [cursor=pointer]
+            - generic [ref=e587]:
+              - text: Comisión cobrando Ventas de Mercadolibre ... Si necesitás que el comprador agregue dinero a la operación, pagás una comisión de
+              - emphasis [ref=e588]: 3,49% + IVA
+              - text: y tenés el dinero ...
+          - generic [ref=e592]:
+            - generic [ref=e595]:
+              - link "4 costos de vender con tarjeta y mercado pago Gestion Up https://gestionup.com.ar › los-costos-de-vender-con-tarj..." [ref=e597] [cursor=pointer]:
+                - /url: https://gestionup.com.ar/los-costos-de-vender-con-tarjeta-y-mercado-pago-en-tu-negocio/
+                - heading "4 costos de vender con tarjeta y mercado pago" [level=3] [ref=e598]
+                - generic [ref=e604]:
+                  - generic [ref=e605]: Gestion Up
+                  - generic [ref=e607]: https://gestionup.com.ar › los-costos-de-vender-con-tarj...
+              - button "Acerca de este resultado" [ref=e611] [cursor=pointer]
+            - generic [ref=e618]:
+              - emphasis [ref=e619]: El costo es de un 2,15% para las compras realizadas con tarjetas de crédito
+              - text: y un 1% para compras realizadas con tarjetas de débito. Como primer ejemplo, si un ...
+          - generic [ref=e623]:
+            - generic [ref=e626]:
+              - link "Mercado Pago cambia sus cargos por venta - Calcular Sueldo calcularsueldo.com.ar https://calcularsueldo.com.ar › finanzas › mercado-pag..." [ref=e628] [cursor=pointer]:
+                - /url: https://calcularsueldo.com.ar/finanzas/13982/mercado-pago-cambia-sus-cargos-por-venta-asi-quedan-los-nuevos-costos.html
+                - heading "Mercado Pago cambia sus cargos por venta - Calcular Sueldo" [level=3] [ref=e629]
+                - generic [ref=e635]:
+                  - generic [ref=e636]: calcularsueldo.com.ar
+                  - generic [ref=e638]: https://calcularsueldo.com.ar › finanzas › mercado-pag...
+              - button "Acerca de este resultado" [ref=e642] [cursor=pointer]
+            - generic [ref=e648]:
+              - generic [ref=e649]: 11 mar 2026 —
+              - generic [ref=e650]:
+                - text: Desde el 6 de marzo, los usuarios de
+                - emphasis [ref=e651]: Mercado Pago
+                - text: en
+                - emphasis [ref=e652]: Argentina
+                - text: comenzaron a ver reflejados cambios en los cargos por cobrar sus ventas.
+          - generic [ref=e656]:
+            - generic [ref=e659]:
+              - link "Tu Negocio es más Fácil con Mercado Pago Mercado Pago https://www.mercadopago.com.ar › on-boarding-sellers" [ref=e661] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/mp/on-boarding-sellers
+                - heading "Tu Negocio es más Fácil con Mercado Pago" [level=3] [ref=e662]
+                - generic [ref=e668]:
+                  - generic [ref=e669]: Mercado Pago
+                  - generic [ref=e671]: https://www.mercadopago.com.ar › on-boarding-sellers
+              - button "Acerca de este resultado" [ref=e675] [cursor=pointer]
+            - generic [ref=e682]:
+              - emphasis [ref=e683]: Cobrá tus ventas al instante
+              - text: ; Tarjetas. Débito. 2,99% + IVA ; Código QR. Débito. 1,35% +IVA ; Tarjetas. Crédito. 5,99% +IVA ; Código QR. Crédito. 5,99% +IVA ...
+          - generic [ref=e687]:
+            - generic [ref=e690]:
+              - link "Cobrá por redes sociales con Link de pago Mercado Pago https://www.mercadopago.com.ar › link-de-pago" [ref=e692] [cursor=pointer]:
+                - /url: https://www.mercadopago.com.ar/herramientas-para-vender/link-de-pago
+                - heading "Cobrá por redes sociales con Link de pago" [level=3] [ref=e693]
+                - generic [ref=e699]:
+                  - generic [ref=e700]: Mercado Pago
+                  - generic [ref=e702]: https://www.mercadopago.com.ar › link-de-pago
+              - button "Acerca de este resultado" [ref=e706] [cursor=pointer]
+            - generic [ref=e713]:
+              - emphasis [ref=e714]: Cobrá por redes sociales con Link de Pago
+              - text: ; Empezá a cobrar con una propuesta a tu medida. ¿Tu comercio factura más de $ 250.000 por mes? Si trabajás de forma ...
+        - generic [ref=e716]:
+          - generic [ref=e721]:
+            - heading "También se buscó" [level=2] [ref=e723]
+            - generic [ref=e725]:
+              - generic [ref=e726]:
+                - link "Mercado Pago cobra por transferencia" [ref=e730] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Mercado+Pago+cobra+por+transferencia&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q1QJ6BAgnEAE
+                - link "Cuanto cobra Mercado Libre por venta en Argentina" [ref=e744] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Cuanto+cobra+Mercado+Libre+por+venta+en+Argentina&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q1QJ6BAg1EAE
+                - link "Comision Mercado Pago argentina" [ref=e758] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Comision+Mercado+Pago+argentina&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q1QJ6BAg0EAE
+                - link "Mercado Pago costos y comisiones" [ref=e772] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Mercado+Pago+costos+y+comisiones&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q1QJ6BAgwEAE
+              - generic [ref=e783]:
+                - link "Cuanto cobra Mercado Pago por ingresar dinero en efectivo" [ref=e787] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Cuanto+cobra+Mercado+Pago+por+ingresar+dinero+en+efectivo&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q1QJ6BAgrEAE
+                - link "Mercado Pago express" [ref=e801] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Mercado+Pago+express&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q1QJ6BAgqEAE
+                - link "Porque Mercado Pago me descuentan plata cuando me transfieren" [ref=e815] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Porque+Mercado+Pago+me+descuentan+plata+cuando+me+transfieren&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q1QJ6BAgpEAE
+                - link "Cuanto es el recargo de Mercado Pago con tarjeta de crédito" [ref=e829] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Cuanto+es+el+recargo+de+Mercado+Pago+con+tarjeta+de+cr%C3%A9dito&sa=X&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q1QJ6BAgoEAE
+          - navigation [ref=e840]:
+            - heading "Navegación de páginas" [level=1] [ref=e841]
+            - text: "1"
+            - link "Page 2" [ref=e844] [cursor=pointer]:
+              - /url: /search?q=Mercado+Pago+Argentina+costos+de+vender&sca_esv=0096a2a1340d2922&ei=d8l2atG_Lorx1sQP_sWF6Qc&start=10&sa=N&sstk=AU9db-BFOhTVC-X1F-WMZiPddwpQIu36nnm7e_Rt4BYc4WIJRCTCYBrvqZAzFlcp2DfkygSM9b39lfXDMVwC3gZ3HvYnttbMyohhsQ&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q8tMDegQIOhAE
+              - text: "2"
+            - link "Page 3" [ref=e846] [cursor=pointer]:
+              - /url: /search?q=Mercado+Pago+Argentina+costos+de+vender&sca_esv=0096a2a1340d2922&ei=d8l2atG_Lorx1sQP_sWF6Qc&start=20&sa=N&sstk=AU9db-BFOhTVC-X1F-WMZiPddwpQIu36nnm7e_Rt4BYc4WIJRCTCYBrvqZAzFlcp2DfkygSM9b39lfXDMVwC3gZ3HvYnttbMyohhsQ&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q8tMDegQIOhAG
+              - text: "3"
+            - link "Page 4" [ref=e848] [cursor=pointer]:
+              - /url: /search?q=Mercado+Pago+Argentina+costos+de+vender&sca_esv=0096a2a1340d2922&ei=d8l2atG_Lorx1sQP_sWF6Qc&start=30&sa=N&sstk=AU9db-BFOhTVC-X1F-WMZiPddwpQIu36nnm7e_Rt4BYc4WIJRCTCYBrvqZAzFlcp2DfkygSM9b39lfXDMVwC3gZ3HvYnttbMyohhsQ&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q8tMDegQIOhAI
+              - text: "4"
+            - link "Page 5" [ref=e850] [cursor=pointer]:
+              - /url: /search?q=Mercado+Pago+Argentina+costos+de+vender&sca_esv=0096a2a1340d2922&ei=d8l2atG_Lorx1sQP_sWF6Qc&start=40&sa=N&sstk=AU9db-BFOhTVC-X1F-WMZiPddwpQIu36nnm7e_Rt4BYc4WIJRCTCYBrvqZAzFlcp2DfkygSM9b39lfXDMVwC3gZ3HvYnttbMyohhsQ&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q8tMDegQIOhAK
+              - text: "5"
+            - link "Page 6" [ref=e852] [cursor=pointer]:
+              - /url: /search?q=Mercado+Pago+Argentina+costos+de+vender&sca_esv=0096a2a1340d2922&ei=d8l2atG_Lorx1sQP_sWF6Qc&start=50&sa=N&sstk=AU9db-BFOhTVC-X1F-WMZiPddwpQIu36nnm7e_Rt4BYc4WIJRCTCYBrvqZAzFlcp2DfkygSM9b39lfXDMVwC3gZ3HvYnttbMyohhsQ&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q8tMDegQIOhAM
+              - text: "6"
+            - link "Page 7" [ref=e854] [cursor=pointer]:
+              - /url: /search?q=Mercado+Pago+Argentina+costos+de+vender&sca_esv=0096a2a1340d2922&ei=d8l2atG_Lorx1sQP_sWF6Qc&start=60&sa=N&sstk=AU9db-BFOhTVC-X1F-WMZiPddwpQIu36nnm7e_Rt4BYc4WIJRCTCYBrvqZAzFlcp2DfkygSM9b39lfXDMVwC3gZ3HvYnttbMyohhsQ&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q8tMDegQIOhAO
+              - text: "7"
+            - link "Page 8" [ref=e856] [cursor=pointer]:
+              - /url: /search?q=Mercado+Pago+Argentina+costos+de+vender&sca_esv=0096a2a1340d2922&ei=d8l2atG_Lorx1sQP_sWF6Qc&start=70&sa=N&sstk=AU9db-BFOhTVC-X1F-WMZiPddwpQIu36nnm7e_Rt4BYc4WIJRCTCYBrvqZAzFlcp2DfkygSM9b39lfXDMVwC3gZ3HvYnttbMyohhsQ&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q8tMDegQIOhAQ
+              - text: "8"
+            - link "Page 9" [ref=e858] [cursor=pointer]:
+              - /url: /search?q=Mercado+Pago+Argentina+costos+de+vender&sca_esv=0096a2a1340d2922&ei=d8l2atG_Lorx1sQP_sWF6Qc&start=80&sa=N&sstk=AU9db-BFOhTVC-X1F-WMZiPddwpQIu36nnm7e_Rt4BYc4WIJRCTCYBrvqZAzFlcp2DfkygSM9b39lfXDMVwC3gZ3HvYnttbMyohhsQ&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q8tMDegQIOhAS
+              - text: "9"
+            - heading [level=2] [ref=e860]:
+              - link "Siguiente" [ref=e861] [cursor=pointer]:
+                - /url: /search?q=Mercado+Pago+Argentina+costos+de+vender&sca_esv=0096a2a1340d2922&ei=d8l2atG_Lorx1sQP_sWF6Qc&start=10&sa=N&sstk=AU9db-BFOhTVC-X1F-WMZiPddwpQIu36nnm7e_Rt4BYc4WIJRCTCYBrvqZAzFlcp2DfkygSM9b39lfXDMVwC3gZ3HvYnttbMyohhsQ&ved=2ahUKEwiR157dsJCWAxWKuJUCHf5iIX0Q8NMDegQIOhAU
+        - navigation
+    - contentinfo [ref=e864]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e865]
+      - generic [ref=e869]:
+        - generic [ref=e871]:
+          - text: Argentina
+          - generic [ref=e873]:
+            - button "Iriondo, Santa Fe - Según tu actividad anterior" [ref=e875] [cursor=pointer]:
+              - generic [ref=e876]: Iriondo, Santa Fe
+              - generic [ref=e878]:
+                - text: "-"
+                - generic [ref=e879]: Según tu actividad anterior
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e881] [cursor=pointer]
+        - generic [ref=e884]:
+          - link "Ayuda" [ref=e885] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e886] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e887] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e888] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

@@ -44,10 +44,12 @@ import { SupplierForm } from '@/features/suppliers/components/SupplierForm';
 import { ProductForm } from '@/features/products/components/ProductForm';
 import { ProductFormValues } from '@/features/products/schemas/product.schema';
 // expenseCategoriesApi removed: no longer needed in purchase form
-import { suppliersApi } from '@/features/suppliers/api/suppliers.api';
 import { purchasesApi } from '../api/purchases.api';
+import { suppliersApi } from '@/features/suppliers/api/suppliers.api';
 import { createPurchaseSchema, CreatePurchaseFormValues } from '../schemas/purchase.schema';
 import { PurchaseStatus } from '../types';
+import { PurchaseMatrixModal } from './PurchaseMatrixModal';
+import { useCapabilities } from '@/hooks/useCapabilities';
 import { getTodayLocal } from '@/lib/date-utils';
 import { PaymentMethodSelect } from '@/components/shared/PaymentMethodSelect';
 
@@ -67,6 +69,10 @@ function formatCurrency(value: number): string {
 }
 
 export function PurchaseForm({ onSubmit, isLoading }: PurchaseFormProps) {
+    const { data: capabilitiesData } = useCapabilities();
+    const hasVariantsCapability = capabilitiesData?.capabilities['STRUCTURAL.variants'] ?? false;
+
+    const [isMatrixOpen, setIsMatrixOpen] = useState(false);
     // Estado para crear producto
     const [createProductOpen, setCreateProductOpen] = useState(false);
     const [createProductIndex, setCreateProductIndex] = useState<number | null>(null);
@@ -238,7 +244,11 @@ export function PurchaseForm({ onSubmit, isLoading }: PurchaseFormProps) {
     };
 
     const handleSubmit = (data: CreatePurchaseFormValues) => {
-        onSubmit(data);
+        const cleaned = {
+            ...data,
+            paymentMethodId: data.paymentMethodId === '' ? undefined : data.paymentMethodId,
+        };
+        onSubmit(cleaned);
     };
 
     return (
@@ -396,20 +406,52 @@ export function PurchaseForm({ onSubmit, isLoading }: PurchaseFormProps) {
                                 )}
                             </Button>
                         </div>
-                        <div className="flex justify-between items-center">
+                        <div className="flex justify-between items-center flex-wrap gap-2">
                             <h3 className="font-semibold text-lg">Productos <span className="text-red-500">*</span></h3>
-                            <Button
-                                type="button"
-                                variant="outline"
-                                size="sm"
-                                onClick={() =>
-                                    append({ productId: '', quantity: 1, unitPrice: 0, notes: '' })
-                                }
-                            >
-                                <Plus className="h-4 w-4 mr-1" />
-                                Agregar Línea
-                            </Button>
+                            <div className="flex gap-2">
+                                {hasVariantsCapability ? (
+                                    <Button
+                                        type="button"
+                                        variant="secondary"
+                                        size="sm"
+                                        onClick={() => setIsMatrixOpen(true)}
+                                        className="bg-blue-600/10 text-blue-700 hover:bg-blue-600/20 dark:text-blue-300 font-medium"
+                                    >
+                                        <PackagePlus className="h-4 w-4 mr-1 text-blue-600" />
+                                        Cargar por Matriz (Curvero)
+                                    </Button>
+                                ) : null}
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() =>
+                                        append({ productId: '', quantity: 1, unitPrice: 0, notes: '' })
+                                    }
+                                >
+                                    <Plus className="h-4 w-4 mr-1" />
+                                    Agregar Línea
+                                </Button>
+                            </div>
                         </div>
+
+                        {/* Modal de Matriz de Compras */}
+                        {isMatrixOpen ? (
+                            <PurchaseMatrixModal
+                                open={isMatrixOpen}
+                                onClose={() => setIsMatrixOpen(false)}
+                                onAddVariantsToPurchase={(itemsToAdd) => {
+                                    for (const item of itemsToAdd) {
+                                        append({
+                                            productId: item.product.id,
+                                            quantity: item.quantity,
+                                            unitPrice: item.unitCost,
+                                            notes: `Curva variante ${item.product.name}`,
+                                        });
+                                    }
+                                }}
+                            />
+                        ) : null}
 
                         <div className="space-y-3">
                             {fields.map((field, index) => (
@@ -617,15 +659,14 @@ export function PurchaseForm({ onSubmit, isLoading }: PurchaseFormProps) {
 
             {/* Diálogo para crear producto (usa el mismo formulario que en Productos) */}
             <Dialog open={createProductOpen} onOpenChange={setCreateProductOpen}>
-                <DialogContent className="sm:max-w-[500px]">
+                <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
                     <DialogHeader>
                         <DialogTitle className="flex items-center gap-2">
-                            <PackagePlus className="h-5 w-5" />
+                            <PackagePlus className="h-5 w-5 text-blue-600" />
                             Crear Producto Nuevo
                         </DialogTitle>
                         <DialogDescription>
-                            Completá los datos del producto. El precio de venta se calcula
-                            automáticamente según el margen configurado.
+                            Completá los datos del producto o modelo con matriz. Se agregará al catálogo para seleccionarlo en la compra.
                         </DialogDescription>
                     </DialogHeader>
                     <ProductForm
@@ -638,6 +679,12 @@ export function PurchaseForm({ onSubmit, isLoading }: PurchaseFormProps) {
                         }}
                         onSubmit={handleCreateProduct}
                         isLoading={createProductMutation.isPending}
+                        onSuccess={() => {
+                            setCreateProductOpen(false);
+                            setCreateProductIndex(null);
+                            setInitialProductName('');
+                            queryClient.invalidateQueries({ queryKey: ['products'] });
+                        }}
                     />
                 </DialogContent>
             </Dialog>

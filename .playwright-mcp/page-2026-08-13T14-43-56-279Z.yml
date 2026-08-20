@@ -1,0 +1,185 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                        - text: Remera Verano E2E Test
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 1 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Remera Verano E2E Test
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 18.500,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "0"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 1
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button [disabled]: Siguiente
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog [ref=e482]:
+    - generic [ref=e483]:
+      - heading "Generar Matriz de Variantes" [level=2] [ref=e487]
+      - paragraph [ref=e488]:
+        - text: Crea variantes de
+        - strong [ref=e489]: Remera Verano E2E Test
+        - text: automáticamente combinando Talles y Colores.
+    - generic [ref=e490]:
+      - generic [ref=e491]:
+        - generic [ref=e492]:
+          - generic [ref=e493]: 1. Talles Seleccionados
+          - generic [ref=e494]:
+            - generic [ref=e495]: "Ropa:"
+            - button "S-XXL" [active] [ref=e496] [cursor=pointer]
+            - generic [ref=e497]: "Calzado:"
+            - button "36-44" [ref=e498] [cursor=pointer]
+        - generic [ref=e499]:
+          - generic [ref=e500]:
+            - text: S
+            - button "×" [ref=e501] [cursor=pointer]
+          - generic [ref=e502]:
+            - text: M
+            - button "×" [ref=e503] [cursor=pointer]
+          - generic [ref=e504]:
+            - text: L
+            - button "×" [ref=e505] [cursor=pointer]
+          - generic [ref=e506]:
+            - text: XL
+            - button "×" [ref=e507] [cursor=pointer]
+        - generic [ref=e508]:
+          - 'textbox "Agregar talle personalizado (ej: XXXL o 39)" [ref=e509]'
+          - button [ref=e510] [cursor=pointer]
+      - generic [ref=e512]:
+        - generic [ref=e513]:
+          - generic [ref=e514]: 2. Colores Seleccionados
+          - generic [ref=e515]:
+            - button "+Negro" [ref=e516] [cursor=pointer]
+            - button "+Blanco" [ref=e517] [cursor=pointer]
+            - button "+Azul" [ref=e518] [cursor=pointer]
+            - button "+Rojo" [ref=e519] [cursor=pointer]
+            - button "+Gris" [ref=e520] [cursor=pointer]
+        - generic [ref=e521]:
+          - generic [ref=e522]:
+            - text: Negro
+            - button "×" [ref=e523] [cursor=pointer]
+          - generic [ref=e524]:
+            - text: Blanco
+            - button "×" [ref=e525] [cursor=pointer]
+          - generic [ref=e526]:
+            - text: Azul
+            - button "×" [ref=e527] [cursor=pointer]
+        - generic [ref=e528]:
+          - 'textbox "Agregar color personalizado (ej: Camel o estampado)" [ref=e529]'
+          - button [ref=e530] [cursor=pointer]
+      - generic [ref=e532]:
+        - generic [ref=e533]:
+          - paragraph [ref=e534]: Resultado de la Matriz
+          - paragraph [ref=e535]:
+            - text: Se crearán
+            - strong [ref=e536]: 12 variantes independientes
+            - text: en el catálogo.
+        - generic [ref=e537]: 12 SKUs
+    - generic [ref=e538]:
+      - button "Cancelar" [ref=e539] [cursor=pointer]
+      - button "Generar 12 Variantes" [ref=e540] [cursor=pointer]
+    - button "Close" [ref=e545] [cursor=pointer]

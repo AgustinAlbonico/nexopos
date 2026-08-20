@@ -1,0 +1,275 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: cines independientes Rosario Gran Rosario 2026 cines independientes Rosario Gran Rosario 2026
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3Dcines%2Bindependientes%2BRosario%2BGran%2BRosario%2B2026&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=cines+independientes+Rosario+Gran+Rosario+2026&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ2J8OegQIERAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Noticias" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=cines+independientes+Rosario+Gran+Rosario+2026&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&sa=X&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ0pQJegQIFxAB
+          - listitem [ref=e94]:
+            - link "Imágenes" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&q=cines+independientes+Rosario+Gran+Rosario+2026&sa=X&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQtKgLegQIFhAB
+          - listitem [ref=e98]:
+            - link "Vídeos" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&q=cines+independientes+Rosario+Gran+Rosario+2026&sa=X&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQtKgLegQIFRAB
+          - listitem [ref=e102]:
+            - link "Shopping" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&q=cines+independientes+Rosario+Gran+Rosario+2026&ved=1t:220175&ictx=111
+          - listitem [ref=e106]:
+            - link "Vídeos cortos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbbocwI3x4NOt_JbJGKVKwSvzZhTwiQ2XfFVvSNiOp9A32zjbCelGCy5qNkReeMgjVcWDw2pDsljQFx2j6LpVLvCeYJ-1p8g&q=cines+independientes+Rosario+Gran+Rosario+2026&sa=X&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQs6gLegQIFBAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - generic [ref=e131]:
+      - generic [ref=e150]:
+        - heading "Pensando Buscando Pensando un poco más" [level=2] [ref=e154]:
+          - generic [ref=e155]:
+            - generic [ref=e156]: Pensando
+            - generic [ref=e158]: Buscando
+            - generic [ref=e168]: Pensando un poco más
+        - progressbar "Generando" [ref=e171]
+      - main [ref=e222]:
+        - generic [ref=e226]:
+          - generic [ref=e229]:
+            - heading "Resultados web" [level=2] [ref=e230]
+            - generic [ref=e231]:
+              - generic [ref=e234]:
+                - link "Rosario vivió su gran Festival de Cine 2026 Centro Cultural Cine Lumière https://lumiererosario.gob.ar › Portada › NOTICIAS" [ref=e236] [cursor=pointer]:
+                  - /url: https://lumiererosario.gob.ar/web/rosario-vivio-su-gran-festival-de-cine-2026/
+                  - heading "Rosario vivió su gran Festival de Cine 2026" [level=3] [ref=e237]
+                  - generic [ref=e243]:
+                    - generic [ref=e244]: Centro Cultural Cine Lumière
+                    - generic [ref=e246]: https://lumiererosario.gob.ar › Portada › NOTICIAS
+                - button "Acerca de este resultado" [ref=e250] [cursor=pointer]
+              - generic [ref=e256]:
+                - generic [ref=e257]: 6 jun 2026 —
+                - generic [ref=e258]:
+                  - text: Rosario vivió su gran Festival de Cine 2026 ;
+                  - emphasis [ref=e259]: Cine Lumière como sede principal
+                  - text: ", junto a ; El Cairo Cine Público y ; Cines del Centro, el ; Complejo ..."
+          - generic [ref=e264]:
+            - heading "Más preguntas" [level=2] [ref=e266]
+            - generic [ref=e267]:
+              - button "¿Cuánto cuesta la entrada al cine en Argentina en 2026?" [ref=e273] [cursor=pointer]
+              - button "¿Qué películas hay en el cine 2026 Argentina?" [ref=e287] [cursor=pointer]
+              - button "¿Cómo funciona el cine independiente?" [ref=e301] [cursor=pointer]
+              - button "¿Cines de Rosario que ya no existen?" [ref=e315] [cursor=pointer]
+          - generic [ref=e325]:
+            - heading "Resultados web" [level=2] [ref=e326]
+            - generic [ref=e327]:
+              - generic [ref=e330]:
+                - link "Del 30 de mayo al 6 de junio 2026 vuelve el Festival ... Instagram · culturarosario Más de 1,2 K \"me gusta\" · hace 9 meses" [ref=e332] [cursor=pointer]:
+                  - /url: https://www.instagram.com/p/DQ4X4DsDX1Z/
+                  - heading "Del 30 de mayo al 6 de junio 2026 vuelve el Festival ..." [level=3] [ref=e333]
+                  - generic [ref=e339]:
+                    - generic [ref=e340]: Instagram · culturarosario
+                    - generic [ref=e342]: Más de 1,2 K "me gusta" · hace 9 meses
+                - button "Acerca de este resultado" [ref=e346] [cursor=pointer]
+              - generic [ref=e353]:
+                - text: El festival, organizado por el gobierno provincial,
+                - emphasis [ref=e354]: se desarrollará del 24 al 29 de noviembre de 2026
+                - text: . Las categorías competitivas oficiales de ...
+          - generic [ref=e360]:
+            - generic [ref=e363]:
+              - link "Comienza el 31° Festival de Cine Latinoamericano Rosario ... Instagram · rosarioturismo Más de 90 \"me gusta\" · hace 2 meses" [ref=e365] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DY4em_AuJcB/
+                - heading "Comienza el 31° Festival de Cine Latinoamericano Rosario ..." [level=3] [ref=e366]
+                - generic [ref=e372]:
+                  - generic [ref=e373]: Instagram · rosarioturismo
+                  - generic [ref=e375]: Más de 90 "me gusta" · hace 2 meses
+              - button "Acerca de este resultado" [ref=e379] [cursor=pointer]
+            - generic [ref=e384]:
+              - link "Comienza el 31° Festival de Cine Latinoamericano Rosario ... de Rosario Turismo en Instagram. Reproducir en Instagram. 1:32" [ref=e385] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DY4em_AuJcB/
+                - generic [ref=e386]: 1:32
+              - generic [ref=e395]: Nos vemos en el cine! 🎞️ 31° FESTIVAL DE CINE LATINOAMERICANO ROSARIO 🎞️ Del 29 de mayo al 6 de junio de 2026 @culturarosario @muni_rosario
+          - generic [ref=e400]:
+            - generic [ref=e403]:
+              - link "Todo listo para la 22ª edición del Bafici en Rosario SL24 https://sl24.com.ar › todo-listo-para-la-22a-edicion-del-..." [ref=e405] [cursor=pointer]:
+                - /url: https://sl24.com.ar/todo-listo-para-la-22a-edicion-del-bafici-en-rosario/
+                - heading "Todo listo para la 22ª edición del Bafici en Rosario" [level=3] [ref=e406]
+                - generic [ref=e412]:
+                  - generic [ref=e413]: SL24
+                  - generic [ref=e415]: https://sl24.com.ar › todo-listo-para-la-22a-edicion-del-...
+              - button "Acerca de este resultado" [ref=e419] [cursor=pointer]
+            - generic [ref=e425]:
+              - generic [ref=e426]: hace 3 días —
+              - generic [ref=e427]:
+                - text: El 22º BAFICI
+                - emphasis [ref=e428]: Rosario
+                - text: se celebrará del 20 al 23 de agosto de
+                - emphasis [ref=e429]: "2026"
+                - text: en la ciudad de
+                - emphasis [ref=e430]: Rosario
+                - text: ", reafirmando la continuidad de una de las muestras ..."
+          - generic [ref=e434]:
+            - generic [ref=e437]:
+              - 'link "Cine Club Rosario: función del martes 20/1 Asociación Médica de Rosario https://web.amr.org.ar › Cultura › Cine" [ref=e439] [cursor=pointer]':
+                - /url: https://web.amr.org.ar/2026/01/16/cine-club-rosario-funcion-del-martes-20-1/
+                - 'heading "Cine Club Rosario: función del martes 20/1" [level=3] [ref=e440]'
+                - generic [ref=e446]:
+                  - generic [ref=e447]: Asociación Médica de Rosario
+                  - generic [ref=e449]: https://web.amr.org.ar › Cultura › Cine
+              - button "Acerca de este resultado" [ref=e453] [cursor=pointer]
+            - generic [ref=e459]:
+              - generic [ref=e460]: 16 ene 2026 —
+              - generic [ref=e461]:
+                - text: En la primera función del año, un film que jamás podrá ser apreciado en toda sus potencias en un formato casero. Es
+                - emphasis [ref=e462]: cine
+                - text: hecho para el
+                - emphasis [ref=e463]: cine
+                - text: .
+          - generic [ref=e469]:
+            - generic [ref=e472]:
+              - link "Comienza el 31° Festival de Cine Latinoamericano Rosario ... Facebook · Rosario Turismo 3 reacciones · hace 2 meses" [ref=e474] [cursor=pointer]:
+                - /url: https://www.facebook.com/rosarioturismo/videos/-comienza-el-31-festival-de-cine-latinoamericano-rosario-del-29-de-mayo-al-6-de-/930850756666482/
+                - heading "Comienza el 31° Festival de Cine Latinoamericano Rosario ..." [level=3] [ref=e475]
+                - generic [ref=e481]:
+                  - generic [ref=e482]: Facebook · Rosario Turismo
+                  - generic [ref=e484]: 3 reacciones · hace 2 meses
+              - button "Acerca de este resultado" [ref=e488] [cursor=pointer]
+            - generic [ref=e493]:
+              - link "Comienza el 31° Festival de Cine Latinoamericano Rosario ... de Rosario Turismo en Facebook. Reproducir en Facebook. 1:33" [ref=e494] [cursor=pointer]:
+                - /url: https://www.facebook.com/rosarioturismo/videos/-comienza-el-31-festival-de-cine-latinoamericano-rosario-del-29-de-mayo-al-6-de-/930850756666482/
+                - generic [ref=e495]: 1:33
+              - generic [ref=e504]: ... 2026 + de 35 funciones y actividades gratuitas ... Desde el Parque de la Independencia, celebramos los 210 años de ser un país independiente.
+          - generic [ref=e509]:
+            - generic [ref=e512]:
+              - link "La fiesta del cine independiente llega a Rosario con el Bafici La Capital https://www.lacapital.com.ar › cine" [ref=e514] [cursor=pointer]:
+                - /url: https://www.lacapital.com.ar/zoom/la-fiesta-del-cine-independiente-llega-rosario-el-bafici-n10213777.html
+                - heading "La fiesta del cine independiente llega a Rosario con el Bafici" [level=3] [ref=e515]
+                - generic [ref=e521]:
+                  - generic [ref=e522]: La Capital
+                  - generic [ref=e524]: https://www.lacapital.com.ar › cine
+              - button "Acerca de este resultado" [ref=e528] [cursor=pointer]
+            - generic [ref=e534]:
+              - generic [ref=e535]: 20 ago 2025 —
+              - generic [ref=e536]:
+                - text: Este año, el Bafici
+                - emphasis [ref=e537]: Rosario
+                - text: se llevará a cabo en el
+                - emphasis [ref=e538]: Cine
+                - text: El Cairo (Santa Fe 1120), la Sala AMR (España 401), el
+                - emphasis [ref=e539]: Cine
+                - text: Lumière (Vélez Sarsfield ...
+          - generic [ref=e543]:
+            - generic [ref=e546]:
+              - link "Abre la inscripción de películas al Festival de Cine ... Centro Cultural Cine Lumière https://lumiererosario.gob.ar › Portada › NOTICIAS" [ref=e548] [cursor=pointer]:
+                - /url: https://lumiererosario.gob.ar/web/abre-la-inscripcion-de-peliculas-al-festival-de-cine-latinoamericano-rosario-2026/
+                - heading "Abre la inscripción de películas al Festival de Cine ..." [level=3] [ref=e549]
+                - generic [ref=e555]:
+                  - generic [ref=e556]: Centro Cultural Cine Lumière
+                  - generic [ref=e558]: https://lumiererosario.gob.ar › Portada › NOTICIAS
+              - button "Acerca de este resultado" [ref=e562] [cursor=pointer]
+            - generic [ref=e568]:
+              - generic [ref=e569]: 7 nov 2025 —
+              - generic [ref=e570]:
+                - text: Del 30 de mayo al 6 de junio la ciudad de
+                - emphasis [ref=e571]: Rosario
+                - text: disfrutará de lo mejor del
+                - emphasis [ref=e572]: cine
+                - text: latinoamericano, a partir de la proyección de películas, ...
+          - generic [ref=e578]:
+            - generic [ref=e581]:
+              - link "ROSARIO VIVE EL CINE LATINOAMERICANO 🎞️ La ciudad ... Instagram · tomatetutiempo_ros Más de 40 \"me gusta\" · hace 2 meses" [ref=e583] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DY5Yph_xMA0/
+                - heading "ROSARIO VIVE EL CINE LATINOAMERICANO 🎞️ La ciudad ..." [level=3] [ref=e584]
+                - generic [ref=e590]:
+                  - generic [ref=e591]: Instagram · tomatetutiempo_ros
+                  - generic [ref=e593]: Más de 40 "me gusta" · hace 2 meses
+              - button "Acerca de este resultado" [ref=e597] [cursor=pointer]
+            - generic [ref=e602]:
+              - link "ROSARIO VIVE EL CINE LATINOAMERICANO 🎞️ La ciudad ... de TOMATE TU TIEMPO | Canal de streaming en Instagram. Reproducir en Instagram. 1:56" [ref=e603] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DY5Yph_xMA0/
+                - generic [ref=e604]: 1:56
+              - generic [ref=e613]: "tomatetutiempo_ros on May 28, 2026: \" ROSARIO VIVE EL CINE LATINOAMERICANO 🎞️ La ciudad se prepara para la 31° edición del Festival de ..."
+        - navigation [ref=e617]:
+          - heading "Navegación de páginas" [level=1] [ref=e618]
+          - text: "1"
+          - link "Page 2" [ref=e621] [cursor=pointer]:
+            - /url: /search?q=cines+independientes+Rosario+Gran+Rosario+2026&sca_esv=569d465b5b1d57df&ei=M9h2atKVGo6c5OUP8ZDLuAI&start=10&sa=N&sstk=AU9db-CmnEdtY18J5VyE16kAIR-80Vezi7Jr_R4DU3AWzyxt6QIokXEwzmRgUC_t-viO3z0CLKHRy5eGtM78mqkt-gzxOXRg1jUaVQ&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ8tMDegQIJRAE
+            - text: "2"
+          - link "Page 3" [ref=e623] [cursor=pointer]:
+            - /url: /search?q=cines+independientes+Rosario+Gran+Rosario+2026&sca_esv=569d465b5b1d57df&ei=M9h2atKVGo6c5OUP8ZDLuAI&start=20&sa=N&sstk=AU9db-CmnEdtY18J5VyE16kAIR-80Vezi7Jr_R4DU3AWzyxt6QIokXEwzmRgUC_t-viO3z0CLKHRy5eGtM78mqkt-gzxOXRg1jUaVQ&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ8tMDegQIJRAG
+            - text: "3"
+          - link "Page 4" [ref=e625] [cursor=pointer]:
+            - /url: /search?q=cines+independientes+Rosario+Gran+Rosario+2026&sca_esv=569d465b5b1d57df&ei=M9h2atKVGo6c5OUP8ZDLuAI&start=30&sa=N&sstk=AU9db-CmnEdtY18J5VyE16kAIR-80Vezi7Jr_R4DU3AWzyxt6QIokXEwzmRgUC_t-viO3z0CLKHRy5eGtM78mqkt-gzxOXRg1jUaVQ&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ8tMDegQIJRAI
+            - text: "4"
+          - link "Page 5" [ref=e627] [cursor=pointer]:
+            - /url: /search?q=cines+independientes+Rosario+Gran+Rosario+2026&sca_esv=569d465b5b1d57df&ei=M9h2atKVGo6c5OUP8ZDLuAI&start=40&sa=N&sstk=AU9db-CmnEdtY18J5VyE16kAIR-80Vezi7Jr_R4DU3AWzyxt6QIokXEwzmRgUC_t-viO3z0CLKHRy5eGtM78mqkt-gzxOXRg1jUaVQ&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ8tMDegQIJRAK
+            - text: "5"
+          - link "Page 6" [ref=e629] [cursor=pointer]:
+            - /url: /search?q=cines+independientes+Rosario+Gran+Rosario+2026&sca_esv=569d465b5b1d57df&ei=M9h2atKVGo6c5OUP8ZDLuAI&start=50&sa=N&sstk=AU9db-CmnEdtY18J5VyE16kAIR-80Vezi7Jr_R4DU3AWzyxt6QIokXEwzmRgUC_t-viO3z0CLKHRy5eGtM78mqkt-gzxOXRg1jUaVQ&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ8tMDegQIJRAM
+            - text: "6"
+          - link "Page 7" [ref=e631] [cursor=pointer]:
+            - /url: /search?q=cines+independientes+Rosario+Gran+Rosario+2026&sca_esv=569d465b5b1d57df&ei=M9h2atKVGo6c5OUP8ZDLuAI&start=60&sa=N&sstk=AU9db-CmnEdtY18J5VyE16kAIR-80Vezi7Jr_R4DU3AWzyxt6QIokXEwzmRgUC_t-viO3z0CLKHRy5eGtM78mqkt-gzxOXRg1jUaVQ&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ8tMDegQIJRAO
+            - text: "7"
+          - link "Page 8" [ref=e633] [cursor=pointer]:
+            - /url: /search?q=cines+independientes+Rosario+Gran+Rosario+2026&sca_esv=569d465b5b1d57df&ei=M9h2atKVGo6c5OUP8ZDLuAI&start=70&sa=N&sstk=AU9db-CmnEdtY18J5VyE16kAIR-80Vezi7Jr_R4DU3AWzyxt6QIokXEwzmRgUC_t-viO3z0CLKHRy5eGtM78mqkt-gzxOXRg1jUaVQ&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ8tMDegQIJRAQ
+            - text: "8"
+          - link "Page 9" [ref=e635] [cursor=pointer]:
+            - /url: /search?q=cines+independientes+Rosario+Gran+Rosario+2026&sca_esv=569d465b5b1d57df&ei=M9h2atKVGo6c5OUP8ZDLuAI&start=80&sa=N&sstk=AU9db-CmnEdtY18J5VyE16kAIR-80Vezi7Jr_R4DU3AWzyxt6QIokXEwzmRgUC_t-viO3z0CLKHRy5eGtM78mqkt-gzxOXRg1jUaVQ&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ8tMDegQIJRAS
+            - text: "9"
+          - link "Page 10" [ref=e637] [cursor=pointer]:
+            - /url: /search?q=cines+independientes+Rosario+Gran+Rosario+2026&sca_esv=569d465b5b1d57df&ei=M9h2atKVGo6c5OUP8ZDLuAI&start=90&sa=N&sstk=AU9db-CmnEdtY18J5VyE16kAIR-80Vezi7Jr_R4DU3AWzyxt6QIokXEwzmRgUC_t-viO3z0CLKHRy5eGtM78mqkt-gzxOXRg1jUaVQ&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ8tMDegQIJRAU
+            - text: "10"
+          - heading [level=2] [ref=e639]:
+            - link "Siguiente" [ref=e640] [cursor=pointer]:
+              - /url: /search?q=cines+independientes+Rosario+Gran+Rosario+2026&sca_esv=569d465b5b1d57df&ei=M9h2atKVGo6c5OUP8ZDLuAI&start=10&sa=N&sstk=AU9db-CmnEdtY18J5VyE16kAIR-80Vezi7Jr_R4DU3AWzyxt6QIokXEwzmRgUC_t-viO3z0CLKHRy5eGtM78mqkt-gzxOXRg1jUaVQ&ved=2ahUKEwiS-9rjvpCWAxUODrkGHXHIEicQ8NMDegQIJRAW
+        - navigation
+    - contentinfo [ref=e643]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e644]
+      - generic [ref=e648]:
+        - generic [ref=e650]:
+          - text: Argentina
+          - generic [ref=e652]:
+            - button "Iriondo, Santa Fe - Según tu actividad anterior" [ref=e654] [cursor=pointer]:
+              - generic [ref=e655]: Iriondo, Santa Fe
+              - generic [ref=e657]:
+                - text: "-"
+                - generic [ref=e658]: Según tu actividad anterior
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e660] [cursor=pointer]
+        - generic [ref=e663]:
+          - link "Ayuda" [ref=e664] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e665] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e666] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e667] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

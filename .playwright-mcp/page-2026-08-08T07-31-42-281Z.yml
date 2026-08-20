@@ -1,0 +1,423 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Complejo Astronómico Municipal\" Rosario sitio web cartelera \"Complejo Astronómico Municipal\" Rosario sitio web cartelera"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Complejo%2BAstron%25C3%25B3mico%2BMunicipal%2522%2BRosario%2Bsitio%2Bweb%2Bcartelera&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXukKykbQlDGiLSBy9n2FqCQibvJK-089P4J6wWOBJTOUJSnU8qklNo4h7EnXTUbAC1ibgNH-VLToNX-HXIJMZ5FMIOCohL29eHOY9hhPBcCO4OLK5U&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ2J8OegQICRAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Noticias" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXukKykbQlDGiLSBy9n2FqCQibvJK-089P4J6wWOBJTOUJSnU8qklNo4h7EnXTUbAC1ibgNH-VLToNX-HXIJMZ5FMIOCohL29eHOY9hhPBcCO4OLK5U&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ0pQJegQIJRAB
+          - listitem [ref=e94]:
+            - link "Imágenes" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXukKykbQlDGiLSBy9n2FqCQibvJK-089P4J6wWOBJTOUJSnU8qklNo4h7EnXTUbAC1ibgNH-VLToNX-HXIJMZ5FMIOCohL29eHOY9hhPBcCO4OLK5U&q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQtKgLegQIHxAB
+          - listitem [ref=e98]:
+            - link "Shopping" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXukKykbQlDGiLSBy9n2FqCQibvJK-089P4J6wWOBJTOUJSnU8qklNo4h7EnXTUbAC1ibgNH-VLToNX-HXIJMZ5FMIOCohL29eHOY9hhPBcCO4OLK5U&q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&ved=1t:220175&ictx=111
+          - listitem [ref=e102]:
+            - link "Vídeos" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXukKykbQlDGiLSBy9n2FqCQibvJK-089P4J6wWOBJTOUJSnU8qklNo4h7EnXTUbAC1ibgNH-VLToNX-HXIJMZ5FMIOCohL29eHOY9hhPBcCO4OLK5U&q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQtKgLegQIGBAB
+          - listitem [ref=e106]:
+            - link "Vídeos cortos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhnVeVQHit_hf8q1sTwn0O813PWTF6x9r5BF_btmMdXukKykbQlDGiLSBy9n2FqCQibvJK-089P4J6wWOBJTOUJSnU8qklNo4h7EnXTUbAC1ibgNH-VLToNX-HXIJMZ5FMIOCohL29eHOY9hhPBcCO4OLK5U&q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQs6gLegQIERAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - generic [ref=e131]:
+      - main [ref=e132]:
+        - generic [ref=e136]:
+          - generic [ref=e137]:
+            - generic [ref=e140]:
+              - generic [ref=e144]:
+                - generic [ref=e152]:
+                  - button "Ver fotos" [ref=e156] [cursor=pointer]
+                  - generic [ref=e160]:
+                    - generic [ref=e161]:
+                      - link [ref=e163] [cursor=pointer]:
+                        - /url: /maps/place/Complejo+Astron%C3%B3mico+Municipal/data=!4m2!3m1!1s0x0:0x1186697a4f4cc4c6?sa=X&ved=1t:2428&ictx=111
+                        - img "Mapa de Municipal Astronomic Complex" [ref=e165]
+                      - link [ref=e167] [cursor=pointer]:
+                        - /url: /maps/place/Complejo+Astron%C3%B3mico+Municipal/data=!4m2!3m1!1s0x0:0x1186697a4f4cc4c6?sa=X&ved=1t:2428&ictx=111
+                        - img "Mapa de Municipal Astronomic Complex" [ref=e169]
+                    - link "Ver por fuera" [ref=e177] [cursor=pointer]:
+                      - /url: /local/place/fid/0x95b7aaff5caa0721:0x1186697a4f4cc4c6/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3DO2FSC5gyjY_r-Ib9KxiwVQ%26cb_client%3Dsearch.gws-prod.gps%26yaw%3D178.62657%26pitch%3D0%26thumbfov%3D100%26w%3D0%26h%3D0&ik=CAISFk8yRlNDNWd5allfci1JYjlLeGl3VlE%3D&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQpx96BAhNEBE
+                - generic [ref=e182]:
+                  - heading "Complejo Astronómico Municipal" [level=2] [ref=e185]
+                  - generic [ref=e188]:
+                    - text: 4,5
+                    - 'img "Calificación: 4,5 de 5," [ref=e189]'
+                    - button "691 opiniones en Google" [ref=e194] [cursor=pointer]
+                    - text: Observatorio en Rosario
+                - generic [ref=e201]:
+                  - generic [ref=e213]:
+                    - link "Sitio web" [ref=e215] [cursor=pointer]:
+                      - /url: http://www.complejoastronomico.gob.ar/
+                    - link "Cómo llegar" [ref=e222]
+                    - button "Escribir una opinión" [ref=e232] [cursor=pointer]
+                    - button "Guardar Complejo Astronómico Municipal en una colección" [ref=e242] [cursor=pointer]:
+                      - generic [ref=e245]: Guardar
+                    - button "Compartir" [ref=e248] [cursor=pointer]
+                  - generic [ref=e258]:
+                    - generic [ref=e261]:
+                      - heading "Descripción" [level=3] [ref=e262]
+                      - generic [ref=e263]: El Complejo Astronómico Municipal es un conjunto de edificaciones ubicadas en el sector sudoeste del Parque Urquiza en la ciudad de Rosario, provincia de Santa Fe, Argentina.
+                      - link "Wikipedia" [ref=e265] [cursor=pointer]:
+                        - /url: https://es.wikipedia.org/wiki/Complejo_Astron%C3%B3mico_Municipal
+                    - generic [ref=e267]:
+                      - text: "Ubicado en:"
+                      - link "Parque Urquiza" [ref=e268] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Parque+Urquiza&ludocid=9536043673791593435&lsig=AB86z5VVwlrVRjgemKMITiGLeUhn&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ8G0oAHoECEIQAQ
+                    - generic [ref=e270]:
+                      - generic [ref=e271]:
+                        - link "Dirección" [ref=e272] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=complejo+astron%C3%B3mico+municipal+direcci%C3%B3n&ludocid=1262812719561360582&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ6BN6BAg_EAI
+                        - text: ":"
+                      - text: Av. Diario La Capital 1602, S2000BMH Rosario, Santa Fe
+                    - generic [ref=e273]:
+                      - generic [ref=e274]:
+                        - link "Horario" [ref=e275] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=complejo+astron%C3%B3mico+municipal+horario&ludocid=1262812719561360582&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ6BN6BAhBEAI
+                        - text: ":"
+                      - button "Cerrado · Abre a las 11 a. m." [ref=e277]
+                    - generic [ref=e287]:
+                      - generic [ref=e288]:
+                        - link "Provincia" [ref=e289] [cursor=pointer]:
+                          - /url: /search?sca_esv=569d465b5b1d57df&q=complejo+astron%C3%B3mico+municipal+provincia&stick=H4sIAAAAAAAAAOPgE-LWT9c3NDJMyjYzr9CSy0620s_JT04syczPgzOsCoryyzLzklMXsWom5-cW5KRm5SskFpcU5ecd3pybmZyvkFual5mcWZCYowBVmpkIAAf8i5pbAAAA&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ6BN6BAhAEAI
+                        - text: ":"
+                      - link "Provincia de Santa Fe" [ref=e292] [cursor=pointer]:
+                        - /url: /search?sca_esv=569d465b5b1d57df&q=Provincia+de+Santa+Fe&si=APenkKlisoOXLiCMwraINHtdqOQii4CK9kOlkQc8Apn-pS60ybgOg0JEOGJhvAVM0X3IAllokT9_CWli7Oob0IomjfXFcZdLujDgpyW1LEa7uXvg0vQswksPd4YT-ypCTJU864bR6vfPhdjBmU_0YRdO9qNXwX00SY-8yQK2RO-1TFkyN7nTeXihLYBjmFlR5hCqRRXDg_YIQN2HXtt6vsCZ3ydwR2Avxg%3D%3D&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQmxN6BAhAEAM
+                    - generic [ref=e295]:
+                      - generic [ref=e296]:
+                        - button "Sugerir una edición" [ref=e299] [cursor=pointer]
+                        - text: ·
+                        - link "¿Eres propietario de esta empresa?" [ref=e300] [cursor=pointer]:
+                          - /url: https://business.google.com/create?hl=es&getstarted&authuser=0&fp=1262812719561360582&gmbsrc=ar-es-et-ip-z-gmb-s-z-l~skp%7Cclaimbz_aoc_a%7Cu&ppsrc=GMBSI
+                      - generic [ref=e301]:
+                        - generic [ref=e302]: Agregar la información que falta
+                        - link "Agrega el número de teléfono del lugar" [ref=e303] [cursor=pointer]
+                  - generic [ref=e311]:
+                    - heading "Planifica tu visita" [level=3] [ref=e314]
+                    - generic [ref=e315]: "Promedio de permanencia: Entre 25 min y 2,5 h"
+                  - generic [ref=e332]:
+                    - generic [ref=e333]:
+                      - heading "Opiniones" [level=3] [ref=e334]
+                      - button "Más información" [ref=e339] [cursor=pointer]
+                      - generic [ref=e343]:
+                        - button "Escribir una opinión" [ref=e347] [cursor=pointer]
+                        - link "Agregar fotos" [ref=e350] [cursor=pointer]:
+                          - /url: "#"
+                    - generic [ref=e351]:
+                      - generic [ref=e352]:
+                        - generic [ref=e353]:
+                          - link "Rosa Savoini":
+                            - /url: https://www.google.com/maps/contrib/104518516542158038659?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "Rosa Savoini" [ref=e355] [cursor=pointer]
+                        - generic [ref=e356]:
+                          - link "\"No me quedé conforme me hubiera gustado ver el telescopio y saber como funciona\"" [ref=e357] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s104518516542158038659!2s0x95b7aaff5caa0721:0x1186697a4f4cc4c6?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 2,0 de 5," [ref=e359]'
+                      - generic [ref=e362]:
+                        - generic [ref=e363]:
+                          - link "DARIO ARGENTINO":
+                            - /url: https://www.google.com/maps/contrib/118297053464708802250?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "DARIO ARGENTINO" [ref=e365] [cursor=pointer]
+                        - generic [ref=e366]:
+                          - link "\"Fui una sola vez en mi vida y me encanto .\"" [ref=e367] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s118297053464708802250!2s0x95b7aaff5caa0721:0x1186697a4f4cc4c6?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 3,0 de 5," [ref=e369]'
+                      - generic [ref=e372]:
+                        - generic [ref=e373]:
+                          - link "Noelia Flores":
+                            - /url: https://www.google.com/maps/contrib/109532587335119523416?hl=es-AR&ved=1t:31296&ictx=111
+                            - img "Noelia Flores" [ref=e375] [cursor=pointer]
+                        - generic [ref=e376]:
+                          - link "\"Dónde quedó la solidaridad y más del propio género femenino.\"" [ref=e377] [cursor=pointer]:
+                            - /url: https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s109532587335119523416!2s0x95b7aaff5caa0721:0x1186697a4f4cc4c6?ved=1t:31295&ictx=111
+                          - 'img "Calificación: 1,0 de 5," [ref=e379]'
+                    - button "Ver todas las opiniones en Google" [ref=e384] [cursor=pointer]
+                  - generic [ref=e392]:
+                    - generic [ref=e393]:
+                      - heading "De Complejo Astronómico Municipal" [level=3] [ref=e394]
+                      - button "Denunciar descripción" [ref=e396]
+                    - generic [ref=e400]:
+                      - text: "\"El Complejo Astronómico Municipal (CAM), es un organismo dependiente de la Secretaría de Cultura y Educación de la Municipalidad de Rosario. Se compone de tres áreas técnicas: Observatorio Municipal, Planetario, y Museo Experimental de Ciencias. Y..."
+                      - button "mostrar más" [ref=e401] [cursor=pointer]: Más
+                  - generic [ref=e409]:
+                    - heading "Actualizaciones de Complejo Astronómico Municipal" [level=3] [ref=e410]
+                    - generic [ref=e411]: Ver actualizaciones anteriores en Google
+                  - generic [ref=e417]:
+                    - heading "Perfiles" [level=3] [ref=e418]
+                    - generic [ref=e419]:
+                      - link "Facebook" [ref=e423] [cursor=pointer]:
+                        - /url: http://www.facebook.com/complejoastronomico
+                      - link "X (Twitter)" [ref=e433] [cursor=pointer]:
+                        - /url: https://twitter.com/ComplejoCAM
+                      - link "YouTube" [ref=e443] [cursor=pointer]:
+                        - /url: https://www.youtube.com/channel/UCtzfuoOlZBI9biDZwjjwBrg
+                      - link "Instagram" [ref=e453] [cursor=pointer]:
+                        - /url: https://www.instagram.com/complejoastronomico/
+              - link "Información sobre estos datos" [ref=e461] [cursor=pointer]:
+                - /url: https://support.google.com/local-listings?p=how_google_sources
+            - generic [ref=e463]:
+              - heading "Resultados web" [level=2] [ref=e464]
+              - generic [ref=e465]:
+                - generic [ref=e468]:
+                  - 'link "Complejo Astronómico Municipal :: Inicio Complejo Astronómico Municipal https://www.complejoastronomico.gob.ar" [ref=e470] [cursor=pointer]':
+                    - /url: https://www.complejoastronomico.gob.ar/
+                    - 'heading "Complejo Astronómico Municipal :: Inicio" [level=3] [ref=e471]'
+                    - generic [ref=e477]:
+                      - generic [ref=e478]: Complejo Astronómico Municipal
+                      - generic [ref=e480]: https://www.complejoastronomico.gob.ar
+                  - button "Acerca de este resultado" [ref=e484] [cursor=pointer]
+                - generic [ref=e491]:
+                  - emphasis [ref=e492]: Rosario
+                  - text: "celebra Tanabata: ¡el festival de las estrellas! La cita es el domingo 9 de agosto, de 11 a 18, en el"
+                  - emphasis [ref=e493]: Complejo Astronómico Municipal
+                  - text: con entrada libre y ...
+                - generic [ref=e495]:
+                  - text: "Falta(n): sitio ‎| Realizar una búsqueda con lo siguiente:"
+                  - link "sitio" [ref=e496] [cursor=pointer]:
+                    - /url: /search?sca_esv=569d465b5b1d57df&q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+%22sitio%22+web+cartelera&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ5t4CegQIKBAB
+          - generic [ref=e500]:
+            - generic [ref=e503]:
+              - link "Planetario Complejo Astronómico Municipal https://www.complejoastronomico.gob.ar › planetario" [ref=e505] [cursor=pointer]:
+                - /url: https://www.complejoastronomico.gob.ar/planetario
+                - heading "Planetario" [level=3] [ref=e506]
+                - generic [ref=e512]:
+                  - generic [ref=e513]: Complejo Astronómico Municipal
+                  - generic [ref=e515]: https://www.complejoastronomico.gob.ar › planetario
+              - button "Acerca de este resultado" [ref=e519] [cursor=pointer]
+            - generic [ref=e526]:
+              - text: "Para todo público. Recomendada a partir de los 9 años. Idea, produccióne y realizació: equipo técnico del Planetario del"
+              - emphasis [ref=e527]: Complejo Astronómico Municipal
+              - text: .
+            - generic [ref=e529]:
+              - text: "Falta(n): sitio ‎| Realizar una búsqueda con lo siguiente:"
+              - link "sitio" [ref=e530] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+%22sitio%22+web+cartelera&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ5t4CegQIJxAB
+          - generic [ref=e535]:
+            - heading "Más preguntas" [level=2] [ref=e537]
+            - generic [ref=e538]:
+              - button "¿Qué hay hoy en el Planetario Rosario?" [ref=e544] [cursor=pointer]
+              - button "¿Dónde se van a ver los 6 planetas en Rosario?" [ref=e558] [cursor=pointer]
+              - button "¿Cuánto cuesta la entrada al Planetario Rosario?" [ref=e572] [cursor=pointer]
+              - button "¿Qué día es gratis la entrada al Planetario?" [ref=e586] [cursor=pointer]
+          - generic [ref=e596]:
+            - heading "Resultados web" [level=2] [ref=e597]
+            - generic [ref=e598]:
+              - generic [ref=e601]:
+                - link "👉Cambiamos la cartelera!! Fines de semana y feriados en ... Instagram · planetariounlp Más de 110 \"me gusta\" · hace 5 meses" [ref=e603] [cursor=pointer]:
+                  - /url: https://www.instagram.com/p/DVjL-gsDb_k/
+                  - heading "👉Cambiamos la cartelera!! Fines de semana y feriados en ..." [level=3] [ref=e604]
+                  - generic [ref=e610]:
+                    - generic [ref=e611]: Instagram · planetariounlp
+                    - generic [ref=e613]: Más de 110 "me gusta" · hace 5 meses
+                - button "Acerca de este resultado" [ref=e617] [cursor=pointer]
+              - generic [ref=e624]:
+                - emphasis [ref=e625]: Complejo Astronómico Municipal
+                - text: de
+                - emphasis [ref=e626]: Rosario
+                - text: . Av. Diario La Capital 1602. 🎟️ Consultá la programación y disponibilidad de entradas en ...
+          - generic [ref=e630]:
+            - generic [ref=e633]:
+              - link "Centros culturales y teatros | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › centros-culturales-..." [ref=e635] [cursor=pointer]:
+                - /url: https://www.rosario.gob.ar/inicio/centros-culturales-y-teatros
+                - heading "Centros culturales y teatros | rosario.gob.ar" [level=3] [ref=e636]
+                - generic [ref=e642]:
+                  - generic [ref=e643]: Rosario.gob
+                  - generic [ref=e645]: https://www.rosario.gob.ar › inicio › centros-culturales-...
+              - button "Acerca de este resultado" [ref=e649] [cursor=pointer]
+            - generic [ref=e656]:
+              - emphasis [ref=e657]: Complejo Astronómico Municipal
+              - text: ",. Dirección, Av. Diario La Capital 1602. Horario, Administración: de lunes a viernes de 7 a 13 h. Actividades de programación ..."
+          - generic [ref=e661]:
+            - generic [ref=e664]:
+              - link "Complejo Astronómico Municipal Facebook · Complejo Astronómico Municipal Más de 10 reacciones · hace 1 mes" [ref=e666] [cursor=pointer]:
+                - /url: https://www.facebook.com/complejoastronomico/posts/%EF%B8%8F-%F0%9D%97%A9%F0%9D%97%AE%F0%9D%97%B0%F0%9D%97%AE%F0%9D%97%B0%F0%9D%97%B6%F0%9D%97%BC%F0%9D%97%BB%F0%9D%97%B2%F0%9D%98%80-%F0%9D%97%B2%F0%9D%97%BB-%F0%9D%97%B2%F0%9D%97%B9-%F0%9D%97%96%F0%9D%97%94%F0%9D%97%A0-%EF%B8%8F-%F0%9D%97%97%F0%9D%97%B2%F0%9D%97%B9-4-%F0%9D%97%AE%F0%9D%97%B9-19-%F0%9D%97%B1%F0%9D%97%B2-%F0%9D%97%B7%F0%9D%98%82%F0%9D%97%B9%F0%9D%97%B6%F0%9D%97%BC-%F0%9D%97%98%F0%9D%97%AB%F0%9D%97%A3%F0%9D%97%98%F0%9D%97%A5%F0%9D%97%9C%F0%9D%97%A0%F0%9D%97%98%F0%9D%97%A1%F0%9D%97%A7%F0%9D%97%94%F0%9D%97%9F-%F0%9D%97%A0%F0%9D%98%82%F0%9D%98%80%F0%9D%97%B2%F0%9D%97%BC-%F0%9D%97%B1%F0%9D%97%B2-%F0%9D%97%96%F0%9D%97%B6%F0%9D%97%B2%F0%9D%97%BB%F0%9D%97%B0%F0%9D%97%B6%F0%9D%97%AE%F0%9D%98%80-%F0%9D%97%B2%F0%9D%97%BB-/1456516346514314/
+                - heading "Complejo Astronómico Municipal" [level=3] [ref=e667]
+                - generic [ref=e673]:
+                  - generic [ref=e674]: Facebook · Complejo Astronómico Municipal
+                  - generic [ref=e676]: Más de 10 reacciones · hace 1 mes
+              - button "Acerca de este resultado" [ref=e680] [cursor=pointer]
+            - generic [ref=e687]:
+              - text: Este sábado, desde las 20.30, el
+              - emphasis [ref=e688]: Complejo Astronómico Municipal
+              - text: ", será el gran escenario del concierto especial titulado Noche de otra Galaxia ..."
+          - generic [ref=e692]:
+            - generic [ref=e695]:
+              - link "Agenda de espectáculos en Rosario La ciudad recibe ... Facebook · Diario El Ciudadano 1 reacción · hace 1 semana" [ref=e697] [cursor=pointer]:
+                - /url: https://www.facebook.com/diarioelciudadanoweb/posts/agenda-de-espect%C3%A1culos-en-rosariola-ciudad-recibe-agosto-con-una-cartelera-diver/1550879500407228/
+                - heading "Agenda de espectáculos en Rosario La ciudad recibe ..." [level=3] [ref=e698]
+                - generic [ref=e704]:
+                  - generic [ref=e705]: Facebook · Diario El Ciudadano
+                  - generic [ref=e707]: 1 reacción · hace 1 semana
+              - button "Acerca de este resultado" [ref=e711] [cursor=pointer]
+            - generic [ref=e718]:
+              - text: Por ejemplo, el
+              - emphasis [ref=e719]: Complejo Astronómico Municipal
+              - text: (Av. Diario La Capital 1602), hoy, sábado y domingo a las 16, tendrá función fulldome de ...
+          - generic [ref=e725]:
+            - generic [ref=e728]:
+              - 'link "Planetario Galileo Galilei on Instagram: \"¿Tenés planes el 29 ... Instagram · planetarioba Más de 520 \"me gusta\" · hace 2 meses" [ref=e730] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DYkzcn6ER6H/
+                - 'heading "Planetario Galileo Galilei on Instagram: \"¿Tenés planes el 29 ..." [level=3] [ref=e731]'
+                - generic [ref=e737]:
+                  - generic [ref=e738]: Instagram · planetarioba
+                  - generic [ref=e740]: Más de 520 "me gusta" · hace 2 meses
+              - button "Acerca de este resultado" [ref=e744] [cursor=pointer]
+            - generic [ref=e749]:
+              - 'link "Planetario Galileo Galilei on Instagram: \"¿Tenés planes el 29 ... de Planetario Galileo Galilei en Instagram. Reproducir en Instagram. 0:32" [ref=e750] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DYkzcn6ER6H/
+                - generic [ref=e751]: 0:32
+              - generic [ref=e760]: "Complejo Astronómico Municipal de Rosario. Av. Diario La Capital ... Más info en el sitio web del Planetario. #PlanetarioBuenosAires ..."
+          - generic [ref=e765]:
+            - generic [ref=e768]:
+              - link "$1000. Las entradas se adquieren en boletería, el mismo ... Instagram · complejoastronomico Más de 190 \"me gusta\" · hace 4 meses" [ref=e770] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DWoMokZgJhx/?hl=es-la
+                - heading "$1000. Las entradas se adquieren en boletería, el mismo ..." [level=3] [ref=e771]
+                - generic [ref=e777]:
+                  - generic [ref=e778]: Instagram · complejoastronomico
+                  - generic [ref=e780]: Más de 190 "me gusta" · hace 4 meses
+              - button "Acerca de este resultado" [ref=e784] [cursor=pointer]
+            - generic [ref=e791]:
+              - emphasis [ref=e792]: Complejo Astronómico Municipal
+              - text: de
+              - emphasis [ref=e793]: Rosario
+              - text: . Av. Diario La Capital 1602. 🎟️ Consultá la programación y disponibilidad de entradas en ...
+          - generic [ref=e797]:
+            - generic [ref=e800]:
+              - link "Agenda de vacaciones de invierno - ETUR Ente Turístico Rosario https://rosario.tur.ar › novedades › agenda-de-vacacion..." [ref=e802] [cursor=pointer]:
+                - /url: https://rosario.tur.ar/novedades/agenda-de-vacaciones-de-invierno
+                - heading "Agenda de vacaciones de invierno - ETUR" [level=3] [ref=e803]
+                - generic [ref=e809]:
+                  - generic [ref=e810]: Ente Turístico Rosario
+                  - generic [ref=e812]: https://rosario.tur.ar › novedades › agenda-de-vacacion...
+              - button "Acerca de este resultado" [ref=e816] [cursor=pointer]
+            - generic [ref=e823]:
+              - emphasis [ref=e824]: Complejo Astronómico Municipal
+              - text: . Av. Diario La Capital 1602 - Parque Urquiza. Ciencia, misterio, astronomía del cielo austral y un divertido recorrido de ...
+          - generic [ref=e830]:
+            - generic [ref=e833]:
+              - 'link "#Provinciales | Rosario: El Complejo Astronómico Municipal ... Instagram · rtsmedios Más de 40 \"me gusta\" · hace 1 día" [ref=e835] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DbsrrwxCAuF/
+                - 'heading "#Provinciales | Rosario: El Complejo Astronómico Municipal ..." [level=3] [ref=e836]'
+                - generic [ref=e842]:
+                  - generic [ref=e843]: Instagram · rtsmedios
+                  - generic [ref=e845]: Más de 40 "me gusta" · hace 1 día
+              - button "Acerca de este resultado" [ref=e849] [cursor=pointer]
+            - generic [ref=e854]:
+              - 'link "#Provinciales | Rosario: El Complejo Astronómico Municipal ... de RTS Medios en Instagram. Reproducir en Instagram. 2:11" [ref=e855] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DbsrrwxCAuF/
+                - generic [ref=e856]: 2:11
+              - generic [ref=e865]: "#Provinciales | Rosario: El Complejo Astronómico Municipal celebra una nueva edición del festival Tanabata. 🎙️El tradicional encuentro de ..."
+        - generic [ref=e868]:
+          - generic [ref=e873]:
+            - heading "También se buscó" [level=2] [ref=e875]
+            - generic [ref=e877]:
+              - generic [ref=e878]:
+                - link "Opiniones de Complejo Astronómico Municipal" [ref=e882] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Opiniones+de+Complejo+Astron%C3%B3mico+Municipal&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ1QJ6BAhtEAE
+                - link "Complejo Astronómico Municipal fotos" [ref=e896] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Complejo+Astron%C3%B3mico+Municipal+fotos&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ1QJ6BAhzEAE
+                - link "Planetario Rosario precio" [ref=e910] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Planetario+Rosario+precio&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ1QJ6BAh3EAE
+                - link "Turnos Planetario Rosario" [ref=e924] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Turnos+Planetario+Rosario&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ1QJ6BAhxEAE
+              - generic [ref=e935]:
+                - link "Planetario Rosario visitas escolares" [ref=e939] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Planetario+Rosario+visitas+escolares&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ1QJ6BAhwEAE
+                - link "Planetario Rosario dirección" [ref=e953] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Planetario+Rosario+direcci%C3%B3n&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ1QJ6BAhvEAE
+                - link "Planetario Rosario funciones" [ref=e967] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Planetario+Rosario+funciones&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ1QJ6BAhuEAE
+                - link "Planetario de Rosario horarios" [ref=e981] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Planetario+de+Rosario+horarios&sa=X&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ1QJ6BAhsEAE
+          - navigation [ref=e992]:
+            - heading "Navegación de páginas" [level=1] [ref=e993]
+            - text: "1"
+            - link "Page 2" [ref=e996] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sca_esv=569d465b5b1d57df&ei=WNt2aouuDbr25OUPn7GguQI&start=10&sa=N&sstk=AU9db-C6tuq4HA69A6aTdi5cRa4vjttIiYootHiatuxk4RTBe6QZnwV-YjB_QQnvkaczq52PIqku07A62cLltBXClz8zHWNRlWjDdg&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ8tMDegQIaBAE
+              - text: "2"
+            - link "Page 3" [ref=e998] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sca_esv=569d465b5b1d57df&ei=WNt2aouuDbr25OUPn7GguQI&start=20&sa=N&sstk=AU9db-C6tuq4HA69A6aTdi5cRa4vjttIiYootHiatuxk4RTBe6QZnwV-YjB_QQnvkaczq52PIqku07A62cLltBXClz8zHWNRlWjDdg&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ8tMDegQIaBAG
+              - text: "3"
+            - link "Page 4" [ref=e1000] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sca_esv=569d465b5b1d57df&ei=WNt2aouuDbr25OUPn7GguQI&start=30&sa=N&sstk=AU9db-C6tuq4HA69A6aTdi5cRa4vjttIiYootHiatuxk4RTBe6QZnwV-YjB_QQnvkaczq52PIqku07A62cLltBXClz8zHWNRlWjDdg&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ8tMDegQIaBAI
+              - text: "4"
+            - link "Page 5" [ref=e1002] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sca_esv=569d465b5b1d57df&ei=WNt2aouuDbr25OUPn7GguQI&start=40&sa=N&sstk=AU9db-C6tuq4HA69A6aTdi5cRa4vjttIiYootHiatuxk4RTBe6QZnwV-YjB_QQnvkaczq52PIqku07A62cLltBXClz8zHWNRlWjDdg&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ8tMDegQIaBAK
+              - text: "5"
+            - link "Page 6" [ref=e1004] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sca_esv=569d465b5b1d57df&ei=WNt2aouuDbr25OUPn7GguQI&start=50&sa=N&sstk=AU9db-C6tuq4HA69A6aTdi5cRa4vjttIiYootHiatuxk4RTBe6QZnwV-YjB_QQnvkaczq52PIqku07A62cLltBXClz8zHWNRlWjDdg&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ8tMDegQIaBAM
+              - text: "6"
+            - link "Page 7" [ref=e1006] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sca_esv=569d465b5b1d57df&ei=WNt2aouuDbr25OUPn7GguQI&start=60&sa=N&sstk=AU9db-C6tuq4HA69A6aTdi5cRa4vjttIiYootHiatuxk4RTBe6QZnwV-YjB_QQnvkaczq52PIqku07A62cLltBXClz8zHWNRlWjDdg&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ8tMDegQIaBAO
+              - text: "7"
+            - link "Page 8" [ref=e1008] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sca_esv=569d465b5b1d57df&ei=WNt2aouuDbr25OUPn7GguQI&start=70&sa=N&sstk=AU9db-C6tuq4HA69A6aTdi5cRa4vjttIiYootHiatuxk4RTBe6QZnwV-YjB_QQnvkaczq52PIqku07A62cLltBXClz8zHWNRlWjDdg&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ8tMDegQIaBAQ
+              - text: "8"
+            - link "Page 9" [ref=e1010] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sca_esv=569d465b5b1d57df&ei=WNt2aouuDbr25OUPn7GguQI&start=80&sa=N&sstk=AU9db-C6tuq4HA69A6aTdi5cRa4vjttIiYootHiatuxk4RTBe6QZnwV-YjB_QQnvkaczq52PIqku07A62cLltBXClz8zHWNRlWjDdg&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ8tMDegQIaBAS
+              - text: "9"
+            - link "Page 10" [ref=e1012] [cursor=pointer]:
+              - /url: /search?q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sca_esv=569d465b5b1d57df&ei=WNt2aouuDbr25OUPn7GguQI&start=90&sa=N&sstk=AU9db-C6tuq4HA69A6aTdi5cRa4vjttIiYootHiatuxk4RTBe6QZnwV-YjB_QQnvkaczq52PIqku07A62cLltBXClz8zHWNRlWjDdg&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ8tMDegQIaBAU
+              - text: "10"
+            - heading [level=2] [ref=e1014]:
+              - link "Siguiente" [ref=e1015] [cursor=pointer]:
+                - /url: /search?q=%22Complejo+Astron%C3%B3mico+Municipal%22+Rosario+sitio+web+cartelera&sca_esv=569d465b5b1d57df&ei=WNt2aouuDbr25OUPn7GguQI&start=10&sa=N&sstk=AU9db-C6tuq4HA69A6aTdi5cRa4vjttIiYootHiatuxk4RTBe6QZnwV-YjB_QQnvkaczq52PIqku07A62cLltBXClz8zHWNRlWjDdg&ved=2ahUKEwiLurvjwZCWAxU6O7kGHZ8YKCcQ8NMDegQIaBAW
+        - navigation
+      - complementary [ref=e1018]:
+        - heading "Resultados adicionales" [level=2] [ref=e1019]
+    - contentinfo [ref=e1020]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e1021]
+      - generic [ref=e1025]:
+        - generic [ref=e1027]:
+          - text: Argentina
+          - generic [ref=e1029]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e1031] [cursor=pointer]:
+              - generic [ref=e1032]: Iriondo, Santa Fe
+              - generic [ref=e1034]:
+                - text: "-"
+                - generic [ref=e1035]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e1037] [cursor=pointer]
+        - generic [ref=e1040]:
+          - link "Ayuda" [ref=e1041] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e1042] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e1043] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e1044] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

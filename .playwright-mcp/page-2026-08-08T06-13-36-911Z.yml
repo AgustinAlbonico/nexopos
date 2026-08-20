@@ -1,0 +1,285 @@
+- generic [active] [ref=f9e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=f9e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=f9e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=f9e8]:
+    - search [ref=f9e9]:
+      - generic [ref=f9e12]:
+        - link [ref=f9e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=f9e14]
+        - generic [ref=f9e19]:
+          - combobox "Buscar" [ref=f9e22]: asistencia salas cine Argentina INCAA 2026 asistencia salas cine Argentina INCAA 2026
+          - generic [ref=f9e23]:
+            - button "Borrar" [ref=f9e25] [cursor=pointer]
+            - generic [ref=f9e30]:
+              - button "Búsqueda por voz" [ref=f9e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=f9e34] [cursor=pointer]
+        - button "Buscar" [ref=f9e37] [cursor=pointer]
+    - generic [ref=f9e42]:
+      - button "Configuración" [ref=f9e44] [cursor=pointer]
+      - button "Compartir" [ref=f9e50] [cursor=pointer]
+      - generic [ref=f9e56]:
+        - button "Aplicaciones de Google" [ref=f9e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=f9e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3Dasistencia%2Bsalas%2Bcine%2BArgentina%2BINCAA%2B2026&ec=futura_srp_og_si_72236_p
+  - generic [ref=f9e65]:
+    - navigation [ref=f9e71]:
+      - generic [ref=f9e77]:
+        - list [ref=f9e78]:
+          - listitem [ref=f9e79]:
+            - link "Modo IA" [ref=f9e82] [cursor=pointer]:
+              - /url: /search?q=asistencia+salas+cine+Argentina+INCAA+2026&sca_esv=0096a2a1340d2922&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ2J8OegQIERAD
+          - listitem [ref=f9e86]:
+            - link "Todo" [disabled] [ref=f9e87]
+          - listitem [ref=f9e90]:
+            - link "Noticias" [ref=f9e91] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&q=asistencia+salas+cine+Argentina+INCAA+2026&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ0pQJegQIFxAB
+          - listitem [ref=f9e94]:
+            - link "Imágenes" [ref=f9e95] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&q=asistencia+salas+cine+Argentina+INCAA+2026&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQtKgLegQIFhAB
+          - listitem [ref=f9e98]:
+            - link "Vídeos" [ref=f9e99] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&q=asistencia+salas+cine+Argentina+INCAA+2026&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQtKgLegQIFRAB
+          - listitem [ref=f9e102]:
+            - link "Shopping" [ref=f9e103] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&q=asistencia+salas+cine+Argentina+INCAA+2026&ved=1t:220175&ictx=111
+          - listitem [ref=f9e106]:
+            - link "Vídeos cortos" [ref=f9e107] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNyACTdKvqMtqqp3WpWy1qQg3yHP3x7wtLPcS1gVpBt_0GW2Ugt5klqfldvi2ACbboe56cIeARQqf99jmnlIkyvL4Sf-FtGEPMKi6LBrTlwSnjBMmamrpjcZPVagDM9alBlfnxSw05fzXlLNodEYu48_CZpYZw2-7u5NmQM3XrifNCvUnbk&q=asistencia+salas+cine+Argentina+INCAA+2026&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQs6gLegQIExAB
+          - listitem [ref=f9e110]:
+            - button [ref=f9e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=f9e112]: Más
+        - button "Herramientas" [ref=f9e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=f9e126]
+    - generic [ref=f9e131]:
+      - generic [ref=f9e150]:
+        - heading "Pensando" [level=2] [ref=f9e154]
+        - progressbar "Generando" [ref=f9e157]
+      - main [ref=f9e159]:
+        - generic [ref=f9e163]:
+          - generic [ref=f9e166]:
+            - heading "Resultados web" [level=2] [ref=f9e167]
+            - generic [ref=f9e168]:
+              - generic [ref=f9e171]:
+                - link "La taquilla de julio 2026 aumentó un 15% con 5,2 millones ... ULTRACINE – 2025 https://web.ultracine.com › industria › la-taquilla-de-julio..." [ref=f9e173] [cursor=pointer]:
+                  - /url: https://web.ultracine.com/industria/la-taquilla-de-julio-2026-aumento-un-15-con-5-2-millones-de-
+                  - heading "La taquilla de julio 2026 aumentó un 15% con 5,2 millones ..." [level=3] [ref=f9e174]
+                  - generic [ref=f9e183]:
+                    - generic [ref=f9e184]: ULTRACINE – 2025
+                    - generic [ref=f9e186]: https://web.ultracine.com › industria › la-taquilla-de-julio...
+                - button "Acerca de este resultado" [ref=f9e190] [cursor=pointer]
+              - generic [ref=f9e196]:
+                - generic [ref=f9e197]: hace 5 días —
+                - generic [ref=f9e198]:
+                  - text: La taquilla de julio
+                  - emphasis [ref=f9e199]: "2026"
+                  - text: aumentó un 15% con 5,2 millones de espectadores en las
+                  - emphasis [ref=f9e200]: salas
+                  - text: argentinas. 03 de agosto de
+                  - emphasis [ref=f9e201]: "2026"
+                  - text: · Por Carina Rodriguez.
+          - generic [ref=f9e205]:
+            - generic [ref=f9e208]:
+              - link "Espectadores semanales por Provincia INCAA https://fiscalizacion.incaa.gob.ar › index_estadisticas" [ref=f9e210] [cursor=pointer]:
+                - /url: https://fiscalizacion.incaa.gob.ar/index_estadisticas.php
+                - heading "Espectadores semanales por Provincia" [level=3] [ref=f9e211]
+                - generic [ref=f9e217]:
+                  - generic [ref=f9e218]: INCAA
+                  - generic [ref=f9e220]: https://fiscalizacion.incaa.gob.ar › index_estadisticas
+              - button "Acerca de este resultado" [ref=f9e224] [cursor=pointer]
+            - generic [ref=f9e231]:
+              - text: "Evolución espectadores · Espectadores semanales por Provincia · Informe Semanal. Datos actualizados al: 5/8/"
+              - emphasis [ref=f9e232]: "2026"
+              - text: 2:05:35 p. m.
+          - generic [ref=f9e236]:
+            - generic [ref=f9e239]:
+              - link "Asistencia a salas de cine. Pandemia y recuperación INCAA https://www.incaa.gob.ar › Novedades" [ref=f9e241] [cursor=pointer]:
+                - /url: https://www.incaa.gob.ar/asistencia-a-salas-de-cine-pandemia-y-recuperacion/
+                - heading "Asistencia a salas de cine. Pandemia y recuperación" [level=3] [ref=f9e242]
+                - generic [ref=f9e248]:
+                  - generic [ref=f9e249]: INCAA
+                  - generic [ref=f9e251]: https://www.incaa.gob.ar › Novedades
+              - button "Acerca de este resultado" [ref=f9e255] [cursor=pointer]
+            - generic [ref=f9e262]:
+              - emphasis [ref=f9e263]: Asistencia a salas de cine
+              - text: . Pandemia y recuperación. Compartir en redes sociales. Publicado el 14 de julio de 2026. Notas relacionadas.
+            - generic [ref=f9e265]:
+              - text: "Falta(n): Argentina ‎| Realizar una búsqueda con lo siguiente:"
+              - link "Argentina" [ref=f9e266] [cursor=pointer]:
+                - /url: /search?sca_esv=0096a2a1340d2922&q=asistencia+salas+cine+%22Argentina%22+INCAA+2026&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ5t4CegQIHBAB
+          - generic [ref=f9e270]:
+            - generic [ref=f9e273]:
+              - 'link "🎬📉 Crisis en el cine argentino: enero 2026 cerró con la ... Instagram · oknews_new 1 me gusta · hace 5 meses" [ref=f9e275] [cursor=pointer]':
+                - /url: https://www.instagram.com/p/DUjKorXkXEU/
+                - 'heading "🎬📉 Crisis en el cine argentino: enero 2026 cerró con la ..." [level=3] [ref=f9e276]'
+                - generic [ref=f9e282]:
+                  - generic [ref=f9e283]: Instagram · oknews_new
+                  - generic [ref=f9e285]: 1 me gusta · hace 5 meses
+              - button "Acerca de este resultado" [ref=f9e289] [cursor=pointer]
+            - generic [ref=f9e296]:
+              - text: "El 2026 comenzó con un dato alarmante para la industria audiovisual en Argentina:"
+              - emphasis [ref=f9e297]: enero registró el nivel más bajo de asistencia a salas de cine
+              - text: ...
+          - generic [ref=f9e301]:
+            - generic [ref=f9e304]:
+              - link "INSTITUTO NACIONAL DE CINE Y ARTES AUDIOVISUALES Boletín Oficial https://www.boletinoficial.gob.ar › primera › 20260721" [ref=f9e306] [cursor=pointer]:
+                - /url: https://www.boletinoficial.gob.ar/detalleAviso/primera/344603/20260721
+                - heading "INSTITUTO NACIONAL DE CINE Y ARTES AUDIOVISUALES" [level=3] [ref=f9e307]
+                - generic [ref=f9e313]:
+                  - generic [ref=f9e314]: Boletín Oficial
+                  - generic [ref=f9e316]: https://www.boletinoficial.gob.ar › primera › 20260721
+              - button "Acerca de este resultado" [ref=f9e320] [cursor=pointer]
+            - generic [ref=f9e326]:
+              - generic [ref=f9e327]: 21 jul 2026 —
+              - generic [ref=f9e328]:
+                - text: Que el Decreto N° 50/
+                - emphasis [ref=f9e329]: "2026"
+                - text: aprobó una nueva reglamentación del régimen de calificación, asignando al INSTITUTO NACIONAL DE
+                - emphasis [ref=f9e330]: CINE
+                - text: Y ARTES ...
+          - generic [ref=f9e334]:
+            - generic [ref=f9e337]:
+              - link "Cantidad de espectadores por película estrenada INCAA https://www.incaa.gob.ar › cantidad-de-espectadores-po..." [ref=f9e339] [cursor=pointer]:
+                - /url: https://www.incaa.gob.ar/cantidad-de-espectadores-por-pelicula-estrenada/
+                - heading "Cantidad de espectadores por película estrenada" [level=3] [ref=f9e340]
+                - generic [ref=f9e346]:
+                  - generic [ref=f9e347]: INCAA
+                  - generic [ref=f9e349]: https://www.incaa.gob.ar › cantidad-de-espectadores-po...
+              - button "Acerca de este resultado" [ref=f9e353] [cursor=pointer]
+            - generic [ref=f9e360]:
+              - emphasis [ref=f9e361]: Cantidad de espectadores por película estrenada
+              - text: ; Cantidad de Entradas · Año Estreno ; 9 - 3,696,025 · 2026 ...
+          - generic [ref=f9e366]:
+            - heading "Más preguntas" [level=2] [ref=f9e368]
+            - generic [ref=f9e369]:
+              - button "¿Cuándo quitan la asistencia del cine?" [ref=f9e375] [cursor=pointer]
+              - button "¿Cantidad de espectadores cine argentino?" [ref=f9e389] [cursor=pointer]
+              - button "¿Cuánto salen las entradas al cine en 2026?" [ref=f9e403] [cursor=pointer]
+              - button "¿El Incaa exige audiencias mínimas para otorgar subsidios a películas argentinas?" [ref=f9e417] [cursor=pointer]
+          - generic [ref=f9e430]:
+            - generic [ref=f9e433]:
+              - 'link "INCAA on Instagram: \"Nuevo INCAA: ágil, transparente y ... Instagram · incaa_argentina Más de 50 \"me gusta\" · hace 3 meses" [ref=f9e435] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DXb1DqqjURr/
+                - 'heading "INCAA on Instagram: \"Nuevo INCAA: ágil, transparente y ..." [level=3] [ref=f9e436]'
+                - generic [ref=f9e442]:
+                  - generic [ref=f9e443]: Instagram · incaa_argentina
+                  - generic [ref=f9e445]: Más de 50 "me gusta" · hace 3 meses
+              - button "Acerca de este resultado" [ref=f9e449] [cursor=pointer]
+            - generic [ref=f9e454]:
+              - 'link "INCAA on Instagram: \"Nuevo INCAA: ágil, transparente y ... de INCAA en Instagram. Reproducir en Instagram. 0:30" [ref=f9e455] [cursor=pointer]':
+                - /url: https://www.instagram.com/reel/DXb1DqqjURr/
+                - generic [ref=f9e456]: 0:30
+              - generic [ref=f9e465]: 2° LLAMADO 2026 de Largometraje Documental Digital 2026. INCAA INSTITUTO NACIONAL DE CINE Y ARTES AUDIOVISUALES Secretaría de Cultura ...
+          - generic [ref=f9e470]:
+            - generic [ref=f9e473]:
+              - link "Las salas le dieron la espalda al cine argentino - 2954 2954.com.ar https://www.2954.com.ar › sociedad › las-salas-le-diero..." [ref=f9e475] [cursor=pointer]:
+                - /url: https://www.2954.com.ar/sociedad/las-salas-le-dieron-la-espalda-al-cine-argentino-fuertes-numeros-en-rojo-en-2026_1782143580
+                - heading "Las salas le dieron la espalda al cine argentino - 2954" [level=3] [ref=f9e476]
+                - generic [ref=f9e482]:
+                  - generic [ref=f9e483]: 2954.com.ar
+                  - generic [ref=f9e485]: https://www.2954.com.ar › sociedad › las-salas-le-diero...
+              - button "Acerca de este resultado" [ref=f9e489] [cursor=pointer]
+            - generic [ref=f9e495]:
+              - generic [ref=f9e496]: 22 jun 2026 —
+              - generic [ref=f9e497]:
+                - text: Según el
+                - emphasis [ref=f9e498]: INCAA
+                - text: ", los otros 100 títulos nacionales que llegaron a las"
+                - emphasis [ref=f9e499]: salas
+                - text: sumaron en conjunto unas 288 mil entradas vendidas. En el extremo ...
+          - generic [ref=f9e503]:
+            - generic [ref=f9e506]:
+              - link "INCAA – Instituto Nacional de Cine y Artes Audiovisuales INCAA https://www.incaa.gob.ar" [ref=f9e508] [cursor=pointer]:
+                - /url: https://www.incaa.gob.ar/
+                - heading "INCAA – Instituto Nacional de Cine y Artes Audiovisuales" [level=3] [ref=f9e509]
+                - generic [ref=f9e515]:
+                  - generic [ref=f9e516]: INCAA
+                  - generic [ref=f9e518]: https://www.incaa.gob.ar
+              - button "Acerca de este resultado" [ref=f9e522] [cursor=pointer]
+            - generic [ref=f9e529]:
+              - text: "Abrimos el 2° Llamado del Concurso de Largometrajes: Ficción y Documental"
+              - emphasis [ref=f9e530]: "2026"
+              - text: · 2° Llamado de Largometraje Documental Digital
+              - emphasis [ref=f9e531]: "2026"
+              - text: "· Noches de Terror: Pesadillas ..."
+        - generic [ref=f9e533]:
+          - generic [ref=f9e538]:
+            - heading "También se buscó" [level=2] [ref=f9e540]
+            - generic [ref=f9e542]:
+              - generic [ref=f9e543]:
+                - link "Peliculas subsidiadas por el incaa" [ref=f9e547] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Peliculas+subsidiadas+por+el+incaa&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ1QJ6BAglEAE
+                - link "Películas INCAA espectadores" [ref=f9e561] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Pel%C3%ADculas+INCAA+espectadores&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ1QJ6BAgwEAE
+                - link "INCAA películas" [ref=f9e575] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=INCAA+pel%C3%ADculas&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ1QJ6BAg1EAE
+                - link "Entrada promedio INCAA" [ref=f9e589] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Entrada+promedio+INCAA&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ1QJ6BAg2EAE
+              - generic [ref=f9e600]:
+                - link "INCAA Buenos Aires" [ref=f9e604] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=INCAA+Buenos+Aires&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ1QJ6BAgvEAE
+                - link "Anuarios incaa" [ref=f9e618] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Anuarios+incaa&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ1QJ6BAgtEAE
+                - link "DDJJ INCAA" [ref=f9e632] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=DDJJ+INCAA&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ1QJ6BAgrEAE
+                - link "Entrada incaa" [ref=f9e646] [cursor=pointer]:
+                  - /url: /search?sca_esv=0096a2a1340d2922&q=Entrada+incaa&sa=X&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ1QJ6BAgpEAE
+          - navigation [ref=f9e657]:
+            - heading "Navegación de páginas" [level=1] [ref=f9e658]
+            - text: "1"
+            - link "Page 2" [ref=f9e661] [cursor=pointer]:
+              - /url: /search?q=asistencia+salas+cine+Argentina+INCAA+2026&sca_esv=0096a2a1340d2922&ei=EMl2atu9GIPU1sQPhbWe2Qs&start=10&sa=N&sstk=AU9db-Cvwvt4lkvvPIYJ70uleFLFXhF1dqnN4i6g_vYtbMsOE_Gshj3oA2APMxe_ewUZX-wvTyIYMPTKsERHBulTu4usQaaWvmhsvw&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ8tMDegQIIxAE
+              - text: "2"
+            - link "Page 3" [ref=f9e663] [cursor=pointer]:
+              - /url: /search?q=asistencia+salas+cine+Argentina+INCAA+2026&sca_esv=0096a2a1340d2922&ei=EMl2atu9GIPU1sQPhbWe2Qs&start=20&sa=N&sstk=AU9db-Cvwvt4lkvvPIYJ70uleFLFXhF1dqnN4i6g_vYtbMsOE_Gshj3oA2APMxe_ewUZX-wvTyIYMPTKsERHBulTu4usQaaWvmhsvw&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ8tMDegQIIxAG
+              - text: "3"
+            - link "Page 4" [ref=f9e665] [cursor=pointer]:
+              - /url: /search?q=asistencia+salas+cine+Argentina+INCAA+2026&sca_esv=0096a2a1340d2922&ei=EMl2atu9GIPU1sQPhbWe2Qs&start=30&sa=N&sstk=AU9db-Cvwvt4lkvvPIYJ70uleFLFXhF1dqnN4i6g_vYtbMsOE_Gshj3oA2APMxe_ewUZX-wvTyIYMPTKsERHBulTu4usQaaWvmhsvw&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ8tMDegQIIxAI
+              - text: "4"
+            - link "Page 5" [ref=f9e667] [cursor=pointer]:
+              - /url: /search?q=asistencia+salas+cine+Argentina+INCAA+2026&sca_esv=0096a2a1340d2922&ei=EMl2atu9GIPU1sQPhbWe2Qs&start=40&sa=N&sstk=AU9db-Cvwvt4lkvvPIYJ70uleFLFXhF1dqnN4i6g_vYtbMsOE_Gshj3oA2APMxe_ewUZX-wvTyIYMPTKsERHBulTu4usQaaWvmhsvw&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ8tMDegQIIxAK
+              - text: "5"
+            - link "Page 6" [ref=f9e669] [cursor=pointer]:
+              - /url: /search?q=asistencia+salas+cine+Argentina+INCAA+2026&sca_esv=0096a2a1340d2922&ei=EMl2atu9GIPU1sQPhbWe2Qs&start=50&sa=N&sstk=AU9db-Cvwvt4lkvvPIYJ70uleFLFXhF1dqnN4i6g_vYtbMsOE_Gshj3oA2APMxe_ewUZX-wvTyIYMPTKsERHBulTu4usQaaWvmhsvw&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ8tMDegQIIxAM
+              - text: "6"
+            - link "Page 7" [ref=f9e671] [cursor=pointer]:
+              - /url: /search?q=asistencia+salas+cine+Argentina+INCAA+2026&sca_esv=0096a2a1340d2922&ei=EMl2atu9GIPU1sQPhbWe2Qs&start=60&sa=N&sstk=AU9db-Cvwvt4lkvvPIYJ70uleFLFXhF1dqnN4i6g_vYtbMsOE_Gshj3oA2APMxe_ewUZX-wvTyIYMPTKsERHBulTu4usQaaWvmhsvw&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ8tMDegQIIxAO
+              - text: "7"
+            - link "Page 8" [ref=f9e673] [cursor=pointer]:
+              - /url: /search?q=asistencia+salas+cine+Argentina+INCAA+2026&sca_esv=0096a2a1340d2922&ei=EMl2atu9GIPU1sQPhbWe2Qs&start=70&sa=N&sstk=AU9db-Cvwvt4lkvvPIYJ70uleFLFXhF1dqnN4i6g_vYtbMsOE_Gshj3oA2APMxe_ewUZX-wvTyIYMPTKsERHBulTu4usQaaWvmhsvw&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ8tMDegQIIxAQ
+              - text: "8"
+            - link "Page 9" [ref=f9e675] [cursor=pointer]:
+              - /url: /search?q=asistencia+salas+cine+Argentina+INCAA+2026&sca_esv=0096a2a1340d2922&ei=EMl2atu9GIPU1sQPhbWe2Qs&start=80&sa=N&sstk=AU9db-Cvwvt4lkvvPIYJ70uleFLFXhF1dqnN4i6g_vYtbMsOE_Gshj3oA2APMxe_ewUZX-wvTyIYMPTKsERHBulTu4usQaaWvmhsvw&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ8tMDegQIIxAS
+              - text: "9"
+            - link "Page 10" [ref=f9e677] [cursor=pointer]:
+              - /url: /search?q=asistencia+salas+cine+Argentina+INCAA+2026&sca_esv=0096a2a1340d2922&ei=EMl2atu9GIPU1sQPhbWe2Qs&start=90&sa=N&sstk=AU9db-Cvwvt4lkvvPIYJ70uleFLFXhF1dqnN4i6g_vYtbMsOE_Gshj3oA2APMxe_ewUZX-wvTyIYMPTKsERHBulTu4usQaaWvmhsvw&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ8tMDegQIIxAU
+              - text: "10"
+            - heading [level=2] [ref=f9e679]:
+              - link "Siguiente" [ref=f9e680] [cursor=pointer]:
+                - /url: /search?q=asistencia+salas+cine+Argentina+INCAA+2026&sca_esv=0096a2a1340d2922&ei=EMl2atu9GIPU1sQPhbWe2Qs&start=10&sa=N&sstk=AU9db-Cvwvt4lkvvPIYJ70uleFLFXhF1dqnN4i6g_vYtbMsOE_Gshj3oA2APMxe_ewUZX-wvTyIYMPTKsERHBulTu4usQaaWvmhsvw&ved=2ahUKEwjbhfqrsJCWAxUDqpUCHYWaJ7sQ8NMDegQIIxAW
+        - navigation
+    - contentinfo [ref=f9e683]:
+      - heading "Vínculos a pie de página" [level=1] [ref=f9e684]
+      - generic [ref=f9e688]:
+        - generic [ref=f9e690]:
+          - text: Argentina
+          - generic [ref=f9e692]:
+            - button "Iriondo, Santa Fe - Según tu actividad anterior" [ref=f9e694] [cursor=pointer]:
+              - generic [ref=f9e695]: Iriondo, Santa Fe
+              - generic [ref=f9e697]:
+                - text: "-"
+                - generic [ref=f9e698]: Según tu actividad anterior
+            - text: "-"
+            - button "Actualizar ubicación" [ref=f9e700] [cursor=pointer]
+        - generic [ref=f9e703]:
+          - link "Ayuda" [ref=f9e704] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=f9e705] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=f9e706] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=f9e707] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

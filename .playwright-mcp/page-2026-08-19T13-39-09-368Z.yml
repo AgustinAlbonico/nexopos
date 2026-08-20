@@ -1,0 +1,87 @@
+- generic [active] [ref=e12]:
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - link "NP" [ref=e17] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=e19]:
+          - generic [ref=e20]:
+            - link [ref=e22] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=e29] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=e35] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=e41] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=e45] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=e50] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=e57] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=e62] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=e69] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=e75] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=e81] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=e85] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=e90] [cursor=pointer]
+      - main [ref=e95]:
+        - generic [ref=e656]:
+          - generic [ref=e657]:
+            - generic [ref=e658]:
+              - heading "Productos" [level=1] [ref=e659]
+              - paragraph [ref=e660]: Cargá productos con nombre, costo y stock
+            - generic [ref=e661]:
+              - button "Categorías" [ref=e662] [cursor=pointer]
+              - button "Importar Matriz 2D" [ref=e666] [cursor=pointer]
+              - button "Nuevo Producto" [ref=e670] [cursor=pointer]
+          - generic [ref=e673]:
+            - generic [ref=e674]:
+              - generic [ref=e675]:
+                - textbox "Buscar producto..." [ref=e676]: "7790310000017"
+                - generic [ref=e677]:
+                  - combobox [ref=e678] [cursor=pointer]:
+                    - generic: Todas las categorías
+                  - combobox [ref=e681] [cursor=pointer]:
+                    - generic [ref=e682]: Todas las marcas
+                  - combobox [ref=e683] [cursor=pointer]:
+                    - generic: Todo el stock
+              - generic [ref=e686]: 0 registro(s)
+            - table [ref=e689]:
+              - rowgroup [ref=e690]:
+                - row [ref=e691]:
+                  - columnheader [ref=e692]:
+                    - button "Producto" [ref=e1948] [cursor=pointer]
+                  - columnheader "Categoría" [ref=e697]
+                  - columnheader "Marca" [ref=e698]
+                  - columnheader "Costo" [ref=e699]
+                  - columnheader [ref=e700]:
+                    - button "Precio" [ref=e1952] [cursor=pointer]
+                  - columnheader [ref=e705]:
+                    - button "Stock" [ref=e1956] [cursor=pointer]
+                  - columnheader [ref=e710]
+              - rowgroup [ref=e711]:
+                - row [ref=e1341]:
+                  - cell "No hay resultados" [ref=e1342]
+            - generic [ref=e930]:
+              - generic [ref=e931]:
+                - generic [ref=e932]: Página 1 de 0
+                - generic [ref=e933]:
+                  - generic [ref=e934]: "Mostrar:"
+                  - combobox [ref=e935] [cursor=pointer]:
+                    - generic: "10"
+                  - generic [ref=e938]: registros
+              - generic [ref=e939]:
+                - button "Anterior" [disabled]
+                - button "Siguiente" [disabled]
+    - region "Notifications alt+T":
+      - list:
+        - listitem [ref=e1960]:
+          - generic [ref=e1964]: ¡Modelo "Campera Rompeviento Denver" y 12 variantes creadas con éxito!
+  - generic [ref=e319]: $0k

@@ -1,0 +1,343 @@
+- generic [active]:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 74 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Alfajor Havanna E2E 4673
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 1.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 1.300,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "48"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Coca-Cola 1.5L
+                            - cell:
+                              - generic: Limpieza
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 0,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "1"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Detergente Ala 750ml
+                            - cell:
+                              - generic:
+                                - text: Bebidas
+                                - generic: (50%)
+                            - cell: "-"
+                            - cell: $ 100,00
+                            - cell:
+                              - generic:
+                                - generic: $ 150,00
+                                - generic: 50.0% ganancia
+                            - cell:
+                              - generic: "8"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Lavandina Ayudín 1L
+                            - cell:
+                              - generic: Limpieza
+                            - cell: "-"
+                            - cell: $ 100,00
+                            - cell:
+                              - generic:
+                                - generic: $ 140,00
+                                - generic: 40.0% ganancia
+                            - cell:
+                              - generic: "12"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Lector
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 10.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 13.000,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "-16"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: preuba
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 1.000,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "990"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Queso Tybo Fiambrería E2E 0884
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 8.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 10.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "255"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Queso Tybo Fiambrería E2E 1496
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 8.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 10.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "255"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Queso Tybo Fiambrería E2E 2026
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 8.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 10.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "255"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Queso Tybo Fiambrería E2E 4135
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 8.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 10.400,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "255"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 8
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button: Siguiente
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog [ref=e381]:
+    - generic [ref=e389]:
+      - heading "Nuevo Producto" [level=2] [ref=e390]
+      - paragraph [ref=e391]: El precio se calcula automático según la configuración o categoría
+    - generic [ref=e393]:
+      - generic [ref=e394]:
+        - generic [ref=e395]:
+          - heading "Información Principal" [level=3] [ref=e396]
+          - generic [ref=e397]:
+            - generic [ref=e398]: Nombre del Producto *
+            - textbox "Nombre del Producto *" [ref=e399]:
+              - /placeholder: "Ej: Shampoo Sedal 400ml"
+              - text: Remera Verano E2E Test
+          - generic [ref=e400]:
+            - text: Descripción
+            - textbox "Descripción" [ref=e401]:
+              - /placeholder: "Ej: Shampoo reparador para cabello dañado"
+            - paragraph [ref=e402]: Información adicional sobre el producto (opcional)
+          - generic [ref=e403]:
+            - generic [ref=e404]: Marca
+            - combobox [ref=e405] [cursor=pointer]: Buscar o crear marca...
+            - paragraph [ref=e409]: Selecciona una existente o escribe para crear una nueva
+          - generic [ref=e410]:
+            - text: Categoría
+            - combobox "Categoría" [ref=e411] [cursor=pointer]:
+              - generic: Sin categoría
+            - combobox [ref=e414]
+            - paragraph [ref=e415]: Categoría del producto (opcional)
+          - generic [ref=e416]:
+            - text: Código de Barras
+            - textbox "Código de Barras" [ref=e417]:
+              - /placeholder: "Ej: 7791234567890"
+            - paragraph [ref=e418]: Código de barras del producto (opcional)
+          - generic [ref=e419]:
+            - heading "Datos de Indumentaria & Calzado" [level=3] [ref=e420]
+            - generic [ref=e423]:
+              - generic [ref=e424]:
+                - text: Temporada
+                - textbox "Temporada" [ref=e425]:
+                  - /placeholder: "Ej: Primavera-Verano 2026"
+                  - text: Primavera-Verano 2026
+              - generic [ref=e426]:
+                - text: Colección / Cápsula
+                - textbox "Colección / Cápsula" [ref=e427]:
+                  - /placeholder: "Ej: Cápsula Urbana #1"
+                  - text: Cápsula E2E
+        - generic [ref=e428]:
+          - heading "Precios, Ganancia y Stock" [level=3] [ref=e429]
+          - generic [ref=e431]:
+            - generic [ref=e432]:
+              - generic [ref=e433]: Precio Fijo
+              - paragraph [ref=e436]: Cuando está activado, cargás el precio de venta directamente. Cuando está desactivado, el sistema calcula el precio desde el costo y el margen.
+            - checkbox "Precio Fijo" [checked] [ref=e437] [cursor=pointer]
+            - checkbox [checked]
+          - generic [ref=e438]:
+            - generic [ref=e439]:
+              - generic [ref=e440]: Precio Final *
+              - textbox "Precio Final *" [ref=e441]:
+                - /placeholder: "0.00"
+                - text: "18500"
+              - paragraph [ref=e442]: Precio de venta directo
+            - generic [ref=e443]:
+              - generic [ref=e444]: Stock Inicial *
+              - textbox "Stock Inicial *" [ref=e445]:
+                - /placeholder: "0"
+                - text: "0"
+              - paragraph [ref=e446]: Cantidad disponible
+          - generic [ref=e448]:
+            - generic [ref=e449]:
+              - text: Venta por peso o medida
+              - paragraph [ref=e450]: Permite decimales y códigos pesables.
+            - checkbox "Venta por peso o medida" [ref=e451] [cursor=pointer]
+            - checkbox
+      - generic [ref=e452]:
+        - button "Guardando..." [disabled]
+    - button "Close" [ref=e454] [cursor=pointer]

@@ -1,0 +1,268 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4QpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Cine club Roldán\" Instagram sitio \"Cine club Roldán\" Instagram sitio"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e45] [cursor=pointer]
+      - generic [ref=e51]:
+        - button "Aplicaciones de Google" [ref=e53] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e58] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Cine%2Bclub%2BRold%25C3%25A1n%2522%2BInstagram%2Bsitio&ec=futura_srp_og_si_72236_p
+  - generic [ref=e60]:
+    - navigation [ref=e66]:
+      - list [ref=e69]:
+        - listitem [ref=e70]:
+          - link "Modo IA" [ref=e73] [cursor=pointer]:
+            - /url: /search?q=Cine+club+Rold%C3%A1n+Instagram+sitio&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q2J8OegQIFxAD
+        - listitem [ref=e77]:
+          - link "Todo" [disabled] [ref=e78]
+        - listitem [ref=e81]:
+          - link "Imágenes" [ref=e82] [cursor=pointer]:
+            - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&q=Cine+club+Rold%C3%A1n+Instagram+sitio&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4QtKgLegQIHxAB
+        - listitem [ref=e85]:
+          - link "Noticias" [ref=e86] [cursor=pointer]:
+            - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+club+Rold%C3%A1n+Instagram+sitio&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q0pQJegQIIBAB
+        - listitem [ref=e89]:
+          - link "Vídeos" [ref=e90] [cursor=pointer]:
+            - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&q=Cine+club+Rold%C3%A1n+Instagram+sitio&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4QtKgLegQIIRAB
+        - listitem [ref=e93]:
+          - link "Shopping" [ref=e94] [cursor=pointer]:
+            - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&q=Cine+club+Rold%C3%A1n+Instagram+sitio&ved=1t:220175&ictx=111
+        - listitem [ref=e97]:
+          - link "Vídeos cortos" [ref=e98] [cursor=pointer]:
+            - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJVZSm7shR4c3Ct3HBPdaC9uysIL5ekXyyeAZRsaPT2Ozg4Yy8wWdF9y11W7aFKRyRbbuSC5yCQ-QouU1YYa2oDWaPSQDI8NN8IX8Rxp3fu_NCzRfBfmu4_Hd9cwPLmBWUahcDIk6wEQfxaKquH9nOOkOC9mWAew71YD66m3VyrJ25g0m7I&q=Cine+club+Rold%C3%A1n+Instagram+sitio&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Qs6gLegQIHRAB
+        - listitem [ref=e101]:
+          - button [ref=e102] [cursor=pointer]:
+            - generic "Más filtros" [ref=e103]: Más
+    - heading "Resultados de búsqueda" [level=1] [ref=e109]
+    - main [ref=e115]:
+      - generic [ref=e116]:
+        - generic [ref=e120]:
+          - heading "No se han encontrado resultados para \"Cine club Roldán\" Instagram sitio." [level=2] [ref=e121]
+          - text: Resultados de
+          - link "Cine club Roldán Instagram sitio" [ref=e122] [cursor=pointer]:
+            - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+club+Rold%C3%A1n+Instagram+sitio&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4QgwN6BAgjEAE
+          - text: "(sin comillas):"
+        - generic [ref=e125]:
+          - generic [ref=e128]:
+            - heading "Resultados web" [level=2] [ref=e129]
+            - generic [ref=e130]:
+              - generic [ref=e133]:
+                - link "cineclub_sf.cine_america Instagram · cineclub_sf.cine_america Más de 32,8 k seguidores" [ref=e135] [cursor=pointer]:
+                  - /url: https://www.instagram.com/cineclub_sf.cine_america/
+                  - heading "cineclub_sf.cine_america" [level=3] [ref=e136]
+                  - generic [ref=e142]:
+                    - generic [ref=e143]: Instagram · cineclub_sf.cine_america
+                    - generic [ref=e145]: Más de 32,8 k seguidores
+                - button "Acerca de este resultado" [ref=e149] [cursor=pointer]
+              - generic [ref=e156]:
+                - text: ⭐
+                - emphasis [ref=e157]: "Jueves: 16:30 y 18:15hs"
+                - text: ". ⭐ Viernes: 16 y 20:20hs. ⭐ Sábado: 11:30, 13:30, 15:30 y 19:45hs. ⭐ Domingo: 14, 15:45 y 19:45hs. ⭐ Lunes, martes y miércoles: ..."
+              - link [ref=e160] [cursor=pointer]:
+                - /url: https://www.instagram.com/cineclub_sf.cine_america/
+                - img "Cine club Roldán Instagram sitio de www.instagram.com" [ref=e162]
+          - generic [ref=e173]:
+            - heading "Pensando" [level=2] [ref=e177]
+            - progressbar "Generando" [ref=e180]
+          - generic [ref=e184]:
+            - heading "Resultados web" [level=2] [ref=e185]
+            - generic [ref=e186]:
+              - generic [ref=e189]:
+                - link "Centro de Estudiantes Cine on Instagram Instagram · centrocine.unt Más de 110 \"me gusta\" · hace 3 meses" [ref=e191] [cursor=pointer]:
+                  - /url: https://www.instagram.com/p/DYGVvwaFN0_/
+                  - heading "Centro de Estudiantes Cine on Instagram" [level=3] [ref=e192]
+                  - generic [ref=e198]:
+                    - generic [ref=e199]: Instagram · centrocine.unt
+                    - generic [ref=e201]: Más de 110 "me gusta" · hace 3 meses
+                - button "Acerca de este resultado" [ref=e205] [cursor=pointer]
+              - generic [ref=e212]:
+                - text: Este espacio nace con la intención de
+                - emphasis [ref=e213]: compartir películas, ideas, miradas y conversaciones
+                - text: alrededor del cine, generando un lugar de encuentro ...
+          - generic [ref=e217]:
+            - generic [ref=e220]:
+              - link "𝘾𝙄𝙉𝙀 𝙔 𝘿𝙀𝙋𝙊𝙍𝙏𝙀 Instagram · muniroldan Más de 70 \"me gusta\" · hace 2 años" [ref=e222] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/C9XVY6dx-Aq/
+                - heading "𝘾𝙄𝙉𝙀 𝙔 𝘿𝙀𝙋𝙊𝙍𝙏𝙀" [level=3] [ref=e223]
+                - generic [ref=e229]:
+                  - generic [ref=e230]: Instagram · muniroldan
+                  - generic [ref=e232]: Más de 70 "me gusta" · hace 2 años
+              - button "Acerca de este resultado" [ref=e236] [cursor=pointer]
+            - generic [ref=e243]:
+              - text: Este no es solamente un partido, es el lugar donde
+              - emphasis [ref=e244]: Roldán
+              - text: vuelve a encontrarse. Viví el Fan Fest, viví la selección, vivilo con todos ...
+            - link [ref=e247] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/C9XVY6dx-Aq/
+              - img "Cine club Roldán Instagram sitio de www.instagram.com" [ref=e249]
+          - generic [ref=e254]:
+            - heading "Más preguntas" [level=2] [ref=e256]
+            - generic [ref=e257]:
+              - button "¿Cuál es el programa del Cine América en Santa Fe?" [ref=e263] [cursor=pointer]
+              - button "¿IG que recomienda películas?" [ref=e277] [cursor=pointer]
+              - button "¿Qué es el Cineclub Municipal Hugo del Carril?" [ref=e291] [cursor=pointer]
+              - button "¿Cuánto cuesta el cine en Santa Fe?" [ref=e305] [cursor=pointer]
+          - generic [ref=e315]:
+            - heading "Resultados web" [level=2] [ref=e316]
+            - generic [ref=e317]:
+              - generic [ref=e320]:
+                - link "Muni Roldán (@muniroldan) Instagram · muniroldan Más de 14 k seguidores" [ref=e322] [cursor=pointer]:
+                  - /url: https://www.instagram.com/muniroldan/
+                  - heading "Muni Roldán (@muniroldan)" [level=3] [ref=e323]
+                  - generic [ref=e329]:
+                    - generic [ref=e330]: Instagram · muniroldan
+                    - generic [ref=e332]: Más de 14 k seguidores
+                - button "Acerca de este resultado" [ref=e336] [cursor=pointer]
+              - generic [ref=e341]: "- Atención primaria: sin turno, lunes, martes y jueves de 13 a 16 hs. - Castraciones: con turno previo, miércoles y viernes de 13 a 15 hs. Turnos: 341 5 633 ..."
+              - link [ref=e345] [cursor=pointer]:
+                - /url: https://www.instagram.com/muniroldan/
+                - img "Cine club Roldán Instagram sitio de www.instagram.com" [ref=e347]
+          - generic [ref=e353]:
+            - generic [ref=e356]:
+              - link "JORNADA CINE DEBATE Y EXPOSICIÓN DE ARTE EN ... Instagram · canal4regional 2 me gusta · hace 4 meses" [ref=e358] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DWW6KCpDk40/
+                - heading "JORNADA CINE DEBATE Y EXPOSICIÓN DE ARTE EN ..." [level=3] [ref=e359]
+                - generic [ref=e365]:
+                  - generic [ref=e366]: Instagram · canal4regional
+                  - generic [ref=e368]: 2 me gusta · hace 4 meses
+              - button "Acerca de este resultado" [ref=e372] [cursor=pointer]
+            - generic [ref=e377]:
+              - link "JORNADA CINE DEBATE Y EXPOSICIÓN DE ARTE EN ... de CANAL 4 REGIONAL en Instagram. Reproducir en Instagram. 4:26" [ref=e378] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DWW6KCpDk40/
+                - generic [ref=e379]: 4:26
+              - generic [ref=e388]: "Instagram: @am1010ondalatina ▶️ YouTube: AM 1010 Onda Latina Web: am1010ondalatina.com ☎️ Teléfonos: 4372-2841 / 3061 *\"Cuando el cine ..."
+          - generic [ref=e393]:
+            - generic [ref=e396]:
+              - link "Cineclub Municipal Hugo del Carril (@cineclubmunicipal_) Instagram · cineclubmunicipal_ Más de 91,6 k seguidores" [ref=e398] [cursor=pointer]:
+                - /url: https://www.instagram.com/cineclubmunicipal_/?hl=es
+                - heading "Cineclub Municipal Hugo del Carril (@cineclubmunicipal_)" [level=3] [ref=e399]
+                - generic [ref=e405]:
+                  - generic [ref=e406]: Instagram · cineclubmunicipal_
+                  - generic [ref=e408]: Más de 91,6 k seguidores
+              - button "Acerca de este resultado" [ref=e412] [cursor=pointer]
+            - generic [ref=e419]:
+              - text: Un lugar de encuentro para gente que ama el cine;
+              - emphasis [ref=e420]: ubicado en pleno corazón de la ciudad de Córdoba
+              - text: . @cultura.municba
+          - generic [ref=e426]:
+            - generic [ref=e429]:
+              - link "Viernes 27 de junio 20.30hs Cine Cena Club presenta ... Instagram · lamingacc Más de 60 \"me gusta\" · hace 1 año" [ref=e431] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DLXc3Ihx_Jb/
+                - heading "Viernes 27 de junio 20.30hs Cine Cena Club presenta ..." [level=3] [ref=e432]
+                - generic [ref=e438]:
+                  - generic [ref=e439]: Instagram · lamingacc
+                  - generic [ref=e441]: Más de 60 "me gusta" · hace 1 año
+              - button "Acerca de este resultado" [ref=e445] [cursor=pointer]
+            - generic [ref=e450]:
+              - link "Viernes 27 de junio 20.30hs Cine Cena Club presenta ... de lamingacc en Instagram. Reproducir en Instagram. 0:56" [ref=e451] [cursor=pointer]:
+                - /url: https://www.instagram.com/reel/DLXc3Ihx_Jb/
+                - generic [ref=e452]: 0:56
+              - generic [ref=e461]: El Cine Escena Club es un lugar para venir a ver una peli, comer ... Club Cultural DelBarcoCentenera 1126 Parque Chacabuco ROMA ROLDAN CANTAUTOR ...
+          - generic [ref=e466]:
+            - generic [ref=e469]:
+              - link "El Centro Cultural El Enjambre @elenjambre ... Instagram · elroldanenseok Más de 80 \"me gusta\" · hace 1 año" [ref=e471] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DCXgE7VSo5e/
+                - heading "El Centro Cultural El Enjambre @elenjambre ..." [level=3] [ref=e472]
+                - generic [ref=e478]:
+                  - generic [ref=e479]: Instagram · elroldanenseok
+                  - generic [ref=e481]: Más de 80 "me gusta" · hace 1 año
+              - button "Acerca de este resultado" [ref=e485] [cursor=pointer]
+            - generic [ref=e492]:
+              - text: El Centro Cultural El Enjambre @elenjambre.roldan ,
+              - emphasis [ref=e493]: ubicado en la esquina de Salta y Rivadavia
+              - text: (Roldán, viene afianzando sus propuestas ...
+            - link [ref=e496] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/DCXgE7VSo5e/
+              - img "Cine club Roldán Instagram sitio de www.instagram.com" [ref=e498]
+          - generic [ref=e502]:
+            - generic [ref=e505]:
+              - link "🗓️La Municipalidad de Roldán anunció el cronograma de ... Instagram · elroldanenseok Más de 40 \"me gusta\" · hace 3 semanas" [ref=e507] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/Dau7mzYlj-C/
+                - heading "🗓️La Municipalidad de Roldán anunció el cronograma de ..." [level=3] [ref=e508]
+                - generic [ref=e514]:
+                  - generic [ref=e515]: Instagram · elroldanenseok
+                  - generic [ref=e517]: Más de 40 "me gusta" · hace 3 semanas
+              - button "Acerca de este resultado" [ref=e521] [cursor=pointer]
+            - generic [ref=e528]:
+              - text: El cronograma incluye funciones de
+              - emphasis [ref=e529]: cine
+              - text: ", espectáculos de circo, teatro, música, juegos y actividades recreativas y deportivas. Las propuestas ..."
+            - link [ref=e532] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/Dau7mzYlj-C/
+              - img "Cine club Roldán Instagram sitio de www.instagram.com" [ref=e534]
+      - generic [ref=e536]:
+        - generic [ref=e541]:
+          - heading "También se buscó" [level=2] [ref=e543]
+          - generic [ref=e545]:
+            - generic [ref=e546]:
+              - link "Cinemark Santa Fe" [ref=e550] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cinemark+Santa+Fe&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q1QJ6BAg0EAE
+              - link "Cine América santa fe cartelera y horarios" [ref=e564] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Am%C3%A9rica+santa+fe+cartelera+y+horarios&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q1QJ6BAg6EAE
+              - link "Cine América cartelera hoy" [ref=e578] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Am%C3%A9rica+cartelera+hoy&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q1QJ6BAg8EAE
+              - link "Cine Club programación" [ref=e592] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Club+programaci%C3%B3n&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q1QJ6BAg-EAE
+            - generic [ref=e603]:
+              - link "Cine Club santa fe cartelera" [ref=e607] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Club+santa+fe+cartelera&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q1QJ6BAg_EAE
+              - link "Cine Club Rosario" [ref=e621] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Club+Rosario&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q1QJ6BAg7EAE
+              - link "Cine América horarios" [ref=e635] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Am%C3%A9rica+horarios&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q1QJ6BAg9EAE
+              - link "Cine América" [ref=e649] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Am%C3%A9rica&sa=X&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q1QJ6BAg5EAE
+        - navigation [ref=e660]:
+          - heading "Navegación de páginas" [level=1] [ref=e661]
+          - text: "1"
+          - link "Page 2" [ref=e664] [cursor=pointer]:
+            - /url: /search?q=Cine+club+Rold%C3%A1n+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=jtt2aoWKEJWB5OUPq5Kv8AI&start=10&sa=N&sstk=AU9db-DDv8I5qkjBB36yJpLiBn7PSIssqMP-_ttynpIEwb8w-8jsNMfyM7a1pYnKI5FVdYfdA-a75vMQhdHEm2iiHv8o7D46uSgm6g&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q8tMDegQILxAE
+            - text: "2"
+          - link "Page 3" [ref=e666] [cursor=pointer]:
+            - /url: /search?q=Cine+club+Rold%C3%A1n+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=jtt2aoWKEJWB5OUPq5Kv8AI&start=20&sa=N&sstk=AU9db-DDv8I5qkjBB36yJpLiBn7PSIssqMP-_ttynpIEwb8w-8jsNMfyM7a1pYnKI5FVdYfdA-a75vMQhdHEm2iiHv8o7D46uSgm6g&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q8tMDegQILxAG
+            - text: "3"
+          - link "Page 4" [ref=e668] [cursor=pointer]:
+            - /url: /search?q=Cine+club+Rold%C3%A1n+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=jtt2aoWKEJWB5OUPq5Kv8AI&start=30&sa=N&sstk=AU9db-DDv8I5qkjBB36yJpLiBn7PSIssqMP-_ttynpIEwb8w-8jsNMfyM7a1pYnKI5FVdYfdA-a75vMQhdHEm2iiHv8o7D46uSgm6g&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q8tMDegQILxAI
+            - text: "4"
+          - link "Page 5" [ref=e670] [cursor=pointer]:
+            - /url: /search?q=Cine+club+Rold%C3%A1n+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=jtt2aoWKEJWB5OUPq5Kv8AI&start=40&sa=N&sstk=AU9db-DDv8I5qkjBB36yJpLiBn7PSIssqMP-_ttynpIEwb8w-8jsNMfyM7a1pYnKI5FVdYfdA-a75vMQhdHEm2iiHv8o7D46uSgm6g&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q8tMDegQILxAK
+            - text: "5"
+          - link "Page 6" [ref=e672] [cursor=pointer]:
+            - /url: /search?q=Cine+club+Rold%C3%A1n+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=jtt2aoWKEJWB5OUPq5Kv8AI&start=50&sa=N&sstk=AU9db-DDv8I5qkjBB36yJpLiBn7PSIssqMP-_ttynpIEwb8w-8jsNMfyM7a1pYnKI5FVdYfdA-a75vMQhdHEm2iiHv8o7D46uSgm6g&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q8tMDegQILxAM
+            - text: "6"
+          - link "Page 7" [ref=e674] [cursor=pointer]:
+            - /url: /search?q=Cine+club+Rold%C3%A1n+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=jtt2aoWKEJWB5OUPq5Kv8AI&start=60&sa=N&sstk=AU9db-DDv8I5qkjBB36yJpLiBn7PSIssqMP-_ttynpIEwb8w-8jsNMfyM7a1pYnKI5FVdYfdA-a75vMQhdHEm2iiHv8o7D46uSgm6g&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q8tMDegQILxAO
+            - text: "7"
+          - link "Page 8" [ref=e676] [cursor=pointer]:
+            - /url: /search?q=Cine+club+Rold%C3%A1n+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=jtt2aoWKEJWB5OUPq5Kv8AI&start=70&sa=N&sstk=AU9db-DDv8I5qkjBB36yJpLiBn7PSIssqMP-_ttynpIEwb8w-8jsNMfyM7a1pYnKI5FVdYfdA-a75vMQhdHEm2iiHv8o7D46uSgm6g&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q8tMDegQILxAQ
+            - text: "8"
+          - link "Page 9" [ref=e678] [cursor=pointer]:
+            - /url: /search?q=Cine+club+Rold%C3%A1n+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=jtt2aoWKEJWB5OUPq5Kv8AI&start=80&sa=N&sstk=AU9db-DDv8I5qkjBB36yJpLiBn7PSIssqMP-_ttynpIEwb8w-8jsNMfyM7a1pYnKI5FVdYfdA-a75vMQhdHEm2iiHv8o7D46uSgm6g&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q8tMDegQILxAS
+            - text: "9"
+          - link "Page 10" [ref=e680] [cursor=pointer]:
+            - /url: /search?q=Cine+club+Rold%C3%A1n+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=jtt2aoWKEJWB5OUPq5Kv8AI&start=90&sa=N&sstk=AU9db-DDv8I5qkjBB36yJpLiBn7PSIssqMP-_ttynpIEwb8w-8jsNMfyM7a1pYnKI5FVdYfdA-a75vMQhdHEm2iiHv8o7D46uSgm6g&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q8tMDegQILxAU
+            - text: "10"
+          - heading [level=2] [ref=e682]:
+            - link "Siguiente" [ref=e683] [cursor=pointer]:
+              - /url: /search?q=Cine+club+Rold%C3%A1n+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=jtt2aoWKEJWB5OUPq5Kv8AI&start=10&sa=N&sstk=AU9db-DDv8I5qkjBB36yJpLiBn7PSIssqMP-_ttynpIEwb8w-8jsNMfyM7a1pYnKI5FVdYfdA-a75vMQhdHEm2iiHv8o7D46uSgm6g&ved=2ahUKEwiFiZ79wZCWAxWVALkGHSvJCy4Q8NMDegQILxAW
+      - navigation
+    - contentinfo:
+      - heading "Vínculos a pie de página" [level=1] [ref=e686]

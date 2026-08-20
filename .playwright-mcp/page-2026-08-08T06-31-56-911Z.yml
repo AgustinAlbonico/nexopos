@@ -1,0 +1,42 @@
+- generic [active] [ref=f6e1]:
+  - banner [ref=f6e2]:
+    - button "Ir al contenido" [ref=f6e3] [cursor=pointer]
+    - button "Comentarios de accesibilidad" [ref=f6e6] [cursor=pointer]
+    - generic [ref=f6e9]:
+      - link [ref=f6e10] [cursor=pointer]:
+        - /url: /?FORM=Z9FD1
+        - heading "Volver a la búsqueda de Bing" [level=1] [ref=f6e11]
+      - search [ref=f6e12]:
+        - button "Buscar" [ref=f6e15] [cursor=pointer]
+        - searchbox "Escribe tu búsqueda aquí; irán apareciendo sugerencias de búsqueda a medida que escribes" [ref=f6e16]: "\"Cine Teatro Libertador\" Casilda Facebook Instagram"
+        - button "Borrar texto" [ref=f6e18]
+        - button "Buscar con una imagen" [ref=f6e22] [cursor=pointer]
+    - complementary "Premios y preferencias de la cuenta" [ref=f6e24]:
+      - button "Microsoft Rewards" [ref=f6e25] [cursor=pointer]
+      - link "Iniciar sesión" [ref=f6e26] [cursor=pointer]:
+        - /url: javascript:void(0)
+    - navigation "Filtro de búsqueda" [ref=f6e28]:
+      - list [ref=f6e29]:
+        - listitem [ref=f6e30]:
+          - link "Todo" [ref=f6e31] [cursor=pointer]:
+            - /url: /?scope=web&FORM=HDRSC1
+        - listitem [ref=f6e32]:
+          - link "Búsqueda" [ref=f6e33] [cursor=pointer]:
+            - /url: /copilotsearch?q=%22Cine+Teatro+Libertador%22+Casilda+Facebook+Instagram&FORM=CSSCOP
+        - listitem [ref=f6e36]:
+          - link "Imágenes" [ref=f6e37] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=8404a752b50d801d30f11580a778d9bbefcc24a59696d541c9b4fbf87bb41398JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1L2ltYWdlcy9zZWFyY2g_cT0lMjJDaW5lK1RlYXRybytMaWJlcnRhZG9yJTIyK0Nhc2lsZGErRmFjZWJvb2srSW5zdGFncmFtJkZPUk09SERSU0My&ntb=1
+        - listitem [ref=f6e38]:
+          - link "Vídeos" [ref=f6e39] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=5901d057824a993bc0f1ebfa7bc6f75acd6fadd64eb5958d7bfea7f7bce3b20cJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1L3ZpZGVvcy9zZWFyY2g_cT0lMjJDaW5lK1RlYXRybytMaWJlcnRhZG9yJTIyK0Nhc2lsZGErRmFjZWJvb2srSW5zdGFncmFtJkZPUk09SERSU0Mz&ntb=1
+        - listitem [ref=f6e40]:
+          - button [ref=f6e41] [cursor=pointer]
+  - contentinfo [ref=f6e45]:
+    - generic [ref=f6e46]:
+      - list:
+        - listitem [ref=f6e47]:
+          - link "Privacidad" [ref=f6e48] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=e8efae64cd11f846d1f560ed20b6c19713558ecfe773734e989c4d2ee03b8097JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cDovL2dvLm1pY3Jvc29mdC5jb20vZndsaW5rLz9MaW5rSWQ9NTIxODM5&ntb=1
+        - listitem [ref=f6e49]:
+          - link "Términos" [ref=f6e50] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=573799a483cb4453d4cd222d03d741d74ec986f7e436d2faa786ed43e9fcb1efJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cDovL2dvLm1pY3Jvc29mdC5jb20vZndsaW5rLz9MaW5rSUQ9MjQ2MzM4&ntb=1

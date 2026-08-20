@@ -1,0 +1,239 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                        - text: Coca
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 1 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Coca-Cola 1.5L
+                            - cell:
+                              - generic: Limpieza
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 0,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "1"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 1
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button [disabled]: Siguiente
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog:
+    - generic:
+      - generic:
+        - generic:
+          - heading [level=2]: Editar Producto
+          - paragraph: Modificá el costo o stock del producto
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - heading [level=3]: Información Principal
+            - generic:
+              - generic: Nombre del Producto *
+              - textbox:
+                - /placeholder: "Ej: Shampoo Sedal 400ml"
+                - text: Coca-Cola 1.5L
+            - generic:
+              - text: Descripción
+              - textbox:
+                - /placeholder: "Ej: Confeccionada en algodón peinado premium"
+              - paragraph: Información adicional (opcional)
+            - generic:
+              - generic: Marca
+              - combobox: Buscar o crear marca...
+              - paragraph: Selecciona una existente o escribe para crear una nueva
+            - generic:
+              - text: Categoría
+              - generic:
+                - combobox [expanded]:
+                  - generic: Limpieza
+                - combobox
+                - button
+              - paragraph: Categoría del producto (opcional)
+            - generic:
+              - text: Código de Barras
+              - textbox:
+                - /placeholder: "Ej: 7791234567890"
+              - paragraph: Código de barras del producto (opcional)
+            - generic:
+              - heading [level=3]: Ficha Técnica de Indumentaria & Calzado
+              - generic:
+                - generic:
+                  - text: Temporada
+                  - combobox
+                  - generic:
+                    - button: + Primavera-Verano 2026
+                    - button: + Otoño-Invierno 2026
+                    - button: + Atemporal
+                - generic:
+                  - text: Colección / Línea
+                  - combobox
+                  - generic:
+                    - button: + Cápsula E2E
+                    - button: + Línea Básica
+                    - button: + Línea Urbana
+              - generic:
+                - generic:
+                  - text: Composición Textil
+                  - combobox
+                  - generic:
+                    - button: + 100% Algodón Peinado 24/1
+                    - button: + 98% Algodón / 2% Elastano
+                    - button: + Rústico con Lycra
+                - generic:
+                  - text: Instrucciones de Cuidado / Lavado
+                  - combobox
+                  - generic:
+                    - button: + Lavar con agua fría a mano
+                    - button: + No usar blanqueador / cloro
+              - generic:
+                - generic:
+                  - generic: Política de Cambio
+                  - combobox:
+                    - generic: Estándar (30 días de cambio)
+                  - combobox
+                - generic:
+                  - text: País de Origen
+                  - textbox:
+                    - /placeholder: "Ej: Argentina"
+          - generic:
+            - heading [level=3]: Precios, Ganancia y Stock
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Precio Fijo
+                  - paragraph: Cuando está activado, cargás el precio de venta directamente. Cuando está desactivado, el sistema calcula el precio desde el costo y el margen.
+                - checkbox [checked]
+                - checkbox [checked]
+            - generic:
+              - generic:
+                - generic: Precio Final *
+                - textbox:
+                  - /placeholder: "0.00"
+                  - text: "1500"
+                - paragraph: Precio de venta directo
+              - generic:
+                - generic: Stock Actual *
+                - textbox:
+                  - /placeholder: "0"
+                  - text: "30"
+                - paragraph: Cantidad disponible
+            - generic:
+              - generic:
+                - generic:
+                  - text: Venta por peso o medida
+                  - paragraph: Permite decimales y códigos pesables.
+                - checkbox
+                - checkbox
+        - generic:
+          - button: Guardar Producto
+    - button:
+      - generic: Close
+  - listbox [ref=e816]:
+    - option "Sin categoría" [ref=e817]
+    - option "Bebidas (50%)" [ref=e820]:
+      - generic [ref=e823]:
+        - text: Bebidas
+        - generic [ref=e825]: (50%)
+    - option "Limpieza" [active] [selected] [ref=e826]

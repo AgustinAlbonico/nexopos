@@ -1,0 +1,367 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0QpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Cine club San Lorenzo\" Instagram sitio \"Cine club San Lorenzo\" Instagram sitio"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Cine%2Bclub%2BSan%2BLorenzo%2522%2BInstagram%2Bsitio&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=Cine+club+San+Lorenzo+Instagram+sitio&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q2J8OegQIERAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Cine+club+San+Lorenzo+Instagram+sitio&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0QtKgLegQIGBAB
+          - listitem [ref=e94]:
+            - link "Vídeos cortos" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Cine+club+San+Lorenzo+Instagram+sitio&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Qs6gLegQIFxAB
+          - listitem [ref=e98]:
+            - link "Noticias" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+club+San+Lorenzo+Instagram+sitio&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q0pQJegQIFBAB
+          - listitem [ref=e102]:
+            - link "Vídeos" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Cine+club+San+Lorenzo+Instagram+sitio&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0QtKgLegQIFhAB
+          - listitem [ref=e106]:
+            - link "Shopping" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Cine+club+San+Lorenzo+Instagram+sitio&ved=1t:220175&ictx=111
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - generic [ref=e131]:
+      - generic [ref=e150]:
+        - heading "Pensando Buscando Pensando un poco más" [level=2] [ref=e154]:
+          - generic [ref=e155]:
+            - generic [ref=e156]: Pensando
+            - generic [ref=e158]: Buscando
+            - generic [ref=e160]: Pensando un poco más
+        - progressbar "Generando" [ref=e163]
+      - main [ref=e214]:
+        - generic [ref=e215]:
+          - generic [ref=e219]:
+            - heading "No se han encontrado resultados para \"Cine club San Lorenzo\" Instagram sitio." [level=2] [ref=e220]
+            - text: Resultados de
+            - link "Cine club San Lorenzo Instagram sitio" [ref=e221] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+club+San+Lorenzo+Instagram+sitio&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0QgwN6BAgQEAE
+            - text: "(sin comillas):"
+          - generic [ref=e224]:
+            - generic [ref=e227]:
+              - heading "Resultados web" [level=2] [ref=e228]
+              - generic [ref=e229]:
+                - generic [ref=e232]:
+                  - link "Cultura San Lorenzo (@culturasanlorenzo) Instagram · culturasanlorenzo Más de 8 K seguidores" [ref=e234] [cursor=pointer]:
+                    - /url: https://www.instagram.com/culturasanlorenzo/?hl=es
+                    - heading "Cultura San Lorenzo (@culturasanlorenzo)" [level=3] [ref=e235]
+                    - generic [ref=e241]:
+                      - generic [ref=e242]: Instagram · culturasanlorenzo
+                      - generic [ref=e244]: Más de 8 K seguidores
+                  - button "Acerca de este resultado" [ref=e248] [cursor=pointer]
+                - generic [ref=e255]:
+                  - emphasis [ref=e256]: CINE GIGANTE
+                  - text: "Hernán Aliani nos cuenta un poco de este proyecto, con un fin: volver a ver cine en San Lorenzo Aprovechando la nueva pantalla del ..."
+            - generic [ref=e260]:
+              - generic [ref=e263]:
+                - link "San Lorenzo de Almagro (@sanlorenzo) Instagram · sanlorenzo Más de 812,1 k seguidores" [ref=e265] [cursor=pointer]:
+                  - /url: https://www.instagram.com/sanlorenzo/?hl=es-la
+                  - heading "San Lorenzo de Almagro (@sanlorenzo)" [level=3] [ref=e266]
+                  - generic [ref=e272]:
+                    - generic [ref=e273]: Instagram · sanlorenzo
+                    - generic [ref=e275]: Más de 812,1 k seguidores
+                - button "Acerca de este resultado" [ref=e279] [cursor=pointer]
+              - generic [ref=e286]:
+                - text: ¡Vamos,
+                - emphasis [ref=e287]: San Lorenzo
+                - text: "! 🏟️ Estadio Madre de Ciudades ⏰ 21.15 horas #TorneoMercadoLibre Clausura Seguilo en vivo por TNT Sports Premium ⚽ Suscribite al ..."
+            - generic [ref=e291]:
+              - generic [ref=e294]:
+                - link "Club Deportivo San Lorenzo (@clubdepsanlorenzo) Instagram · clubdepsanlorenzo Más de 4,6 K seguidores" [ref=e296] [cursor=pointer]:
+                  - /url: https://www.instagram.com/clubdepsanlorenzo/?hl=es
+                  - heading "Club Deportivo San Lorenzo (@clubdepsanlorenzo)" [level=3] [ref=e297]
+                  - generic [ref=e303]:
+                    - generic [ref=e304]: Instagram · clubdepsanlorenzo
+                    - generic [ref=e306]: Más de 4,6 K seguidores
+                - button "Acerca de este resultado" [ref=e310] [cursor=pointer]
+              - generic [ref=e317]:
+                - text: "4.7K+ followers · 309 following · 1017 posts · @clubdepsanlorenzo: “"
+                - emphasis [ref=e318]: Instagram
+                - text: oficial del
+                - emphasis [ref=e319]: Club
+                - text: Deportivo
+                - emphasis [ref=e320]: San Lorenzo
+                - text: Las Perdices, Córdoba.”
+            - generic [ref=e324]:
+              - generic [ref=e327]:
+                - link "AGENDATE CINE 📌 este jueves 9 de abril llega el especial ... Instagram · agendate.rosario Más de 10 \"me gusta\" · hace 4 meses" [ref=e329] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DW5THbgEXjR/
+                  - heading "AGENDATE CINE 📌 este jueves 9 de abril llega el especial ..." [level=3] [ref=e330]
+                  - generic [ref=e336]:
+                    - generic [ref=e337]: Instagram · agendate.rosario
+                    - generic [ref=e339]: Más de 10 "me gusta" · hace 4 meses
+                - button "Acerca de este resultado" [ref=e343] [cursor=pointer]
+              - generic [ref=e350]:
+                - text: "📽️Nueva función para este mes de Julio Los esperamos a todos , entrada libre y gratuita , colaboración a conciencia. NOS VEMOS #"
+                - emphasis [ref=e351]: cineclub
+                - text: ...
+            - generic [ref=e355]:
+              - generic [ref=e357]:
+                - heading "Videos" [level=2] [ref=e358]
+                - button "Acerca de este resultado" [ref=e359] [cursor=pointer]
+              - generic [ref=e365]:
+                - generic [ref=e370]:
+                  - generic [ref=e371]:
+                    - link [ref=e373] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DYP-ZHQAk5t/
+                      - heading "🎞️ Después de hora Cine de autor, de género y de culto ... Instagram Cineclub Municipal Hugo del Carril 12 may 2026" [level=3] [ref=e374]:
+                        - generic [ref=e375]: 🎞️ Después de hora Cine de autor, de género y de culto ...
+                        - generic [ref=e379]:
+                          - generic [ref=e380]:
+                            - text: Instagram
+                            - generic [ref=e381]: · Cineclub Municipal Hugo del Carril
+                          - generic [ref=e382]: 12 may 2026
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - text: Instagram
+                              - generic: · Cineclub Municipal Hugo del Carril
+                        - button "Acerca de este resultado" [ref=e383] [cursor=pointer]
+                  - link "🎞️ Después de hora Cine de autor, de género y de culto ... de Cineclub Municipal Hugo del Carril en Instagram. Reproducir en Instagram. 0:54" [ref=e388] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DYP-ZHQAk5t/
+                    - generic [ref=e389]: 0:54
+                - generic [ref=e401]:
+                  - generic [ref=e402]:
+                    - link [ref=e404] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DY1vZ40jYMS/
+                      - heading "Dedicación y experiencias. El cine es clave en San Lorenzo ... Instagram El Cesar Presidente 27 may 2026" [level=3] [ref=e405]:
+                        - generic [ref=e406]: Dedicación y experiencias. El cine es clave en San Lorenzo ...
+                        - generic [ref=e410]:
+                          - generic [ref=e411]:
+                            - text: Instagram
+                            - generic [ref=e412]: · El Cesar Presidente
+                          - generic [ref=e413]: 27 may 2026
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - text: Instagram
+                              - generic: · El Cesar Presidente
+                        - button "Acerca de este resultado" [ref=e414] [cursor=pointer]
+                  - link "Dedicación y experiencias. El cine es clave en San Lorenzo ... de El Cesar Presidente en Instagram. Reproducir en Instagram. 0:37" [ref=e419] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DY1vZ40jYMS/
+                    - generic [ref=e420]: 0:37
+                - generic [ref=e432]:
+                  - generic [ref=e433]:
+                    - link [ref=e435] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DZm0hlKMjka/
+                      - heading "¡Llegamos a Córdoba! Hijo Mayor en @cineclubmunicipal_ ... Instagram Tarea Fina hace 1 mes" [level=3] [ref=e436]:
+                        - generic [ref=e437]: ¡Llegamos a Córdoba! Hijo Mayor en @cineclubmunicipal_ ...
+                        - generic [ref=e441]:
+                          - generic [ref=e442]:
+                            - text: Instagram
+                            - generic [ref=e443]: · Tarea Fina
+                          - generic [ref=e444]: hace 1 mes
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - text: Instagram
+                              - generic: · Tarea Fina
+                        - button "Acerca de este resultado" [ref=e445] [cursor=pointer]
+                  - link "¡Llegamos a Córdoba! Hijo Mayor en @cineclubmunicipal_ ... de Tarea Fina en Instagram. Reproducir en Instagram. 0:25" [ref=e450] [cursor=pointer]:
+                    - /url: https://www.instagram.com/reel/DZm0hlKMjka/
+                    - generic [ref=e451]: 0:25
+                - generic [ref=e463]:
+                  - generic [ref=e464]:
+                    - link [ref=e466] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DWmvaxJgWRg/
+                      - 'heading "❤️ Hola Sirenitas, hoy cumple 118 años #SanLorenzo y si ... Instagram Sⅈ𝕣ꫀꪀꪖ ᦔꫀ Cꪮꪑꪖ𝕣ᥴꪖ 🇦🇷⭐⭐⭐ 1 abr 2026" [level=3] [ref=e467]':
+                        - generic [ref=e468]: "❤️ Hola Sirenitas, hoy cumple 118 años #SanLorenzo y si ..."
+                        - generic [ref=e472]:
+                          - generic [ref=e473]:
+                            - text: Instagram
+                            - generic [ref=e474]: · Sⅈ𝕣ꫀꪀꪖ ᦔꫀ Cꪮꪑꪖ𝕣ᥴꪖ 🇦🇷⭐⭐⭐
+                          - generic [ref=e475]: 1 abr 2026
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic:
+                              - text: Instagram
+                              - generic: · Sⅈ𝕣ꫀꪀꪖ ᦔꫀ Cꪮꪑꪖ𝕣ᥴꪖ 🇦🇷⭐⭐⭐
+                        - button "Acerca de este resultado" [ref=e476] [cursor=pointer]
+                  - 'link "❤️ Hola Sirenitas, hoy cumple 118 años #SanLorenzo y si ... de Sⅈ𝕣ꫀꪀꪖ ᦔꫀ Cꪮꪑꪖ𝕣ᥴꪖ 🇦🇷⭐⭐⭐ en Instagram. Reproducir en Instagram. 2:02" [ref=e481] [cursor=pointer]':
+                    - /url: https://www.instagram.com/reel/DWmvaxJgWRg/
+                    - generic [ref=e482]: 2:02
+              - link "Ver todos los videos" [ref=e492] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&udm=7&q=Cine+club+San+Lorenzo+Instagram+sitio&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q8ccDKAJ6BAhDEAQ
+                - separator [ref=e493]
+                - generic [ref=e494]: Ver más
+            - generic [ref=e501]:
+              - heading "Resultados web" [level=2] [ref=e502]
+              - generic [ref=e503]:
+                - generic [ref=e506]:
+                  - link "Tras el video viral de la pensión de San Lorenzo, qué dijo ... La Voz del Interior https://www.lavoz.com.ar › Deportes - Fútbol › Deportes" [ref=e508] [cursor=pointer]:
+                    - /url: https://www.lavoz.com.ar/deportes/futbol/tras-el-video-viral-de-la-pension-de-san-lorenzo-que-dijo-el-club_0_pQsEGlLsMR.html
+                    - heading "Tras el video viral de la pensión de San Lorenzo, qué dijo ..." [level=3] [ref=e509]
+                    - generic [ref=e515]:
+                      - generic [ref=e516]: La Voz del Interior
+                      - generic [ref=e518]: https://www.lavoz.com.ar › Deportes - Fútbol › Deportes
+                  - button "Acerca de este resultado" [ref=e522] [cursor=pointer]
+                - generic [ref=e528]:
+                  - generic [ref=e529]: 14 ago 2025 —
+                  - text: La institución emitió un comunicado en el que detalla las condiciones en las que viven los chicos en la pensión, tras la polémica que ...
+            - generic [ref=e535]:
+              - generic [ref=e538]:
+                - link "San Lorenzo se llena de cultura este fin de semana con ... Instagram · cordon.plus Más de 50 \"me gusta\" · hace 3 meses" [ref=e540] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DYDUBrPBLfX/
+                  - heading "San Lorenzo se llena de cultura este fin de semana con ..." [level=3] [ref=e541]
+                  - generic [ref=e547]:
+                    - generic [ref=e548]: Instagram · cordon.plus
+                    - generic [ref=e550]: Más de 50 "me gusta" · hace 3 meses
+                - button "Acerca de este resultado" [ref=e554] [cursor=pointer]
+              - generic [ref=e559]:
+                - link "San Lorenzo se llena de cultura este fin de semana con ... de Cordón Plus en Instagram. Reproducir en Instagram. 2:13" [ref=e560] [cursor=pointer]:
+                  - /url: https://www.instagram.com/reel/DYDUBrPBLfX/
+                  - generic [ref=e561]: 2:13
+                - generic [ref=e570]: ... SAN LORENZO del Campo Grande Patrimonio Arquitectónico y Memoria Rotary Club San Lorenzo Distrito 4845 ... Cine en San Lorenzo LR 93.5 LA ...
+            - generic [ref=e575]:
+              - generic [ref=e578]:
+                - link "Volver a Boedo (@volveraboedo_) Instagram · volveraboedo_ Más de 2 K seguidores" [ref=e580] [cursor=pointer]:
+                  - /url: https://www.instagram.com/volveraboedo_/
+                  - heading "Volver a Boedo (@volveraboedo_)" [level=3] [ref=e581]
+                  - generic [ref=e587]:
+                    - generic [ref=e588]: Instagram · volveraboedo_
+                    - generic [ref=e590]: Más de 2 K seguidores
+                - button "Acerca de este resultado" [ref=e594] [cursor=pointer]
+              - generic [ref=e601]:
+                - emphasis [ref=e602]: Volver a Boedo
+                - text: ". Una película sobre la pasión. Dir: Sergio Criscolo. Producida por Salamanca Cine. On line: https:vimeo.com/ondemand/volveraboedo."
+            - generic [ref=e607]:
+              - heading "Más preguntas" [level=2] [ref=e609]
+              - generic [ref=e610]:
+                - button "¿Cómo salió San Lorenzo anoche?" [ref=e616] [cursor=pointer]
+                - button "¿Qué eventos hay hoy en San Lorenzo?" [ref=e630] [cursor=pointer]
+                - button "¿Cómo comprar entradas para San Lorenzo sin ser socio?" [ref=e644] [cursor=pointer]
+                - button "¿Cómo quedó el partido de la Reserva de San Lorenzo?" [ref=e658] [cursor=pointer]
+            - generic [ref=e668]:
+              - heading "Resultados web" [level=2] [ref=e669]
+              - generic [ref=e670]:
+                - generic [ref=e673]:
+                  - link "cineclub_sf.cine_america Instagram · cineclub_sf.cine_america Más de 32,8 k seguidores" [ref=e675] [cursor=pointer]:
+                    - /url: https://www.instagram.com/cineclub_sf.cine_america/
+                    - heading "cineclub_sf.cine_america" [level=3] [ref=e676]
+                    - generic [ref=e682]:
+                      - generic [ref=e683]: Instagram · cineclub_sf.cine_america
+                      - generic [ref=e685]: Más de 32,8 k seguidores
+                  - button "Acerca de este resultado" [ref=e689] [cursor=pointer]
+                - generic [ref=e696]:
+                  - text: ⭐
+                  - emphasis [ref=e697]: "Jueves: 16:30 y 18:15hs"
+                  - text: ". ⭐ Viernes: 16 y 20:20hs. ⭐ Sábado: 11:30, 13:30, 15:30 y 19:45hs. ⭐ Domingo: 14, 15:45 y 19:45hs. ⭐ Lunes, martes y miércoles: ..."
+        - generic [ref=e699]:
+          - generic [ref=e704]:
+            - heading "También se buscó" [level=2] [ref=e706]
+            - generic [ref=e708]:
+              - generic [ref=e709]:
+                - link "Eventos en San Lorenzo hoy" [ref=e713] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Eventos+en+San+Lorenzo+hoy&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q1QJ6BAgsEAE
+                - link "Centro Cultural Educativo San Lorenzo" [ref=e727] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+Cultural+Educativo+San+Lorenzo&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q1QJ6BAhEEAE
+                - link "San Lorenzo partido hoy" [ref=e741] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=San+Lorenzo+partido+hoy&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q1QJ6BAhGEAE
+                - link "Actividades en San Lorenzo Santa Fe" [ref=e755] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Actividades+en+San+Lorenzo+Santa+Fe&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q1QJ6BAhCEAE
+              - generic [ref=e766]:
+                - link "Centro Cultural San Lorenzo carreras" [ref=e770] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Centro+Cultural+San+Lorenzo+carreras&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q1QJ6BAg9EAE
+                - link "Partido de San Lorenzo hoy en vivo" [ref=e784] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=Partido+de+San+Lorenzo+hoy+en+vivo&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q1QJ6BAg4EAE
+                - link "San Lorenzo vs Lanús" [ref=e798] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=San+Lorenzo+vs+Lan%C3%BAs&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q1QJ6BAg0EAE
+                - link "San Lorenzo vs Central Córdoba 2026" [ref=e812] [cursor=pointer]:
+                  - /url: /search?sca_esv=569d465b5b1d57df&q=San+Lorenzo+vs+Central+C%C3%B3rdoba+2026&sa=X&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q1QJ6BAgyEAE
+          - navigation [ref=e823]:
+            - heading "Navegación de páginas" [level=1] [ref=e824]
+            - text: "1"
+            - link "Page 2" [ref=e827] [cursor=pointer]:
+              - /url: /search?q=Cine+club+San+Lorenzo+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=09p2au_FMvTa5OUP96Dm6AI&start=10&sa=N&sstk=AU9db-CkM6-T0hd91Z9fNmVh9xRYjigvdY7YYuWq5Lcr44qR5CKdGjnYSQ4Zgutxf-2GhUT6fBgHWbvQEtZQef3gHU-i8h5SsCyLFA&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q8tMDegQIJRAE
+              - text: "2"
+            - link "Page 3" [ref=e829] [cursor=pointer]:
+              - /url: /search?q=Cine+club+San+Lorenzo+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=09p2au_FMvTa5OUP96Dm6AI&start=20&sa=N&sstk=AU9db-CkM6-T0hd91Z9fNmVh9xRYjigvdY7YYuWq5Lcr44qR5CKdGjnYSQ4Zgutxf-2GhUT6fBgHWbvQEtZQef3gHU-i8h5SsCyLFA&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q8tMDegQIJRAG
+              - text: "3"
+            - link "Page 4" [ref=e831] [cursor=pointer]:
+              - /url: /search?q=Cine+club+San+Lorenzo+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=09p2au_FMvTa5OUP96Dm6AI&start=30&sa=N&sstk=AU9db-CkM6-T0hd91Z9fNmVh9xRYjigvdY7YYuWq5Lcr44qR5CKdGjnYSQ4Zgutxf-2GhUT6fBgHWbvQEtZQef3gHU-i8h5SsCyLFA&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q8tMDegQIJRAI
+              - text: "4"
+            - link "Page 5" [ref=e833] [cursor=pointer]:
+              - /url: /search?q=Cine+club+San+Lorenzo+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=09p2au_FMvTa5OUP96Dm6AI&start=40&sa=N&sstk=AU9db-CkM6-T0hd91Z9fNmVh9xRYjigvdY7YYuWq5Lcr44qR5CKdGjnYSQ4Zgutxf-2GhUT6fBgHWbvQEtZQef3gHU-i8h5SsCyLFA&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q8tMDegQIJRAK
+              - text: "5"
+            - link "Page 6" [ref=e835] [cursor=pointer]:
+              - /url: /search?q=Cine+club+San+Lorenzo+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=09p2au_FMvTa5OUP96Dm6AI&start=50&sa=N&sstk=AU9db-CkM6-T0hd91Z9fNmVh9xRYjigvdY7YYuWq5Lcr44qR5CKdGjnYSQ4Zgutxf-2GhUT6fBgHWbvQEtZQef3gHU-i8h5SsCyLFA&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q8tMDegQIJRAM
+              - text: "6"
+            - link "Page 7" [ref=e837] [cursor=pointer]:
+              - /url: /search?q=Cine+club+San+Lorenzo+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=09p2au_FMvTa5OUP96Dm6AI&start=60&sa=N&sstk=AU9db-CkM6-T0hd91Z9fNmVh9xRYjigvdY7YYuWq5Lcr44qR5CKdGjnYSQ4Zgutxf-2GhUT6fBgHWbvQEtZQef3gHU-i8h5SsCyLFA&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q8tMDegQIJRAO
+              - text: "7"
+            - link "Page 8" [ref=e839] [cursor=pointer]:
+              - /url: /search?q=Cine+club+San+Lorenzo+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=09p2au_FMvTa5OUP96Dm6AI&start=70&sa=N&sstk=AU9db-CkM6-T0hd91Z9fNmVh9xRYjigvdY7YYuWq5Lcr44qR5CKdGjnYSQ4Zgutxf-2GhUT6fBgHWbvQEtZQef3gHU-i8h5SsCyLFA&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q8tMDegQIJRAQ
+              - text: "8"
+            - link "Page 9" [ref=e841] [cursor=pointer]:
+              - /url: /search?q=Cine+club+San+Lorenzo+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=09p2au_FMvTa5OUP96Dm6AI&start=80&sa=N&sstk=AU9db-CkM6-T0hd91Z9fNmVh9xRYjigvdY7YYuWq5Lcr44qR5CKdGjnYSQ4Zgutxf-2GhUT6fBgHWbvQEtZQef3gHU-i8h5SsCyLFA&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q8tMDegQIJRAS
+              - text: "9"
+            - link "Page 10" [ref=e843] [cursor=pointer]:
+              - /url: /search?q=Cine+club+San+Lorenzo+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=09p2au_FMvTa5OUP96Dm6AI&start=90&sa=N&sstk=AU9db-CkM6-T0hd91Z9fNmVh9xRYjigvdY7YYuWq5Lcr44qR5CKdGjnYSQ4Zgutxf-2GhUT6fBgHWbvQEtZQef3gHU-i8h5SsCyLFA&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q8tMDegQIJRAU
+              - text: "10"
+            - heading [level=2] [ref=e845]:
+              - link "Siguiente" [ref=e846] [cursor=pointer]:
+                - /url: /search?q=Cine+club+San+Lorenzo+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=09p2au_FMvTa5OUP96Dm6AI&start=10&sa=N&sstk=AU9db-CkM6-T0hd91Z9fNmVh9xRYjigvdY7YYuWq5Lcr44qR5CKdGjnYSQ4Zgutxf-2GhUT6fBgHWbvQEtZQef3gHU-i8h5SsCyLFA&ved=2ahUKEwiv-6qkwZCWAxV0LbkGHXeQGS0Q8NMDegQIJRAW
+        - navigation
+    - contentinfo [ref=e849]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e850]
+      - generic [ref=e854]:
+        - generic [ref=e856]:
+          - text: Argentina
+          - generic [ref=e858]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e860] [cursor=pointer]:
+              - generic [ref=e861]: Iriondo, Santa Fe
+              - generic [ref=e863]:
+                - text: "-"
+                - generic [ref=e864]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e866] [cursor=pointer]
+        - generic [ref=e869]:
+          - link "Ayuda" [ref=e870] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e871] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e872] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e873] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

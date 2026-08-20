@@ -1,0 +1,262 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: Rosario cine sitio web instagram cartelera Rosario cine sitio web instagram cartelera
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3DRosario%2Bcine%2Bsitio%2Bweb%2Binstagram%2Bcartelera&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=Rosario+cine+sitio+web+instagram+cartelera&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhZP9g6icUXz8AKbE7RPEP8qXGQ84ED4TrJS9-RP26wZR7dp-mbTBCjXbB1hpJiszSgDgrQGr4lZQNf2RS1aLcRuH83o75q6npaetr3sKbgnmZb0xcMx7LTt7LgKfynmXtK-5k9wZFkCCtmYEIVXfloJua4o&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ2J8OegQIERAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Noticias" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=Rosario+cine+sitio+web+instagram+cartelera&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhZP9g6icUXz8AKbE7RPEP8qXGQ84ED4TrJS9-RP26wZR7dp-mbTBCjXbB1hpJiszSgDgrQGr4lZQNf2RS1aLcRuH83o75q6npaetr3sKbgnmZb0xcMx7LTt7LgKfynmXtK-5k9wZFkCCtmYEIVXfloJua4o&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ0pQJegQIFxAB
+          - listitem [ref=e94]:
+            - link "Imágenes" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhZP9g6icUXz8AKbE7RPEP8qXGQ84ED4TrJS9-RP26wZR7dp-mbTBCjXbB1hpJiszSgDgrQGr4lZQNf2RS1aLcRuH83o75q6npaetr3sKbgnmZb0xcMx7LTt7LgKfynmXtK-5k9wZFkCCtmYEIVXfloJua4o&q=Rosario+cine+sitio+web+instagram+cartelera&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQtKgLegQIExAB
+          - listitem [ref=e98]:
+            - link "Shopping" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhZP9g6icUXz8AKbE7RPEP8qXGQ84ED4TrJS9-RP26wZR7dp-mbTBCjXbB1hpJiszSgDgrQGr4lZQNf2RS1aLcRuH83o75q6npaetr3sKbgnmZb0xcMx7LTt7LgKfynmXtK-5k9wZFkCCtmYEIVXfloJua4o&q=Rosario+cine+sitio+web+instagram+cartelera&ved=1t:220175&ictx=111
+          - listitem [ref=e102]:
+            - link "Vídeos cortos" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhZP9g6icUXz8AKbE7RPEP8qXGQ84ED4TrJS9-RP26wZR7dp-mbTBCjXbB1hpJiszSgDgrQGr4lZQNf2RS1aLcRuH83o75q6npaetr3sKbgnmZb0xcMx7LTt7LgKfynmXtK-5k9wZFkCCtmYEIVXfloJua4o&q=Rosario+cine+sitio+web+instagram+cartelera&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQs6gLegQIFRAB
+          - listitem [ref=e106]:
+            - link "Vídeos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qaQUZ7s-xEllGFYzQM2ZnNxm6Ux2swRWdteWmKIbgn2rhZP9g6icUXz8AKbE7RPEP8qXGQ84ED4TrJS9-RP26wZR7dp-mbTBCjXbB1hpJiszSgDgrQGr4lZQNf2RS1aLcRuH83o75q6npaetr3sKbgnmZb0xcMx7LTt7LgKfynmXtK-5k9wZFkCCtmYEIVXfloJua4o&q=Rosario+cine+sitio+web+instagram+cartelera&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQtKgLegQIFhAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - main [ref=e132]:
+      - generic [ref=e136]:
+        - generic [ref=e139]:
+          - heading "Resultados web" [level=2] [ref=e140]
+          - generic [ref=e141]:
+            - generic [ref=e144]:
+              - link "Cines Del Centro Rosario (@cinesdelcentrorosario) Instagram · cinesdelcentrorosario Más de 51,2 k seguidores" [ref=e146] [cursor=pointer]:
+                - /url: https://www.instagram.com/cinesdelcentrorosario/?hl=es
+                - heading "Cines Del Centro Rosario (@cinesdelcentrorosario)" [level=3] [ref=e147]
+                - generic [ref=e153]:
+                  - generic [ref=e154]: Instagram · cinesdelcentrorosario
+                  - generic [ref=e156]: Más de 51,2 k seguidores
+              - button "Acerca de este resultado" [ref=e160] [cursor=pointer]
+            - generic [ref=e167]:
+              - emphasis [ref=e168]: Programación curada, los mejores estrenos de cine arte y lo mejor del mainstream
+              - text: . 1er nivel de @sh.delsiglo. CARTELERA/HORARIOS en nuestra web . Follow.
+        - generic [ref=e179]:
+          - heading "Pensando Buscando Pensando un poco más" [level=2] [ref=e183]:
+            - generic [ref=e184]:
+              - generic [ref=e185]: Pensando
+              - generic [ref=e187]: Buscando
+              - generic [ref=e189]: Pensando un poco más
+          - progressbar "Generando" [ref=e192]
+        - generic [ref=e245]:
+          - heading "Resultados web" [level=2] [ref=e246]
+          - generic [ref=e247]:
+            - generic [ref=e250]:
+              - link "Nuevo Monumental (@nuevomonumental) Instagram · nuevomonumental Más de 64,7 k seguidores" [ref=e252] [cursor=pointer]:
+                - /url: https://www.instagram.com/nuevomonumental/?hl=es
+                - heading "Nuevo Monumental (@nuevomonumental)" [level=3] [ref=e253]
+                - generic [ref=e259]:
+                  - generic [ref=e260]: Instagram · nuevomonumental
+                  - generic [ref=e262]: Más de 64,7 k seguidores
+              - button "Acerca de este resultado" [ref=e266] [cursor=pointer]
+            - generic [ref=e273]:
+              - text: "65K followers · 69 following · 1816 posts · @nuevomonumental: “"
+              - emphasis [ref=e274]: El cine de los rosarinos Podés sacar tu entrada online o en boletería CARTELERA
+              - text: ”
+        - generic [ref=e280]:
+          - generic [ref=e283]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · cinesdelcentrorosario Más de 70 \"me gusta\" · hace 5 meses" [ref=e285] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DU55SGsAiKt/?hl=es
+              - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e286]
+              - generic [ref=e292]:
+                - generic [ref=e293]: Instagram · cinesdelcentrorosario
+                - generic [ref=e295]: Más de 70 "me gusta" · hace 5 meses
+            - button "Acerca de este resultado" [ref=e299] [cursor=pointer]
+          - generic [ref=e304]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 2:19" [ref=e305] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DU55SGsAiKt/?hl=es
+              - generic [ref=e306]: 2:19
+            - generic [ref=e315]: CINEMA PERGAMINO CARTELERA DEL 9 AL 15 DE JULIO vamos al cine! TOY ... Join Cines Del Centro Rosario on Instagram. Sign up for Instagram.
+        - generic [ref=e320]:
+          - generic [ref=e323]:
+            - link "Portal Rosario Cine Instagram https://www.instagram.com › popular › portal-rosario-c..." [ref=e325] [cursor=pointer]:
+              - /url: https://www.instagram.com/popular/portal-rosario-cine/
+              - heading "Portal Rosario Cine" [level=3] [ref=e326]
+              - generic [ref=e332]:
+                - generic [ref=e333]: Instagram
+                - generic [ref=e335]: https://www.instagram.com › popular › portal-rosario-c...
+            - button "Acerca de este resultado" [ref=e339] [cursor=pointer]
+          - generic [ref=e346]:
+            - text: ¡Llegan muchos estrenos a Cinépolis!
+            - emphasis [ref=e347]: aquí te dejamos la cartelera
+            - text: ". #cinepolis · ✨Una jornada llena de alegría y donde pudimos nuevamente demostrarle a la ..."
+        - generic [ref=e351]:
+          - generic [ref=e354]:
+            - link "Cines Del Centro Rosario (@cinesdelcentrorosario) Instagram https://www.instagram.com › cinesdelcentrorosario" [ref=e356] [cursor=pointer]:
+              - /url: https://www.instagram.com/cinesdelcentrorosario/reels/?hl=es
+              - heading "Cines Del Centro Rosario (@cinesdelcentrorosario)" [level=3] [ref=e357]
+              - generic [ref=e363]:
+                - generic [ref=e364]: Instagram
+                - generic [ref=e366]: https://www.instagram.com › cinesdelcentrorosario
+            - button "Acerca de este resultado" [ref=e370] [cursor=pointer]
+          - generic [ref=e377]:
+            - emphasis [ref=e378]: Programación curada, los mejores estrenos de cine arte y lo mejor del mainstream
+            - text: . 1er nivel de @sh.delsiglo. CARTELERA/HORARIOS en nuestra web .
+        - generic [ref=e382]:
+          - generic [ref=e385]:
+            - link "Cines Del Centro Rosario | Rosario Cines del Centro https://www.cinesdelcentro.com.ar" [ref=e387] [cursor=pointer]:
+              - /url: https://www.cinesdelcentro.com.ar/
+              - heading "Cines Del Centro Rosario | Rosario" [level=3] [ref=e388]
+              - generic [ref=e394]:
+                - generic [ref=e395]: Cines del Centro
+                - generic [ref=e397]: https://www.cinesdelcentro.com.ar
+            - button "Acerca de este resultado" [ref=e401] [cursor=pointer]
+          - generic [ref=e408]:
+            - emphasis [ref=e409]: Cartelera
+            - text: · Crítica · Votá por los próximos estrenos. DESDE EL 13/08 AL 19/08. Precios y Promos · Publicidad y Eventos · Instagram; Facebook. INICIO · Próxima ...
+        - generic [ref=e415]:
+          - generic [ref=e418]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · cinesdelcentrorosario Más de 10 \"me gusta\" · hace 3 meses" [ref=e420] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DXH0jl9grsa/?hl=es
+              - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e421]
+              - generic [ref=e427]:
+                - generic [ref=e428]: Instagram · cinesdelcentrorosario
+                - generic [ref=e430]: Más de 10 "me gusta" · hace 3 meses
+            - button "Acerca de este resultado" [ref=e434] [cursor=pointer]
+          - generic [ref=e439]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 2:25" [ref=e440] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DXH0jl9grsa/?hl=es
+              - generic [ref=e441]: 2:25
+            - generic [ref=e450]: "✨ Te dejamos la cartelera de esta semana con todo lo que tenés que ver: estrenos imperdibles y esos clásicos que nunca fallan. 🎞️ ..."
+        - generic [ref=e455]:
+          - generic [ref=e458]:
+            - link "CINES SHOWCASE | Cartelera rosario Showcase Belgrano https://www.todoshowcase.com › cartelera › rosario" [ref=e460] [cursor=pointer]:
+              - /url: https://www.todoshowcase.com/cartelera/rosario
+              - heading "CINES SHOWCASE | Cartelera rosario" [level=3] [ref=e461]
+              - generic [ref=e467]:
+                - generic [ref=e468]: Showcase Belgrano
+                - generic [ref=e470]: https://www.todoshowcase.com › cartelera › rosario
+            - button "Acerca de este resultado" [ref=e474] [cursor=pointer]
+          - generic [ref=e481]:
+            - emphasis [ref=e482]: Showcase rosario
+            - text: "· ATEEZ: light the way in cinemas · El Día D: Bajo presión · Engendro · La invitación · Spider-Man: un nuevo día · La Odisea · Moana."
+        - generic [ref=e486]:
+          - generic [ref=e489]:
+            - link "(@lastipasrosario) • Instagram photos and videos Instagram · lastipasrosario Más de 55,9 k seguidores" [ref=e491] [cursor=pointer]:
+              - /url: https://www.instagram.com/lastipasrosario/?hl=es
+              - heading "(@lastipasrosario) • Instagram photos and videos" [level=3] [ref=e492]
+              - generic [ref=e498]:
+                - generic [ref=e499]: Instagram · lastipasrosario
+                - generic [ref=e501]: Más de 55,9 k seguidores
+            - button "Acerca de este resultado" [ref=e505] [cursor=pointer]
+          - generic [ref=e512]:
+            - text: ¡Junio viene con todo! Entre héroes, juguetes, comedia y fantasía,
+            - emphasis [ref=e513]: Las Tipas cinemas se llenará de grandes estrenos este mes
+            - text: . ¿Cuál de estas películas ...
+      - generic [ref=e515]:
+        - generic [ref=e520]:
+          - heading "También se buscó" [level=2] [ref=e522]
+          - generic [ref=e524]:
+            - generic [ref=e525]:
+              - link "Cine alto rosario cartelera" [ref=e529] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+alto+rosario+cartelera&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ1QJ6BAghEAE
+              - link "Cartelera cine rosario" [ref=e543] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cartelera+cine+rosario&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ1QJ6BAgqEAE
+              - link "Cine Shopping del Siglo Cartelera y horarios" [ref=e557] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Shopping+del+Siglo+Cartelera+y+horarios&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ1QJ6BAgnEAE
+              - link "Cine Monumental Rosario CARTELERA HORARIOS precios" [ref=e571] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Monumental+Rosario+CARTELERA+HORARIOS+precios&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ1QJ6BAgmEAE
+            - generic [ref=e582]:
+              - link "Cine Shopping del Siglo rosario cartelera PRECIOS" [ref=e586] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Shopping+del+Siglo+rosario+cartelera+PRECIOS&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ1QJ6BAgkEAE
+              - link "Cines del Centro Rosario CARTELERA y HORARIOS" [ref=e600] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+del+Centro+Rosario+CARTELERA+y+HORARIOS&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ1QJ6BAglEAE
+              - link "Cartelera cine Monumental Rosario hoy" [ref=e614] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cartelera+cine+Monumental+Rosario+hoy&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ1QJ6BAgjEAE
+              - link "Cine Rosario Shopping" [ref=e628] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Rosario+Shopping&sa=X&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ1QJ6BAgiEAE
+        - navigation [ref=e639]:
+          - heading "Navegación de páginas" [level=1] [ref=e640]
+          - text: "1"
+          - link "Page 2" [ref=e643] [cursor=pointer]:
+            - /url: /search?q=Rosario+cine+sitio+web+instagram+cartelera&sca_esv=569d465b5b1d57df&ei=Bdt2auw9ubzk5Q_J6Z-BCw&start=10&sa=N&sstk=AU9db-ALjiTgJqgh9cfPkkwjJJUZ4RboViiwxHdia98jtG6pstCBMp-fcdbn0LKgsgRYxBG914TBE5gh__Km4Av8roEcWjQk1OYCdQ&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ8tMDegQIHhAE
+            - text: "2"
+          - link "Page 3" [ref=e645] [cursor=pointer]:
+            - /url: /search?q=Rosario+cine+sitio+web+instagram+cartelera&sca_esv=569d465b5b1d57df&ei=Bdt2auw9ubzk5Q_J6Z-BCw&start=20&sa=N&sstk=AU9db-ALjiTgJqgh9cfPkkwjJJUZ4RboViiwxHdia98jtG6pstCBMp-fcdbn0LKgsgRYxBG914TBE5gh__Km4Av8roEcWjQk1OYCdQ&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ8tMDegQIHhAG
+            - text: "3"
+          - link "Page 4" [ref=e647] [cursor=pointer]:
+            - /url: /search?q=Rosario+cine+sitio+web+instagram+cartelera&sca_esv=569d465b5b1d57df&ei=Bdt2auw9ubzk5Q_J6Z-BCw&start=30&sa=N&sstk=AU9db-ALjiTgJqgh9cfPkkwjJJUZ4RboViiwxHdia98jtG6pstCBMp-fcdbn0LKgsgRYxBG914TBE5gh__Km4Av8roEcWjQk1OYCdQ&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ8tMDegQIHhAI
+            - text: "4"
+          - link "Page 5" [ref=e649] [cursor=pointer]:
+            - /url: /search?q=Rosario+cine+sitio+web+instagram+cartelera&sca_esv=569d465b5b1d57df&ei=Bdt2auw9ubzk5Q_J6Z-BCw&start=40&sa=N&sstk=AU9db-ALjiTgJqgh9cfPkkwjJJUZ4RboViiwxHdia98jtG6pstCBMp-fcdbn0LKgsgRYxBG914TBE5gh__Km4Av8roEcWjQk1OYCdQ&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ8tMDegQIHhAK
+            - text: "5"
+          - link "Page 6" [ref=e651] [cursor=pointer]:
+            - /url: /search?q=Rosario+cine+sitio+web+instagram+cartelera&sca_esv=569d465b5b1d57df&ei=Bdt2auw9ubzk5Q_J6Z-BCw&start=50&sa=N&sstk=AU9db-ALjiTgJqgh9cfPkkwjJJUZ4RboViiwxHdia98jtG6pstCBMp-fcdbn0LKgsgRYxBG914TBE5gh__Km4Av8roEcWjQk1OYCdQ&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ8tMDegQIHhAM
+            - text: "6"
+          - link "Page 7" [ref=e653] [cursor=pointer]:
+            - /url: /search?q=Rosario+cine+sitio+web+instagram+cartelera&sca_esv=569d465b5b1d57df&ei=Bdt2auw9ubzk5Q_J6Z-BCw&start=60&sa=N&sstk=AU9db-ALjiTgJqgh9cfPkkwjJJUZ4RboViiwxHdia98jtG6pstCBMp-fcdbn0LKgsgRYxBG914TBE5gh__Km4Av8roEcWjQk1OYCdQ&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ8tMDegQIHhAO
+            - text: "7"
+          - link "Page 8" [ref=e655] [cursor=pointer]:
+            - /url: /search?q=Rosario+cine+sitio+web+instagram+cartelera&sca_esv=569d465b5b1d57df&ei=Bdt2auw9ubzk5Q_J6Z-BCw&start=70&sa=N&sstk=AU9db-ALjiTgJqgh9cfPkkwjJJUZ4RboViiwxHdia98jtG6pstCBMp-fcdbn0LKgsgRYxBG914TBE5gh__Km4Av8roEcWjQk1OYCdQ&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ8tMDegQIHhAQ
+            - text: "8"
+          - link "Page 9" [ref=e657] [cursor=pointer]:
+            - /url: /search?q=Rosario+cine+sitio+web+instagram+cartelera&sca_esv=569d465b5b1d57df&ei=Bdt2auw9ubzk5Q_J6Z-BCw&start=80&sa=N&sstk=AU9db-ALjiTgJqgh9cfPkkwjJJUZ4RboViiwxHdia98jtG6pstCBMp-fcdbn0LKgsgRYxBG914TBE5gh__Km4Av8roEcWjQk1OYCdQ&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ8tMDegQIHhAS
+            - text: "9"
+          - link "Page 10" [ref=e659] [cursor=pointer]:
+            - /url: /search?q=Rosario+cine+sitio+web+instagram+cartelera&sca_esv=569d465b5b1d57df&ei=Bdt2auw9ubzk5Q_J6Z-BCw&start=90&sa=N&sstk=AU9db-ALjiTgJqgh9cfPkkwjJJUZ4RboViiwxHdia98jtG6pstCBMp-fcdbn0LKgsgRYxBG914TBE5gh__Km4Av8roEcWjQk1OYCdQ&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ8tMDegQIHhAU
+            - text: "10"
+          - heading [level=2] [ref=e661]:
+            - link "Siguiente" [ref=e662] [cursor=pointer]:
+              - /url: /search?q=Rosario+cine+sitio+web+instagram+cartelera&sca_esv=569d465b5b1d57df&ei=Bdt2auw9ubzk5Q_J6Z-BCw&start=10&sa=N&sstk=AU9db-ALjiTgJqgh9cfPkkwjJJUZ4RboViiwxHdia98jtG6pstCBMp-fcdbn0LKgsgRYxBG914TBE5gh__Km4Av8roEcWjQk1OYCdQ&ved=2ahUKEwis1OS7wZCWAxU5HrkGHcn0J7AQ8NMDegQIHhAW
+      - navigation
+    - contentinfo [ref=e665]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e666]
+      - generic [ref=e670]:
+        - generic [ref=e672]:
+          - text: Argentina
+          - generic [ref=e674]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e676] [cursor=pointer]:
+              - generic [ref=e677]: Iriondo, Santa Fe
+              - generic [ref=e679]:
+                - text: "-"
+                - generic [ref=e680]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e682] [cursor=pointer]
+        - generic [ref=e685]:
+          - link "Ayuda" [ref=e686] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e687] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e688] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e689] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

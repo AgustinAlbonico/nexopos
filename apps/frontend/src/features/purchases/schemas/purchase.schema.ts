@@ -18,7 +18,7 @@ export const purchaseItemSchema = z.object({
  * Schema para creación de compra
  */
 export const createPurchaseSchema = z.object({
-    supplierId: z.string().min(1, 'Proveedor registrado es requerido'),
+    supplierId: z.string().optional(),
     providerName: z.string().max(200).optional(),
     providerDocument: z.string().max(100).optional(),
     providerPhone: z.string().max(100).optional(),
@@ -38,6 +38,13 @@ export const createPurchaseSchema = z.object({
             code: z.ZodIssueCode.custom,
             message: 'El método de pago es requerido cuando la compra está pagada',
             path: ['paymentMethodId'],
+        });
+    }
+    if (!data.supplierId && (!data.providerName || data.providerName.trim() === '')) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Seleccioná un proveedor o ingresá un nombre',
+            path: ['providerName'],
         });
     }
 });

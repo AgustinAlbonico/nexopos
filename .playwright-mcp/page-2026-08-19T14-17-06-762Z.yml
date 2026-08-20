@@ -1,0 +1,217 @@
+- generic [active] [ref=e12]:
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - link "NP" [ref=e17] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=e19]:
+          - generic [ref=e20]:
+            - link [ref=e22] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=e29] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=e35] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=e41] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=e45] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=e50] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=e57] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=e62] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=e69] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=e75] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=e81] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=e85] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=e90] [cursor=pointer]
+      - main [ref=e95]:
+        - generic [ref=e4212]:
+          - generic [ref=e4213]:
+            - generic [ref=e4214]:
+              - heading "Caja" [level=1] [ref=e4215]
+              - paragraph [ref=e4216]: Gestión de movimientos y arqueo de caja
+            - button "Abrir Caja" [ref=e4328] [cursor=pointer]
+          - generic [ref=e4329]:
+            - tablist [ref=e4330]:
+              - tab "Historial de Cajas" [selected] [ref=e4331] [cursor=pointer]
+            - tabpanel "Historial de Cajas" [ref=e4332]:
+              - generic [ref=e4333]:
+                - generic [ref=e4334]:
+                  - heading "Historial de Cajas" [level=3] [ref=e4335]
+                  - paragraph [ref=e4336]: Registro de cajas anteriores
+                  - generic [ref=e4338]:
+                    - text: Buscar por fecha
+                    - textbox "Buscar por fecha" [ref=e4342]:
+                      - /placeholder: Seleccionar fecha
+                - generic [ref=e4343]:
+                  - table [ref=e4346]:
+                    - rowgroup [ref=e4347]:
+                      - row [ref=e4348]:
+                        - columnheader "Fecha" [ref=e4349]
+                        - columnheader "Abierta por" [ref=e4350]
+                        - columnheader "Cerrada por" [ref=e4351]
+                        - columnheader "Inicial" [ref=e4352]
+                        - columnheader "Ingresos" [ref=e4353]
+                        - columnheader "Egresos" [ref=e4354]
+                        - columnheader "Diferencia" [ref=e4355]
+                        - columnheader "Estado" [ref=e4356]
+                        - columnheader "Acciones" [ref=e4357]
+                    - rowgroup [ref=e4358]:
+                      - row [ref=e4359]:
+                        - cell [ref=e4360]:
+                          - generic [ref=e4361]:
+                            - paragraph [ref=e4362]: 18/08/2026
+                            - paragraph [ref=e4363]: 03:50 p. m. - 11:17 a. m.
+                        - cell "Administrador Sistema" [ref=e4364]
+                        - cell "Administrador Sistema" [ref=e4365]
+                        - cell "$ 10.000,00" [ref=e4366]
+                        - cell "+$ 0,00" [ref=e4367]
+                        - cell "-$ 0,00" [ref=e4368]
+                        - cell "Exacto" [ref=e4369]
+                        - cell "Cerrada" [ref=e4370]
+                        - cell [ref=e4372]:
+                          - button "Ver detalle de movimientos" [ref=e4373] [cursor=pointer]
+                      - row [ref=e4377]:
+                        - cell [ref=e4378]:
+                          - generic [ref=e4379]:
+                            - paragraph [ref=e4380]: 14/08/2026
+                            - paragraph [ref=e4381]: 01:30 a. m. - 03:50 p. m.
+                        - cell "Administrador Sistema" [ref=e4382]
+                        - cell "Administrador Sistema" [ref=e4383]
+                        - cell "$ 10.000,00" [ref=e4384]
+                        - cell "+$ 0,00" [ref=e4385]
+                        - cell "-$ 0,00" [ref=e4386]
+                        - cell "Exacto" [ref=e4387]
+                        - cell "Cerrada" [ref=e4388]
+                        - cell [ref=e4390]:
+                          - button "Ver detalle de movimientos" [ref=e4391] [cursor=pointer]
+                      - row [ref=e4395]:
+                        - cell [ref=e4396]:
+                          - generic [ref=e4397]:
+                            - paragraph [ref=e4398]: 13/08/2026
+                            - paragraph [ref=e4399]: 10:32 a. m. - 01:30 a. m.
+                        - cell "Administrador Sistema" [ref=e4400]
+                        - cell "Administrador Sistema" [ref=e4401]
+                        - cell "$ 10.000,00" [ref=e4402]
+                        - cell "+$ 0,00" [ref=e4403]
+                        - cell "-$ 0,00" [ref=e4404]
+                        - cell "Exacto" [ref=e4405]
+                        - cell "Cerrada" [ref=e4406]
+                        - cell [ref=e4408]:
+                          - button "Ver detalle de movimientos" [ref=e4409] [cursor=pointer]
+                      - row [ref=e4413]:
+                        - cell [ref=e4414]:
+                          - generic [ref=e4415]:
+                            - paragraph [ref=e4416]: 13/08/2026
+                            - paragraph [ref=e4417]: 10:43 a. m. - 10:43 a. m.
+                        - cell "Administrador Sistema" [ref=e4418]
+                        - cell "Administrador Sistema" [ref=e4419]
+                        - cell "$ 10.000,00" [ref=e4420]
+                        - cell "+$ 0,00" [ref=e4421]
+                        - cell "-$ 0,00" [ref=e4422]
+                        - cell "-$ 10.000,00" [ref=e4423]
+                        - cell "Cerrada" [ref=e4424]
+                        - cell [ref=e4426]:
+                          - button "Ver detalle de movimientos" [ref=e4427] [cursor=pointer]
+                      - row [ref=e4431]:
+                        - cell [ref=e4432]:
+                          - generic [ref=e4433]:
+                            - paragraph [ref=e4434]: 12/08/2026
+                            - paragraph [ref=e4435]: 01:21 a. m. - 10:32 a. m.
+                        - cell "Administrador Sistema" [ref=e4436]
+                        - cell "Administrador Sistema" [ref=e4437]
+                        - cell "$ 336.800,00" [ref=e4438]
+                        - cell "+$ 1.300,00" [ref=e4439]
+                        - cell "-$ 0,00" [ref=e4440]
+                        - cell "-$ 328.100,00" [ref=e4441]
+                        - cell "Cerrada" [ref=e4442]
+                        - cell [ref=e4444]:
+                          - button "Ver detalle de movimientos" [ref=e4445] [cursor=pointer]
+                      - row [ref=e4449]:
+                        - cell [ref=e4450]:
+                          - generic [ref=e4451]:
+                            - paragraph [ref=e4452]: 11/08/2026
+                            - paragraph [ref=e4453]: 06:34 p. m. - 01:21 a. m.
+                        - cell "Administrador Sistema" [ref=e4454]
+                        - cell "Administrador Sistema" [ref=e4455]
+                        - cell "$ 270.000,00" [ref=e4456]
+                        - cell "+$ 66.800,00" [ref=e4457]
+                        - cell "-$ 0,00" [ref=e4458]
+                        - cell "Exacto" [ref=e4459]
+                        - cell "Cerrada" [ref=e4460]
+                        - cell [ref=e4462]:
+                          - button "Ver detalle de movimientos" [ref=e4463] [cursor=pointer]
+                      - row [ref=e4467]:
+                        - cell [ref=e4468]:
+                          - generic [ref=e4469]:
+                            - paragraph [ref=e4470]: 05/08/2026
+                            - paragraph [ref=e4471]: 04:41 p. m. - 06:34 p. m.
+                        - cell "Administrador Sistema" [ref=e4472]
+                        - cell "Administrador Sistema" [ref=e4473]
+                        - cell "$ 169.000,00" [ref=e4474]
+                        - cell "+$ 101.000,00" [ref=e4475]
+                        - cell "-$ 0,00" [ref=e4476]
+                        - cell "Exacto" [ref=e4477]
+                        - cell "Cerrada" [ref=e4478]
+                        - cell [ref=e4480]:
+                          - button "Ver detalle de movimientos" [ref=e4481] [cursor=pointer]
+                      - row [ref=e4485]:
+                        - cell [ref=e4486]:
+                          - generic [ref=e4487]:
+                            - paragraph [ref=e4488]: 22/07/2026
+                            - paragraph [ref=e4489]: 06:23 p. m. - 04:41 p. m.
+                        - cell "Administrador Sistema" [ref=e4490]
+                        - cell "Administrador Sistema" [ref=e4491]
+                        - cell "$ 169.000,00" [ref=e4492]
+                        - cell "+$ 0,00" [ref=e4493]
+                        - cell "-$ 0,00" [ref=e4494]
+                        - cell "Exacto" [ref=e4495]
+                        - cell "Cerrada" [ref=e4496]
+                        - cell [ref=e4498]:
+                          - button "Ver detalle de movimientos" [ref=e4499] [cursor=pointer]
+                      - row [ref=e4503]:
+                        - cell [ref=e4504]:
+                          - generic [ref=e4505]:
+                            - paragraph [ref=e4506]: 21/07/2026
+                            - paragraph [ref=e4507]: 06:56 p. m. - 06:23 p. m.
+                        - cell "Administrador Sistema" [ref=e4508]
+                        - cell "Administrador Sistema" [ref=e4509]
+                        - cell "$ 117.000,00" [ref=e4510]
+                        - cell "+$ 52.000,00" [ref=e4511]
+                        - cell "-$ 0,00" [ref=e4512]
+                        - cell "Exacto" [ref=e4513]
+                        - cell "Cerrada" [ref=e4514]
+                        - cell [ref=e4516]:
+                          - button "Ver detalle de movimientos" [ref=e4517] [cursor=pointer]
+                      - row [ref=e4521]:
+                        - cell [ref=e4522]:
+                          - generic [ref=e4523]:
+                            - paragraph [ref=e4524]: 02/07/2026
+                            - paragraph [ref=e4525]: 02:49 a. m. - 06:56 p. m.
+                        - cell "Administrador Sistema" [ref=e4526]
+                        - cell "Administrador Sistema" [ref=e4527]
+                        - cell "$ 13.000,00" [ref=e4528]
+                        - cell "+$ 104.000,00" [ref=e4529]
+                        - cell "-$ 0,00" [ref=e4530]
+                        - cell "Exacto" [ref=e4531]
+                        - cell "Cerrada" [ref=e4532]
+                        - cell [ref=e4534]:
+                          - button "Ver detalle de movimientos" [ref=e4535] [cursor=pointer]
+                  - generic [ref=e4539]:
+                    - generic [ref=e4540]: Mostrando 1 a 10 de 12 registros
+                    - generic [ref=e4541]:
+                      - button "Anterior" [disabled]
+                      - generic [ref=e4542]: Página 1 de 2
+                      - button "Siguiente" [ref=e4543] [cursor=pointer]
+    - region "Notifications alt+T":
+      - list:
+        - listitem [ref=e4546]:
+          - generic [ref=e4550]: Caja cerrada exitosamente
+  - generic [ref=e319]: $0k

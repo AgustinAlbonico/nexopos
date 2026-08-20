@@ -1,0 +1,328 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Ventas
+                  - paragraph: Punto de venta y registro de ventas
+                - generic:
+                  - button: Nueva Venta
+              - generic:
+                - paragraph: Mostrando ventas del mes actual (01/08/2026 - 31/08/2026)
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=3]: Ventas Totales
+                  - generic:
+                    - generic: $ 169.100,00
+                    - paragraph: 5 ventas
+                - generic:
+                  - generic:
+                    - heading [level=3]: Completadas
+                  - generic:
+                    - generic: $ 169.100,00
+                    - paragraph: 5 ventas
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pendientes
+                  - generic:
+                    - generic: $ 0,00
+                    - paragraph: 0 ventas
+                - generic:
+                  - generic:
+                    - heading [level=3]: Canceladas
+                  - generic:
+                    - generic: "0"
+                    - paragraph: ventas canceladas
+              - generic:
+                - generic:
+                  - heading [level=3]: Filtros
+                - generic:
+                  - generic:
+                    - generic:
+                      - button: Hoy
+                      - button: Esta Semana
+                      - button: Mes Actual
+                      - button: Todas las Fechas
+                    - generic:
+                      - generic:
+                        - text: Buscar
+                        - textbox:
+                          - /placeholder: Nº, cliente...
+                      - generic:
+                        - text: Estado
+                        - combobox:
+                          - generic: Todos
+                      - generic:
+                        - text: Facturación
+                        - combobox:
+                          - generic: Todas
+                      - generic:
+                        - text: Desde
+                        - textbox: 2026-08-01
+                      - generic:
+                        - text: Hasta
+                        - textbox: 2026-08-31
+                      - button: Restablecer
+              - generic:
+                - generic:
+                  - heading [level=3]: Listado de Ventas
+                - generic:
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader: Nº Venta
+                            - columnheader: Fecha
+                            - columnheader: Cliente
+                            - columnheader: Productos
+                            - columnheader: Pago
+                            - columnheader: Total
+                            - columnheader: Factura
+                            - columnheader: Estado
+                            - columnheader: Acciones
+                        - rowgroup:
+                          - row:
+                            - cell: VENTA-2026-00009
+                            - cell: 12/08/2026, 01:21 a. m.
+                            - cell:
+                              - generic: Consumidor Final
+                            - cell:
+                              - generic: 1 item(s)
+                            - cell: Efectivo
+                            - cell: $ 1.300,00
+                            - cell:
+                              - generic: No fiscal
+                            - cell:
+                              - generic: Completada
+                            - cell:
+                              - button
+                          - row:
+                            - cell: VENTA-2026-00008
+                            - cell: 11/08/2026, 11:54 p. m.
+                            - cell:
+                              - generic: Consumidor Final
+                            - cell:
+                              - generic: 2 item(s)
+                            - cell: Efectivo
+                            - cell: $ 65.500,00
+                            - cell:
+                              - generic: No fiscal
+                            - cell:
+                              - generic: Completada
+                            - cell:
+                              - button
+                          - row:
+                            - cell: VENTA-2026-00007
+                            - cell: 11/08/2026, 11:03 p. m.
+                            - cell:
+                              - generic: Consumidor Final
+                            - cell:
+                              - generic: 1 item(s)
+                            - cell: Efectivo
+                            - cell: $ 1.300,00
+                            - cell:
+                              - generic: No fiscal
+                            - cell:
+                              - generic: Completada
+                            - cell:
+                              - button
+                          - row:
+                            - cell: VENTA-2026-00006
+                            - cell: 05/08/2026, 05:22 p. m.
+                            - cell:
+                              - generic: Consumidor Final
+                            - cell:
+                              - generic: 1 item(s)
+                            - cell: Efectivo
+                            - cell: $ 10.000,00
+                            - cell:
+                              - generic: No fiscal
+                            - cell:
+                              - generic: Completada
+                            - cell:
+                              - button
+                          - row:
+                            - cell: VENTA-2026-00005
+                            - cell: 05/08/2026, 04:43 p. m.
+                            - cell:
+                              - generic: Consumidor Final
+                            - cell:
+                              - generic: 1 item(s)
+                            - cell: Efectivo
+                            - cell: $ 91.000,00
+                            - cell:
+                              - generic: No fiscal
+                            - cell:
+                              - generic: Completada
+                            - cell:
+                              - button
+                    - generic:
+                      - paragraph: Mostrando 1 a 5 de 5 ventas
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog [active] [ref=e573]:
+    - generic [ref=e596]:
+      - generic [ref=e597]:
+        - generic [ref=e598]:
+          - generic [ref=e599]:
+            - heading "Nueva Venta" [level=2] [ref=e600]
+            - paragraph [ref=e605]: Stock automático
+          - generic [ref=e606]:
+            - generic [ref=e608]:
+              - generic [ref=e609]: Cliente
+              - combobox [ref=e611] [cursor=pointer]:
+                - generic [ref=e612]: Consumidor Final
+            - generic [ref=e617]:
+              - generic [ref=e618]: Vendedor
+              - textbox "Vendedor" [ref=e623]:
+                - /placeholder: Vendedor / Legajo
+            - generic [ref=e625]:
+              - generic [ref=e626]: Fecha
+              - textbox "Fecha" [ref=e629]: 2026-08-14
+            - generic [ref=e632]:
+              - checkbox "Fiscal" [disabled] [ref=e633]
+              - checkbox [disabled]
+              - generic [ref=e634]: Fiscal
+        - generic [ref=e638]:
+          - generic [ref=e639]: "⚡ Atajos Rápidos POS:"
+          - generic [ref=e640]:
+            - generic [ref=e641]:
+              - generic [ref=e642]: F1
+              - text: Buscar
+            - generic [ref=e643]:
+              - generic [ref=e644]: F2
+              - text: Cantidad
+            - generic [ref=e645]:
+              - generic [ref=e646]: F8
+              - text: Confirmar
+            - generic [ref=e647]:
+              - generic [ref=e648]: F9
+              - text: Posponer
+            - generic [ref=e649]:
+              - generic [ref=e650]: ESC
+              - text: Cancelar
+        - generic [ref=e651]:
+          - generic [ref=e652]:
+            - generic [ref=e659]:
+              - heading "Agregar Productos" [level=3] [ref=e660]
+              - paragraph [ref=e661]: Buscá por nombre, código o SKU
+            - generic [ref=e662]:
+              - button "Talles y Colores" [ref=e663] [cursor=pointer]
+              - button "Cambio de Prenda" [ref=e666] [cursor=pointer]
+          - combobox [ref=e671] [cursor=pointer]:
+            - generic [ref=e672]: Escribí para buscar productos...
+        - generic [ref=e676]:
+          - generic [ref=e677]: Productos (0)
+          - generic [ref=e685]:
+            - paragraph [ref=e690]: No hay productos agregados
+            - paragraph [ref=e691]: Usá el buscador de arriba para agregar
+          - button "Agregar notas" [ref=e693] [cursor=pointer]
+      - generic [ref=e697]:
+        - generic [ref=e699]:
+          - generic [ref=e700]:
+            - generic [ref=e701]: Subtotal
+            - generic [ref=e702]: $ 0
+          - generic [ref=e703]:
+            - generic [ref=e704]:
+              - generic [ref=e705]: Descuento
+              - combobox [ref=e706] [cursor=pointer]:
+                - generic: "%"
+              - combobox [ref=e709]
+            - textbox [ref=e711]: "0"
+          - generic [ref=e712]:
+            - generic [ref=e713]: "Promos:"
+            - button "2x1" [ref=e714] [cursor=pointer]
+            - button "2da 50%" [ref=e715] [cursor=pointer]
+            - button "3x2" [ref=e716] [cursor=pointer]
+            - button "10%" [ref=e717] [cursor=pointer]
+            - button "15%" [ref=e718] [cursor=pointer]
+          - generic [ref=e719]:
+            - generic [ref=e720]:
+              - generic [ref=e721]: Recargo
+              - combobox [ref=e722] [cursor=pointer]:
+                - generic: "%"
+              - combobox [ref=e725]
+            - textbox [ref=e727]: "0"
+          - generic [ref=e729]:
+            - generic [ref=e730]: Impuestos
+            - button "Agregar" [ref=e731] [cursor=pointer]
+          - generic [ref=e734]:
+            - generic [ref=e735]: TOTAL
+            - generic [ref=e736]: $ 0
+        - generic [ref=e738]:
+          - checkbox "Venta en Cuenta Corriente" [disabled] [ref=e739]
+          - checkbox [disabled]
+          - generic [ref=e740]:
+            - text: Venta en Cuenta Corriente
+            - paragraph [ref=e741]: Registrar deuda en la cuenta del cliente
+        - generic [ref=e742]:
+          - generic [ref=e743]:
+            - generic [ref=e749]:
+              - heading "Pagos" [level=3] [ref=e750]
+              - paragraph [ref=e751]: Total cubierto
+            - button "Agregar Pago" [disabled]
+          - generic [ref=e753]:
+            - generic [ref=e754]:
+              - combobox [ref=e755] [cursor=pointer]:
+                - generic: Efectivo
+              - combobox [ref=e758]
+            - generic [ref=e759]:
+              - generic [ref=e760]:
+                - generic [ref=e761]: $
+                - textbox [ref=e762]: "0"
+              - button [disabled]
+        - button "CONFIRMAR VENTA" [disabled]
+        - generic [ref=e763]:
+          - button "Posponer" [disabled]
+    - button "Close" [ref=e765] [cursor=pointer]

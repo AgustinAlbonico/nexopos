@@ -1,0 +1,118 @@
+- generic "Google Maps" [ref=e9]:
+  - generic [ref=e3]:
+    - application "Mapa·Usa las teclas de flecha para desplazarte por el mapa.·Obtén información sobre un sitio pulsando la tecla numérica correspondiente." [ref=e10]
+    - search [ref=e15]:
+      - button "Menú" [ref=e17] [cursor=pointer]:
+        - generic [ref=e18]: 
+      - generic [ref=e19]:
+        - combobox [ref=e21]: cine villa gobernador galvez
+        - button "Búsqueda" [ref=e23] [cursor=pointer]:
+          - generic [ref=e24]: 
+        - button "Cerrar" [ref=e26] [cursor=pointer]:
+          - generic [ref=e27]: 
+    - generic [ref=e28]:
+      - main [ref=e37]:
+        - generic [ref=e38]:
+          - feed "Resultados de cine villa gobernador galvez" [ref=e39]:
+            - region "Filtros disponibles para esta búsqueda" [ref=e41]:
+              - generic [ref=e44]:
+                - button "Valoración" [ref=e46] [cursor=pointer]:
+                  - generic [ref=e47]:
+                    - generic [ref=e49]: Valoración
+                    - generic [ref=e50]: 
+                - button "Todos los filtros" [ref=e52] [cursor=pointer]:
+                  - generic [ref=e53]:
+                    - generic [ref=e55]: 
+                    - generic [ref=e56]: Todos los filtros
+            - generic [ref=e57]:
+              - generic [ref=e59]:
+                - heading "Resultados" [level=1] [ref=e60]
+                - button "Más información sobre los avisos legales en relación con las reseñas públicas en Google Maps" [ref=e64]:
+                  - generic [ref=e67]: 
+              - button "Compartir" [ref=e72]:
+                - generic [ref=e73] [cursor=pointer]:
+                  - generic [ref=e74]: 
+                  - generic [ref=e75]: Compartir
+            - article [ref=e77]:
+              - link "Nuevo Pueblo As. Civil. Cine Avenida." [ref=e78] [cursor=pointer]:
+                - /url: https://www.google.com/maps/place/Nuevo+Pueblo+As.+Civil.+Cine+Avenida./data=!4m7!3m6!1s0x95b7a98f4985ed81:0x9f78da791046a72a!8m2!3d-33.0042802!4d-60.6156169!16s%2Fg%2F12cnv7kk_!19sChIJge2FSY-pt5URKqdGEHnaeJ8?authuser=0&hl=es&rclk=1
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic: Nuevo Pueblo As. Civil. Cine Avenida.
+                          - generic:
+                            - generic:
+                              - generic:
+                                - img "4,2 estrellas 150 reseñas": 4,2(150)
+                          - generic: Cine
+                - generic: "\"Populosa actividad social y cultural\""
+            - article [ref=e82]:
+              - link "Anfiteatro Municipal de Villa Gobernador Gálvez" [ref=e83] [cursor=pointer]:
+                - /url: https://www.google.com/maps/place/Anfiteatro+Municipal+de+Villa+Gobernador+G%C3%A1lvez/data=!4m7!3m6!1s0x95b7a9a1a0e08c6d:0x2772bf76e5fa9dd3!8m2!3d-33.0242552!4d-60.6244268!16s%2Fg%2F1hc34g8fz!19sChIJbYzgoKGpt5UR05365Xa_cic?authuser=0&hl=es&rclk=1
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic: Anfiteatro Municipal de Villa Gobernador Gálvez
+                          - generic:
+                            - generic:
+                              - generic:
+                                - img "4,1 estrellas 286 reseñas": 4,1(286)
+                          - generic:
+                            - generic:
+                              - generic: Anfiteatro
+                              - generic:
+                                - text: ·
+                                - img "Accesible con silla de ruedas" [ref=e85] [cursor=pointer]:
+                                  - generic [ref=e86]: 
+                              - generic: · Av. Juan Domingo Perón
+                - generic: "\"Exente acústica en escenario al aire libre .\""
+            - article [ref=e89]:
+              - link "A.D.M SRL" [ref=e90] [cursor=pointer]:
+                - /url: https://www.google.com/maps/place/A.D.M+SRL/data=!4m7!3m6!1s0x95b7a9c03b6ed147:0x9e5eac5826136bd5!8m2!3d-33.0277753!4d-60.6170619!16s%2Fg%2F11vdgwwwnz!19sChIJR9FuO8Cpt5UR1WsTJlisXp4?authuser=0&hl=es&rclk=1
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic: A.D.M SRL
+                          - generic: No hay reseñas
+                          - generic:
+                            - generic:
+                              - generic: Cine
+                              - generic: · Avenida Leandro N. Alem 680
+            - article [ref=e94]:
+              - link "CINE Barrial" [ref=e95] [cursor=pointer]:
+                - /url: https://www.google.com/maps/place/CINE+Barrial/data=!4m7!3m6!1s0x95b7a9bdd6df0f59:0xe0b99949b8be3121!8m2!3d-33.036763!4d-60.622128!16s%2Fg%2F11h4_f79rz!19sChIJWQ_f1r2pt5URITG-uEmZueA?authuser=0&hl=es&rclk=1
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic: CINE Barrial
+                          - generic:
+                            - generic:
+                              - generic:
+                                - img "5,0 estrellas 1 reseñas": 5,0(1)
+                          - generic:
+                            - generic:
+                              - generic: Cine
+                              - generic: · Juan Bautista Alberdi 3055
+                            - generic: Cerrado permanentemente
+            - paragraph [ref=e99]:
+              - generic [ref=e100]: Has llegado al final de la lista.
+            - heading "Saca el máximo partido de Google Maps Iniciar sesión" [level=2] [ref=e104]:
+              - generic [ref=e105]: Saca el máximo partido de Google Maps
+              - button "Iniciar sesión" [ref=e108] [cursor=pointer]
+          - checkbox [ref=e113] [cursor=pointer]:
+            - generic [ref=e114]: 
+            - text: Actualizar los resultados al mover el mapa
+      - button "Ocultar el panel lateral" [ref=e117] [cursor=pointer]:
+        - generic [ref=e118]: 

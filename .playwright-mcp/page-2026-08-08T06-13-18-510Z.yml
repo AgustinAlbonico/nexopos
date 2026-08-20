@@ -1,0 +1,94 @@
+- generic [active] [ref=f4e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=f4e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=f4e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=f4e8]:
+    - search [ref=f4e9]:
+      - generic [ref=f4e12]:
+        - link [ref=f4e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwicoZSjsJCWAxXurZUCHZSrNIsQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=f4e14]
+        - generic [ref=f4e19]:
+          - combobox "Buscar" [ref=f4e22]: site:incaa.gob.ar cinema admissions Argentina 2026 site:incaa.gob.ar cinema admissions Argentina 2026
+          - generic [ref=f4e23]:
+            - button "Borrar" [ref=f4e25] [cursor=pointer]
+            - generic [ref=f4e30]:
+              - button "Búsqueda por voz" [ref=f4e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=f4e34] [cursor=pointer]
+        - button "Buscar" [ref=f4e37] [cursor=pointer]
+    - generic [ref=f4e42]:
+      - button "Configuración" [ref=f4e44] [cursor=pointer]
+      - button "Compartir" [ref=f4e50] [cursor=pointer]
+      - generic [ref=f4e56]:
+        - button "Aplicaciones de Google" [ref=f4e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=f4e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3Dsite%253Aincaa.gob.ar%2Bcinema%2Badmissions%2BArgentina%2B2026&ec=futura_srp_og_si_72236_p
+  - generic [ref=f4e65]:
+    - navigation [ref=f4e71]:
+      - generic [ref=f4e77]:
+        - list [ref=f4e78]:
+          - listitem [ref=f4e79]:
+            - link "Modo IA" [ref=f4e82] [cursor=pointer]:
+              - /url: /search?q=site:incaa.gob.ar+cinema+admissions+Argentina+2026&sca_esv=0096a2a1340d2922&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkqManvjEpTxYzB4KRJJByavNgOTZmFXTIj-LFRsiw9ZofS4CDf-8OqR-74OZIMsS_JS97q27LAjXFXrct8ZS2vuO1b9tw&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwicoZSjsJCWAxXurZUCHZSrNIsQ2J8OegQIDhAD
+          - listitem [ref=f4e86]:
+            - link "Todo" [disabled] [ref=f4e87]
+          - listitem [ref=f4e90]:
+            - link "Imágenes" [ref=f4e91] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkqManvjEpTxYzB4KRJJByavNgOTZmFXTIj-LFRsiw9ZofS4CDf-8OqR-74OZIMsS_JS97q27LAjXFXrct8ZS2vuO1b9tw&q=site:incaa.gob.ar+cinema+admissions+Argentina+2026&sa=X&ved=2ahUKEwicoZSjsJCWAxXurZUCHZSrNIsQtKgLegQIFBAB
+          - listitem [ref=f4e94]:
+            - link "Vídeos" [ref=f4e95] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkqManvjEpTxYzB4KRJJByavNgOTZmFXTIj-LFRsiw9ZofS4CDf-8OqR-74OZIMsS_JS97q27LAjXFXrct8ZS2vuO1b9tw&q=site:incaa.gob.ar+cinema+admissions+Argentina+2026&sa=X&ved=2ahUKEwicoZSjsJCWAxXurZUCHZSrNIsQtKgLegQIEBAB
+          - listitem [ref=f4e98]:
+            - link "Noticias" [ref=f4e99] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&q=site:incaa.gob.ar+cinema+admissions+Argentina+2026&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkqManvjEpTxYzB4KRJJByavNgOTZmFXTIj-LFRsiw9ZofS4CDf-8OqR-74OZIMsS_JS97q27LAjXFXrct8ZS2vuO1b9tw&sa=X&ved=2ahUKEwicoZSjsJCWAxXurZUCHZSrNIsQ0pQJegQIERAB
+          - listitem [ref=f4e102]:
+            - link "Shopping" [ref=f4e103] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkqManvjEpTxYzB4KRJJByavNgOTZmFXTIj-LFRsiw9ZofS4CDf-8OqR-74OZIMsS_JS97q27LAjXFXrct8ZS2vuO1b9tw&q=site:incaa.gob.ar+cinema+admissions+Argentina+2026&ved=1t:220175&ictx=111
+          - listitem [ref=f4e106]:
+            - link "Vídeos cortos" [ref=f4e107] [cursor=pointer]:
+              - /url: /search?sca_esv=0096a2a1340d2922&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdcURz3vM2j0dknRjZr5tESjRZlWxtHZPI_s9Tv5zfxnnsgPXMSPMD0fL4oI1TNuqA_Fb2eUSPAb-1z9yEiZEhkqManvjEpTxYzB4KRJJByavNgOTZmFXTIj-LFRsiw9ZofS4CDf-8OqR-74OZIMsS_JS97q27LAjXFXrct8ZS2vuO1b9tw&q=site:incaa.gob.ar+cinema+admissions+Argentina+2026&sa=X&ved=2ahUKEwicoZSjsJCWAxXurZUCHZSrNIsQs6gLegQIExAB
+          - listitem [ref=f4e110]:
+            - button [ref=f4e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=f4e112]: Más
+        - button "Herramientas" [ref=f4e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=f4e126]
+    - main [ref=f4e132]:
+      - generic [ref=f4e134]:
+        - generic [ref=f4e136]:
+          - heading [level=3] [ref=f4e137]:
+            - text: No se han encontrado resultados para tu búsqueda (
+            - emphasis [ref=f4e139]: site:incaa.gob.ar cinema admissions Argentina 2026
+            - text: ).
+          - paragraph [ref=f4e140]: "Sugerencias:"
+          - list [ref=f4e141]:
+            - listitem [ref=f4e142]: Asegúrate de que todas las palabras estén escritas correctamente.
+            - listitem [ref=f4e143]: Prueba diferentes palabras clave.
+            - listitem [ref=f4e144]: Prueba palabras clave más generales.
+            - listitem [ref=f4e145]: Prueba menos palabras clave.
+          - img "Imagen de un yeti pescando en el hielo" [ref=f4e149]
+        - navigation
+      - navigation
+    - contentinfo [ref=f4e236]:
+      - heading "Vínculos a pie de página" [level=1] [ref=f4e237]
+      - generic [ref=f4e241]:
+        - generic [ref=f4e243]:
+          - text: Argentina
+          - generic [ref=f4e245]:
+            - button "Iriondo, Santa Fe - Según tu actividad anterior" [ref=f4e247] [cursor=pointer]:
+              - generic [ref=f4e248]: Iriondo, Santa Fe
+              - generic [ref=f4e250]:
+                - text: "-"
+                - generic [ref=f4e251]: Según tu actividad anterior
+            - text: "-"
+            - button "Actualizar ubicación" [ref=f4e253] [cursor=pointer]
+        - generic [ref=f4e256]:
+          - link "Ayuda" [ref=f4e257] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=f4e258] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=f4e259] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=f4e260] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

@@ -82,13 +82,26 @@ export class PurchasesService {
             const { subtotal, total } = this.calculatePurchaseTotals(dto.items, dto.tax, dto.discount);
 
             // Validar y obtener proveedor si se proporciona supplierId
-            const supplierId = await this.resolveSupplierId(dto.supplierId);
+            let supplierId = null;
+            let providerName = dto.providerName;
+
+            if (dto.supplierId) {
+                const supplier = await this.suppliersService.findOne(dto.supplierId);
+                supplierId = supplier.id;
+                if (!providerName || providerName.trim() === '') {
+                    providerName = supplier.name;
+                }
+            }
+
+            if (!providerName || providerName.trim() === '') {
+                throw new BadRequestException('Seleccioná un proveedor o ingresá un nombre');
+            }
 
             // Crear compra
             const purchase = this.purchaseRepo.create({
                 purchaseNumber,
                 supplierId,
-                providerName: dto.providerName,
+                providerName,
                 providerDocument: dto.providerDocument ?? null,
                 providerPhone: dto.providerPhone ?? null,
                 purchaseDate: parseLocalDate(dto.purchaseDate),

@@ -1,0 +1,465 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Importar Matriz 2D
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                        - text: "7790310000017"
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 0 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell: No hay resultados
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 0
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button [disabled]: Siguiente
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog:
+    - generic:
+      - generic:
+        - generic:
+          - heading [level=2]: Nuevo Producto
+          - paragraph: Cargá un producto simple o un modelo con matriz de talles y colores
+    - generic:
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - heading [level=3]: Modo de Carga Textil
+              - paragraph: Seleccioná si ingresás un artículo individual o un modelo con matriz de talles y colores.
+          - generic:
+            - button: Producto Simple
+            - button: Matriz de Talles y Colores
+        - generic:
+          - generic:
+            - heading [level=3]: Información del Modelo Base
+            - generic:
+              - generic: Nombre del Modelo / Prenda *
+              - textbox:
+                - /placeholder: "Ej: Remera Lisa Cuello Redondo"
+                - text: Campera Rompeviento Denver
+            - generic:
+              - text: Código de Estilo / SKU Base (opcional)
+              - textbox:
+                - /placeholder: "Ej: REM-100"
+                - text: CAM-ROM-DEN
+              - paragraph: "Se usará como prefijo para generar los códigos de variantes (ej: REM-100-NEG-M)."
+            - generic:
+              - text: Descripción
+              - textbox:
+                - /placeholder: "Ej: Confeccionada en algodón peinado premium"
+              - paragraph: Información adicional (opcional)
+            - generic:
+              - generic: Marca
+              - combobox: Denver
+              - paragraph: Selecciona una existente o escribe para crear una nueva
+            - generic:
+              - text: Categoría
+              - generic:
+                - combobox [expanded]:
+                  - generic: Sin categoría
+                - combobox
+                - button
+              - paragraph: Categoría del producto (opcional)
+            - generic:
+              - heading [level=3]: Ficha Técnica de Indumentaria & Calzado
+              - generic:
+                - generic:
+                  - text: Temporada
+                  - combobox
+                  - generic:
+                    - button: + Primavera-Verano 2026
+                    - button: + Otoño-Invierno 2026
+                    - button: + Atemporal
+                - generic:
+                  - text: Colección / Línea
+                  - combobox
+                  - generic:
+                    - button: + Cápsula E2E
+                    - button: + Línea Básica
+                    - button: + Línea Urbana
+              - generic:
+                - generic:
+                  - text: Composición Textil
+                  - combobox
+                  - generic:
+                    - button: + 100% Algodón Peinado 24/1
+                    - button: + 98% Algodón / 2% Elastano
+                    - button: + Rústico con Lycra
+                - generic:
+                  - text: Instrucciones de Cuidado / Lavado
+                  - combobox
+                  - generic:
+                    - button: + Lavar con agua fría a mano
+                    - button: + No usar blanqueador / cloro
+              - generic:
+                - generic:
+                  - generic: Política de Cambio
+                  - combobox:
+                    - generic: Estándar (30 días de cambio)
+                  - combobox
+                - generic:
+                  - text: País de Origen
+                  - textbox:
+                    - /placeholder: "Ej: Argentina"
+          - generic:
+            - heading [level=3]: Precios Base del Modelo
+            - generic: Los precios y márgenes definidos aquí servirán como valor base por defecto para todas las variantes de la matriz.
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Precio Fijo
+                  - paragraph: Cuando está activado, cargás el precio de venta directamente. Cuando está desactivado, el sistema calcula el precio desde el costo y el margen.
+                - checkbox
+                - checkbox
+            - generic:
+              - generic:
+                - generic: Costo *
+                - textbox [invalid]:
+                  - /placeholder: "0.00"
+                  - text: "18000"
+                - paragraph: Precio de compra
+                - paragraph: El costo es requerido cuando Precio Fijo está desactivado
+              - generic:
+                - generic: Stock Inicial *
+                - textbox:
+                  - /placeholder: "0"
+                  - text: "0"
+                - paragraph: Cantidad disponible
+            - generic:
+              - generic:
+                - generic:
+                  - paragraph: Precio de Venta Sugerido
+                  - paragraph:
+                    - text: Costo + 66.11%
+                    - generic: (margen personalizado)
+                - generic: $ 29.899,80
+            - generic:
+              - generic:
+                - generic:
+                  - generic: Margen Personalizado
+                  - paragraph: Este producto usa un margen específico
+                - checkbox [checked]
+                - checkbox [checked]
+              - generic:
+                - generic:
+                  - text: Margen de Ganancia (%)
+                  - generic:
+                    - textbox:
+                      - /placeholder: "Ej: 50"
+                      - text: "66.11"
+                    - generic: "%"
+                  - paragraph: Sobrescribe el margen general (30%)
+        - generic:
+          - generic:
+            - heading [level=3]: Matriz Bidimensional de Variantes y Stock Inicial
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=4]: 1. Curva de Talles (Columnas)
+                  - paragraph: Elegí una plantilla guardada, agregá talles individuales o guardá la combinación activa.
+                - generic:
+                  - button: Guardar plantilla
+                  - textbox:
+                    - /placeholder: "Nuevo talle (ej: 3XL)"
+                  - button: Agregar
+              - generic:
+                - generic:
+                  - button: Adultos (XS a XXL)
+                - generic:
+                  - button: Pantalones / Jeans (38 a 50)
+                - generic:
+                  - button: Calzado Adultos (37 a 44)
+                - generic:
+                  - button: Ropa Infantil (4 a 14)
+                - generic:
+                  - button: Calzado Infantil (22 a 32)
+                - generic:
+                  - button: Bebés (0M a 18M)
+              - generic:
+                - generic: "Talles en grilla:"
+                - generic:
+                  - generic: S
+                  - button
+                - generic:
+                  - generic: M
+                  - button
+                - generic:
+                  - generic: L
+                  - button
+                - generic:
+                  - generic: XL
+                  - button
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=4]: 2. Paleta de Colores (Filas)
+                  - paragraph: Elegí una paleta completa, seleccioná colores individuales o guardá tu propia combinación.
+                - generic:
+                  - button: Guardar paleta
+                  - textbox: "#2563eb"
+                  - textbox:
+                    - /placeholder: "Nombre (ej: Verde Oliva)"
+                  - button: Agregar
+              - generic:
+                - generic: "Paletas:"
+                - button:
+                  - generic: Básicos Neutros
+              - generic:
+                - button:
+                  - generic: Negro
+                - button:
+                  - generic: Blanco
+                - button:
+                  - generic: Gris Melange
+                - button:
+                  - generic: Azul Marino
+                - button:
+                  - generic: Azul Francia
+                - button:
+                  - generic: Celeste
+                - button:
+                  - generic: Rojo
+                - button:
+                  - generic: Bordo
+                - button:
+                  - generic: Verde Militar
+                - button:
+                  - generic: Verde Esmeralda
+                - button:
+                  - generic: Beige / Arena
+                - button:
+                  - generic: Marrón
+                - button:
+                  - generic: Rosa Pastel
+                - button:
+                  - generic: Mostaza
+                - button:
+                  - generic: Naranja
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: "Curvas:"
+                    - generic:
+                      - button: 1-2-2-1
+                      - button: 2-3-3-2
+                      - button: 1-1-1-1
+                      - button: 2-2-2-2
+                      - button: Todo 5u
+                      - button: Limpiar
+                  - button: Talles Especiales
+                - generic:
+                  - button: Vista Detallada
+                  - button: Generar SKUs
+              - generic:
+                - table:
+                  - rowgroup:
+                    - row:
+                      - columnheader: Color / Variante
+                      - columnheader:
+                        - generic:
+                          - generic: S
+                          - button: Masivo
+                      - columnheader:
+                        - generic:
+                          - generic: M
+                          - button: Masivo
+                      - columnheader:
+                        - generic:
+                          - generic: L
+                          - button: Masivo
+                      - columnheader:
+                        - generic:
+                          - generic: XL
+                          - button: Masivo
+                      - columnheader: Subtotal
+                      - columnheader: Acción
+                  - rowgroup:
+                    - row:
+                      - cell:
+                        - generic: Negro
+                        - generic:
+                          - button: +Curva 1-2-2-1
+                          - generic: •
+                          - button: Masivo
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic: 0 u.
+                      - cell:
+                        - button
+                    - row:
+                      - cell:
+                        - generic: Azul
+                        - generic:
+                          - button: +Curva 1-2-2-1
+                          - generic: •
+                          - button: Masivo
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic: 0 u.
+                      - cell:
+                        - button
+                    - row:
+                      - cell:
+                        - generic: Verde
+                        - generic:
+                          - button: +Curva 1-2-2-1
+                          - generic: •
+                          - button: Masivo
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic:
+                          - spinbutton
+                      - cell:
+                        - generic: 0 u.
+                      - cell:
+                        - button
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - text: "Variantes a generar:"
+                      - strong: 12 SKUs
+                  - generic:
+                    - generic:
+                      - text: "Con stock inicial:"
+                      - strong: 0 variantes
+                  - generic: "Navegación: Enter / Flechas"
+                - generic:
+                  - generic: "Stock Total Consolidado:"
+                  - generic: 0 unidades
+        - generic:
+          - button: Guardar Modelo y Generar Variantes
+    - button:
+      - generic: Close
+  - listbox [ref=e1902]:
+    - option "Sin categoría" [active] [selected] [ref=e1903]
+    - option "Bebidas (50%)" [ref=e1909]:
+      - generic [ref=e1912]:
+        - text: Bebidas
+        - generic [ref=e1914]: (50%)
+    - option "Camperas" [ref=e1915]
+    - option "Limpieza" [ref=e1920]
+    - option "Remeras" [ref=e1925]

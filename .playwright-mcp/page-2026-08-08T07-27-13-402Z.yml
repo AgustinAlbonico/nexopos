@@ -1,0 +1,259 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: Rosario ciclo de cine Instagram sitio Rosario ciclo de cine Instagram sitio
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3DRosario%2Bciclo%2Bde%2Bcine%2BInstagram%2Bsitio&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=Rosario+ciclo+de+cine+Instagram+sitio&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ2J8OegQIEhAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Rosario+ciclo+de+cine+Instagram+sitio&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQtKgLegQIGBAB
+          - listitem [ref=e94]:
+            - link "Vídeos cortos" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Rosario+ciclo+de+cine+Instagram+sitio&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQs6gLegQIFhAB
+          - listitem [ref=e98]:
+            - link "Noticias" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=Rosario+ciclo+de+cine+Instagram+sitio&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ0pQJegQIFBAB
+          - listitem [ref=e102]:
+            - link "Vídeos" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Rosario+ciclo+de+cine+Instagram+sitio&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQtKgLegQIFRAB
+          - listitem [ref=e106]:
+            - link "Shopping" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdTIjoLujOWV_WGEH7xmA8bW8mppzusCtZRe83Sgsya_CSQSWHtgwtBoye1lAj8jfJ2nOKkpeLypONn4-d2UGrrpRXqIU5Vrk2L5Pv9v2Q3azMuQagOoi-4JHcjttGt2_30kzOqgnALKliWSErUVsQnMvjUnwG7hPBczRAsPmCOywpPB0eX_pNtUhyVTkI1JQ2Ot70M4&q=Rosario+ciclo+de+cine+Instagram+sitio&ved=1t:220175&ictx=111
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - main [ref=e132]:
+      - generic [ref=e136]:
+        - generic [ref=e139]:
+          - heading "Resultados web" [level=2] [ref=e140]
+          - generic [ref=e141]:
+            - generic [ref=e144]:
+              - link "Cines Del Centro Rosario (@cinesdelcentrorosario) Instagram · cinesdelcentrorosario Más de 51,2 k seguidores" [ref=e146] [cursor=pointer]:
+                - /url: https://www.instagram.com/cinesdelcentrorosario/?hl=es
+                - heading "Cines Del Centro Rosario (@cinesdelcentrorosario)" [level=3] [ref=e147]
+                - generic [ref=e153]:
+                  - generic [ref=e154]: Instagram · cinesdelcentrorosario
+                  - generic [ref=e156]: Más de 51,2 k seguidores
+              - button "Acerca de este resultado" [ref=e160] [cursor=pointer]
+            - generic [ref=e167]:
+              - emphasis [ref=e168]: Programación curada, los mejores estrenos de cine arte y lo mejor del mainstream
+              - text: . 1er nivel de @sh.delsiglo. CARTELERA/HORARIOS en nuestra web . Follow.
+        - generic [ref=e179]:
+          - heading "Pensando" [level=2] [ref=e183]
+          - progressbar "Generando" [ref=e186]
+        - generic [ref=e190]:
+          - heading "Resultados web" [level=2] [ref=e191]
+          - generic [ref=e192]:
+            - generic [ref=e195]:
+              - link "Hoy comienza el Festival de Cine Latinoamericano ... Instagram · rosarioturismo Más de 180 \"me gusta\" · hace 1 año" [ref=e197] [cursor=pointer]:
+                - /url: https://www.instagram.com/p/DKhZ0HNsbTt/
+                - heading "Hoy comienza el Festival de Cine Latinoamericano ..." [level=3] [ref=e198]
+                - generic [ref=e204]:
+                  - generic [ref=e205]: Instagram · rosarioturismo
+                  - generic [ref=e207]: Más de 180 "me gusta" · hace 1 año
+              - button "Acerca de este resultado" [ref=e211] [cursor=pointer]
+            - generic [ref=e218]:
+              - emphasis [ref=e219]: 31° FESTIVAL DE CINE LATINOAMERICANO
+              - text: ": MÁS DE 800 PELÍCULAS PARA DISFRUTAR EN ROSARIO PLANAZO GRATUITO: Agendá las fechas porque Rosario se ..."
+        - generic [ref=e225]:
+          - generic [ref=e228]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · cinesdelcentrorosario Más de 110 \"me gusta\" · hace 7 meses" [ref=e230] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DS5JQw1AoSN/?hl=es
+              - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e231]
+              - generic [ref=e237]:
+                - generic [ref=e238]: Instagram · cinesdelcentrorosario
+                - generic [ref=e240]: Más de 110 "me gusta" · hace 7 meses
+            - button "Acerca de este resultado" [ref=e244] [cursor=pointer]
+          - generic [ref=e249]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:42" [ref=e250] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DS5JQw1AoSN/?hl=es
+              - generic [ref=e251]: 1:42
+            - generic [ref=e260]: ARPEGGIA CICLO DE CINE Y MÚSICA YELLOW SUBMARINE de George ... Join Cines Del Centro Rosario on Instagram. Sign up for Instagram.
+        - generic [ref=e265]:
+          - generic [ref=e268]:
+            - link "Cine Lumière (@cccinelumiere) Instagram · cccinelumiere Más de 24,1 k seguidores" [ref=e270] [cursor=pointer]:
+              - /url: https://www.instagram.com/cccinelumiere/?hl=es
+              - heading "Cine Lumière (@cccinelumiere)" [level=3] [ref=e271]
+              - generic [ref=e277]:
+                - generic [ref=e278]: Instagram · cccinelumiere
+                - generic [ref=e280]: Más de 24,1 k seguidores
+            - button "Acerca de este resultado" [ref=e284] [cursor=pointer]
+          - generic [ref=e291]:
+            - emphasis [ref=e292]: El 31° Festival de Cine Latinoamericano Rosario
+            - text: presenta la película invitada "Belisario, el pequeño gran héroe del cosmos" en formato Full Dome, junto a una ...
+        - generic [ref=e296]:
+          - generic [ref=e299]:
+            - link "Edición 29:Festival De Cine Latinoamericano Rosario. Si! ... Instagram · juanignaciocane Más de 400 \"me gusta\" · hace 1 año" [ref=e301] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/DAwBbQbP4Ch/?hl=es
+              - heading "Edición 29:Festival De Cine Latinoamericano Rosario. Si! ..." [level=3] [ref=e302]
+              - generic [ref=e308]:
+                - generic [ref=e309]: Instagram · juanignaciocane
+                - generic [ref=e311]: Más de 400 "me gusta" · hace 1 año
+            - button "Acerca de este resultado" [ref=e315] [cursor=pointer]
+          - generic [ref=e322]:
+            - emphasis [ref=e323]: Nuestro Festival de Cine
+            - text: "!! La ciudad de Rosario celebra el CINE una vez más! Gracias por invitarme a compartir, ver, escuchar, debatir y ..."
+        - generic [ref=e329]:
+          - generic [ref=e332]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · cinesdelcentrorosario Más de 360 \"me gusta\" · hace 5 meses" [ref=e334] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DVbVan3AjF1/?hl=es
+              - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e335]
+              - generic [ref=e341]:
+                - generic [ref=e342]: Instagram · cinesdelcentrorosario
+                - generic [ref=e344]: Más de 360 "me gusta" · hace 5 meses
+            - button "Acerca de este resultado" [ref=e348] [cursor=pointer]
+          - generic [ref=e353]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:49" [ref=e354] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DVbVan3AjF1/?hl=es
+              - generic [ref=e355]: 1:49
+            - generic [ref=e364]: ... web! www.cinesdelcentro. ... CINE MAYOR CICLO DE CINE ARGENTINO PRIMERA EDICIÓN • AGOSTO ...
+        - generic [ref=e369]:
+          - generic [ref=e372]:
+            - link "Cines Del Centro Rosario | 🎬CARTELERA🎬 ✅CICLO ... Instagram · cinesdelcentrorosario Más de 60 \"me gusta\" · hace 2 años" [ref=e374] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/C7FGY7KR2iG/
+              - heading "Cines Del Centro Rosario | 🎬CARTELERA🎬 ✅CICLO ..." [level=3] [ref=e375]
+              - generic [ref=e381]:
+                - generic [ref=e382]: Instagram · cinesdelcentrorosario
+                - generic [ref=e384]: Más de 60 "me gusta" · hace 2 años
+            - button "Acerca de este resultado" [ref=e388] [cursor=pointer]
+          - generic [ref=e395]:
+            - text: CARTELERA ✓
+            - emphasis [ref=e396]: CICLO CINE
+            - text: ARGENTINO ⏰TODOS LOS DÍAS A LAS 20:00. MÁS INFO EN NUESTRA WEB ✓LO MEJOR ESTA POR VENIR (ESTRENO)
+        - generic [ref=e400]:
+          - generic [ref=e403]:
+            - link "NORMA TAMBIÉN EN ROSARIO Este domingo 29/3 a las ... Instagram · normaplalapelicula Más de 100 \"me gusta\" · hace 4 meses" [ref=e405] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/DWU11-5FDCR/
+              - heading "NORMA TAMBIÉN EN ROSARIO Este domingo 29/3 a las ..." [level=3] [ref=e406]
+              - generic [ref=e412]:
+                - generic [ref=e413]: Instagram · normaplalapelicula
+                - generic [ref=e415]: Más de 100 "me gusta" · hace 4 meses
+            - button "Acerca de este resultado" [ref=e419] [cursor=pointer]
+          - generic [ref=e426]:
+            - text: El viernes 7 de agosto llega una nueva edición del
+            - emphasis [ref=e427]: ciclo
+            - text: que nos ofrece películas argentinas contemporáneas con el objetivo de diversificar ...
+        - generic [ref=e433]:
+          - generic [ref=e436]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · cinesdelcentrorosario Más de 50 \"me gusta\" · hace 6 meses" [ref=e438] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DTdKK-Sgg5K/?hl=es
+              - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e439]
+              - generic [ref=e445]:
+                - generic [ref=e446]: Instagram · cinesdelcentrorosario
+                - generic [ref=e448]: Más de 50 "me gusta" · hace 6 meses
+            - button "Acerca de este resultado" [ref=e452] [cursor=pointer]
+          - generic [ref=e457]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:42" [ref=e458] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DTdKK-Sgg5K/?hl=es
+              - generic [ref=e459]: 1:42
+            - generic [ref=e471]: www.cinesdelcentro.com.ar | Instagram ...
+      - generic [ref=e474]:
+        - generic [ref=e479]:
+          - heading "También se buscó" [level=2] [ref=e481]
+          - generic [ref=e483]:
+            - generic [ref=e484]:
+              - link "Cine Shopping del siglo - Rosario cartelera" [ref=e488] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Shopping+del+siglo+-+Rosario+cartelera&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ1QJ6BAgoEAE
+              - link "Cine Rosario Shopping" [ref=e502] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Rosario+Shopping&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ1QJ6BAgqEAE
+              - link "Cartelera cine rosario" [ref=e516] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cartelera+cine+rosario&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ1QJ6BAguEAE
+              - link "Cine Shopping del Siglo rosario cartelera PRECIOS" [ref=e530] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Shopping+del+Siglo+rosario+cartelera+PRECIOS&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ1QJ6BAgtEAE
+            - generic [ref=e541]:
+              - link "Cines de Rosario" [ref=e545] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+de+Rosario&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ1QJ6BAgrEAE
+              - link "Cine el Cairo" [ref=e559] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+el+Cairo&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ1QJ6BAgsEAE
+              - link "Cartelera cine Monumental Rosario hoy" [ref=e573] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cartelera+cine+Monumental+Rosario+hoy&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ1QJ6BAgpEAE
+              - link "Cines del Centro Rosario CARTELERA y HORARIOS" [ref=e587] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+del+Centro+Rosario+CARTELERA+y+HORARIOS&sa=X&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ1QJ6BAgnEAE
+        - navigation [ref=e598]:
+          - heading "Navegación de páginas" [level=1] [ref=e599]
+          - text: "1"
+          - link "Page 2" [ref=e602] [cursor=pointer]:
+            - /url: /search?q=Rosario+ciclo+de+cine+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=Udp2au27Cdvd5OUPoNrA4A8&start=10&sa=N&sstk=AU9db-AgYESN-kTO_DseBw4brR7uZ_vMgwTR3Dyd2E8HXHZgYV6iNVTqM3mHzgczbSFqT7XweYxNqg-wyX2AHfOZ2RLybeJyiAVRNA&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ8tMDegQIHxAE
+            - text: "2"
+          - link "Page 3" [ref=e604] [cursor=pointer]:
+            - /url: /search?q=Rosario+ciclo+de+cine+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=Udp2au27Cdvd5OUPoNrA4A8&start=20&sa=N&sstk=AU9db-AgYESN-kTO_DseBw4brR7uZ_vMgwTR3Dyd2E8HXHZgYV6iNVTqM3mHzgczbSFqT7XweYxNqg-wyX2AHfOZ2RLybeJyiAVRNA&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ8tMDegQIHxAG
+            - text: "3"
+          - link "Page 4" [ref=e606] [cursor=pointer]:
+            - /url: /search?q=Rosario+ciclo+de+cine+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=Udp2au27Cdvd5OUPoNrA4A8&start=30&sa=N&sstk=AU9db-AgYESN-kTO_DseBw4brR7uZ_vMgwTR3Dyd2E8HXHZgYV6iNVTqM3mHzgczbSFqT7XweYxNqg-wyX2AHfOZ2RLybeJyiAVRNA&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ8tMDegQIHxAI
+            - text: "4"
+          - link "Page 5" [ref=e608] [cursor=pointer]:
+            - /url: /search?q=Rosario+ciclo+de+cine+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=Udp2au27Cdvd5OUPoNrA4A8&start=40&sa=N&sstk=AU9db-AgYESN-kTO_DseBw4brR7uZ_vMgwTR3Dyd2E8HXHZgYV6iNVTqM3mHzgczbSFqT7XweYxNqg-wyX2AHfOZ2RLybeJyiAVRNA&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ8tMDegQIHxAK
+            - text: "5"
+          - link "Page 6" [ref=e610] [cursor=pointer]:
+            - /url: /search?q=Rosario+ciclo+de+cine+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=Udp2au27Cdvd5OUPoNrA4A8&start=50&sa=N&sstk=AU9db-AgYESN-kTO_DseBw4brR7uZ_vMgwTR3Dyd2E8HXHZgYV6iNVTqM3mHzgczbSFqT7XweYxNqg-wyX2AHfOZ2RLybeJyiAVRNA&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ8tMDegQIHxAM
+            - text: "6"
+          - link "Page 7" [ref=e612] [cursor=pointer]:
+            - /url: /search?q=Rosario+ciclo+de+cine+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=Udp2au27Cdvd5OUPoNrA4A8&start=60&sa=N&sstk=AU9db-AgYESN-kTO_DseBw4brR7uZ_vMgwTR3Dyd2E8HXHZgYV6iNVTqM3mHzgczbSFqT7XweYxNqg-wyX2AHfOZ2RLybeJyiAVRNA&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ8tMDegQIHxAO
+            - text: "7"
+          - link "Page 8" [ref=e614] [cursor=pointer]:
+            - /url: /search?q=Rosario+ciclo+de+cine+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=Udp2au27Cdvd5OUPoNrA4A8&start=70&sa=N&sstk=AU9db-AgYESN-kTO_DseBw4brR7uZ_vMgwTR3Dyd2E8HXHZgYV6iNVTqM3mHzgczbSFqT7XweYxNqg-wyX2AHfOZ2RLybeJyiAVRNA&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ8tMDegQIHxAQ
+            - text: "8"
+          - link "Page 9" [ref=e616] [cursor=pointer]:
+            - /url: /search?q=Rosario+ciclo+de+cine+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=Udp2au27Cdvd5OUPoNrA4A8&start=80&sa=N&sstk=AU9db-AgYESN-kTO_DseBw4brR7uZ_vMgwTR3Dyd2E8HXHZgYV6iNVTqM3mHzgczbSFqT7XweYxNqg-wyX2AHfOZ2RLybeJyiAVRNA&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ8tMDegQIHxAS
+            - text: "9"
+          - link "Page 10" [ref=e618] [cursor=pointer]:
+            - /url: /search?q=Rosario+ciclo+de+cine+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=Udp2au27Cdvd5OUPoNrA4A8&start=90&sa=N&sstk=AU9db-AgYESN-kTO_DseBw4brR7uZ_vMgwTR3Dyd2E8HXHZgYV6iNVTqM3mHzgczbSFqT7XweYxNqg-wyX2AHfOZ2RLybeJyiAVRNA&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ8tMDegQIHxAU
+            - text: "10"
+          - heading [level=2] [ref=e620]:
+            - link "Siguiente" [ref=e621] [cursor=pointer]:
+              - /url: /search?q=Rosario+ciclo+de+cine+Instagram+sitio&sca_esv=569d465b5b1d57df&ei=Udp2au27Cdvd5OUPoNrA4A8&start=10&sa=N&sstk=AU9db-AgYESN-kTO_DseBw4brR7uZ_vMgwTR3Dyd2E8HXHZgYV6iNVTqM3mHzgczbSFqT7XweYxNqg-wyX2AHfOZ2RLybeJyiAVRNA&ved=2ahUKEwitqIPmwJCWAxXbLrkGHSAtEPwQ8NMDegQIHxAW
+      - navigation
+    - contentinfo [ref=e624]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e625]
+      - generic [ref=e629]:
+        - generic [ref=e631]:
+          - text: Argentina
+          - generic [ref=e633]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e635] [cursor=pointer]:
+              - generic [ref=e636]: Iriondo, Santa Fe
+              - generic [ref=e638]:
+                - text: "-"
+                - generic [ref=e639]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e641] [cursor=pointer]
+        - generic [ref=e644]:
+          - link "Ayuda" [ref=e645] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e646] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e647] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e648] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

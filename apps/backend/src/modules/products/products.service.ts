@@ -93,7 +93,7 @@ export class ProductsService {
         }
 
         // Calcular precio automáticamente
-        const price = this.calculatePrice(dto.cost, profitMargin);
+        const price = this.calculatePrice(dto.cost ?? 0, profitMargin);
 
         // Crear producto con stock 0 inicialmente (el stock se agrega via movimiento)
         const initialStock = dto.stock ?? 0;
@@ -122,7 +122,7 @@ export class ProductsService {
                 type: StockMovementType.IN,
                 source: StockMovementSource.INITIAL_LOAD,
                 quantity: initialStock,
-                cost: dto.cost,
+                cost: dto.cost ?? undefined,
                 notes: 'Carga inicial de stock',
                 date: new Date().toISOString(),
             });
@@ -259,7 +259,7 @@ export class ProductsService {
                 product.profitMargin = await this.getEffectiveProfitMargin(false, undefined, product.category);
             }
 
-            const cost = dto.cost ?? product.cost;
+            const cost = dto.cost ?? product.cost ?? 0;
             product.price = this.calculatePrice(cost, product.profitMargin ?? 0);
             return;
         }
@@ -267,7 +267,7 @@ export class ProductsService {
         // Caso 2: Actualización de margen personalizado existente
         if (dto.customProfitMargin !== undefined && product.useCustomMargin) {
             product.profitMargin = dto.customProfitMargin;
-            const cost = dto.cost ?? product.cost;
+            const cost = dto.cost ?? product.cost ?? 0;
             product.price = this.calculatePrice(cost, product.profitMargin);
             return;
         }
@@ -279,7 +279,7 @@ export class ProductsService {
                 product.profitMargin ?? undefined,
                 product.category,
             );
-            product.price = this.calculatePrice(dto.cost, margin);
+            product.price = this.calculatePrice(dto.cost ?? 0, margin);
             product.profitMargin = margin;
             return;
         }
@@ -288,7 +288,7 @@ export class ProductsService {
         if (dto.categoryId !== undefined && !product.useCustomMargin) {
             const margin = await this.getEffectiveProfitMargin(false, undefined, product.category);
             product.profitMargin = margin;
-            product.price = this.calculatePrice(product.cost, margin);
+            product.price = this.calculatePrice(product.cost ?? 0, margin);
         }
     }
 
@@ -321,7 +321,7 @@ export class ProductsService {
             // Si la categoría tiene margen, usarlo; si no, usar el margen general
             const margin = categoryMargin ?? await this.configService.getDefaultProfitMargin();
             product.profitMargin = margin;
-            product.price = this.calculatePrice(product.cost, margin);
+            product.price = this.calculatePrice(product.cost ?? 0, margin);
             await this.productsRepository.save(product);
             updated++;
         }

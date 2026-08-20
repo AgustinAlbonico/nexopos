@@ -1,0 +1,470 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Ventas
+                  - paragraph: Punto de venta y registro de ventas
+                - generic:
+                  - button: Nueva Venta
+              - generic:
+                - paragraph: Mostrando ventas del mes actual (01/08/2026 - 31/08/2026)
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=3]: Ventas Totales
+                  - generic:
+                    - generic: $ 169.100,00
+                    - paragraph: 5 ventas
+                - generic:
+                  - generic:
+                    - heading [level=3]: Completadas
+                  - generic:
+                    - generic: $ 169.100,00
+                    - paragraph: 5 ventas
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pendientes
+                  - generic:
+                    - generic: $ 0,00
+                    - paragraph: 0 ventas
+                - generic:
+                  - generic:
+                    - heading [level=3]: Canceladas
+                  - generic:
+                    - generic: "0"
+                    - paragraph: ventas canceladas
+              - generic:
+                - generic:
+                  - heading [level=3]: Filtros
+                - generic:
+                  - generic:
+                    - generic:
+                      - button: Hoy
+                      - button: Esta Semana
+                      - button: Mes Actual
+                      - button: Todas las Fechas
+                    - generic:
+                      - generic:
+                        - text: Buscar
+                        - textbox:
+                          - /placeholder: Nº, cliente...
+                      - generic:
+                        - text: Estado
+                        - combobox:
+                          - generic: Todos
+                      - generic:
+                        - text: Facturación
+                        - combobox:
+                          - generic: Todas
+                      - generic:
+                        - text: Desde
+                        - textbox: 2026-08-01
+                      - generic:
+                        - text: Hasta
+                        - textbox: 2026-08-31
+                      - button: Restablecer
+              - generic:
+                - generic:
+                  - heading [level=3]: Listado de Ventas
+                - generic:
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader: Nº Venta
+                            - columnheader: Fecha
+                            - columnheader: Cliente
+                            - columnheader: Productos
+                            - columnheader: Pago
+                            - columnheader: Total
+                            - columnheader: Factura
+                            - columnheader: Estado
+                            - columnheader: Acciones
+                        - rowgroup:
+                          - row:
+                            - cell: VENTA-2026-00009
+                            - cell: 12/08/2026, 01:21 a. m.
+                            - cell:
+                              - generic: Consumidor Final
+                            - cell:
+                              - generic: 1 item(s)
+                            - cell: Efectivo
+                            - cell: $ 1.300,00
+                            - cell:
+                              - generic: No fiscal
+                            - cell:
+                              - generic: Completada
+                            - cell:
+                              - button
+                          - row:
+                            - cell: VENTA-2026-00008
+                            - cell: 11/08/2026, 11:54 p. m.
+                            - cell:
+                              - generic: Consumidor Final
+                            - cell:
+                              - generic: 2 item(s)
+                            - cell: Efectivo
+                            - cell: $ 65.500,00
+                            - cell:
+                              - generic: No fiscal
+                            - cell:
+                              - generic: Completada
+                            - cell:
+                              - button
+                          - row:
+                            - cell: VENTA-2026-00007
+                            - cell: 11/08/2026, 11:03 p. m.
+                            - cell:
+                              - generic: Consumidor Final
+                            - cell:
+                              - generic: 1 item(s)
+                            - cell: Efectivo
+                            - cell: $ 1.300,00
+                            - cell:
+                              - generic: No fiscal
+                            - cell:
+                              - generic: Completada
+                            - cell:
+                              - button
+                          - row:
+                            - cell: VENTA-2026-00006
+                            - cell: 05/08/2026, 05:22 p. m.
+                            - cell:
+                              - generic: Consumidor Final
+                            - cell:
+                              - generic: 1 item(s)
+                            - cell: Efectivo
+                            - cell: $ 10.000,00
+                            - cell:
+                              - generic: No fiscal
+                            - cell:
+                              - generic: Completada
+                            - cell:
+                              - button
+                          - row:
+                            - cell: VENTA-2026-00005
+                            - cell: 05/08/2026, 04:43 p. m.
+                            - cell:
+                              - generic: Consumidor Final
+                            - cell:
+                              - generic: 1 item(s)
+                            - cell: Efectivo
+                            - cell: $ 91.000,00
+                            - cell:
+                              - generic: No fiscal
+                            - cell:
+                              - generic: Completada
+                            - cell:
+                              - button
+                    - generic:
+                      - paragraph: Mostrando 1 a 5 de 5 ventas
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog [ref=e5667]:
+    - generic [ref=e5671]:
+      - generic [ref=e5672]:
+        - generic [ref=e5673]:
+          - generic [ref=e5674]:
+            - heading "Nueva Venta" [level=2] [ref=e5675]
+            - paragraph [ref=e5680]: Stock automático
+          - generic [ref=e5681]:
+            - generic [ref=e5683]:
+              - generic [ref=e5684]: Cliente
+              - combobox [ref=e5686] [cursor=pointer]:
+                - generic [ref=e5687]: Consumidor Final
+            - generic [ref=e5692]:
+              - generic [ref=e5693]: Vendedor
+              - textbox "Vendedor" [ref=e5698]:
+                - /placeholder: Vendedor / Legajo
+            - generic [ref=e5700]:
+              - generic [ref=e5701]: Fecha
+              - textbox "Fecha" [ref=e5704]: 2026-08-18
+            - generic [ref=e5707]:
+              - checkbox "Fiscal" [disabled] [ref=e5708]
+              - checkbox [disabled]
+              - generic [ref=e5709]: Fiscal
+        - generic [ref=e5713]:
+          - generic [ref=e5714]: "⚡ Atajos Rápidos POS:"
+          - generic [ref=e5715]:
+            - generic [ref=e5716]:
+              - generic [ref=e5717]: F1
+              - text: Buscar
+            - generic [ref=e5718]:
+              - generic [ref=e5719]: F2
+              - text: Cantidad
+            - generic [ref=e5720]:
+              - generic [ref=e5721]: F8
+              - text: Confirmar
+            - generic [ref=e5722]:
+              - generic [ref=e5723]: F9
+              - text: Posponer
+            - generic [ref=e5724]:
+              - generic [ref=e5725]: ESC
+              - text: Cancelar
+        - generic [ref=e5726]:
+          - generic [ref=e5727]:
+            - generic [ref=e5734]:
+              - heading "Agregar Productos" [level=3] [ref=e5735]
+              - paragraph [ref=e5736]: Buscá por nombre, código o SKU
+            - generic [ref=e5737]:
+              - button "Talles y Colores" [ref=e5738] [cursor=pointer]
+              - button "Cambio de Prenda" [ref=e5741] [cursor=pointer]
+          - combobox [expanded] [ref=e5746] [cursor=pointer]:
+            - generic [ref=e5747]: Escribí para buscar productos...
+        - generic [ref=e5751]:
+          - generic [ref=e5752]:
+            - generic [ref=e5753]: Productos (1)
+            - generic [ref=e5982]: "Subtotal: $ 3.000"
+          - generic [ref=e5983] [cursor=pointer]:
+            - generic [ref=e5984]:
+              - generic [ref=e5985]:
+                - text: Coca-Cola 1.5L
+                - generic [ref=e5986]: PENDIENTE
+              - generic [ref=e5987]:
+                - generic [ref=e5988]: $ 1.500 c/u
+                - generic [ref=e5989]: "Stock: 100"
+            - generic [ref=e5990]:
+              - button [ref=e5991]
+              - textbox [ref=e5993]: "2"
+              - button [ref=e5994]
+            - generic [ref=e5996]: $ 3.000
+            - button [ref=e5997]
+          - button "Agregar notas" [ref=e5768] [cursor=pointer]
+      - generic [ref=e5772]:
+        - generic [ref=e5774]:
+          - generic [ref=e5775]:
+            - generic [ref=e5776]: Subtotal
+            - generic [ref=e5777]: $ 3.000
+          - generic [ref=e5778]:
+            - generic [ref=e5779]:
+              - generic [ref=e5780]: Descuento
+              - combobox [ref=e5781] [cursor=pointer]:
+                - generic: "%"
+              - combobox [ref=e5784]
+            - textbox [ref=e5786]: "0"
+          - generic [ref=e5787]:
+            - generic [ref=e5788]: "Promos:"
+            - button "2x1" [ref=e5789] [cursor=pointer]
+            - button "2da 50%" [ref=e5790] [cursor=pointer]
+            - button "3x2" [ref=e5791] [cursor=pointer]
+            - button "10%" [ref=e5792] [cursor=pointer]
+            - button "15%" [ref=e5793] [cursor=pointer]
+          - generic [ref=e5794]:
+            - generic [ref=e5795]:
+              - generic [ref=e5796]: Recargo
+              - combobox [ref=e5797] [cursor=pointer]:
+                - generic: "%"
+              - combobox [ref=e5800]
+            - textbox [ref=e5802]: "0"
+          - generic [ref=e5804]:
+            - generic [ref=e5805]: Impuestos
+            - button "Agregar" [ref=e5806] [cursor=pointer]
+          - generic [ref=e5809]:
+            - generic [ref=e5810]: TOTAL
+            - generic [ref=e5811]: $ 3.000
+        - generic [ref=e5813]:
+          - checkbox "Venta en Cuenta Corriente" [disabled] [ref=e5814]
+          - checkbox [disabled]
+          - generic [ref=e5815]:
+            - text: Venta en Cuenta Corriente
+            - paragraph [ref=e5816]: Registrar deuda en la cuenta del cliente
+        - generic [ref=e5817]:
+          - generic [ref=e5818]:
+            - generic [ref=e5824]:
+              - heading "Pagos" [level=3] [ref=e5825]
+              - paragraph [ref=e5826]: Total cubierto
+            - button "Agregar Pago" [disabled]
+          - generic [ref=e5828]:
+            - generic [ref=e5829]:
+              - combobox [ref=e5830] [cursor=pointer]:
+                - generic: Efectivo
+              - combobox [ref=e5833]
+            - generic [ref=e5834]:
+              - generic [ref=e5835]:
+                - generic [ref=e5836]: $
+                - textbox [ref=e5837]: "3000"
+              - button [disabled]
+        - button "CONFIRMAR VENTA" [ref=e6001] [cursor=pointer]
+        - button "Posponer" [ref=e6002] [cursor=pointer]
+    - button "Close" [ref=e5840] [cursor=pointer]
+  - dialog [ref=e6005]:
+    - generic [ref=e6006]:
+      - combobox [expanded] [active] [ref=e6012]
+      - listbox "Suggestions" [ref=e6014]:
+        - generic [ref=e6015]:
+          - button "Crear producto nuevo" [ref=e6017] [cursor=pointer]
+          - group [ref=e6022]:
+            - 'option "Agua Kin 500ml SKU: N/A Stock: 100" [selected] [ref=e6023]':
+              - generic [ref=e6024]:
+                - generic [ref=e6025]: Agua Kin 500ml
+                - generic [ref=e6026]:
+                  - generic [ref=e6027]: "SKU: N/A"
+                  - generic [ref=e6028]: "Stock: 100"
+            - 'option "Alfajor Havanna E2E 4673 BAR: 779621583741 SKU: N/A Stock: 48" [ref=e6029]':
+              - generic [ref=e6030]:
+                - generic [ref=e6031]: Alfajor Havanna E2E 4673
+                - generic [ref=e6032]:
+                  - generic [ref=e6033]: "BAR: 779621583741"
+                  - generic [ref=e6034]: "SKU: N/A"
+                  - generic [ref=e6035]: "Stock: 48"
+            - 'option "Detergente Ala 750ml SKU: N/A Stock: 8" [ref=e6036]':
+              - generic [ref=e6037]:
+                - generic [ref=e6038]: Detergente Ala 750ml
+                - generic [ref=e6039]:
+                  - generic [ref=e6040]: "SKU: N/A"
+                  - generic [ref=e6041]: "Stock: 8"
+            - 'option "Gorra Trucker Bordada Urban BAR: 7799880468185 SKU: N/A Stock: 0" [ref=e6042]':
+              - generic [ref=e6043]:
+                - generic [ref=e6044]: Gorra Trucker Bordada Urban
+                - generic [ref=e6045]:
+                  - generic [ref=e6046]: "BAR: 7799880468185"
+                  - generic [ref=e6047]: "SKU: N/A"
+                  - generic [ref=e6048]: "Stock: 0"
+            - 'option "Gorra Trucker Bordada Urban BAR: 7799880510266 SKU: N/A Stock: 0" [ref=e6049]':
+              - generic [ref=e6050]:
+                - generic [ref=e6051]: Gorra Trucker Bordada Urban
+                - generic [ref=e6052]:
+                  - generic [ref=e6053]: "BAR: 7799880510266"
+                  - generic [ref=e6054]: "SKU: N/A"
+                  - generic [ref=e6055]: "Stock: 0"
+            - 'option "Lavandina Ayudín 1L SKU: N/A Stock: 12" [ref=e6056]':
+              - generic [ref=e6057]:
+                - generic [ref=e6058]: Lavandina Ayudín 1L
+                - generic [ref=e6059]:
+                  - generic [ref=e6060]: "SKU: N/A"
+                  - generic [ref=e6061]: "Stock: 12"
+            - 'option "Lector BAR: CRMK95421 SKU: N/A Stock: -16" [ref=e6062]':
+              - generic [ref=e6063]:
+                - generic [ref=e6064]: Lector
+                - generic [ref=e6065]:
+                  - generic [ref=e6066]: "BAR: CRMK95421"
+                  - generic [ref=e6067]: "SKU: N/A"
+                  - generic [ref=e6068]: "Stock: -16"
+            - 'option "Pepsi 1.5L SKU: N/A Stock: 100" [ref=e6069]':
+              - generic [ref=e6070]:
+                - generic [ref=e6071]: Pepsi 1.5L
+                - generic [ref=e6072]:
+                  - generic [ref=e6073]: "SKU: N/A"
+                  - generic [ref=e6074]: "Stock: 100"
+            - 'option "preuba SKU: N/A Stock: 990" [ref=e6075]':
+              - generic [ref=e6076]:
+                - generic [ref=e6077]: preuba
+                - generic [ref=e6078]:
+                  - generic [ref=e6079]: "SKU: N/A"
+                  - generic [ref=e6080]: "Stock: 990"
+            - 'option "Queso Tybo Fiambrería E2E 0884 BAR: 203279469518 SKU: N/A Stock: 255" [ref=e6081]':
+              - generic [ref=e6082]:
+                - generic [ref=e6083]: Queso Tybo Fiambrería E2E 0884
+                - generic [ref=e6084]:
+                  - generic [ref=e6085]: "BAR: 203279469518"
+                  - generic [ref=e6086]: "SKU: N/A"
+                  - generic [ref=e6087]: "Stock: 255"
+            - 'option "Queso Tybo Fiambrería E2E 1496 BAR: 209846201832 SKU: N/A Stock: 255" [ref=e6088]':
+              - generic [ref=e6089]:
+                - generic [ref=e6090]: Queso Tybo Fiambrería E2E 1496
+                - generic [ref=e6091]:
+                  - generic [ref=e6092]: "BAR: 209846201832"
+                  - generic [ref=e6093]: "SKU: N/A"
+                  - generic [ref=e6094]: "Stock: 255"
+            - 'option "Queso Tybo Fiambrería E2E 2026 BAR: 206865126265 SKU: N/A Stock: 255" [ref=e6095]':
+              - generic [ref=e6096]:
+                - generic [ref=e6097]: Queso Tybo Fiambrería E2E 2026
+                - generic [ref=e6098]:
+                  - generic [ref=e6099]: "BAR: 206865126265"
+                  - generic [ref=e6100]: "SKU: N/A"
+                  - generic [ref=e6101]: "Stock: 255"
+            - 'option "Queso Tybo Fiambrería E2E 4135 BAR: 203966763633 SKU: N/A Stock: 255" [ref=e6102]':
+              - generic [ref=e6103]:
+                - generic [ref=e6104]: Queso Tybo Fiambrería E2E 4135
+                - generic [ref=e6105]:
+                  - generic [ref=e6106]: "BAR: 203966763633"
+                  - generic [ref=e6107]: "SKU: N/A"
+                  - generic [ref=e6108]: "Stock: 255"
+            - 'option "Queso Tybo Fiambrería E2E 8438 BAR: 209540370136 SKU: N/A Stock: 255" [ref=e6109]':
+              - generic [ref=e6110]:
+                - generic [ref=e6111]: Queso Tybo Fiambrería E2E 8438
+                - generic [ref=e6112]:
+                  - generic [ref=e6113]: "BAR: 209540370136"
+                  - generic [ref=e6114]: "SKU: N/A"
+                  - generic [ref=e6115]: "Stock: 255"
+            - 'option "Remera E2E 1786631059803 L Azul SKU: N/A Stock: 0" [ref=e6116]':
+              - generic [ref=e6117]:
+                - generic [ref=e6118]: Remera E2E 1786631059803 L Azul
+                - generic [ref=e6119]:
+                  - generic [ref=e6120]: "SKU: N/A"
+                  - generic [ref=e6121]: "Stock: 0"
+            - 'option "Remera E2E 1786631059803 L Blanco SKU: N/A Stock: 0" [ref=e6122]':
+              - generic [ref=e6123]:
+                - generic [ref=e6124]: Remera E2E 1786631059803 L Blanco
+                - generic [ref=e6125]:
+                  - generic [ref=e6126]: "SKU: N/A"
+                  - generic [ref=e6127]: "Stock: 0"
+            - 'option "Remera E2E 1786631059803 L Negro SKU: N/A Stock: 0" [ref=e6128]':
+              - generic [ref=e6129]:
+                - generic [ref=e6130]: Remera E2E 1786631059803 L Negro
+                - generic [ref=e6131]:
+                  - generic [ref=e6132]: "SKU: N/A"
+                  - generic [ref=e6133]: "Stock: 0"
+            - 'option "Remera E2E 1786631059803 M Azul SKU: N/A Stock: 0" [ref=e6134]':
+              - generic [ref=e6135]:
+                - generic [ref=e6136]: Remera E2E 1786631059803 M Azul
+                - generic [ref=e6137]:
+                  - generic [ref=e6138]: "SKU: N/A"
+                  - generic [ref=e6139]: "Stock: 0"
+            - 'option "Remera E2E 1786631059803 M Blanco SKU: N/A Stock: 0" [ref=e6140]':
+              - generic [ref=e6141]:
+                - generic [ref=e6142]: Remera E2E 1786631059803 M Blanco
+                - generic [ref=e6143]:
+                  - generic [ref=e6144]: "SKU: N/A"
+                  - generic [ref=e6145]: "Stock: 0"

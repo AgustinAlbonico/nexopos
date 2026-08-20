@@ -1,0 +1,34 @@
+- generic [ref=f1e33]:
+  - generic [ref=f1e34]:
+    - generic [ref=f1e35]:
+      - link "NP" [ref=f1e37] [cursor=pointer]:
+        - /url: "#/dashboard"
+      - navigation [ref=f1e39]:
+        - generic [ref=f1e40]:
+          - link [ref=f1e42] [cursor=pointer]:
+            - /url: "#/dashboard"
+          - link [ref=f1e49] [cursor=pointer]:
+            - /url: "#/sales"
+          - link [ref=f1e55] [cursor=pointer]:
+            - /url: "#/cash-register"
+          - link [ref=f1e61] [cursor=pointer]:
+            - /url: "#/customer-accounts"
+          - link [ref=f1e65] [cursor=pointer]:
+            - /url: "#/incomes"
+          - link [ref=f1e70] [cursor=pointer]:
+            - /url: "#/purchases"
+          - link [ref=f1e77] [cursor=pointer]:
+            - /url: "#/expenses"
+          - link [ref=f1e82] [cursor=pointer]:
+            - /url: "#/products"
+          - link [ref=f1e89] [cursor=pointer]:
+            - /url: "#/customers"
+          - link [ref=f1e95] [cursor=pointer]:
+            - /url: "#/suppliers"
+          - link [ref=f1e101] [cursor=pointer]:
+            - /url: "#/reports"
+          - link [ref=f1e105] [cursor=pointer]:
+            - /url: "#/settings"
+      - button [ref=f1e110] [cursor=pointer]
+    - main [ref=f1e115]
+  - region "Notifications alt+T"

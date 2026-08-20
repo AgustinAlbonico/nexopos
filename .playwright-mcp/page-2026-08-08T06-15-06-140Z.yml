@@ -1,0 +1,340 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - generic [ref=e4]:
+        - link [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img "SimpleTix" [ref=e7]
+        - generic [ref=e8]:
+          - button "Toggle navigation" [ref=e9] [cursor=pointer]:
+            - generic [ref=e10]: 
+          - generic [ref=e11]:
+            - link "Get Started" [ref=e12] [cursor=pointer]:
+              - /url: "#createaccount"
+            - link "Sign in" [ref=e13] [cursor=pointer]:
+              - /url: https://manager.simpletix.com/
+  - main [ref=e14]:
+    - generic [ref=e17]:
+      - generic [ref=e18]: "Rated #1 on G2 for ease of use"
+      - heading "Simple pricing. Zero surprises." [level=1] [ref=e19]: Simple pricing.Zero surprises.
+      - paragraph [ref=e20]: No setup fees, no monthly fees, no contracts. Just pay per ticket sold — and you can pass fees to buyers so you keep 100% of revenue.
+      - generic [ref=e21]:
+        - button "CREATE YOUR EVENT FREE" [ref=e22] [cursor=pointer]
+        - link "BOOK A DEMO" [ref=e24] [cursor=pointer]:
+          - /url: https://go.simpletix.com/onboarding/
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - strong [ref=e28]: $0
+          - generic [ref=e29]: Setup & monthly fees
+        - separator [ref=e30]
+        - generic [ref=e31]:
+          - strong [ref=e32]: 79¢ + 2%
+          - generic [ref=e33]: Per ticket (online)
+        - separator [ref=e34]
+        - generic [ref=e35]:
+          - strong [ref=e36]: 25¢
+          - generic [ref=e37]: Per ticket (in-person)
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - paragraph [ref=e41]: Why organizers choose SimpleTix
+        - heading "Every plan includes everything." [level=2] [ref=e42]
+        - paragraph [ref=e43]: No feature gates. No tier upsells. Every organizer gets the full platform from day one.
+      - generic [ref=e44]:
+        - generic [ref=e45]:
+          - paragraph [ref=e48]: $0
+          - heading "Free for Free Events" [level=3] [ref=e49]
+          - paragraph [ref=e50]: GA and Flex Pass free events cost you absolutely nothing. No fees, no catches — promote your free events with our full feature set.
+        - generic [ref=e51]:
+          - paragraph [ref=e54]: 25¢
+          - heading "Low-Price Tickets ($5 & under)" [level=3] [ref=e55]
+          - paragraph [ref=e56]: Tickets priced $5 or below get a flat 25¢ fee. We keep costs proportional so your attendees don’t pay more than they should.
+        - generic [ref=e57]:
+          - paragraph [ref=e60]: 71¢ + 2%
+          - heading "Nonprofit Discount" [level=3] [ref=e61]
+          - paragraph [ref=e62]: Eligible 501(c)(3) organizations receive a reduced SimpleTix service fee. Contact us with proof of status to get your discount applied.
+    - generic [ref=e64]:
+      - generic [ref=e65]:
+        - paragraph [ref=e66]: Interactive fee calculator
+        - heading "See exactly what you’ll pay." [level=2] [ref=e67]
+        - paragraph [ref=e68]: Enter your ticket price and we’ll show you the complete fee breakdown — no hidden charges.
+      - generic [ref=e69]:
+        - generic [ref=e70]:
+          - tablist "Select currency" [ref=e71]:
+            - tab "$ USD" [ref=e72] [cursor=pointer]
+            - tab "£ UK" [ref=e73] [cursor=pointer]
+            - tab "$ CAD" [ref=e74] [cursor=pointer]
+            - tab "$ AUD" [ref=e75] [cursor=pointer]
+            - tab "€ EUR" [ref=e76] [cursor=pointer]
+          - group "Fee mode" [ref=e77]:
+            - button "Pass on fees" [ref=e78] [cursor=pointer]
+            - button "Absorb fees" [ref=e79] [cursor=pointer]
+        - generic [ref=e80]:
+          - generic [ref=e81]:
+            - generic [ref=e82]: Your ticket price
+            - generic [ref=e83]:
+              - generic [ref=e84]: $
+              - spinbutton "Ticket price" [ref=e85]: "100"
+            - generic [ref=e86]:
+              - status: $100
+              - slider "Ticket price slider" [ref=e87] [cursor=pointer]: "100"
+            - paragraph [ref=e88]: The fees include $2.79 SimpleTix service fee and $3.38 credit card processing fee.
+          - generic [ref=e89]:
+            - generic [ref=e90]:
+              - generic [ref=e91]:
+                - generic [ref=e92]: Attendee pays
+                - strong [ref=e93]: $106.17
+              - generic [ref=e94]:
+                - generic [ref=e95]: You receive
+                - strong [ref=e96]: $100.00
+            - generic [ref=e97]:
+              - generic [ref=e98]:
+                - generic [ref=e99]: SimpleTix fee
+                - generic [ref=e100]: $2.79
+              - generic [ref=e101]:
+                - generic [ref=e102]: Est. card processing (2.9% + 30¢)
+                - generic [ref=e103]: $3.38
+              - generic [ref=e104]:
+                - generic [ref=e105]: Total service fee
+                - generic [ref=e106]: $6.17
+    - generic [ref=e108]:
+      - generic [ref=e109]:
+        - paragraph [ref=e110]: Pricing Tiers
+        - heading "SimpleTix Pricing Plan" [level=2] [ref=e111]
+      - generic [ref=e112]:
+        - generic [ref=e113]:
+          - generic [ref=e114]: Most Popular
+          - generic [ref=e115]:
+            - generic [ref=e116]:
+              - paragraph [ref=e117]: Online Sales
+              - generic [ref=e118]:
+                - generic [ref=e119]: 79¢ + 2%
+                - generic [ref=e120]: per ticket
+              - paragraph [ref=e121]: For all tickets purchased online via your event page. Capped at $9.99 per ticket.
+            - list [ref=e122]:
+              - listitem [ref=e123]:
+                - generic [ref=e125]: Pass fees to buyers — you pay $0
+              - listitem [ref=e126]:
+                - generic [ref=e128]: Immediate payouts to your merchant account
+              - listitem [ref=e129]:
+                - generic [ref=e131]: All features included — no tier limits
+              - listitem [ref=e132]:
+                - generic [ref=e134]: Works with Square, Stripe & Authorize.net
+        - generic [ref=e136]:
+          - generic [ref=e137]:
+            - paragraph [ref=e138]: In-Person / Box Office
+            - generic [ref=e139]:
+              - generic [ref=e140]: 25¢
+              - generic [ref=e141]: flat per ticket
+            - paragraph [ref=e142]: For all tickets purchased online via your event page. Capped at $9.99 per ticket.
+          - list [ref=e143]:
+            - listitem [ref=e144]:
+              - generic [ref=e146]: Works with Square readers & Square Stand
+            - listitem [ref=e147]:
+              - generic [ref=e149]: Cash & comp ticket support
+            - listitem [ref=e150]:
+              - generic [ref=e152]: iOS & Android supported
+            - listitem [ref=e153]:
+              - generic [ref=e155]: Star Bluetooth printer support
+        - generic [ref=e157]:
+          - generic [ref=e158]:
+            - paragraph [ref=e159]: Season Tickets
+            - generic [ref=e160]:
+              - generic [ref=e161]: 79¢ + 2%
+              - generic [ref=e162]: per ticket in the pass
+            - paragraph [ref=e163]: For bundled season passes across multiple dates or performances.
+          - list [ref=e164]:
+            - listitem [ref=e165]:
+              - generic [ref=e167]: Charged on total season pass value
+            - listitem [ref=e168]:
+              - generic [ref=e170]: GA or Reserved Seating supported
+            - listitem [ref=e171]:
+              - generic [ref=e173]: Assign same seat across all dates
+        - generic [ref=e175]:
+          - generic [ref=e176]:
+            - paragraph [ref=e177]: Free Events
+            - generic [ref=e178]:
+              - generic [ref=e179]: $0
+              - generic [ref=e180]: always free
+            - paragraph [ref=e181]: "GA and Flex Pass free tickets have zero fees. Reserved Seating free tickets: 25¢/ticket."
+          - list [ref=e182]:
+            - listitem [ref=e183]:
+              - generic [ref=e185]: Full platform access for free events
+            - listitem [ref=e186]:
+              - generic [ref=e188]: Email blasts, reminders & reporting
+            - listitem [ref=e189]:
+              - generic [ref=e191]: QR code scanning & check-in
+    - generic [ref=e193]:
+      - generic [ref=e194]:
+        - paragraph [ref=e195]: Choose how you handle fees
+        - heading "Three options. You decide." [level=2] [ref=e196]
+      - generic [ref=e197]:
+        - generic [ref=e198]:
+          - generic [ref=e199]: Most Popular
+          - generic [ref=e200]:
+            - generic [ref=e201]: "1"
+            - heading "Pass on all fees" [level=3] [ref=e202]
+            - paragraph [ref=e203]: SimpleTix service fee and estimated payment processing fee are added to the ticket price. Your buyers pay the fees — you receive 100% of the ticket price.
+        - generic [ref=e205]:
+          - generic [ref=e206]: "2"
+          - heading "Set a custom fee" [level=3] [ref=e207]
+          - paragraph [ref=e208]: Add your own flat service fee on top of the ticket price. Great for facility fees, convenience charges, or fundraising. 100% of the custom fee goes to you.
+        - generic [ref=e210]:
+          - generic [ref=e211]: "3"
+          - heading "Absorb all fees" [level=3] [ref=e212]
+          - paragraph [ref=e213]: No additional fees shown to the customer. SimpleTix and payment processing fees are deducted from your ticket revenue. Clean pricing, simpler experience.
+    - generic [ref=e215]:
+      - paragraph [ref=e216]: Trusted by Leading Organizations
+      - generic [ref=e217]:
+        - img "TEDx" [ref=e219]
+        - img "Left Edge Theatre" [ref=e221]
+        - img "Fringe" [ref=e223]
+        - img "The Maize" [ref=e225]
+        - img "Wellington Folk Festival" [ref=e227]
+    - generic [ref=e229]:
+      - generic [ref=e230]:
+        - paragraph [ref=e231]: Frequently Asked Questions
+        - heading "Got questions? We’ve got answers." [level=2] [ref=e232]
+      - list [ref=e233]:
+        - listitem [ref=e234]:
+          - button "Is it really free for free events?" [expanded] [ref=e235] [cursor=pointer]
+          - region [ref=e239]:
+            - paragraph [ref=e240]: SimpleTix service fees on free tickets on general admission and flex pass events are always free. There are absolutely no hidden costs. SimpleTix allows free ticket levels if the event meets our requirements. For example, we cannot make multi-day/multi-event time tickets free. We are happy to give you a quote! For reserved seat mode events - we charge a smalll $0.25 fee on free tickets to offset our higher costs.
+        - listitem [ref=e241]:
+          - button "Are there any upfront costs or ongoing subscription fees?" [ref=e242] [cursor=pointer]
+          - region:
+            - paragraph [ref=e247]: It’s completely free to sign up with SimpleTix and post your event. There are no setup, monthly or ongoing charges. We will even build your seating charts for free. SimpleTix will only charge a fee when attendees pay money to buy a ticket or register for your event.
+        - listitem [ref=e248]:
+          - button "What are the various fees and charges applicable?" [ref=e249] [cursor=pointer]
+          - region:
+            - paragraph [ref=e254]: SimpleTix charges a service fee only for events where you charge your attendees to register. You will be charged 2% + 0.79 per sold ticket / registration and this fee is capped at a maximum of $9.99 regardless of what you charge your attendees. Our fee is capped at a maximum of $9.99.
+            - paragraph [ref=e255]: Apart from SimpleTix's service fees, you will also be charged payment processing fees depending on your selected payment processor.
+        - listitem [ref=e256]:
+          - button "What are payment processing fees?" [ref=e257] [cursor=pointer]
+          - region:
+            - paragraph [ref=e262]: SimpleTix supports Square, Stripe, PayPal, and Authorize.net. Please refer to your processor's website to see the applicable processing fees for your specific location and currency.
+            - paragraph [ref=e263]: Square offers a lower rate for in-person payments when using our Event Organizer mobile app.
+        - listitem [ref=e264]:
+          - button "How does SimpleTix collect the convenience fee for paid events?" [ref=e265] [cursor=pointer]
+          - region:
+            - paragraph [ref=e270]: When you use Square (USA account only), Stripe, or PayPal to collect payments, our service fee is deducted seamlessly during the transactions, and this is by far the most convenient approach.
+            - paragraph [ref=e271]: For all other payment methods including other payment processors (Authorize.net, Braintree, SafeSave, NMI, SimPay, Square Canada, Square United Kingdom, Square Australia) as well as offline registrations (check, cash, bank transfers) we will charge your credit card the 1st of the following month for tickets sold.
+        - listitem [ref=e272]:
+          - button "Can I pass the fees on to my ticket purchasers?" [ref=e273] [cursor=pointer]
+          - region:
+            - paragraph [ref=e278]: Yes, you can choose to either absorb SimpleTix’s service fee or pass it on directly to your attendees.
+        - listitem [ref=e279]:
+          - button "Is there discounted pricing for charities and NPOs?" [ref=e280] [cursor=pointer]
+          - region:
+            - paragraph [ref=e285]: Yes, SimpleTix offers 10% off on our fee for non-profit organizations. This discount is applied on the platform fee and not on the credit card processing fee. Create your event page and send the event name and your username (email address registered on SimpleTix) to support@SimpleTix.com to receive the 10% discount.
+            - paragraph [ref=e286]: "SimpleTix partners: Zapier and SalesForce offer discounted plans for charities that we recommend that you sign up for."
+    - generic [ref=e288]:
+      - heading "Start selling tickets in minutes." [level=2] [ref=e289]
+      - paragraph [ref=e290]: Create your free account, set up your first event, and connect your payment processor — all in under 10 minutes.
+      - button "CREATE YOUR EVENT FREE " [ref=e291] [cursor=pointer]:
+        - text: CREATE YOUR EVENT FREE
+        - generic [ref=e292]: 
+  - contentinfo [ref=e293]:
+    - generic [ref=e295]:
+      - generic [ref=e296]:
+        - link [ref=e297] [cursor=pointer]:
+          - /url: /
+          - img "SimpleTix" [ref=e298]
+        - link "See our YouTube Channel" [ref=e300] [cursor=pointer]:
+          - /url: https://youtube.com/c/SimpleTixTV
+      - generic [ref=e302]:
+        - heading "Quick Links" [level=4] [ref=e303]
+        - list [ref=e304]:
+          - listitem [ref=e305]:
+            - link "Features" [ref=e306] [cursor=pointer]:
+              - /url: /ticketing-features.php
+          - listitem [ref=e307]:
+            - link "Pricing" [ref=e308] [cursor=pointer]:
+              - /url: /pricing.php
+          - listitem [ref=e309]:
+            - link "Book a Demo" [ref=e310] [cursor=pointer]:
+              - /url: https://go.simpletix.com/onboarding/
+          - listitem [ref=e311]:
+            - link "Login" [ref=e312] [cursor=pointer]:
+              - /url: https://manager.simpletix.com/
+          - listitem [ref=e313]:
+            - link "Create Your Event" [ref=e314] [cursor=pointer]:
+              - /url: "#createaccount"
+          - listitem [ref=e315]:
+            - link "Lost Your Tickets?" [ref=e316] [cursor=pointer]:
+              - /url: https://find.simpletix.com/
+      - generic [ref=e317]:
+        - heading "Industries" [level=4] [ref=e318]
+        - list [ref=e319]:
+          - listitem [ref=e320]:
+            - link "Farm and Agritourism Ticketing Software" [ref=e321] [cursor=pointer]:
+              - /url: /Farm-Agritourism-Ticketing-Software.php
+          - listitem [ref=e322]:
+            - link "Family Fun Center Ticketing Software" [ref=e323] [cursor=pointer]:
+              - /url: /family-fun-center-ticketing-software.php
+          - listitem [ref=e324]:
+            - link "Sell Drive-In Theater Tickets" [ref=e325] [cursor=pointer]:
+              - /url: /Drive-In-Theater-Ticketing-Software.php
+          - listitem [ref=e326]:
+            - link "Sell Concerts / Comedy Tickets" [ref=e327] [cursor=pointer]:
+              - /url: /Concert-Comedy-Ticketing-Software.php
+          - listitem [ref=e328]:
+            - link "Sell Festival Tickets" [ref=e329] [cursor=pointer]:
+              - /url: /Festival-Ticketing.php
+          - listitem [ref=e330]:
+            - link "Parks and Attractions Ticketing Software" [ref=e331] [cursor=pointer]:
+              - /url: /Parks-Attractions-Museums-Ticketing.php
+          - listitem [ref=e332]:
+            - link "Conference Registration Software" [ref=e333] [cursor=pointer]:
+              - /url: /tradeshow-conference-registration-software.php
+      - generic [ref=e334]:
+        - heading "Events Solutions" [level=4] [ref=e335]
+        - list [ref=e336]:
+          - listitem [ref=e337]:
+            - link "Creating Peak and Off-Peak Tickets" [ref=e338] [cursor=pointer]:
+              - /url: /peak-off-peak-ticketing.php
+          - listitem [ref=e339]:
+            - link "Season Passes for Farm Events" [ref=e340] [cursor=pointer]:
+              - /url: /create-sell-season-passes-with-square.php
+          - listitem [ref=e341]:
+            - link "Timed-Entry Ticketing Software" [ref=e342] [cursor=pointer]:
+              - /url: /Timed-Entry-Ticketing-For-Parks.php
+          - listitem [ref=e343]:
+            - link "SalesForce Ticketing" [ref=e344] [cursor=pointer]:
+              - /url: /Salesforce-Ticketing-Software.php
+          - listitem [ref=e345]:
+            - link "Zoom Ticketing Software" [ref=e346] [cursor=pointer]:
+              - /url: /Ticketing-Event-Registration-For-Zoom.php
+      - generic [ref=e347]:
+        - heading "Resources" [level=4] [ref=e348]
+        - list [ref=e349]:
+          - listitem [ref=e350]:
+            - link "Knowledge Base" [ref=e351] [cursor=pointer]:
+              - /url: https://help.simpletix.com/support/solutions
+          - listitem [ref=e352]:
+            - link "Check out our YouTube channel" [ref=e353] [cursor=pointer]:
+              - /url: https://youtube.com/c/SimpleTixTV
+          - listitem [ref=e354]:
+            - link "Event Organizer App" [ref=e355] [cursor=pointer]:
+              - /url: /Simpletix-Event-Organizer-App.php
+          - listitem [ref=e356]:
+            - 'link "Sales Hotline: +1 (855) 550-3670" [ref=e357] [cursor=pointer]':
+              - /url: tel:+1-855-550-3670
+          - listitem [ref=e358]:
+            - link "Best Eventbrite Alternatives" [ref=e359] [cursor=pointer]:
+              - /url: /the-eventbrite-alternative-that-could-save-you-thousands/
+          - listitem [ref=e360]:
+            - link "Blog" [ref=e361] [cursor=pointer]:
+              - /url: /blog/
+    - generic [ref=e363]:
+      - paragraph [ref=e364]:
+        - generic [ref=e365]: SimpleTix.com, LLC
+      - generic [ref=e366]:
+        - link "Terms and Conditions" [ref=e367] [cursor=pointer]:
+          - /url: /terms.php
+        - text: "|"
+        - link "Privacy Policy" [ref=e368] [cursor=pointer]:
+          - /url: /Privacy.php
+        - text: "|"
+        - link "Cookie Policy" [ref=e369] [cursor=pointer]:
+          - /url: /cookie-policy
+  - text:   

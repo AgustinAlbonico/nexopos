@@ -1,0 +1,167 @@
+- generic [active] [ref=f26e1]:
+  - navigation [ref=f26e2]:
+    - banner [ref=f26e4]:
+      - generic [ref=f26e5]:
+        - link "home" [ref=f26e6] [cursor=pointer]:
+          - /url: /
+          - img "Veezi footer green logo" [ref=f26e9]
+        - button "menu" [ref=f26e10] [cursor=pointer]
+  - generic [ref=f26e26]:
+    - button "Close Cookie Popup" [ref=f26e27] [cursor=pointer]
+    - generic [ref=f26e31]:
+      - generic [ref=f26e32]: Cookie Settings
+      - generic [ref=f26e33]:
+        - text: By clicking “Accept”, you agree to the storing of cookies on your device to enhance site navigation, analyse site usage and assist in our marketing efforts. View our
+        - link "Cookie Policy" [ref=f26e34] [cursor=pointer]:
+          - /url: "#"
+        - text: and
+        - link "Privacy Policy" [ref=f26e35] [cursor=pointer]:
+          - /url: "#"
+        - text: .
+    - generic [ref=f26e36]:
+      - button "Decline" [ref=f26e37] [cursor=pointer]
+      - button "Accept" [ref=f26e39] [cursor=pointer]
+      - button "Manage" [ref=f26e41] [cursor=pointer]
+  - generic [ref=f26e43]:
+    - generic [ref=f26e47]:
+      - heading "Cinema solutions" [level=1] [ref=f26e50]
+      - heading "for independent thinkers" [level=2] [ref=f26e53]
+      - link "Free Trial" [ref=f26e56] [cursor=pointer]:
+        - /url: /free-trial
+    - generic [ref=f26e64]:
+      - heading "Why choose Veezi?" [level=2] [ref=f26e65]
+      - paragraph [ref=f26e67]:
+        - text: Veezi is the ultimate software solution for Independents. Engineered by
+        - link "Vista" [ref=f26e68] [cursor=pointer]:
+          - /url: https://www.vista.co/
+        - text: ", the number one cinema software company in the world, it has everything you need to get your cinema up and running and give moviegoers the best experience."
+      - generic [ref=f26e70]:
+        - paragraph [ref=f26e72]: Fast and easy set-up
+        - paragraph [ref=f26e74]: Data at a glance
+        - paragraph [ref=f26e76]: Cloud based
+        - paragraph [ref=f26e78]: 24/7 Customer Support
+      - link "Free Trial" [ref=f26e81] [cursor=pointer]:
+        - /url: /free-trial
+    - img "Illustrated overview of the Veezi cinema management platform showing box office, concessions, and theatre operations." [ref=f26e86]
+    - generic [ref=f26e90]:
+      - generic [ref=f26e91]:
+        - heading "Features" [level=2] [ref=f26e92]
+        - generic [ref=f26e93]: Everything you need to run your cinema and wow your moviegoers.
+      - generic [ref=f26e94]:
+        - link "Cinema Management" [ref=f26e96] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/cinema-management
+        - link "Point of Sale" [ref=f26e104] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/point-of-sale
+        - link "Film Programming" [ref=f26e112] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/film-programming
+        - link "Reporting" [ref=f26e120] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/reporting
+        - link "V-Tix Internet Ticketing" [ref=f26e128] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/v-tix-internet-ticketing
+        - link "Web" [ref=f26e136] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/web
+        - link "Movie Mailer" [ref=f26e144] [cursor=pointer]:
+          - /url: /features/movie-mailer
+        - link "Loyalty" [ref=f26e152] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/loyalty
+        - link "Vouchers & Gift Cards" [ref=f26e160] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/vouchers-gift-cards
+        - link "Kiosk" [ref=f26e168] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/kiosk
+        - link "Digital Signage" [ref=f26e176] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/digital-signage
+        - link "Inventory" [ref=f26e184] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/inventory
+        - link "Time & Attendance" [ref=f26e192] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/time-attendance
+        - link "UsherPoint App" [ref=f26e200] [cursor=pointer]:
+          - /url: https://www.veezi.com/features/usherpoint-app
+    - region "carousel" [ref=f26e210]:
+      - generic [ref=f26e211]:
+        - group "1 of 5" [ref=f26e212]:
+          - generic [ref=f26e214]:
+            - paragraph [ref=f26e215]: "\"Veezi is so self-explanatory... now I am able to throw a new person on the register at a busy time, and they pick it up real fast. It used to take weeks before I would roster them on a busy night. I absolutely love Veezi and their amazing support.\""
+            - generic [ref=f26e216]:
+              - img "Tammy Steinmann from Grand Theater" [ref=f26e218]
+              - generic [ref=f26e219]:
+                - generic [ref=f26e220]: Tammy Steinmann
+                - generic [ref=f26e221]: The Grand Theatre
+        - group [ref=f26e222]:
+          - generic [ref=f26e224]:
+            - paragraph [ref=f26e226]: “We’ve always operated our box office with two doors open for both lines of traffic, we can’t change that. But now that we have Veezi, a third person using a tablet can move along the queue of cars, selling tickets in advance of reaching the box office. This has sped up the entry process for everyone."
+            - generic [ref=f26e230]:
+              - generic [ref=f26e231]: Chip Sawyer
+              - generic [ref=f26e232]: SilverMoon Drive In
+        - group [ref=f26e233]:
+          - generic [ref=f26e235]:
+            - paragraph [ref=f26e237]: “We can see how Veezi cuts through what can be a ridiculous amount of information to digest. The programming and listing of the sessions with tickets is simplified to such a degree it is quick and really easy to use.”
+            - generic [ref=f26e241]:
+              - generic [ref=f26e242]: Mark & Jess Walker
+              - generic [ref=f26e243]: Pivotonian
+        - group [ref=f26e244]:
+          - generic [ref=f26e246]:
+            - paragraph [ref=f26e248]: “Veezi is easy to learn, particularly the Concessions tab. Up it pops, you can refresh the tills, change the colors and add in an item in two to three easy steps. Push save and you are set.”
+            - generic [ref=f26e252]:
+              - generic [ref=f26e253]: Geoff Glen
+              - generic [ref=f26e254]: Peckhamplex
+        - group [ref=f26e255]:
+          - generic [ref=f26e257]:
+            - paragraph [ref=f26e259]: “I can’t stress it enough, the Veezi team is amazing. We don’t need them often because everything works so well, but because we are a festival we need certain accommodations, and the team are always pleasant, quick to respond, and go the extra mile,” Jen exclaims.“With Veezi, we are future-proofed”
+            - generic [ref=f26e263]:
+              - generic [ref=f26e264]: Jen Holson
+              - generic [ref=f26e265]: Windsor Film Festival
+      - button "previous slide" [ref=f26e267] [cursor=pointer]:
+        - generic [ref=f26e268]: 
+      - button "next slide" [ref=f26e269] [cursor=pointer]:
+        - generic [ref=f26e270]: 
+    - contentinfo [ref=f26e271]:
+      - generic [ref=f26e273]:
+        - generic [ref=f26e274]:
+          - img "Veezi footer green logo" [ref=f26e275]
+          - paragraph [ref=f26e276]: Cinema solutions for independent thinkers
+        - list [ref=f26e278]:
+          - listitem [ref=f26e279]:
+            - heading "Our company" [level=4] [ref=f26e280]
+          - listitem [ref=f26e281]:
+            - link "About" [ref=f26e282] [cursor=pointer]:
+              - /url: /about
+          - listitem [ref=f26e283]:
+            - link "Contact us" [ref=f26e284] [cursor=pointer]:
+              - /url: /contact
+          - listitem [ref=f26e285]:
+            - link "Support" [ref=f26e286] [cursor=pointer]:
+              - /url: /support-and-resources
+        - list [ref=f26e288]:
+          - listitem [ref=f26e289]:
+            - heading "Our product" [level=4] [ref=f26e290]
+          - listitem [ref=f26e291]:
+            - link "Features" [ref=f26e292] [cursor=pointer]:
+              - /url: /features
+          - listitem [ref=f26e293]:
+            - link "Blog" [ref=f26e294] [cursor=pointer]:
+              - /url: /blog
+        - list [ref=f26e296]:
+          - listitem [ref=f26e297]:
+            - heading "Legal" [level=4] [ref=f26e298]
+          - listitem [ref=f26e299]:
+            - link "Terms & Conditions" [ref=f26e300] [cursor=pointer]:
+              - /url: /legal/terms-conditions
+          - listitem [ref=f26e301]:
+            - link "Cookie Policy" [ref=f26e302] [cursor=pointer]:
+              - /url: /legal/cookie-policy
+          - listitem [ref=f26e303]:
+            - link "Website Terms of Use" [ref=f26e304] [cursor=pointer]:
+              - /url: /legal/website-terms-of-use
+      - generic [ref=f26e306]:
+        - paragraph [ref=f26e308]:
+          - text: © 2026. All rights reserved. A company of
+          - link "Vista Group International Ltd" [ref=f26e309] [cursor=pointer]:
+            - /url: https://www.vistagroup.co/
+          - text: .
+        - generic [ref=f26e311]:
+          - link [ref=f26e312] [cursor=pointer]:
+            - /url: https://www.youtube.com/channel/UCmnBL-gNHugRUUW8nL3v7Wg
+          - link [ref=f26e313] [cursor=pointer]:
+            - /url: https://www.facebook.com/VeezibyVista
+          - link [ref=f26e314] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/veezi/

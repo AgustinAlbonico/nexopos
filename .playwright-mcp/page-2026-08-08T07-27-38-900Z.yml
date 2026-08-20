@@ -1,0 +1,394 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: "\"Cines del Centro\" Rosario instagram sitio web \"Cines del Centro\" Rosario instagram sitio web"
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D%2522Cines%2Bdel%2BCentro%2522%2BRosario%2Binstagram%2Bsitio%2Bweb&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qSStMFOY8vqKFRoAA1yd9lGP-S5MiCDPeexEJLr1fVh50oLYA0BUah63GoMsQ2l34LjVWt7ERTxBy2oDvpQrQXYKmDe4_olyeqfpaR5hHIlTmnn_wknIAy2f8S11yYQ-UsrFQsn0V1h5phJhViW1cKrw8NwRHezMncpYPwE0vPGG1B07NeHGgnSOIWUdVHXIedl7rRA&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ2J8OegQIEBAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Noticias" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qSStMFOY8vqKFRoAA1yd9lGP-S5MiCDPeexEJLr1fVh50oLYA0BUah63GoMsQ2l34LjVWt7ERTxBy2oDvpQrQXYKmDe4_olyeqfpaR5hHIlTmnn_wknIAy2f8S11yYQ-UsrFQsn0V1h5phJhViW1cKrw8NwRHezMncpYPwE0vPGG1B07NeHGgnSOIWUdVHXIedl7rRA&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ0pQJegQIFhAB
+          - listitem [ref=e94]:
+            - link "Shopping" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qSStMFOY8vqKFRoAA1yd9lGP-S5MiCDPeexEJLr1fVh50oLYA0BUah63GoMsQ2l34LjVWt7ERTxBy2oDvpQrQXYKmDe4_olyeqfpaR5hHIlTmnn_wknIAy2f8S11yYQ-UsrFQsn0V1h5phJhViW1cKrw8NwRHezMncpYPwE0vPGG1B07NeHGgnSOIWUdVHXIedl7rRA&q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&ved=1t:220175&ictx=111
+          - listitem [ref=e98]:
+            - link "Imágenes" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qSStMFOY8vqKFRoAA1yd9lGP-S5MiCDPeexEJLr1fVh50oLYA0BUah63GoMsQ2l34LjVWt7ERTxBy2oDvpQrQXYKmDe4_olyeqfpaR5hHIlTmnn_wknIAy2f8S11yYQ-UsrFQsn0V1h5phJhViW1cKrw8NwRHezMncpYPwE0vPGG1B07NeHGgnSOIWUdVHXIedl7rRA&q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQtKgLegQIExAB
+          - listitem [ref=e102]:
+            - link "Vídeos cortos" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qSStMFOY8vqKFRoAA1yd9lGP-S5MiCDPeexEJLr1fVh50oLYA0BUah63GoMsQ2l34LjVWt7ERTxBy2oDvpQrQXYKmDe4_olyeqfpaR5hHIlTmnn_wknIAy2f8S11yYQ-UsrFQsn0V1h5phJhViW1cKrw8NwRHezMncpYPwE0vPGG1B07NeHGgnSOIWUdVHXIedl7rRA&q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQs6gLegQIFBAB
+          - listitem [ref=e106]:
+            - link "Vídeos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIoZ8TJcYV6w5Zw4mLiz0qSStMFOY8vqKFRoAA1yd9lGP-S5MiCDPeexEJLr1fVh50oLYA0BUah63GoMsQ2l34LjVWt7ERTxBy2oDvpQrQXYKmDe4_olyeqfpaR5hHIlTmnn_wknIAy2f8S11yYQ-UsrFQsn0V1h5phJhViW1cKrw8NwRHezMncpYPwE0vPGG1B07NeHGgnSOIWUdVHXIedl7rRA&q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQtKgLegQIEhAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - main [ref=e132]:
+      - generic [ref=e136]:
+        - generic [ref=e139]:
+          - heading "Resultados web" [level=2] [ref=e140]
+          - generic [ref=e141]:
+            - generic [ref=e144]:
+              - link "Cines Del Centro Rosario (@cinesdelcentrorosario) Instagram · cinesdelcentrorosario Más de 51,2 k seguidores" [ref=e146] [cursor=pointer]:
+                - /url: https://www.instagram.com/cinesdelcentrorosario/?hl=es
+                - heading "Cines Del Centro Rosario (@cinesdelcentrorosario)" [level=3] [ref=e147]
+                - generic [ref=e153]:
+                  - generic [ref=e154]: Instagram · cinesdelcentrorosario
+                  - generic [ref=e156]: Más de 51,2 k seguidores
+              - button "Acerca de este resultado" [ref=e160] [cursor=pointer]
+            - generic [ref=e167]:
+              - emphasis [ref=e168]: Cines Del Centro Rosario
+              - text: . 53.3K followers. 6 following. Programación curada, los mejores estrenos de cine arte y lo mejor del mainstream. 1er nivel de @sh ...
+        - generic [ref=e179]:
+          - heading "Pensando Buscando Pensando un poco más" [level=2] [ref=e183]:
+            - generic [ref=e184]:
+              - generic [ref=e185]: Pensando
+              - generic [ref=e187]: Buscando
+              - generic [ref=e189]: Pensando un poco más
+          - progressbar "Generando" [ref=e192]
+        - generic [ref=e248]:
+          - generic [ref=e251]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · cinesdelcentrorosario Más de 150 \"me gusta\" · hace 6 meses" [ref=e253] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DTdJxzJAmLv/?hl=es
+              - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e254]
+              - generic [ref=e260]:
+                - generic [ref=e261]: Instagram · cinesdelcentrorosario
+                - generic [ref=e263]: Más de 150 "me gusta" · hace 6 meses
+            - button "Acerca de este resultado" [ref=e267] [cursor=pointer]
+          - generic [ref=e272]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:54" [ref=e273] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DTdJxzJAmLv/?hl=es
+              - generic [ref=e274]: 1:54
+            - generic [ref=e284]: 86 likes. ccmcinemascostarica. ⚠️ Debido a la alta demanda, nuestro sitio web está presentando intermitencias. ... Join Cines Del Centro Rosario ...
+        - generic [ref=e289]:
+          - generic [ref=e292]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · cinesdelcentrorosario hace 10 meses" [ref=e294] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DPg4cKljKVK/?hl=es
+              - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e295]
+              - generic [ref=e301]:
+                - generic [ref=e302]: Instagram · cinesdelcentrorosario
+                - generic [ref=e304]: hace 10 meses
+            - button "Acerca de este resultado" [ref=e308] [cursor=pointer]
+          - generic [ref=e315]:
+            - text: 🎟️ Ya podés comprar tus entradas en nuestra página
+            - emphasis [ref=e316]: web
+            - text: www.picocine.com.ar (link en bio). ... Join
+            - emphasis [ref=e317]: Cines Del Centro Rosario
+            - text: "on"
+            - emphasis [ref=e318]: Instagram
+            - text: . Sign ...
+        - generic [ref=e324]:
+          - generic [ref=e327]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · cinesdelcentrorosario Más de 90 \"me gusta\" · hace 9 meses" [ref=e329] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DQEtScDgtzm/
+              - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e330]
+              - generic [ref=e336]:
+                - generic [ref=e337]: Instagram · cinesdelcentrorosario
+                - generic [ref=e339]: Más de 90 "me gusta" · hace 9 meses
+            - button "Acerca de este resultado" [ref=e343] [cursor=pointer]
+          - generic [ref=e348]:
+            - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:50" [ref=e349] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DQEtScDgtzm/
+              - generic [ref=e350]: 1:50
+            - generic [ref=e360]: "Conseguí tus entradas en nuestra pagina web: www.cinecoliseozarate.com.ar ... Join Cines Del Centro Rosario on Instagram. Sign up for Instagram."
+        - generic [ref=e365]:
+          - generic [ref=e368]:
+            - link "CARTELERA Y HORARIOS🎬 👉🏻 Hasta el Miércoles 29/07 ... Instagram · cinesdelcentrorosario Más de 110 \"me gusta\" · hace 2 semanas" [ref=e370] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/DbIqCeBEaM8/?hl=es-la
+              - heading "CARTELERA Y HORARIOS🎬 👉🏻 Hasta el Miércoles 29/07 ..." [level=3] [ref=e371]
+              - generic [ref=e377]:
+                - generic [ref=e378]: Instagram · cinesdelcentrorosario
+                - generic [ref=e380]: Más de 110 "me gusta" · hace 2 semanas
+            - button "Acerca de este resultado" [ref=e384] [cursor=pointer]
+          - generic [ref=e391]:
+            - text: ...
+            - emphasis [ref=e392]: WEB
+            - text: www.cinesdelcentro.com.ar |
+            - emphasis [ref=e393]: Instagram
+            - text: ... Join
+            - emphasis [ref=e394]: Cines Del Centro Rosario
+            - text: "on"
+            - emphasis [ref=e395]: Instagram
+            - text: . Sign up for
+            - emphasis [ref=e396]: Instagram
+            - text: .
+        - generic [ref=e400]:
+          - generic [ref=e403]:
+            - link "Ya podés conocer todos los estrenos que vendrán este jueves ... Instagram https://www.instagram.com › Reels" [ref=e405] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/DUTQ2_XAuZE/
+              - heading "Ya podés conocer todos los estrenos que vendrán este jueves ..." [level=3] [ref=e406]
+              - generic [ref=e412]:
+                - generic [ref=e413]: Instagram
+                - generic [ref=e415]: https://www.instagram.com › Reels
+            - button "Acerca de este resultado" [ref=e419] [cursor=pointer]
+          - generic [ref=e426]:
+            - text: Consulta la programación completa en nuestro
+            - emphasis [ref=e427]: sitio web
+            - text: "y ven con tus amigos. ... Conseguilas en nuestra pagina web: www ... Join"
+            - emphasis [ref=e428]: Cines Del Centro Rosario
+            - text: on ...
+        - generic [ref=e434]:
+          - generic [ref=e437]:
+            - link "Cines Del Centro Rosario | 😎 Ya podes conocer todos los ... Instagram · cinesdelcentrorosario Más de 30 \"me gusta\" · hace 1 año" [ref=e439] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DC1fQ80iAwD/?hl=es
+              - heading "Cines Del Centro Rosario | 😎 Ya podes conocer todos los ..." [level=3] [ref=e440]
+              - generic [ref=e446]:
+                - generic [ref=e447]: Instagram · cinesdelcentrorosario
+                - generic [ref=e449]: Más de 30 "me gusta" · hace 1 año
+            - button "Acerca de este resultado" [ref=e453] [cursor=pointer]
+          - generic [ref=e458]:
+            - link "Cines Del Centro Rosario | 😎 Ya podes conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:50" [ref=e459] [cursor=pointer]:
+              - /url: https://www.instagram.com/reel/DC1fQ80iAwD/?hl=es
+              - generic [ref=e460]: 1:50
+            - generic [ref=e473]: "En nuestro sitio web: www.cineteatrohelios.com.ar O en la ... Join Cines Del Centro Rosario on Instagram. Sign up for Instagram."
+        - generic [ref=e478]:
+          - generic [ref=e481]:
+            - link "Cines Del Centro Rosario | 🎬CARTELERA Y HORARIOS🎬 ... Instagram · cinesdelcentrorosario Más de 50 \"me gusta\" · hace 10 meses" [ref=e483] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/DPTnXKEkecA/
+              - heading "Cines Del Centro Rosario | 🎬CARTELERA Y HORARIOS🎬 ..." [level=3] [ref=e484]
+              - generic [ref=e490]:
+                - generic [ref=e491]: Instagram · cinesdelcentrorosario
+                - generic [ref=e493]: Más de 50 "me gusta" · hace 10 meses
+            - button "Acerca de este resultado" [ref=e497] [cursor=pointer]
+          - generic [ref=e504]:
+            - emphasis [ref=e505]: Cines Del Centro Rosario
+            - text: "| CARTELERA Y HORARIOS Hasta el ... Conseguí las entradas en nuestra página"
+            - emphasis [ref=e506]: web
+            - text: y en boletería de los cines!
+        - generic [ref=e510]:
+          - heading "Videos cortos" [level=2] [ref=e512]
+          - generic [ref=e514]:
+            - list [ref=e516]:
+              - listitem [ref=e517]:
+                - generic [ref=e520]:
+                  - generic [ref=e522]:
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:54" [ref=e524] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DTdJxzJAmLv/?hl=es
+                      - generic [ref=e525]: 1:54
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · Cines Del Centro Rosario" [ref=e534] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DTdJxzJAmLv/?hl=es
+                      - generic [ref=e535]:
+                        - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e537]
+                        - generic [ref=e539]: Instagram · Cines Del Centro Rosario
+                  - button "Acerca de este resultado" [ref=e547] [cursor=pointer]
+              - listitem [ref=e552]:
+                - generic [ref=e555]:
+                  - generic [ref=e557]:
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:07" [ref=e559] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DW1gBcighPX/?hl=es
+                      - generic [ref=e560]: 1:07
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · Cines Del Centro Rosario" [ref=e569] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DW1gBcighPX/?hl=es
+                      - generic [ref=e570]:
+                        - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e572]
+                        - generic [ref=e574]: Instagram · Cines Del Centro Rosario
+                  - button "Acerca de este resultado" [ref=e582] [cursor=pointer]
+              - listitem [ref=e587]:
+                - generic [ref=e590]:
+                  - generic [ref=e592]:
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:23" [ref=e594] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DVtbMyWglYj/?hl=es
+                      - generic [ref=e595]: 1:23
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · Cines Del Centro Rosario" [ref=e604] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DVtbMyWglYj/?hl=es
+                      - generic [ref=e605]:
+                        - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e607]
+                        - generic [ref=e609]: Instagram · Cines Del Centro Rosario
+                  - button "Acerca de este resultado" [ref=e617] [cursor=pointer]
+              - listitem [ref=e622]:
+                - generic [ref=e625]:
+                  - generic [ref=e627]:
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:50" [ref=e629] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DQEtScDgtzm/
+                      - generic [ref=e630]: 1:50
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · Cines Del Centro Rosario" [ref=e639] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DQEtScDgtzm/
+                      - generic [ref=e640]:
+                        - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e642]
+                        - generic [ref=e644]: Instagram · Cines Del Centro Rosario
+                  - button "Acerca de este resultado" [ref=e652] [cursor=pointer]
+              - listitem [ref=e657]:
+                - generic [ref=e660]:
+                  - generic [ref=e662]:
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 0:56" [ref=e664] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DS5Juu4gqzY/
+                      - generic [ref=e665]: 0:56
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · Cines Del Centro Rosario" [ref=e674] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DS5Juu4gqzY/
+                      - generic [ref=e675]:
+                        - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e677]
+                        - generic [ref=e679]: Instagram · Cines Del Centro Rosario
+                  - button "Acerca de este resultado" [ref=e687] [cursor=pointer]
+              - listitem [ref=e692]:
+                - generic [ref=e695]:
+                  - generic [ref=e697]:
+                    - link "Cines Del Centro Rosario | 😎 Ya podes conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:50" [ref=e699] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DC1fQ80iAwD/?hl=es
+                      - generic [ref=e700]: 1:50
+                    - link "Cines Del Centro Rosario | 😎 Ya podes conocer todos los ... Instagram · Cines Del Centro Rosario" [ref=e712] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DC1fQ80iAwD/?hl=es
+                      - generic [ref=e713]:
+                        - heading "Cines Del Centro Rosario | 😎 Ya podes conocer todos los ..." [level=3] [ref=e715]
+                        - generic [ref=e717]: Instagram · Cines Del Centro Rosario
+                  - button "Acerca de este resultado" [ref=e725] [cursor=pointer]
+              - listitem [ref=e730]:
+                - generic [ref=e733]:
+                  - generic [ref=e735]:
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 1:27" [ref=e737] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DNiqKigiJIP/
+                      - generic [ref=e738]: 1:27
+                    - link "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ... Instagram · Cines Del Centro Rosario" [ref=e747] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DNiqKigiJIP/
+                      - generic [ref=e748]:
+                        - heading "Cines Del Centro Rosario | 😎 Ya podés conocer todos los ..." [level=3] [ref=e750]
+                        - generic [ref=e752]: Instagram · Cines Del Centro Rosario
+                  - button "Acerca de este resultado" [ref=e760] [cursor=pointer]
+              - listitem [ref=e765]:
+                - generic [ref=e768]:
+                  - generic [ref=e770]:
+                    - link "Cines Del Centro Rosario | 😎 Ya podes conocer todos los ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 2:06" [ref=e772] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/C_dk23TiWhl/
+                      - generic [ref=e773]: 2:06
+                    - link "Cines Del Centro Rosario | 😎 Ya podes conocer todos los ... Instagram · Cines Del Centro Rosario" [ref=e785] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/C_dk23TiWhl/
+                      - generic [ref=e786]:
+                        - heading "Cines Del Centro Rosario | 😎 Ya podes conocer todos los ..." [level=3] [ref=e788]
+                        - generic [ref=e790]: Instagram · Cines Del Centro Rosario
+                  - button "Acerca de este resultado" [ref=e798] [cursor=pointer]
+              - listitem [ref=e803]:
+                - generic [ref=e806]:
+                  - generic [ref=e808]:
+                    - link "Cines Del Centro Rosario | 🎬 No te pierdas el pre-estreno ... de Cines Del Centro Rosario en Instagram. Reproducir en Instagram. 0:28" [ref=e810] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DbMFPSTiGpC/
+                      - generic [ref=e811]: 0:28
+                    - link "Cines Del Centro Rosario | 🎬 No te pierdas el pre-estreno ... Instagram · Cines Del Centro Rosario" [ref=e820] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DbMFPSTiGpC/
+                      - generic [ref=e821]:
+                        - heading "Cines Del Centro Rosario | 🎬 No te pierdas el pre-estreno ..." [level=3] [ref=e823]
+                        - generic [ref=e825]: Instagram · Cines Del Centro Rosario
+                  - button "Acerca de este resultado" [ref=e833] [cursor=pointer]
+              - listitem [ref=e838]:
+                - generic [ref=e841]:
+                  - generic [ref=e843]:
+                    - link "¡ROSARIO SE VA AL CINE! ENTRADAS A SOLO $4.000 ... de Somos Rosario en Instagram. Reproducir en Instagram. 1:42" [ref=e845] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DVHIUQ0AstC/?hl=es
+                      - generic [ref=e846]: 1:42
+                    - link "¡ROSARIO SE VA AL CINE! ENTRADAS A SOLO $4.000 ... Instagram · Somos Rosario" [ref=e855] [cursor=pointer]:
+                      - /url: https://www.instagram.com/reel/DVHIUQ0AstC/?hl=es
+                      - generic [ref=e856]:
+                        - heading "¡ROSARIO SE VA AL CINE! ENTRADAS A SOLO $4.000 ..." [level=3] [ref=e858]
+                        - generic [ref=e860]: Instagram · Somos Rosario
+                  - button "Acerca de este resultado" [ref=e868] [cursor=pointer]
+            - button [ref=e873] [cursor=pointer]
+          - link "Más videos cortos" [ref=e879] [cursor=pointer]:
+            - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&udm=39&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ3egMegQIRRAS
+            - separator [ref=e880]
+      - generic [ref=e887]:
+        - generic [ref=e892]:
+          - heading "También se buscó" [level=2] [ref=e894]
+          - generic [ref=e896]:
+            - generic [ref=e897]:
+              - link "Cine Shopping del siglo - Rosario cartelera" [ref=e901] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Shopping+del+siglo+-+Rosario+cartelera&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ1QJ6BAgwEAE
+              - link "Cines del Centro Rosario CARTELERA y HORARIOS" [ref=e915] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+del+Centro+Rosario+CARTELERA+y+HORARIOS&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ1QJ6BAg5EAE
+              - link "Cines del centro cartelera y horarios" [ref=e929] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+del+centro+cartelera+y+horarios&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ1QJ6BAgyEAE
+              - link "Cines rosario cartelera" [ref=e943] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+rosario+cartelera&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ1QJ6BAg6EAE
+            - generic [ref=e954]:
+              - link "Cines de Rosario" [ref=e958] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+de+Rosario&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ1QJ6BAg0EAE
+              - link "Cines showcase Rosario" [ref=e972] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+showcase+Rosario&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ1QJ6BAg4EAE
+              - link "Cine Monumental" [ref=e986] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cine+Monumental&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ1QJ6BAg1EAE
+              - link "Cines del centro cartelera hoy" [ref=e1000] [cursor=pointer]:
+                - /url: /search?sca_esv=569d465b5b1d57df&q=Cines+del+centro+cartelera+hoy&sa=X&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ1QJ6BAgxEAE
+        - navigation [ref=e1011]:
+          - heading "Navegación de páginas" [level=1] [ref=e1012]
+          - text: "1"
+          - link "Page 2" [ref=e1015] [cursor=pointer]:
+            - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=atp2ateOHZzC5OUPqo6PwQ0&start=10&sa=N&sstk=AU9db-CdwBqCW5RHPC3Fe46lCoKm2WLOCf9Y6Ta4DQJRsddkaDntLCqCAlqF3tnYUJARHw15YgcJyXKAWFgxN-ZRTsPsl0-SxWAI4Q&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ8tMDegQILBAE
+            - text: "2"
+          - link "Page 3" [ref=e1017] [cursor=pointer]:
+            - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=atp2ateOHZzC5OUPqo6PwQ0&start=20&sa=N&sstk=AU9db-CdwBqCW5RHPC3Fe46lCoKm2WLOCf9Y6Ta4DQJRsddkaDntLCqCAlqF3tnYUJARHw15YgcJyXKAWFgxN-ZRTsPsl0-SxWAI4Q&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ8tMDegQILBAG
+            - text: "3"
+          - link "Page 4" [ref=e1019] [cursor=pointer]:
+            - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=atp2ateOHZzC5OUPqo6PwQ0&start=30&sa=N&sstk=AU9db-CdwBqCW5RHPC3Fe46lCoKm2WLOCf9Y6Ta4DQJRsddkaDntLCqCAlqF3tnYUJARHw15YgcJyXKAWFgxN-ZRTsPsl0-SxWAI4Q&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ8tMDegQILBAI
+            - text: "4"
+          - link "Page 5" [ref=e1021] [cursor=pointer]:
+            - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=atp2ateOHZzC5OUPqo6PwQ0&start=40&sa=N&sstk=AU9db-CdwBqCW5RHPC3Fe46lCoKm2WLOCf9Y6Ta4DQJRsddkaDntLCqCAlqF3tnYUJARHw15YgcJyXKAWFgxN-ZRTsPsl0-SxWAI4Q&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ8tMDegQILBAK
+            - text: "5"
+          - link "Page 6" [ref=e1023] [cursor=pointer]:
+            - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=atp2ateOHZzC5OUPqo6PwQ0&start=50&sa=N&sstk=AU9db-CdwBqCW5RHPC3Fe46lCoKm2WLOCf9Y6Ta4DQJRsddkaDntLCqCAlqF3tnYUJARHw15YgcJyXKAWFgxN-ZRTsPsl0-SxWAI4Q&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ8tMDegQILBAM
+            - text: "6"
+          - link "Page 7" [ref=e1025] [cursor=pointer]:
+            - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=atp2ateOHZzC5OUPqo6PwQ0&start=60&sa=N&sstk=AU9db-CdwBqCW5RHPC3Fe46lCoKm2WLOCf9Y6Ta4DQJRsddkaDntLCqCAlqF3tnYUJARHw15YgcJyXKAWFgxN-ZRTsPsl0-SxWAI4Q&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ8tMDegQILBAO
+            - text: "7"
+          - link "Page 8" [ref=e1027] [cursor=pointer]:
+            - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=atp2ateOHZzC5OUPqo6PwQ0&start=70&sa=N&sstk=AU9db-CdwBqCW5RHPC3Fe46lCoKm2WLOCf9Y6Ta4DQJRsddkaDntLCqCAlqF3tnYUJARHw15YgcJyXKAWFgxN-ZRTsPsl0-SxWAI4Q&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ8tMDegQILBAQ
+            - text: "8"
+          - link "Page 9" [ref=e1029] [cursor=pointer]:
+            - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=atp2ateOHZzC5OUPqo6PwQ0&start=80&sa=N&sstk=AU9db-CdwBqCW5RHPC3Fe46lCoKm2WLOCf9Y6Ta4DQJRsddkaDntLCqCAlqF3tnYUJARHw15YgcJyXKAWFgxN-ZRTsPsl0-SxWAI4Q&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ8tMDegQILBAS
+            - text: "9"
+          - link "Page 10" [ref=e1031] [cursor=pointer]:
+            - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=atp2ateOHZzC5OUPqo6PwQ0&start=90&sa=N&sstk=AU9db-CdwBqCW5RHPC3Fe46lCoKm2WLOCf9Y6Ta4DQJRsddkaDntLCqCAlqF3tnYUJARHw15YgcJyXKAWFgxN-ZRTsPsl0-SxWAI4Q&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ8tMDegQILBAU
+            - text: "10"
+          - heading [level=2] [ref=e1033]:
+            - link "Siguiente" [ref=e1034] [cursor=pointer]:
+              - /url: /search?q=%22Cines+del+Centro%22+Rosario+instagram+sitio+web&sca_esv=569d465b5b1d57df&ei=atp2ateOHZzC5OUPqo6PwQ0&start=10&sa=N&sstk=AU9db-CdwBqCW5RHPC3Fe46lCoKm2WLOCf9Y6Ta4DQJRsddkaDntLCqCAlqF3tnYUJARHw15YgcJyXKAWFgxN-ZRTsPsl0-SxWAI4Q&ved=2ahUKEwjX64zywJCWAxUcIbkGHSrHI9gQ8NMDegQILBAW
+      - navigation
+    - contentinfo [ref=e1037]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e1038]
+      - generic [ref=e1042]:
+        - generic [ref=e1044]:
+          - text: Argentina
+          - generic [ref=e1046]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e1048] [cursor=pointer]:
+              - generic [ref=e1049]: Iriondo, Santa Fe
+              - generic [ref=e1051]:
+                - text: "-"
+                - generic [ref=e1052]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e1054] [cursor=pointer]
+        - generic [ref=e1057]:
+          - link "Ayuda" [ref=e1058] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e1059] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e1060] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e1061] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

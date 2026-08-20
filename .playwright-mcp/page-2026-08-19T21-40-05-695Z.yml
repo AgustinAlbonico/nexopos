@@ -1,0 +1,206 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main
+    - region "Notifications alt+T"
+  - dialog [ref=f1e337]:
+    - generic [ref=f1e341]:
+      - generic [ref=f1e342]:
+        - generic [ref=f1e343]:
+          - generic [ref=f1e344]:
+            - heading "Nueva Venta" [level=2] [ref=f1e345]
+            - paragraph [ref=f1e350]: Stock automático
+          - generic [ref=f1e351]:
+            - generic [ref=f1e353]:
+              - generic [ref=f1e354]: Cliente
+              - combobox [ref=f1e356] [cursor=pointer]:
+                - generic [ref=f1e357]: Consumidor Final
+            - generic [ref=f1e362]:
+              - generic [ref=f1e363]: Vendedor
+              - textbox "Vendedor" [ref=f1e368]:
+                - /placeholder: Vendedor / Legajo
+            - generic [ref=f1e370]:
+              - generic [ref=f1e371]: Fecha
+              - textbox "Fecha" [ref=f1e374]: 2026-08-19
+            - generic [ref=f1e377]:
+              - checkbox "Fiscal" [disabled] [ref=f1e378]
+              - checkbox [disabled]
+              - generic [ref=f1e379]: Fiscal
+        - generic [ref=f1e383]:
+          - generic [ref=f1e384]: "⚡ Atajos Rápidos POS:"
+          - generic [ref=f1e385]:
+            - generic [ref=f1e386]:
+              - generic [ref=f1e387]: F1
+              - text: Buscar
+            - generic [ref=f1e388]:
+              - generic [ref=f1e389]: F2
+              - text: Descuento
+            - generic [ref=f1e390]:
+              - generic [ref=f1e391]: F8
+              - text: Confirmar
+            - generic [ref=f1e392]:
+              - generic [ref=f1e393]: F9
+              - text: Posponer
+            - generic [ref=f1e394]:
+              - generic [ref=f1e395]: ESC
+              - text: Cancelar
+        - generic [ref=f1e396]:
+          - generic [ref=f1e397]:
+            - generic [ref=f1e404]:
+              - heading "Agregar Productos" [level=3] [ref=f1e405]
+              - paragraph [ref=f1e406]: Buscá por nombre, código o SKU
+            - generic [ref=f1e407]:
+              - button "Talles y Colores" [ref=f1e408] [cursor=pointer]
+              - button "Cambio de Prenda" [ref=f1e411] [cursor=pointer]
+          - combobox [ref=f1e416] [cursor=pointer]:
+            - generic [ref=f1e417]: Escribí para buscar productos...
+        - generic [ref=f1e421]:
+          - generic [ref=f1e422]:
+            - generic [ref=f1e423]: Productos (2)
+            - generic [ref=f1e656]: "Subtotal: $ 2.940"
+          - generic [ref=f1e430]:
+            - generic [ref=f1e657] [cursor=pointer]:
+              - generic [ref=f1e658]:
+                - generic [ref=f1e659]: Coca-Cola 1.5L
+                - generic [ref=f1e661]:
+                  - generic [ref=f1e662]: $ 1.500 c/u
+                  - generic [ref=f1e663]: "Stock: 89"
+              - generic [ref=f1e664]:
+                - button [ref=f1e665]
+                - textbox [ref=f1e667]: "1"
+                - button [ref=f1e668]
+              - generic "Descuento del ítem (F2)" [ref=f1e670]:
+                - button "Cambiar descuento a monto fijo" [ref=f1e671]: "%"
+                - textbox "Descuento porcentual del ítem 1" [ref=f1e672]:
+                  - /placeholder: "0"
+                  - text: "0"
+              - generic [ref=f1e673]: $ 1.500
+              - button [ref=f1e674]
+            - generic [ref=f1e818] [cursor=pointer]:
+              - generic [ref=f1e819]:
+                - generic [ref=f1e820]:
+                  - text: Agua Kin 500ml
+                  - generic [ref=f1e821]: PENDIENTE
+                - generic [ref=f1e822]:
+                  - generic [ref=f1e823]: $ 800 c/u
+                  - generic [ref=f1e824]: "Stock: 95"
+              - generic [ref=f1e825]:
+                - button [ref=f1e826]
+                - textbox [ref=f1e828]: "2"
+                - button [ref=f1e829]
+              - generic "Descuento del ítem (F2)" [ref=f1e831]:
+                - button "Cambiar descuento a monto fijo" [ref=f1e832]: "%"
+                - textbox "Descuento porcentual del ítem 2" [active] [ref=f1e833]:
+                  - /placeholder: "0"
+                  - text: "10"
+              - generic [ref=f1e834]:
+                - text: $ 1.440
+                - generic [ref=f1e835]: "-$ 160"
+              - button [ref=f1e839]
+          - button "Agregar notas" [ref=f1e438] [cursor=pointer]
+      - generic [ref=f1e442]:
+        - generic [ref=f1e444]:
+          - generic [ref=f1e445]:
+            - generic [ref=f1e446]: Subtotal
+            - generic [ref=f1e447]: $ 2.940
+          - generic [ref=f1e448]:
+            - generic [ref=f1e449]:
+              - generic [ref=f1e450]: Descuento
+              - combobox [ref=f1e451] [cursor=pointer]:
+                - generic: $
+              - combobox [ref=f1e454]
+            - generic [ref=f1e455]:
+              - textbox "Descuento en pesos" [ref=f1e843]: "2940"
+              - generic [ref=f1e844]: "-$ 2.940"
+          - alert [ref=f1e845]: El descuento no puede superar el subtotal
+          - generic [ref=f1e457]:
+            - generic [ref=f1e458]: "Promos:"
+            - button "2x1" [ref=f1e459] [cursor=pointer]
+            - button "2da 50%" [ref=f1e460] [cursor=pointer]
+            - button "3x2" [ref=f1e461] [cursor=pointer]
+            - button "10%" [ref=f1e462] [cursor=pointer]
+            - button "15%" [ref=f1e463] [cursor=pointer]
+          - generic [ref=f1e464]:
+            - generic [ref=f1e465]:
+              - generic [ref=f1e466]: Recargo
+              - combobox [ref=f1e467] [cursor=pointer]:
+                - generic: "%"
+              - combobox [ref=f1e470]
+            - textbox [ref=f1e472]: "0"
+          - generic [ref=f1e474]:
+            - generic [ref=f1e475]: Impuestos
+            - button "Agregar" [ref=f1e476] [cursor=pointer]
+          - generic [ref=f1e479]:
+            - generic [ref=f1e480]: TOTAL
+            - generic [ref=f1e481]: $ 0
+        - generic [ref=f1e483]:
+          - checkbox "Venta en Cuenta Corriente" [disabled] [ref=f1e484]
+          - checkbox [disabled]
+          - generic [ref=f1e485]:
+            - text: Venta en Cuenta Corriente
+            - paragraph [ref=f1e486]: Registrar deuda en la cuenta del cliente
+        - generic [ref=f1e487]:
+          - generic [ref=f1e488]:
+            - generic [ref=f1e494]:
+              - heading "Pagos" [level=3] [ref=f1e495]
+              - paragraph [ref=f1e496]: "Total inválido: el descuento no puede superar el subtotal"
+            - button "Agregar Pago" [disabled]
+          - generic [ref=f1e498]:
+            - generic [ref=f1e499]:
+              - combobox [ref=f1e500] [cursor=pointer]:
+                - generic: Efectivo
+              - combobox [ref=f1e503]
+            - generic [ref=f1e504]:
+              - generic [ref=f1e505]:
+                - generic [ref=f1e506]: $
+                - textbox [ref=f1e507]: "0"
+              - button [disabled]
+        - button "CONFIRMAR VENTA" [disabled]
+        - button "Posponer" [ref=f1e679] [cursor=pointer]
+    - button "Close" [ref=f1e510] [cursor=pointer]

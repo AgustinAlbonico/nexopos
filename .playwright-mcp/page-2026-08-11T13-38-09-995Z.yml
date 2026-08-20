@@ -1,0 +1,23 @@
+- generic [ref=e13]:
+  - generic [ref=e20]:
+    - generic [ref=e21]:
+      - img "NexoPOS" [ref=e23]
+      - generic [ref=e24]:
+        - heading "Bienvenido" [level=1] [ref=e25]
+        - paragraph [ref=e26]: Ingresa tus credenciales para acceder
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - generic [ref=e29]:
+          - generic [ref=e30]: Usuario
+          - textbox "Usuario" [ref=e34]:
+            - /placeholder: nombre.usuario
+        - generic [ref=e35]:
+          - generic [ref=e36]: Contraseña
+          - generic [ref=e40]:
+            - textbox "Contraseña" [ref=e41]:
+              - /placeholder: ••••••••
+            - button [ref=e42] [cursor=pointer]
+      - generic [ref=e46]:
+        - button "Ingresar" [ref=e47] [cursor=pointer]
+        - paragraph [ref=e48]: © 2026 NexoPOS
+  - region "Notifications alt+T"

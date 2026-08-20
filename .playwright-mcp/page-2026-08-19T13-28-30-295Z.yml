@@ -1,0 +1,141 @@
+- generic [ref=e12]:
+  - generic [ref=e13]:
+    - generic [ref=e14]:
+      - generic [ref=e15]:
+        - link "NP" [ref=e17] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=e19]:
+          - generic [ref=e20]:
+            - link [ref=e22] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=e29] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=e35] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=e41] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=e45] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=e50] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=e57] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=e62] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=e69] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=e75] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=e81] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=e85] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=e90] [cursor=pointer]
+      - main [ref=e95]:
+        - generic [ref=e324]:
+          - generic [ref=e331]:
+            - heading "Configuración del Sistema" [level=1] [ref=e332]
+            - paragraph [ref=e333]: Parámetros generales, rubro y capacidades operativas
+          - generic [ref=e334]:
+            - tablist [ref=e335]:
+              - tab "Ajustes Generales" [ref=e336] [cursor=pointer]
+              - tab "Tiquetera y Tickets" [ref=e338] [cursor=pointer]
+              - tab "Rubro y Capacidades" [active] [selected] [ref=e343] [cursor=pointer]
+            - tabpanel "Rubro y Capacidades" [ref=e537]:
+              - generic [ref=e538]:
+                - generic [ref=e539]:
+                  - generic [ref=e540]:
+                    - generic [ref=e544]:
+                      - heading "Rubro del Negocio" [level=2] [ref=e545]
+                      - paragraph [ref=e546]:
+                        - text: "Rubro configurado:"
+                        - strong [ref=e547]: Indumentaria / Ropa
+                    - generic [ref=e548]:
+                      - button "Cambiar Rubro" [ref=e549] [cursor=pointer]
+                      - button "Desbloquear Modo Técnico" [ref=e555] [cursor=pointer]
+                  - generic [ref=e559]:
+                    - text: 🔒
+                    - strong [ref=e560]: "Modo Protegido:"
+                    - text: Los interruptores de capacidades y el cambio de rubro están bloqueados. Hacé click en
+                    - strong [ref=e561]: Desbloquear Modo Técnico
+                    - text: e ingresá la clave técnica para realizar modificaciones.
+                - generic [ref=e562]:
+                  - generic [ref=e563]:
+                    - generic [ref=e564]:
+                      - generic [ref=e565]:
+                        - heading "Funcionalidades del Sistema" [level=2] [ref=e566]
+                        - paragraph [ref=e567]: Activá o desactivá funciones específicas del punto de venta.
+                      - textbox "Buscar funcionalidad..." [ref=e572]
+                    - generic [ref=e573]:
+                      - button "TODAS" [ref=e574] [cursor=pointer]
+                      - button "Comercial" [ref=e575] [cursor=pointer]
+                      - button "Estructural" [ref=e576] [cursor=pointer]
+                      - button "Fiscal" [ref=e577] [cursor=pointer]
+                      - button "Herramientas" [ref=e578] [cursor=pointer]
+                      - button "Navegación" [ref=e579] [cursor=pointer]
+                      - button "Políticas" [ref=e580] [cursor=pointer]
+                  - generic [ref=e581]:
+                    - generic [ref=e582]:
+                      - generic [ref=e583]:
+                        - generic [ref=e584]:
+                          - generic [ref=e585] [cursor=pointer]: Exigir Motivo para Descuentos Manuales
+                          - generic [ref=e586]: Políticas
+                        - paragraph [ref=e587]: Solicita al vendedor justificar por escrito cualquier descuento aplicado.
+                      - switch "Exigir Motivo para Descuentos Manuales" [disabled] [ref=e589]
+                    - generic [ref=e590]:
+                      - generic [ref=e591]:
+                        - generic [ref=e592]:
+                          - generic [ref=e593] [cursor=pointer]: Exigir Motivo para Cambio de Precio
+                          - generic [ref=e594]: Políticas
+                        - paragraph [ref=e595]: Solicita justificación al modificar el precio unitario en la caja.
+                      - switch "Exigir Motivo para Cambio de Precio" [disabled] [ref=e597]
+                    - generic [ref=e598]:
+                      - generic [ref=e599]:
+                        - generic [ref=e600]:
+                          - generic [ref=e601] [cursor=pointer]: Restricción de Anulación de Ventas
+                          - generic [ref=e602]: Políticas
+                        - paragraph [ref=e603]: Limita la anulación de tickets solo a usuarios con rol administrador.
+                      - switch "Restricción de Anulación de Ventas" [disabled] [ref=e605]
+                    - generic [ref=e606]:
+                      - generic [ref=e607]:
+                        - generic [ref=e608]:
+                          - generic [ref=e609] [cursor=pointer]: Cantidades Decimales / Fraccionadas
+                          - generic [ref=e610]: Estructural
+                        - paragraph [ref=e611]: "Permite ingresar cantidades no enteras (ej: 0.350 kg, 1.5 metros de cable)."
+                      - switch "Cantidades Decimales / Fraccionadas" [checked] [disabled] [ref=e613]
+                    - generic [ref=e614]:
+                      - generic [ref=e615]:
+                        - generic [ref=e616]:
+                          - generic [ref=e617] [cursor=pointer]: Conexión con Balanza Comercial
+                          - generic [ref=e618]: Estructural
+                        - paragraph [ref=e619]: Habilita la integración directa y lectura automática del peso en balanzas.
+                      - switch "Conexión con Balanza Comercial" [disabled] [ref=e621]
+                    - generic [ref=e622]:
+                      - generic [ref=e623]:
+                        - generic [ref=e624]:
+                          - generic [ref=e625] [cursor=pointer]: Matriz de Variantes (Talle, Color, Material)
+                          - generic [ref=e626]: Estructural
+                        - paragraph [ref=e627]: Permite administrar productos con combinaciones de talle, color y modelo.
+                      - switch "Matriz de Variantes (Talle, Color, Material)" [checked] [disabled] [ref=e629]
+                    - generic [ref=e630]:
+                      - generic [ref=e631]:
+                        - generic [ref=e632]:
+                          - generic [ref=e633] [cursor=pointer]: Control de Lotes y Fechas de Vencimiento
+                          - generic [ref=e634]: Estructural
+                        - paragraph [ref=e635]: Registra trazabilidad por número de lote y fecha de expiración de artículos.
+                      - switch "Control de Lotes y Fechas de Vencimiento" [disabled] [ref=e637]
+                    - generic [ref=e638]:
+                      - generic [ref=e639]:
+                        - generic [ref=e640]:
+                          - generic [ref=e641] [cursor=pointer]: Números de Serie e IMEI
+                          - generic [ref=e642]: Estructural
+                        - paragraph [ref=e643]: Registra identificadores únicos por unidad para seguimiento de garantía.
+                      - switch "Números de Serie e IMEI" [disabled] [ref=e645]
+                  - generic [ref=e646]:
+                    - generic [ref=e647]: Mostrando 8 de 53 capacidades
+                    - generic [ref=e648]:
+                      - button [disabled]
+                      - generic [ref=e649]: Página 1 de 7
+                      - button [ref=e650] [cursor=pointer]
+    - region "Notifications alt+T"
+  - generic [ref=e319]: $0k

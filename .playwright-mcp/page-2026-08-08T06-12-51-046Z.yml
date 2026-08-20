@@ -1,0 +1,342 @@
+- generic [active] [ref=f6e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=f6e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=f6e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=f6e8]:
+    - search [ref=f6e9]:
+      - generic [ref=f6e12]:
+        - link [ref=f6e506] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=f6e507]
+        - generic [ref=f6e14]:
+          - combobox "Buscar" [ref=f6e17]: 2026 independent cinema ticketing software seat selection QR pricing official 2026 independent cinema ticketing software seat selection QR pricing official
+          - generic [ref=f6e18]:
+            - button "Borrar" [ref=f6e20] [cursor=pointer]
+            - generic [ref=f6e25]:
+              - button "Búsqueda por voz" [ref=f6e26] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=f6e29] [cursor=pointer]
+        - button "Buscar" [ref=f6e32] [cursor=pointer]
+    - generic [ref=f6e37]:
+      - button "Configuración" [ref=f6e39] [cursor=pointer]
+      - button "Compartir" [ref=f6e40] [cursor=pointer]
+      - generic [ref=f6e46]:
+        - button "Aplicaciones de Google" [ref=f6e48] [cursor=pointer]
+        - link "Iniciar sesión" [ref=f6e53] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3D2026%2Bindependent%2Bcinema%2Bticketing%2Bsoftware%2Bseat%2Bselection%2BQR%2Bpricing%2Bofficial%26sei%3D4ch2auLCDIrR1sQPo7m-8QE&ec=futura_srp_og_si_72236_p
+  - generic [ref=f6e55]:
+    - navigation [ref=f6e61]:
+      - generic [ref=f6e63]:
+        - list [ref=f6e64]:
+          - listitem [ref=f6e65]:
+            - link "Modo IA" [ref=f6e68] [cursor=pointer]:
+              - /url: /search?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sca_esv=e1601e901c686944&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jzepfSUHjZn-_2Cj0yz2C4Cx_dCX03Hcd9iP2ZOfOUStaayYslFOy1C4AE1BY0Zr-UjX6zr8TE1mc9e6rF9if8vKFOz2Xg7kq1mH5b2fNo5qNeTEJnvKmyBQfaI7qlITVw_2Dkhc1Oj6P8091Mdk6HXyl4vgBQd_Wc30wJJwajoIg2gZjw&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ2J8OegQIERAD
+          - listitem [ref=f6e72]:
+            - link "Todo" [disabled] [ref=f6e73]
+          - listitem [ref=f6e76]:
+            - link "Shopping" [ref=f6e77] [cursor=pointer]:
+              - /url: /search?sca_esv=e1601e901c686944&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jzepfSUHjZn-_2Cj0yz2C4Cx_dCX03Hcd9iP2ZOfOUStaayYslFOy1C4AE1BY0Zr-UjX6zr8TE1mc9e6rF9if8vKFOz2Xg7kq1mH5b2fNo5qNeTEJnvKmyBQfaI7qlITVw_2Dkhc1Oj6P8091Mdk6HXyl4vgBQd_Wc30wJJwajoIg2gZjw&q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&ved=1t:220175&ictx=111
+          - listitem [ref=f6e80]:
+            - link "Noticias" [ref=f6e81] [cursor=pointer]:
+              - /url: /search?sca_esv=e1601e901c686944&q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jzepfSUHjZn-_2Cj0yz2C4Cx_dCX03Hcd9iP2ZOfOUStaayYslFOy1C4AE1BY0Zr-UjX6zr8TE1mc9e6rF9if8vKFOz2Xg7kq1mH5b2fNo5qNeTEJnvKmyBQfaI7qlITVw_2Dkhc1Oj6P8091Mdk6HXyl4vgBQd_Wc30wJJwajoIg2gZjw&sa=X&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ0pQJegQIFRAB
+          - listitem [ref=f6e84]:
+            - link "Imágenes" [ref=f6e85] [cursor=pointer]:
+              - /url: /search?sca_esv=e1601e901c686944&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jzepfSUHjZn-_2Cj0yz2C4Cx_dCX03Hcd9iP2ZOfOUStaayYslFOy1C4AE1BY0Zr-UjX6zr8TE1mc9e6rF9if8vKFOz2Xg7kq1mH5b2fNo5qNeTEJnvKmyBQfaI7qlITVw_2Dkhc1Oj6P8091Mdk6HXyl4vgBQd_Wc30wJJwajoIg2gZjw&q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sa=X&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQtKgLegQIFhAB
+          - listitem [ref=f6e88]:
+            - link "Vídeos cortos" [ref=f6e89] [cursor=pointer]:
+              - /url: /search?sca_esv=e1601e901c686944&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jzepfSUHjZn-_2Cj0yz2C4Cx_dCX03Hcd9iP2ZOfOUStaayYslFOy1C4AE1BY0Zr-UjX6zr8TE1mc9e6rF9if8vKFOz2Xg7kq1mH5b2fNo5qNeTEJnvKmyBQfaI7qlITVw_2Dkhc1Oj6P8091Mdk6HXyl4vgBQd_Wc30wJJwajoIg2gZjw&q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sa=X&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQs6gLegQIFBAB
+          - listitem [ref=f6e92]:
+            - link "Vídeos" [ref=f6e93] [cursor=pointer]:
+              - /url: /search?sca_esv=e1601e901c686944&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDIYSbg_8HIOW5OUNaSh5T1WngeTYeblcOM7-XUX2V1jzepfSUHjZn-_2Cj0yz2C4Cx_dCX03Hcd9iP2ZOfOUStaayYslFOy1C4AE1BY0Zr-UjX6zr8TE1mc9e6rF9if8vKFOz2Xg7kq1mH5b2fNo5qNeTEJnvKmyBQfaI7qlITVw_2Dkhc1Oj6P8091Mdk6HXyl4vgBQd_Wc30wJJwajoIg2gZjw&q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sa=X&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQtKgLegQIExAB
+          - listitem [ref=f6e96]:
+            - button [ref=f6e97] [cursor=pointer]:
+              - generic "Más filtros" [ref=f6e98]: Más
+        - button "Herramientas" [ref=f6e522] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=f6e104]
+    - generic [ref=f6e109]:
+      - generic [ref=f6e531]:
+        - generic [ref=f6e533]:
+          - generic [ref=f6e535]:
+            - heading "Visión general creada por IA" [level=2] [ref=f6e539]
+            - button "Acerca de este resultado" [ref=f6e543]
+          - generic [ref=f6e570]:
+            - text: Top independent cinema software options like
+            - mark [ref=f6e571]:
+              - link "Veezi" [ref=f6e573] [cursor=pointer]:
+                - /url: https://www.veezi.com/
+              - text: ","
+              - link "SimpleTix" [ref=f6e575] [cursor=pointer]:
+                - /url: https://www.simpletix.com/movie-theaters/
+              - text: ", and"
+              - link "Ticketor" [ref=f6e577] [cursor=pointer]:
+                - /url: https://www.ticketor.com/Movie-Theaters
+            - text: provide official digital tools featuring interactive visual seat selection, instant QR-code generation for contactless scanning at the door, and flexible or transparent tiered pricing models tailored to independent exhibitors.
+            - generic [ref=f6e579]:
+              - link "finlo.in (+2) - Ver enlaces relacionados" [ref=f6e580] [cursor=pointer]:
+                - /url: https://finlo.in/cinema-hall-ticketing-system.html
+              - button "finlo.in (+2) - Ver enlaces relacionados" [disabled] [ref=f6e581]:
+                - generic [ref=f6e583]:
+                  - generic [ref=f6e584]: finlo.in
+                  - generic [ref=f6e585]: "+2"
+        - button "Mostrar más Visión general creada por IA" [ref=f6e602]:
+          - generic [ref=f6e603] [cursor=pointer]: Mostrar más
+      - main [ref=f6e137]:
+        - generic [ref=f6e141]:
+          - generic [ref=f6e144]:
+            - heading "Web results" [level=2] [ref=f6e145]
+            - generic [ref=f6e146]:
+              - generic [ref=f6e149]:
+                - link "Encine cinema software & theatre software encine.be https://encine.be › Home › Contact" [ref=f6e151] [cursor=pointer]:
+                  - /url: https://encine.be/encine/en/
+                  - heading "Encine cinema software & theatre software" [level=3] [ref=f6e152]
+                  - generic [ref=f6e158]:
+                    - generic [ref=f6e159]: encine.be
+                    - generic [ref=f6e161]: https://encine.be › Home › Contact
+                - generic [ref=f6e163]:
+                  - generic [ref=f6e164]: ·
+                  - link "Traducir esta página" [ref=f6e165] [cursor=pointer]:
+                    - /url: https://translate.google.com/translate?u=https://encine.be/encine/en/&hl=es&sl=en&tl=es&client=search
+                - button "Acerca de este resultado" [ref=f6e168] [cursor=pointer]
+              - generic [ref=f6e175]:
+                - emphasis [ref=f6e176]: Cinema software
+                - text: ","
+                - emphasis [ref=f6e177]: theatre software
+                - text: and box office
+                - emphasis [ref=f6e178]: software
+                - text: for
+                - emphasis [ref=f6e179]: independent
+                - text: "venues:"
+                - emphasis [ref=f6e180]: ticketing
+                - text: ", POS, bar, website and access control in one platform."
+          - generic [ref=f6e184]:
+            - generic [ref=f6e187]:
+              - 'link "Top 10 Best Cinema Ticketing Software: 2026 Comparison Gitnux https://gitnux.org › best › cinema-..." [ref=f6e189] [cursor=pointer]':
+                - /url: https://gitnux.org/best/cinema-ticketing-software/
+                - 'heading "Top 10 Best Cinema Ticketing Software: 2026 Comparison" [level=3] [ref=f6e190]'
+                - generic [ref=f6e196]:
+                  - generic [ref=f6e197]: Gitnux
+                  - generic [ref=f6e199]: https://gitnux.org › best › cinema-...
+              - generic [ref=f6e201]:
+                - generic [ref=f6e202]: ·
+                - link "Traducir esta página" [ref=f6e203] [cursor=pointer]:
+                  - /url: https://translate.google.com/translate?u=https://gitnux.org/best/cinema-ticketing-software/&hl=es&sl=en&tl=es&client=search
+              - button "Acerca de este resultado" [ref=f6e206] [cursor=pointer]
+            - generic [ref=f6e212]:
+              - generic [ref=f6e213]: 12 mar 2026 —
+              - generic [ref=f6e214]:
+                - text: Tixbox.
+                - emphasis [ref=f6e215]: QR code ticketing with
+                - text: fast scan validation for cinema entry. Built for cinema operators needing seat selection, QR check-in, and ...
+          - generic [ref=f6e219]:
+            - generic [ref=f6e222]:
+              - link "7 Best NPS Software for Cinemas and Entertainment Venues ... npskit.com https://npskit.com › blog › 7-best-..." [ref=f6e224] [cursor=pointer]:
+                - /url: https://npskit.com/blog/7-best-nps-software-for-cinemas-and-entertainment-venues-in-2026
+                - heading "7 Best NPS Software for Cinemas and Entertainment Venues ..." [level=3] [ref=f6e225]
+                - generic [ref=f6e234]:
+                  - generic [ref=f6e235]: npskit.com
+                  - generic [ref=f6e237]: https://npskit.com › blog › 7-best-...
+              - generic [ref=f6e239]:
+                - generic [ref=f6e240]: ·
+                - link "Traducir esta página" [ref=f6e241] [cursor=pointer]:
+                  - /url: https://translate.google.com/translate?u=https://npskit.com/blog/7-best-nps-software-for-cinemas-and-entertainment-venues-in-2026&hl=es&sl=en&tl=es&client=search
+              - button "Acerca de este resultado" [ref=f6e244] [cursor=pointer]
+            - generic [ref=f6e250]:
+              - generic [ref=f6e251]: 28 jul 2026 —
+              - generic [ref=f6e252]:
+                - text: Compare 7 best NPS
+                - emphasis [ref=f6e253]: software
+                - text: for cinemas in
+                - emphasis [ref=f6e254]: "2026"
+                - text: ": in-lobby"
+                - emphasis [ref=f6e255]: QR
+                - text: and post-showtime NPS,
+                - emphasis [ref=f6e256]: cinema
+                - text: nps, entertainment venue feedback, ...
+          - generic [ref=f6e260]:
+            - generic [ref=f6e263]:
+              - link "cinema hall ticketing - Movie Theater Management Software finlo.in https://finlo.in › cinema-hall-tick..." [ref=f6e265] [cursor=pointer]:
+                - /url: https://finlo.in/cinema-hall-ticketing-system.html
+                - heading "cinema hall ticketing - Movie Theater Management Software" [level=3] [ref=f6e266]
+                - generic [ref=f6e272]:
+                  - generic [ref=f6e273]: finlo.in
+                  - generic [ref=f6e275]: https://finlo.in › cinema-hall-tick...
+              - generic [ref=f6e277]:
+                - generic [ref=f6e278]: ·
+                - link "Traducir esta página" [ref=f6e279] [cursor=pointer]:
+                  - /url: https://translate.google.com/translate?u=https://finlo.in/cinema-hall-ticketing-system.html&hl=es&sl=en&tl=es&client=search
+              - button "Acerca de este resultado" [ref=f6e282] [cursor=pointer]
+            - generic [ref=f6e289]:
+              - text: ✓Interactive
+              - emphasis [ref=f6e290]: Seat Selection
+              - text: – Visual auditorium layouts allowing moviegoers to
+              - emphasis [ref=f6e291]: select
+              - text: specific
+              - emphasis [ref=f6e292]: seats
+              - text: seeing real-time availability and category
+              - emphasis [ref=f6e293]: pricing
+              - text: .
+          - generic [ref=f6e297]:
+            - generic [ref=f6e300]:
+              - link "Cinema Webshop Software – Ticketing, Concessions & ... Compeso https://compeso.com › solutions" [ref=f6e302] [cursor=pointer]:
+                - /url: https://compeso.com/en/solutions/webshop/
+                - heading "Cinema Webshop Software – Ticketing, Concessions & ..." [level=3] [ref=f6e303]
+                - generic [ref=f6e309]:
+                  - generic [ref=f6e310]: Compeso
+                  - generic [ref=f6e312]: https://compeso.com › solutions
+              - generic [ref=f6e314]:
+                - generic [ref=f6e315]: ·
+                - link "Traducir esta página" [ref=f6e316] [cursor=pointer]:
+                  - /url: https://translate.google.com/translate?u=https://compeso.com/en/solutions/webshop/&hl=es&sl=en&tl=es&client=search
+              - button "Acerca de este resultado" [ref=f6e319] [cursor=pointer]
+            - generic [ref=f6e325]:
+              - generic [ref=f6e326]:
+                - generic [ref=f6e327]: hace 6 horas
+                - text: —
+              - generic [ref=f6e328]:
+                - text: Guests book online,
+                - emphasis [ref=f6e329]: select
+                - text: their
+                - emphasis [ref=f6e330]: seats
+                - text: and pre-order snacks. A
+                - emphasis [ref=f6e331]: QR
+                - text: code at admission is all it takes. Your team has more capacity for walk-in ...
+          - generic [ref=f6e335]:
+            - generic [ref=f6e338]:
+              - 'link "Event Ticketing System: A Buyer''s Guide for 2026 Seatfun https://www.seatfun.com › blog" [ref=f6e340] [cursor=pointer]':
+                - /url: https://www.seatfun.com/blog/event-ticketing-system
+                - 'heading "Event Ticketing System: A Buyer''s Guide for 2026" [level=3] [ref=f6e341]'
+                - generic [ref=f6e347]:
+                  - generic [ref=f6e348]: Seatfun
+                  - generic [ref=f6e350]: https://www.seatfun.com › blog
+              - generic [ref=f6e352]:
+                - generic [ref=f6e353]: ·
+                - link "Traducir esta página" [ref=f6e354] [cursor=pointer]:
+                  - /url: https://translate.google.com/translate?u=https://www.seatfun.com/blog/event-ticketing-system&hl=es&sl=en&tl=es&client=search
+              - button "Acerca de este resultado" [ref=f6e357] [cursor=pointer]
+            - generic [ref=f6e363]:
+              - generic [ref=f6e364]: 30 jul 2026 —
+              - generic [ref=f6e365]:
+                - text: What is an event
+                - emphasis [ref=f6e366]: ticketing system
+                - text: "and how do you choose one? A buyer's guide to the features that matter:"
+                - emphasis [ref=f6e367]: fees
+                - text: ", payouts, box office, ..."
+          - generic [ref=f6e371]:
+            - generic [ref=f6e374]:
+              - 'link "CINEsync: Cinema POS | Theater & Cinema Software CINEsync.io https://www.cinesync.io" [ref=f6e376] [cursor=pointer]':
+                - /url: https://www.cinesync.io/
+                - 'heading "CINEsync: Cinema POS | Theater & Cinema Software" [level=3] [ref=f6e377]'
+                - generic [ref=f6e383]:
+                  - generic [ref=f6e384]: CINEsync.io
+                  - generic [ref=f6e386]: https://www.cinesync.io
+              - generic [ref=f6e388]:
+                - generic [ref=f6e389]: ·
+                - link "Traducir esta página" [ref=f6e390] [cursor=pointer]:
+                  - /url: https://translate.google.com/translate?u=https://www.cinesync.io/&hl=es&sl=en&tl=es&client=search
+              - button "Acerca de este resultado" [ref=f6e393] [cursor=pointer]
+            - generic [ref=f6e400]:
+              - text: Discover CINEsync's Cinema POS and management software,
+              - emphasis [ref=f6e401]: perfect for independent cinemas
+              - text: and cinema circuits. Streamline operations and enhance customer ...
+          - generic [ref=f6e405]:
+            - generic [ref=f6e408]:
+              - link "Best Event Ticketing Platforms for Theaters (2026 Guide) AudienceView https://audienceview.com › best-..." [ref=f6e410] [cursor=pointer]:
+                - /url: https://audienceview.com/thought-leadership/best-event-ticketing-platforms-for-theaters-2026-guide/
+                - heading "Best Event Ticketing Platforms for Theaters (2026 Guide)" [level=3] [ref=f6e411]
+                - generic [ref=f6e417]:
+                  - generic [ref=f6e418]: AudienceView
+                  - generic [ref=f6e420]: https://audienceview.com › best-...
+              - generic [ref=f6e422]:
+                - generic [ref=f6e423]: ·
+                - link "Traducir esta página" [ref=f6e424] [cursor=pointer]:
+                  - /url: https://translate.google.com/translate?u=https://audienceview.com/thought-leadership/best-event-ticketing-platforms-for-theaters-2026-guide/&hl=es&sl=en&tl=es&client=search
+              - button "Acerca de este resultado" [ref=f6e427] [cursor=pointer]
+            - generic [ref=f6e434]:
+              - text: This guide breaks down the top
+              - emphasis [ref=f6e435]: ticketing
+              - text: platforms for performing arts
+              - emphasis [ref=f6e436]: theaters
+              - text: ", with clear insights, strengths, use cases, and how they compare. What"
+              - emphasis [ref=f6e437]: Theaters
+              - text: ...
+          - generic [ref=f6e441]:
+            - generic [ref=f6e444]:
+              - link "Cinema Ticketing Software - Omniterm omniterm.com https://omniterm.com › cinema-tic..." [ref=f6e446] [cursor=pointer]:
+                - /url: https://omniterm.com/cinema-ticketing-software/
+                - heading "Cinema Ticketing Software - Omniterm" [level=3] [ref=f6e447]
+                - generic [ref=f6e453]:
+                  - generic [ref=f6e454]: omniterm.com
+                  - generic [ref=f6e456]: https://omniterm.com › cinema-tic...
+              - generic [ref=f6e458]:
+                - generic [ref=f6e459]: ·
+                - link "Traducir esta página" [ref=f6e460] [cursor=pointer]:
+                  - /url: https://translate.google.com/translate?u=https://omniterm.com/cinema-ticketing-software/&hl=es&sl=en&tl=es&client=search
+              - button "Acerca de este resultado" [ref=f6e463] [cursor=pointer]
+            - generic [ref=f6e470]:
+              - text: Manage
+              - emphasis [ref=f6e471]: film
+              - text: scheduling,
+              - emphasis [ref=f6e472]: pricing
+              - text: ", and"
+              - emphasis [ref=f6e473]: seating
+              - text: with ease. Store posters, trailers, ratings, and synopses in a central location to use for online
+              - emphasis [ref=f6e474]: ticketing
+              - text: ", ..."
+            - generic [ref=f6e475]: "Falta(n): independent ‎QR"
+        - navigation [ref=f6e479]:
+          - heading "Navegación de páginas" [level=1] [ref=f6e480]
+          - text: "1"
+          - link "Page 2" [ref=f6e483] [cursor=pointer]:
+            - /url: /search?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sca_esv=e1601e901c686944&ei=4ch2arrpFPbe1sQPhpDNoQs&start=10&sa=N&sstk=AU9db-CBbEQSiFgIa9BuaOiZ0BBdtpBTNK8Qu_LA065nb_utzYdzmz12XHCud2O2Co115cVEi6ub7If5vBWkiFUYKnaRRgGY44ocGw&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ8tMDegQIJxAE
+            - text: "2"
+          - link "Page 3" [ref=f6e485] [cursor=pointer]:
+            - /url: /search?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sca_esv=e1601e901c686944&ei=4ch2arrpFPbe1sQPhpDNoQs&start=20&sa=N&sstk=AU9db-CBbEQSiFgIa9BuaOiZ0BBdtpBTNK8Qu_LA065nb_utzYdzmz12XHCud2O2Co115cVEi6ub7If5vBWkiFUYKnaRRgGY44ocGw&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ8tMDegQIJxAG
+            - text: "3"
+          - link "Page 4" [ref=f6e487] [cursor=pointer]:
+            - /url: /search?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sca_esv=e1601e901c686944&ei=4ch2arrpFPbe1sQPhpDNoQs&start=30&sa=N&sstk=AU9db-CBbEQSiFgIa9BuaOiZ0BBdtpBTNK8Qu_LA065nb_utzYdzmz12XHCud2O2Co115cVEi6ub7If5vBWkiFUYKnaRRgGY44ocGw&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ8tMDegQIJxAI
+            - text: "4"
+          - link "Page 5" [ref=f6e489] [cursor=pointer]:
+            - /url: /search?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sca_esv=e1601e901c686944&ei=4ch2arrpFPbe1sQPhpDNoQs&start=40&sa=N&sstk=AU9db-CBbEQSiFgIa9BuaOiZ0BBdtpBTNK8Qu_LA065nb_utzYdzmz12XHCud2O2Co115cVEi6ub7If5vBWkiFUYKnaRRgGY44ocGw&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ8tMDegQIJxAK
+            - text: "5"
+          - link "Page 6" [ref=f6e491] [cursor=pointer]:
+            - /url: /search?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sca_esv=e1601e901c686944&ei=4ch2arrpFPbe1sQPhpDNoQs&start=50&sa=N&sstk=AU9db-CBbEQSiFgIa9BuaOiZ0BBdtpBTNK8Qu_LA065nb_utzYdzmz12XHCud2O2Co115cVEi6ub7If5vBWkiFUYKnaRRgGY44ocGw&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ8tMDegQIJxAM
+            - text: "6"
+          - link "Page 7" [ref=f6e493] [cursor=pointer]:
+            - /url: /search?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sca_esv=e1601e901c686944&ei=4ch2arrpFPbe1sQPhpDNoQs&start=60&sa=N&sstk=AU9db-CBbEQSiFgIa9BuaOiZ0BBdtpBTNK8Qu_LA065nb_utzYdzmz12XHCud2O2Co115cVEi6ub7If5vBWkiFUYKnaRRgGY44ocGw&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ8tMDegQIJxAO
+            - text: "7"
+          - link "Page 8" [ref=f6e495] [cursor=pointer]:
+            - /url: /search?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sca_esv=e1601e901c686944&ei=4ch2arrpFPbe1sQPhpDNoQs&start=70&sa=N&sstk=AU9db-CBbEQSiFgIa9BuaOiZ0BBdtpBTNK8Qu_LA065nb_utzYdzmz12XHCud2O2Co115cVEi6ub7If5vBWkiFUYKnaRRgGY44ocGw&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ8tMDegQIJxAQ
+            - text: "8"
+          - link "Page 9" [ref=f6e497] [cursor=pointer]:
+            - /url: /search?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sca_esv=e1601e901c686944&ei=4ch2arrpFPbe1sQPhpDNoQs&start=80&sa=N&sstk=AU9db-CBbEQSiFgIa9BuaOiZ0BBdtpBTNK8Qu_LA065nb_utzYdzmz12XHCud2O2Co115cVEi6ub7If5vBWkiFUYKnaRRgGY44ocGw&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ8tMDegQIJxAS
+            - text: "9"
+          - link "Page 10" [ref=f6e499] [cursor=pointer]:
+            - /url: /search?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sca_esv=e1601e901c686944&ei=4ch2arrpFPbe1sQPhpDNoQs&start=90&sa=N&sstk=AU9db-CBbEQSiFgIa9BuaOiZ0BBdtpBTNK8Qu_LA065nb_utzYdzmz12XHCud2O2Co115cVEi6ub7If5vBWkiFUYKnaRRgGY44ocGw&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ8tMDegQIJxAU
+            - text: "10"
+          - heading [level=2] [ref=f6e501]:
+            - link "Siguiente" [ref=f6e502] [cursor=pointer]:
+              - /url: /search?q=2026+independent+cinema+ticketing+software+seat+selection+QR+pricing+official&sca_esv=e1601e901c686944&ei=4ch2arrpFPbe1sQPhpDNoQs&start=10&sa=N&sstk=AU9db-CBbEQSiFgIa9BuaOiZ0BBdtpBTNK8Qu_LA065nb_utzYdzmz12XHCud2O2Co115cVEi6ub7If5vBWkiFUYKnaRRgGY44ocGw&ved=2ahUKEwj63cGVsJCWAxV2r5UCHQZIM7QQ8NMDegQIJxAW
+        - navigation
+    - contentinfo [ref=f6e610]:
+      - heading "Vínculos a pie de página" [level=1] [ref=f6e505]
+      - generic [ref=f6e614]:
+        - generic [ref=f6e616]:
+          - text: Argentina
+          - generic [ref=f6e618]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=f6e620] [cursor=pointer]:
+              - generic [ref=f6e621]: Iriondo, Santa Fe
+              - generic [ref=f6e623]:
+                - text: "-"
+                - generic [ref=f6e624]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=f6e626] [cursor=pointer]
+        - generic [ref=f6e629]:
+          - link "Ayuda" [ref=f6e630] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=f6e631] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=f6e632] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=f6e633] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

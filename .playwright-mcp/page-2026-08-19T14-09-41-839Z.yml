@@ -1,0 +1,222 @@
+- generic [active]:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Importar Matriz 2D
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                        - text: Duplicado
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 0 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell: No hay resultados
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 0
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button [disabled]: Siguiente
+    - region "Notifications alt+T":
+      - list:
+        - listitem:
+          - generic: Error al crear producto
+  - generic: $0k
+  - dialog [ref=e3655]:
+    - generic [ref=e3663]:
+      - heading "Nuevo Producto" [level=2] [ref=e3664]
+      - paragraph [ref=e3665]: Cargá un producto simple o un modelo con matriz de talles y colores
+    - generic [ref=e3667]:
+      - generic [ref=e3668]:
+        - generic [ref=e3673]:
+          - heading "Modo de Carga Textil" [level=3] [ref=e3674]
+          - paragraph [ref=e3675]: Seleccioná si ingresás un artículo individual o un modelo con matriz de talles y colores.
+        - generic [ref=e3676]:
+          - button "Producto Simple" [ref=e3677] [cursor=pointer]
+          - button "Matriz de Talles y Colores" [ref=e3678] [cursor=pointer]
+      - generic [ref=e3679]:
+        - generic [ref=e3680]:
+          - heading "Información Principal" [level=3] [ref=e3681]
+          - generic [ref=e3682]:
+            - generic [ref=e3683]: Nombre del Producto *
+            - textbox "Nombre del Producto *" [ref=e3684]:
+              - /placeholder: "Ej: Shampoo Sedal 400ml"
+              - text: Duplicado Remera Test
+          - generic [ref=e3685]:
+            - text: Descripción
+            - textbox "Descripción" [ref=e3686]:
+              - /placeholder: "Ej: Confeccionada en algodón peinado premium"
+            - paragraph [ref=e3687]: Información adicional (opcional)
+          - generic [ref=e3688]:
+            - generic [ref=e3689]: Marca
+            - combobox [ref=e3690] [cursor=pointer]: Buscar o crear marca...
+            - paragraph [ref=e3694]: Selecciona una existente o escribe para crear una nueva
+          - generic [ref=e3695]:
+            - text: Categoría
+            - generic [ref=e3696]:
+              - combobox "Categoría" [ref=e3697] [cursor=pointer]:
+                - generic: Sin categoría
+              - combobox [ref=e3700]
+              - button "Crear nueva categoría" [ref=e3701] [cursor=pointer]
+            - paragraph [ref=e3703]: Categoría del producto (opcional)
+          - generic [ref=e3704]:
+            - text: Código de Barras
+            - textbox "Código de Barras" [ref=e3705]:
+              - /placeholder: "Ej: 7791234567890"
+              - text: "7790310000017"
+            - paragraph [ref=e3706]: Código de barras del producto (opcional)
+          - generic [ref=e3707]:
+            - heading "Ficha Técnica de Indumentaria & Calzado" [level=3] [ref=e3708]
+            - generic [ref=e3711]:
+              - generic [ref=e3712]:
+                - text: Temporada
+                - combobox "Temporada" [ref=e3713]
+                - generic [ref=e3714]:
+                  - button "+ Primavera-Verano 2026" [ref=e3715] [cursor=pointer]
+                  - button "+ Otoño-Invierno 2026" [ref=e3716] [cursor=pointer]
+                  - button "+ Atemporal" [ref=e3717] [cursor=pointer]
+              - generic [ref=e3718]:
+                - text: Colección / Línea
+                - combobox "Colección / Línea" [ref=e3719]
+                - generic [ref=e3720]:
+                  - button "+ Cápsula E2E" [ref=e3721] [cursor=pointer]
+                  - button "+ Línea Básica" [ref=e3722] [cursor=pointer]
+                  - button "+ Línea Urbana" [ref=e3723] [cursor=pointer]
+            - generic [ref=e3724]:
+              - generic [ref=e3725]:
+                - text: Composición Textil
+                - combobox "Composición Textil" [ref=e3726]
+                - generic [ref=e3727]:
+                  - button "+ 100% Algodón Peinado 24/1" [ref=e3728] [cursor=pointer]
+                  - button "+ 98% Algodón / 2% Elastano" [ref=e3729] [cursor=pointer]
+                  - button "+ Rústico con Lycra" [ref=e3730] [cursor=pointer]
+              - generic [ref=e3731]:
+                - text: Instrucciones de Cuidado / Lavado
+                - combobox "Instrucciones de Cuidado / Lavado" [ref=e3732]
+                - generic [ref=e3733]:
+                  - button "+ Lavar con agua fría a mano" [ref=e3734] [cursor=pointer]
+                  - button "+ No usar blanqueador / cloro" [ref=e3735] [cursor=pointer]
+            - generic [ref=e3736]:
+              - generic [ref=e3737]:
+                - generic [ref=e3738]: Política de Cambio
+                - combobox "Política de Cambio" [ref=e3741] [cursor=pointer]:
+                  - generic: Estándar (30 días de cambio)
+                - combobox [ref=e3744]
+              - generic [ref=e3745]:
+                - text: País de Origen
+                - textbox "País de Origen" [ref=e3746]:
+                  - /placeholder: "Ej: Argentina"
+        - generic [ref=e3747]:
+          - heading "Precios, Ganancia y Stock" [level=3] [ref=e3748]
+          - generic [ref=e3750]:
+            - generic [ref=e3751]:
+              - generic [ref=e3752]: Precio Fijo
+              - paragraph [ref=e3755]: Cuando está activado, cargás el precio de venta directamente. Cuando está desactivado, el sistema calcula el precio desde el costo y el margen.
+            - checkbox "Precio Fijo" [checked] [ref=e3756] [cursor=pointer]
+            - checkbox [checked]
+          - generic [ref=e3757]:
+            - generic [ref=e3758]:
+              - generic [ref=e3759]: Precio Final *
+              - textbox "Precio Final *" [ref=e3760]:
+                - /placeholder: "0.00"
+                - text: "2000"
+              - paragraph [ref=e3761]: Precio de venta directo
+            - generic [ref=e3762]:
+              - generic [ref=e3763]: Stock Inicial *
+              - textbox "Stock Inicial *" [ref=e3764]:
+                - /placeholder: "0"
+                - text: "0"
+              - paragraph [ref=e3765]: Cantidad disponible
+          - generic [ref=e3767]:
+            - generic [ref=e3768]:
+              - text: Venta por peso o medida
+              - paragraph [ref=e3769]: Permite decimales y códigos pesables.
+            - checkbox "Venta por peso o medida" [ref=e3770] [cursor=pointer]
+            - checkbox
+      - button "Guardar Producto" [ref=e3772] [cursor=pointer]
+    - button "Close" [ref=e3773] [cursor=pointer]

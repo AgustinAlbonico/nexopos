@@ -1,0 +1,218 @@
+- generic [active] [ref=e12]:
+  - generic [ref=e13]:
+    - generic [ref=e49]:
+      - generic [ref=e50]:
+        - link "NP" [ref=e52] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=e54]:
+          - generic [ref=e55]:
+            - link [ref=e57] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=e64] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=e70] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=e76] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=e80] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=e85] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=e92] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=e97] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=e104] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=e110] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=e116] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=e120] [cursor=pointer]:
+              - /url: "#/inventory/locations"
+            - link [ref=e132] [cursor=pointer]:
+              - /url: "#/inventory/replenishment"
+            - link [ref=e137] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=e142] [cursor=pointer]
+      - main [ref=e147]:
+        - generic [ref=e361]:
+          - generic [ref=e362]:
+            - generic [ref=e363]:
+              - heading "Productos" [level=1] [ref=e364]
+              - paragraph [ref=e365]: Cargá productos con nombre, costo y stock
+            - generic [ref=e366]:
+              - button "Categorías" [ref=e367] [cursor=pointer]
+              - button "Nuevo Producto" [ref=e371] [cursor=pointer]
+          - generic [ref=e374]:
+            - generic [ref=e375]:
+              - generic [ref=e376]:
+                - textbox "Buscar producto..." [ref=e377]
+                - generic [ref=e378]:
+                  - combobox [ref=e379] [cursor=pointer]:
+                    - generic: Todas las categorías
+                  - combobox [ref=e382] [cursor=pointer]:
+                    - generic [ref=e383]: Todas las marcas
+                  - combobox [ref=e384] [cursor=pointer]:
+                    - generic: Todo el stock
+              - generic [ref=e387]: 12 registro(s)
+            - table [ref=e390]:
+              - rowgroup [ref=e391]:
+                - row [ref=e392]:
+                  - columnheader [ref=e393]:
+                    - button "Producto" [ref=e716] [cursor=pointer]
+                  - columnheader "Categoría" [ref=e398]
+                  - columnheader "Marca" [ref=e399]
+                  - columnheader "Costo" [ref=e400]
+                  - columnheader [ref=e401]:
+                    - button "Precio" [ref=e720] [cursor=pointer]
+                  - columnheader [ref=e406]:
+                    - button "Stock" [ref=e724] [cursor=pointer]
+                  - columnheader [ref=e411]
+              - rowgroup [ref=e412]:
+                - row [ref=e413]:
+                  - cell [ref=e414]:
+                    - paragraph [ref=e729]: Coca-Cola 1.5L
+                  - cell "Limpieza" [ref=e417]
+                  - cell "-" [ref=e419]
+                  - cell "$ 0,00" [ref=e420]
+                  - cell "$ 500,00 0.0% ganancia" [ref=e421]:
+                    - generic [ref=e731]:
+                      - generic [ref=e732]: $ 500,00
+                      - generic [ref=e733]: 0.0% ganancia
+                  - cell "10" [ref=e425]
+                  - cell [ref=e428]:
+                    - button "Abrir menú" [ref=e736] [cursor=pointer]
+                - row [ref=e435]:
+                  - cell [ref=e436]:
+                    - paragraph [ref=e743]: Detergente Ala 750ml
+                  - cell "Bebidas (50%)" [ref=e439]:
+                    - generic [ref=e744]:
+                      - text: Bebidas
+                      - generic [ref=e745]: (50%)
+                  - cell "-" [ref=e442]
+                  - cell "$ 100,00" [ref=e443]
+                  - cell "$ 150,00 50.0% ganancia" [ref=e444]:
+                    - generic [ref=e746]:
+                      - generic [ref=e747]: $ 150,00
+                      - generic [ref=e748]: 50.0% ganancia
+                  - cell "8" [ref=e448]
+                  - cell [ref=e451]:
+                    - button "Abrir menú" [ref=e751] [cursor=pointer]
+                - row [ref=e458]:
+                  - cell [ref=e459]:
+                    - paragraph [ref=e758]: Lavandina Ayudín 1L
+                  - cell "Limpieza" [ref=e462]
+                  - cell "-" [ref=e464]
+                  - cell "$ 100,00" [ref=e465]
+                  - cell "$ 140,00 40.0% ganancia" [ref=e466]:
+                    - generic [ref=e760]:
+                      - generic [ref=e761]: $ 140,00
+                      - generic [ref=e762]: 40.0% ganancia
+                  - cell "12" [ref=e470]
+                  - cell [ref=e473]:
+                    - button "Abrir menú" [ref=e765] [cursor=pointer]
+                - row [ref=e480]:
+                  - cell [ref=e481]:
+                    - paragraph [ref=e772]: Lector
+                  - cell "-" [ref=e484]
+                  - cell "-" [ref=e485]
+                  - cell "$ 10.000,00" [ref=e486]
+                  - cell "$ 13.000,00 30.0% ganancia" [ref=e487]:
+                    - generic [ref=e773]:
+                      - generic [ref=e774]: $ 13.000,00
+                      - generic [ref=e775]: 30.0% ganancia
+                  - cell "-11" [ref=e491]
+                  - cell [ref=e494]:
+                    - button "Abrir menú" [ref=e778] [cursor=pointer]
+                - row [ref=e501]:
+                  - cell [ref=e502]:
+                    - paragraph [ref=e785]: preuba
+                  - cell "-" [ref=e505]
+                  - cell "-" [ref=e506]
+                  - cell "$ 0,00" [ref=e507]
+                  - cell "$ 1.000,00 0.0% ganancia" [ref=e508]:
+                    - generic [ref=e786]:
+                      - generic [ref=e787]: $ 1.000,00
+                      - generic [ref=e788]: 0.0% ganancia
+                  - cell "990" [ref=e512]
+                  - cell [ref=e515]:
+                    - button "Abrir menú" [ref=e791] [cursor=pointer]
+                - row [ref=e522]:
+                  - cell [ref=e523]:
+                    - paragraph [ref=e798]: Shampoo Sedal 400ml
+                  - cell "-" [ref=e526]
+                  - cell "-" [ref=e527]
+                  - cell "$ 50,00" [ref=e528]
+                  - cell "$ 65,00 30.0% ganancia" [ref=e529]:
+                    - generic [ref=e799]:
+                      - generic [ref=e800]: $ 65,00
+                      - generic [ref=e801]: 30.0% ganancia
+                  - cell "15" [ref=e533]
+                  - cell [ref=e536]:
+                    - button "Abrir menú" [ref=e804] [cursor=pointer]
+                - row [ref=e543]:
+                  - cell [ref=e544]:
+                    - paragraph [ref=e811]: TEST-DELETE
+                  - cell "-" [ref=e547]
+                  - cell "-" [ref=e548]
+                  - cell "$ 100,00" [ref=e549]
+                  - cell "$ 130,00 30.0% ganancia" [ref=e550]:
+                    - generic [ref=e812]:
+                      - generic [ref=e813]: $ 130,00
+                      - generic [ref=e814]: 30.0% ganancia
+                  - cell "1" [ref=e554]
+                  - cell [ref=e559]:
+                    - button "Abrir menú" [ref=e819] [cursor=pointer]
+                - row [ref=e566]:
+                  - cell [ref=e567]:
+                    - paragraph [ref=e826]: TEST-PRICE
+                  - cell "-" [ref=e570]
+                  - cell "-" [ref=e571]
+                  - cell "$ 200,00" [ref=e572]
+                  - cell "$ 500,00 0.0% ganancia" [ref=e573]:
+                    - generic [ref=e827]:
+                      - generic [ref=e828]: $ 500,00
+                      - generic [ref=e829]: 0.0% ganancia
+                  - cell "1" [ref=e577]
+                  - cell [ref=e582]:
+                    - button "Abrir menú" [ref=e834] [cursor=pointer]
+                - row [ref=e589]:
+                  - cell [ref=e590]:
+                    - paragraph [ref=e841]: TEST Producto Clasico
+                  - cell "-" [ref=e593]
+                  - cell "-" [ref=e594]
+                  - cell "$ 100,00" [ref=e595]
+                  - cell "$ 999,00 0.0% ganancia" [ref=e596]:
+                    - generic [ref=e842]:
+                      - generic [ref=e843]: $ 999,00
+                      - generic [ref=e844]: 0.0% ganancia
+                  - cell "5" [ref=e600]
+                  - cell [ref=e605]:
+                    - button "Abrir menú" [ref=e849] [cursor=pointer]
+                - row [ref=e612]:
+                  - cell [ref=e613]:
+                    - paragraph [ref=e856]: TEST Producto Precio Fijo
+                  - cell "-" [ref=e616]
+                  - cell "-" [ref=e617]
+                  - cell "$ 200,00" [ref=e618]
+                  - cell "$ 300,00 0.0% ganancia" [ref=e619]:
+                    - generic [ref=e857]:
+                      - generic [ref=e858]: $ 300,00
+                      - generic [ref=e859]: 0.0% ganancia
+                  - cell "10" [ref=e623]
+                  - cell [ref=e626]:
+                    - button "Abrir menú" [ref=e862] [cursor=pointer]
+            - generic [ref=e633]:
+              - generic [ref=e634]:
+                - generic [ref=e635]: Página 1 de 2
+                - generic [ref=e636]:
+                  - generic [ref=e637]: "Mostrar:"
+                  - combobox [ref=e638] [cursor=pointer]:
+                    - generic: "10"
+                  - generic [ref=e641]: registros
+              - generic [ref=e642]:
+                - button "Anterior" [disabled]
+                - button "Siguiente" [ref=e643] [cursor=pointer]
+    - region "Notifications alt+T"
+  - generic [ref=e357]: $0k

@@ -1,0 +1,107 @@
+- generic [ref=f1e12]:
+  - generic [ref=f1e13]:
+    - generic [ref=f1e718]:
+      - generic [ref=f1e719]:
+        - link "NP" [ref=f1e721] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=f1e723]:
+          - generic [ref=f1e724]:
+            - link [ref=f1e726] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=f1e733] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=f1e739] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=f1e745] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=f1e749] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=f1e754] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=f1e761] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=f1e766] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=f1e773] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=f1e779] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=f1e785] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=f1e789] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=f1e794] [cursor=pointer]
+      - main [ref=f1e799]:
+        - generic [ref=f1e1168]:
+          - generic [ref=f1e1169]:
+            - generic [ref=f1e1170]:
+              - heading "Reportes" [level=1] [ref=f1e1171]
+              - paragraph [ref=f1e1172]: Análisis financiero y operativo del negocio
+            - generic [ref=f1e1173]:
+              - button "Este mes" [ref=f1e1174] [cursor=pointer]
+              - button "Exportar a Excel" [ref=f1e1180] [cursor=pointer]
+              - button "Imprimir" [ref=f1e1184] [cursor=pointer]
+          - generic [ref=f1e1189]:
+            - generic [ref=f1e1193]:
+              - paragraph [ref=f1e1194]: Ventas Hoy
+              - paragraph [ref=f1e1195]: $ 0,00
+              - generic [ref=f1e1196]: 0 ventas
+            - generic [ref=f1e1204]:
+              - paragraph [ref=f1e1205]: Ventas del Mes
+              - paragraph [ref=f1e1206]: $ 169.100,00
+              - generic [ref=f1e1207]:
+                - generic [ref=f1e1208]: ↑ 0.1%
+                - generic [ref=f1e1209]: 5 ventas
+            - generic [ref=f1e1217]:
+              - paragraph [ref=f1e1218]: Resultado Neto
+              - paragraph [ref=f1e1219]: $ 169.100,00
+              - generic [ref=f1e1220]: "Margen: 100.0%"
+            - generic [ref=f1e1229]:
+              - paragraph [ref=f1e1230]: Deuda Clientes
+              - paragraph [ref=f1e1231]: $ 0,00
+              - generic [ref=f1e1232]: 0 vencidas
+          - generic [ref=f1e1237]:
+            - tablist [ref=f1e1238]:
+              - tab "Resumen" [ref=f1e1239] [cursor=pointer]
+              - tab "Ventas" [ref=f1e1240] [cursor=pointer]
+              - tab "Productos" [ref=f1e1241] [cursor=pointer]
+              - tab "Clientes" [ref=f1e1242] [cursor=pointer]
+              - tab "Gastos" [ref=f1e1243] [cursor=pointer]
+              - tab "Flujo de Caja" [ref=f1e1244] [cursor=pointer]
+              - tab "Indumentaria & Comisiones" [active] [selected] [ref=f1e1245] [cursor=pointer]
+            - tabpanel "Indumentaria & Comisiones" [ref=f1e1246]:
+              - generic [ref=f1e1247]:
+                - generic [ref=f1e1248]:
+                  - generic [ref=f1e1249]:
+                    - heading "Unidades Vendidas" [level=3] [ref=f1e1251]
+                    - generic [ref=f1e1254]:
+                      - generic [ref=f1e1255]: 25 u.
+                      - paragraph [ref=f1e1256]: En el período seleccionado
+                  - generic [ref=f1e1257]:
+                    - heading "Stock Actual Total" [level=3] [ref=f1e1259]
+                    - generic [ref=f1e1264]:
+                      - generic [ref=f1e1265]: 2364 u.
+                      - paragraph [ref=f1e1266]: Prendas disponibles en depósito
+                  - generic [ref=f1e1267]:
+                    - heading "Tasa de Rotación (Sell-Through)" [level=3] [ref=f1e1269]
+                    - generic [ref=f1e1273]:
+                      - generic [ref=f1e1274]: 1.05%
+                      - paragraph [ref=f1e1275]: "% Vendido vs Stock total ingresado"
+                - generic [ref=f1e1276]:
+                  - generic [ref=f1e1277]:
+                    - generic [ref=f1e1278]:
+                      - heading "Curva de Salida por Talle" [level=3] [ref=f1e1284]
+                      - paragraph [ref=f1e1285]: Distribución de unidades vendidas por talle
+                    - paragraph [ref=f1e1287]: No hay datos de ventas registradas por talle.
+                  - generic [ref=f1e1288]:
+                    - generic [ref=f1e1289]:
+                      - heading "Curva de Salida por Color" [level=3] [ref=f1e1293]
+                      - paragraph [ref=f1e1294]: Distribución de unidades vendidas por color
+                    - paragraph [ref=f1e1296]: No hay datos de ventas registradas por color.
+                - generic [ref=f1e1297]:
+                  - generic [ref=f1e1298]:
+                    - heading "Comisiones por Vendedor de Salón" [level=3] [ref=f1e1304]
+                    - paragraph [ref=f1e1305]: Rendimiento y comisiones estimadas sobre ventas concretadas (Tasa 3%)
+                  - paragraph [ref=f1e1307]: No se registraron ventas con asignación de vendedor en este período. Podés asignar vendedores desde la caja registradora POS.
+    - region "Notifications alt+T"
+  - generic [ref=f1e1308]: Efectivo

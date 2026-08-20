@@ -1,0 +1,395 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Importar Matriz 2D
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 104 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Agua Kin 500ml
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 800,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "96"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Alfajor Havanna E2E 4673
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 1.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 1.300,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "48"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Coca-Cola 1.5L
+                            - cell:
+                              - generic: Limpieza
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 1.500,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "89"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Detergente Ala 750ml
+                            - cell:
+                              - generic:
+                                - text: Bebidas
+                                - generic: (50%)
+                            - cell: "-"
+                            - cell: $ 100,00
+                            - cell:
+                              - generic:
+                                - generic: $ 150,00
+                                - generic: 50.0% ganancia
+                            - cell:
+                              - generic: "8"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Gorra Trucker Bordada Urban
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 9.500,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "0"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Gorra Trucker Bordada Urban
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 9.500,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "0"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Lavandina Ayudín 1L
+                            - cell:
+                              - generic: Limpieza
+                            - cell: "-"
+                            - cell: $ 100,00
+                            - cell:
+                              - generic:
+                                - generic: $ 140,00
+                                - generic: 40.0% ganancia
+                            - cell:
+                              - generic: "12"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Lector
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 10.000,00
+                            - cell:
+                              - generic:
+                                - generic: $ 13.000,00
+                                - generic: 30.0% ganancia
+                            - cell:
+                              - generic: "-16"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: Pepsi 1.5L
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 1.450,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "97"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                          - row:
+                            - cell:
+                              - generic:
+                                - paragraph: preuba
+                            - cell: "-"
+                            - cell: "-"
+                            - cell: $ 0,00
+                            - cell:
+                              - generic:
+                                - generic: $ 1.000,00
+                                - generic: 0.0% ganancia
+                            - cell:
+                              - generic: "990"
+                            - cell:
+                              - button:
+                                - generic: Abrir menú
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 11
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button: Siguiente
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog [ref=e942]:
+    - generic [ref=e950]:
+      - heading "Nuevo Producto" [level=2] [ref=e951]
+      - paragraph [ref=e952]: Cargá un producto simple o un modelo con matriz de talles y colores
+    - generic [ref=e954]:
+      - generic [ref=e955]:
+        - generic [ref=e960]:
+          - heading "Modo de Carga Textil" [level=3] [ref=e961]
+          - paragraph [ref=e962]: Seleccioná si ingresás un artículo individual o un modelo con matriz de talles y colores.
+        - generic [ref=e963]:
+          - button "Producto Simple" [ref=e964] [cursor=pointer]
+          - button "Matriz de Talles y Colores" [ref=e965] [cursor=pointer]
+      - generic [ref=e966]:
+        - generic [ref=e967]:
+          - heading "Información Principal" [level=3] [ref=e968]
+          - generic [ref=e969]:
+            - generic [ref=e970]: Nombre del Producto *
+            - textbox "Nombre del Producto *" [ref=e971]:
+              - /placeholder: "Ej: Shampoo Sedal 400ml"
+              - text: Remera Lisa Algodón Peñarol
+          - generic [ref=e972]:
+            - text: Descripción
+            - textbox "Descripción" [ref=e973]:
+              - /placeholder: "Ej: Confeccionada en algodón peinado premium"
+            - paragraph [ref=e974]: Información adicional (opcional)
+          - generic [ref=e975]:
+            - generic [ref=e976]: Marca
+            - combobox [ref=e977] [cursor=pointer]: Peñarol
+            - paragraph [ref=e981]: Selecciona una existente o escribe para crear una nueva
+          - generic [ref=e982]:
+            - text: Categoría
+            - generic [ref=e983]:
+              - combobox "Categoría" [ref=e984] [cursor=pointer]:
+                - generic: Remeras
+              - combobox [ref=e1133]
+              - button "Crear nueva categoría" [ref=e988] [cursor=pointer]
+            - paragraph [ref=e990]: Categoría del producto (opcional)
+          - generic [ref=e991]:
+            - text: Código de Barras
+            - textbox "Código de Barras" [ref=e992]:
+              - /placeholder: "Ej: 7791234567890"
+              - text: "7790310000017"
+            - paragraph [ref=e993]: Código de barras del producto (opcional)
+          - generic [ref=e994]:
+            - heading "Ficha Técnica de Indumentaria & Calzado" [level=3] [ref=e995]
+            - generic [ref=e998]:
+              - generic [ref=e999]:
+                - text: Temporada
+                - combobox "Temporada" [ref=e1000]: Primavera-Verano 2026
+                - generic [ref=e1001]:
+                  - button "+ Primavera-Verano 2026" [active] [ref=e1002] [cursor=pointer]
+                  - button "+ Otoño-Invierno 2026" [ref=e1003] [cursor=pointer]
+                  - button "+ Atemporal" [ref=e1004] [cursor=pointer]
+              - generic [ref=e1005]:
+                - text: Colección / Línea
+                - combobox "Colección / Línea" [ref=e1006]
+                - generic [ref=e1007]:
+                  - button "+ Cápsula E2E" [ref=e1008] [cursor=pointer]
+                  - button "+ Línea Básica" [ref=e1009] [cursor=pointer]
+                  - button "+ Línea Urbana" [ref=e1010] [cursor=pointer]
+            - generic [ref=e1011]:
+              - generic [ref=e1012]:
+                - text: Composición Textil
+                - combobox "Composición Textil" [ref=e1013]
+                - generic [ref=e1014]:
+                  - button "+ 100% Algodón Peinado 24/1" [ref=e1015] [cursor=pointer]
+                  - button "+ 98% Algodón / 2% Elastano" [ref=e1016] [cursor=pointer]
+                  - button "+ Rústico con Lycra" [ref=e1017] [cursor=pointer]
+              - generic [ref=e1018]:
+                - text: Instrucciones de Cuidado / Lavado
+                - combobox "Instrucciones de Cuidado / Lavado" [ref=e1019]
+                - generic [ref=e1020]:
+                  - button "+ Lavar con agua fría a mano" [ref=e1021] [cursor=pointer]
+                  - button "+ No usar blanqueador / cloro" [ref=e1022] [cursor=pointer]
+            - generic [ref=e1023]:
+              - generic [ref=e1024]:
+                - generic [ref=e1025]: Política de Cambio
+                - combobox "Política de Cambio" [ref=e1028] [cursor=pointer]:
+                  - generic: Estándar (30 días de cambio)
+                - combobox [ref=e1031]
+              - generic [ref=e1032]:
+                - text: País de Origen
+                - textbox "País de Origen" [ref=e1033]:
+                  - /placeholder: "Ej: Argentina"
+        - generic [ref=e1034]:
+          - heading "Precios, Ganancia y Stock" [level=3] [ref=e1035]
+          - generic [ref=e1037]:
+            - generic [ref=e1038]:
+              - generic [ref=e1039]: Precio Fijo
+              - paragraph [ref=e1042]: Cuando está activado, cargás el precio de venta directamente. Cuando está desactivado, el sistema calcula el precio desde el costo y el margen.
+            - checkbox "Precio Fijo" [ref=e1043] [cursor=pointer]
+            - checkbox
+          - generic [ref=e1044]:
+            - generic [ref=e1045]:
+              - generic [ref=e1046]: Costo *
+              - textbox "Costo *" [invalid] [ref=e1064]:
+                - /placeholder: "0.00"
+                - text: "8500"
+              - paragraph [ref=e1048]: Precio de compra
+              - paragraph [ref=e1065]: El costo es requerido cuando Precio Fijo está desactivado
+            - generic [ref=e1049]:
+              - generic [ref=e1050]: Stock Inicial *
+              - textbox "Stock Inicial *" [ref=e1051]:
+                - /placeholder: "0"
+                - text: "0"
+              - paragraph [ref=e1052]: Cantidad disponible
+          - generic [ref=e1067]:
+            - generic [ref=e1068]:
+              - paragraph [ref=e1069]: Precio de Venta Sugerido
+              - paragraph [ref=e1070]:
+                - text: Costo + 30%
+                - generic [ref=e1071]: (margen general)
+            - generic [ref=e1072]: $ 11.050,00
+          - generic [ref=e1074]:
+            - generic [ref=e1075]:
+              - generic [ref=e1076]: Margen Personalizado
+              - paragraph [ref=e1081]: Usando margen general (30%)
+            - checkbox "Margen Personalizado" [ref=e1082] [cursor=pointer]
+            - checkbox
+          - generic [ref=e1054]:
+            - generic [ref=e1055]:
+              - text: Venta por peso o medida
+              - paragraph [ref=e1056]: Permite decimales y códigos pesables.
+            - checkbox "Venta por peso o medida" [ref=e1057] [cursor=pointer]
+            - checkbox
+      - button "Guardar Producto" [ref=e1059] [cursor=pointer]
+    - button "Close" [ref=e1060] [cursor=pointer]

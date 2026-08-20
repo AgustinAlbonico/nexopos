@@ -1,0 +1,239 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - generic:
+      - link "Ir al contenido principal" [ref=e2] [cursor=pointer]
+      - link "Ayuda sobre la accesibilidad" [ref=e3] [cursor=pointer]:
+        - /url: https://support.google.com/websearch/answer/181196?hl=es-AR
+  - generic [ref=e8]:
+    - search [ref=e9]:
+      - generic [ref=e12]:
+        - link [ref=e13] [cursor=pointer]:
+          - /url: https://www.google.com/webhp?hl=es&ictx=0&sa=X&ved=0ahUKEwimk4LCwZCWAxWgArkGHapWFNgQpYkNCAo
+          - img "Ir a la página principal de Google" [ref=e14]
+        - generic [ref=e19]:
+          - combobox "Buscar" [ref=e22]: site:rosario.gob.ar cine Rosario Instagram site:rosario.gob.ar cine Rosario Instagram
+          - generic [ref=e23]:
+            - button "Borrar" [ref=e25] [cursor=pointer]
+            - generic [ref=e30]:
+              - button "Búsqueda por voz" [ref=e31] [cursor=pointer]
+              - button "Búsqueda por imagen" [ref=e34] [cursor=pointer]
+        - button "Buscar" [ref=e37] [cursor=pointer]
+    - generic [ref=e42]:
+      - button "Configuración" [ref=e44] [cursor=pointer]
+      - button "Compartir" [ref=e50] [cursor=pointer]
+      - generic [ref=e56]:
+        - button "Aplicaciones de Google" [ref=e58] [cursor=pointer]
+        - link "Iniciar sesión" [ref=e63] [cursor=pointer]:
+          - /url: https://accounts.google.com/ServiceLogin?hl=es&passive=true&continue=https://www.google.com/search%3Fq%3Dsite%253Arosario.gob.ar%2Bcine%2BRosario%2BInstagram&ec=futura_srp_og_si_72236_p
+  - generic [ref=e65]:
+    - navigation [ref=e71]:
+      - generic [ref=e77]:
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Modo IA" [ref=e82] [cursor=pointer]:
+              - /url: /search?q=site:rosario.gob.ar+cine+Rosario+Instagram&sca_esv=569d465b5b1d57df&udm=50&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDWUj1kfRkfMjek4CERKb-jnb8mrM7VjYXRMcPDki95Wzwy3t9NKc3BRZjelWW8kNMMfLUNVRm0fRW-CatNWFOXnirt72sMITwlBo_x9TVguDK3TrGLCC5Gg9J-yWxD6gaNM0l3ywlS6PbfxKzvtxUxMLwL3cc&aep=1&ntc=1&cs=0&sa=X&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ2J8OegQIEhAD
+          - listitem [ref=e86]:
+            - link "Todo" [disabled] [ref=e87]
+          - listitem [ref=e90]:
+            - link "Imágenes" [ref=e91] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=2&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDWUj1kfRkfMjek4CERKb-jnb8mrM7VjYXRMcPDki95Wzwy3t9NKc3BRZjelWW8kNMMfLUNVRm0fRW-CatNWFOXnirt72sMITwlBo_x9TVguDK3TrGLCC5Gg9J-yWxD6gaNM0l3ywlS6PbfxKzvtxUxMLwL3cc&q=site:rosario.gob.ar+cine+Rosario+Instagram&sa=X&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQtKgLegQIFBAB
+          - listitem [ref=e94]:
+            - link "Noticias" [ref=e95] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&q=site:rosario.gob.ar+cine+Rosario+Instagram&tbm=nws&source=lnms&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDWUj1kfRkfMjek4CERKb-jnb8mrM7VjYXRMcPDki95Wzwy3t9NKc3BRZjelWW8kNMMfLUNVRm0fRW-CatNWFOXnirt72sMITwlBo_x9TVguDK3TrGLCC5Gg9J-yWxD6gaNM0l3ywlS6PbfxKzvtxUxMLwL3cc&sa=X&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ0pQJegQIFRAB
+          - listitem [ref=e98]:
+            - link "Shopping" [ref=e99] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=28&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDWUj1kfRkfMjek4CERKb-jnb8mrM7VjYXRMcPDki95Wzwy3t9NKc3BRZjelWW8kNMMfLUNVRm0fRW-CatNWFOXnirt72sMITwlBo_x9TVguDK3TrGLCC5Gg9J-yWxD6gaNM0l3ywlS6PbfxKzvtxUxMLwL3cc&q=site:rosario.gob.ar+cine+Rosario+Instagram&ved=1t:220175&ictx=111
+          - listitem [ref=e102]:
+            - link "Vídeos cortos" [ref=e103] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=39&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDWUj1kfRkfMjek4CERKb-jnb8mrM7VjYXRMcPDki95Wzwy3t9NKc3BRZjelWW8kNMMfLUNVRm0fRW-CatNWFOXnirt72sMITwlBo_x9TVguDK3TrGLCC5Gg9J-yWxD6gaNM0l3ywlS6PbfxKzvtxUxMLwL3cc&q=site:rosario.gob.ar+cine+Rosario+Instagram&sa=X&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQs6gLegQIFxAB
+          - listitem [ref=e106]:
+            - link "Vídeos" [ref=e107] [cursor=pointer]:
+              - /url: /search?sca_esv=569d465b5b1d57df&udm=7&fbs=ABfTbFUDadgeu2mn4mYJ8iEZ1GUDd8ABuXxNzQEi57SWOuuPdWnr6CbijqIObRHAsFy-UJU5vTX8SpCZt8rQcawDUgDWUj1kfRkfMjek4CERKb-jnb8mrM7VjYXRMcPDki95Wzwy3t9NKc3BRZjelWW8kNMMfLUNVRm0fRW-CatNWFOXnirt72sMITwlBo_x9TVguDK3TrGLCC5Gg9J-yWxD6gaNM0l3ywlS6PbfxKzvtxUxMLwL3cc&q=site:rosario.gob.ar+cine+Rosario+Instagram&sa=X&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQtKgLegQIGBAB
+          - listitem [ref=e110]:
+            - button [ref=e111] [cursor=pointer]:
+              - generic "Más filtros" [ref=e112]: Más
+        - button "Herramientas" [ref=e119] [cursor=pointer]
+    - heading "Resultados de búsqueda" [level=1] [ref=e126]
+    - main [ref=e132]:
+      - generic [ref=e136]:
+        - generic [ref=e139]:
+          - heading "Resultados web" [level=2] [ref=e140]
+          - generic [ref=e141]:
+            - generic [ref=e144]:
+              - link "Agosto en Cine Lumière | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › agosto-en-cine-lumiere-1" [ref=e146] [cursor=pointer]:
+                - /url: https://www.rosario.gob.ar/inicio/agosto-en-cine-lumiere-1
+                - heading "Agosto en Cine Lumière | rosario.gob.ar" [level=3] [ref=e147]
+                - generic [ref=e153]:
+                  - generic [ref=e154]: Rosario.gob
+                  - generic [ref=e156]: https://www.rosario.gob.ar › agosto-en-cine-lumiere-1
+              - button "Acerca de este resultado" [ref=e160] [cursor=pointer]
+            - generic [ref=e166]:
+              - generic [ref=e167]: hace 7 días —
+              - generic [ref=e168]:
+                - emphasis [ref=e169]: Agosto es el mes de festivales, estrenos, animación y homenajes en Cine Lumière
+                - text: . Por primera vez recibimos el Festival Suiza Pop impulsado ...
+        - generic [ref=e173]:
+          - generic [ref=e176]:
+            - link "Julio en el Lumière | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › julio-en-el-lumiere" [ref=e178] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/julio-en-el-lumiere
+              - heading "Julio en el Lumière | rosario.gob.ar" [level=3] [ref=e179]
+              - generic [ref=e185]:
+                - generic [ref=e186]: Rosario.gob
+                - generic [ref=e188]: https://www.rosario.gob.ar › inicio › julio-en-el-lumiere
+            - button "Acerca de este resultado" [ref=e192] [cursor=pointer]
+          - generic [ref=e199]:
+            - text: Cada tarde de miércoles a domingos, a las 16:30 h,
+            - emphasis [ref=e200]: Cine Lumière nos
+            - text: espera con películas para compartir entre chicos y grandes. En julio además, la cartelera ...
+        - generic [ref=e204]:
+          - generic [ref=e207]:
+            - link "La mancha en Cine Lumière | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › la-mancha-en-cine..." [ref=e209] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/la-mancha-en-cine-lumiere
+              - heading "La mancha en Cine Lumière | rosario.gob.ar" [level=3] [ref=e210]
+              - generic [ref=e216]:
+                - generic [ref=e217]: Rosario.gob
+                - generic [ref=e219]: https://www.rosario.gob.ar › inicio › la-mancha-en-cine...
+            - button "Acerca de este resultado" [ref=e223] [cursor=pointer]
+          - generic [ref=e228]: En un parque de diversiones, un grupo de niños y adolescentes quedan atrapados en una maldición que los conecta con un mundo paralelo.
+        - generic [ref=e233]:
+          - generic [ref=e236]:
+            - link "Metrópolis en Cine Lumière | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › metropolis-en-cine-lumiere" [ref=e238] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/metropolis-en-cine-lumiere
+              - heading "Metrópolis en Cine Lumière | rosario.gob.ar" [level=3] [ref=e239]
+              - generic [ref=e245]:
+                - generic [ref=e246]: Rosario.gob
+                - generic [ref=e248]: https://www.rosario.gob.ar › metropolis-en-cine-lumiere
+            - button "Acerca de este resultado" [ref=e252] [cursor=pointer]
+          - generic [ref=e259]:
+            - emphasis [ref=e260]: Tres largometrajes a cincuenta años de la muerte del gran realizador alemán
+            - text: . El programa está integrado por tres largometrajes dirigidos por Fritz Lang de su ...
+        - generic [ref=e264]:
+          - generic [ref=e267]:
+            - link "Tripolar la película en Cine Lumière | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › tripolar-la-pelicula..." [ref=e269] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/tripolar-la-pelicula-en-cine-lumiere
+              - heading "Tripolar la película en Cine Lumière | rosario.gob.ar" [level=3] [ref=e270]
+              - generic [ref=e276]:
+                - generic [ref=e277]: Rosario.gob
+                - generic [ref=e279]: https://www.rosario.gob.ar › inicio › tripolar-la-pelicula...
+            - button "Acerca de este resultado" [ref=e283] [cursor=pointer]
+          - generic [ref=e290]:
+            - emphasis [ref=e291]: ENTRADA GRATUITA
+            - text: "(Boletería abierta media hora antes de cada función). Sala Climatizada. Vélez Sarsfield 1027. Forma parte de: Agosto en Cine Lumière."
+        - generic [ref=e295]:
+          - generic [ref=e298]:
+            - link "Estreno en Rosario de la película \"La città dei bambini\" Rosario.gob https://www.rosario.gob.ar › inicio › estreno-en-rosario..." [ref=e300] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/estreno-en-rosario-de-la-pelicula-la-citta-dei-bambini
+              - heading "Estreno en Rosario de la película \"La città dei bambini\"" [level=3] [ref=e301]
+              - generic [ref=e307]:
+                - generic [ref=e308]: Rosario.gob
+                - generic [ref=e310]: https://www.rosario.gob.ar › inicio › estreno-en-rosario...
+            - button "Acerca de este resultado" [ref=e314] [cursor=pointer]
+          - generic [ref=e321]:
+            - text: En el marco de los festejos por los 30 años de la Ciudad de las Niñas y los Niños en
+            - emphasis [ref=e322]: Rosario
+            - text: ", se realizará el estreno local del film \"La città dei bambini\" ..."
+        - generic [ref=e326]:
+          - generic [ref=e329]:
+            - link "Moana en Cine Lumière | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › moana-en-cine-lumiere" [ref=e331] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/moana-en-cine-lumiere
+              - heading "Moana en Cine Lumière | rosario.gob.ar" [level=3] [ref=e332]
+              - generic [ref=e338]:
+                - generic [ref=e339]: Rosario.gob
+                - generic [ref=e341]: https://www.rosario.gob.ar › moana-en-cine-lumiere
+            - button "Acerca de este resultado" [ref=e345] [cursor=pointer]
+          - generic [ref=e352]:
+            - emphasis [ref=e353]: ¡Empiezan las vacaciones, empieza la función en Cine Lumière
+            - text: "! Del 4 al 18 de julio presentamos una cartelera super especial de pelis en español."
+        - generic [ref=e357]:
+          - generic [ref=e360]:
+            - link "Viy, espíritu del mal en Cine Lumière | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › viy-espiritu-del-m..." [ref=e362] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/viy-espiritu-del-mal-en-cine-lumiere
+              - heading "Viy, espíritu del mal en Cine Lumière | rosario.gob.ar" [level=3] [ref=e363]
+              - generic [ref=e369]:
+                - generic [ref=e370]: Rosario.gob
+                - generic [ref=e372]: https://www.rosario.gob.ar › inicio › viy-espiritu-del-m...
+            - button "Acerca de este resultado" [ref=e376] [cursor=pointer]
+          - generic [ref=e383]:
+            - emphasis [ref=e384]: Khoma, un joven seminarista de un monasterio en Kiev
+            - text: ", se pierde en el bosque mientras viaja a casa al final del trimestre junto a dos compañeros."
+        - generic [ref=e388]:
+          - generic [ref=e391]:
+            - link "La Casa Roja en Cine Lumière | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › la-casa-roja-en-cin..." [ref=e393] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/la-casa-roja-en-cine-lumiere
+              - heading "La Casa Roja en Cine Lumière | rosario.gob.ar" [level=3] [ref=e394]
+              - generic [ref=e400]:
+                - generic [ref=e401]: Rosario.gob
+                - generic [ref=e403]: https://www.rosario.gob.ar › inicio › la-casa-roja-en-cin...
+            - button "Acerca de este resultado" [ref=e407] [cursor=pointer]
+          - generic [ref=e414]:
+            - emphasis [ref=e415]: ENTRADA GRATUITA
+            - text: "(Boletería abierta media hora antes de cada función). Sala Climatizada. Vélez Sarsfield 1027. Forma parte de: Agosto en Cine Lumière."
+        - generic [ref=e419]:
+          - generic [ref=e422]:
+            - link "Agenda | rosario.gob.ar Rosario.gob https://www.rosario.gob.ar › inicio › agenda" [ref=e424] [cursor=pointer]:
+              - /url: https://www.rosario.gob.ar/inicio/agenda
+              - heading "Agenda | rosario.gob.ar" [level=3] [ref=e425]
+              - generic [ref=e431]:
+                - generic [ref=e432]: Rosario.gob
+                - generic [ref=e434]: https://www.rosario.gob.ar › inicio › agenda
+            - button "Acerca de este resultado" [ref=e438] [cursor=pointer]
+          - generic [ref=e445]:
+            - text: "Mes del Teatro Independiente: funciones y propuestas +65 · Agosto en"
+            - emphasis [ref=e446]: Cine
+            - text: Lumière · Concierto de la Orquesta de Cámara junto a Escuela Orquesta Barrio Ludueña.
+      - navigation [ref=e449]:
+        - heading "Navegación de páginas" [level=1] [ref=e450]
+        - text: "1"
+        - link "Page 2" [ref=e453] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+cine+Rosario+Instagram&sca_esv=569d465b5b1d57df&ei=Ett2aqbCBKCF5OUPqq3RwA0&start=10&sa=N&sstk=AU9db-DxwRdRTxLvEa_rZiFD7qNESw755cO24lIWuzMAu0gapRSeLT5sa6NStzLZPDSDVDtKmB11zTL17Cqt8QhazJ95IhALRU1ELA&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ8tMDegQILBAE
+          - text: "2"
+        - link "Page 3" [ref=e455] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+cine+Rosario+Instagram&sca_esv=569d465b5b1d57df&ei=Ett2aqbCBKCF5OUPqq3RwA0&start=20&sa=N&sstk=AU9db-DxwRdRTxLvEa_rZiFD7qNESw755cO24lIWuzMAu0gapRSeLT5sa6NStzLZPDSDVDtKmB11zTL17Cqt8QhazJ95IhALRU1ELA&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ8tMDegQILBAG
+          - text: "3"
+        - link "Page 4" [ref=e457] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+cine+Rosario+Instagram&sca_esv=569d465b5b1d57df&ei=Ett2aqbCBKCF5OUPqq3RwA0&start=30&sa=N&sstk=AU9db-DxwRdRTxLvEa_rZiFD7qNESw755cO24lIWuzMAu0gapRSeLT5sa6NStzLZPDSDVDtKmB11zTL17Cqt8QhazJ95IhALRU1ELA&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ8tMDegQILBAI
+          - text: "4"
+        - link "Page 5" [ref=e459] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+cine+Rosario+Instagram&sca_esv=569d465b5b1d57df&ei=Ett2aqbCBKCF5OUPqq3RwA0&start=40&sa=N&sstk=AU9db-DxwRdRTxLvEa_rZiFD7qNESw755cO24lIWuzMAu0gapRSeLT5sa6NStzLZPDSDVDtKmB11zTL17Cqt8QhazJ95IhALRU1ELA&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ8tMDegQILBAK
+          - text: "5"
+        - link "Page 6" [ref=e461] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+cine+Rosario+Instagram&sca_esv=569d465b5b1d57df&ei=Ett2aqbCBKCF5OUPqq3RwA0&start=50&sa=N&sstk=AU9db-DxwRdRTxLvEa_rZiFD7qNESw755cO24lIWuzMAu0gapRSeLT5sa6NStzLZPDSDVDtKmB11zTL17Cqt8QhazJ95IhALRU1ELA&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ8tMDegQILBAM
+          - text: "6"
+        - link "Page 7" [ref=e463] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+cine+Rosario+Instagram&sca_esv=569d465b5b1d57df&ei=Ett2aqbCBKCF5OUPqq3RwA0&start=60&sa=N&sstk=AU9db-DxwRdRTxLvEa_rZiFD7qNESw755cO24lIWuzMAu0gapRSeLT5sa6NStzLZPDSDVDtKmB11zTL17Cqt8QhazJ95IhALRU1ELA&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ8tMDegQILBAO
+          - text: "7"
+        - link "Page 8" [ref=e465] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+cine+Rosario+Instagram&sca_esv=569d465b5b1d57df&ei=Ett2aqbCBKCF5OUPqq3RwA0&start=70&sa=N&sstk=AU9db-DxwRdRTxLvEa_rZiFD7qNESw755cO24lIWuzMAu0gapRSeLT5sa6NStzLZPDSDVDtKmB11zTL17Cqt8QhazJ95IhALRU1ELA&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ8tMDegQILBAQ
+          - text: "8"
+        - link "Page 9" [ref=e467] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+cine+Rosario+Instagram&sca_esv=569d465b5b1d57df&ei=Ett2aqbCBKCF5OUPqq3RwA0&start=80&sa=N&sstk=AU9db-DxwRdRTxLvEa_rZiFD7qNESw755cO24lIWuzMAu0gapRSeLT5sa6NStzLZPDSDVDtKmB11zTL17Cqt8QhazJ95IhALRU1ELA&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ8tMDegQILBAS
+          - text: "9"
+        - link "Page 10" [ref=e469] [cursor=pointer]:
+          - /url: /search?q=site:rosario.gob.ar+cine+Rosario+Instagram&sca_esv=569d465b5b1d57df&ei=Ett2aqbCBKCF5OUPqq3RwA0&start=90&sa=N&sstk=AU9db-DxwRdRTxLvEa_rZiFD7qNESw755cO24lIWuzMAu0gapRSeLT5sa6NStzLZPDSDVDtKmB11zTL17Cqt8QhazJ95IhALRU1ELA&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ8tMDegQILBAU
+          - text: "10"
+        - heading [level=2] [ref=e471]:
+          - link "Siguiente" [ref=e472] [cursor=pointer]:
+            - /url: /search?q=site:rosario.gob.ar+cine+Rosario+Instagram&sca_esv=569d465b5b1d57df&ei=Ett2aqbCBKCF5OUPqq3RwA0&start=10&sa=N&sstk=AU9db-DxwRdRTxLvEa_rZiFD7qNESw755cO24lIWuzMAu0gapRSeLT5sa6NStzLZPDSDVDtKmB11zTL17Cqt8QhazJ95IhALRU1ELA&ved=2ahUKEwimk4LCwZCWAxWgArkGHapWFNgQ8NMDegQILBAW
+      - navigation
+    - contentinfo [ref=e475]:
+      - heading "Vínculos a pie de página" [level=1] [ref=e476]
+      - generic [ref=e480]:
+        - generic [ref=e482]:
+          - text: Argentina
+          - generic [ref=e484]:
+            - button "Iriondo, Santa Fe - A través de tu dirección IP" [ref=e486] [cursor=pointer]:
+              - generic [ref=e487]: Iriondo, Santa Fe
+              - generic [ref=e489]:
+                - text: "-"
+                - generic [ref=e490]: A través de tu dirección IP
+            - text: "-"
+            - button "Actualizar ubicación" [ref=e492] [cursor=pointer]
+        - generic [ref=e495]:
+          - link "Ayuda" [ref=e496] [cursor=pointer]:
+            - /url: https://support.google.com/websearch/?p=ws_results_help&hl=es-AR&fg=1
+          - link "Enviar comentarios" [ref=e497] [cursor=pointer]:
+            - /url: "#"
+          - link "Privacidad" [ref=e498] [cursor=pointer]:
+            - /url: https://policies.google.com/privacy?hl=es-AR&fg=1
+          - link "Condiciones" [ref=e499] [cursor=pointer]:
+            - /url: https://policies.google.com/terms?hl=es-AR&fg=1

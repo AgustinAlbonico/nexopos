@@ -269,6 +269,93 @@ describe('PurchasesService', () => {
         });
     });
 
+    describe('create — providerName derivation (F1)', () => {
+        const baseItem = [{ productId: 'product-1', quantity: 1, unitPrice: 100 }];
+
+        beforeEach(() => {
+            mockQueryRunner.manager.save.mockResolvedValue(createMockPurchase());
+            mockQueryRunner.manager.findOne.mockResolvedValue(createMockPurchase());
+            mockCashRegisterService.getOpenRegister.mockResolvedValue(null);
+            mockProductsService.findOne.mockResolvedValue({ id: 'product-1' });
+            mockInventoryService.isSectorizedMode.mockResolvedValue(false);
+        });
+
+        it('deriva providerName desde Supplier cuando viene vacío en el DTO', async () => {
+            mockSuppliersService.findOne.mockResolvedValue({ id: 'supplier-99', name: 'Proveedor Derivado SA' });
+
+            const dto = {
+                supplierId: 'supplier-99',
+                purchaseDate: '2026-08-19',
+                items: baseItem,
+                status: PurchaseStatus.PENDING,
+            };
+
+            await service.create(dto, 'user-1');
+
+            const created = mockPurchaseRepo.create.mock.calls[0][0];
+            expect(created.supplierId).toBe('supplier-99');
+            expect(created.providerName).toBe('Proveedor Derivado SA');
+        });
+
+        it('respeta providerName del DTO si viene cargado aunque haya supplierId', async () => {
+            mockSuppliersService.findOne.mockResolvedValue({ id: 'supplier-99', name: 'Proveedor Derivado SA' });
+
+            const dto = {
+                supplierId: 'supplier-99',
+                providerName: 'Nombre Manual',
+                purchaseDate: '2026-08-19',
+                items: baseItem,
+                status: PurchaseStatus.PENDING,
+            };
+
+            await service.create(dto, 'user-1');
+
+            const created = mockPurchaseRepo.create.mock.calls[0][0];
+            expect(created.providerName).toBe('Nombre Manual');
+        });
+
+        it('acepta DTO legacy solo con providerName (sin supplierId)', async () => {
+            const dto = {
+                providerName: 'Proveedor Legacy',
+                purchaseDate: '2026-08-19',
+                items: baseItem,
+                status: PurchaseStatus.PENDING,
+            };
+
+            await service.create(dto, 'user-1');
+
+            const created = mockPurchaseRepo.create.mock.calls[0][0];
+            expect(created.supplierId).toBeNull();
+            expect(created.providerName).toBe('Proveedor Legacy');
+            expect(mockSuppliersService.findOne).not.toHaveBeenCalled();
+        });
+
+        it('lanza BadRequestException si no hay supplierId ni providerName (ni derivado)', async () => {
+            const dto = {
+                purchaseDate: '2026-08-19',
+                items: baseItem,
+                status: PurchaseStatus.PENDING,
+            };
+
+            await expect(service.create(dto, 'user-1')).rejects.toThrow(BadRequestException);
+            await expect(service.create(dto, 'user-1')).rejects.toThrow('Seleccioná un proveedor o ingresá un nombre');
+            expect(mockQueryRunner.commitTransaction).not.toHaveBeenCalled();
+        });
+
+        it('lanza BadRequestException si supplierId existe pero el Supplier no tiene name y providerName viene vacío', async () => {
+            mockSuppliersService.findOne.mockResolvedValue({ id: 'supplier-99', name: '   ' });
+
+            const dto = {
+                supplierId: 'supplier-99',
+                purchaseDate: '2026-08-19',
+                items: baseItem,
+                status: PurchaseStatus.PENDING,
+            };
+
+            await expect(service.create(dto, 'user-1')).rejects.toThrow(BadRequestException);
+        });
+    });
+
     describe('create (modo sectorizado — PR5)', () => {
         const paidDto = {
             supplierId: 'supplier-123',

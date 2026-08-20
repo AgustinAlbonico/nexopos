@@ -1,0 +1,278 @@
+- generic [ref=e9]:
+  - main [ref=e18]:
+    - generic [ref=e19]:
+      - feed "Resultados de cine capitan bermudez" [ref=e20]:
+        - region "Filtros disponibles para esta búsqueda" [ref=e22]:
+          - generic [ref=e25]:
+            - button "Valoración" [ref=e27] [cursor=pointer]:
+              - generic [ref=e28]:
+                - generic [ref=e30]: Valoración
+                - generic [ref=e31]: 
+            - button "Horario" [ref=e33] [cursor=pointer]:
+              - generic [ref=e34]:
+                - generic [ref=e36]: Horario
+                - generic [ref=e37]: 
+            - button "Todos los filtros" [ref=e39] [cursor=pointer]:
+              - generic [ref=e40]:
+                - generic [ref=e42]: 
+                - generic [ref=e43]: Todos los filtros
+        - generic [ref=e44]:
+          - generic [ref=e46]:
+            - heading "Resultados" [level=1] [ref=e47]
+            - button "Más información sobre los avisos legales en relación con las reseñas públicas en Google Maps" [ref=e51]:
+              - generic [ref=e54]: 
+          - button "Compartir" [ref=e59]:
+            - generic [ref=e60] [cursor=pointer]:
+              - generic [ref=e61]: 
+              - generic [ref=e62]: Compartir
+        - article [ref=e64]:
+          - link "CC Estacion Cultural" [ref=e65] [cursor=pointer]:
+            - /url: https://www.google.com/maps/place/CC+Estacion+Cultural/data=!4m7!3m6!1s0x95b6510cc6875e81:0x5a5587271059b0d9!8m2!3d-32.819906!4d-60.7154587!16s%2Fg%2F11sh1cb4xf!19sChIJgV6HxgxRtpUR2bBZECeHVVo?authuser=0&hl=es&rclk=1
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: CC Estacion Cultural
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img "4,8 estrellas 48 reseñas": 4,8(48)
+                      - generic:
+                        - generic:
+                          - generic: Centro cultural
+                          - generic: · Av. San Martín 919
+                        - generic: Cerrado · Abre a las 12 p. m.
+              - generic:
+                - link "Visitar el sitio web de CC Estacion Cultural" [ref=e67] [cursor=pointer]:
+                  - /url: https://instagram.com/ccestacioncultural?utm_medium=copy_link
+                  - generic [ref=e68]: 
+                  - generic [ref=e70]: Sitio web
+                - button "Cómo llegar a CC Estacion Cultural" [ref=e71] [cursor=pointer]:
+                  - generic [ref=e72]: 
+                  - generic [ref=e74]: Cómo llegar
+            - generic: "\"Excelente y cómodo espacio cultural.\""
+        - article [ref=e77]:
+          - link "Camping Centro Económico de Capitán Bermúdez" [ref=e78] [cursor=pointer]:
+            - /url: https://www.google.com/maps/place/Camping+Centro+Econ%C3%B3mico+de+Capit%C3%A1n+Berm%C3%BAdez/data=!4m7!3m6!1s0x95b65052fa16edeb:0xd20378079a6e5e41!8m2!3d-32.815686!4d-60.7402368!16s%2Fg%2F1hc89qbz4!19sChIJ6-0W-lJQtpURQV5umgd4A9I?authuser=0&hl=es&rclk=1
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: Camping Centro Económico de Capitán Bermúdez
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img "4,3 estrellas 556 reseñas": 4,3(556)
+                      - generic:
+                        - generic:
+                          - generic: Camping
+                          - generic:
+                            - text: ·
+                            - img "Accesible con silla de ruedas" [ref=e80] [cursor=pointer]:
+                              - generic [ref=e81]: 
+                          - generic: · Rural
+                        - generic: 0341 213-0874
+              - generic:
+                - link "Visitar el sitio web de Camping Centro Económico de Capitán Bermúdez" [ref=e82] [cursor=pointer]:
+                  - /url: https://www.facebook.com/profile.php?id=100076751539450
+                  - generic [ref=e83]: 
+                  - generic [ref=e85]: Sitio web
+                - button "Cómo llegar a Camping Centro Económico de Capitán Bermúdez" [ref=e86] [cursor=pointer]:
+                  - generic [ref=e87]: 
+                  - generic [ref=e89]: Cómo llegar
+            - generic: "\"Y que incluye el precio de la entrada?\""
+        - article [ref=e92]:
+          - link "Teatro La Strada" [ref=e93] [cursor=pointer]:
+            - /url: https://www.google.com/maps/place/Teatro+La+Strada/data=!4m7!3m6!1s0x95b65186566cf6f3:0x590bb4d18758f011!8m2!3d-32.8256983!4d-60.7123411!16s%2Fg%2F11fj0sdnrf!19sChIJ8_ZsVoZRtpUREfBYh9G0C1k?authuser=0&hl=es&rclk=1
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: Teatro La Strada
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img "4,8 estrellas 41 reseñas": 4,8(41)
+                      - generic:
+                        - generic:
+                          - generic: Teatro
+                          - generic:
+                            - text: ·
+                            - img "Accesible con silla de ruedas" [ref=e95] [cursor=pointer]:
+                              - generic [ref=e96]: 
+                          - generic: · Av. Pomilio 74
+              - button "Cómo llegar a Teatro La Strada" [ref=e97] [cursor=pointer]:
+                - generic [ref=e98]: 
+                - generic [ref=e100]: Cómo llegar
+            - generic: "\"Una obra magnífica, sorprendente.\""
+        - article [ref=e103]:
+          - link "La Clínica Centro Médico Privado SRL" [ref=e104] [cursor=pointer]:
+            - /url: https://www.google.com/maps/place/La+Cl%C3%ADnica+Centro+M%C3%A9dico+Privado+SRL/data=!4m7!3m6!1s0x95b651016503c5df:0x61ff9a086a3fcb67!8m2!3d-32.8220617!4d-60.7163359!16s%2Fg%2F1hc1b5n2l!19sChIJ38UDZQFRtpURZ8s_agia_2E?authuser=0&hl=es&rclk=1
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: La Clínica Centro Médico Privado SRL
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img "2,5 estrellas 61 reseñas": 2,5(61)
+                      - generic:
+                        - generic:
+                          - generic: Clínica ambulatoria
+                          - generic:
+                            - text: ·
+                            - img "Accesible con silla de ruedas" [ref=e106] [cursor=pointer]:
+                              - generic [ref=e107]: 
+                          - generic: · Pres. Juan Domingo Perón 122
+                        - generic:
+                          - generic: Abierto las 24 horas
+                          - generic: · 0341 491-2284
+              - button "Cómo llegar a La Clínica Centro Médico Privado SRL" [ref=e108] [cursor=pointer]:
+                - generic [ref=e109]: 
+                - generic [ref=e111]: Cómo llegar
+        - article [ref=e114]:
+          - link "S.U.M. ESPACIO CULTURAL Y RECREATIVO" [ref=e115] [cursor=pointer]:
+            - /url: https://www.google.com/maps/place/S.U.M.+ESPACIO+CULTURAL+Y+RECREATIVO/data=!4m7!3m6!1s0x95b651c7dc62ef09:0x953568e176e8720b!8m2!3d-32.8163524!4d-60.7150761!16s%2Fg%2F11q3pc60ht!19sChIJCe9i3MdRtpURC3LoduFoNZU?authuser=0&hl=es&rclk=1
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: S.U.M. ESPACIO CULTURAL Y RECREATIVO
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img "5,0 estrellas 36 reseñas": 5,0(36)
+                      - generic:
+                        - generic:
+                          - generic: Galería de arte
+                          - generic: · El Chocón 35
+                        - generic: Cerrado · Abre a las 9 a. m.
+              - button "Cómo llegar a S.U.M. ESPACIO CULTURAL Y RECREATIVO" [ref=e117] [cursor=pointer]:
+                - generic [ref=e118]: 
+                - generic [ref=e120]: Cómo llegar
+            - generic: "\"Los juegos aportsron su cuota de entretenimiento no solo para mis nietos!🤣\""
+        - article [ref=e123]:
+          - link "Galería El Libertador" [ref=e124] [cursor=pointer]:
+            - /url: https://www.google.com/maps/place/Galer%C3%ADa+El+Libertador/data=!4m7!3m6!1s0x95b65103ee713763:0xe97aaba88ee3f3f!8m2!3d-32.8228444!4d-60.7145895!16s%2Fg%2F11g6xs0k_w!19sChIJYzdx7gNRtpURPz_uiLqqlw4?authuser=0&hl=es&rclk=1
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: Galería El Libertador
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img "4,0 estrellas 8 reseñas": 4,0(8)
+                      - generic:
+                        - generic:
+                          - generic: Centro comercial
+                          - generic:
+                            - text: ·
+                            - img "Accesible con silla de ruedas" [ref=e126] [cursor=pointer]:
+                              - generic [ref=e127]: 
+                          - generic: · Av. San Lorenzo 623
+                        - generic: Cerrado · Abre a las 7:15 a. m. del lun
+              - button "Cómo llegar a Galería El Libertador" [ref=e128] [cursor=pointer]:
+                - generic [ref=e129]: 
+                - generic [ref=e131]: Cómo llegar
+        - article [ref=e134]:
+          - link "Municipalidad de Capitán Bermúdez" [ref=e135] [cursor=pointer]:
+            - /url: https://www.google.com/maps/place/Municipalidad+de+Capit%C3%A1n+Berm%C3%BAdez/data=!4m7!3m6!1s0x95b651010db8fd95:0x39a82acc58704ea8!8m2!3d-32.8222054!4d-60.7173738!16s%2Fg%2F1tfbjxp4!19sChIJlf24DQFRtpURqE5wWMwqqDk?authuser=0&hl=es&rclk=1
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: Municipalidad de Capitán Bermúdez
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img "2,9 estrellas 31 reseñas": 2,9(31)
+                      - generic:
+                        - generic:
+                          - generic: Gobierno
+                          - generic:
+                            - text: ·
+                            - img "Accesible con silla de ruedas" [ref=e137] [cursor=pointer]:
+                              - generic [ref=e138]: 
+                        - generic:
+                          - generic: Cerrado · Abre a las 8 a. m. del lun
+                          - generic: · 0341 478-8888
+              - generic:
+                - link "Visitar el sitio web de Municipalidad de Capitán Bermúdez" [ref=e139] [cursor=pointer]:
+                  - /url: http://www.capitanbermudez.gob.ar/
+                  - generic [ref=e140]: 
+                  - generic [ref=e142]: Sitio web
+                - button "Cómo llegar a Municipalidad de Capitán Bermúdez" [ref=e143] [cursor=pointer]:
+                  - generic [ref=e144]: 
+                  - generic [ref=e146]: Cómo llegar
+            - generic: "\"Exelente atención.\""
+        - article [ref=e149]:
+          - link "Estacion Cultural" [ref=e150] [cursor=pointer]:
+            - /url: https://www.google.com/maps/place/Estacion+Cultural/data=!4m7!3m6!1s0x95b6518681e6d7a1:0x912c992edbaa1515!8m2!3d-32.8230851!4d-60.7127348!16s%2Fg%2F11f6229w_j!19sChIJodfmgYZRtpURFRWq2y6ZLJE?authuser=0&hl=es&rclk=1
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: Estacion Cultural
+                      - generic:
+                        - generic:
+                          - generic:
+                            - img "4,7 estrellas 117 reseñas": 4,7(117)
+                      - generic:
+                        - generic:
+                          - generic: Centro cultural
+                          - generic: · FIB Capitán Bermúdez Santa Fe AR, Av. San Martín 41
+                        - generic: Cerrado permanentemente
+              - generic:
+                - link "Visitar el sitio web de Estacion Cultural" [ref=e152] [cursor=pointer]:
+                  - /url: https://www.facebook.com/pg/ESTACIONCULTURALCC
+                  - generic [ref=e153]: 
+                  - generic [ref=e155]: Sitio web
+                - button "Cómo llegar a Estacion Cultural" [ref=e156] [cursor=pointer]:
+                  - generic [ref=e157]: 
+                  - generic [ref=e159]: Cómo llegar
+            - generic: "\"Dice abierto las 24 horas y no es así .\""
+        - article [ref=e162]:
+          - link "Casa de la Cultura de Capitán Bermúdez" [ref=e163] [cursor=pointer]:
+            - /url: https://www.google.com/maps/place/Casa+de+la+Cultura+de+Capit%C3%A1n+Berm%C3%BAdez/data=!4m7!3m6!1s0x95b651016df0e79d:0xab4125cd75f0f9c0!8m2!3d-32.8222461!4d-60.7167704!16s%2Fg%2F1hc3s51s5!19sChIJnefwbQFRtpURwPnwdc0lQas?authuser=0&hl=es&rclk=1
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic: Casa de la Cultura de Capitán Bermúdez
+                      - generic: No hay reseñas
+                      - generic:
+                        - generic: Gobierno
+                        - generic: Cerrado temporalmente
+              - button "Cómo llegar a Casa de la Cultura de Capitán Bermúdez" [ref=e165] [cursor=pointer]:
+                - generic [ref=e166]: 
+                - generic [ref=e168]: Cómo llegar
+        - paragraph [ref=e171]:
+          - generic [ref=e172]: Has llegado al final de la lista.
+        - heading "Saca el máximo partido de Google Maps Iniciar sesión" [level=2] [ref=e176]:
+          - generic [ref=e177]: Saca el máximo partido de Google Maps
+          - button "Iniciar sesión" [ref=e180] [cursor=pointer]
+      - checkbox [ref=e185] [cursor=pointer]:
+        - generic [ref=e186]: 
+        - text: Actualizar los resultados al mover el mapa
+  - button "Ocultar el panel lateral" [ref=e191] [cursor=pointer]:
+    - generic [ref=e192]: 

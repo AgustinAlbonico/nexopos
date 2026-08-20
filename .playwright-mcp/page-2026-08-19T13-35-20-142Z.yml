@@ -1,0 +1,380 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Productos
+                  - paragraph: Cargá productos con nombre, costo y stock
+                - generic:
+                  - button: Categorías
+                  - button: Importar Matriz 2D
+                  - button: Nuevo Producto
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - textbox:
+                        - /placeholder: Buscar producto...
+                        - text: "7790310000017"
+                      - generic:
+                        - combobox:
+                          - generic: Todas las categorías
+                        - combobox:
+                          - generic: Todas las marcas
+                        - combobox:
+                          - generic: Todo el stock
+                    - generic: 0 registro(s)
+                  - generic:
+                    - generic:
+                      - table:
+                        - rowgroup:
+                          - row:
+                            - columnheader:
+                              - button: Producto
+                            - columnheader: Categoría
+                            - columnheader: Marca
+                            - columnheader: Costo
+                            - columnheader:
+                              - button: Precio
+                            - columnheader:
+                              - button: Stock
+                            - columnheader
+                        - rowgroup:
+                          - row:
+                            - cell: No hay resultados
+                  - generic:
+                    - generic:
+                      - generic: Página 1 de 0
+                      - generic:
+                        - generic: "Mostrar:"
+                        - combobox:
+                          - generic: "10"
+                        - generic: registros
+                    - generic:
+                      - button [disabled]: Anterior
+                      - button [disabled]: Siguiente
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog [ref=e1344]:
+    - generic [ref=e1352]:
+      - heading "Nuevo Producto" [level=2] [ref=e1353]
+      - paragraph [ref=e1354]: Cargá un producto simple o un modelo con matriz de talles y colores
+    - generic [ref=e1356]:
+      - generic [ref=e1357]:
+        - generic [ref=e1362]:
+          - heading "Modo de Carga Textil" [level=3] [ref=e1363]
+          - paragraph [ref=e1364]: Seleccioná si ingresás un artículo individual o un modelo con matriz de talles y colores.
+        - generic [ref=e1365]:
+          - button "Producto Simple" [ref=e1366] [cursor=pointer]
+          - button "Matriz de Talles y Colores" [ref=e1367] [cursor=pointer]
+      - generic [ref=e1368]:
+        - generic [ref=e1369]:
+          - heading "Información del Modelo Base" [level=3] [ref=e1466]
+          - generic [ref=e1371]:
+            - generic [ref=e1372]: Nombre del Modelo / Prenda *
+            - textbox "Nombre del Modelo / Prenda *" [ref=e1467]:
+              - /placeholder: "Ej: Remera Lisa Cuello Redondo"
+              - text: Campera Rompeviento Denver
+          - generic [ref=e1468]:
+            - text: Código de Estilo / SKU Base (opcional)
+            - textbox "Código de Estilo / SKU Base (opcional)" [ref=e1469]:
+              - /placeholder: "Ej: REM-100"
+              - text: CAM-ROM-DEN
+            - paragraph [ref=e1470]: "Se usará como prefijo para generar los códigos de variantes (ej: REM-100-NEG-M)."
+          - generic [ref=e1374]:
+            - text: Descripción
+            - textbox "Descripción" [ref=e1375]:
+              - /placeholder: "Ej: Confeccionada en algodón peinado premium"
+            - paragraph [ref=e1376]: Información adicional (opcional)
+          - generic [ref=e1377]:
+            - generic [ref=e1378]: Marca
+            - combobox [ref=e1379] [cursor=pointer]: Buscar o crear marca...
+            - paragraph [ref=e1383]: Selecciona una existente o escribe para crear una nueva
+          - generic [ref=e1384]:
+            - text: Categoría
+            - generic [ref=e1385]:
+              - combobox "Categoría" [ref=e1386] [cursor=pointer]:
+                - generic: Sin categoría
+              - combobox [ref=e1389]
+              - button "Crear nueva categoría" [ref=e1390] [cursor=pointer]
+            - paragraph [ref=e1392]: Categoría del producto (opcional)
+          - generic [ref=e1396]:
+            - heading "Ficha Técnica de Indumentaria & Calzado" [level=3] [ref=e1397]
+            - generic [ref=e1400]:
+              - generic [ref=e1401]:
+                - text: Temporada
+                - combobox "Temporada" [ref=e1402]
+                - generic [ref=e1403]:
+                  - button "+ Primavera-Verano 2026" [ref=e1404] [cursor=pointer]
+                  - button "+ Otoño-Invierno 2026" [ref=e1405] [cursor=pointer]
+                  - button "+ Atemporal" [ref=e1406] [cursor=pointer]
+              - generic [ref=e1407]:
+                - text: Colección / Línea
+                - combobox "Colección / Línea" [ref=e1408]
+                - generic [ref=e1409]:
+                  - button "+ Cápsula E2E" [ref=e1410] [cursor=pointer]
+                  - button "+ Línea Básica" [ref=e1411] [cursor=pointer]
+                  - button "+ Línea Urbana" [ref=e1412] [cursor=pointer]
+            - generic [ref=e1413]:
+              - generic [ref=e1414]:
+                - text: Composición Textil
+                - combobox "Composición Textil" [ref=e1415]
+                - generic [ref=e1416]:
+                  - button "+ 100% Algodón Peinado 24/1" [ref=e1417] [cursor=pointer]
+                  - button "+ 98% Algodón / 2% Elastano" [ref=e1418] [cursor=pointer]
+                  - button "+ Rústico con Lycra" [ref=e1419] [cursor=pointer]
+              - generic [ref=e1420]:
+                - text: Instrucciones de Cuidado / Lavado
+                - combobox "Instrucciones de Cuidado / Lavado" [ref=e1421]
+                - generic [ref=e1422]:
+                  - button "+ Lavar con agua fría a mano" [ref=e1423] [cursor=pointer]
+                  - button "+ No usar blanqueador / cloro" [ref=e1424] [cursor=pointer]
+            - generic [ref=e1425]:
+              - generic [ref=e1426]:
+                - generic [ref=e1427]: Política de Cambio
+                - combobox "Política de Cambio" [ref=e1430] [cursor=pointer]:
+                  - generic: Estándar (30 días de cambio)
+                - combobox [ref=e1433]
+              - generic [ref=e1434]:
+                - text: País de Origen
+                - textbox "País de Origen" [ref=e1435]:
+                  - /placeholder: "Ej: Argentina"
+        - generic [ref=e1436]:
+          - heading "Precios Base del Modelo" [level=3] [ref=e1471]
+          - generic [ref=e1472]: Los precios y márgenes definidos aquí servirán como valor base por defecto para todas las variantes de la matriz.
+          - generic [ref=e1439]:
+            - generic [ref=e1440]:
+              - generic [ref=e1441]: Precio Fijo
+              - paragraph [ref=e1444]: Cuando está activado, cargás el precio de venta directamente. Cuando está desactivado, el sistema calcula el precio desde el costo y el margen.
+            - checkbox "Precio Fijo" [checked] [ref=e1445] [cursor=pointer]
+            - checkbox [checked]
+          - generic [ref=e1446]:
+            - generic [ref=e1447]:
+              - generic [ref=e1448]: Precio Final *
+              - textbox "Precio Final *" [ref=e1449]:
+                - /placeholder: "0.00"
+              - paragraph [ref=e1450]: Precio de venta directo
+            - generic [ref=e1451]:
+              - generic [ref=e1452]: Stock Inicial *
+              - textbox "Stock Inicial *" [ref=e1453]:
+                - /placeholder: "0"
+                - text: "0"
+              - paragraph [ref=e1454]: Cantidad disponible
+      - generic [ref=e1473]:
+        - heading "Matriz Bidimensional de Variantes y Stock Inicial" [level=3] [ref=e1475]
+        - generic [ref=e1480]:
+          - generic [ref=e1481]:
+            - generic [ref=e1482]:
+              - generic [ref=e1483]:
+                - heading "1. Curva de Talles (Columnas)" [level=4] [ref=e1484]
+                - paragraph [ref=e1489]: Elegí una plantilla guardada, agregá talles individuales o guardá la combinación activa.
+              - generic [ref=e1490]:
+                - button "Guardar plantilla" [ref=e1491] [cursor=pointer]
+                - 'textbox "Nuevo talle (ej: 3XL)" [ref=e1494]'
+                - button "Agregar" [ref=e1495] [cursor=pointer]
+            - generic [ref=e1497]:
+              - button "Adultos (XS a XXL)" [ref=e1499] [cursor=pointer]
+              - button "Pantalones / Jeans (38 a 50)" [ref=e1501] [cursor=pointer]
+              - button "Calzado Adultos (37 a 44)" [ref=e1503] [cursor=pointer]
+              - button "Ropa Infantil (4 a 14)" [ref=e1505] [cursor=pointer]
+              - button "Calzado Infantil (22 a 32)" [ref=e1507] [cursor=pointer]
+              - button "Bebés (0M a 18M)" [ref=e1509] [cursor=pointer]
+            - generic [ref=e1510]:
+              - generic [ref=e1511]: "Talles en grilla:"
+              - generic [ref=e1512]:
+                - generic [ref=e1513]: S
+                - button [ref=e1514] [cursor=pointer]
+              - generic [ref=e1518]:
+                - generic [ref=e1519]: M
+                - button [ref=e1520] [cursor=pointer]
+              - generic [ref=e1524]:
+                - generic [ref=e1525]: L
+                - button [ref=e1526] [cursor=pointer]
+              - generic [ref=e1530]:
+                - generic [ref=e1531]: XL
+                - button [ref=e1532] [cursor=pointer]
+          - generic [ref=e1536]:
+            - generic [ref=e1537]:
+              - generic [ref=e1538]:
+                - heading "2. Paleta de Colores (Filas)" [level=4] [ref=e1539]
+                - paragraph [ref=e1546]: Elegí una paleta completa, seleccioná colores individuales o guardá tu propia combinación.
+              - generic [ref=e1547]:
+                - button "Guardar paleta" [ref=e1548] [cursor=pointer]
+                - textbox "Elegir color personalizado" [ref=e1551] [cursor=pointer]: "#2563eb"
+                - 'textbox "Nombre (ej: Verde Oliva)" [ref=e1552]'
+                - button "Agregar" [active] [ref=e1553] [cursor=pointer]
+            - generic [ref=e1555]:
+              - generic [ref=e1556]: "Paletas:"
+              - button "Básicos Neutros" [ref=e1557] [cursor=pointer]
+            - generic [ref=e1563]:
+              - button "Negro" [ref=e1564] [cursor=pointer]
+              - button "Blanco" [ref=e1570] [cursor=pointer]
+              - button "Gris Melange" [ref=e1576] [cursor=pointer]
+              - button "Azul Marino" [ref=e1579] [cursor=pointer]
+              - button "Azul Francia" [ref=e1585] [cursor=pointer]
+              - button "Celeste" [ref=e1588] [cursor=pointer]
+              - button "Rojo" [ref=e1591] [cursor=pointer]
+              - button "Bordo" [ref=e1594] [cursor=pointer]
+              - button "Verde Militar" [ref=e1597] [cursor=pointer]
+              - button "Verde Esmeralda" [ref=e1600] [cursor=pointer]
+              - button "Beige / Arena" [ref=e1603] [cursor=pointer]
+              - button "Marrón" [ref=e1606] [cursor=pointer]
+              - button "Rosa Pastel" [ref=e1609] [cursor=pointer]
+              - button "Mostaza" [ref=e1612] [cursor=pointer]
+              - button "Naranja" [ref=e1615] [cursor=pointer]
+          - generic [ref=e1618]:
+            - generic [ref=e1619]:
+              - generic [ref=e1620]:
+                - generic [ref=e1621]:
+                  - generic [ref=e1622]: "Curvas:"
+                  - generic [ref=e1623]:
+                    - button "1-2-2-1" [ref=e1624] [cursor=pointer]
+                    - button "2-3-3-2" [ref=e1625] [cursor=pointer]
+                    - button "1-1-1-1" [ref=e1626] [cursor=pointer]
+                    - button "2-2-2-2" [ref=e1627] [cursor=pointer]
+                    - button "Todo 5u" [ref=e1628] [cursor=pointer]
+                    - button "Limpiar" [ref=e1629] [cursor=pointer]
+                - button "Talles Especiales" [ref=e1630] [cursor=pointer]
+              - generic [ref=e1633]:
+                - button "Vista Detallada" [ref=e1634] [cursor=pointer]
+                - button "Generar SKUs" [ref=e1637] [cursor=pointer]
+            - table [ref=e1640]:
+              - rowgroup [ref=e1641]:
+                - row [ref=e1642]:
+                  - columnheader "Color / Variante" [ref=e1643]
+                  - columnheader "S Masivo" [ref=e1644]:
+                    - generic [ref=e1645]:
+                      - generic [ref=e1646]: S
+                      - button "Masivo" [ref=e1648] [cursor=pointer]
+                  - columnheader "M Masivo" [ref=e1650]:
+                    - generic [ref=e1651]:
+                      - generic [ref=e1652]: M
+                      - button "Masivo" [ref=e1654] [cursor=pointer]
+                  - columnheader "L Masivo" [ref=e1656]:
+                    - generic [ref=e1657]:
+                      - generic [ref=e1658]: L
+                      - button "Masivo" [ref=e1660] [cursor=pointer]
+                  - columnheader "XL Masivo" [ref=e1662]:
+                    - generic [ref=e1663]:
+                      - generic [ref=e1664]: XL
+                      - button "Masivo" [ref=e1666] [cursor=pointer]
+                  - columnheader "Subtotal" [ref=e1668]
+                  - columnheader "Acción" [ref=e1669]
+              - rowgroup [ref=e1670]:
+                - row [ref=e1671]:
+                  - cell "Negro +Curva 1-2-2-1 • Masivo" [ref=e1672]:
+                    - generic [ref=e1673]: Negro
+                    - generic [ref=e1676]:
+                      - button "+Curva 1-2-2-1" [ref=e1677] [cursor=pointer]
+                      - generic [ref=e1678]: •
+                      - button "Masivo" [ref=e1679] [cursor=pointer]
+                  - cell [ref=e1681]:
+                    - spinbutton "Stock para Negro - S (Enter/Flechas para navegar)" [ref=e1683]
+                  - cell [ref=e1684]:
+                    - spinbutton "Stock para Negro - M (Enter/Flechas para navegar)" [ref=e1686]
+                  - cell [ref=e1687]:
+                    - spinbutton "Stock para Negro - L (Enter/Flechas para navegar)" [ref=e1689]
+                  - cell [ref=e1690]:
+                    - spinbutton "Stock para Negro - XL (Enter/Flechas para navegar)" [ref=e1692]
+                  - cell "0 u." [ref=e1693]
+                  - cell [ref=e1695]:
+                    - button "Eliminar este color de la matriz" [ref=e1696] [cursor=pointer]
+                - row [ref=e1780]:
+                  - cell "Azul +Curva 1-2-2-1 • Masivo" [ref=e1781]:
+                    - generic [ref=e1782]: Azul
+                    - generic [ref=e1785]:
+                      - button "+Curva 1-2-2-1" [ref=e1786] [cursor=pointer]
+                      - generic [ref=e1787]: •
+                      - button "Masivo" [ref=e1788] [cursor=pointer]
+                  - cell [ref=e1790]:
+                    - spinbutton "Stock para Azul - S (Enter/Flechas para navegar)" [ref=e1792]
+                  - cell [ref=e1793]:
+                    - spinbutton "Stock para Azul - M (Enter/Flechas para navegar)" [ref=e1795]
+                  - cell [ref=e1796]:
+                    - spinbutton "Stock para Azul - L (Enter/Flechas para navegar)" [ref=e1798]
+                  - cell [ref=e1799]:
+                    - spinbutton "Stock para Azul - XL (Enter/Flechas para navegar)" [ref=e1801]
+                  - cell "0 u." [ref=e1802]
+                  - cell [ref=e1804]:
+                    - button "Eliminar este color de la matriz" [ref=e1805] [cursor=pointer]
+                - row [ref=e1809]:
+                  - cell "Verde +Curva 1-2-2-1 • Masivo" [ref=e1810]:
+                    - generic [ref=e1811]: Verde
+                    - generic [ref=e1814]:
+                      - button "+Curva 1-2-2-1" [ref=e1815] [cursor=pointer]
+                      - generic [ref=e1816]: •
+                      - button "Masivo" [ref=e1817] [cursor=pointer]
+                  - cell [ref=e1819]:
+                    - spinbutton "Stock para Verde - S (Enter/Flechas para navegar)" [ref=e1821]
+                  - cell [ref=e1822]:
+                    - spinbutton "Stock para Verde - M (Enter/Flechas para navegar)" [ref=e1824]
+                  - cell [ref=e1825]:
+                    - spinbutton "Stock para Verde - L (Enter/Flechas para navegar)" [ref=e1827]
+                  - cell [ref=e1828]:
+                    - spinbutton "Stock para Verde - XL (Enter/Flechas para navegar)" [ref=e1830]
+                  - cell "0 u." [ref=e1831]
+                  - cell [ref=e1833]:
+                    - button "Eliminar este color de la matriz" [ref=e1834] [cursor=pointer]
+            - generic [ref=e1758]:
+              - generic [ref=e1759]:
+                - generic [ref=e1766]:
+                  - text: "Variantes a generar:"
+                  - strong [ref=e1767]: 12 SKUs
+                - generic [ref=e1770]:
+                  - text: "Con stock inicial:"
+                  - strong [ref=e1771]: 0 variantes
+                - generic [ref=e1772]: "Navegación: Enter / Flechas"
+              - generic [ref=e1776]:
+                - generic [ref=e1777]: "Stock Total Consolidado:"
+                - generic [ref=e1778]: 0 unidades
+      - button "Guardar Modelo y Generar Variantes" [ref=e1779] [cursor=pointer]
+    - button "Close" [ref=e1462] [cursor=pointer]

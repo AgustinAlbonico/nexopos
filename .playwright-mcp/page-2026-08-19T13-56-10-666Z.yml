@@ -1,0 +1,343 @@
+- generic:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - link:
+            - /url: "#/dashboard"
+            - generic: NP
+        - navigation:
+          - generic:
+            - generic:
+              - link:
+                - /url: "#/dashboard"
+            - generic:
+              - link:
+                - /url: "#/sales"
+            - generic:
+              - link:
+                - /url: "#/cash-register"
+            - generic:
+              - link:
+                - /url: "#/customer-accounts"
+            - generic:
+              - link:
+                - /url: "#/incomes"
+            - generic:
+              - link:
+                - /url: "#/purchases"
+            - generic:
+              - link:
+                - /url: "#/expenses"
+            - generic:
+              - link:
+                - /url: "#/products"
+            - generic:
+              - link:
+                - /url: "#/customers"
+            - generic:
+              - link:
+                - /url: "#/suppliers"
+            - generic:
+              - link:
+                - /url: "#/reports"
+            - generic:
+              - link:
+                - /url: "#/settings"
+        - generic:
+          - button
+      - generic:
+        - main:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - heading [level=1]: Compras
+                  - paragraph: Registra compras a proveedores y actualiza automáticamente el stock
+                - generic:
+                  - button: Nueva Compra
+              - generic:
+                - paragraph: Mostrando compras del mes actual (01/08/2026 - 31/08/2026)
+              - generic:
+                - generic:
+                  - generic:
+                    - heading [level=3]: Total Compras
+                  - generic: "0"
+                - generic:
+                  - generic:
+                    - heading [level=3]: Monto Total
+                  - generic: $ 0,00
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pagado
+                  - generic: $ 0,00
+                - generic:
+                  - generic:
+                    - heading [level=3]: Pendiente
+                  - generic: $ 0,00
+              - generic:
+                - generic:
+                  - heading [level=3]: Filtros
+                - generic:
+                  - generic:
+                    - generic:
+                      - button: Hoy
+                      - button: Esta Semana
+                      - button: Mes Actual
+                      - button: Todas las Fechas
+                    - generic:
+                      - generic:
+                        - text: Buscar
+                        - textbox:
+                          - /placeholder: Nº, proveedor, factura...
+                      - generic:
+                        - text: Estado
+                        - combobox:
+                          - generic: Todos
+                      - generic:
+                        - text: Desde
+                        - textbox: 2026-08-01
+                      - generic:
+                        - text: Hasta
+                        - textbox: 2026-08-31
+                      - generic:
+                        - generic:
+                          - paragraph: Producto incluido
+                        - combobox:
+                          - generic: Buscar producto...
+                      - button: Restablecer
+              - generic:
+                - generic:
+                  - heading [level=3]: Listado de Compras
+                - generic:
+                  - generic:
+                    - paragraph: No hay compras registradas
+                    - paragraph: Las compras que registres aparecerán aquí
+    - region "Notifications alt+T"
+  - generic: $0k
+  - dialog [ref=e2879]:
+    - generic [ref=e2887]:
+      - heading "Registrar Compra" [level=2] [ref=e2888]
+      - paragraph [ref=e2889]: Completa los datos de la compra. El stock se actualizará al marcar como pagada.
+    - generic [ref=e2892]:
+      - generic [ref=e2893]:
+        - heading "Datos del Proveedor" [level=3] [ref=e2894]
+        - generic [ref=e2895]:
+          - generic [ref=e2896]: Proveedor Registrado *
+          - combobox [ref=e2897] [cursor=pointer]:
+            - generic [ref=e2898]: Confecciones Textil Oeste S.r.l.
+      - generic [ref=e2902]:
+        - heading "Datos de la Compra" [level=3] [ref=e2903]
+        - generic [ref=e2904]:
+          - generic [ref=e2905]:
+            - generic [ref=e2906]: Fecha *
+            - textbox "Fecha *" [ref=e2907]: 2026-08-19
+          - generic [ref=e2908]:
+            - text: Nº Factura
+            - textbox "Nº Factura" [ref=e2909]:
+              - /placeholder: 0001-00001234
+          - generic [ref=e2910]:
+            - text: Estado
+            - combobox "Estado" [ref=e2911] [cursor=pointer]:
+              - generic: Pendiente
+            - combobox [ref=e2914]
+          - generic [ref=e2915]:
+            - generic [ref=e2916]: Método de Pago
+            - combobox "Método de Pago" [disabled] [ref=e3009]:
+              - generic: Seleccione método de pago
+            - combobox [disabled] [ref=e2920]
+      - generic [ref=e2921]:
+        - generic [ref=e2922]:
+          - textbox "Escanear código de barras" [ref=e2924]:
+            - /placeholder: Escaneá el código de barras o escribí + Enter
+          - button "Buscar por código" [disabled]
+        - generic [ref=e2925]:
+          - heading "Productos *" [level=3] [ref=e2926]
+          - generic [ref=e2927]:
+            - button "Cargar por Matriz (Curvero)" [ref=e2928] [cursor=pointer]
+            - button "Agregar Línea" [ref=e2933] [cursor=pointer]
+        - generic [ref=e2938]:
+          - generic [ref=e2940]:
+            - generic [ref=e2941]: Producto
+            - combobox [expanded] [ref=e2942] [cursor=pointer]:
+              - generic [ref=e2943]: Buscar producto...
+          - generic [ref=e2948]:
+            - text: Cantidad
+            - textbox "Cantidad" [ref=e2949]: "1"
+          - generic [ref=e2951]:
+            - text: Precio Unit.
+            - textbox "Precio Unit." [ref=e2952]: "0"
+          - generic [ref=e2953]:
+            - text: Subtotal
+            - generic [ref=e2954]: $ 0,00
+      - generic [ref=e2955]:
+        - generic [ref=e2956]:
+          - text: Impuestos (+)
+          - textbox "Impuestos (+)" [ref=e2957]: "0"
+        - generic [ref=e2958]:
+          - text: Descuento (-)
+          - textbox "Descuento (-)" [ref=e2959]: "0"
+        - generic [ref=e2960]:
+          - text: Subtotal
+          - generic [ref=e2961]: $ 0,00
+        - generic [ref=e2962]:
+          - text: TOTAL
+          - generic [ref=e2963]: $ 0,00
+      - generic [ref=e2964]:
+        - text: Notas / Observaciones
+        - textbox "Notas / Observaciones" [ref=e2965]:
+          - /placeholder: Notas adicionales sobre la compra...
+      - generic [ref=e2966]:
+        - button "Registrar Compra" [disabled]
+    - button "Close" [ref=e2967] [cursor=pointer]
+  - dialog [ref=e3010]:
+    - generic [ref=e3011]:
+      - combobox [expanded] [active] [ref=e3017]
+      - listbox "Suggestions" [ref=e3019]:
+        - generic [ref=e3020]:
+          - button "Crear producto nuevo" [ref=e3022] [cursor=pointer]
+          - group [ref=e3027]:
+            - 'option "Agua Kin 500ml SKU: N/A Stock: 96 Costo: $ 0,00" [selected] [ref=e3028]':
+              - generic [ref=e3029]:
+                - generic [ref=e3030]: Agua Kin 500ml
+                - generic [ref=e3031]:
+                  - generic [ref=e3032]: "SKU: N/A"
+                  - generic [ref=e3033]: "Stock: 96"
+                  - generic [ref=e3034]: "Costo: $ 0,00"
+            - 'option "Alfajor Havanna E2E 4673 BAR: 779621583741 SKU: N/A Stock: 48 Costo: $ 1.000,00" [ref=e3035]':
+              - generic [ref=e3036]:
+                - generic [ref=e3037]: Alfajor Havanna E2E 4673
+                - generic [ref=e3038]:
+                  - generic [ref=e3039]: "BAR: 779621583741"
+                  - generic [ref=e3040]: "SKU: N/A"
+                  - generic [ref=e3041]: "Stock: 48"
+                  - generic [ref=e3042]: "Costo: $ 1.000,00"
+            - 'option "Campera Rompeviento Denver Azul L SKU: CAMROMDEN-AZU-L Stock: 8 Costo: $ 18.000,00" [ref=e3043]':
+              - generic [ref=e3044]:
+                - generic [ref=e3045]: Campera Rompeviento Denver Azul L
+                - generic [ref=e3046]:
+                  - generic [ref=e3047]: "SKU: CAMROMDEN-AZU-L"
+                  - generic [ref=e3048]: "Stock: 8"
+                  - generic [ref=e3049]: "Costo: $ 18.000,00"
+            - 'option "Campera Rompeviento Denver Azul M SKU: CAMROMDEN-AZU-M Stock: 10 Costo: $ 18.000,00" [ref=e3050]':
+              - generic [ref=e3051]:
+                - generic [ref=e3052]: Campera Rompeviento Denver Azul M
+                - generic [ref=e3053]:
+                  - generic [ref=e3054]: "SKU: CAMROMDEN-AZU-M"
+                  - generic [ref=e3055]: "Stock: 10"
+                  - generic [ref=e3056]: "Costo: $ 18.000,00"
+            - 'option "Campera Rompeviento Denver Azul S SKU: CAMROMDEN-AZU-S Stock: 6 Costo: $ 18.000,00" [ref=e3057]':
+              - generic [ref=e3058]:
+                - generic [ref=e3059]: Campera Rompeviento Denver Azul S
+                - generic [ref=e3060]:
+                  - generic [ref=e3061]: "SKU: CAMROMDEN-AZU-S"
+                  - generic [ref=e3062]: "Stock: 6"
+                  - generic [ref=e3063]: "Costo: $ 18.000,00"
+            - 'option "Campera Rompeviento Denver Azul XL SKU: CAMROMDEN-AZU-XL Stock: 4 Costo: $ 18.000,00" [ref=e3064]':
+              - generic [ref=e3065]:
+                - generic [ref=e3066]: Campera Rompeviento Denver Azul XL
+                - generic [ref=e3067]:
+                  - generic [ref=e3068]: "SKU: CAMROMDEN-AZU-XL"
+                  - generic [ref=e3069]: "Stock: 4"
+                  - generic [ref=e3070]: "Costo: $ 18.000,00"
+            - 'option "Campera Rompeviento Denver Negro L SKU: PROD-NEG-L Stock: 10 Costo: $ 18.000,00" [ref=e3071]':
+              - generic [ref=e3072]:
+                - generic [ref=e3073]: Campera Rompeviento Denver Negro L
+                - generic [ref=e3074]:
+                  - generic [ref=e3075]: "SKU: PROD-NEG-L"
+                  - generic [ref=e3076]: "Stock: 10"
+                  - generic [ref=e3077]: "Costo: $ 18.000,00"
+            - 'option "Campera Rompeviento Denver Negro M SKU: PROD-NEG-M Stock: 12 Costo: $ 18.000,00" [ref=e3078]':
+              - generic [ref=e3079]:
+                - generic [ref=e3080]: Campera Rompeviento Denver Negro M
+                - generic [ref=e3081]:
+                  - generic [ref=e3082]: "SKU: PROD-NEG-M"
+                  - generic [ref=e3083]: "Stock: 12"
+                  - generic [ref=e3084]: "Costo: $ 18.000,00"
+            - 'option "Campera Rompeviento Denver Negro S SKU: PROD-NEG-S Stock: 8 Costo: $ 18.000,00" [ref=e3085]':
+              - generic [ref=e3086]:
+                - generic [ref=e3087]: Campera Rompeviento Denver Negro S
+                - generic [ref=e3088]:
+                  - generic [ref=e3089]: "SKU: PROD-NEG-S"
+                  - generic [ref=e3090]: "Stock: 8"
+                  - generic [ref=e3091]: "Costo: $ 18.000,00"
+            - 'option "Campera Rompeviento Denver Negro XL SKU: PROD-NEG-XL Stock: 5 Costo: $ 18.000,00" [ref=e3092]':
+              - generic [ref=e3093]:
+                - generic [ref=e3094]: Campera Rompeviento Denver Negro XL
+                - generic [ref=e3095]:
+                  - generic [ref=e3096]: "SKU: PROD-NEG-XL"
+                  - generic [ref=e3097]: "Stock: 5"
+                  - generic [ref=e3098]: "Costo: $ 18.000,00"
+            - 'option "Campera Rompeviento Denver Verde L SKU: CAMROMDEN-VER-L Stock: 6 Costo: $ 18.000,00" [ref=e3099]':
+              - generic [ref=e3100]:
+                - generic [ref=e3101]: Campera Rompeviento Denver Verde L
+                - generic [ref=e3102]:
+                  - generic [ref=e3103]: "SKU: CAMROMDEN-VER-L"
+                  - generic [ref=e3104]: "Stock: 6"
+                  - generic [ref=e3105]: "Costo: $ 18.000,00"
+            - 'option "Campera Rompeviento Denver Verde M SKU: CAMROMDEN-VER-M Stock: 7 Costo: $ 18.000,00" [ref=e3106]':
+              - generic [ref=e3107]:
+                - generic [ref=e3108]: Campera Rompeviento Denver Verde M
+                - generic [ref=e3109]:
+                  - generic [ref=e3110]: "SKU: CAMROMDEN-VER-M"
+                  - generic [ref=e3111]: "Stock: 7"
+                  - generic [ref=e3112]: "Costo: $ 18.000,00"
+            - 'option "Campera Rompeviento Denver Verde S SKU: CAMROMDEN-VER-S Stock: 3 Costo: $ 18.000,00" [ref=e3113]':
+              - generic [ref=e3114]:
+                - generic [ref=e3115]: Campera Rompeviento Denver Verde S
+                - generic [ref=e3116]:
+                  - generic [ref=e3117]: "SKU: CAMROMDEN-VER-S"
+                  - generic [ref=e3118]: "Stock: 3"
+                  - generic [ref=e3119]: "Costo: $ 18.000,00"
+            - 'option "Campera Rompeviento Denver Verde XL SKU: CAMROMDEN-VER-XL Stock: 2 Costo: $ 18.000,00" [ref=e3120]':
+              - generic [ref=e3121]:
+                - generic [ref=e3122]: Campera Rompeviento Denver Verde XL
+                - generic [ref=e3123]:
+                  - generic [ref=e3124]: "SKU: CAMROMDEN-VER-XL"
+                  - generic [ref=e3125]: "Stock: 2"
+                  - generic [ref=e3126]: "Costo: $ 18.000,00"
+            - 'option "Coca-Cola 1.5L SKU: N/A Stock: 89 Costo: $ 0,00" [ref=e3127]':
+              - generic [ref=e3128]:
+                - generic [ref=e3129]: Coca-Cola 1.5L
+                - generic [ref=e3130]:
+                  - generic [ref=e3131]: "SKU: N/A"
+                  - generic [ref=e3132]: "Stock: 89"
+                  - generic [ref=e3133]: "Costo: $ 0,00"
+            - 'option "Detergente Ala 750ml SKU: N/A Stock: 8 Costo: $ 100,00" [ref=e3134]':
+              - generic [ref=e3135]:
+                - generic [ref=e3136]: Detergente Ala 750ml
+                - generic [ref=e3137]:
+                  - generic [ref=e3138]: "SKU: N/A"
+                  - generic [ref=e3139]: "Stock: 8"
+                  - generic [ref=e3140]: "Costo: $ 100,00"
+            - 'option "Gorra Trucker Bordada Urban BAR: 7799880468185 SKU: N/A Stock: 0 Costo: $ 0,00" [ref=e3141]':
+              - generic [ref=e3142]:
+                - generic [ref=e3143]: Gorra Trucker Bordada Urban
+                - generic [ref=e3144]:
+                  - generic [ref=e3145]: "BAR: 7799880468185"
+                  - generic [ref=e3146]: "SKU: N/A"
+                  - generic [ref=e3147]: "Stock: 0"
+                  - generic [ref=e3148]: "Costo: $ 0,00"
+            - 'option "Gorra Trucker Bordada Urban BAR: 7799880510266 SKU: N/A Stock: 0 Costo: $ 0,00" [ref=e3149]':
+              - generic [ref=e3150]:
+                - generic [ref=e3151]: Gorra Trucker Bordada Urban
+                - generic [ref=e3152]:
+                  - generic [ref=e3153]: "BAR: 7799880510266"
+                  - generic [ref=e3154]: "SKU: N/A"
+                  - generic [ref=e3155]: "Stock: 0"
+                  - generic [ref=e3156]: "Costo: $ 0,00"
+            - 'option "Lavandina Ayudín 1L SKU: N/A Stock: 12 Costo: $ 100,00" [ref=e3157]':
+              - generic [ref=e3158]:
+                - generic [ref=e3159]: Lavandina Ayudín 1L
+                - generic [ref=e3160]:
+                  - generic [ref=e3161]: "SKU: N/A"
+                  - generic [ref=e3162]: "Stock: 12"
+                  - generic [ref=e3163]: "Costo: $ 100,00"
+            - 'option "Lector BAR: CRMK95421 SKU: N/A Stock: -16 Costo: $ 10.000,00" [ref=e3164]':
+              - generic [ref=e3165]:
+                - generic [ref=e3166]: Lector
+                - generic [ref=e3167]:
+                  - generic [ref=e3168]: "BAR: CRMK95421"
+                  - generic [ref=e3169]: "SKU: N/A"
+                  - generic [ref=e3170]: "Stock: -16"
+                  - generic [ref=e3171]: "Costo: $ 10.000,00"

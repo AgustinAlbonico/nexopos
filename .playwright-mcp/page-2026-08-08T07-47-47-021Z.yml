@@ -1,0 +1,346 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - heading "Reporte de prospección comercial" [level=1] [ref=e3]
+    - heading "Cines y espacios de exhibición de la provincia de Santa Fe" [level=2] [ref=e4]
+    - heading "Detección de oportunidades para servicios de desarrollo web" [level=2] [ref=e5]
+    - generic [ref=e6]: "Fecha de elaboración: 8 de agosto de 2026 Zona cubierta: Casilda y alrededores, Rosario y Gran Rosario, centro y sur de Santa Fe Fuentes: sitios web oficiales, redes sociales públicas, Google Maps, directorios públicos"
+  - heading "Resumen ejecutivo" [level=2] [ref=e7]
+  - paragraph [ref=e8]:
+    - text: Se relevó un total de
+    - strong [ref=e9]: 22 cines y espacios de exhibición
+    - text: en la provincia de Santa Fe, priorizando cines independientes, salas de barrio y teatros con programación cinematográfica. Para cada uno se evaluó la presencia y el estado de su sitio web, los canales de contacto público disponibles y el nivel de oportunidad comercial para ofrecer servicios de modernización web.
+  - generic [ref=e10]:
+    - generic [ref=e11]:
+      - generic [ref=e12]: "11"
+      - text: Oportunidad alta
+    - generic [ref=e13]:
+      - generic [ref=e14]: "5"
+      - text: Oportunidad media
+    - generic [ref=e15]:
+      - generic [ref=e16]: "6"
+      - text: Oportunidad baja
+  - generic [ref=e17]:
+    - strong [ref=e18]: "Hallazgo clave:"
+    - text: El proveedor web
+    - strong [ref=e19]: Nexo Soluciones
+    - text: aparece como responsable de varios sitios de cines de la región (Cine Libertador de Casilda, Las Tipas San Jorge, Las Tipas Rosario, e-Max Cines de Esperanza). Los sitios más nuevos de este proveedor funcionan correctamente, pero el caso del Cine Libertador evidencia que las versiones más antiguas presentan fallas graves en la carga de cartelera.
+  - heading "Tabla consolidada de oportunidades" [level=2] [ref=e20]
+  - table [ref=e21]:
+    - rowgroup [ref=e22]:
+      - row [ref=e23]:
+        - columnheader "Cine / Espacio" [ref=e24]
+        - columnheader "Ciudad" [ref=e25]
+        - columnheader "Sitio web / Estado" [ref=e26]
+        - columnheader "Contacto público" [ref=e27]
+        - columnheader "Oportunidad" [ref=e28]
+        - columnheader "Nota" [ref=e29]
+    - rowgroup [ref=e30]:
+      - row [ref=e31]:
+        - cell [ref=e32]:
+          - strong [ref=e33]: Cine Teatro Libertador
+        - cell "Casilda" [ref=e34]
+        - cell [ref=e35]:
+          - text: cinelibertador.com.ar
+          - strong [ref=e36]: "Roto:"
+          - text: cartelera vacía, errores JS
+        - cell "FB /cineteatro.libertadorii IG @cinelibertador Tel. 03464 422381" [ref=e37]: FB /cineteatro.libertadoriiIG @cinelibertadorTel. 03464 422381
+        - cell "ALTA" [ref=e38]
+        - cell "Sitio no carga cartelera. Compra online existe vía Cinexo pero queda inaccesible." [ref=e40]
+      - row [ref=e41]:
+        - cell [ref=e42]:
+          - strong [ref=e43]: Teatro Verdi
+        - cell "Venado Tuerto" [ref=e44]
+        - cell "Sin sitio propio Sólo redes sociales" [ref=e45]: Sin sitio propioSólo redes sociales
+        - cell "FB /teatroverdivenadotuerto IG @teatro_verdi_vt Belgrano 357" [ref=e46]: FB /teatroverdivenadotuertoIG @teatro_verdi_vtBelgrano 357
+        - cell "ALTA" [ref=e47]
+        - cell "Sin presencia web propia. Toda la programación vive en Facebook/Instagram." [ref=e49]
+      - row [ref=e50]:
+        - cell [ref=e51]:
+          - strong [ref=e52]: Teatro Verdi
+        - cell "Cañada de Gómez" [ref=e53]
+        - cell "Sin sitio propio verificado" [ref=e54]
+        - cell "FB /teatroverdivenadotuerto (compartido)" [ref=e55]: FB /teatroverdivenadotuerto(compartido)
+        - cell "ALTA" [ref=e56]
+        - cell "Sin web propia confirmada. Depende de redes sociales." [ref=e58]
+      - row [ref=e59]:
+        - cell [ref=e60]:
+          - strong [ref=e61]: Cinema 77
+        - cell "Sunchales" [ref=e62]
+        - cell "Sin sitio propio verificado" [ref=e63]
+        - cell "Referencia en directorios locales" [ref=e64]
+        - cell "ALTA" [ref=e65]
+        - cell "No se verificó sitio propio estable. Oportunidad de desarrollo." [ref=e67]
+      - row [ref=e68]:
+        - cell [ref=e69]:
+          - strong [ref=e70]: Espacio INCAA Rufino
+        - cell "Rufino" [ref=e71]
+        - cell "Sin sitio propio Listado en cinesargentinos.com.ar" [ref=e72]: Sin sitio propioListado en cinesargentinos.com.ar
+        - cell "Vía INCAA y directorios" [ref=e73]
+        - cell "ALTA" [ref=e74]
+        - cell "Sala INCAA sin web propia. Depende de plataformas de terceros." [ref=e76]
+      - row [ref=e77]:
+        - cell [ref=e78]:
+          - strong [ref=e79]: Centro Cultural 12 de Septiembre
+        - cell "Santo Tomé" [ref=e80]
+        - cell "Sin sitio propio" [ref=e81]
+        - cell "Gestión municipal" [ref=e82]
+        - cell "ALTA" [ref=e83]
+        - cell "Espacio cultural con proyecciones pero sin portal de programación." [ref=e85]
+      - row [ref=e86]:
+        - cell [ref=e87]:
+          - strong [ref=e88]: Sala AMR
+        - cell "Rosario" [ref=e89]
+        - cell "Sin sitio propio Información en portal municipal" [ref=e90]: Sin sitio propioInformación en portal municipal
+        - cell "IG @amrorgar" [ref=e91]
+        - cell "ALTA" [ref=e92]
+        - cell "Programación dispersa entre Instagram y portales de terceros." [ref=e94]
+      - row [ref=e95]:
+        - cell [ref=e96]:
+          - strong [ref=e97]: CineClú Rosario
+        - cell "Rosario" [ref=e98]
+        - cell "Sin sitio institucional Sólo Instagram y WhatsApp" [ref=e99]: Sin sitio institucionalSólo Instagram y WhatsApp
+        - cell "IG @cineclurosario WhatsApp +54 341 5669752" [ref=e100]: IG @cineclurosarioWhatsApp +54 341 5669752
+        - cell "ALTA" [ref=e101]
+        - cell "Cineclub activo sin web propia. Depende completamente de redes." [ref=e103]
+      - row [ref=e104]:
+        - cell [ref=e105]:
+          - strong [ref=e106]: Plataforma Lavardén
+        - cell "Rosario" [ref=e107]
+        - cell "plataformalavarden.gob.ar Página municipal" [ref=e108]: plataformalavarden.gob.arPágina municipal
+        - cell "Mendoza 1085 Tel. 0341 4357653 int. 170" [ref=e109]: Mendoza 1085Tel. 0341 4357653 int. 170
+        - cell "ALTA" [ref=e110]
+        - cell "Espacio cultural activo con programación, sin sitio propio dedicado." [ref=e112]
+      - row [ref=e113]:
+        - cell [ref=e114]:
+          - strong [ref=e115]: Centro Cultural Roberto Fontanarrosa
+        - cell "Rosario" [ref=e116]
+        - cell "Página dentro de rosario.gob.ar" [ref=e117]
+        - cell "San Martín 1080 Tel. 4802401 info-ccrf@rosario.gov.ar" [ref=e118]: San Martín 1080Tel. 4802401info-ccrf@rosario.gov.ar
+        - cell "ALTA" [ref=e119]
+        - cell "Programación muy activa, alojada en portal municipal genérico." [ref=e121]
+      - row [ref=e122]:
+        - cell [ref=e123]:
+          - strong [ref=e124]: Teatro Municipal La Comedia
+        - cell "Rosario" [ref=e125]
+        - cell "Página dentro de rosario.gob.ar" [ref=e126]
+        - cell "Mitre 958 Tel. 4802597 teatrolacomedia@rosario.gov.ar" [ref=e127]: Mitre 958Tel. 4802597teatrolacomedia@rosario.gov.ar
+        - cell "ALTA" [ref=e128]
+        - cell "Espacio histórico con programación, sin portal dedicado de cartelera." [ref=e130]
+      - row [ref=e131]:
+        - cell [ref=e132]:
+          - strong [ref=e133]: Las Tipas Rafaela
+        - cell "Rafaela" [ref=e134]
+        - cell "lastipasrafaela.com.ar Funciona (proveedor Nexo)" [ref=e135]: lastipasrafaela.com.arFunciona (proveedor Nexo)
+        - cell "Vía sitio web" [ref=e136]
+        - cell "MEDIA" [ref=e137]
+        - cell "Sitio funciona pero corresponde a la plataforma genérica de Nexo Soluciones." [ref=e139]
+      - row [ref=e140]:
+        - cell [ref=e141]:
+          - strong [ref=e142]: Las Tipas San Jorge
+        - cell "San Jorge" [ref=e143]
+        - cell "sanjorge.lastipas.com.ar Funciona (proveedor Nexo)" [ref=e144]: sanjorge.lastipas.com.arFunciona (proveedor Nexo)
+        - cell "Vía sitio web" [ref=e145]
+        - cell "MEDIA" [ref=e146]
+        - cell "Mismo proveedor que Cine Libertador. Sitio funcional pero estándar." [ref=e148]
+      - row [ref=e149]:
+        - cell [ref=e150]:
+          - strong [ref=e151]: e-Max Cines
+        - cell "Esperanza" [ref=e152]
+        - cell "e-max.com.ar Funciona (proveedor Nexo)" [ref=e153]: e-max.com.arFunciona (proveedor Nexo)
+        - cell "Brigadier López 1471 ventas@e-max.com.ar Tel. 03496 420947" [ref=e154]: Brigadier López 1471ventas@e-max.com.arTel. 03496 420947
+        - cell "MEDIA" [ref=e155]
+        - cell "Sitio funcional pero plantilla estándar compartida con otros cines." [ref=e157]
+      - row [ref=e158]:
+        - cell [ref=e159]:
+          - strong [ref=e160]: Las Tipas Cinemas Rosario
+        - cell "Rosario" [ref=e161]
+        - cell "rosario.lastipas.com.ar Funciona (proveedor Nexo)" [ref=e162]: rosario.lastipas.com.arFunciona (proveedor Nexo)
+        - cell "WhatsApp +54 9 341 339-1633" [ref=e163]
+        - cell "MEDIA" [ref=e164]
+        - cell "Cartelera activa. Sitio funcional pero sin diferenciación visual." [ref=e166]
+      - row [ref=e167]:
+        - cell [ref=e168]:
+          - strong [ref=e169]: Galpón 11
+        - cell "Rosario" [ref=e170]
+        - cell "Página dentro de rosario.gob.ar" [ref=e171]
+        - cell "Estévez Boero 980 Tel. 4802462 galpon11@rosario.gob.ar" [ref=e172]: Estévez Boero 980Tel. 4802462galpon11@rosario.gob.ar
+        - cell "MEDIA" [ref=e173]
+        - cell "Espacio cultural con proyecciones ocasionales." [ref=e175]
+      - row [ref=e176]:
+        - cell [ref=e177]:
+          - strong [ref=e178]: Cine Lumière
+        - cell "Rosario" [ref=e179]
+        - cell "lumiererosario.gob.ar/web/ Funciona, cartelera activa" [ref=e180]: lumiererosario.gob.ar/web/Funciona, cartelera activa
+        - cell "Vélez Sarsfield 1027 Tel. 3413 99-8916 cccinelumiere@rosario.gob.ar" [ref=e181]: Vélez Sarsfield 1027Tel. 3413 99-8916cccinelumiere@rosario.gob.ar
+        - cell "BAJA" [ref=e182]
+        - cell "Sitio propio funcional con programación actualizada." [ref=e184]
+      - row [ref=e185]:
+        - cell [ref=e186]:
+          - strong [ref=e187]: El Cairo Cine Público
+        - cell "Rosario" [ref=e188]
+        - cell "santafecultura.gob.ar Cartelera activa" [ref=e189]: santafecultura.gob.arCartelera activa
+        - cell "Santa Fe 1120 Tel. 0341 472-1851" [ref=e190]: Santa Fe 1120Tel. 0341 472-1851
+        - cell "BAJA" [ref=e191]
+        - cell "Programación publicada en portal cultural provincial." [ref=e193]
+      - row [ref=e194]:
+        - cell [ref=e195]:
+          - strong [ref=e196]: Cines del Centro Rosario
+        - cell "Rosario" [ref=e197]
+        - cell "cinesdelcentro.com.ar Funciona, cartelera activa" [ref=e198]: cinesdelcentro.com.arFunciona, cartelera activa
+        - cell "Rioja 1640, Shopping del Siglo WhatsApp 341 500-1071 IG @cinesdelcentrorosario" [ref=e199]: Rioja 1640, Shopping del SigloWhatsApp 341 500-1071IG @cinesdelcentrorosario
+        - cell "BAJA" [ref=e200]
+        - cell "Sitio propio moderno y funcional. Cartelera en tiempo real." [ref=e202]
+      - row [ref=e203]:
+        - cell [ref=e204]:
+          - strong [ref=e205]: Cine Teatro Municipal Belgrano
+        - cell "Rafaela" [ref=e206]
+        - cell "rafaela.gob.ar/Cine Funciona, cartelera semanal" [ref=e207]: rafaela.gob.ar/CineFunciona, cartelera semanal
+        - cell "Av. Santa Fe 555 Tel. (03492) 504503 cinebelgrano@gmail.com" [ref=e208]: Av. Santa Fe 555Tel. (03492) 504503cinebelgrano@gmail.com
+        - cell "BAJA" [ref=e209]
+        - cell "Sitio municipal propio con programación y precios actualizados." [ref=e211]
+      - row [ref=e212]:
+        - cell [ref=e213]:
+          - strong [ref=e214]: Complejo Astronómico Municipal
+        - cell "Rosario" [ref=e215]
+        - cell "Página dentro de rosario.gob.ar" [ref=e216]
+        - cell "Av. Diario La Capital 1602 Tel. 4802554 comunicacioncam@rosario.gov.ar" [ref=e217]: Av. Diario La Capital 1602Tel. 4802554comunicacioncam@rosario.gov.ar
+        - cell "BAJA" [ref=e218]
+        - cell "Proyecciones fulldome, no cine comercial propiamente dicho." [ref=e220]
+      - row [ref=e221]:
+        - cell [ref=e222]:
+          - strong [ref=e223]: Centro Cultural Parque de España
+        - cell "Rosario" [ref=e224]
+        - cell "Página dentro de rosario.gob.ar" [ref=e225]
+        - cell "Sarmiento y el río Tel. 4260941" [ref=e226]: Sarmiento y el ríoTel. 4260941
+        - cell "BAJA" [ref=e227]
+        - cell "Espacio cultural con programación variada." [ref=e229]
+  - heading "Detalle de los 6 cines con mayor oportunidad" [level=2] [ref=e230]
+  - generic [ref=e231]:
+    - heading "1. Cine Teatro Libertador (Casilda)" [level=3] [ref=e232]
+    - generic [ref=e233]:
+      - generic [ref=e234]: "Dirección:"
+      - text: Buenos Aires 2431, Casilda, Santa Fe
+    - generic [ref=e235]:
+      - generic [ref=e236]: "Sitio:"
+      - text: cinelibertador.com.ar
+    - generic [ref=e237]:
+      - generic [ref=e238]: "Estado:"
+      - strong [ref=e239]: Roto
+      - text: . La cartelera no carga y se producen errores de JavaScript. El acceso a la compra online queda inaccesible.
+    - generic [ref=e240]:
+      - generic [ref=e241]: "Contacto:"
+      - text: Facebook /cineteatro.libertadorii, Instagram @cinelibertador, Tel. 03464 422381
+    - generic [ref=e242]:
+      - generic [ref=e243]: "Oportunidad:"
+      - generic [ref=e244]: ALTA
+      - text: Renovación completa del sitio conservando la integración con Cinexo.
+  - generic [ref=e245]:
+    - heading "2. Teatro Verdi (Venado Tuerto)" [level=3] [ref=e246]
+    - generic [ref=e247]:
+      - generic [ref=e248]: "Dirección:"
+      - text: Belgrano 357, Venado Tuerto, Santa Fe
+    - generic [ref=e249]:
+      - generic [ref=e250]: "Sitio:"
+      - text: Sin sitio web propio
+    - generic [ref=e251]:
+      - generic [ref=e252]: "Contacto:"
+      - text: Facebook /teatroverdivenadotuerto, Instagram @teatro_verdi_vt
+    - generic [ref=e253]:
+      - generic [ref=e254]: "Oportunidad:"
+      - generic [ref=e255]: ALTA
+      - text: Desarrollo de sitio propio con cartelera y programación.
+  - generic [ref=e256]:
+    - heading "3. Espacio INCAA Rufino" [level=3] [ref=e257]
+    - generic [ref=e258]:
+      - generic [ref=e259]: "Dirección:"
+      - text: Rufino, Santa Fe
+    - generic [ref=e260]:
+      - generic [ref=e261]: "Sitio:"
+      - text: Sin sitio propio. Listado únicamente en cinesargentinos.com.ar
+    - generic [ref=e262]:
+      - generic [ref=e263]: "Contacto:"
+      - text: Vía INCAA y directorios de cines
+    - generic [ref=e264]:
+      - generic [ref=e265]: "Oportunidad:"
+      - generic [ref=e266]: ALTA
+      - text: Creación de sitio web propio para programación INCAA.
+  - generic [ref=e267]:
+    - heading "4. CineClú Rosario" [level=3] [ref=e268]
+    - generic [ref=e269]:
+      - generic [ref=e270]: "Dirección:"
+      - text: Rosario, Santa Fe
+    - generic [ref=e271]:
+      - generic [ref=e272]: "Sitio:"
+      - text: Sin sitio institucional. Depende completamente de Instagram y WhatsApp.
+    - generic [ref=e273]:
+      - generic [ref=e274]: "Contacto:"
+      - text: Instagram @cineclurosario, WhatsApp +54 341 5669752
+    - generic [ref=e275]:
+      - generic [ref=e276]: "Oportunidad:"
+      - generic [ref=e277]: ALTA
+      - text: Cineclub con audiencia activa que podría profesionalizar su presencia web.
+  - generic [ref=e278]:
+    - heading "5. Sala AMR (Rosario)" [level=3] [ref=e279]
+    - generic [ref=e280]:
+      - generic [ref=e281]: "Dirección:"
+      - text: Rosario, Santa Fe
+    - generic [ref=e282]:
+      - generic [ref=e283]: "Sitio:"
+      - text: Sin sitio propio. Información fragmentada en portal municipal.
+    - generic [ref=e284]:
+      - generic [ref=e285]: "Contacto:"
+      - text: Instagram @amrorgar
+    - generic [ref=e286]:
+      - generic [ref=e287]: "Oportunidad:"
+      - generic [ref=e288]: ALTA
+      - text: Espacio de exhibición que necesita un portal dedicado de programación.
+  - generic [ref=e289]:
+    - heading "6. Cinema 77 (Sunchales)" [level=3] [ref=e290]
+    - generic [ref=e291]:
+      - generic [ref=e292]: "Dirección:"
+      - text: Sunchales, Santa Fe
+    - generic [ref=e293]:
+      - generic [ref=e294]: "Sitio:"
+      - text: Sin sitio propio verificado
+    - generic [ref=e295]:
+      - generic [ref=e296]: "Contacto:"
+      - text: Referencias en directorios locales
+    - generic [ref=e297]:
+      - generic [ref=e298]: "Oportunidad:"
+      - generic [ref=e299]: ALTA
+      - text: Cine local sin presencia web profesional.
+  - heading "Observaciones estratégicas" [level=2] [ref=e300]
+  - list [ref=e301]:
+    - listitem [ref=e302]:
+      - strong [ref=e303]: Nexo Soluciones
+      - text: controla varios cines de la región (Las Tipas San Jorge/Rosario, e-Max Esperanza, Cine Libertador). Los sitios más nuevos funcionan correctamente, pero todos comparten la misma plantilla y no se diferencian visualmente.
+    - listitem [ref=e304]:
+      - text: Los
+      - strong [ref=e305]: cines sin sitio propio
+      - text: (Teatro Verdi Venado Tuerto, CineClú, Sala AMR, Espacio INCAA Rufino) representan la oportunidad más limpia, ya que no compiten con un proveedor establecido.
+    - listitem [ref=e306]:
+      - text: Los
+      - strong [ref=e307]: espacios culturales municipales
+      - text: (Fontanarrosa, Lavardén, La Comedia) tienen programación activa pero alojada en portales genéricos. Requieren aprobación gubernamental.
+    - listitem [ref=e308]:
+      - text: El
+      - strong [ref=e309]: Cine Libertador de Casilda
+      - text: "es el caso más urgente: el sitio está visiblemente roto y bloquea el canal de venta."
+  - heading "Plantilla de correo para enviar a los cines" [level=2] [ref=e310]
+  - paragraph [ref=e311]: Texto listo para personalizar y enviar. Reemplazá los campos marcados en amarillo.
+  - generic [ref=e312]:
+    - 'heading "Asunto: Propuesta para renovar el sitio web de [NOMBRE DEL CINE]" [level=3] [ref=e313]'
+    - paragraph [ref=e314]: Hola, ¿cómo están?
+    - paragraph [ref=e315]: Mi nombre es [NOMBRE Y APELLIDO], soy ingeniero en sistemas.
+    - paragraph [ref=e316]: Estuve visitando el sitio web de [NOMBRE DEL CINE] y noté algunos problemas con la cartelera, los horarios y la experiencia desde celulares. Me interesa ofrecerles, si están abiertos a evaluarlo, el desarrollo de una solución web más moderna y confiable.
+    - paragraph [ref=e317]: La propuesta podría incluir cartelera, horarios, estrenos, promociones, acceso a venta online y un panel sencillo para administrar el contenido.
+    - paragraph [ref=e318]: ¿Podrían indicarme si les interesaría conversar sobre esta posibilidad o derivarme con la persona responsable del sitio?
+    - paragraph [ref=e319]: En caso de que este mensaje no corresponda a su área, les agradecería si pudieran derivarlo a quien corresponda.
+    - paragraph [ref=e320]: Saludos cordiales,
+    - paragraph [ref=e321]:
+      - strong [ref=e322]: Ing. [NOMBRE Y APELLIDO]
+      - text: "WhatsApp: [NÚMERO] Correo: [CORREO] [LINKEDIN O PORTFOLIO, OPCIONAL]"
+  - generic [ref=e323]:
+    - strong [ref=e324]: "Recomendación:"
+    - text: No incluyas precio en el primer contacto. El objetivo inicial es conseguir una respuesta y llegar a la persona que toma la decisión. Si te piden más detalle, enviá una propuesta específica con alcance y referencia de precio.
+  - generic [ref=e325]: Reporte elaborado el 8 de agosto de 2026 a partir de fuentes públicas verificadas. Los datos de contacto y estado de los sitios corresponden al momento de la verificación y pueden variar.

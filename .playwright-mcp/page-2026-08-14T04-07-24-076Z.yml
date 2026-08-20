@@ -1,0 +1,114 @@
+- generic [ref=f2e1]:
+  - generic [ref=f2e2]:
+    - generic [ref=f2e3]:
+      - generic [ref=f2e4]:
+        - link "NP" [ref=f2e6] [cursor=pointer]:
+          - /url: "#/dashboard"
+        - navigation [ref=f2e8]:
+          - generic [ref=f2e9]:
+            - link [ref=f2e11] [cursor=pointer]:
+              - /url: "#/dashboard"
+            - link [ref=f2e18] [cursor=pointer]:
+              - /url: "#/sales"
+            - link [ref=f2e24] [cursor=pointer]:
+              - /url: "#/cash-register"
+            - link [ref=f2e30] [cursor=pointer]:
+              - /url: "#/customer-accounts"
+            - link [ref=f2e34] [cursor=pointer]:
+              - /url: "#/incomes"
+            - link [ref=f2e39] [cursor=pointer]:
+              - /url: "#/purchases"
+            - link [ref=f2e46] [cursor=pointer]:
+              - /url: "#/expenses"
+            - link [ref=f2e51] [cursor=pointer]:
+              - /url: "#/products"
+            - link [ref=f2e58] [cursor=pointer]:
+              - /url: "#/customers"
+            - link [ref=f2e64] [cursor=pointer]:
+              - /url: "#/suppliers"
+            - link [ref=f2e70] [cursor=pointer]:
+              - /url: "#/reports"
+            - link [ref=f2e74] [cursor=pointer]:
+              - /url: "#/settings"
+        - button [ref=f2e79] [cursor=pointer]
+      - main [ref=f2e84]:
+        - generic [ref=f2e86]:
+          - generic [ref=f2e87]:
+            - generic [ref=f2e88]:
+              - heading "Reportes" [level=1] [ref=f2e89]
+              - paragraph [ref=f2e90]: Análisis financiero y operativo del negocio
+            - generic [ref=f2e91]:
+              - button "Este mes" [ref=f2e92] [cursor=pointer]
+              - button "Exportar a Excel" [ref=f2e98] [cursor=pointer]
+              - button "Imprimir" [ref=f2e102] [cursor=pointer]
+          - generic [ref=f2e107]:
+            - generic [ref=f2e111]:
+              - paragraph [ref=f2e112]: Ventas Hoy
+              - paragraph [ref=f2e113]: $ 0,00
+              - generic [ref=f2e114]: 0 ventas
+            - generic [ref=f2e122]:
+              - paragraph [ref=f2e123]: Ventas del Mes
+              - paragraph [ref=f2e124]: $ 169.100,00
+              - generic [ref=f2e125]:
+                - generic [ref=f2e126]: ↑ 0.1%
+                - generic [ref=f2e127]: 5 ventas
+            - generic [ref=f2e135]:
+              - paragraph [ref=f2e136]: Resultado Neto
+              - paragraph [ref=f2e137]: $ 169.100,00
+              - generic [ref=f2e138]: "Margen: 100.0%"
+            - generic [ref=f2e147]:
+              - paragraph [ref=f2e148]: Deuda Clientes
+              - paragraph [ref=f2e149]: $ 0,00
+              - generic [ref=f2e150]: 0 vencidas
+          - generic [ref=f2e155]:
+            - tablist [ref=f2e156]:
+              - tab "Resumen" [ref=f2e157] [cursor=pointer]
+              - tab "Ventas" [ref=f2e158] [cursor=pointer]
+              - tab "Productos" [ref=f2e159] [cursor=pointer]
+              - tab "Clientes" [ref=f2e160] [cursor=pointer]
+              - tab "Gastos" [ref=f2e161] [cursor=pointer]
+              - tab "Flujo de Caja" [ref=f2e162] [cursor=pointer]
+              - tab "Indumentaria & Comisiones" [active] [selected] [ref=f2e163] [cursor=pointer]
+            - tabpanel "Indumentaria & Comisiones" [ref=f2e164]:
+              - generic [ref=f2e165]:
+                - generic [ref=f2e166]:
+                  - generic [ref=f2e167]:
+                    - heading "Unidades Vendidas" [level=3] [ref=f2e169]
+                    - generic [ref=f2e172]:
+                      - generic [ref=f2e173]: 25 u.
+                      - paragraph [ref=f2e174]: En el período seleccionado
+                  - generic [ref=f2e175]:
+                    - heading "Stock Actual Total" [level=3] [ref=f2e177]
+                    - generic [ref=f2e182]:
+                      - generic [ref=f2e183]: 2430 u.
+                      - paragraph [ref=f2e184]: Prendas disponibles en depósito
+                  - generic [ref=f2e185]:
+                    - heading "Tasa de Rotación (Sell-Through)" [level=3] [ref=f2e187]
+                    - generic [ref=f2e191]:
+                      - generic [ref=f2e192]: 1.02%
+                      - paragraph [ref=f2e193]: "% Vendido vs Stock total ingresado"
+                - generic [ref=f2e194]:
+                  - generic [ref=f2e195]:
+                    - generic [ref=f2e196]:
+                      - heading "Curva de Salida por Talle" [level=3] [ref=f2e202]
+                      - paragraph [ref=f2e203]: Distribución de unidades vendidas por talle
+                    - paragraph [ref=f2e205]: No hay datos de ventas registradas por talle.
+                  - generic [ref=f2e206]:
+                    - generic [ref=f2e207]:
+                      - heading "Curva de Salida por Color" [level=3] [ref=f2e211]
+                      - paragraph [ref=f2e212]: Distribución de unidades vendidas por color
+                    - paragraph [ref=f2e214]: No hay datos de ventas registradas por color.
+                - generic [ref=f2e215]:
+                  - generic [ref=f2e216]:
+                    - generic [ref=f2e217]:
+                      - heading "Alerta de Curvas Rotas (Talles Faltantes)" [level=3] [ref=f2e221]
+                      - generic [ref=f2e222]: 0 modelos detectados
+                    - paragraph [ref=f2e223]: Modelos de indumentaria con talles centrales agotados (stock 0) que retienen stock en otros talles o colores.
+                  - paragraph [ref=f2e225]: ¡Excelente! No hay modelos con curvas rotas en tu inventario.
+                - generic [ref=f2e226]:
+                  - generic [ref=f2e227]:
+                    - heading "Comisiones por Vendedor de Salón" [level=3] [ref=f2e233]
+                    - paragraph [ref=f2e234]: Rendimiento y comisiones estimadas sobre ventas concretadas (Tasa 3%)
+                  - paragraph [ref=f2e236]: No se registraron ventas con asignación de vendedor en este período. Podés asignar vendedores desde la caja registradora POS.
+    - region "Notifications alt+T"
+  - generic [ref=f2e237]: Efectivo

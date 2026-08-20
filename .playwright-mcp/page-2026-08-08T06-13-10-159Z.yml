@@ -1,0 +1,180 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - button "Ir al contenido" [ref=e3] [cursor=pointer]
+    - button "Comentarios de accesibilidad" [ref=e6] [cursor=pointer]
+    - generic [ref=e9]:
+      - link [ref=e10] [cursor=pointer]:
+        - /url: /?FORM=Z9FD1
+        - heading "Volver a la búsqueda de Bing" [level=1] [ref=e11]
+      - search [ref=e12]:
+        - button "Buscar" [ref=e15] [cursor=pointer]
+        - searchbox "Escribe tu búsqueda aquí; irán apareciendo sugerencias de búsqueda a medida que escribes" [ref=e16]: independent cinema ticketing software seat selection QR pricing official
+        - button "Borrar texto" [ref=e18]
+        - button "Buscar con una imagen" [ref=e22] [cursor=pointer]
+    - complementary "Premios y preferencias de la cuenta" [ref=e24]:
+      - button "Microsoft Rewards" [ref=e25] [cursor=pointer]
+      - link "Iniciar sesión" [ref=e26] [cursor=pointer]:
+        - /url: javascript:void(0)
+    - navigation "Filtro de búsqueda" [ref=e28]:
+      - list [ref=e29]:
+        - listitem [ref=e30]:
+          - link "Todo" [ref=e31] [cursor=pointer]:
+            - /url: /?scope=web&FORM=HDRSC1
+        - listitem [ref=e32]:
+          - link "Búsqueda" [ref=e33] [cursor=pointer]:
+            - /url: /copilotsearch?q=independent+cinema+ticketing+software+seat+selection+QR+pricing+official&FORM=CSSCOP
+        - listitem [ref=e36]:
+          - link "Imágenes" [ref=e37] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=9dd57d753c42fc83ea67cf370cb1fe18c89139165678a65ab2b986588cbfa620JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1L2ltYWdlcy9zZWFyY2g_cT1pbmRlcGVuZGVudCtjaW5lbWErdGlja2V0aW5nK3NvZnR3YXJlK3NlYXQrc2VsZWN0aW9uK1FSK3ByaWNpbmcrb2ZmaWNpYWwmRk9STT1IRFJTQzI&ntb=1
+        - listitem [ref=e38]:
+          - link "Vídeos" [ref=e39] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=a76ec437c0eb6ec69787ff7edf6d14b7dd71053cdaf07b55690f900b94512b65JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1L3ZpZGVvcy9zZWFyY2g_cT1pbmRlcGVuZGVudCtjaW5lbWErdGlja2V0aW5nK3NvZnR3YXJlK3NlYXQrc2VsZWN0aW9uK1FSK3ByaWNpbmcrb2ZmaWNpYWwmRk9STT1IRFJTQzM&ntb=1
+        - listitem [ref=e40]:
+          - button [ref=e41] [cursor=pointer]
+  - generic [ref=e45]:
+    - main "Resultados de la búsqueda" [ref=e46]:
+      - generic [ref=e47]: Aproximadamente 289.000 resultados
+      - list [ref=e49]:
+        - listitem [ref=e50]:
+          - link "independent.co.uk" [ref=e52] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=eb8420daaa6f7966a5e5adddf38752ac2e2260fd8590a1186c74b8cc84cc7833JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuaW5kZXBlbmRlbnQuY28udWsv&ntb=1
+            - generic [ref=e57]:
+              - generic [ref=e58]: independent.co.uk
+              - generic [ref=e59]: https://www.independent.co.uk
+          - heading [level=2] [ref=e62]:
+            - link [ref=e63] [cursor=pointer]:
+              - /url: https://www.bing.com/ck/a?!&&p=eb8420daaa6f7966a5e5adddf38752ac2e2260fd8590a1186c74b8cc84cc7833JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuaW5kZXBlbmRlbnQuY28udWsv&ntb=1
+              - strong [ref=e64]: The Independent
+              - text: "| Latest news and features from US, UK and worldwide"
+          - paragraph [ref=e66]: Independent Advertising Independent Ignite Syndication Working at The Independent Legal Code of conduct and complaints Contributors Cookie policy Donations Terms & Conditions Privacy policy...
+        - listitem [ref=e67]:
+          - link "independent.co.uk" [ref=e69] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=e54eb0590338e1ca02b67db9673c38f57984710fb930c244839f1cac7ab38b8cJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuaW5kZXBlbmRlbnQuY28udWsvJTIwJTIw&ntb=1
+            - generic [ref=e74]:
+              - generic [ref=e75]: independent.co.uk
+              - generic [ref=e76]: https://www.independent.co.uk ›
+          - heading [level=2] [ref=e79]:
+            - link [ref=e80] [cursor=pointer]:
+              - /url: https://www.bing.com/ck/a?!&&p=e54eb0590338e1ca02b67db9673c38f57984710fb930c244839f1cac7ab38b8cJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuaW5kZXBlbmRlbnQuY28udWsvJTIwJTIw&ntb=1
+              - text: Today's headlines and latest breaking news - The
+              - strong [ref=e81]: Independent
+          - paragraph [ref=e83]: ‘Tax day trippers’, say readers as UK tourist tax divides opinion The Independent View
+        - listitem [ref=e84]:
+          - link "indy.com.ar" [ref=e86] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=a27961684aaaadb716b67d7763f14ce9cf61d49cac1f966e4d21379deafcd9a8JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuaW5keS5jb20uYXIvY29sbGVjdGlvbnMvaW5kZXBlbmRlbnQ&ntb=1
+            - generic [ref=e91]:
+              - generic [ref=e92]: indy.com.ar
+              - generic [ref=e93]: https://www.indy.com.ar › collections › independent
+          - heading [level=2] [ref=e96]:
+            - link [ref=e97] [cursor=pointer]:
+              - /url: https://www.bing.com/ck/a?!&&p=a27961684aaaadb716b67d7763f14ce9cf61d49cac1f966e4d21379deafcd9a8JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuaW5keS5jb20uYXIvY29sbGVjdGlvbnMvaW5kZXBlbmRlbnQ&ntb=1
+              - strong [ref=e98]: independent
+          - paragraph [ref=e100]: Al adquirir productos de independent en nuestra tienda online, el usuario se asegura de un ecosistema de compra seguro, con stock actualizado en tiempo real y garantías oficiale. Esta posición de …
+        - listitem [ref=e101]:
+          - link "wikipedia.org" [ref=e103] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=f906fe70dad6bafd818fb1a06fe964e2e23735829e75937879cccaed96b15f8aJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvVGhlX0luZGVwZW5kZW50&ntb=1
+            - generic [ref=e108]:
+              - generic [ref=e109]: wikipedia.org
+              - generic [ref=e110]: https://en.wikipedia.org › wiki › The_Independent
+          - heading [level=2] [ref=e113]:
+            - link [ref=e114] [cursor=pointer]:
+              - /url: https://www.bing.com/ck/a?!&&p=f906fe70dad6bafd818fb1a06fe964e2e23735829e75937879cccaed96b15f8aJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvVGhlX0luZGVwZW5kZW50&ntb=1
+              - strong [ref=e115]: The Independent
+              - text: "- Wikipedia"
+          - paragraph [ref=e117]: The Independent on Sunday published its last simultaneous broadsheet on 9 October 2005, and thereafter followed a compact design until the print edition was discontinued.
+        - listitem [ref=e118]:
+          - link "independentespanol.com" [ref=e120] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=1105a12449fa477b361789e4eb3afd64b23d6e316865e8a05e4d149ac17475daJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuaW5kZXBlbmRlbnRlc3Bhbm9sLmNvbS8&ntb=1
+            - generic [ref=e125]:
+              - generic [ref=e126]: independentespanol.com
+              - generic [ref=e127]: https://www.independentespanol.com
+          - heading [level=2] [ref=e130]:
+            - link [ref=e131] [cursor=pointer]:
+              - /url: https://www.bing.com/ck/a?!&&p=1105a12449fa477b361789e4eb3afd64b23d6e316865e8a05e4d149ac17475daJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuaW5kZXBlbmRlbnRlc3Bhbm9sLmNvbS8&ntb=1
+              - strong [ref=e132]: Independent
+              - text: en Español
+          - paragraph [ref=e134]: Contáctanos Otras Publicaciones Ediciones internacionales Independent Arabia Independent Turkish Independent Persian Independent Urdu The Standard Novaya Gazeta Extras Archivo Tags Legal …
+        - listitem [ref=e135]:
+          - link "clubaindependiente.com.ar" [ref=e137] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=80d5ddce313ee24fa34e857aad019ac33272b7ef035bd38d52d2b626f65ae5d4JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly9jbHViYWluZGVwZW5kaWVudGUuY29tLmFyLw&ntb=1
+            - generic [ref=e142]:
+              - generic [ref=e143]: clubaindependiente.com.ar
+              - generic [ref=e144]: https://clubaindependiente.com.ar
+          - heading [level=2] [ref=e147]:
+            - link "Club Atlético Independiente" [ref=e148] [cursor=pointer]:
+              - /url: https://www.bing.com/ck/a?!&&p=80d5ddce313ee24fa34e857aad019ac33272b7ef035bd38d52d2b626f65ae5d4JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly9jbHViYWluZGVwZW5kaWVudGUuY29tLmFyLw&ntb=1
+          - paragraph [ref=e150]: Sitio Web Oficial del Club Atlético INDEPENDIENTE, el único Rey de Copas. Orgullo Nacional. Diablos Rojos. Fundado el 1º de enero de 1905. Avenida Mitre 470, 1870 Avellaneda, Argentina. …
+        - listitem [ref=e151]:
+          - link "elindependiente.com" [ref=e153] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=9bf1220333151175fa32645951554f25c9849171b8d8f76a0383e3404f80caa2JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuZWxpbmRlcGVuZGllbnRlLmNvbS8&ntb=1
+            - generic [ref=e158]:
+              - generic [ref=e159]: elindependiente.com
+              - generic [ref=e160]: https://www.elindependiente.com
+          - heading [level=2] [ref=e163]:
+            - link "El Independiente | El diario digital global en español" [ref=e164] [cursor=pointer]:
+              - /url: https://www.bing.com/ck/a?!&&p=9bf1220333151175fa32645951554f25c9849171b8d8f76a0383e3404f80caa2JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuZWxpbmRlcGVuZGllbnRlLmNvbS8&ntb=1
+          - paragraph [ref=e166]: Diario digital con las últimas noticias de política, economía, salud, ciencia, cultura y tendencias. Director y fundador Casimiro García-Abadillo.
+        - listitem [ref=e167]:
+          - link "clubaindependiente.com.ar" [ref=e169] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=14c81082360a7906254091def2ebb2c785115f6d71c172262e699a2ca2ae65fbJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly9jbHViYWluZGVwZW5kaWVudGUuY29tLmFyL2luZGVwZW5kaWVudGUv&ntb=1
+            - generic [ref=e174]:
+              - generic [ref=e175]: clubaindependiente.com.ar
+              - generic [ref=e176]: https://clubaindependiente.com.ar › independiente
+          - heading [level=2] [ref=e179]:
+            - link "INDEPENDIENTE ·" [ref=e180] [cursor=pointer]:
+              - /url: https://www.bing.com/ck/a?!&&p=14c81082360a7906254091def2ebb2c785115f6d71c172262e699a2ca2ae65fbJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly9jbHViYWluZGVwZW5kaWVudGUuY29tLmFyL2luZGVwZW5kaWVudGUv&ntb=1
+          - paragraph [ref=e182]: Sitio Web Oficial del Club Atlético INDEPENDIENTE, el único Rey de Copas. Orgullo Nacional. Diablos Rojos. Fundado el 1º de enero de 1905. Avenida Mitre 470, 1870 Avellaneda, Argentina. …
+        - listitem [ref=e183]:
+          - link "independentespanol.com" [ref=e185] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=0da5850fa4d1428143cb2e96aac39903b0a2598b718d82afecff2c2e7f4cbf3aJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuaW5kZXBlbmRlbnRlc3Bhbm9sLmNvbS9ub3RpY2lhcw&ntb=1
+            - generic [ref=e190]:
+              - generic [ref=e191]: independentespanol.com
+              - generic [ref=e192]: https://www.independentespanol.com › noticias
+          - heading [level=2] [ref=e195]:
+            - link [ref=e196] [cursor=pointer]:
+              - /url: https://www.bing.com/ck/a?!&&p=0da5850fa4d1428143cb2e96aac39903b0a2598b718d82afecff2c2e7f4cbf3aJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly93d3cuaW5kZXBlbmRlbnRlc3Bhbm9sLmNvbS9ub3RpY2lhcw&ntb=1
+              - text: Noticias -
+              - strong [ref=e197]: Independent Español
+          - paragraph [ref=e199]: Las últimas noticias, análisis e investigaciones del Independent.
+        - listitem [ref=e200]:
+          - link "wikipedia.org" [ref=e202] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=01eac72610e4d95b0ddf77e68acaf0ff5ed0939130576335a4522c6dca9923aeJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly9lcy53aWtpcGVkaWEub3JnL3dpa2kvVGhlX0luZGVwZW5kZW50&ntb=1
+            - generic [ref=e207]:
+              - generic [ref=e208]: wikipedia.org
+              - generic [ref=e209]: https://es.wikipedia.org › wiki › The_Independent
+          - heading [level=2] [ref=e212]:
+            - link [ref=e213] [cursor=pointer]:
+              - /url: https://www.bing.com/ck/a?!&&p=01eac72610e4d95b0ddf77e68acaf0ff5ed0939130576335a4522c6dca9923aeJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cHM6Ly9lcy53aWtpcGVkaWEub3JnL3dpa2kvVGhlX0luZGVwZW5kZW50&ntb=1
+              - strong [ref=e214]: The Independent
+              - text: "- Wikipedia, la enciclopedia libre"
+          - paragraph [ref=e216]: The Independent es un periódico británico publicado por Independent Print Limited, de Aleksandr Lébedev. Tiene el apodo de «the Indie», mientras que la edición de los domingos es apodada «the …
+        - listitem [ref=e217]:
+          - link "Se han quitado algunos resultados" [ref=e219] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=771a784b726552f90f4c930ca0eb7472ebc5c251f274ac43132c3a9c0aa176a0JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cDovL2dvLm1pY3Jvc29mdC5jb20vZndsaW5rLz9MaW5rSUQ9NjE3MzUw&ntb=1
+        - listitem [ref=e220]:
+          - navigation "Más resultados para independent cinema ticketing software seat selection QR pricing official":
+            - list:
+              - listitem [ref=e221]:
+                - generic "Página 1" [ref=e222]: "1"
+              - listitem [ref=e223]:
+                - link "Página 2" [ref=e224] [cursor=pointer]:
+                  - /url: /search?q=independent+cinema+ticketing+software+seat+selection+QR+pricing+official&FPIG=6F9DEC31DDE34112B3117E936D65AA3C&first=11&FORM=PERE
+                  - text: "2"
+              - listitem [ref=e225]:
+                - link "Página 3" [ref=e226] [cursor=pointer]:
+                  - /url: /search?q=independent+cinema+ticketing+software+seat+selection+QR+pricing+official&FPIG=6F9DEC31DDE34112B3117E936D65AA3C&first=21&FORM=PERE1
+                  - text: "3"
+              - listitem [ref=e227]:
+                - link "Página siguiente" [ref=e228] [cursor=pointer]:
+                  - /url: /search?q=independent+cinema+ticketing+software+seat+selection+QR+pricing+official&FPIG=6F9DEC31DDE34112B3117E936D65AA3C&first=11&FORM=PORE
+    - complementary "Resultados adicionales" [ref=e229]
+    - complementary "Explorar más"
+  - contentinfo [ref=e230]:
+    - generic [ref=e231]:
+      - list:
+        - listitem [ref=e232]:
+          - link "Privacidad" [ref=e233] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=e8efae64cd11f846d1f560ed20b6c19713558ecfe773734e989c4d2ee03b8097JmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cDovL2dvLm1pY3Jvc29mdC5jb20vZndsaW5rLz9MaW5rSWQ9NTIxODM5&ntb=1
+        - listitem [ref=e234]:
+          - link "Términos" [ref=e235] [cursor=pointer]:
+            - /url: https://www.bing.com/ck/a?!&&p=573799a483cb4453d4cd222d03d741d74ec986f7e436d2faa786ed43e9fcb1efJmltdHM9MTc4NjA2MDgwMA&ptn=3&ver=2&hsh=4&fclid=0bb63161-0186-64d9-14ee-26ce004f65c6&u=a1aHR0cDovL2dvLm1pY3Jvc29mdC5jb20vZndsaW5rLz9MaW5rSUQ9MjQ2MzM4&ntb=1
