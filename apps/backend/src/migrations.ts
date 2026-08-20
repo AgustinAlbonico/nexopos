@@ -17,6 +17,7 @@ import { AddStockSectorizadoFoundations1770000000000 } from './migrations/177000
 import { AddLocationIdToInventoryMovements1771000000000 } from './migrations/1771000000000-AddLocationIdToInventoryMovements';
 import { AddStockSectorizadoConfig1772000000000 } from './migrations/1772000000000-AddStockSectorizadoConfig';
 import { AddPurchaseLocationId1773000000000 } from './migrations/1773000000000-AddPurchaseLocationId';
+import { AddVariantAttributeOptions1787200000000 } from './migrations/1787200000000-AddVariantAttributeOptions';
 
 export const migrations: (new () => MigrationInterface)[] = [
     InitialSchema1734450000000,
@@ -34,4 +35,5 @@ export const migrations: (new () => MigrationInterface)[] = [
     AddLocationIdToInventoryMovements1771000000000,
     AddStockSectorizadoConfig1772000000000,
     AddPurchaseLocationId1773000000000,
+    AddVariantAttributeOptions1787200000000,
 ];
