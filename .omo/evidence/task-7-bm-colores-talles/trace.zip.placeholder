@@ -1,0 +1,13 @@
+trace.zip (Playwright trace) — PENDING
+=====================================
+
+Playwright genera `trace.zip` por test fallido (config: `trace: 'on-first-retry'`).
+Cuando se ejecute el spec con dev servers arriba (F3), el trace va a:
+
+  apps/frontend/test-results/variant-attribute-options-catalog-spec-chromium/trace.zip
+
+Para visualizar:
+  pnpm --filter @sistema/frontend exec playwright show-trace \
+    apps/frontend/test-results/variant-attribute-options-catalog-spec-chromium/trace.zip
+
+Mientras tanto: NO hay trace porque no se ejecutó (dev servers DOWN, AGENTS.md).

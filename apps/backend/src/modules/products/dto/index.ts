@@ -5,3 +5,5 @@ export * from './query-products.dto';
 export * from './create-category.dto';
 export * from './update-category.dto';
 export * from './create-brand.dto';
+export * from './create-variant-attribute-option.dto';
+export * from './update-variant-attribute-option.dto';

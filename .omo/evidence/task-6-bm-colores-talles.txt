@@ -1,0 +1,91 @@
+Task: Todo 6 — Aislamiento de rubro (STRUCTURAL.variants) para variant-attribute-options
+Date: 2026-08-19
+Worktree: C:\Proyectos\punto_de_venta-worktrees\bm-colores-talles
+Branch: feat/variant-attribute-options
+
+═══════════════════════════════════════════════════════════════════
+1) Cambios
+═══════════════════════════════════════════════════════════════════
+
+File modified:
+  apps/backend/src/modules/products/variant-attribute-options.service.spec.ts
+
+Added a new describe block:
+  describe('aislamiento de rubro: STRUCTURAL.variants = false → ForbiddenException')
+    - beforeEach: jest.clearAllMocks() + arrangeCapabilityOff()
+    - 8 casos uno por método público del servicio:
+        1) findAll        → ForbiddenException
+        2) findOne        → ForbiddenException
+        3) search         → ForbiddenException
+        4) findOrCreate   → ForbiddenException
+        5) create         → ForbiddenException
+        6) update         → ForbiddenException
+        7) remove         → ForbiddenException
+        8) getUsageCount  → ForbiddenException
+    - 1 caso agregado "resumen": ninguna de las 8 operaciones toca el
+      repository cuando la capability está OFF (Promise.allSettled + asserts
+      sobre los 7 mocks del repository).
+
+Cada test verifica:
+  - await expect(service.METHOD(...)).rejects.toThrow(ForbiddenException)
+  - el método del repository correspondiente NO fue llamado
+
+═══════════════════════════════════════════════════════════════════
+2) FE coverage ya existente (no se duplicó)
+═══════════════════════════════════════════════════════════════════
+
+File: apps/frontend/src/features/products/components/VariantMatrixModal.spec.tsx
+  it('con capability=false no fetchea catálogo ni muestra chips'):
+    - mockHasVariantsCapability = false
+    - Render del modal → renderiza el panel capability-blocked
+    - Verifica que attributeOptionsApi.getAll NO fue llamado
+    - Verifica que el botón generate está disabled
+    - Verifica que NO aparece ningún chip de selección
+
+Esto cubre el aislamiento de FE para STRUCTURAL.variants = false.
+
+═══════════════════════════════════════════════════════════════════
+3) Ejecución de tests
+═══════════════════════════════════════════════════════════════════
+
+Comando:
+  cd apps/backend
+  npx jest --selectProjects unit \
+    --runTestsByPath src/modules/products/variant-attribute-options.service.spec.ts
+
+Resultado:
+  PASS unit src/modules/products/variant-attribute-options.service.spec.ts (21.222 s)
+    VariantAttributeOptionsService
+      √ 1) findAll devuelve las opciones ordenadas alfabéticamente
+      √ 2) findOrCreate encuentra existente case-insensitive
+      √ 3) findOrCreate crea nueva cuando no existe
+      √ 4) update lanza ConflictException en duplicado case-insensitive
+      √ 5) findAll lanza ForbiddenException cuando STRUCTURAL.variants está OFF
+      √ 6) remove devuelve usageCount sin tocar product_variant_attributes
+      √ bonus) findOne lanza NotFoundException cuando el id no existe
+      √ bonus) search llama al repository con type y query
+      aislamiento de rubro: STRUCTURAL.variants = false → ForbiddenException
+        √ 1) findAll lanza ForbiddenException y no toca el repository
+        √ 2) findOne lanza ForbiddenException y no toca el repository
+        √ 3) search lanza ForbiddenException y no toca el repository
+        √ 4) findOrCreate lanza ForbiddenException y no toca el repository
+        √ 5) create lanza ForbiddenException y no toca el repository
+        √ 6) update lanza ForbiddenException y no toca el repository
+        √ 7) remove lanza ForbiddenException y no toca el repository
+        √ 8) getUsageCount lanza ForbiddenException y no toca el repository
+        √ resumen: ninguna operación del CRUD toca el repository cuando el capability está OFF
+
+  Test Suites: 1 passed, 1 total
+  Tests:       17 passed, 17 total
+  EXIT=0
+
+═══════════════════════════════════════════════════════════════════
+4) Cumplimiento de constraints (MUST NOT DO)
+═══════════════════════════════════════════════════════════════════
+
+  [✓] NO new capability keys — se reusó 'STRUCTURAL.variants'
+  [✓] NO changes to presets.ts
+  [✓] NO changes to ProductForm.spec.tsx
+  [✓] NO duplicate ProductForm.spec.tsx tests
+  [✓] NO dev servers started
+  [✓] All edits inside the worktree
