@@ -18,8 +18,6 @@ import { Category } from '../products/entities/category.entity';
  */
 export type CapabilityKey =
     | 'STRUCTURAL.variants'
-    | 'STRUCTURAL.weight'
-    | 'STRUCTURAL.expiry'
     | (string & { readonly _brand: 'CapabilityKey' });
 
 export type CapabilitiesManifest = Record<CapabilityKey, boolean>;
@@ -166,8 +164,6 @@ export class ConfigurationService implements OnModuleInit {
 
     private readonly defaultCapabilitiesManifest: CapabilitiesManifest = {
         'STRUCTURAL.variants': true,
-        'STRUCTURAL.weight': false,
-        'STRUCTURAL.expiry': false,
     };
 
     async getCapabilitiesManifest(): Promise<CapabilitiesManifest> {

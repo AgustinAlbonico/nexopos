@@ -30,8 +30,6 @@ const defaultManifest: CapabilitiesManifest = {
     capabilitiesSchemaVersion: 1,
     capabilities: {
         'STRUCTURAL.variants': true,
-        'STRUCTURAL.weight': false,
-        'STRUCTURAL.expiry': false,
     },
     appRoutes: { enabled: [], disabled: [] },
     onboardingCompleted: false,

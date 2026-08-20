@@ -17,8 +17,6 @@ vi.mock('@/hooks/useCapabilities', () => ({
             capabilitiesSchemaVersion: 1,
             capabilities: {
                 'STRUCTURAL.variants': mockHasVariantsCapability,
-                'STRUCTURAL.weight': false,
-                'STRUCTURAL.expiry': false,
             },
             appRoutes: { enabled: [], disabled: [] },
             onboardingCompleted: false,

@@ -21,14 +21,10 @@ const mockConfigurationService = {
 
 const manifestAllOn = {
     'STRUCTURAL.variants': true,
-    'STRUCTURAL.weight': false,
-    'STRUCTURAL.expiry': false,
 };
 
 const manifestVariantsOff = {
     'STRUCTURAL.variants': false,
-    'STRUCTURAL.weight': false,
-    'STRUCTURAL.expiry': false,
 };
 
 describe('VariantAttributeOptionsService', () => {
