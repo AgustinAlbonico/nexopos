@@ -139,6 +139,28 @@ export function useCashFlowReport(filters?: ReportFilters) {
 }
 
 /**
+ * Hook para métricas de indumentaria
+ */
+export function useApparelMetrics(startDate?: string, endDate?: string) {
+    return useQuery({
+        queryKey: ['reports', 'apparel', startDate, endDate],
+        queryFn: () => reportsApi.getApparelMetrics({ startDate, endDate }),
+        staleTime: 1000 * 60 * 5,
+    });
+}
+
+/**
+ * Hook para comisiones por vendedor
+ */
+export function useSellerCommissions(startDate?: string, endDate?: string, commissionRate: number = 3) {
+    return useQuery({
+        queryKey: ['reports', 'seller-commissions', startDate, endDate, commissionRate],
+        queryFn: () => reportsApi.getSellerCommissions({ startDate, endDate, commissionRate }),
+        staleTime: 1000 * 60 * 5,
+    });
+}
+
+/**
  * Helper para obtener etiquetas de períodos
  */
 export const periodLabels: Record<ReportPeriod, string> = {

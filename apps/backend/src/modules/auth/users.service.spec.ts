@@ -161,6 +161,7 @@ describe('UsersService', () => {
                 select: {
                     id: true,
                     username: true,
+                    role: true,
                     email: true,
                     firstName: true,
                     lastName: true,

@@ -48,6 +48,11 @@ export interface InvoiceRequest {
     netAmountExempt: number;     // Importe exento
     iva: IvaItem[];              // Array de IVA (solo RI)
     otherTaxes: number;          // Otros tributos
+    associatedDocument?: {
+        type: number;
+        pointOfSale: number;
+        number: number;
+    };
 }
 
 /**
@@ -558,7 +563,13 @@ export class AfipService {
                 netAmount: request.netAmount,
                 exemptAmount: request.netAmountExempt,
                 ivaAmount: request.iva.reduce((sum, item) => sum + item.amount, 0),
-                ivaItems: ivaItems
+                otherTaxes: request.otherTaxes,
+                ivaItems: ivaItems,
+                associatedDocument: request.associatedDocument ? {
+                    Tipo: request.associatedDocument.type,
+                    PtoVta: request.associatedDocument.pointOfSale,
+                    Nro: request.associatedDocument.number,
+                } : undefined,
             };
 
             const wsfeUrl = config.afipEnvironment === AfipEnvironment.HOMOLOGACION

@@ -139,6 +139,36 @@ export class Sale {
     @Column({ type: 'boolean', default: false })
     isFiscal!: boolean; // Si tiene factura fiscal autorizada
 
+    @Index()
+    @Column({ name: 'seller_id', type: 'uuid', nullable: true })
+    sellerId?: string | null;
+
+    @Column({ name: 'seller_name', type: 'varchar', length: 255, nullable: true })
+    sellerName?: string | null;
+
+    @Index()
+    @Column({ name: 'is_reservation', type: 'boolean', default: false })
+    isReservation!: boolean;
+
+    @Column({
+        name: 'reservation_deposit',
+        type: 'decimal',
+        precision: 12,
+        scale: 2,
+        nullable: true,
+        transformer: {
+            to: (value?: number | null) => value,
+            from: (value?: string | null) => value ? Number.parseFloat(value) : null,
+        },
+    })
+    reservationDeposit?: number | null;
+
+    @Column({ name: 'reservation_status', type: 'varchar', length: 50, nullable: true })
+    reservationStatus?: string | null;
+
+    @Column({ name: 'reservation_expires_at', type: 'timestamp', nullable: true })
+    reservationExpiresAt?: Date | null;
+
     @Column({ type: 'boolean', default: false })
     fiscalPending!: boolean; // Si se solicitó factura pero falló la generación (pendiente de reintento)
 

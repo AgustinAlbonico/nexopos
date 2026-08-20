@@ -57,6 +57,12 @@ export const createSaleSchema = z
         status: z.nativeEnum(SaleStatus).optional(),
         isOnAccount: z.boolean().optional().default(false),
         generateInvoice: z.boolean().optional().default(false), // Si true, genera factura fiscal AFIP
+        ivaPercentage: z.number().optional(), // Porcentaje de IVA (21, 10.5, 27)
+        sellerId: z.string().optional(),
+        sellerName: z.string().max(255).optional(),
+        isReservation: z.boolean().optional().default(false),
+        reservationDeposit: z.number().min(0).optional(),
+        reservationExpiresAt: z.string().optional(),
         notes: z.string().max(1000).optional(),
         items: z.array(saleItemSchema).min(1, 'Agregue al menos un producto'),
         payments: z.array(salePaymentSchema).optional(),

@@ -20,6 +20,8 @@ import { PaymentMethod } from './entities/payment-method.entity';
 import { PaymentMethodsController } from './controllers/payment-methods.controller';
 import { PaymentMethodsService } from './services/payment-methods.service';
 
+import { ConfigurationAuditService } from './configuration-audit.service';
+
 @Global()
 @Module({
     imports: [
@@ -28,6 +30,7 @@ import { PaymentMethodsService } from './services/payment-methods.service';
     controllers: [ConfigurationController, FiscalConfigurationController, TaxTypesController, PaymentMethodsController],
     providers: [
         ConfigurationService,
+        ConfigurationAuditService,
         FiscalConfigurationService,
         CertificateEncryptionService,
         CertificateGenerationService,
@@ -36,6 +39,7 @@ import { PaymentMethodsService } from './services/payment-methods.service';
     ],
     exports: [
         ConfigurationService,
+        ConfigurationAuditService,
         FiscalConfigurationService,
         CertificateEncryptionService,
         CertificateGenerationService,

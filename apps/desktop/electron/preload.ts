@@ -21,6 +21,16 @@ const electronAPI = {
         isDev: boolean;
     }> => ipcRenderer.invoke('get-system-info'),
 
+    readScale: (): Promise<import('./scale/types').ScaleReadResult> => ipcRenderer.invoke('scale:read'),
+
+    // Tiqueteras e impresión
+    getPrinters: (): Promise<Array<{ name: string; isDefault: boolean; description?: string }>> =>
+        ipcRenderer.invoke('printers:get'),
+    printTicket: (options: { html: string; printerName?: string | null; paperWidth?: string }): Promise<{ success: boolean; error?: string }> =>
+        ipcRenderer.invoke('printers:print-ticket', options),
+    printTestTicket: (options: { printerName?: string | null; paperWidth?: string; headerTitle?: string; headerAddress?: string; headerPhone?: string; footerText?: string }): Promise<{ success: boolean; error?: string }> =>
+        ipcRenderer.invoke('printers:print-test', options),
+
     // Control de ventana
     toggleFullscreen: (): void => ipcRenderer.send('toggle-fullscreen'),
     minimizeWindow: (): void => ipcRenderer.send('minimize-window'),

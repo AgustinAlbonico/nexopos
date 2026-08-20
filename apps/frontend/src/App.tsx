@@ -77,27 +77,26 @@ function App() {
                         <DashboardLayout />
                       </ProtectedRoute>
                     }
-                  >
-                    <Route index element={<Navigate to="/dashboard" replace />} />
-                    <Route path="dashboard" element={<DashboardPage />} />
-                    <Route path="products" element={<ProductsPage />} />
-                    <Route path="customers" element={<CustomersPage />} />
-                    <Route path="suppliers" element={<SuppliersPage />} />
-                    <Route path="purchases" element={<PurchasesPage />} />
-                    <Route path="sales" element={<SalesPage />} />
-                    <Route path="expenses" element={<ExpensesPage />} />
-                    <Route path="incomes" element={<IncomesPage />} />
-                    <Route path="cash-register" element={<CashRegisterPage />} />
-                    <Route path="customer-accounts" element={<CustomerAccountsPage />} />
-                    <Route path="customer-accounts/:customerId" element={<AccountStatementPage />} />
-                    <Route path="reports" element={<ReportsPage />} />
-                    <Route path="settings" element={<SettingsPage />} />
-                    <Route path="settings/fiscal" element={<FiscalConfigPage />} />
-                    <Route path="settings/users" element={<UsersManagementPage />} />
-                    <Route path="settings/backup" element={<BackupPage />} />
-<Route path="inventory/locations" element={<LocationsPage />} />
-                  <Route path="inventory/locations/activate" element={<ActivationWizardPage />} />
-                  <Route path="inventory/replenishment" element={<ReplenishmentPage />} />
+                  >                    <Route index element={<ProtectedRoute requiredCapability="dashboard"><Navigate to="/dashboard" replace /></ProtectedRoute>} />
+                    <Route path="dashboard" element={<ProtectedRoute requiredCapability="dashboard" requiredRoles={['admin', 'manager', 'cashier']}><DashboardPage /></ProtectedRoute>} />
+                    <Route path="products" element={<ProtectedRoute requiredCapability="products" requiredRoles={['admin', 'manager']}><ProductsPage /></ProtectedRoute>} />
+                    <Route path="customers" element={<ProtectedRoute requiredCapability="customers" requiredRoles={['admin', 'manager', 'cashier']}><CustomersPage /></ProtectedRoute>} />
+                    <Route path="suppliers" element={<ProtectedRoute requiredCapability="suppliers" requiredRoles={['admin', 'manager']}><SuppliersPage /></ProtectedRoute>} />
+                    <Route path="purchases" element={<ProtectedRoute requiredCapability="purchases" requiredRoles={['admin', 'manager']}><PurchasesPage /></ProtectedRoute>} />
+                    <Route path="sales" element={<ProtectedRoute requiredCapability="sales" requiredRoles={['admin', 'manager', 'cashier']}><SalesPage /></ProtectedRoute>} />
+                    <Route path="expenses" element={<ProtectedRoute requiredCapability="expenses" requiredRoles={['admin', 'manager']}><ExpensesPage /></ProtectedRoute>} />
+                    <Route path="incomes" element={<ProtectedRoute requiredCapability="incomes" requiredRoles={['admin', 'manager']}><IncomesPage /></ProtectedRoute>} />
+                    <Route path="cash-register" element={<ProtectedRoute requiredCapability="cash-register" requiredRoles={['admin', 'manager', 'cashier']}><CashRegisterPage /></ProtectedRoute>} />
+                    <Route path="customer-accounts" element={<ProtectedRoute requiredCapability="customer-accounts" requiredRoles={['admin', 'manager']}><CustomerAccountsPage /></ProtectedRoute>} />
+                    <Route path="customer-accounts/:customerId" element={<ProtectedRoute requiredCapability="customer-accounts" requiredRoles={['admin', 'manager']}><AccountStatementPage /></ProtectedRoute>} />
+                    <Route path="reports" element={<ProtectedRoute requiredCapability="reports" requiredRoles={['admin', 'manager']}><ReportsPage /></ProtectedRoute>} />
+                    <Route path="settings" element={<ProtectedRoute requiredCapability="settings" requiredRoles={['admin']}><SettingsPage /></ProtectedRoute>} />
+                    <Route path="settings/fiscal" element={<ProtectedRoute requiredCapability="settings/fiscal" requiredRoles={['admin']}><FiscalConfigPage /></ProtectedRoute>} />
+                    <Route path="settings/users" element={<ProtectedRoute requiredCapability="settings/users" requiredRoles={['admin']}><UsersManagementPage /></ProtectedRoute>} />
+                    <Route path="settings/backup" element={<ProtectedRoute requiredCapability="settings/backup" requiredRoles={['admin']}><BackupPage /></ProtectedRoute>} />
+                    <Route path="inventory/locations" element={<ProtectedRoute requiredCapability="inventory/locations" requiredRoles={['admin', 'manager']}><LocationsPage /></ProtectedRoute>} />
+                    <Route path="inventory/locations/activate" element={<ProtectedRoute requiredCapability="inventory/locations/activate" requiredRoles={['admin', 'manager']}><ActivationWizardPage /></ProtectedRoute>} />
+                    <Route path="inventory/replenishment" element={<ProtectedRoute requiredCapability="inventory/replenishment" requiredRoles={['admin', 'manager']}><ReplenishmentPage /></ProtectedRoute>} />
                   </Route>
 
                   {/* Ruta 404 */}

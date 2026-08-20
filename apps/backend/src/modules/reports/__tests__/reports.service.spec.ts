@@ -470,6 +470,22 @@ describe('ReportsService - Main Methods', () => {
             expect(prod2?.profit).toBe(75);
         });
 
+        it('should prefer net quantity for measured sale items', async () => {
+            repos.saleItemRepo._queryBuilder.getMany.mockResolvedValue([{
+                id: 'item-1',
+                productId: 'prod-1',
+                quantity: 1,
+                netQuantity: 0.125,
+                subtotal: 100,
+                product: createMockProduct({ id: 'prod-1', cost: 50 }),
+            }]);
+
+            const result = await service.getTopProducts();
+
+            expect(result[0].quantitySold).toBe(0.125);
+            expect(result[0].cost).toBe(6.25);
+        });
+
         it('should respect limit parameter', async () => {
             const items = Array.from({ length: 5 }, (_, i) => ({
                 id: `item-${i}`,

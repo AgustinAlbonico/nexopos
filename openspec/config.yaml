@@ -57,3 +57,6 @@ changes:
   - name: stock-sectorizado
     status: archived
     description: Stock sectorizado opcional — shipped 2026-08-10 (PR1–PR10). See openspec/changes/stock-sectorizado/archive.md.
+  - name: perfiles-de-negocio
+    status: active
+    description: Sistema de Perfiles de Negocio por Rubro, Onboarding Inicial y Gobernanza con Clave Técnica.

@@ -44,11 +44,17 @@ import { Location } from './modules/inventory/entities/location.entity';
 import { ProductLocationStock } from './modules/inventory/entities/product-location-stock.entity';
 import { StockMovement } from './modules/inventory/entities/stock-movement.entity';
 import { StockTransfer } from './modules/inventory/entities/stock-transfer.entity';
+import { StocktakeSession } from './modules/inventory/entities/stocktake-session.entity';
+import { StocktakeLine } from './modules/inventory/entities/stocktake-line.entity';
 
 // Products
 import { Category } from './modules/products/entities/category.entity';
 import { Product } from './modules/products/entities/product.entity';
 import { Brand } from './modules/products/entities/brand.entity';
+import { UnitOfMeasure } from './modules/products/entities/unit-of-measure.entity';
+import { ProductPack } from './modules/products/entities/product-pack.entity';
+import { ProductBundle } from './modules/products/entities/product-bundle.entity';
+import { ProductVariantAttribute } from './modules/products/entities/product-variant-attribute.entity';
 
 // Purchases
 import { PurchaseItem } from './modules/purchases/entities/purchase-item.entity';
@@ -56,8 +62,11 @@ import { Purchase } from './modules/purchases/entities/purchase.entity';
 
 // Sales
 import { Invoice } from './modules/sales/entities/invoice.entity';
+import { CreditNote } from './modules/sales/entities/credit-note.entity';
 import { SaleItem } from './modules/sales/entities/sale-item.entity';
 import { SalePayment } from './modules/sales/entities/sale-payment.entity';
+import { SaleReturnItem } from './modules/sales/entities/sale-return-item.entity';
+import { SaleReturn } from './modules/sales/entities/sale-return.entity';
 import { SaleTax } from './modules/sales/entities/sale-tax.entity';
 import { Sale } from './modules/sales/entities/sale.entity';
 
@@ -90,14 +99,23 @@ export const entities = [
     ProductLocationStock,
     StockMovement,
     StockTransfer,
+    StocktakeSession,
+    StocktakeLine,
     Category,
     Product,
     Brand,
+    UnitOfMeasure,
+    ProductPack,
+    ProductBundle,
+    ProductVariantAttribute,
     PurchaseItem,
     Purchase,
     Invoice,
+    CreditNote,
     SaleItem,
     SalePayment,
+    SaleReturnItem,
+    SaleReturn,
     SaleTax,
     Sale,
     Supplier,

@@ -13,6 +13,7 @@ import { IvaCondition } from '../../../common/enums/iva-condition.enum';
 import { SaleItem } from '../entities';
 import { QrGeneratorService } from './qr-generator.service';
 import { PaymentMethod } from '../../configuration/entities/payment-method.entity';
+import { SaleReturn } from '../entities/sale-return.entity';
 
 /**
  * Datos para renderizar la factura
@@ -517,6 +518,35 @@ export class PdfGeneratorService {
 
         // Generar PDF
         return this.htmlToPdf(html);
+    }
+
+    async generateSaleReturnReceiptPdf(saleReturn: SaleReturn): Promise<Buffer> {
+        const originalSale = saleReturn.originalSale;
+        if (!originalSale) {
+            throw new Error('La devolución debe incluir la venta original para generar el PDF');
+        }
+        return this.generateSaleNotePdf({
+            saleNumber: `DEV-${saleReturn.id}`,
+            saleDate: saleReturn.committedAt ?? saleReturn.createdAt ?? new Date(),
+            customer: originalSale.customer,
+            customerName: originalSale.customerName,
+            items: saleReturn.items.map((item) => {
+                const originalItem = originalSale.items.find((saleItem) => saleItem.id === item.originalSaleItemId);
+                return {
+                    ...(originalItem ?? {}),
+                    quantity: item.quantityReturned,
+                    unitPrice: item.unitRefundAmount,
+                    subtotal: Number(item.quantityReturned) * Number(item.unitRefundAmount),
+                    productDescription: `Devolución - ${originalItem?.productDescription ?? 'Producto'}`,
+                } as SaleItem;
+            }),
+            payments: [],
+            subtotal: Number(saleReturn.totalRefund),
+            discount: 0,
+            tax: 0,
+            total: Number(saleReturn.totalRefund),
+            isOnAccount: originalSale.isOnAccount,
+        });
     }
 
     /**

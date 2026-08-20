@@ -74,6 +74,10 @@ export interface SaleItem {
     productCode?: string;
     productDescription: string;
     quantity: number;
+    enterMode?: 'manual' | 'barcode' | 'scale' | null;
+    grossQuantity?: number | null;
+    tareGrams?: number | null;
+    netQuantity?: number | null;
     unitOfMeasure: string;
     unitPrice: number;
     discount: number;
@@ -154,10 +158,28 @@ export interface Sale {
 export interface CreateSaleItemDTO {
     productId: string;
     quantity: number;
+    enterMode?: 'manual' | 'barcode' | 'scale';
+    grossQuantity?: number;
+    tareGrams?: number;
+    netQuantity?: number;
     unitPrice: number;
     discount?: number;
     discountPercent?: number;
     notes?: string;
+}
+
+export type ReturnDisposition = 'restock' | 'quarantine' | 'scrap' | 'supplier';
+
+export interface CreateSaleReturnDTO {
+    originalSaleId: string;
+    totalRefund?: number;
+    totalExchangeAmount?: number;
+    items: Array<{
+        originalSaleItemId: string;
+        quantityReturned: number;
+        unitRefundAmount: number;
+        disposition: ReturnDisposition;
+    }>;
 }
 
 /**

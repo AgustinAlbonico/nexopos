@@ -9,7 +9,7 @@ import {
     Inject,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, MoreThan, DataSource } from 'typeorm';
+import { Repository, MoreThan, DataSource, EntityManager } from 'typeorm';
 import { Cron } from '@nestjs/schedule';
 import { CustomerAccount, AccountStatus } from './entities/customer-account.entity';
 import { AccountMovement, MovementType } from './entities/account-movement.entity';
@@ -406,7 +406,21 @@ export class CustomerAccountsService {
         },
         userId?: string,
     ): Promise<AccountMovement> {
-        return this.dataSource.transaction(async (manager) => {
+        return this.dataSource.transaction((manager) => this.createAdjustmentWithManager(customerId, dto, userId, manager));
+    }
+
+    async createAdjustmentWithManager(
+        customerId: string,
+        dto: {
+            amount: number;
+            description: string;
+            referenceType?: string;
+            referenceId?: string;
+            notes?: string;
+        },
+        userId: string | undefined,
+        manager: EntityManager,
+    ): Promise<AccountMovement> {
             // Lock pesimista para evitar race conditions
             const account = await manager
                 .createQueryBuilder(CustomerAccount, 'account')
@@ -444,7 +458,6 @@ export class CustomerAccountsService {
             console.log(`[CustomerAccounts] Ajuste registrado: $${adjustmentAmount} para cliente ${customerId}`);
 
             return movement;
-        });
     }
 
     /**

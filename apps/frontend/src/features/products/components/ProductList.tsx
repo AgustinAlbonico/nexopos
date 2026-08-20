@@ -13,6 +13,8 @@ import {
     AlertTriangle,
     Eye,
     History,
+    Sparkles,
+    Copy,
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { formatCurrency } from '@/lib/utils';
@@ -33,17 +35,23 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { StockHistoryDialog } from './StockHistoryDialog';
 import { BrandSelect } from './BrandSelect';
+import { useCapabilities } from '@/hooks/useCapabilities';
 
 interface ProductListProps {
     readonly onEdit: (product: Product) => void;
     readonly onDelete: (id: string) => void;
     readonly onView: (product: Product) => void;
+    readonly onGenerateVariants?: (product: Product) => void;
+    readonly onClone?: (product: Product) => void;
 }
 
 /**
  * Componente para mostrar la lista de productos con acciones
  */
-export function ProductList({ onEdit, onDelete, onView }: ProductListProps) {
+export function ProductList({ onEdit, onDelete, onView, onGenerateVariants, onClone }: ProductListProps) {
+    const { data: capabilitiesData } = useCapabilities();
+    const hasVariantsCapability = capabilitiesData?.capabilities['STRUCTURAL.variants'] ?? false;
+
     const [historyProduct, setHistoryProduct] = useState<Product | null>(null);
     const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
     const [selectedBrandId, setSelectedBrandId] = useState<string>('');
@@ -293,9 +301,19 @@ export function ProductList({ onEdit, onDelete, onView }: ProductListProps) {
                                 <Eye className="mr-2 h-4 w-4" />
                                 Ver Detalle
                             </DropdownMenuItem>
+                            {hasVariantsCapability ? (
+                                <DropdownMenuItem onClick={() => onGenerateVariants?.(product)}>
+                                    <Sparkles className="mr-2 h-4 w-4 text-purple-600" />
+                                    Generar Variantes (Talles/Colores)
+                                </DropdownMenuItem>
+                            ) : null}
                             <DropdownMenuItem onClick={() => setHistoryProduct(product)}>
                                 <History className="mr-2 h-4 w-4" />
                                 Historial de Stock
+                            </DropdownMenuItem>
+                            <DropdownMenuItem onClick={() => onClone?.(product)}>
+                                <Copy className="mr-2 h-4 w-4 text-blue-600" />
+                                Clonar Modelo
                             </DropdownMenuItem>
                             <DropdownMenuItem onClick={() => onEdit(product)}>
                                 <Edit className="mr-2 h-4 w-4" />

@@ -57,6 +57,7 @@ import {
 interface User {
     id: string;
     username: string;
+    role?: 'admin' | 'manager' | 'cashier';
     email: string | null;
     firstName: string;
     lastName: string;
@@ -67,6 +68,7 @@ interface User {
 
 interface CreateUserFormData {
     username: string;
+    role?: 'admin' | 'manager' | 'cashier';
     email?: string;
     password: string;
     firstName: string;
@@ -75,6 +77,7 @@ interface CreateUserFormData {
 
 interface UpdateUserFormData {
     username?: string;
+    role?: 'admin' | 'manager' | 'cashier';
     email?: string;
     password?: string;
     firstName?: string;
@@ -115,6 +118,7 @@ function UserFormDialog({
 }>) {
     const [formData, setFormData] = useState<CreateUserFormData>({
         username: '',
+        role: 'admin',
         email: '',
         password: '',
         firstName: '',
@@ -128,6 +132,7 @@ function UserFormDialog({
         if (user) {
             setFormData({
                 username: user.username,
+                role: user.role || 'admin',
                 email: user.email || '',
                 password: '',
                 firstName: user.firstName,
@@ -136,6 +141,7 @@ function UserFormDialog({
         } else {
             setFormData({
                 username: '',
+                role: 'admin',
                 email: '',
                 password: '',
                 firstName: '',
@@ -309,6 +315,25 @@ function UserFormDialog({
                     </div>
 
                     <div className="space-y-2">
+                        <Label htmlFor="role">
+                            <ShieldCheck className="inline h-3 w-3 mr-1" />
+                            Rol del Usuario *
+                        </Label>
+                        <select
+                            id="role"
+                            value={formData.role || 'admin'}
+                            onChange={(e) =>
+                                setFormData({ ...formData, role: e.target.value as 'admin' | 'manager' | 'cashier' })
+                            }
+                            className="w-full rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring"
+                        >
+                            <option value="admin">Administrador (Acceso total)</option>
+                            <option value="manager">Encargado / Gerente (Inventario, compras y reportes)</option>
+                            <option value="cashier">Cajero (Solo ventas y cobros en POS)</option>
+                        </select>
+                    </div>
+
+                    <div className="space-y-2">
                         <Label htmlFor="email">
                             <Mail className="inline h-3 w-3 mr-1" />
                             Email (opcional)
@@ -466,6 +491,7 @@ export default function UsersManagementPage() {
                             <TableRow className="bg-muted/50">
                                 <TableHead className="font-semibold">Usuario</TableHead>
                                 <TableHead className="font-semibold">Nombre Completo</TableHead>
+                                <TableHead className="font-semibold">Rol</TableHead>
                                 <TableHead className="font-semibold">Email</TableHead>
                                 <TableHead className="font-semibold">Estado</TableHead>
                                 <TableHead className="font-semibold">Último Acceso</TableHead>
@@ -475,7 +501,7 @@ export default function UsersManagementPage() {
                         <TableBody>
                             {users?.length === 0 && (
                                 <TableRow>
-                                    <TableCell colSpan={6} className="text-center py-12 text-muted-foreground">
+                                    <TableCell colSpan={7} className="text-center py-12 text-muted-foreground">
                                         <Users className="h-12 w-12 mx-auto mb-3 opacity-20" />
                                         No hay usuarios registrados
                                     </TableCell>
@@ -494,6 +520,20 @@ export default function UsersManagementPage() {
                                     </TableCell>
                                     <TableCell>
                                         {user.firstName} {user.lastName}
+                                    </TableCell>
+                                    <TableCell>
+                                        <Badge
+                                            variant="outline"
+                                            className={
+                                                user.role === 'cashier'
+                                                    ? 'bg-blue-500/10 text-blue-600 border-blue-300 dark:border-blue-700'
+                                                    : user.role === 'manager'
+                                                        ? 'bg-purple-500/10 text-purple-600 border-purple-300 dark:border-purple-700'
+                                                        : 'bg-amber-500/10 text-amber-700 border-amber-300 dark:border-amber-700'
+                                            }
+                                        >
+                                            {user.role === 'cashier' ? 'Cajero' : user.role === 'manager' ? 'Encargado' : 'Administrador'}
+                                        </Badge>
                                     </TableCell>
                                     <TableCell>
                                         {user.email ? (

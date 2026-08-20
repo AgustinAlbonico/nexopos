@@ -60,10 +60,11 @@ export function DashboardPage() {
     const navigate = useNavigate();
     const { data: dashboard, isLoading, error } = useDashboard();
 
-    // Query para obtener estado del backup
+    // Query para obtener estado del backup (solo administradores)
     const { data: backupStatus } = useQuery({
         queryKey: ['backup-status'],
         queryFn: backupApi.getStatus,
+        enabled: user?.role === 'admin',
         staleTime: 1000 * 60 * 5, // 5 minutos
     });
 

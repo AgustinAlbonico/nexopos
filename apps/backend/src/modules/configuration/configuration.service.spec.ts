@@ -7,6 +7,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, getDataSourceToken } from '@nestjs/typeorm';
 
 import { ConfigurationService } from './configuration.service';
+import { ConfigurationAuditService } from './configuration-audit.service';
 import { SystemConfiguration } from './entities/system-configuration.entity';
 
 // Mock de configuración
@@ -61,8 +62,13 @@ const mockDataSource = {
     }),
 };
 
+const mockAuditService = {
+    auditProfileSwitch: jest.fn().mockResolvedValue({ canSwitch: true, blockingReasons: [] }),
+};
+
 describe('ConfigurationService', () => {
     let service: ConfigurationService;
+    const originalProfileKey = process.env.NEXOPOS_PROFILE_KEY;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -70,6 +76,7 @@ describe('ConfigurationService', () => {
                 ConfigurationService,
                 { provide: getRepositoryToken(SystemConfiguration), useValue: mockConfigRepository },
                 { provide: getDataSourceToken(), useValue: mockDataSource },
+                { provide: ConfigurationAuditService, useValue: mockAuditService },
             ],
         }).compile();
 
@@ -78,6 +85,11 @@ describe('ConfigurationService', () => {
 
     afterEach(() => {
         jest.clearAllMocks();
+        if (originalProfileKey === undefined) {
+            delete process.env.NEXOPOS_PROFILE_KEY;
+        } else {
+            process.env.NEXOPOS_PROFILE_KEY = originalProfileKey;
+        }
     });
 
     describe('onModuleInit', () => {
@@ -93,10 +105,50 @@ describe('ConfigurationService', () => {
                 barcodeScannerEnabled: false,
                 barcodeScannerTimeoutMs: 100,
                 allowOutOfStockSale: false,
+                profileKey: 'simple-retail', profileVersion: 1, capabilitiesJson: {}, capabilitiesSchemaVersion: 1,
+                onboardingCompleted: false, selectedBusinessType: null,
+                ticketAutoPrintEnabled: true,
+                ticketPrinterName: null,
+                ticketPaperWidth: '80mm',
+                ticketHeaderTitle: null,
+                ticketHeaderAddress: null,
+                ticketHeaderPhone: null,
+                ticketFooterText: '¡Gracias por su compra!',
+                ticketShowCustomerData: true,
+                ticketLogoUrl: null,
             });
         });
 
+        it('guarda NEXOPOS_PROFILE_KEY válido solo cuando crea la configuración', async () => {
+            process.env.NEXOPOS_PROFILE_KEY = 'weight';
+            mockConfigRepository.count.mockResolvedValue(0);
+            mockConfigRepository.save.mockResolvedValue(createMockConfig());
+
+            await service.onModuleInit();
+
+            expect(mockConfigRepository.save).toHaveBeenCalledWith(expect.objectContaining({
+                profileKey: 'weight', profileVersion: 1, capabilitiesJson: {}, capabilitiesSchemaVersion: 1,
+            }));
+        });
+
+        it.each([undefined, '', 'unknown-profile'])('usa simple-retail cuando NEXOPOS_PROFILE_KEY no es válido: %s', async (profileKey) => {
+            if (profileKey === undefined) {
+                delete process.env.NEXOPOS_PROFILE_KEY;
+            } else {
+                process.env.NEXOPOS_PROFILE_KEY = profileKey;
+            }
+            mockConfigRepository.count.mockResolvedValue(0);
+            mockConfigRepository.save.mockResolvedValue(createMockConfig());
+
+            await service.onModuleInit();
+
+            expect(mockConfigRepository.save).toHaveBeenCalledWith(expect.objectContaining({
+                profileKey: 'simple-retail', profileVersion: 1, capabilitiesJson: {}, capabilitiesSchemaVersion: 1,
+            }));
+        });
+
         it('no crea configuración si ya existe', async () => {
+            process.env.NEXOPOS_PROFILE_KEY = 'weight';
             mockConfigRepository.count.mockResolvedValue(1);
 
             await service.onModuleInit();

@@ -26,7 +26,7 @@ interface FormDialogProps {
     /** Contenido del formulario */
     readonly children: ReactNode;
     /** Ancho máximo del dialog */
-    readonly maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+    readonly maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
 }
 
 // Mapeo de variantes a clases de gradiente
@@ -41,10 +41,13 @@ const variantStyles = {
 // Mapeo de anchos máximos - responsivo
 const maxWidthStyles = {
     sm: 'max-w-[95vw] sm:max-w-[400px]',
-    md: 'max-w-[95vw] sm:max-w-[500px]',
-    lg: 'max-w-[95vw] sm:max-w-[600px]',
-    xl: 'max-w-[95vw] sm:max-w-[700px]',
-    '2xl': 'max-w-[95vw] sm:max-w-[800px]',
+    md: 'max-w-[95vw] sm:max-w-[520px]',
+    lg: 'max-w-[95vw] sm:max-w-[680px]',
+    xl: 'max-w-[95vw] sm:max-w-[800px]',
+    '2xl': 'max-w-[95vw] sm:max-w-[920px]',
+    '3xl': 'max-w-[95vw] sm:max-w-[1040px]',
+    '4xl': 'max-w-[95vw] sm:max-w-[1150px]',
+    '5xl': 'max-w-[95vw] sm:max-w-[1280px]',
 };
 
 /**

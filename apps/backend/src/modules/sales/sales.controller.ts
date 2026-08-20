@@ -23,10 +23,11 @@ import {
     CheckReplenishmentItemDto,
 } from './dto';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { IdempotencyGuard } from '../../common/guards/idempotency.guard';
 import { AuthenticatedRequest, PaymentDto } from '../auth/interfaces';
 
 @Controller('sales')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, IdempotencyGuard)
 export class SalesController {
     constructor(private readonly salesService: SalesService) { }
 

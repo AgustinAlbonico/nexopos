@@ -12,6 +12,12 @@ import {
 import * as bcrypt from 'bcryptjs';
 import { RefreshToken } from './refresh-token.entity';
 
+export enum UserRole {
+    ADMIN = 'admin',
+    MANAGER = 'manager',
+    CASHIER = 'cashier',
+}
+
 @Entity('users')
 @Index(['username'])
 export class User {
@@ -20,6 +26,9 @@ export class User {
 
     @Column({ type: 'varchar', length: 50, unique: true })
     username!: string;
+
+    @Column({ type: 'varchar', length: 50, default: UserRole.ADMIN })
+    role!: UserRole;
 
     @Column({ type: 'varchar', length: 255, nullable: true })
     email!: string | null;

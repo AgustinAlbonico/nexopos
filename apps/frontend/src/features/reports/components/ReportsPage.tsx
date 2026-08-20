@@ -33,6 +33,8 @@ import { PieChartCard, BarChartCard, LineChartCard, ComposedChartCard } from './
 import { TopProductsTable } from './TopProductsTable';
 import { TopCustomersTable } from './TopCustomersTable';
 import { ProductsByIdSelector } from './ProductsByIdSelector';
+import { ApparelReportsTab } from './ApparelReportsTab';
+import { useCapabilities } from '@/hooks/useCapabilities';
 
 // Hooks
 import {
@@ -58,6 +60,9 @@ import {
 } from '../utils/export';
 
 export function ReportsPage() {
+    const { data: capabilitiesData } = useCapabilities();
+    const hasVariantsCapability = capabilitiesData?.capabilities['STRUCTURAL.variants'] ?? false;
+
     const [activeTab, setActiveTab] = useState('overview');
     const [period, setPeriod] = useState<ReportPeriod>(ReportPeriod.THIS_MONTH);
     const [customDates, setCustomDates] = useState<{ start?: string; end?: string }>({});
@@ -176,13 +181,18 @@ export function ReportsPage() {
 
             {/* Tabs de Reportes */}
             <Tabs value={activeTab} onValueChange={setActiveTab} className="print:hidden">
-                <TabsList className="grid grid-cols-6 w-full">
+                <TabsList className={`grid ${hasVariantsCapability ? 'grid-cols-7' : 'grid-cols-6'} w-full`}>
                     <TabsTrigger value="overview">Resumen</TabsTrigger>
                     <TabsTrigger value="sales">Ventas</TabsTrigger>
                     <TabsTrigger value="products">Productos</TabsTrigger>
                     <TabsTrigger value="customers">Clientes</TabsTrigger>
                     <TabsTrigger value="expenses">Gastos</TabsTrigger>
                     <TabsTrigger value="cashflow">Flujo de Caja</TabsTrigger>
+                    {hasVariantsCapability ? (
+                        <TabsTrigger value="apparel" className="text-purple-600 dark:text-purple-400 font-semibold">
+                            Indumentaria & Comisiones
+                        </TabsTrigger>
+                    ) : null}
                 </TabsList>
 
                 {/* TAB: RESUMEN FINANCIERO */}
@@ -742,6 +752,13 @@ export function ReportsPage() {
                         </CardContent>
                     </Card>
                 </TabsContent>
+
+                {/* TAB: INDUMENTARIA & COMISIONES */}
+                {hasVariantsCapability ? (
+                    <TabsContent value="apparel" className="space-y-6">
+                        <ApparelReportsTab startDate={filters.startDate} endDate={filters.endDate} />
+                    </TabsContent>
+                ) : null}
             </Tabs>
         </div>
     );

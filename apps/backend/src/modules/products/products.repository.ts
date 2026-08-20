@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { DataSource, Repository } from 'typeorm';
 import { Product } from './entities/product.entity';
 import { QueryProductsDTO } from './dto/query-products.dto';
+import { ProductPack } from './entities/product-pack.entity';
 
 @Injectable()
 export class ProductsRepository extends Repository<Product> {
@@ -13,11 +14,16 @@ export class ProductsRepository extends Repository<Product> {
         filters: QueryProductsDTO,
         minStockAlert?: number,
     ): Promise<[Product[], number]> {
-        const { page, limit, search, categoryId, brandId, isActive, stockStatus, sortBy, order } = filters;
+        const { page, limit, search, categoryId, brandId, isActive, stockStatus, sortBy, order, excludeVariantParents } = filters;
 
         const query = this.createQueryBuilder('product')
             .leftJoinAndSelect('product.category', 'category')
             .leftJoinAndSelect('product.brand', 'brand');
+
+        // Excluir productos padre si se solicita
+        if (excludeVariantParents) {
+            query.andWhere('product.isVariantParent = false');
+        }
 
         // Búsqueda por texto
         if (search) {
@@ -57,7 +63,15 @@ export class ProductsRepository extends Repository<Product> {
     }
 
     async findByBarcode(barcode: string): Promise<Product | null> {
-        return this.findOne({ where: { barcode } });
+        const product = await this.findOne({ where: { barcode }, relations: ['packs', 'bundleComponents', 'bundleComponents.componentProduct'] });
+        if (product) {
+            return product;
+        }
+        const pack = await this.dataSource.getRepository(ProductPack).findOne({
+            where: { packBarcode: barcode },
+            relations: ['product', 'product.packs', 'product.bundleComponents', 'product.bundleComponents.componentProduct'],
+        });
+        return pack?.product ?? null;
     }
 
     async findBySku(sku: string): Promise<Product | null> {

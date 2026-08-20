@@ -39,6 +39,8 @@ interface ProductSearchProps {
     readonly onCreateClick?: () => void; // Callback cuando se clickea "Crear producto"
     readonly excludeIds?: string[]; // IDs de productos a excluir de los resultados
     readonly excludeOutOfStock?: boolean; // Si true, excluye productos con stock 0
+    readonly excludeVariantParents?: boolean; // Si true (default), excluye productos padre de variantes
+    readonly onKeyDown?: (e: React.KeyboardEvent) => void;
 }
 
 /**
@@ -71,14 +73,16 @@ export function ProductSearch({
     onCreateClick,
     excludeIds = [],
     excludeOutOfStock = false,
+    excludeVariantParents = true,
+    onKeyDown,
 }: ProductSearchProps) {
     const [open, setOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
 
     // Query para buscar productos
     const { data: productsData, isLoading } = useQuery({
-        queryKey: ['products', { search: searchTerm, limit }],
-        queryFn: () => productsApi.getAll({ search: searchTerm, limit }),
+        queryKey: ['products', { search: searchTerm, limit, excludeVariantParents }],
+        queryFn: () => productsApi.getAll({ search: searchTerm, limit, excludeVariantParents }),
         enabled: open, // Solo buscar cuando el popover está abierto
     });
 
@@ -99,6 +103,7 @@ export function ProductSearch({
         product => {
             // Excluir por ID
             if (excludeIds.includes(product.id)) return false;
+            if (excludeVariantParents && product.isVariantParent) return false;
             // Excluir productos sin stock si está habilitado
             if (excludeOutOfStock && product.stock <= 0) return false;
             return true;
@@ -130,14 +135,50 @@ export function ProductSearch({
         setSearchTerm('');
     };
 
+    const focusPaymentInput = () => {
+        const paymentInput = document.getElementById('pos-payment-amount-input')
+            || document.querySelector<HTMLInputElement>('input[name="payments.0.amount"]')
+            || document.querySelector<HTMLInputElement>('[data-pos-payment-input] input');
+        if (paymentInput) {
+            paymentInput.focus();
+            paymentInput.select();
+        }
+    };
+
+    const handleTriggerKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            e.stopPropagation();
+            setOpen((prev) => !prev);
+            return;
+        }
+        if (e.key === 'Tab' && !e.shiftKey) {
+            e.preventDefault();
+            focusPaymentInput();
+            return;
+        }
+        onKeyDown?.(e);
+    };
+
+    const handleInputKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Tab' && !e.shiftKey) {
+            e.preventDefault();
+            setOpen(false);
+            focusPaymentInput();
+        }
+    };
+
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
                 <Button
+                    id="pos-product-search-button"
+                    type="button"
                     variant="outline"
                     role="combobox"
                     className={`w-full justify-between font-normal ${className}`}
                     disabled={disabled}
+                    onKeyDown={handleTriggerKeyDown}
                 >
                     <span className="truncate">
                         {selectedProductName ?? placeholder}
@@ -152,12 +193,18 @@ export function ProductSearch({
                     )}
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-[400px] p-0" align="start" onWheel={(e) => e.stopPropagation()}>
+            <PopoverContent
+                className="w-[400px] p-0"
+                align="start"
+                onWheel={(e) => e.stopPropagation()}
+                onCloseAutoFocus={(e) => e.preventDefault()}
+            >
                 <Command shouldFilter={false} className="overflow-hidden">
                     <CommandInput
                         placeholder="Buscar producto..."
                         value={searchTerm}
                         onValueChange={setSearchTerm}
+                        onKeyDown={handleInputKeyDown}
                     />
                     <div className="max-h-[300px] overflow-y-auto overflow-x-hidden">
                         <CommandList>
