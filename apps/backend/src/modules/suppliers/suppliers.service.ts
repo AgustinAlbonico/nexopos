@@ -191,7 +191,14 @@ export class SuppliersService {
             }
         }
 
-        Object.assign(supplier, dto);
+        if (dto.classification !== undefined) {
+            supplier.classification = dto.classification?.trim() || null;
+        }
+
+        Object.assign(supplier, {
+            ...dto,
+            classification: dto.classification !== undefined ? (dto.classification?.trim() || null) : supplier.classification,
+        });
         return this.supplierRepo.save(supplier);
     }
 
@@ -227,9 +234,11 @@ export class SuppliersService {
             .createQueryBuilder('supplier')
             .select('DISTINCT supplier.classification', 'classification')
             .where('supplier.classification IS NOT NULL')
-            .andWhere("supplier.classification != ''")
+            .andWhere("TRIM(supplier.classification) != ''")
             .orderBy('supplier.classification', 'ASC')
             .getRawMany();
-        return results.map((r: { classification: string }) => r.classification);
+        return results
+            .map((r: any) => r.classification || r.supplier_classification || Object.values(r)[0])
+            .filter((c): c is string => typeof c === 'string' && c.trim().length > 0);
     }
 }

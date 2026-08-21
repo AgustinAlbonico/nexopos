@@ -44,6 +44,7 @@ export default function SuppliersPage() {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['suppliers'] });
             queryClient.invalidateQueries({ queryKey: ['suppliers-stats'] });
+            queryClient.invalidateQueries({ queryKey: ['supplier-classifications'] });
             toast.success('Proveedor creado');
             setIsCreateOpen(false);
         },
@@ -58,6 +59,7 @@ export default function SuppliersPage() {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['suppliers'] });
             queryClient.invalidateQueries({ queryKey: ['suppliers-stats'] });
+            queryClient.invalidateQueries({ queryKey: ['supplier-classifications'] });
             toast.success('Proveedor actualizado');
             setEditingSupplier(null);
         },
@@ -72,6 +74,7 @@ export default function SuppliersPage() {
         onSuccess: (_, variables) => {
             queryClient.invalidateQueries({ queryKey: ['suppliers'] });
             queryClient.invalidateQueries({ queryKey: ['suppliers-stats'] });
+            queryClient.invalidateQueries({ queryKey: ['supplier-classifications'] });
             toast.success(variables.isActive ? 'Proveedor activado' : 'Proveedor desactivado');
         },
         onError: () => {

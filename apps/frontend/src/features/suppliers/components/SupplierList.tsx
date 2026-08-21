@@ -416,19 +416,32 @@ export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
         },
         {
             accessorKey: 'classification',
-            header: 'Clasificación',
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+                    >
+                        Clasificación
+                        <ArrowUpDown className="ml-2 h-4 w-4" />
+                    </Button>
+                );
+            },
             cell: ({ row }) => {
                 const classification = row.original.classification;
                 if (!classification) {
                     return <span className="text-muted-foreground">-</span>;
                 }
                 return (
-                    <Badge variant="outline">
+                    <Badge
+                        variant="secondary"
+                        className="bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 font-normal"
+                    >
+                        <Tag className="h-3 w-3 mr-1" />
                         {classification}
                     </Badge>
                 );
             },
-            filterFn: 'equals',
         },
         {
             accessorKey: 'isActive',
@@ -493,7 +506,9 @@ export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
     }
 
     const filteredData = classificationFilter
-        ? (data?.data || []).filter(s => s.classification === classificationFilter)
+        ? (data?.data || []).filter(
+            (s) => s.classification?.toLowerCase() === classificationFilter.toLowerCase()
+        )
         : (data?.data || []);
 
     return (
@@ -504,24 +519,37 @@ export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
                 searchKey="name"
                 searchPlaceholder="Buscar proveedor..."
                 filterSlot={
-                    classifications && classifications.length > 0 ? (
+                    <div className="flex items-center gap-2">
                         <Select
                             value={classificationFilter || '_all_'}
-                            onValueChange={(value) => setClassificationFilter(value === '_all_' ? '' : value)}
+                            onValueChange={(value) =>
+                                setClassificationFilter(value === '_all_' ? '' : value)
+                            }
                         >
-                            <SelectTrigger className="w-[200px]">
-                                <SelectValue placeholder="Clasificación" />
+                            <SelectTrigger className="w-[220px]">
+                                <SelectValue placeholder="Todas las clasificaciones" />
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="_all_">Todas las clasificaciones</SelectItem>
-                                {classifications.map((c) => (
-                                    <SelectItem key={c} value={c}>
-                                        {c}
-                                    </SelectItem>
-                                ))}
+                                {classifications &&
+                                    classifications.map((c) => (
+                                        <SelectItem key={c} value={c}>
+                                            {c}
+                                        </SelectItem>
+                                    ))}
                             </SelectContent>
                         </Select>
-                    ) : undefined
+                        {classificationFilter ? (
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => setClassificationFilter('')}
+                                className="h-8 px-2 text-xs text-muted-foreground hover:text-foreground"
+                            >
+                                Limpiar filtro
+                            </Button>
+                        ) : null}
+                    </div>
                 }
             />
             <SupplierDetailDialog
