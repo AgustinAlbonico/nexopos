@@ -69,6 +69,15 @@ export class SuppliersController {
     }
 
     /**
+     * Lista clasificaciones únicas de proveedores
+     * GET /api/suppliers/classifications
+     */
+    @Get('classifications')
+    getClassifications() {
+        return this.suppliersService.getClassifications();
+    }
+
+    /**
      * Obtiene un proveedor por ID
      * GET /api/suppliers/:id
      */

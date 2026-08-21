@@ -39,6 +39,7 @@ export interface Supplier {
     contactName?: string | null;
     bankAccount?: string | null;
     notes?: string | null;
+    classification?: string | null;
     isActive: boolean;
     createdAt: string;
     updatedAt: string;
@@ -61,6 +62,7 @@ export interface CreateSupplierDTO {
     contactName?: string | null;
     bankAccount?: string | null;
     notes?: string | null;
+    classification?: string | null;
     isActive?: boolean;
 }
 
@@ -72,8 +74,9 @@ export interface SupplierFilters {
     search?: string;
     city?: string;
     state?: string;
+    classification?: string;
     isActive?: boolean;
-    sortBy?: 'name' | 'tradeName' | 'email' | 'createdAt';
+    sortBy?: 'name' | 'tradeName' | 'email' | 'createdAt' | 'classification';
     order?: 'ASC' | 'DESC';
 }
 

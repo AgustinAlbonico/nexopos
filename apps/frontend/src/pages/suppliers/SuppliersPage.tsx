@@ -183,6 +183,7 @@ export default function SuppliersPage() {
                                 contactName: editingSupplier.contactName || '',
                                 bankAccount: editingSupplier.bankAccount || '',
                                 notes: editingSupplier.notes || '',
+                                classification: editingSupplier.classification || '',
                                 isActive: editingSupplier.isActive,
                             }}
                             onSubmit={handleUpdate}

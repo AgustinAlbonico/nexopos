@@ -39,10 +39,14 @@ export class SupplierFiltersDto {
     isActive?: boolean;
 
     @IsOptional()
-    @IsEnum(['name', 'tradeName', 'email', 'createdAt'], {
-        message: 'sortBy debe ser: name, tradeName, email, createdAt',
+    @IsString()
+    classification?: string;
+
+    @IsOptional()
+    @IsEnum(['name', 'tradeName', 'email', 'createdAt', 'classification'], {
+        message: 'sortBy debe ser: name, tradeName, email, createdAt, classification',
     })
-    sortBy?: 'name' | 'tradeName' | 'email' | 'createdAt';
+    sortBy?: 'name' | 'tradeName' | 'email' | 'createdAt' | 'classification';
 
     @IsOptional()
     @IsEnum(['ASC', 'DESC'], { message: 'order debe ser ASC o DESC' })

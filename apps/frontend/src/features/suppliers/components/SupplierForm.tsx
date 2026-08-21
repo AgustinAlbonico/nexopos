@@ -4,6 +4,8 @@
  */
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
+import { suppliersApi } from '../api/suppliers.api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -86,6 +88,11 @@ export function SupplierForm({
     isLoading = false,
     isEditing = false,
 }: SupplierFormProps) {
+    const { data: classifications } = useQuery({
+        queryKey: ['supplier-classifications'],
+        queryFn: () => suppliersApi.getClassifications(),
+    });
+
     const form = useForm<SupplierFormValues>({
         resolver: zodResolver(SupplierSchema as any),
         defaultValues: initialData || {
@@ -105,6 +112,7 @@ export function SupplierForm({
             contactName: '',
             bankAccount: '',
             notes: '',
+            classification: '',
             isActive: true,
         },
     });
@@ -129,6 +137,7 @@ export function SupplierForm({
             contactName: capitalizeWords(data.contactName?.trim() || '') || undefined,
             bankAccount: data.bankAccount?.trim() || undefined,
             notes: data.notes?.trim() || undefined,
+            classification: data.classification?.trim() || undefined,
         };
         onSubmit(cleanedData);
     };
@@ -458,6 +467,33 @@ export function SupplierForm({
                         )}
                     />
                 </div>
+
+                {/* Clasificación */}
+                <FormField
+                    control={form.control}
+                    name="classification"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Clasificación</FormLabel>
+                            <FormControl>
+                                <>
+                                    <Input
+                                        placeholder="Ej: Nacional, Importador, Distribuidor..."
+                                        list="classification-options"
+                                        {...field}
+                                        value={field.value || ''}
+                                    />
+                                    <datalist id="classification-options">
+                                        {classifications?.map((c) => (
+                                            <option key={c} value={c} />
+                                        ))}
+                                    </datalist>
+                                </>
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
 
                 {/* Notas */}
                 <FormField

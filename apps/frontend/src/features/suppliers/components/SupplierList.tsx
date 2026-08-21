@@ -28,6 +28,7 @@ import {
     Calendar,
     User,
     Landmark,
+    Tag,
 } from 'lucide-react';
 import {
     DropdownMenu,
@@ -42,6 +43,13 @@ import {
     DialogContent,
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from '@/components/ui/select';
 
 interface SupplierListProps {
     readonly onEdit: (supplier: Supplier) => void;
@@ -97,6 +105,15 @@ function SupplierDetailDialog({
                                         <><XCircle className="h-3 w-3 mr-1" /> Inactivo</>
                                     )}
                                 </Badge>
+                                {supplier.classification && (
+                                    <Badge
+                                        variant="secondary"
+                                        className="bg-white/20 text-white border-white/30"
+                                    >
+                                        <Tag className="h-3 w-3 mr-1" />
+                                        {supplier.classification}
+                                    </Badge>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -316,6 +333,7 @@ function SupplierDetailDialog({
  */
 export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
     const [viewSupplier, setViewSupplier] = useState<Supplier | null>(null);
+    const [classificationFilter, setClassificationFilter] = useState<string>('');
 
     // Query para proveedores
     const { data, isLoading, error } = useQuery({
@@ -326,6 +344,11 @@ export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
                 sortBy: 'name',
                 order: 'ASC',
             }),
+    });
+
+    const { data: classifications } = useQuery({
+        queryKey: ['supplier-classifications'],
+        queryFn: () => suppliersApi.getClassifications(),
     });
 
     const columns: ColumnDef<Supplier>[] = [
@@ -392,6 +415,22 @@ export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
             },
         },
         {
+            accessorKey: 'classification',
+            header: 'Clasificación',
+            cell: ({ row }) => {
+                const classification = row.original.classification;
+                if (!classification) {
+                    return <span className="text-muted-foreground">-</span>;
+                }
+                return (
+                    <Badge variant="outline">
+                        {classification}
+                    </Badge>
+                );
+            },
+            filterFn: 'equals',
+        },
+        {
             accessorKey: 'isActive',
             header: 'Estado',
             cell: ({ row }) => {
@@ -453,13 +492,37 @@ export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
         );
     }
 
+    const filteredData = classificationFilter
+        ? (data?.data || []).filter(s => s.classification === classificationFilter)
+        : (data?.data || []);
+
     return (
         <>
             <DataTable
                 columns={columns}
-                data={data?.data || []}
+                data={filteredData}
                 searchKey="name"
                 searchPlaceholder="Buscar proveedor..."
+                filterSlot={
+                    classifications && classifications.length > 0 ? (
+                        <Select
+                            value={classificationFilter || '_all_'}
+                            onValueChange={(value) => setClassificationFilter(value === '_all_' ? '' : value)}
+                        >
+                            <SelectTrigger className="w-[200px]">
+                                <SelectValue placeholder="Clasificación" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="_all_">Todas las clasificaciones</SelectItem>
+                                {classifications.map((c) => (
+                                    <SelectItem key={c} value={c}>
+                                        {c}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    ) : undefined
+                }
             />
             <SupplierDetailDialog
                 supplier={viewSupplier}

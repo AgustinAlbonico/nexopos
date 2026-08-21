@@ -40,6 +40,7 @@ import { AddApparelProductColumns1786405840956 } from './migrations/178640584095
 import { AddUserRoleColumn1786405840957 } from './migrations/1786405840957-AddUserRoleColumn';
 import { AddApparelAdvancedFeatures1786405840958 } from './migrations/1786405840958-AddApparelAdvancedFeatures';
 import { AddSizeScaleAndColorPaletteTemplates1786405840960 } from './migrations/1786405840960-AddSizeScaleAndColorPaletteTemplates';
+import { AddSupplierClassification1786405840962 } from './migrations/1786405840962-AddSupplierClassification';
 
 export const migrations: (new () => MigrationInterface)[] = [
     InitialSchema1734450000000,
@@ -80,4 +81,5 @@ export const migrations: (new () => MigrationInterface)[] = [
     AddUserRoleColumn1786405840957,
     AddApparelAdvancedFeatures1786405840958,
     AddSizeScaleAndColorPaletteTemplates1786405840960,
+    AddSupplierClassification1786405840962,
 ];

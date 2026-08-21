@@ -66,6 +66,7 @@ export class SuppliersService {
             contactName: dto.contactName ?? null,
             bankAccount: dto.bankAccount ?? null,
             notes: dto.notes ?? null,
+            classification: dto.classification ?? null,
             isActive: dto.isActive ?? true,
         });
 
@@ -96,6 +97,11 @@ export class SuppliersService {
         // Filtro de provincia
         if (filters?.state) {
             baseWhere.state = filters.state;
+        }
+
+        // Filtro de clasificación
+        if (filters?.classification) {
+            baseWhere.classification = filters.classification;
         }
 
         // Búsqueda en múltiples campos
@@ -211,5 +217,19 @@ export class SuppliersService {
             take: 10,
             order: { name: 'ASC' },
         });
+    }
+
+    /**
+     * Obtiene las clasificaciones únicas existentes (para autocompletado)
+     */
+    async getClassifications(): Promise<string[]> {
+        const results = await this.supplierRepo
+            .createQueryBuilder('supplier')
+            .select('DISTINCT supplier.classification', 'classification')
+            .where('supplier.classification IS NOT NULL')
+            .andWhere("supplier.classification != ''")
+            .orderBy('supplier.classification', 'ASC')
+            .getRawMany();
+        return results.map((r: { classification: string }) => r.classification);
     }
 }
