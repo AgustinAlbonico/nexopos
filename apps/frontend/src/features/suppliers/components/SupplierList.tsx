@@ -29,6 +29,10 @@ import {
     User,
     Landmark,
     Tag,
+    Search,
+    ChevronsUpDown,
+    Check,
+    X,
 } from 'lucide-react';
 import {
     DropdownMenu,
@@ -43,13 +47,13 @@ import {
     DialogContent,
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import { Input } from '@/components/ui/input';
 import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from '@/components/ui/select';
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from '@/components/ui/popover';
+import { cn } from '@/lib/utils';
 
 interface SupplierListProps {
     readonly onEdit: (supplier: Supplier) => void;
@@ -328,6 +332,124 @@ function SupplierDetailDialog({
     );
 }
 
+interface ClassificationFilterPopoverProps {
+    readonly selected: string;
+    readonly onSelect: (value: string) => void;
+    readonly classifications?: string[];
+}
+
+function ClassificationFilterPopover({
+    selected,
+    onSelect,
+    classifications = [],
+}: ClassificationFilterPopoverProps) {
+    const [open, setOpen] = useState(false);
+    const [search, setSearch] = useState('');
+
+    const filtered = (classifications || []).filter((c) =>
+        c.toLowerCase().includes(search.toLowerCase())
+    );
+
+    return (
+        <Popover
+            open={open}
+            onOpenChange={(isOpen) => {
+                setOpen(isOpen);
+                if (isOpen) setSearch('');
+            }}
+        >
+            <PopoverTrigger asChild>
+                <Button
+                    variant="outline"
+                    size="sm"
+                    className={cn(
+                        "h-9 justify-between border-dashed min-w-[220px] max-w-[280px] text-xs font-normal",
+                        selected
+                            ? "border-solid border-primary text-primary font-medium bg-primary/5"
+                            : "text-muted-foreground hover:text-foreground"
+                    )}
+                >
+                    <div className="flex items-center gap-1.5 truncate">
+                        <Tag className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+                        <span className="truncate">
+                            {selected || "Todas las clasificaciones"}
+                        </span>
+                    </div>
+                    <ChevronsUpDown className="ml-2 h-3.5 w-3.5 shrink-0 opacity-50" />
+                </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-[280px] p-2" align="start">
+                <div className="space-y-2">
+                    <div className="relative">
+                        <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
+                        <Input
+                            placeholder="Buscar clasificación..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            className="h-8 pl-8 text-xs"
+                            autoFocus
+                        />
+                        {search ? (
+                            <button
+                                type="button"
+                                onClick={() => setSearch('')}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 text-muted-foreground hover:text-foreground"
+                            >
+                                <X className="h-3 w-3" />
+                            </button>
+                        ) : null}
+                    </div>
+
+                    <div className="max-h-56 overflow-y-auto space-y-0.5 pt-1">
+                        <button
+                            type="button"
+                            onClick={() => {
+                                onSelect('');
+                                setOpen(false);
+                            }}
+                            className={cn(
+                                "w-full flex items-center justify-between px-2 py-1.5 text-xs rounded-sm text-left transition-colors font-medium",
+                                !selected
+                                    ? "bg-primary text-primary-foreground"
+                                    : "hover:bg-muted text-muted-foreground"
+                            )}
+                        >
+                            <span>Todas las clasificaciones</span>
+                            {!selected ? <Check className="h-3.5 w-3.5 shrink-0" /> : null}
+                        </button>
+
+                        {filtered.map((c) => (
+                            <button
+                                key={c}
+                                type="button"
+                                onClick={() => {
+                                    onSelect(c);
+                                    setOpen(false);
+                                }}
+                                className={cn(
+                                    "w-full flex items-center justify-between px-2 py-1.5 text-xs rounded-sm text-left transition-colors",
+                                    selected === c
+                                        ? "bg-primary text-primary-foreground font-medium"
+                                        : "hover:bg-muted text-foreground"
+                                )}
+                            >
+                                <span className="truncate">{c}</span>
+                                {selected === c ? <Check className="h-3.5 w-3.5 shrink-0" /> : null}
+                            </button>
+                        ))}
+
+                        {filtered.length === 0 ? (
+                            <div className="p-2 text-center text-xs text-muted-foreground">
+                                No se encontraron clasificaciones
+                            </div>
+                        ) : null}
+                    </div>
+                </div>
+            </PopoverContent>
+        </Popover>
+    );
+}
+
 /**
  * Componente principal de lista de proveedores
  */
@@ -520,33 +642,20 @@ export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
                 searchPlaceholder="Buscar proveedor..."
                 filterSlot={
                     <div className="flex items-center gap-2">
-                        <Select
-                            value={classificationFilter || '_all_'}
-                            onValueChange={(value) =>
-                                setClassificationFilter(value === '_all_' ? '' : value)
-                            }
-                        >
-                            <SelectTrigger className="w-[220px]">
-                                <SelectValue placeholder="Todas las clasificaciones" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="_all_">Todas las clasificaciones</SelectItem>
-                                {classifications &&
-                                    classifications.map((c) => (
-                                        <SelectItem key={c} value={c}>
-                                            {c}
-                                        </SelectItem>
-                                    ))}
-                            </SelectContent>
-                        </Select>
+                        <ClassificationFilterPopover
+                            selected={classificationFilter}
+                            onSelect={setClassificationFilter}
+                            classifications={classifications}
+                        />
                         {classificationFilter ? (
                             <Button
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setClassificationFilter('')}
-                                className="h-8 px-2 text-xs text-muted-foreground hover:text-foreground"
+                                className="h-9 px-2 text-xs text-muted-foreground hover:text-foreground"
                             >
-                                Limpiar filtro
+                                <X className="h-3.5 w-3.5 mr-1" />
+                                Limpiar
                             </Button>
                         ) : null}
                     </div>
