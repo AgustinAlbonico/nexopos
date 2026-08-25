@@ -92,168 +92,102 @@ interface ClassificationInputProps {
 }
 
 function ClassificationInput({
-    value,
+    value = '',
     onChange,
     classifications = [],
 }: ClassificationInputProps) {
-    const [open, setOpen] = useState(false);
-    const [searchTerm, setSearchTerm] = useState('');
+    const query = (value || '').trim().toLowerCase();
 
-    const filteredClassifications = classifications.filter((c) =>
-        c.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    // Coincidencias en tiempo real mientras el usuario escribe en el campo
+    const matchingClassifications = query
+        ? classifications.filter((c) => c.toLowerCase().includes(query))
+        : [];
 
     const isExactMatch = classifications.some(
-        (c) => c.toLowerCase() === searchTerm.trim().toLowerCase()
+        (c) => c.toLowerCase() === query
     );
 
     return (
         <div className="space-y-2">
-            <Popover
-                open={open}
-                onOpenChange={(isOpen) => {
-                    setOpen(isOpen);
-                    if (isOpen) setSearchTerm('');
-                }}
-            >
-                <div className="relative">
-                    <Input
-                        placeholder="Seleccionar o escribir clasificación..."
-                        value={value || ''}
-                        onChange={(e) => onChange(e.target.value)}
-                        className="pr-16"
-                    />
-                    <div className="absolute right-1 top-1/2 -translate-y-1/2 flex items-center gap-0.5">
-                        {value ? (
-                            <button
-                                type="button"
-                                onClick={() => onChange('')}
-                                className="p-1 rounded-sm text-muted-foreground hover:text-foreground hover:bg-muted"
-                                title="Limpiar"
-                            >
-                                <X className="h-3.5 w-3.5" />
-                            </button>
-                        ) : null}
-                        <PopoverTrigger asChild>
-                            <Button
-                                type="button"
-                                variant="ghost"
-                                size="sm"
-                                className="h-7 px-1.5 text-muted-foreground hover:text-foreground"
-                                title="Buscar / Ver clasificaciones existentes"
-                            >
-                                <ChevronsUpDown className="h-4 w-4" />
-                            </Button>
-                        </PopoverTrigger>
+            <div className="relative">
+                <Input
+                    placeholder="Escribí para buscar o crear una clasificación..."
+                    value={value || ''}
+                    onChange={(e) => onChange(e.target.value)}
+                    className="pr-9"
+                />
+                {value ? (
+                    <button
+                        type="button"
+                        onClick={() => onChange('')}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-sm text-muted-foreground hover:text-foreground hover:bg-muted"
+                        title="Limpiar"
+                    >
+                        <X className="h-3.5 w-3.5" />
+                    </button>
+                ) : null}
+            </div>
+
+            {/* Coincidencias encontradas mientras escribe */}
+            {query && matchingClassifications.length > 0 ? (
+                <div className="rounded-lg border bg-slate-50/90 dark:bg-slate-900/90 p-2.5 space-y-1.5 shadow-sm">
+                    <div className="text-[11px] font-semibold text-muted-foreground flex items-center gap-1.5">
+                        <Search className="h-3.5 w-3.5 text-blue-500" />
+                        Coincidencias encontradas ({matchingClassifications.length}):
+                    </div>
+                    <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto pt-0.5">
+                        {matchingClassifications.map((c) => {
+                            const isSelected = value.trim().toLowerCase() === c.toLowerCase();
+                            return (
+                                <button
+                                    key={c}
+                                    type="button"
+                                    onClick={() => onChange(c)}
+                                    className={cn(
+                                        "text-xs px-2.5 py-1 rounded-md border font-medium transition-all text-left flex items-center gap-1.5",
+                                        isSelected
+                                            ? "bg-blue-600 text-white border-blue-600 shadow-sm"
+                                            : "bg-white hover:bg-blue-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700 shadow-xs"
+                                    )}
+                                >
+                                    <Tag className="h-3 w-3 text-blue-500 shrink-0" />
+                                    <span>{c}</span>
+                                    {isSelected ? <Check className="h-3 w-3 shrink-0" /> : null}
+                                </button>
+                            );
+                        })}
                     </div>
                 </div>
-                <PopoverContent className="w-[320px] p-2" align="start">
-                    <div className="space-y-2">
-                        {/* Buscador de clasificación */}
-                        <div className="relative">
-                            <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground" />
-                            <Input
-                                placeholder="Buscar en las clasificaciones..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="h-8 pl-8 text-xs"
-                                autoFocus
-                            />
-                            {searchTerm ? (
-                                <button
-                                    type="button"
-                                    onClick={() => setSearchTerm('')}
-                                    className="absolute right-2 top-1/2 -translate-y-1/2 p-0.5 text-muted-foreground hover:text-foreground"
-                                >
-                                    <X className="h-3 w-3" />
-                                </button>
-                            ) : null}
-                        </div>
+            ) : null}
 
-                        {/* Opción para crear si lo escrito en el buscador no existe */}
-                        {searchTerm.trim() && !isExactMatch ? (
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    onChange(searchTerm.trim());
-                                    setOpen(false);
-                                }}
-                                className="w-full flex items-center gap-2 px-2 py-1.5 text-xs rounded bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/40 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-medium border border-blue-200 dark:border-blue-800 transition-colors text-left"
-                            >
-                                <Plus className="h-3.5 w-3.5 shrink-0" />
-                                <span className="truncate">Usar nueva: &quot;{searchTerm.trim()}&quot;</span>
-                            </button>
-                        ) : null}
-
-                        {/* Listado filtrado */}
-                        <div className="max-h-48 overflow-y-auto space-y-0.5 pt-1">
-                            {filteredClassifications.length > 0 ? (
-                                filteredClassifications.map((c) => (
-                                    <button
-                                        key={c}
-                                        type="button"
-                                        onClick={() => {
-                                            onChange(c);
-                                            setOpen(false);
-                                        }}
-                                        className={cn(
-                                            "w-full flex items-center justify-between px-2 py-1.5 text-xs rounded-sm text-left transition-colors",
-                                            value === c
-                                                ? "bg-primary text-primary-foreground font-medium"
-                                                : "hover:bg-muted text-foreground"
-                                        )}
-                                    >
-                                        <span className="truncate">{c}</span>
-                                        {value === c ? <Check className="h-3.5 w-3.5 shrink-0" /> : null}
-                                    </button>
-                                ))
-                            ) : (
-                                !searchTerm.trim() && (
-                                    <div className="p-2 text-center text-xs text-muted-foreground">
-                                        No hay clasificaciones cargadas.
-                                    </div>
-                                )
-                            )}
-                            {filteredClassifications.length === 0 && searchTerm.trim() && isExactMatch ? (
-                                <div className="p-2 text-center text-xs text-muted-foreground">
-                                    Sin coincidencias.
-                                </div>
-                            ) : null}
-                        </div>
-                    </div>
-                </PopoverContent>
-            </Popover>
-
-            {/* Chips de acceso rápido de 1 clic (POS Ergonomics) */}
-            {classifications && classifications.length > 0 ? (
-                <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
-                    <span className="text-[11px] text-muted-foreground font-medium flex items-center gap-1">
-                        <Tag className="h-3 w-3" /> Frecuentes:
+            {/* Aviso de nueva clasificación si lo escrito no existe */}
+            {query && !isExactMatch ? (
+                <div className="flex items-center gap-2 text-xs text-blue-800 dark:text-blue-200 bg-blue-50/70 dark:bg-blue-950/40 p-2.5 rounded-lg border border-blue-200/80 dark:border-blue-800/80">
+                    <Plus className="h-4 w-4 text-blue-600 dark:text-blue-400 shrink-0" />
+                    <span>
+                        Se guardará como nueva clasificación: <strong className="font-semibold text-foreground">&quot;{value.trim()}&quot;</strong>
                     </span>
-                    {classifications.slice(0, 8).map((c) => (
-                        <button
-                            key={c}
-                            type="button"
-                            onClick={() => onChange(c)}
-                            className={cn(
-                                "text-xs px-2.5 py-0.5 rounded-full border transition-all duration-150 font-medium",
-                                value === c
-                                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                                    : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 dark:border-slate-700"
-                            )}
-                        >
-                            {c}
-                        </button>
-                    ))}
-                    {classifications.length > 8 ? (
-                        <button
-                            type="button"
-                            onClick={() => setOpen(true)}
-                            className="text-[11px] text-blue-600 hover:text-blue-700 dark:text-blue-400 font-medium underline pl-1"
-                        >
-                            +{classifications.length - 8} más...
-                        </button>
-                    ) : null}
+                </div>
+            ) : null}
+
+            {/* Clasificaciones disponibles / frecuentes para asignar con 1 clic */}
+            {!query && classifications.length > 0 ? (
+                <div className="space-y-1.5 pt-0.5">
+                    <span className="text-[11px] text-muted-foreground font-medium flex items-center gap-1">
+                        <Tag className="h-3 w-3" /> Clasificaciones existentes (clic para asignar):
+                    </span>
+                    <div className="flex flex-wrap items-center gap-1.5 max-h-32 overflow-y-auto pt-0.5">
+                        {classifications.map((c) => (
+                            <button
+                                key={c}
+                                type="button"
+                                onClick={() => onChange(c)}
+                                className="text-xs px-2.5 py-0.5 rounded-full border bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 transition-colors font-medium"
+                            >
+                                {c}
+                            </button>
+                        ))}
+                    </div>
                 </div>
             ) : null}
         </div>
