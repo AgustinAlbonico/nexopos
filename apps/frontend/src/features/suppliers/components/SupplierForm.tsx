@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useQuery } from '@tanstack/react-query';
@@ -96,9 +96,41 @@ function ClassificationInput({
     onChange,
     classifications = [],
 }: ClassificationInputProps) {
-    const query = (value || '').trim().toLowerCase();
+    const [isOpen, setIsOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState(value || '');
+    const containerRef = useRef<HTMLDivElement>(null);
 
-    // Coincidencias en tiempo real mientras el usuario escribe en el campo
+    // Sincronizar searchTerm cuando el valor exterior cambia (ej: reset o edición)
+    useEffect(() => {
+        setSearchTerm(value || '');
+    }, [value]);
+
+    // Debounce de 250ms para no filtrar en cada tecla presionada
+    const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearch(searchTerm);
+        }, 250);
+        return () => clearTimeout(timer);
+    }, [searchTerm]);
+
+    // Cerrar el menú flotante al hacer clic afuera
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (
+                containerRef.current &&
+                !containerRef.current.contains(event.target as Node)
+            ) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const query = debouncedSearch.trim().toLowerCase();
+
+    // Clasificaciones que coinciden con la búsqueda debounced
     const matchingClassifications = query
         ? classifications.filter((c) => c.toLowerCase().includes(query))
         : [];
@@ -107,87 +139,124 @@ function ClassificationInput({
         (c) => c.toLowerCase() === query
     );
 
+    const handleSelect = (selectedValue: string) => {
+        onChange(selectedValue);
+        setSearchTerm(selectedValue);
+        setIsOpen(false);
+    };
+
     return (
-        <div className="space-y-2">
+        <div className="space-y-2" ref={containerRef}>
             <div className="relative">
                 <Input
                     placeholder="Escribí para buscar o crear una clasificación..."
-                    value={value || ''}
-                    onChange={(e) => onChange(e.target.value)}
-                    className="pr-9"
+                    value={searchTerm}
+                    onChange={(e) => {
+                        const val = e.target.value;
+                        setSearchTerm(val);
+                        onChange(val);
+                        setIsOpen(true);
+                    }}
+                    onFocus={() => {
+                        if (searchTerm.trim()) {
+                            setIsOpen(true);
+                        }
+                    }}
+                    className="pr-8"
                 />
-                {value ? (
+                {searchTerm ? (
                     <button
                         type="button"
-                        onClick={() => onChange('')}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded-sm text-muted-foreground hover:text-foreground hover:bg-muted"
+                        onClick={() => handleSelect('')}
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded-sm text-muted-foreground hover:text-foreground hover:bg-muted"
                         title="Limpiar"
                     >
                         <X className="h-3.5 w-3.5" />
                     </button>
                 ) : null}
+
+                {/* Desplegable flotante que aparece automáticamente cuando el usuario busca */}
+                {isOpen && query ? (
+                    <div className="absolute left-0 top-full mt-1 w-full z-50 rounded-md border bg-popover p-1 shadow-lg text-popover-foreground animate-in fade-in-0 zoom-in-95 max-h-60 overflow-y-auto">
+                        <div className="px-2 py-1 text-[11px] font-semibold text-muted-foreground flex items-center justify-between border-b pb-1 mb-1">
+                            <span className="flex items-center gap-1">
+                                <Search className="h-3 w-3 text-blue-500" />
+                                Coincidencias ({matchingClassifications.length})
+                            </span>
+                        </div>
+
+                        {matchingClassifications.length > 0 ? (
+                            <div className="space-y-0.5">
+                                {matchingClassifications.map((c) => {
+                                    const isSelected =
+                                        searchTerm.trim().toLowerCase() === c.toLowerCase();
+                                    return (
+                                        <button
+                                            key={c}
+                                            type="button"
+                                            onClick={() => handleSelect(c)}
+                                            className={cn(
+                                                "w-full flex items-center justify-between px-2.5 py-1.5 text-xs rounded-sm text-left transition-colors",
+                                                isSelected
+                                                    ? "bg-primary text-primary-foreground font-medium"
+                                                    : "hover:bg-muted text-foreground"
+                                            )}
+                                        >
+                                            <div className="flex items-center gap-1.5 truncate">
+                                                <Tag className="h-3 w-3 shrink-0 opacity-70" />
+                                                <span className="truncate">{c}</span>
+                                            </div>
+                                            {isSelected ? (
+                                                <Check className="h-3.5 w-3.5 shrink-0" />
+                                            ) : null}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        ) : null}
+
+                        {/* Opción para usar la nueva clasificación escrita */}
+                        {!isExactMatch && query ? (
+                            <button
+                                type="button"
+                                onClick={() => handleSelect(searchTerm.trim())}
+                                className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs rounded-sm text-left bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-medium border border-blue-200 dark:border-blue-800 transition-colors mt-1"
+                            >
+                                <Plus className="h-3.5 w-3.5 shrink-0 text-blue-600 dark:text-blue-400" />
+                                <span className="truncate">
+                                    Usar nueva: &quot;{searchTerm.trim()}&quot;
+                                </span>
+                            </button>
+                        ) : null}
+                    </div>
+                ) : null}
             </div>
 
-            {/* Coincidencias encontradas mientras escribe */}
-            {query && matchingClassifications.length > 0 ? (
-                <div className="rounded-lg border bg-slate-50/90 dark:bg-slate-900/90 p-2.5 space-y-1.5 shadow-sm">
-                    <div className="text-[11px] font-semibold text-muted-foreground flex items-center gap-1.5">
-                        <Search className="h-3.5 w-3.5 text-blue-500" />
-                        Coincidencias encontradas ({matchingClassifications.length}):
-                    </div>
-                    <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto pt-0.5">
-                        {matchingClassifications.map((c) => {
-                            const isSelected = value.trim().toLowerCase() === c.toLowerCase();
-                            return (
-                                <button
-                                    key={c}
-                                    type="button"
-                                    onClick={() => onChange(c)}
-                                    className={cn(
-                                        "text-xs px-2.5 py-1 rounded-md border font-medium transition-all text-left flex items-center gap-1.5",
-                                        isSelected
-                                            ? "bg-blue-600 text-white border-blue-600 shadow-sm"
-                                            : "bg-white hover:bg-blue-50 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700 shadow-xs"
-                                    )}
-                                >
-                                    <Tag className="h-3 w-3 text-blue-500 shrink-0" />
-                                    <span>{c}</span>
-                                    {isSelected ? <Check className="h-3 w-3 shrink-0" /> : null}
-                                </button>
-                            );
-                        })}
-                    </div>
-                </div>
-            ) : null}
-
-            {/* Aviso de nueva clasificación si lo escrito no existe */}
-            {query && !isExactMatch ? (
-                <div className="flex items-center gap-2 text-xs text-blue-800 dark:text-blue-200 bg-blue-50/70 dark:bg-blue-950/40 p-2.5 rounded-lg border border-blue-200/80 dark:border-blue-800/80">
-                    <Plus className="h-4 w-4 text-blue-600 dark:text-blue-400 shrink-0" />
-                    <span>
-                        Se guardará como nueva clasificación: <strong className="font-semibold text-foreground">&quot;{value.trim()}&quot;</strong>
-                    </span>
-                </div>
-            ) : null}
-
-            {/* Clasificaciones disponibles / frecuentes para asignar con 1 clic */}
-            {!query && classifications.length > 0 ? (
-                <div className="space-y-1.5 pt-0.5">
+            {/* Chips de los más frecuentes (como venías haciendo) */}
+            {classifications && classifications.length > 0 ? (
+                <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
                     <span className="text-[11px] text-muted-foreground font-medium flex items-center gap-1">
-                        <Tag className="h-3 w-3" /> Clasificaciones existentes (clic para asignar):
+                        <Tag className="h-3 w-3" /> Frecuentes:
                     </span>
-                    <div className="flex flex-wrap items-center gap-1.5 max-h-32 overflow-y-auto pt-0.5">
-                        {classifications.map((c) => (
+                    {classifications.slice(0, 10).map((c) => {
+                        const isSelected =
+                            searchTerm.trim().toLowerCase() === c.toLowerCase();
+                        return (
                             <button
                                 key={c}
                                 type="button"
-                                onClick={() => onChange(c)}
-                                className="text-xs px-2.5 py-0.5 rounded-full border bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700 transition-colors font-medium"
+                                onClick={() => handleSelect(c)}
+                                className={cn(
+                                    "text-xs px-2.5 py-0.5 rounded-full border transition-all duration-150 font-medium",
+                                    isSelected
+                                        ? "bg-primary text-primary-foreground border-primary shadow-xs"
+                                        : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 dark:border-slate-700"
+                                )}
                             >
                                 {c}
                             </button>
-                        ))}
-                    </div>
+                        );
+                    })}
                 </div>
             ) : null}
         </div>

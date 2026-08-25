@@ -1,7 +1,7 @@
 /**
  * Lista de proveedores con tabla, filtros y acciones
  */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import { DataTable } from '@/components/common/DataTable';
@@ -331,7 +331,16 @@ function SupplierDetailDialog({
 export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
     const [viewSupplier, setViewSupplier] = useState<Supplier | null>(null);
     const [searchQuery, setSearchQuery] = useState<string>('');
+    const [debouncedSearch, setDebouncedSearch] = useState<string>('');
     const [classificationFilter, setClassificationFilter] = useState<string>('');
+
+    // Debounce de búsqueda para no filtrar en cada pulsación de tecla
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearch(searchQuery);
+        }, 250);
+        return () => clearTimeout(timer);
+    }, [searchQuery]);
 
     // Query para proveedores
     const { data, isLoading, error } = useQuery({
@@ -512,9 +521,9 @@ export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
             return false;
         }
 
-        // Búsqueda en vivo (nombre, fantasía, CUIT/DNI, clasificación, ciudad/provincia)
-        if (searchQuery.trim()) {
-            const q = searchQuery.trim().toLowerCase();
+        // Búsqueda en vivo con debounce (nombre, fantasía, CUIT/DNI, clasificación, ciudad/provincia)
+        if (debouncedSearch.trim()) {
+            const q = debouncedSearch.trim().toLowerCase();
             const matchName = s.name?.toLowerCase().includes(q);
             const matchTradeName = s.tradeName?.toLowerCase().includes(q);
             const matchDoc = s.documentNumber?.toLowerCase().includes(q);
