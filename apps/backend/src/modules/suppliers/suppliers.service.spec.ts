@@ -31,9 +31,12 @@ const createMockSupplier = (overrides = {}) => ({
 // Mock del repositorio
 const mockQueryBuilder = {
     select: jest.fn().mockReturnThis(),
+    addSelect: jest.fn().mockReturnThis(),
     where: jest.fn().mockReturnThis(),
     andWhere: jest.fn().mockReturnThis(),
+    groupBy: jest.fn().mockReturnThis(),
     orderBy: jest.fn().mockReturnThis(),
+    addOrderBy: jest.fn().mockReturnThis(),
     getRawMany: jest.fn(),
 };
 
@@ -150,20 +153,23 @@ describe('SuppliersService', () => {
     });
 
     describe('getClassifications', () => {
-        it('retorna lista de clasificaciones únicas ordenadas', async () => {
+        it('retorna lista de clasificaciones ordenadas por frecuencia', async () => {
             mockQueryBuilder.getRawMany.mockResolvedValue([
-                { classification: 'Distribuidor' },
-                { classification: 'Importador' },
-                { classification: 'Nacional' },
+                { classification: 'Distribuidor', count: '5' },
+                { classification: 'Importador', count: '3' },
+                { classification: 'Nacional', count: '1' },
             ]);
 
             const result = await service.getClassifications();
 
             expect(result).toEqual(['Distribuidor', 'Importador', 'Nacional']);
             expect(mockSupplierRepository.createQueryBuilder).toHaveBeenCalledWith('supplier');
-            expect(mockQueryBuilder.select).toHaveBeenCalledWith('DISTINCT supplier.classification', 'classification');
+            expect(mockQueryBuilder.select).toHaveBeenCalledWith('supplier.classification', 'classification');
+            expect(mockQueryBuilder.addSelect).toHaveBeenCalledWith('COUNT(supplier.id)', 'count');
             expect(mockQueryBuilder.where).toHaveBeenCalledWith('supplier.classification IS NOT NULL');
-            expect(mockQueryBuilder.orderBy).toHaveBeenCalledWith('supplier.classification', 'ASC');
+            expect(mockQueryBuilder.groupBy).toHaveBeenCalledWith('supplier.classification');
+            expect(mockQueryBuilder.orderBy).toHaveBeenCalledWith('COUNT(supplier.id)', 'DESC');
+            expect(mockQueryBuilder.addOrderBy).toHaveBeenCalledWith('supplier.classification', 'ASC');
         });
     });
 

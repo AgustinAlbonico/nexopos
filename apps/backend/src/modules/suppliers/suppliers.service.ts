@@ -227,16 +227,20 @@ export class SuppliersService {
     }
 
     /**
-     * Obtiene las clasificaciones únicas existentes (para autocompletado)
+     * Obtiene las clasificaciones ordenadas por frecuencia de uso (más frecuentes primero)
      */
     async getClassifications(): Promise<string[]> {
         const results = await this.supplierRepo
             .createQueryBuilder('supplier')
-            .select('DISTINCT supplier.classification', 'classification')
+            .select('supplier.classification', 'classification')
+            .addSelect('COUNT(supplier.id)', 'count')
             .where('supplier.classification IS NOT NULL')
             .andWhere("TRIM(supplier.classification) != ''")
-            .orderBy('supplier.classification', 'ASC')
+            .groupBy('supplier.classification')
+            .orderBy('COUNT(supplier.id)', 'DESC')
+            .addOrderBy('supplier.classification', 'ASC')
             .getRawMany();
+
         return results
             .map((r: any) => r.classification || r.supplier_classification || Object.values(r)[0])
             .filter((c): c is string => typeof c === 'string' && c.trim().length > 0);
