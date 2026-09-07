@@ -51,4 +51,31 @@ describe('RolesGuard', () => {
         const context = createMockContext(undefined);
         expect(() => guard.canActivate(context)).toThrow(ForbiddenException);
     });
+
+    describe('roles requeridos [ADMIN]', () => {
+        beforeEach(() => {
+            jest.spyOn(reflector, 'getAllAndOverride').mockReturnValue([UserRole.ADMIN]);
+        });
+
+        it('deniega CASHIER con ForbiddenException', () => {
+            const context = createMockContext({ role: UserRole.CASHIER });
+            expect(() => guard.canActivate(context)).toThrow(ForbiddenException);
+        });
+
+        it('deniega MANAGER con ForbiddenException', () => {
+            const context = createMockContext({ role: UserRole.MANAGER });
+            expect(() => guard.canActivate(context)).toThrow(ForbiddenException);
+        });
+
+        it('permite ADMIN', () => {
+            const context = createMockContext({ role: UserRole.ADMIN });
+            expect(guard.canActivate(context)).toBe(true);
+        });
+    });
+
+    it('permite CASHIER cuando no hay roles requeridos', () => {
+        jest.spyOn(reflector, 'getAllAndOverride').mockReturnValue([]);
+        const context = createMockContext({ role: UserRole.CASHIER });
+        expect(guard.canActivate(context)).toBe(true);
+    });
 });

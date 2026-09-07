@@ -26,8 +26,8 @@ vi.mock('react-router-dom', () => ({
 }));
 
 vi.mock('../stores/auth.store', () => ({
-    useAuthStore: (selector: (state: { readonly user: { readonly firstName: string } }) => unknown) =>
-        selector({ user: { firstName: 'Agustín' } }),
+    useAuthStore: (selector: (state: { readonly user: { readonly firstName: string; readonly role: string } }) => unknown) =>
+        selector({ user: { firstName: 'Agustín', role: 'admin' } }),
 }));
 
 vi.mock('@/features/reports/hooks/useDashboard', () => ({

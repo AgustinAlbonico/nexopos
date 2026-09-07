@@ -29,6 +29,17 @@ const createMockSupplier = (overrides = {}) => ({
 });
 
 // Mock del repositorio
+const mockQueryBuilder = {
+    select: jest.fn().mockReturnThis(),
+    addSelect: jest.fn().mockReturnThis(),
+    where: jest.fn().mockReturnThis(),
+    andWhere: jest.fn().mockReturnThis(),
+    groupBy: jest.fn().mockReturnThis(),
+    orderBy: jest.fn().mockReturnThis(),
+    addOrderBy: jest.fn().mockReturnThis(),
+    getRawMany: jest.fn(),
+};
+
 const mockSupplierRepository = {
     create: jest.fn(),
     save: jest.fn(),
@@ -36,6 +47,7 @@ const mockSupplierRepository = {
     findOne: jest.fn(),
     findAndCount: jest.fn(),
     count: jest.fn(),
+    createQueryBuilder: jest.fn().mockReturnValue(mockQueryBuilder),
 };
 
 describe('SuppliersService', () => {
@@ -125,13 +137,39 @@ describe('SuppliersService', () => {
             );
         });
 
-        it('usa valores por defecto para paginación', async () => {
+        it('aplica filtro de clasificación', async () => {
             mockSupplierRepository.findAndCount.mockResolvedValue([[], 0]);
 
-            const result = await service.findAll({});
+            await service.findAll({ classification: 'Nacional' });
 
-            expect(result.page).toBe(1);
-            expect(result.limit).toBe(10);
+            expect(mockSupplierRepository.findAndCount).toHaveBeenCalledWith(
+                expect.objectContaining({
+                    where: expect.arrayContaining([
+                        expect.objectContaining({ classification: 'Nacional' }),
+                    ]),
+                })
+            );
+        });
+    });
+
+    describe('getClassifications', () => {
+        it('retorna lista de clasificaciones ordenadas por frecuencia', async () => {
+            mockQueryBuilder.getRawMany.mockResolvedValue([
+                { classification: 'Distribuidor', count: '5' },
+                { classification: 'Importador', count: '3' },
+                { classification: 'Nacional', count: '1' },
+            ]);
+
+            const result = await service.getClassifications();
+
+            expect(result).toEqual(['Distribuidor', 'Importador', 'Nacional']);
+            expect(mockSupplierRepository.createQueryBuilder).toHaveBeenCalledWith('supplier');
+            expect(mockQueryBuilder.select).toHaveBeenCalledWith('supplier.classification', 'classification');
+            expect(mockQueryBuilder.addSelect).toHaveBeenCalledWith('COUNT(supplier.id)', 'count');
+            expect(mockQueryBuilder.where).toHaveBeenCalledWith('supplier.classification IS NOT NULL');
+            expect(mockQueryBuilder.groupBy).toHaveBeenCalledWith('supplier.classification');
+            expect(mockQueryBuilder.orderBy).toHaveBeenCalledWith('COUNT(supplier.id)', 'DESC');
+            expect(mockQueryBuilder.addOrderBy).toHaveBeenCalledWith('supplier.classification', 'ASC');
         });
     });
 

@@ -16,6 +16,7 @@ import {
     ChevronRight,
     PauseCircle,
     PlayCircle,
+    RotateCcw,
 } from 'lucide-react';
 import { useParkedSales, ParkedSale } from '../hooks/useParkedSales';
 import { Button } from '@/components/ui/button';
@@ -56,6 +57,7 @@ interface SaleListProps {
     readonly onDelete?: (id: string) => void;
     readonly onCancel?: (id: string) => void;
     readonly onPay?: (sale: Sale) => void;
+    readonly onReturn?: (sale: Sale) => void;
     readonly onResume?: (sale: ParkedSale) => void;
 }
 
@@ -65,6 +67,7 @@ export function SaleList({
     onDelete,
     onCancel,
     onPay,
+    onReturn,
     onResume,
 }: SaleListProps) {
     const { parkedSales, removeSale } = useParkedSales();
@@ -377,6 +380,18 @@ export function SaleList({
                                         ) : null}
 
                                         <DropdownMenuSeparator />
+
+                                        {sale.status === SaleStatus.CANCELLED ? null : (
+                                            <DropdownMenuItem
+                                                onClick={(event) => {
+                                                    event.stopPropagation();
+                                                    onReturn?.(sale);
+                                                }}
+                                            >
+                                                <RotateCcw className="mr-2 h-4 w-4" />
+                                                Devolver
+                                            </DropdownMenuItem>
+                                        )}
 
                                         {sale.status === SaleStatus.CANCELLED ? null : (
                                             <DropdownMenuItem

@@ -40,6 +40,8 @@
 
 | Documento | Descripción | Audiencia |
 |-----------|-------------|-----------|
+| **[planificacion-multirubro-completa.md](./planificacion-multirubro-completa.md)** | Investigación y planificación completa de perfiles, funcionalidades y roadmap multi-rubro | Business / Producto / Desarrollo |
+| **[plan-pos-multirubro.md](./plan-pos-multirubro.md)** | Plan breve para convertir NexoPOS en un producto configurable para distintos comercios | Business / Producto |
 | **[planificacion-nexopos.md](./planificacion-nexopos.md)** | Planificación general del proyecto | Todos |
 | **[plan-distribucion.md](./plan-distribucion.md)** | Plan de distribución del software | Business |
 

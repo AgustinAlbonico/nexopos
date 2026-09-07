@@ -1,7 +1,7 @@
 /**
  * Lista de proveedores con tabla, filtros y acciones
  */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { ColumnDef } from '@tanstack/react-table';
 import { DataTable } from '@/components/common/DataTable';
@@ -28,6 +28,9 @@ import {
     Calendar,
     User,
     Landmark,
+    Tag,
+    Search,
+    X,
 } from 'lucide-react';
 import {
     DropdownMenu,
@@ -42,6 +45,8 @@ import {
     DialogContent,
 } from '@/components/ui/dialog';
 import { Separator } from '@/components/ui/separator';
+import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 
 interface SupplierListProps {
     readonly onEdit: (supplier: Supplier) => void;
@@ -97,6 +102,15 @@ function SupplierDetailDialog({
                                         <><XCircle className="h-3 w-3 mr-1" /> Inactivo</>
                                     )}
                                 </Badge>
+                                {supplier.classification && (
+                                    <Badge
+                                        variant="secondary"
+                                        className="bg-white/20 text-white border-white/30"
+                                    >
+                                        <Tag className="h-3 w-3 mr-1" />
+                                        {supplier.classification}
+                                    </Badge>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -316,6 +330,17 @@ function SupplierDetailDialog({
  */
 export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
     const [viewSupplier, setViewSupplier] = useState<Supplier | null>(null);
+    const [searchQuery, setSearchQuery] = useState<string>('');
+    const [debouncedSearch, setDebouncedSearch] = useState<string>('');
+    const [classificationFilter, setClassificationFilter] = useState<string>('');
+
+    // Debounce de búsqueda para no filtrar en cada pulsación de tecla
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearch(searchQuery);
+        }, 250);
+        return () => clearTimeout(timer);
+    }, [searchQuery]);
 
     // Query para proveedores
     const { data, isLoading, error } = useQuery({
@@ -326,6 +351,11 @@ export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
                 sortBy: 'name',
                 order: 'ASC',
             }),
+    });
+
+    const { data: classifications } = useQuery({
+        queryKey: ['supplier-classifications'],
+        queryFn: () => suppliersApi.getClassifications(),
     });
 
     const columns: ColumnDef<Supplier>[] = [
@@ -392,6 +422,35 @@ export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
             },
         },
         {
+            accessorKey: 'classification',
+            header: ({ column }) => {
+                return (
+                    <Button
+                        variant="ghost"
+                        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+                    >
+                        Clasificación
+                        <ArrowUpDown className="ml-2 h-4 w-4" />
+                    </Button>
+                );
+            },
+            cell: ({ row }) => {
+                const classification = row.original.classification;
+                if (!classification) {
+                    return <span className="text-muted-foreground">-</span>;
+                }
+                return (
+                    <Badge
+                        variant="secondary"
+                        className="bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800 font-normal"
+                    >
+                        <Tag className="h-3 w-3 mr-1" />
+                        {classification}
+                    </Badge>
+                );
+            },
+        },
+        {
             accessorKey: 'isActive',
             header: 'Estado',
             cell: ({ row }) => {
@@ -453,19 +512,155 @@ export function SupplierList({ onEdit, onDelete }: SupplierListProps) {
         );
     }
 
+    const filteredData = (data?.data || []).filter((s) => {
+        // Filtro por clasificación seleccionada (chip)
+        if (
+            classificationFilter &&
+            s.classification?.toLowerCase() !== classificationFilter.toLowerCase()
+        ) {
+            return false;
+        }
+
+        // Búsqueda en vivo con debounce (nombre, fantasía, CUIT/DNI, clasificación, ciudad/provincia)
+        if (debouncedSearch.trim()) {
+            const q = debouncedSearch.trim().toLowerCase();
+            const matchName = s.name?.toLowerCase().includes(q);
+            const matchTradeName = s.tradeName?.toLowerCase().includes(q);
+            const matchDoc = s.documentNumber?.toLowerCase().includes(q);
+            const matchClassification = s.classification?.toLowerCase().includes(q);
+            const matchCity = s.city?.toLowerCase().includes(q);
+            const matchState = s.state?.toLowerCase().includes(q);
+
+            return (
+                matchName ||
+                matchTradeName ||
+                matchDoc ||
+                matchClassification ||
+                matchCity ||
+                matchState
+            );
+        }
+
+        return true;
+    });
+
     return (
-        <>
+        <div className="space-y-3">
+            {/* Buscador directo visible y Chips de clasificación sin desplegables */}
+            <div className="space-y-2.5 bg-card rounded-lg border p-3">
+                <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center justify-between">
+                    <div className="relative w-full sm:w-96">
+                        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input
+                            placeholder="Buscar por nombre, CUIT o clasificación..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="pl-9 pr-8 h-9 text-sm"
+                        />
+                        {searchQuery ? (
+                            <button
+                                type="button"
+                                onClick={() => setSearchQuery('')}
+                                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground p-0.5"
+                                title="Limpiar búsqueda"
+                            >
+                                <X className="h-3.5 w-3.5" />
+                            </button>
+                        ) : null}
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        {classificationFilter ? (
+                            <Badge
+                                variant="secondary"
+                                className="h-8 px-2.5 bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/40 dark:text-blue-300 dark:border-blue-800 flex items-center gap-1.5 font-medium"
+                            >
+                                <Tag className="h-3.5 w-3.5" />
+                                <span>{classificationFilter}</span>
+                                <button
+                                    type="button"
+                                    onClick={() => setClassificationFilter('')}
+                                    className="ml-1 hover:text-blue-900 dark:hover:text-white"
+                                    title="Quitar filtro"
+                                >
+                                    <X className="h-3 w-3" />
+                                </button>
+                            </Badge>
+                        ) : null}
+                        <div className="text-xs text-muted-foreground font-medium">
+                            {filteredData.length} proveedor(es)
+                        </div>
+                    </div>
+                </div>
+
+                {/* Chips de clasificación visibles directamente para filtrar en 1 clic */}
+                {classifications && classifications.length > 0 ? (
+                    <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs pt-1 border-t">
+                        <span className="text-muted-foreground font-medium shrink-0 flex items-center gap-1">
+                            <Tag className="h-3 w-3" /> Clasificación:
+                        </span>
+                        <button
+                            type="button"
+                            onClick={() => setClassificationFilter('')}
+                            className={cn(
+                                "px-2.5 py-0.5 rounded-full border transition-all shrink-0 font-medium",
+                                !classificationFilter
+                                    ? "bg-primary text-primary-foreground border-primary shadow-xs"
+                                    : "bg-muted/60 hover:bg-muted text-muted-foreground border-border"
+                            )}
+                        >
+                            Todas ({data?.data?.length || 0})
+                        </button>
+                        {classifications.map((c) => {
+                            const isSelected =
+                                classificationFilter.toLowerCase() === c.toLowerCase();
+                            const count = (data?.data || []).filter(
+                                (s) => s.classification?.toLowerCase() === c.toLowerCase()
+                            ).length;
+
+                            return (
+                                <button
+                                    key={c}
+                                    type="button"
+                                    onClick={() =>
+                                        setClassificationFilter(isSelected ? '' : c)
+                                    }
+                                    className={cn(
+                                        "px-2.5 py-0.5 rounded-full border transition-all shrink-0 font-medium flex items-center gap-1",
+                                        isSelected
+                                            ? "bg-blue-600 text-white border-blue-600 shadow-xs"
+                                            : "bg-slate-50 hover:bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 border-slate-200 dark:border-slate-700"
+                                    )}
+                                >
+                                    <span>{c}</span>
+                                    {count > 0 ? (
+                                        <span
+                                            className={cn(
+                                                "text-[10px] px-1.5 py-0.2 rounded-full",
+                                                isSelected
+                                                    ? "bg-blue-700 text-white"
+                                                    : "bg-slate-200 dark:bg-slate-700 text-muted-foreground"
+                                            )}
+                                        >
+                                            {count}
+                                        </span>
+                                    ) : null}
+                                </button>
+                            );
+                        })}
+                    </div>
+                ) : null}
+            </div>
+
             <DataTable
                 columns={columns}
-                data={data?.data || []}
-                searchKey="name"
-                searchPlaceholder="Buscar proveedor..."
+                data={filteredData}
             />
             <SupplierDetailDialog
                 supplier={viewSupplier}
                 open={!!viewSupplier}
                 onClose={() => setViewSupplier(null)}
             />
-        </>
+        </div>
     );
 }

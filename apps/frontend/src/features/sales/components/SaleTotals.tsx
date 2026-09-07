@@ -59,6 +59,7 @@ export function SaleTotals({ subtotal, form }: SaleTotalsProps) {
     const [discountPercentage, setDiscountPercentage] = useState<number | string>(0);
     const [surchargeType, setSurchargeType] = useState<'FIXED' | 'PERCENTAGE'>('PERCENTAGE');
     const [surchargePercentage, setSurchargePercentage] = useState<number | string>(0);
+    const [discountError, setDiscountError] = useState<string | null>(null);
 
     // Estados para crear impuesto
     const [isCreateTaxOpen, setIsCreateTaxOpen] = useState(false);
@@ -96,6 +97,55 @@ export function SaleTotals({ subtotal, form }: SaleTotalsProps) {
     useTaxSync(form, totalTaxAmount);
 
     // Handlers
+    const PROMO_LABELS: Record<string, string> = {
+        '2x1': '2x1',
+        '3x2': '3x2',
+        second_unit_50: '2da al 50%',
+    };
+
+    const getPromoAmount = (type: '2x1' | '3x2' | 'second_unit_50'): number | null => {
+        const items = form.getValues('items') || [];
+        const individualPrices: number[] = [];
+        for (const item of items) {
+            for (let i = 0; i < (item.quantity || 1); i++) {
+                individualPrices.push(item.unitPrice || 0);
+            }
+        }
+        individualPrices.sort((a, b) => b - a);
+        const minUnits = type === '3x2' ? 3 : 2;
+        if (individualPrices.length < minUnits) return null;
+        const cheapest = individualPrices[individualPrices.length - 1];
+        return type === 'second_unit_50' ? Math.round(cheapest * 50) / 100 : cheapest;
+    };
+
+    const handleApplyPromo = (type: '2x1' | '3x2' | 'second_unit_50' | '10' | '15') => {
+        const items = form.getValues('items') || [];
+        if (items.length === 0 || subtotal <= 0) {
+            toast.info('Agregá productos al ticket antes de aplicar una promoción');
+            return;
+        }
+
+        if (type === '10' || type === '15') {
+            setDiscountType('PERCENTAGE');
+            setDiscountPercentage(Number(type));
+            const calculated = (subtotal * Number(type)) / 100;
+            form.setValue('discount', calculated);
+            toast.success(`Descuento ${type}% aplicado (-${formatCurrency(calculated)})`);
+            return;
+        }
+
+        const calculated = getPromoAmount(type);
+        if (calculated === null) {
+            const minUnits = type === '3x2' ? 3 : 2;
+            toast.info(`La promo ${PROMO_LABELS[type]} requiere al menos ${minUnits} prendas en el ticket`);
+            return;
+        }
+
+        setDiscountType('FIXED');
+        form.setValue('discount', calculated);
+        toast.success(`Promoción ${PROMO_LABELS[type]} aplicada (-${formatCurrency(calculated)})`);
+    };
+
     const handleCreateTax = async () => {
         if (!newTaxName || !newTaxPercentage) return;
 
@@ -161,8 +211,23 @@ export function SaleTotals({ subtotal, form }: SaleTotalsProps) {
                             <NumericInput
                                 className="h-8 w-20 text-right bg-white/10 border-white/20 text-white"
                                 value={discountPercentage}
+                                aria-label="Descuento en porcentaje"
                                 onFocus={(e) => e.target.select()}
-                                onChange={(e) => setDiscountPercentage(e.target.value === '' ? '' : Number.parseFloat(e.target.value) || '')}
+                                onChange={(e) => {
+                                    const raw = e.target.value === '' ? '' : Number.parseFloat(e.target.value) || 0;
+                                    if (raw === '' || raw === 0) {
+                                        setDiscountError(null);
+                                        setDiscountPercentage(raw);
+                                        return;
+                                    }
+                                    if (raw > 100) {
+                                        setDiscountError('El descuento no puede superar el 100%');
+                                        setDiscountPercentage(100);
+                                        return;
+                                    }
+                                    setDiscountError(null);
+                                    setDiscountPercentage(raw);
+                                }}
                             />
                         ) : (
                             <FormField
@@ -171,9 +236,19 @@ export function SaleTotals({ subtotal, form }: SaleTotalsProps) {
                                 render={({ field }) => (
                                     <NumericInput
                                         className="h-8 w-20 text-right bg-white/10 border-white/20 text-white"
+                                        aria-label="Descuento en pesos"
                                         value={field.value}
                                         onFocus={(e) => e.target.select()}
-                                        onChange={(e) => field.onChange(e.target.value === '' ? 0 : Number.parseFloat(e.target.value) || 0)}
+                                        onChange={(e) => {
+                                            const raw = e.target.value === '' ? 0 : Number.parseFloat(e.target.value) || 0;
+                                            if (raw > subtotal) {
+                                                setDiscountError('El descuento no puede superar el subtotal');
+                                                field.onChange(Number(subtotal.toFixed(2)));
+                                                return;
+                                            }
+                                            setDiscountError(null);
+                                            field.onChange(raw);
+                                        }}
                                     />
                                 )}
                             />
@@ -184,6 +259,53 @@ export function SaleTotals({ subtotal, form }: SaleTotalsProps) {
                             </span>
                         ) : null}
                     </div>
+                </div>
+
+                {discountError ? (
+                    <p className="text-[11px] text-red-400 -mt-1" role="alert">
+                        {discountError}
+                    </p>
+                ) : null}
+
+                {/* Chips de Promociones Rápidas */}
+                <div className="flex items-center gap-1.5 flex-wrap pt-0.5">
+                    <span className="text-[10px] opacity-70">Promos:</span>
+                    {([
+                        '2x1',
+                        'second_unit_50',
+                        '3x2',
+                    ] as const).map((promo) => {
+                        const preview = getPromoAmount(promo);
+                        return (
+                            <button
+                                key={promo}
+                                type="button"
+                                onClick={() => handleApplyPromo(promo)}
+                                title={preview !== null
+                                    ? `Descuenta ${formatCurrency(preview)} (1 sola aplicación)`
+                                    : `Requiere al menos ${promo === '3x2' ? 3 : 2} prendas`}
+                                className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-white/10 hover:bg-white/25 text-white transition-colors"
+                            >
+                                {promo === 'second_unit_50' ? '2da 50%' : promo}
+                            </button>
+                        );
+                    })}
+                    <button
+                        type="button"
+                        onClick={() => handleApplyPromo('10')}
+                        title={subtotal > 0 ? `Descuenta ${formatCurrency((subtotal * 10) / 100)}` : undefined}
+                        className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-white/10 hover:bg-white/25 text-white transition-colors"
+                    >
+                        10%
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => handleApplyPromo('15')}
+                        title={subtotal > 0 ? `Descuenta ${formatCurrency((subtotal * 15) / 100)}` : undefined}
+                        className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-white/10 hover:bg-white/25 text-white transition-colors"
+                    >
+                        15%
+                    </button>
                 </div>
 
                 {/* Recargo */}
@@ -313,7 +435,7 @@ export function SaleTotals({ subtotal, form }: SaleTotalsProps) {
                 <div className="pt-4 mt-4 border-t border-white/20">
                     <div className="flex justify-between items-end">
                         <span className="text-lg font-bold">TOTAL</span>
-                        <span className="text-3xl font-bold tracking-tight">
+                        <span className={`text-3xl font-bold tracking-tight ${total <= 0 ? 'text-red-400' : ''}`}>
                             {formatCurrency(total)}
                         </span>
                     </div>

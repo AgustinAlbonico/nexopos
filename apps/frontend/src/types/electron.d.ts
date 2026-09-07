@@ -18,6 +18,11 @@ export interface ElectronAPI {
         isDev: boolean;
     }>;
 
+    readScale: () => Promise<
+        | { readonly ok: true; readonly quantity: number }
+        | { readonly ok: false; readonly reason: 'timeout' | 'unstable' | 'corrupt' }
+    >;
+
     // Control de ventana
     toggleFullscreen: () => void;
     minimizeWindow: () => void;

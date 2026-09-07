@@ -1,9 +1,9 @@
-
 import {
     Banknote,
     Wallet,
     Plus,
     Trash2,
+    Coins,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NumericInput } from '@/components/ui/numeric-input';
@@ -17,7 +17,7 @@ import {
 import {
     FormField,
 } from '@/components/ui/form';
-import { Control } from 'react-hook-form';
+import { Control, UseFormReturn } from 'react-hook-form';
 import { PaymentMethod } from '../types';
 import { PaymentMethodIcons } from '../constants';
 import { Badge } from '@/components/ui/badge';
@@ -35,6 +35,7 @@ interface SalePaymentsProps {
     readonly pendingAmount: number;
     readonly isOnAccount: boolean;
     readonly control: Control<CreateSaleFormValues>;
+    readonly form?: UseFormReturn<CreateSaleFormValues>;
 }
 
 function formatCurrency(value: number): string {
@@ -46,6 +47,8 @@ function formatCurrency(value: number): string {
     }).format(value);
 }
 
+const QUICK_BILLS = [1000, 2000, 5000, 10000, 20000];
+
 export function SalePayments({
     paymentFields,
     appendPayment,
@@ -55,6 +58,7 @@ export function SalePayments({
     pendingAmount,
     isOnAccount,
     control,
+    form,
 }: SalePaymentsProps) {
 
     if (isOnAccount) {
@@ -79,19 +83,46 @@ export function SalePayments({
         );
     }
 
+    const hasCashPayment = paymentFields.some((_, i) => form?.getValues(`payments.${i}.paymentMethod`) === PaymentMethod.CASH);
+    const cashAmount = paymentFields.reduce((sum, _, i) => {
+        const method = form?.getValues(`payments.${i}.paymentMethod`);
+        const amt = form?.getValues(`payments.${i}.amount`) || 0;
+        return method === PaymentMethod.CASH ? sum + amt : sum;
+    }, 0);
+
+    const changeAmount = cashAmount > total ? cashAmount - total : 0;
+
+    const handleQuickBill = (amount: number, isExact = false) => {
+        if (!form) return;
+        const cashIndex = paymentFields.findIndex((_, i) => form.getValues(`payments.${i}.paymentMethod`) === PaymentMethod.CASH);
+        if (cashIndex >= 0) {
+            if (isExact) {
+                form.setValue(`payments.${cashIndex}.amount`, amount);
+            } else {
+                const currentAmount = form.getValues(`payments.${cashIndex}.amount`) || 0;
+                const newAmount = (currentAmount === 0 || currentAmount === total) ? amount : currentAmount + amount;
+                form.setValue(`payments.${cashIndex}.amount`, newAmount);
+            }
+        } else {
+            appendPayment({ paymentMethod: PaymentMethod.CASH, amount });
+        }
+    };
+
     return (
-        <div className="bg-card border rounded-xl p-5 shadow-sm">
-            <div className="flex items-center justify-between mb-4">
+        <div className="bg-card border rounded-xl p-5 shadow-sm space-y-4">
+            <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
                     <div className="p-2 bg-primary/10 rounded-lg">
                         <Banknote className="h-5 w-5 text-primary" />
                     </div>
                     <div>
                         <h3 className="font-semibold">Pagos</h3>
-                        <p className={`text-xs ${Math.abs(pendingAmount) < 0.01 ? 'text-green-600 font-medium' : 'text-amber-600'}`}>
-                            {Math.abs(pendingAmount) < 0.01
-                                ? 'Total cubierto'
-                                : `Faltan: ${formatCurrency(pendingAmount)}`
+                        <p className={`text-xs ${total <= 0 ? 'text-red-600 font-medium' : Math.abs(pendingAmount) < 0.01 ? 'text-green-600 font-medium' : 'text-amber-600'}`}>
+                            {total <= 0
+                                ? 'Total inválido: el descuento no puede superar el subtotal'
+                                : Math.abs(pendingAmount) < 0.01
+                                    ? 'Total cubierto'
+                                    : `Faltan: ${formatCurrency(pendingAmount)}`
                             }
                         </p>
                     </div>
@@ -107,6 +138,63 @@ export function SalePayments({
                     Agregar Pago
                 </Button>
             </div>
+
+            {/* Botonera de Billetes Rápidos */}
+            {hasCashPayment && (
+                <div className="p-3 bg-muted/40 rounded-lg border space-y-2">
+                    <div className="flex items-center justify-between text-xs text-muted-foreground">
+                        <span className="flex items-center gap-1 font-medium text-foreground">
+                            <Coins className="h-3.5 w-3.5 text-amber-500" /> Cobro Exprés / Billetes
+                        </span>
+                        <div className="flex items-center gap-2">
+                            <button
+                                type="button"
+                                onClick={() => handleQuickBill(0, true)}
+                                className="text-xs text-muted-foreground hover:text-destructive underline"
+                            >
+                                Limpiar ($0)
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => handleQuickBill(total, true)}
+                                className="text-xs text-primary hover:underline font-bold bg-primary/10 px-2 py-0.5 rounded"
+                            >
+                                Monto Exacto (${total.toLocaleString('es-AR')})
+                            </button>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-5 gap-1.5">
+                        {QUICK_BILLS.map((bill) => (
+                            <Button
+                                key={bill}
+                                type="button"
+                                variant="outline"
+                                size="sm"
+                                onClick={() => handleQuickBill(bill, false)}
+                                className="h-9 text-xs font-bold bg-background hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-300 dark:hover:bg-emerald-950 transition-all shadow-sm"
+                            >
+                                +${bill.toLocaleString('es-AR')}
+                            </Button>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {/* Cartel de Vuelto Gigante */}
+            {changeAmount > 0 && (
+                <div className="rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 p-4 text-white shadow-xl flex items-center justify-between border border-emerald-400/30 animate-in fade-in zoom-in-95 duration-200">
+                    <div>
+                        <span className="text-xs uppercase font-extrabold tracking-wider opacity-90 block mb-0.5">💵 Vuelto a Entregar</span>
+                        <p className="text-3xl font-black tracking-tight drop-shadow-sm">{formatCurrency(changeAmount)}</p>
+                    </div>
+                    <div className="text-right">
+                        <Badge variant="secondary" className="bg-white/20 text-white hover:bg-white/30 border-none font-bold text-xs uppercase px-2.5 py-1">
+                            Efectivo
+                        </Badge>
+                        <p className="text-[11px] opacity-80 mt-1">Abonó: {formatCurrency(cashAmount)}</p>
+                    </div>
+                </div>
+            )}
 
             <div className="space-y-3">
                 {paymentFields.length === 0 ? (
@@ -153,9 +241,21 @@ export function SalePayments({
                                         <div className="relative flex-1">
                                             <span className="absolute left-3 top-2.5 text-muted-foreground text-sm">$</span>
                                             <NumericInput
+                                                id={index === 0 ? "pos-payment-amount-input" : undefined}
+                                                name={field.name}
                                                 className="pl-7 bg-background"
                                                 value={field.value}
                                                 onFocus={(e) => e.target.select()}
+                                                onKeyDown={(e) => {
+                                                    if (e.key === 'Tab' && e.shiftKey && index === 0) {
+                                                        e.preventDefault();
+                                                        const productSearchBtn = document.getElementById('pos-product-search-button')
+                                                            || document.querySelector<HTMLButtonElement>('[data-pos-product-search] button, [role="combobox"]');
+                                                        if (productSearchBtn) {
+                                                            productSearchBtn.focus();
+                                                        }
+                                                    }
+                                                }}
                                                 onChange={(e) => {
                                                     const val = Number.parseFloat(e.target.value) || 0;
                                                     field.onChange(val);

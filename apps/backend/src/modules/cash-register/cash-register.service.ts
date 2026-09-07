@@ -4,7 +4,7 @@ import {
     NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository, InjectDataSource } from '@nestjs/typeorm';
-import { Repository, Between, DataSource } from 'typeorm';
+import { Repository, Between, DataSource, EntityManager } from 'typeorm';
 import { CashRegister, CashRegisterStatus } from './entities/cash-register.entity';
 import { CashMovement, MovementType } from './entities/cash-movement.entity';
 import { CashRegisterTotals } from './entities/cash-register-totals.entity';
@@ -855,6 +855,19 @@ export class CashRegisterService {
         },
         userId: string,
     ): Promise<CashMovement> {
+        return this.registerRefundWithManager(data, userId);
+    }
+
+    async registerRefundWithManager(
+        data: {
+            amount: number;
+            paymentMethodId: string;
+            description: string;
+            referenceId?: string;
+        },
+        userId: string,
+        manager?: EntityManager,
+    ): Promise<CashMovement> {
         const cashRegister = await this.getOpenRegister();
 
         if (!cashRegister) {
@@ -863,9 +876,10 @@ export class CashRegisterService {
 
         const amount = Math.abs(data.amount);
         const isValidUUID = userId && userId !== 'system' && /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(userId);
+        const querySource = manager ?? this.dataSource;
 
         // Insertar movimiento manual de tipo GASTO
-        const result = await this.dataSource.query(
+        const result = await querySource.query(
             `INSERT INTO cash_movements 
                 (cash_register_id, "movementType", "referenceType", "referenceId", "manualDescription", "manualAmount", "manual_payment_method_id", created_by)
              VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
@@ -886,10 +900,16 @@ export class CashRegisterService {
 
         // Actualizar totales de caja
         // FIX 1.4: incremento atómico en SQL
-        await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalExpense', amount);
+        if (manager) {
+            await manager.increment(CashRegister, { id: cashRegister.id }, 'totalExpense', amount);
+        } else {
+            await this.cashRegisterRepo.increment({ id: cashRegister.id }, 'totalExpense', amount);
+        }
 
         // Actualizar totales por método de pago
-        const paymentMethodEntity = await this.paymentMethodRepo.findOneBy({ id: data.paymentMethodId });
+        const paymentMethodEntity = manager
+            ? await manager.findOneBy(PaymentMethodEntity, { id: data.paymentMethodId })
+            : await this.paymentMethodRepo.findOneBy({ id: data.paymentMethodId });
 
         if (paymentMethodEntity) {
             await this.updatePaymentMethodTotal(
@@ -897,6 +917,7 @@ export class CashRegisterService {
                 paymentMethodEntity,
                 amount,
                 'expense',
+                manager,
             );
         }
 
@@ -913,8 +934,10 @@ export class CashRegisterService {
         paymentMethod: PaymentMethodEntity,
         amount: number,
         type: 'income' | 'expense',
+        manager?: EntityManager,
     ): Promise<void> {
-        let total = await this.cashTotalsRepo.findOne({
+        const totalsRepo = manager?.getRepository(CashRegisterTotals) ?? this.cashTotalsRepo;
+        let total = await totalsRepo.findOne({
             where: {
                 cashRegister: { id: cashRegisterId },
                 paymentMethod: { id: paymentMethod.id },
@@ -923,7 +946,7 @@ export class CashRegisterService {
 
         // Si no existe el total para este método de pago, crearlo
         if (!total) {
-            total = this.cashTotalsRepo.create({
+            total = totalsRepo.create({
                 cashRegister: { id: cashRegisterId } as any,
                 paymentMethod,
                 initialAmount: 0,
@@ -931,7 +954,7 @@ export class CashRegisterService {
                 totalExpense: 0,
                 expectedAmount: 0,
             });
-            await this.cashTotalsRepo.save(total);
+            await totalsRepo.save(total);
         }
 
         // FIX 1.4: Incrementos atómicos en SQL para evitar race conditions
@@ -939,8 +962,8 @@ export class CashRegisterService {
         // initialAmount es inmutable post-apertura, así que expectedAmount tiene el
         // mismo delta que el ingreso/egreso.
         const column = type === 'income' ? 'totalIncome' : 'totalExpense';
-        await this.cashTotalsRepo.increment({ id: total.id }, column, amount);
-        await this.cashTotalsRepo.increment({ id: total.id }, 'expectedAmount', type === 'income' ? amount : -amount);
+        await totalsRepo.increment({ id: total.id }, column, amount);
+        await totalsRepo.increment({ id: total.id }, 'expectedAmount', type === 'income' ? amount : -amount);
     }
 
     /**

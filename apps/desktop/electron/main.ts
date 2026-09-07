@@ -5,6 +5,7 @@ import * as fs from 'node:fs';
 import * as http from 'node:http';
 import { spawn, fork, ChildProcess, execSync } from 'node:child_process';
 import log from 'electron-log';
+import { ScaleGateway } from './scale/scale-gateway';
 
 // ============================================
 // CONFIGURACIÓN DE LOGS
@@ -87,6 +88,7 @@ log.info('----------------------------------------------');
 // ============================================
 
 const isDev = !app.isPackaged;
+const scaleGateway = new ScaleGateway();
 
 /** Ruta del icono de la aplicación */
 // En dev: dist/electron -> dist -> desktop -> build/icon.ico
@@ -649,10 +651,6 @@ function createWindow(apiUrl?: string): void {
         mainWindow.webContents.openDevTools();
     }
 
-    // Permitir salir de pantalla completa con F11 o Escape
-    // Evento para atajos de teclado globales (cancelado para evitar conflictos)
-    // Evento para atajos de teclado globales (cancelado para evitar conflictos)
-
     // Manejar cierre de ventana
     mainWindow.on('closed', () => {
         mainWindow = null;
@@ -730,63 +728,9 @@ function showLoadingScreen(): BrowserWindow {
     return loadingWindow;
 }
 
-// ============================================
-// AUTO-ACTUALIZACIÓN
-// ============================================
-
-/**
- * Limpia el cache de actualizaciones (instaladores descargados)
- * para liberar espacio en disco del cliente
- */
-function cleanUpdateCache(): void {
-    try {
-        // Electron-updater guarda los instaladores en %LOCALAPPDATA%/NexoPOS-updater
-        const updateCacheDir = path.join(
-            process.env.LOCALAPPDATA || app.getPath('userData'),
-            'nexopos-updater'
-        );
-
-        // También limpiar el cache estándar de electron-updater
-        const standardCacheDir = path.join(app.getPath('userData'), 'pending');
-
-        const dirsToClean = [updateCacheDir, standardCacheDir];
-
-        for (const dir of dirsToClean) {
-            cleanDirectoryCache(dir);
-        }
-    } catch (err) {
-        log.warn('[AutoUpdater] Error limpiando cache de actualizaciones:', err);
-    }
-}
-
-function cleanDirectoryCache(dir: string): void {
-    if (!fs.existsSync(dir)) return;
-
-    try {
-        const files = fs.readdirSync(dir);
-        for (const file of files) {
-            // Solo borrar archivos .exe y .blockmap (instaladores)
-            if (file.endsWith('.exe') || file.endsWith('.blockmap') || file.endsWith('.zip')) {
-                const filePath = path.join(dir, file);
-                try {
-                    fs.unlinkSync(filePath);
-                    log.info(`[AutoUpdater] Limpiado cache: ${file}`);
-                } catch (err) {
-                    // Ignorar si el archivo está en uso
-                    log.warn(`[AutoUpdater] No se pudo borrar ${file}: archivo en uso`);
-                }
-            }
-        }
-    } catch (err) {
-        log.warn(`[AutoUpdater] Error leyendo directorio ${dir}:`, err);
-    }
-}
-
 function setupAutoUpdater(): void {
-    // Configurar logger de auto-updater
     autoUpdater.logger = log;
 
-    // Solo en producción
     if (isDev) {
         log.info('[Electron] Auto-updater desactivado en desarrollo');
         return;
@@ -794,36 +738,19 @@ function setupAutoUpdater(): void {
 
     log.info('[Electron] Configurando auto-updater...');
 
-    // ============================================
-    // CONFIGURACIÓN PARA REPOSITORIOS PRIVADOS
-    // ============================================
-    // Token de GitHub para acceder a releases de repositorio privado
-    // IMPORTANTE: Este token solo necesita permisos de "repo" para leer releases
-    // Regenerar si se compromete: https://github.com/settings/tokens
-    const GH_UPDATE_TOKEN = ''; // TODO: Configurar vía variable de entorno o dejar vacío para repo público
+    const GH_UPDATE_TOKEN = '';
 
     if (GH_UPDATE_TOKEN) {
         log.info('[AutoUpdater] Token de GitHub configurado para repo privado');
         autoUpdater.requestHeaders = {
             Authorization: `token ${GH_UPDATE_TOKEN}`
         };
-    } else {
-        log.warn('[AutoUpdater] GH_TOKEN no configurado. Configurá el token en main.ts');
     }
 
-    // ============================================
-    // CONFIGURACIÓN PARA LIBERAR ESPACIO
-    // ============================================
-    // Instalar automáticamente al cerrar la app y borrar el instalador
     autoUpdater.autoInstallOnAppQuit = true;
 
-    // Limpiar cache de actualizaciones anteriores al iniciar
-    cleanUpdateCache();
-
-    // Ventana de progreso de descarga
     let progressWindow: BrowserWindow | null = null;
 
-    // Función para crear la ventana de progreso
     const createProgressWindow = (): BrowserWindow => {
         const win = new BrowserWindow({
             width: 400,
@@ -914,7 +841,6 @@ function setupAutoUpdater(): void {
         return win;
     };
 
-    // Eventos del actualizador (configurar ANTES de checkForUpdates)
     autoUpdater.on('checking-for-update', () => {
         log.info('[AutoUpdater] Buscando actualizaciones...');
     });
@@ -922,10 +848,8 @@ function setupAutoUpdater(): void {
     autoUpdater.on('update-available', (info) => {
         log.info(`[AutoUpdater] Actualización disponible: ${info.version}`);
 
-        // Crear ventana de progreso
         progressWindow = createProgressWindow();
 
-        // Actualizar el texto de versión
         progressWindow.webContents.on('did-finish-load', () => {
             progressWindow?.webContents.executeJavaScript(
                 `document.getElementById('version').textContent = 'Versión ${info.version}';`
@@ -945,7 +869,6 @@ function setupAutoUpdater(): void {
 
         log.info(`[AutoUpdater] Descargando: ${percent}% (${speed} MB/s)`);
 
-        // Actualizar la ventana de progreso
         if (progressWindow && !progressWindow.isDestroyed()) {
             progressWindow.webContents.executeJavaScript(`
                 document.getElementById('percent').textContent = '${percent}%';
@@ -959,7 +882,6 @@ function setupAutoUpdater(): void {
     autoUpdater.on('update-downloaded', (info) => {
         log.info(`[AutoUpdater] Actualización descargada: ${info.version}`);
 
-        // Cerrar ventana de progreso
         if (progressWindow && !progressWindow.isDestroyed()) {
             progressWindow.close();
             progressWindow = null;
@@ -981,13 +903,11 @@ function setupAutoUpdater(): void {
     });
 
     autoUpdater.on('error', (error) => {
-        // Cerrar ventana de progreso si hay error
         if (progressWindow && !progressWindow.isDestroyed()) {
             progressWindow.close();
             progressWindow = null;
         }
 
-        // Ignorar el error de "No published versions" - es normal cuando no hay releases
         if (error?.message?.includes('No published versions')) {
             log.info('[AutoUpdater] No hay versiones publicadas en GitHub todavía');
             return;
@@ -995,15 +915,124 @@ function setupAutoUpdater(): void {
         log.error('[AutoUpdater] Error:', error);
     });
 
-    // Verificar actualizaciones al iniciar (con manejo de errores para promesa)
     autoUpdater.checkForUpdatesAndNotify().catch((err) => {
-        // Ignorar errores de "No published versions" - es normal cuando no hay releases
         if (err?.message?.includes('No published versions')) {
             log.info('[AutoUpdater] No hay versiones publicadas en GitHub todavía');
             return;
         }
         log.error('[AutoUpdater] Error al buscar actualizaciones:', err);
     });
+}
+
+// ============================================
+// IMPRESIÓN Y TIQUETERAS
+// ============================================
+
+async function printHtmlSilent(html: string, printerName?: string | null, paperWidth: string = '80mm'): Promise<{ success: boolean; error?: string }> {
+    return new Promise((resolve) => {
+        let printWindow: BrowserWindow | null = new BrowserWindow({
+            show: false,
+            webPreferences: {
+                nodeIntegration: false,
+                contextIsolation: true,
+            },
+        });
+
+        const widthPx = paperWidth === '58mm' ? '58mm' : '80mm';
+        const styledHtml = `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <style>
+                    @page {
+                        margin: 0;
+                        size: ${widthPx} auto;
+                    }
+                    body {
+                        margin: 0;
+                        padding: 8px;
+                        font-family: 'Courier New', Courier, monospace;
+                        font-size: 12px;
+                        width: ${widthPx};
+                        box-sizing: border-box;
+                        color: #000;
+                        background: #fff;
+                    }
+                    .text-center { text-align: center; }
+                    .text-right { text-align: right; }
+                    .bold { font-weight: bold; }
+                    .divider { border-bottom: 1px dashed #000; margin: 6px 0; }
+                    table { width: 100%; border-collapse: collapse; }
+                    th, td { font-size: 11px; text-align: left; vertical-align: top; }
+                </style>
+            </head>
+            <body>
+                ${html}
+            </body>
+            </html>
+        `;
+
+        printWindow.loadURL(`data:text/html;charset=utf-8,${encodeURIComponent(styledHtml)}`);
+
+        printWindow.webContents.on('did-finish-load', () => {
+            const printOptions: Electron.WebContentsPrintOptions = {
+                silent: true,
+                printBackground: true,
+                deviceName: printerName || '',
+            };
+
+            printWindow?.webContents.print(printOptions, (success, failureReason) => {
+                if (printWindow) {
+                    printWindow.close();
+                    printWindow = null;
+                }
+                if (success) {
+                    resolve({ success: true });
+                } else {
+                    resolve({ success: false, error: failureReason || 'Error al imprimir' });
+                }
+            });
+        });
+    });
+}
+
+function generateTestTicketHtml(config?: { headerTitle?: string; headerAddress?: string; headerPhone?: string; footerText?: string }): string {
+    const title = config?.headerTitle || 'TICKET DE PRUEBA';
+    const address = config?.headerAddress || 'Dirección del Comercio';
+    const phone = config?.headerPhone || 'Teléfono';
+    const footer = config?.footerText || '¡Gracias por su compra!';
+    const now = new Date().toLocaleString('es-AR');
+
+    return `
+        <div class="text-center bold" style="font-size: 14px;">${title}</div>
+        ${address ? `<div class="text-center">${address}</div>` : ''}
+        ${phone ? `<div class="text-center">${phone}</div>` : ''}
+        <div class="divider"></div>
+        <div class="text-center bold">PRUEBA DE TIQUETERA OK</div>
+        <div class="text-center" style="font-size: 10px; margin-top: 4px;">Fecha: ${now}</div>
+        <div class="divider"></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>CANT</th>
+                    <th>DETALLE</th>
+                    <th class="text-right">TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>PRODUCTO PRUEBA</td>
+                    <td class="text-right">$100.00</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="divider"></div>
+        <div class="text-right bold" style="font-size: 13px;">TOTAL: $100.00</div>
+        <div class="divider"></div>
+        <div class="text-center" style="margin-top: 8px;">${footer}</div>
+    `;
 }
 
 // ============================================
@@ -1032,6 +1061,43 @@ function setupIpcHandlers(): void {
         };
     });
 
+    ipcMain.handle('scale:read', () => scaleGateway.read());
+
+    // Tiqueteras e Impresión
+    ipcMain.handle('printers:get', async () => {
+        try {
+            if (!mainWindow) return [];
+            const printers = await mainWindow.webContents.getPrintersAsync();
+            return printers.map(p => ({
+                name: p.name,
+                isDefault: p.isDefault,
+                description: p.displayName || p.name,
+            }));
+        } catch (err: any) {
+            log.error('[Electron] Error al obtener impresoras:', err);
+            return [];
+        }
+    });
+
+    ipcMain.handle('printers:print-ticket', async (_, options: { html: string; printerName?: string | null; paperWidth?: string }) => {
+        try {
+            return await printHtmlSilent(options.html, options.printerName, options.paperWidth);
+        } catch (err: any) {
+            log.error('[Electron] Error en ticket print:', err);
+            return { success: false, error: err?.message || 'Error al imprimir ticket' };
+        }
+    });
+
+    ipcMain.handle('printers:print-test', async (_, options: { printerName?: string | null; paperWidth?: string; headerTitle?: string; headerAddress?: string; headerPhone?: string; footerText?: string }) => {
+        try {
+            const html = generateTestTicketHtml(options);
+            return await printHtmlSilent(html, options.printerName, options.paperWidth);
+        } catch (err: any) {
+            log.error('[Electron] Error en test print:', err);
+            return { success: false, error: err?.message || 'Error al imprimir ticket de prueba' };
+        }
+    });
+
     // Control de ventana
     ipcMain.on('toggle-fullscreen', () => {
         if (mainWindow) {
@@ -1055,7 +1121,6 @@ function setupIpcHandlers(): void {
 app.whenReady().then(async () => { // NOSONAR: Top-level await not supported in CommonJS
     log.info('[Electron] Aplicación lista, iniciando...');
     log.info(`[Electron] Modo: ${isDev ? 'DESARROLLO' : 'PRODUCCIÓN'}`);
-    log.info(`[Electron] app.isPackaged: ${app.isPackaged}`);
     log.info(`[Electron] __dirname: ${__dirname}`);
     log.info(`[Electron] app.getPath('exe'): ${app.getPath('exe')}`);
     log.info(`[Electron] process.resourcesPath: ${process.resourcesPath}`);

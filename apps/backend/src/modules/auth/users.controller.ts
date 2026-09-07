@@ -19,6 +19,9 @@ import {
 } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { RolesGuard } from './guards/roles.guard';
+import { Roles } from './decorators/roles.decorator';
+import { UserRole } from './entities/user.entity';
 import { ZodValidationPipe } from './pipes/zod-validation.pipe';
 import {
     CreateUserDto,
@@ -29,12 +32,13 @@ import {
 
 @ApiTags('users')
 @Controller('users')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard, RolesGuard)
 @ApiBearerAuth('JWT-auth')
 export class UsersController {
     constructor(private readonly usersService: UsersService) { }
 
     @Post()
+    @Roles(UserRole.ADMIN)
     @ApiOperation({ summary: 'Crear nuevo usuario' })
     @ApiBody({ type: CreateUserDto })
     @ApiResponse({ status: 201, description: 'Usuario creado exitosamente' })
@@ -62,6 +66,7 @@ export class UsersController {
     }
 
     @Patch(':id')
+    @Roles(UserRole.ADMIN)
     @ApiOperation({ summary: 'Actualizar usuario' })
     @ApiParam({ name: 'id', description: 'ID del usuario (UUID)' })
     @ApiBody({ type: UpdateUserDto })
@@ -76,6 +81,7 @@ export class UsersController {
     }
 
     @Patch(':id/toggle-status')
+    @Roles(UserRole.ADMIN)
     @ApiOperation({ summary: 'Activar/Desactivar usuario' })
     @ApiParam({ name: 'id', description: 'ID del usuario (UUID)' })
     @ApiResponse({ status: 200, description: 'Estado del usuario actualizado' })

@@ -1,4 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { type CapabilityKey } from '../capabilities/keys';
+import { type CapabilityProfileKey } from '../capabilities/presets';
 
 /**
  * Configuración global del sistema
@@ -52,6 +54,61 @@ export class SystemConfiguration {
      */
     @Column('int', { default: 5 })
     stockMinimoVenta!: number;
+
+    @Column({ name: 'profile_key', type: 'varchar', length: 64, default: 'simple-retail' })
+    profileKey!: CapabilityProfileKey;
+
+    @Column({ name: 'onboarding_completed', type: 'boolean', default: false })
+    onboardingCompleted!: boolean;
+
+    @Column({ name: 'selected_business_type', type: 'varchar', length: 64, nullable: true })
+    selectedBusinessType!: string | null;
+
+    @Column({ name: 'profile_version', type: 'int', default: 1 })
+    profileVersion!: number;
+
+    @Column({ name: 'capabilities_json', type: 'jsonb', default: () => "'{}'::jsonb" })
+    capabilitiesJson!: Partial<Record<CapabilityKey, boolean>>;
+
+    @Column({ name: 'capabilities_schema_version', type: 'int', default: 1 })
+    capabilitiesSchemaVersion!: number;
+
+    @Column({ name: 'variable_barcode_layout', type: 'jsonb', nullable: true })
+    variableBarcodeLayout?: {
+        prefix: string;
+        productCodeRange: { from: number; to: number };
+        valueRange: { from: number; to: number };
+        valueType: 'weight' | 'price';
+        decimalPlaces: number;
+        checkDigit: boolean;
+    } | null;
+
+    @Column('boolean', { default: true })
+    ticketAutoPrintEnabled!: boolean;
+
+    @Column({ type: 'varchar', length: 255, nullable: true })
+    ticketPrinterName!: string | null;
+
+    @Column({ type: 'varchar', length: 20, default: '80mm' })
+    ticketPaperWidth!: string;
+
+    @Column({ type: 'varchar', length: 255, nullable: true })
+    ticketHeaderTitle!: string | null;
+
+    @Column({ type: 'varchar', length: 255, nullable: true })
+    ticketHeaderAddress!: string | null;
+
+    @Column({ type: 'varchar', length: 255, nullable: true })
+    ticketHeaderPhone!: string | null;
+
+    @Column({ type: 'text', nullable: true })
+    ticketFooterText!: string | null;
+
+    @Column('boolean', { default: true })
+    ticketShowCustomerData!: boolean;
+
+    @Column({ type: 'text', nullable: true })
+    ticketLogoUrl!: string | null;
 
     @CreateDateColumn()
     createdAt!: Date;

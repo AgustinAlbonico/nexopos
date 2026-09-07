@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
+import { User, UserRole } from './entities/user.entity';
 import { CreateUserDTO, UpdateUserDTO, UpdateProfileDTO } from './dto';
 
 @Injectable()
@@ -30,10 +30,12 @@ export class UsersService {
             }
         }
 
+        const { password, ...userData } = dto;
         const user = this.usersRepository.create({
-            ...dto,
-            passwordHash: dto.password,
-        }) as unknown as User;
+            ...userData,
+            role: (dto.role as unknown as UserRole) || UserRole.CASHIER,
+            passwordHash: password,
+        });
 
         return this.usersRepository.save(user);
     }
@@ -43,6 +45,7 @@ export class UsersService {
             select: {
                 id: true,
                 username: true,
+                role: true,
                 email: true,
                 firstName: true,
                 lastName: true,

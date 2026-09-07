@@ -99,6 +99,9 @@ const NumericInput = React.forwardRef<HTMLInputElement, NumericInputProps>(
 
         // Prevenir caracteres inválidos en keydown
         const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+            props.onKeyDown?.(e);
+            if (e.defaultPrevented) return;
+
             // Permitir teclas de control
             const controlKeys = [
                 'Backspace',

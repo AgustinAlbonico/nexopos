@@ -44,6 +44,7 @@ export default function SuppliersPage() {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['suppliers'] });
             queryClient.invalidateQueries({ queryKey: ['suppliers-stats'] });
+            queryClient.invalidateQueries({ queryKey: ['supplier-classifications'] });
             toast.success('Proveedor creado');
             setIsCreateOpen(false);
         },
@@ -58,6 +59,7 @@ export default function SuppliersPage() {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['suppliers'] });
             queryClient.invalidateQueries({ queryKey: ['suppliers-stats'] });
+            queryClient.invalidateQueries({ queryKey: ['supplier-classifications'] });
             toast.success('Proveedor actualizado');
             setEditingSupplier(null);
         },
@@ -72,6 +74,7 @@ export default function SuppliersPage() {
         onSuccess: (_, variables) => {
             queryClient.invalidateQueries({ queryKey: ['suppliers'] });
             queryClient.invalidateQueries({ queryKey: ['suppliers-stats'] });
+            queryClient.invalidateQueries({ queryKey: ['supplier-classifications'] });
             toast.success(variables.isActive ? 'Proveedor activado' : 'Proveedor desactivado');
         },
         onError: () => {
@@ -143,7 +146,7 @@ export default function SuppliersPage() {
                 description="Ingresa los datos del nuevo proveedor"
                 icon={Truck}
                 variant="info"
-                maxWidth="lg"
+                maxWidth="2xl"
             >
                 <div className="max-h-[60vh] overflow-y-auto pr-2">
                     <SupplierForm
@@ -161,7 +164,7 @@ export default function SuppliersPage() {
                 description="Modifica los datos del proveedor"
                 icon={Truck}
                 variant="info"
-                maxWidth="lg"
+                maxWidth="2xl"
             >
                 <div className="max-h-[60vh] overflow-y-auto pr-2">
                     {editingSupplier ? (
@@ -183,6 +186,7 @@ export default function SuppliersPage() {
                                 contactName: editingSupplier.contactName || '',
                                 bankAccount: editingSupplier.bankAccount || '',
                                 notes: editingSupplier.notes || '',
+                                classification: editingSupplier.classification || '',
                                 isActive: editingSupplier.isActive,
                             }}
                             onSubmit={handleUpdate}

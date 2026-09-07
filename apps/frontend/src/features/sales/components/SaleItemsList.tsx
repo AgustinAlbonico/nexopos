@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Control } from 'react-hook-form';
 import {
     ShoppingCart,
     Package,
@@ -7,12 +6,14 @@ import {
     Plus,
     X,
     FileText,
+    BadgePercent,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { NumericInput } from '@/components/ui/numeric-input';
 import { Textarea } from '@/components/ui/textarea';
 import { FormField } from '@/components/ui/form';
 import { toast } from 'sonner';
+import { Control, UseFormReturn } from 'react-hook-form';
 import { CreateSaleFormValues } from '../schemas/sale.schema';
 
 interface SaleItemsListProps {
@@ -27,8 +28,11 @@ interface SaleItemsListProps {
     readonly onRemoveItem: (index: number) => void;
     readonly subtotal: number;
     readonly control: Control<CreateSaleFormValues>;
+    readonly form: UseFormReturn<CreateSaleFormValues>;
     readonly pendingItemIndex?: number | null;
     readonly onConfirmPending?: () => void;
+    readonly onSelectItem?: (index: number) => void;
+    readonly allowOutOfStockSale?: boolean;
 }
 
 function formatCurrency(value: number): string {
@@ -40,6 +44,102 @@ function formatCurrency(value: number): string {
     }).format(value);
 }
 
+function ItemDiscountInput({
+    form,
+    index,
+    gross,
+}: {
+    form: UseFormReturn<CreateSaleFormValues>;
+    index: number;
+    gross: number;
+}) {
+    const [mode, setMode] = useState<'PERCENT' | 'FIXED'>('PERCENT');
+    const [percentValue, setPercentValue] = useState<number | string>(0);
+
+    const applyDiscount = (amount: number, percent: number) => {
+        form.setValue(`items.${index}.discount`, Number(amount.toFixed(2)));
+        form.setValue(`items.${index}.discountPercent`, Number(percent.toFixed(2)));
+    };
+
+    return (
+        <div
+            className="flex items-center gap-0.5 bg-background rounded-lg border p-0.5"
+            onClick={(e) => e.stopPropagation()}
+            title="Descuento del ítem (F2)"
+        >
+            <Button
+                type="button"
+                variant="ghost"
+                size="sm"
+                className="h-7 w-7 px-0 text-[11px] font-bold text-muted-foreground hover:text-foreground"
+                aria-label={mode === 'PERCENT' ? 'Cambiar descuento a monto fijo' : 'Cambiar descuento a porcentaje'}
+                onClick={() => setMode(mode === 'PERCENT' ? 'FIXED' : 'PERCENT')}
+            >
+                {mode === 'PERCENT' ? '%' : '$'}
+            </Button>
+            {mode === 'PERCENT' ? (
+                <NumericInput
+                    name={`items.${index}.discount`}
+                    aria-label={`Descuento porcentual del ítem ${index + 1}`}
+                    className="h-7 w-12 text-center border-0 bg-transparent text-xs"
+                    value={percentValue}
+                    placeholder="0"
+                    onFocus={(e) => e.target.select()}
+                    onKeyDown={(e) => {
+                        if (e.key === 'Enter') {
+                            e.preventDefault();
+                            (e.target as HTMLInputElement).blur();
+                        }
+                    }}
+                    onChange={(e) => {
+                        if (e.target.value === '') {
+                            setPercentValue('');
+                            applyDiscount(0, 0);
+                            return;
+                        }
+                        const raw = Number.parseFloat(e.target.value) || 0;
+                        const capped = Math.min(100, Math.max(0, raw));
+                        if (raw > 100) {
+                            toast.error('El descuento no puede superar el 100%');
+                        }
+                        setPercentValue(capped);
+                        applyDiscount((gross * capped) / 100, capped);
+                    }}
+                />
+            ) : (
+                <FormField
+                    control={form.control}
+                    name={`items.${index}.discount`}
+                    render={({ field }) => (
+                        <NumericInput
+                            aria-label={`Descuento en pesos del ítem ${index + 1}`}
+                            className="h-7 w-16 text-center border-0 bg-transparent text-xs"
+                            value={field.value ?? 0}
+                            placeholder="0"
+                            onFocus={(e) => e.target.select()}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter') {
+                                    e.preventDefault();
+                                    (e.target as HTMLInputElement).blur();
+                                }
+                            }}
+                            onChange={(e) => {
+                                const raw = e.target.value === '' ? 0 : Number.parseFloat(e.target.value) || 0;
+                                const capped = Math.min(gross, Math.max(0, raw));
+                                if (raw > gross) {
+                                    toast.error('El descuento no puede superar el subtotal del ítem');
+                                }
+                                field.onChange(capped);
+                                form.setValue(`items.${index}.discountPercent`, gross > 0 ? Number(((capped / gross) * 100).toFixed(2)) : 0);
+                            }}
+                        />
+                    )}
+                />
+            )}
+        </div>
+    );
+}
+
 export function SaleItemsList({
     items,
     itemFields,
@@ -47,8 +147,11 @@ export function SaleItemsList({
     onRemoveItem,
     subtotal,
     control,
+    form,
     pendingItemIndex,
     onConfirmPending,
+    onSelectItem,
+    allowOutOfStockSale = false,
 }: SaleItemsListProps) {
     const [showNotes, setShowNotes] = useState(false);
 
@@ -86,7 +189,8 @@ export function SaleItemsList({
                             return (
                                 <div
                                     key={field.id}
-                                    className={`flex items-center gap-3 p-3 rounded-lg transition-colors group ${
+                                    onClick={() => onSelectItem?.(index)}
+                                    className={`flex items-center gap-3 p-3 rounded-lg transition-colors group cursor-pointer ${
                                         isPending
                                             ? 'bg-blue-50 dark:bg-blue-950/30 border-2 border-blue-300 dark:border-blue-700 animate-pulse'
                                             : 'bg-muted/30 hover:bg-muted/50'
@@ -113,13 +217,19 @@ export function SaleItemsList({
                                     </div>
 
                                     {/* Controles de cantidad */}
-                                    <div className="flex items-center gap-1 bg-background rounded-lg border p-1">
+                                    <div
+                                        className="flex items-center gap-1 bg-background rounded-lg border p-1"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
                                         <Button
                                             type="button"
                                             variant="ghost"
                                             size="icon"
                                             className="h-8 w-8"
-                                            onClick={() => onUpdateQuantity(index, -1)}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                onUpdateQuantity(index, -1);
+                                            }}
                                         >
                                             <Minus className="h-3 w-3" />
                                         </Button>
@@ -128,14 +238,28 @@ export function SaleItemsList({
                                             name={`items.${index}.quantity`}
                                             render={({ field }) => (
                                                 <NumericInput
+                                                    name={field.name}
+                                                    ref={field.ref}
                                                     allowDecimals={false}
                                                     className="h-8 w-14 text-center border-0 bg-transparent"
                                                     value={field.value}
-                                                    onFocus={(e) => e.target.select()}
+                                                    onFocus={(e) => {
+                                                        onSelectItem?.(index);
+                                                        e.target.select();
+                                                    }}
+                                                    onKeyDown={(e) => {
+                                                        if (e.key === 'Enter') {
+                                                            e.preventDefault();
+                                                            onConfirmPending?.();
+                                                            const searchBtn = document.querySelector<HTMLButtonElement>('[data-pos-product-search] button')
+                                                                || document.querySelector<HTMLButtonElement>('[role="combobox"]');
+                                                            searchBtn?.click();
+                                                        }
+                                                    }}
                                                     onChange={(e) => {
                                                         const val = Number.parseInt(e.target.value) || 1;
                                                         const maxStock = item?.stock;
-                                                        if (maxStock !== undefined && val > maxStock) {
+                                                        if (!allowOutOfStockSale && maxStock !== undefined && val > maxStock) {
                                                             toast.error(`Stock máximo: ${maxStock}`);
                                                             field.onChange(maxStock);
                                                             return;
@@ -150,17 +274,33 @@ export function SaleItemsList({
                                             variant="ghost"
                                             size="icon"
                                             className="h-8 w-8"
-                                            onClick={() => onUpdateQuantity(index, 1)}
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                onUpdateQuantity(index, 1);
+                                            }}
                                         >
                                             <Plus className="h-3 w-3" />
                                         </Button>
                                     </div>
 
+                                    {/* Descuento del ítem */}
+                                    <ItemDiscountInput
+                                        form={form}
+                                        index={index}
+                                        gross={(item?.quantity || 0) * (item?.unitPrice || 0)}
+                                    />
+
                                     {/* Total del item */}
                                     <div className="w-24 text-right">
-                                        <span className="font-semibold">
+                                        <span className={`font-semibold ${itemTotal < 0 ? 'text-red-600' : ''}`}>
                                             {formatCurrency(itemTotal)}
                                         </span>
+                                        {(item?.discount || 0) > 0 ? (
+                                            <span className="block text-[10px] text-red-500 leading-tight">
+                                                <BadgePercent className="inline h-2.5 w-2.5 mr-0.5" />
+                                                -{formatCurrency(item.discount || 0)}
+                                            </span>
+                                        ) : null}
                                     </div>
 
                                     {/* Eliminar */}
@@ -169,7 +309,10 @@ export function SaleItemsList({
                                         variant="ghost"
                                         size="icon"
                                         className="h-8 w-8 opacity-0 group-hover:opacity-100 text-destructive hover:text-destructive hover:bg-destructive/10"
-                                        onClick={() => onRemoveItem(index)}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onRemoveItem(index);
+                                        }}
                                     >
                                         <X className="h-4 w-4" />
                                     </Button>

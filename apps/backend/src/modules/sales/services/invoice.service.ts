@@ -473,7 +473,7 @@ export class InvoiceService {
      * Obtiene el tipo de documento del cliente
      */
     private getDocumentType(customer: Sale['customer']): number {
-        if (!customer) {
+        if (!customer || !customer.documentNumber || customer.documentNumber.replaceAll(/\D/g, '').length === 0) {
             return DocumentType.SIN_IDENTIFICAR;
         }
 
@@ -513,36 +513,39 @@ export class InvoiceService {
     /**
      * Calcula el importe neto gravado
      * Para Factura C (monotributo): el total va como neto (no se discrimina IVA)
-     * Para Factura A/B (RI): se calcula el neto sin IVA
+     * Para Factura A/B (RI): se calcula el neto sin IVA (descontando tributos adicionales)
      */
     private calculateNetAmount(sale: Sale, invoiceType: InvoiceType): number {
         if (invoiceType === InvoiceType.FACTURA_C) {
             // Monotributo: el importe completo va como neto (no hay IVA)
             return Number(sale.total);
         }
-        // Para RI (A y B): neto = total / (1 + iva%)
-        // Usar el porcentaje de IVA de la venta si está disponible, sino 21%
+        // Para RI (A y B): neto = (total - otrosImpuestos) / (1 + iva%)
+        const otherTaxes = Number(sale.tax) || 0;
+        const taxableTotal = Math.max(0, Number(sale.total) - otherTaxes);
         const ivaRate = sale.ivaPercentage || 21;
         const ivaDivisor = 1 + ivaRate / 100;
-        const netAmount = Math.round((Number(sale.total) / ivaDivisor) * 100) / 100;
+        const netAmount = Math.round((taxableTotal / ivaDivisor) * 100) / 100;
         return netAmount;
     }
 
     /**
      * Calcula el IVA (para RI)
-     * Se calcula como Total - Neto para garantizar consistencia matemática
+     * Se calcula como TotalGravado - Neto para garantizar consistencia matemática
      */
     private calculateIva21(sale: Sale, invoiceType: InvoiceType): number {
         if (invoiceType === InvoiceType.FACTURA_C) {
             return 0;
         }
         // Usar el porcentaje de IVA de la venta si está disponible, sino 21%
+        const otherTaxes = Number(sale.tax) || 0;
+        const taxableTotal = Math.max(0, Number(sale.total) - otherTaxes);
         const ivaRate = sale.ivaPercentage || 21;
         const ivaDivisor = 1 + ivaRate / 100;
         // Calcular neto primero
-        const netAmount = Math.round((Number(sale.total) / ivaDivisor) * 100) / 100;
-        // IVA = Total - Neto (garantiza que sumen exactamente)
-        const iva = Math.round((Number(sale.total) - netAmount) * 100) / 100;
+        const netAmount = Math.round((taxableTotal / ivaDivisor) * 100) / 100;
+        // IVA = TotalGravado - Neto (garantiza que sumen exactamente)
+        const iva = Math.round((taxableTotal - netAmount) * 100) / 100;
         return iva;
     }
 

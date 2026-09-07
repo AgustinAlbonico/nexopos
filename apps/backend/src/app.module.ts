@@ -18,6 +18,7 @@ import { ReportsModule } from './modules/reports/reports.module';
 import { IncomesModule } from './modules/incomes/incomes.module';
 import { AuditModule } from './modules/audit/audit.module';
 import { BackupModule } from './modules/backup/backup.module';
+import { DiagnosticsModule } from './modules/diagnostics/diagnostics.module';
 import { entities } from './entities';
 import { migrations } from './migrations';
 
@@ -63,6 +64,7 @@ import { migrations } from './migrations';
     IncomesModule,
     AuditModule,
     BackupModule,
+    DiagnosticsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

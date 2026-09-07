@@ -68,14 +68,9 @@ export default function PurchasesPage() {
     // Estado de la caja actual (si hay caja abierta hoy)
     const { data: openRegister } = useOpenCashRegister();
 
-    // Callback para abrir modal de nueva compra (usado por botón y atajo F3)
     const openCreateModal = useCallback(() => {
-        if (!openRegister) {
-            toast.error('La caja de hoy está cerrada. Abrí la caja para registrar compras.');
-            return;
-        }
         setIsCreateOpen(true);
-    }, [openRegister]);
+    }, []);
 
     // Atajo de teclado F3 para nueva compra
     useShortcutAction('NEW_PURCHASE', openCreateModal);

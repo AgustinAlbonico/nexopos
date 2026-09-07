@@ -250,6 +250,11 @@
             <div class="divider"><span>Seguridad</span></div>
 
             <div class="form-group">
+                <label for="technicianKey">Clave Técnica de Desarrollador</label>
+                <input type="password" id="technicianKey" name="technicianKey" value="admin1234" placeholder="Clave para desbloquear perfiles" required>
+            </div>
+
+            <div class="form-group">
                 <label for="jwtSecret">Token Secreto (JWT)</label>
                 <input type="text" id="jwtSecret" name="jwtSecret" placeholder="Clave segura para tokens" required>
                 <button type="button" id="generate-jwt"
@@ -317,6 +322,7 @@
                 username: form.username.value,
                 password: form.password.value,
                 jwtSecret: form.jwtSecret.value,
+                technicianKey: form.technicianKey.value,
             };
 
             try {

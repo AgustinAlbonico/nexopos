@@ -104,4 +104,20 @@ export const reportsApi = {
         const response = await api.get<CashFlowReport>('/api/reports/cash-flow', { params });
         return response.data;
     },
+
+    /**
+     * Obtiene reporte de métricas de indumentaria (curvas y rotación)
+     */
+    getApparelMetrics: async (params?: { startDate?: string; endDate?: string }) => {
+        const response = await api.get('/api/reports/apparel', { params });
+        return response.data;
+    },
+
+    /**
+     * Obtiene reporte de comisiones por vendedor
+     */
+    getSellerCommissions: async (params?: { startDate?: string; endDate?: string; commissionRate?: number }) => {
+        const response = await api.get('/api/reports/seller-commissions', { params });
+        return response.data;
+    },
 };

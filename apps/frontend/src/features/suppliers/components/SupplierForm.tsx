@@ -1,9 +1,8 @@
-/**
- * Formulario de proveedor
- * Crea o edita datos de un proveedor
- */
+import { useState, useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useQuery } from '@tanstack/react-query';
+import { suppliersApi } from '../api/suppliers.api';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -22,10 +21,16 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from '@/components/ui/popover';
 import { Switch } from '@/components/ui/switch';
 import { SupplierSchema, SupplierFormValues } from '../schemas/supplier.schema';
-import { Loader2 } from 'lucide-react';
+import { Loader2, ChevronsUpDown, Check, X, Tag, Search, Plus } from 'lucide-react';
 import { IvaConditionOptions} from '@/types/iva-condition';
+import { cn } from '@/lib/utils';
 
 interface SupplierFormProps {
     readonly initialData?: SupplierFormValues;
@@ -80,12 +85,195 @@ function capitalizeWords(text: string): string {
         .join(' ');
 }
 
+interface ClassificationInputProps {
+    readonly value?: string;
+    readonly onChange: (val: string) => void;
+    readonly classifications?: string[];
+}
+
+function ClassificationInput({
+    value = '',
+    onChange,
+    classifications = [],
+}: ClassificationInputProps) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState(value || '');
+    const containerRef = useRef<HTMLDivElement>(null);
+
+    // Sincronizar searchTerm cuando el valor exterior cambia (ej: reset o edición)
+    useEffect(() => {
+        setSearchTerm(value || '');
+    }, [value]);
+
+    // Debounce de 250ms para no filtrar en cada tecla presionada
+    const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearch(searchTerm);
+        }, 250);
+        return () => clearTimeout(timer);
+    }, [searchTerm]);
+
+    // Cerrar el menú flotante al hacer clic afuera
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (
+                containerRef.current &&
+                !containerRef.current.contains(event.target as Node)
+            ) {
+                setIsOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const query = debouncedSearch.trim().toLowerCase();
+
+    // Clasificaciones que coinciden con la búsqueda debounced
+    const matchingClassifications = query
+        ? classifications.filter((c) => c.toLowerCase().includes(query))
+        : [];
+
+    const isExactMatch = classifications.some(
+        (c) => c.toLowerCase() === query
+    );
+
+    const handleSelect = (selectedValue: string) => {
+        onChange(selectedValue);
+        setSearchTerm(selectedValue);
+        setIsOpen(false);
+    };
+
+    return (
+        <div className="space-y-2" ref={containerRef}>
+            <div className="relative">
+                <Input
+                    placeholder="Escribí para buscar o crear una clasificación..."
+                    value={searchTerm}
+                    onChange={(e) => {
+                        const val = e.target.value;
+                        setSearchTerm(val);
+                        onChange(val);
+                        setIsOpen(true);
+                    }}
+                    onFocus={() => {
+                        if (searchTerm.trim()) {
+                            setIsOpen(true);
+                        }
+                    }}
+                    className="pr-8"
+                />
+                {searchTerm ? (
+                    <button
+                        type="button"
+                        onClick={() => handleSelect('')}
+                        className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded-sm text-muted-foreground hover:text-foreground hover:bg-muted"
+                        title="Limpiar"
+                    >
+                        <X className="h-3.5 w-3.5" />
+                    </button>
+                ) : null}
+
+                {/* Desplegable flotante que aparece automáticamente cuando el usuario busca */}
+                {isOpen && query ? (
+                    <div className="absolute left-0 top-full mt-1 w-full z-50 rounded-md border bg-popover p-1 shadow-lg text-popover-foreground animate-in fade-in-0 zoom-in-95 max-h-60 overflow-y-auto">
+                        <div className="px-2 py-1 text-[11px] font-semibold text-muted-foreground flex items-center justify-between border-b pb-1 mb-1">
+                            <span className="flex items-center gap-1">
+                                <Search className="h-3 w-3 text-blue-500" />
+                                Coincidencias ({matchingClassifications.length})
+                            </span>
+                        </div>
+
+                        {matchingClassifications.length > 0 ? (
+                            <div className="space-y-0.5">
+                                {matchingClassifications.map((c) => {
+                                    const isSelected =
+                                        searchTerm.trim().toLowerCase() === c.toLowerCase();
+                                    return (
+                                        <button
+                                            key={c}
+                                            type="button"
+                                            onClick={() => handleSelect(c)}
+                                            className={cn(
+                                                "w-full flex items-center justify-between px-2.5 py-1.5 text-xs rounded-sm text-left transition-colors",
+                                                isSelected
+                                                    ? "bg-primary text-primary-foreground font-medium"
+                                                    : "hover:bg-muted text-foreground"
+                                            )}
+                                        >
+                                            <div className="flex items-center gap-1.5 truncate">
+                                                <Tag className="h-3 w-3 shrink-0 opacity-70" />
+                                                <span className="truncate">{c}</span>
+                                            </div>
+                                            {isSelected ? (
+                                                <Check className="h-3.5 w-3.5 shrink-0" />
+                                            ) : null}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        ) : null}
+
+                        {/* Opción para usar la nueva clasificación escrita */}
+                        {!isExactMatch && query ? (
+                            <button
+                                type="button"
+                                onClick={() => handleSelect(searchTerm.trim())}
+                                className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs rounded-sm text-left bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/50 dark:hover:bg-blue-900/60 text-blue-700 dark:text-blue-300 font-medium border border-blue-200 dark:border-blue-800 transition-colors mt-1"
+                            >
+                                <Plus className="h-3.5 w-3.5 shrink-0 text-blue-600 dark:text-blue-400" />
+                                <span className="truncate">
+                                    Usar nueva: &quot;{searchTerm.trim()}&quot;
+                                </span>
+                            </button>
+                        ) : null}
+                    </div>
+                ) : null}
+            </div>
+
+            {/* Chips de los más frecuentes (como venías haciendo) */}
+            {classifications && classifications.length > 0 ? (
+                <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                    <span className="text-[11px] text-muted-foreground font-medium flex items-center gap-1">
+                        <Tag className="h-3 w-3" /> Frecuentes:
+                    </span>
+                    {classifications.slice(0, 10).map((c) => {
+                        const isSelected =
+                            searchTerm.trim().toLowerCase() === c.toLowerCase();
+                        return (
+                            <button
+                                key={c}
+                                type="button"
+                                onClick={() => handleSelect(c)}
+                                className={cn(
+                                    "text-xs px-2.5 py-0.5 rounded-full border transition-all duration-150 font-medium",
+                                    isSelected
+                                        ? "bg-primary text-primary-foreground border-primary shadow-xs"
+                                        : "bg-slate-50 hover:bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-200 dark:border-slate-700"
+                                )}
+                            >
+                                {c}
+                            </button>
+                        );
+                    })}
+                </div>
+            ) : null}
+        </div>
+    );
+}
+
 export function SupplierForm({
     initialData,
     onSubmit,
     isLoading = false,
     isEditing = false,
 }: SupplierFormProps) {
+    const { data: classifications } = useQuery({
+        queryKey: ['supplier-classifications'],
+        queryFn: () => suppliersApi.getClassifications(),
+    });
+
     const form = useForm<SupplierFormValues>({
         resolver: zodResolver(SupplierSchema as any),
         defaultValues: initialData || {
@@ -105,6 +293,7 @@ export function SupplierForm({
             contactName: '',
             bankAccount: '',
             notes: '',
+            classification: '',
             isActive: true,
         },
     });
@@ -129,6 +318,7 @@ export function SupplierForm({
             contactName: capitalizeWords(data.contactName?.trim() || '') || undefined,
             bankAccount: data.bankAccount?.trim() || undefined,
             notes: data.notes?.trim() || undefined,
+            classification: data.classification?.trim() || undefined,
         };
         onSubmit(cleanedData);
     };
@@ -458,6 +648,25 @@ export function SupplierForm({
                         )}
                     />
                 </div>
+
+                {/* Clasificación */}
+                <FormField
+                    control={form.control}
+                    name="classification"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Clasificación</FormLabel>
+                            <FormControl>
+                                <ClassificationInput
+                                    value={field.value || ''}
+                                    onChange={field.onChange}
+                                    classifications={classifications}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
 
                 {/* Notas */}
                 <FormField

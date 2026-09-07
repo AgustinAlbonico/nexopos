@@ -65,7 +65,7 @@ export function useDiscountCalculation(
 ): void {
     useEffect(() => {
         if (discountType === 'PERCENTAGE') {
-            const percentage = typeof discountPercentage === 'string' ? 0 : discountPercentage;
+            const percentage = typeof discountPercentage === 'string' ? 0 : Math.min(100, Math.max(0, discountPercentage));
             const calculatedDiscount = (subtotal * percentage) / 100;
             if (Math.abs(currentDiscount - calculatedDiscount) > 0.01) {
                 form.setValue('discount', Number(calculatedDiscount.toFixed(2)));

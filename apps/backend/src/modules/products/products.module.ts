@@ -4,6 +4,9 @@ import { ProductsService } from './products.service';
 import { ProductsController } from './products.controller';
 import { ProductsRepository } from './products.repository';
 import { Product } from './entities/product.entity';
+import { ProductPack } from './entities/product-pack.entity';
+import { ProductBundle } from './entities/product-bundle.entity';
+import { ProductVariantAttribute } from './entities/product-variant-attribute.entity';
 import { CategoriesService } from './categories.service';
 import { CategoriesController } from './categories.controller';
 import { CategoriesRepository } from './categories.repository';
@@ -12,18 +15,32 @@ import { ConfigurationModule } from '../configuration/configuration.module';
 import { InventoryModule } from '../inventory/inventory.module';
 
 import { Brand } from './entities/brand.entity';
+import { SizeScaleTemplate } from './entities/size-scale-template.entity';
+import { ColorPaletteTemplate } from './entities/color-palette-template.entity';
 import { BrandsController } from './brands.controller';
 import { BrandsService } from './brands.service';
 import { BrandsRepository } from './brands.repository';
 
-import { VariantAttributeOption } from './entities/variant-attribute-option.entity';
-import { VariantAttributeOptionsController } from './variant-attribute-options.controller';
-import { VariantAttributeOptionsService } from './variant-attribute-options.service';
-import { VariantAttributeOptionsRepository } from './variant-attribute-options.repository';
+import { ImportController } from './import/import.controller';
+import { ImportService } from './import/import.service';
+import { ImportPreviewCache } from './import/preview-cache';
+import { MatrixImportController } from './import/matrix-import.controller';
+import { MatrixImportService } from './import/matrix-import.service';
+import { LabelsController } from './labels/labels.controller';
+import { LabelsService } from './labels/labels.service';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([Product, Category, Brand, VariantAttributeOption]),
+        TypeOrmModule.forFeature([
+            Product,
+            ProductPack,
+            ProductBundle,
+            ProductVariantAttribute,
+            Category,
+            Brand,
+            SizeScaleTemplate,
+            ColorPaletteTemplate,
+        ]),
         ConfigurationModule,
         forwardRef(() => InventoryModule),
     ],
@@ -31,7 +48,9 @@ import { VariantAttributeOptionsRepository } from './variant-attribute-options.r
         ProductsController,
         CategoriesController,
         BrandsController,
-        VariantAttributeOptionsController,
+        ImportController,
+        MatrixImportController,
+        LabelsController,
     ],
     providers: [
         ProductsService,
@@ -40,14 +59,11 @@ import { VariantAttributeOptionsRepository } from './variant-attribute-options.r
         CategoriesRepository,
         BrandsService,
         BrandsRepository,
-        VariantAttributeOptionsService,
-        VariantAttributeOptionsRepository,
+        ImportService,
+        ImportPreviewCache,
+        MatrixImportService,
+        LabelsService,
     ],
-    exports: [
-        ProductsService,
-        CategoriesService,
-        BrandsService,
-        VariantAttributeOptionsService,
-    ],
+    exports: [ProductsService, CategoriesService, BrandsService, MatrixImportService],
 })
 export class ProductsModule { }

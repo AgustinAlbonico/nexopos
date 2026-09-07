@@ -66,6 +66,7 @@ export class SuppliersService {
             contactName: dto.contactName ?? null,
             bankAccount: dto.bankAccount ?? null,
             notes: dto.notes ?? null,
+            classification: dto.classification ?? null,
             isActive: dto.isActive ?? true,
         });
 
@@ -96,6 +97,11 @@ export class SuppliersService {
         // Filtro de provincia
         if (filters?.state) {
             baseWhere.state = filters.state;
+        }
+
+        // Filtro de clasificación
+        if (filters?.classification) {
+            baseWhere.classification = filters.classification;
         }
 
         // Búsqueda en múltiples campos
@@ -185,7 +191,14 @@ export class SuppliersService {
             }
         }
 
-        Object.assign(supplier, dto);
+        if (dto.classification !== undefined) {
+            supplier.classification = dto.classification?.trim() || null;
+        }
+
+        Object.assign(supplier, {
+            ...dto,
+            classification: dto.classification !== undefined ? (dto.classification?.trim() || null) : supplier.classification,
+        });
         return this.supplierRepo.save(supplier);
     }
 
@@ -211,5 +224,25 @@ export class SuppliersService {
             take: 10,
             order: { name: 'ASC' },
         });
+    }
+
+    /**
+     * Obtiene las clasificaciones ordenadas por frecuencia de uso (más frecuentes primero)
+     */
+    async getClassifications(): Promise<string[]> {
+        const results = await this.supplierRepo
+            .createQueryBuilder('supplier')
+            .select('supplier.classification', 'classification')
+            .addSelect('COUNT(supplier.id)', 'count')
+            .where('supplier.classification IS NOT NULL')
+            .andWhere("TRIM(supplier.classification) != ''")
+            .groupBy('supplier.classification')
+            .orderBy('COUNT(supplier.id)', 'DESC')
+            .addOrderBy('supplier.classification', 'ASC')
+            .getRawMany();
+
+        return results
+            .map((r: any) => r.classification || r.supplier_classification || Object.values(r)[0])
+            .filter((c): c is string => typeof c === 'string' && c.trim().length > 0);
     }
 }

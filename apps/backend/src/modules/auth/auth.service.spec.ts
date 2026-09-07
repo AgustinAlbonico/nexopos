@@ -12,6 +12,8 @@ import { AuthService } from './auth.service';
 import { UsersService } from './users.service';
 import { TokensService } from './tokens.service';
 import { LoginAudit } from './entities/login-audit.entity';
+import { UserRole } from './entities/user.entity';
+import { RegisterSchema } from './dto';
 
 // Mocks
 const mockUsersService = {
@@ -212,6 +214,7 @@ describe('AuthService', () => {
                 id: 'new-user-id',
                 username: 'newuser',
                 email: 'new@test.com',
+                role: UserRole.CASHIER,
             });
             mockUsersService.create.mockResolvedValue(createdUser);
 
@@ -220,10 +223,14 @@ describe('AuthService', () => {
             expect(result).toEqual({
                 id: createdUser.id,
                 username: createdUser.username,
+                role: UserRole.CASHIER,
                 email: createdUser.email,
                 firstName: createdUser.firstName,
                 lastName: createdUser.lastName,
             });
+            expect(mockUsersService.create).toHaveBeenCalledWith(
+                expect.objectContaining({ role: UserRole.CASHIER, isActive: true }),
+            );
         });
 
         it('lanza ConflictException si username ya existe', async () => {
@@ -259,6 +266,34 @@ describe('AuthService', () => {
             await service.register(dtoWithoutEmail);
 
             expect(mockUsersService.findByEmail).not.toHaveBeenCalled();
+        });
+
+        it('fuerza CASHIER aunque el DTO traiga role admin', async () => {
+            mockUsersService.findByUsername.mockResolvedValue(null);
+            mockUsersService.findByEmail.mockResolvedValue(null);
+            mockUsersService.create.mockResolvedValue(
+                createMockUser({ role: UserRole.CASHIER }),
+            );
+
+            await service.register({
+                ...registerDto,
+                role: UserRole.ADMIN,
+            } as typeof registerDto & { role: UserRole });
+
+            expect(mockUsersService.create).toHaveBeenCalledWith(
+                expect.objectContaining({ role: UserRole.CASHIER }),
+            );
+            expect(mockUsersService.create).not.toHaveBeenCalledWith(
+                expect.objectContaining({ role: UserRole.ADMIN }),
+            );
+        });
+
+        it('RegisterSchema.parse con role admin no emite admin', () => {
+            const parsed = RegisterSchema.parse({
+                ...registerDto,
+                role: 'admin',
+            });
+            expect(parsed).not.toHaveProperty('role');
         });
     });
 

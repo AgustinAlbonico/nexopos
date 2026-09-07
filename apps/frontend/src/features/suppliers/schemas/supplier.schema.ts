@@ -20,6 +20,7 @@ export const SupplierSchema = z.object({
     contactName: z.string().max(100).nullable().optional().or(z.literal('')),
     bankAccount: z.string().max(100).nullable().optional().or(z.literal('')),
     notes: z.string().max(1000).nullable().optional().or(z.literal('')),
+    classification: z.string().max(100).nullable().optional().or(z.literal('')),
     isActive: z.boolean().default(true),
 });
 

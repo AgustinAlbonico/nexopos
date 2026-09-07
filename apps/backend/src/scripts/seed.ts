@@ -461,7 +461,7 @@ async function seed() {
                 items.push({
                     product,
                     quantity: randomInt(5, 30),
-                    unitPrice: product.cost,
+                    unitPrice: product.cost ?? 0,
                 });
             }
 
@@ -532,7 +532,7 @@ async function seed() {
                 items.push({
                     product,
                     quantity: randomInt(1, 3),
-                    unitPrice: product.price ?? product.cost * 1.3,
+                    unitPrice: product.price ?? ((product.cost ?? 0) * 1.3),
                 });
             }
 

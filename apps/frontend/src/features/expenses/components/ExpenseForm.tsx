@@ -5,7 +5,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { expenseSchema, ExpenseFormValues } from '../schemas/expense.schema';
 
-import { Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import { Loader2, Plus } from 'lucide-react';
 import { getTodayLocal } from '@/lib/date-utils';
 import { Button } from '@/components/ui/button';
 import {
@@ -21,6 +22,7 @@ import { Input } from '@/components/ui/input';
 import { NumericInput } from '@/components/ui/numeric-input';
 import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 import {
     Select,
     SelectContent,
@@ -28,9 +30,18 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select';
-import { useQuery } from '@tanstack/react-query';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { expenseCategoriesApi } from '../api/expenses.api';
 import { PaymentMethodSelect } from '@/components/shared/PaymentMethodSelect';
+import { toast } from 'sonner';
 
 interface ExpenseFormProps {
     readonly initialData?: Partial<ExpenseFormValues>;
@@ -48,11 +59,45 @@ export function ExpenseForm({
     isLoading,
     isEditing,
 }: ExpenseFormProps) {
+    const queryClient = useQueryClient();
+    const [isCreateCategoryOpen, setIsCreateCategoryOpen] = useState(false);
+    const [newCategoryName, setNewCategoryName] = useState('');
+    const [newCategoryDescription, setNewCategoryDescription] = useState('');
+
     // Obtener categorías
     const { data: categories, isLoading: loadingCategories } = useQuery({
         queryKey: ['expense-categories'],
         queryFn: expenseCategoriesApi.getAll,
     });
+
+    const createCategoryMutation = useMutation({
+        mutationFn: (data: { name: string; description?: string }) =>
+            expenseCategoriesApi.create(data),
+        onSuccess: (newCategory) => {
+            queryClient.invalidateQueries({ queryKey: ['expense-categories'] });
+            form.setValue('categoryId', newCategory.id, { shouldDirty: true, shouldValidate: true });
+            toast.success(`Categoría "${newCategory.name}" creada`);
+            setIsCreateCategoryOpen(false);
+            setNewCategoryName('');
+            setNewCategoryDescription('');
+        },
+        onError: (error: any) => {
+            toast.error(error?.response?.data?.message || 'Error al crear categoría');
+        },
+    });
+
+    const handleCreateCategory = (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        const trimmed = newCategoryName.trim();
+        if (!trimmed) {
+            toast.error('Ingresá un nombre para la categoría');
+            return;
+        }
+        createCategoryMutation.mutate({
+            name: trimmed,
+            description: newCategoryDescription.trim() || undefined,
+        });
+    };
 
     // Los métodos de pago ahora se manejan en PaymentMethodSelect
 
@@ -104,25 +149,38 @@ export function ExpenseForm({
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Categoría</FormLabel>
-                            <Select
-                                onValueChange={(value) => field.onChange(value === '__none__' ? undefined : value)}
-                                value={field.value ?? '__none__'}
-                                disabled={loadingCategories}
-                            >
-                                <FormControl>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Sin categoría (opcional)" />
-                                    </SelectTrigger>
-                                </FormControl>
-                                <SelectContent>
-                                    <SelectItem value="__none__">Sin categoría</SelectItem>
-                                    {categories?.map((category) => (
-                                        <SelectItem key={category.id} value={category.id}>
-                                            {category.name}
-                                        </SelectItem>
-                                    ))}
-                                </SelectContent>
-                            </Select>
+                            <div className="flex gap-2">
+                                <Select
+                                    onValueChange={(value) => field.onChange(value === '__none__' ? undefined : value)}
+                                    value={field.value ?? '__none__'}
+                                    disabled={loadingCategories}
+                                >
+                                    <FormControl>
+                                        <SelectTrigger className="flex-1">
+                                            <SelectValue placeholder="Sin categoría (opcional)" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectItem value="__none__">Sin categoría</SelectItem>
+                                        {categories?.map((category) => (
+                                            <SelectItem key={category.id} value={category.id}>
+                                                {category.name}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    size="icon"
+                                    onClick={() => setIsCreateCategoryOpen(true)}
+                                    title="Crear nueva categoría"
+                                    aria-label="Crear nueva categoría"
+                                    className="shrink-0"
+                                >
+                                    <Plus className="h-4 w-4" />
+                                </Button>
+                            </div>
                             <FormDescription>Opcional - Organiza tus gastos por categorías</FormDescription>
                             <FormMessage />
                         </FormItem>
@@ -255,6 +313,76 @@ export function ExpenseForm({
                     {isEditing ? 'Actualizar Gasto' : 'Registrar Gasto'}
                 </Button>
             </form>
+
+            {/* Modal para crear categoría de gastos rápida */}
+            <Dialog open={isCreateCategoryOpen} onOpenChange={setIsCreateCategoryOpen}>
+                <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                        <DialogTitle>Nueva Categoría de Gastos</DialogTitle>
+                        <DialogDescription>
+                            Creá una categoría para clasificar y organizar los egresos del negocio.
+                        </DialogDescription>
+                    </DialogHeader>
+                    <div className="space-y-4 py-2">
+                        <div className="space-y-2">
+                            <Label htmlFor="quickExpenseCatName">
+                                Nombre <span className="text-destructive">*</span>
+                            </Label>
+                            <Input
+                                id="quickExpenseCatName"
+                                placeholder="Ej: Alquiler, Servicios, Mantenimiento..."
+                                value={newCategoryName}
+                                onChange={(e) => setNewCategoryName(e.target.value)}
+                                autoFocus
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        e.preventDefault();
+                                        handleCreateCategory();
+                                    }
+                                }}
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="quickExpenseCatDesc">Descripción (opcional)</Label>
+                            <Input
+                                id="quickExpenseCatDesc"
+                                placeholder="Detalle o uso de la categoría..."
+                                value={newCategoryDescription}
+                                onChange={(e) => setNewCategoryDescription(e.target.value)}
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter') {
+                                        e.preventDefault();
+                                        handleCreateCategory();
+                                    }
+                                }}
+                            />
+                        </div>
+                    </div>
+                    <DialogFooter className="gap-2 sm:gap-0">
+                        <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => {
+                                setIsCreateCategoryOpen(false);
+                                setNewCategoryName('');
+                                setNewCategoryDescription('');
+                            }}
+                        >
+                            Cancelar
+                        </Button>
+                        <Button
+                            type="button"
+                            onClick={() => handleCreateCategory()}
+                            disabled={createCategoryMutation.isPending || !newCategoryName.trim()}
+                        >
+                            {createCategoryMutation.isPending && (
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            )}
+                            Crear Categoría
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </Form>
     );
 }

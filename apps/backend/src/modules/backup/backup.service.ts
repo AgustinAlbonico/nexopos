@@ -401,7 +401,6 @@ export class BackupService {
 
             for (const entry of entries) {
                 if (entry.isDirectory()) {
-                    // Ignorar carpetas ocultas y del sistema
                     if (!entry.name.startsWith('.') &&
                         !entry.name.startsWith('$') &&
                         entry.name !== 'System Volume Information' &&
@@ -414,14 +413,11 @@ export class BackupService {
                 }
             }
 
-            // Ordenar alfabéticamente
             directories.sort((a, b) => a.name.localeCompare(b.name));
         } catch (error) {
             this.logger.error(`Error leyendo directorio ${normalizedPath}:`, error);
-            // Si hay error, devolver lista vacía
         }
 
-        // Calcular el directorio padre
         const parentPath = path.dirname(normalizedPath);
         const isRoot = parentPath === normalizedPath || /^[A-Za-z]:\\?$/.exec(normalizedPath);
 
@@ -430,6 +426,173 @@ export class BackupService {
             parentPath: isRoot ? null : parentPath,
             directories,
         };
+    }
+
+    // ── S2 H5 T11 — Restore Safety Helpers ──────────────────────────
+
+    findPgRestoreExecutable(): string {
+        const locations = [
+            String.raw`C:\Program Files\PostgreSQL\16\bin\pg_restore.exe`,
+            String.raw`C:\Program Files\PostgreSQL\15\bin\pg_restore.exe`,
+            String.raw`C:\Program Files\PostgreSQL\14\bin\pg_restore.exe`,
+            String.raw`C:\Program Files\PostgreSQL\13\bin\pg_restore.exe`,
+        ];
+        for (const location of locations) {
+            if (fs.existsSync(location)) {
+                this.logger.log(`pg_restore encontrado en: ${location}`);
+                return location;
+            }
+        }
+        return 'pg_restore';
+    }
+
+    createTempDatabaseName(): string {
+        const prodDb = this.configService.get<string>('DATABASE_NAME', 'nexopos');
+        const ts = new Date().toISOString().replaceAll(/[:.]/g, '-').slice(0, 19);
+        return `${prodDb}_restore_${ts}`;
+    }
+
+    async listBackupContents(backupId: string): Promise<readonly string[]> {
+        const backup = await this.findOne(backupId);
+        if (!backup) throw new Error(`Backup ${backupId} no encontrado`);
+        if (!fs.existsSync(backup.filePath)) throw new Error(`Archivo no encontrado: ${backup.filePath}`);
+
+        const pgRestore = this.findPgRestoreExecutable();
+        const { stdout } = await execAsync(`"${pgRestore}" --list "${backup.filePath}"`);
+        return stdout.split('\n').filter((line) => line.trim().length > 0);
+    }
+
+    async preflight(backupId: string): Promise<{ ok: boolean; entries: number; error?: string }> {
+        try {
+            const contents = await this.listBackupContents(backupId);
+            return { ok: true, entries: contents.length };
+        } catch (error) {
+            return { ok: false, entries: 0, error: error instanceof Error ? error.message : String(error) };
+        }
+    }
+
+    async createSafetyBackup(username?: string): Promise<Backup> {
+        return this.create({ includeTimestamp: true }, username);
+    }
+
+    private async getAdminConnection(): Promise<{ host: string; port: string; user: string; password: string }> {
+        return {
+            host: this.configService.get<string>('DATABASE_HOST', 'localhost'),
+            port: this.configService.get<string>('DATABASE_PORT', '5432'),
+            user: this.configService.get<string>('DATABASE_USER', 'postgres'),
+            password: this.configService.get<string>('DATABASE_PASSWORD', 'postgres'),
+        };
+    }
+
+    async createTempDatabase(tempName: string): Promise<void> {
+        const admin = await this.getAdminConnection();
+        const { Client } = await import('pg');
+        const client = new Client({
+            host: admin.host,
+            port: Number(admin.port),
+            user: admin.user,
+            password: admin.password,
+            database: 'postgres',
+        });
+        try {
+            await client.connect();
+            await client.query(`CREATE DATABASE "${tempName}"`);
+            this.logger.log(`Base de datos temporal creada: ${tempName}`);
+        } finally {
+            await client.end();
+        }
+    }
+
+    async dropTempDatabase(tempName: string): Promise<void> {
+        const admin = await this.getAdminConnection();
+        const { Client } = await import('pg');
+        const client = new Client({
+            host: admin.host,
+            port: Number(admin.port),
+            user: admin.user,
+            password: admin.password,
+            database: 'postgres',
+        });
+        try {
+            await client.connect();
+            await client.query(`DROP DATABASE IF EXISTS "${tempName}"`);
+            this.logger.log(`Base de datos temporal eliminada: ${tempName}`);
+        } finally {
+            await client.end();
+        }
+    }
+
+    async pgRestoreToDatabase(backupFile: string, targetDbName: string): Promise<void> {
+        const admin = await this.getAdminConnection();
+        const pgRestore = this.findPgRestoreExecutable();
+        const command = `"${pgRestore}" --host=${admin.host} --port=${admin.port} --username=${admin.user} --dbname=${targetDbName} --no-owner --no-privileges --exit-on-error=false "${backupFile}"`;
+        try {
+            await execAsync(command, { env: { ...process.env, PGPASSWORD: admin.password } });
+        } catch (error) {
+            const errOutput = (error as { stderr?: string; message?: string });
+            const combined = `${errOutput.stderr ?? ''} ${errOutput.message ?? ''}`;
+            if (combined.includes('errors ignored on restore') || combined.includes('transaction_timeout')) {
+                this.logger.warn(`pg_restore completed with version-mismatch warnings (non-fatal)`);
+            } else {
+                throw error;
+            }
+        }
+        this.logger.log(`pg_restore completado hacia: ${targetDbName}`);
+    }
+
+    async restoreIntoTemporaryDatabase(backupId: string): Promise<{ tempDbName: string }> {
+        const backup = await this.findOne(backupId);
+        if (!backup) throw new Error(`Backup ${backupId} no encontrado`);
+        const tempDbName = this.createTempDatabaseName();
+        await this.createTempDatabase(tempDbName);
+        try {
+            await this.pgRestoreToDatabase(backup.filePath, tempDbName);
+        } catch (error) {
+            await this.dropTempDatabase(tempDbName);
+            throw error;
+        }
+        return { tempDbName };
+    }
+
+    async validateRestoredDatabase(tempDbName: string): Promise<{ valid: boolean; tableCount: number; error?: string }> {
+        const admin = await this.getAdminConnection();
+        const { Client } = await import('pg');
+        const client = new Client({
+            host: admin.host,
+            port: Number(admin.port),
+            user: admin.user,
+            password: admin.password,
+            database: tempDbName,
+        });
+        try {
+            await client.connect();
+            const result = await client.query(`SELECT COUNT(*)::int AS count FROM information_schema.tables WHERE table_schema = 'public'`);
+            return { valid: true, tableCount: result.rows[0].count };
+        } catch (error) {
+            return { valid: false, tableCount: 0, error: error instanceof Error ? error.message : String(error) };
+        } finally {
+            await client.end();
+        }
+    }
+
+    async swapOrTransactionalApply(backupId: string): Promise<{ ok: boolean; error?: string }> {
+        const backup = await this.findOne(backupId);
+        if (!backup) throw new Error(`Backup ${backupId} no encontrado`);
+        const admin = await this.getAdminConnection();
+        const prodDb = this.configService.get<string>('DATABASE_NAME', 'nexopos');
+        const pgRestore = this.findPgRestoreExecutable();
+        const command = `"${pgRestore}" --host=${admin.host} --port=${admin.port} --username=${admin.user} --dbname=${prodDb} --clean --if-exists --single-transaction --no-owner --no-privileges "${backup.filePath}"`;
+        try {
+            await execAsync(command, { env: { ...process.env, PGPASSWORD: admin.password } });
+            this.logger.log(`Swap/transactional apply completado en: ${prodDb}`);
+            return { ok: true };
+        } catch (error) {
+            return { ok: false, error: error instanceof Error ? error.message : String(error) };
+        }
+    }
+
+    async rollbackToSafetyBackup(safetyBackupId: string): Promise<{ ok: boolean; error?: string }> {
+        return this.swapOrTransactionalApply(safetyBackupId);
     }
 }
 

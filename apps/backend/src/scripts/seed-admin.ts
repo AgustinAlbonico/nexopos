@@ -9,7 +9,7 @@ import * as path from 'node:path';
 import * as bcrypt from 'bcryptjs';
 
 // Entidades
-import { User } from '../modules/auth/entities/user.entity';
+import { User, UserRole } from '../modules/auth/entities/user.entity';
 import { SystemConfiguration } from '../modules/configuration/entities/system-configuration.entity';
 import { FiscalConfiguration } from '../modules/configuration/entities/fiscal-configuration.entity';
 import { TaxType } from '../modules/configuration/entities/tax-type.entity';
@@ -41,9 +41,9 @@ export async function seedAdmin(dataSource: DataSource) {
         if (existingAdmin === null) {
             const passwordHash = await bcrypt.hash('Admin123', 10);
             await dataSource.query(
-                `INSERT INTO users (username, email, "passwordHash", "firstName", "lastName", "isActive") 
-                 VALUES ($1, $2, $3, $4, $5, $6)`,
-                ['admin', 'admin@nexopos.com', passwordHash, 'Administrador', 'Sistema', true]
+                `INSERT INTO users (username, email, "passwordHash", "firstName", "lastName", "isActive", role) 
+                 VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+                ['admin', 'admin@nexopos.com', passwordHash, 'Administrador', 'Sistema', true, UserRole.ADMIN]
             );
             console.log('✅ Usuario admin creado (admin / Admin123)');
         }

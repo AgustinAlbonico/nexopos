@@ -48,6 +48,14 @@ export const suppliersApi = {
     },
 
     /**
+     * Lista clasificaciones únicas de proveedores (para autocompletado)
+     */
+    getClassifications: async () => {
+        const response = await api.get<string[]>('/api/suppliers/classifications');
+        return response.data;
+    },
+
+    /**
      * Obtiene un proveedor por ID
      */
     getOne: async (id: string) => {

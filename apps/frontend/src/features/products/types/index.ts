@@ -3,31 +3,32 @@ export interface Brand {
     name: string;
 }
 
-export interface VariantAttributeOption {
-    id: string;
-    type: 'color' | 'size';
-    name: string;
-    colorHex: string | null;
-    createdAt: string;
-    updatedAt: string;
-}
-
 export interface Product {
     id: string;
     name: string;
     description?: string;
     sku?: string;
     barcode?: string;
-    cost: number;
+    isMeasure?: boolean;
+    tareGrams?: number | null;
+    variableBarcodeFormat?: 'gs1_weight' | 'gs1_price' | 'local_weight' | 'local_price' | null;
+    cost: number | null;
     price: number;
     profitMargin?: number;
     useCustomMargin?: boolean;
+    useManualPrice?: boolean;
     stock: number;
     categoryId?: string | null;
     category?: Category | null;
     brandId?: string | null;
     brand?: Brand | null;
     isActive: boolean;
+    isVariantParent?: boolean;
+    parentProductId?: string | null;
+    variants?: Product[];
+    variantAttributes?: ProductVariantAttribute[];
+    season?: string | null;
+    collection?: string | null;
     createdAt: string;
     updatedAt: string;
 }
@@ -47,16 +48,43 @@ export interface CreateProductDTO {
     name: string;
     description?: string | null;
     barcode?: string | null;
-    cost: number;
+    isMeasure?: boolean;
+    tareGrams?: number | null;
+    variableBarcodeFormat?: 'gs1_weight' | 'gs1_price' | 'local_weight' | 'local_price' | null;
+    cost?: number | null;
+    price?: number;
     stock?: number;
     categoryId?: string | null;
     brandName?: string | null;
     isActive?: boolean;
+    useManualPrice?: boolean;
     useCustomMargin?: boolean;
     customProfitMargin?: number;
+    season?: string | null;
+    collection?: string | null;
 }
 
 export interface UpdateProductDTO extends Partial<CreateProductDTO> { }
+
+export interface LocalBarcodeLayout {
+    prefix: string;
+    productCodeRange: { from: number; to: number };
+    valueRange: { from: number; to: number };
+    valueType: 'weight' | 'price';
+    decimalPlaces: number;
+    checkDigit: boolean;
+}
+
+export interface ProductVariantAttribute {
+    id: string;
+    attributeKey: string;
+    attributeValue: string;
+}
+
+export interface VariableBarcodeResolution {
+    product: Product;
+    variable: { kind: 'weight'; quantity: number; productCode: string } | { kind: 'price'; amount: number; productCode: string };
+}
 
 export interface ProductFilters {
     page?: number;
@@ -68,6 +96,7 @@ export interface ProductFilters {
     stockStatus?: 'all' | 'critical';
     sortBy?: 'name' | 'price' | 'cost' | 'stock' | 'createdAt';
     order?: 'ASC' | 'DESC';
+    excludeVariantParents?: boolean;
 }
 
 export interface CreateCategoryDTO {
@@ -145,3 +174,64 @@ export interface ProductStock {
     price: number;
     categoryId?: string;
 }
+
+export interface ApparelMatrixCellDTO {
+    color: string;
+    size: string;
+    colorHex?: string;
+    sku?: string | null;
+    barcode?: string | null;
+    stock: number;
+    cost?: number | null;
+    price?: number | null;
+    customProfitMargin?: number | null;
+}
+
+export interface CreateApparelMatrixProductDTO {
+    name: string;
+    styleCode?: string | null;
+    description?: string | null;
+    categoryId?: string | null;
+    brandName?: string | null;
+    season?: string | null;
+    collection?: string | null;
+    composition?: string | null;
+    careInstructions?: string | null;
+    originCountry?: string | null;
+    returnPolicy?: 'standard' | 'final_sale' | 'size_exchange_only' | 'time_limited' | null;
+    imageUrl?: string | null;
+    cost?: number | null;
+    price?: number | null;
+    profitMargin?: number | null;
+    useCustomMargin?: boolean;
+    useManualPrice?: boolean;
+    matrixCells: ApparelMatrixCellDTO[];
+}
+
+export interface SizeScaleTemplate {
+    id: string;
+    name: string;
+    category?: string | null;
+    sizes: string[];
+    isSystemPreset: boolean;
+    sortOrder: number;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface ColorPaletteItem {
+    name: string;
+    hex: string;
+    border?: boolean;
+}
+
+export interface ColorPaletteTemplate {
+    id: string;
+    name: string;
+    colors: ColorPaletteItem[];
+    isSystemPreset: boolean;
+    sortOrder: number;
+    createdAt: string;
+    updatedAt: string;
+}
+

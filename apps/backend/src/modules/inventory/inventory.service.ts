@@ -150,7 +150,7 @@ export class InventoryService {
      * versión previa. Si el modo sectorizado está activo, delega en
      * `recordMovementInLocation` para escribir el saldo por ubicación.
      */
-    async createMovement(dto: CreateStockMovementDto) {
+    async createMovement(dto: CreateStockMovementDto, manager?: EntityManager) {
         if (await this.isSectorizedMode()) {
             const locationId = await this.getPrimarySaleLocationId();
             if (!locationId) {
@@ -171,16 +171,28 @@ export class InventoryService {
                 notes: dto.notes,
                 allowOutOfStock,
                 date: new Date(dto.date),
+                manager,
             });
         }
 
-        // --- Modo simple: comportamiento original intacto ---
-        const queryRunner = this.dataSource.createQueryRunner();
-        await queryRunner.connect();
-        await queryRunner.startTransaction();
+        // --- Modo simple ---
+        // Con `manager` (transacción del caller) NO abrimos tx propia: el
+        // `FOR UPDATE` sobre products en otra conexión dead-lockea contra el
+        // KEY SHARE que la transacción del caller tomó al insertar sale_items.
+        const ownRunner = manager ? null : this.dataSource.createQueryRunner();
+        if (ownRunner) {
+            await ownRunner.connect();
+            await ownRunner.startTransaction();
+        }
+        const em = manager ?? ownRunner!.manager;
 
         try {
-            const product = await this.productRepository.findOne({ where: { id: dto.productId } });
+            const product =
+                (await em.findOne(Product, {
+                    where: { id: dto.productId },
+                    lock: { mode: 'pessimistic_write' },
+                })) ??
+                (await this.productRepository.findOne({ where: { id: dto.productId } }));
             if (!product) {
                 throw new NotFoundException('Producto no encontrado');
             }
@@ -203,7 +215,7 @@ export class InventoryService {
                 source: dto.source ?? StockMovementSource.ADJUSTMENT,
                 date: new Date(dto.date),
             });
-            await queryRunner.manager.save(movement);
+            await em.save(movement);
 
             // Actualizar stock del producto
             if (dto.type === StockMovementType.IN) {
@@ -221,8 +233,10 @@ export class InventoryService {
                 product.stock -= dto.quantity;
             }
 
-            await queryRunner.manager.save(product);
-            await queryRunner.commitTransaction();
+            await em.save(product);
+            if (ownRunner) {
+                await ownRunner.commitTransaction();
+            }
 
             // Retornar movimiento con producto actualizado
             return {
@@ -234,10 +248,14 @@ export class InventoryService {
                 },
             };
         } catch (err) {
-            await queryRunner.rollbackTransaction();
+            if (ownRunner) {
+                await ownRunner.rollbackTransaction();
+            }
             throw err;
         } finally {
-            await queryRunner.release();
+            if (ownRunner) {
+                await ownRunner.release();
+            }
         }
     }
 
@@ -823,13 +841,13 @@ export class InventoryService {
 
         // Calcular valor total del inventario (stock * costo)
         const totalInventoryValue = allProducts.reduce(
-            (sum, p) => sum + (p.stock * p.cost),
+            (sum, p) => sum + (p.stock * (p.cost ?? 0)),
             0
         );
 
         // Calcular valor total a precio de venta
         const totalInventorySaleValue = allProducts.reduce(
-            (sum, p) => sum + (p.stock * (p.price ?? p.cost)),
+            (sum, p) => sum + (p.stock * (p.price ?? p.cost ?? 0)),
             0
         );
 

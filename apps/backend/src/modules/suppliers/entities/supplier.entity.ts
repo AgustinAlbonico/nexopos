@@ -26,6 +26,7 @@ export enum DocumentType {
 @Index(['documentNumber'])
 @Index(['email'])
 @Index(['isActive'])
+@Index(['classification'])
 export class Supplier {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
@@ -85,6 +86,9 @@ export class Supplier {
 
     @Column({ type: 'text', nullable: true })
     notes!: string | null;
+
+    @Column({ type: 'varchar', length: 100, nullable: true })
+    classification!: string | null;
 
     @Column({ type: 'boolean', default: true })
     isActive!: boolean;

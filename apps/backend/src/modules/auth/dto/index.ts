@@ -9,7 +9,10 @@ import {
     IsOptional,
     IsBoolean,
     ValidateIf,
+    IsEnum,
+    IsIn,
 } from 'class-validator';
+import { UserRole } from '../entities/user.entity';
 
 // ==================== LOGIN ====================
 export const LoginSchema = z.object({
@@ -142,10 +145,11 @@ export const CreateUserSchema = z.object({
         .min(6, 'La contraseña debe tener al menos 6 caracteres'),
     firstName: z.string().min(1, 'El nombre es requerido').max(100),
     lastName: z.string().min(1, 'El apellido es requerido').max(100),
+    role: z.enum(['admin', 'manager', 'cashier']).optional().default('cashier'),
     isActive: z.boolean().default(true),
 });
 
-export type CreateUserDTO = z.infer<typeof CreateUserSchema>;
+export type CreateUserDTO = z.input<typeof CreateUserSchema>;
 
 export class CreateUserDto implements CreateUserDTO {
     @ApiProperty({ example: 'usuario123' })
@@ -177,6 +181,11 @@ export class CreateUserDto implements CreateUserDTO {
     @MaxLength(100)
     lastName!: string;
 
+    @ApiProperty({ enum: UserRole, default: UserRole.CASHIER, required: false })
+    @IsOptional()
+    @IsIn(['admin', 'manager', 'cashier'])
+    role!: UserRole;
+
     @ApiProperty({ default: true })
     @IsBoolean()
     @IsOptional()
@@ -186,6 +195,7 @@ export class CreateUserDto implements CreateUserDTO {
 // ==================== UPDATE USER ====================
 export const UpdateUserSchema = CreateUserSchema.partial().extend({
     password: z.string().min(6, 'La contraseña debe tener al menos 6 caracteres').optional(),
+    role: z.enum(['admin', 'manager', 'cashier']).optional(),
 });
 
 export type UpdateUserDTO = z.infer<typeof UpdateUserSchema>;
@@ -222,6 +232,11 @@ export class UpdateUserDto {
     @IsString()
     @MaxLength(100)
     lastName?: string;
+
+    @ApiProperty({ enum: UserRole, required: false })
+    @IsOptional()
+    @IsEnum(UserRole)
+    role?: UserRole;
 
     @ApiProperty({ default: true, required: false })
     @IsOptional()

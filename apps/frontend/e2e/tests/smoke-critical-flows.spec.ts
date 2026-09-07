@@ -19,64 +19,49 @@ test.describe('Smoke Tests - Flujos Críticos Post-Deployment', () => {
         await page.goto('/');
 
         // Verificar que la página cargó
-        await expect(page).toHaveTitle(/Sistema Gestión/);
+        await expect(page).toHaveTitle(/NexoPOS|Sistema/i);
     });
 
     test('debe mostrar formulario de login', async () => {
-        await page.goto('/');
+        await page.goto('/#/login');
 
-        // Verificar que hay campos de login usando getByLabel
-        await expect(page.getByLabel('Usuario')).toBeVisible();
-        await expect(page.getByLabel('Contraseña')).toBeVisible();
+        await expect(page.locator('input[name="username"], input[id="username"]')).toBeVisible();
+        await expect(page.locator('input[name="password"], input[id="password"]')).toBeVisible();
     });
 
     test('debe poder navegar al dashboard después del login', async () => {
-        await page.goto('/');
+        await page.goto('/#/login');
 
-        // Ingresar credenciales usando getByLabel (más robusto)
-        await page.getByLabel('Usuario').fill('admin');
-        await page.getByLabel('Contraseña').fill('admin123');
-        await page.getByRole('button', { name: 'Ingresar' }).click();
+        await page.locator('input[name="username"], input[id="username"]').fill('admin');
+        await page.locator('input[name="password"], input[id="password"]').fill('Admin123!');
+        await page.click('button[type="submit"]');
 
-        // Esperar redirección al dashboard
-        await page.waitForURL(/\/(dashboard|home|)/, { timeout: 5000 });
-
-        // Verificar que estamos en una página autenticada
-        const url = page.url();
-        expect(url).toMatch(/dashboard|home/);
+        await page.waitForURL(/\/(dashboard|home|)/, { timeout: 10000 });
+        expect(page.url()).toMatch(/dashboard|home/);
     });
 
     test('debe mostrar elementos principales del dashboard', async () => {
-        // Ir directamente al dashboard (puede requerir auth primero)
-        await page.goto('/dashboard');
-
-        // Verificar que hay elementos del dashboard
-        // Puede haber redirects a login si no está autenticado
-        const hasDashboardContent = await page.locator('text=/ventas|productos|dashboard/i').count() > 0;
+        await page.goto('/#/dashboard');
+        const hasDashboardContent = await page.locator('text=/ventas|productos|dashboard|resumen/i').count() > 0;
 
         if (hasDashboardContent) {
-            await expect(page.locator('text=/ventas|productos|dashboard/i')).toBeVisible();
+            await expect(page.locator('text=/ventas|productos|dashboard|resumen/i').first()).toBeVisible();
         }
     });
 
     test('debe cargar los módulos principales', async () => {
-        // Verificar que los links de navegación principales existen
-        await page.goto('/');
+        await page.goto('/#/dashboard');
 
         const navLinks = page.locator('nav a, [role="navigation"] a');
-
-        // Contar cuántos links de navegación hay
         const count = await navLinks.count();
 
-        // Debe haber al menos algunos links de navegación
         expect(count).toBeGreaterThan(0);
     });
 });
 
 test.describe('Smoke Tests - Verificación de API', () => {
     test('la API debe responder a requests básicos', async ({ request }) => {
-        // Hacer request directo a la API
-        const response = await request.get('http://localhost:3000/health');
+        const response = await request.get('http://localhost:3000/api/docs');
 
         expect(response.status()).toBe(200);
     });

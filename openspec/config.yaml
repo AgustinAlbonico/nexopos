@@ -2,31 +2,32 @@ project: sistema-gestion-yomemimo
 schema: 1
 version: 0.1.0
 
-# SDD execution mode
+# Modo de ejecución SDD (preflight de sesión 2026-09-06, decidido por el usuario)
 execution_mode: auto
-artifact_store: both          # openspec files in repo + Engram copies
-pr_strategy: auto-forecast
-review_budget: 400
+artifact_store: openspec        # artefactos SDD como archivos en openspec/; Engram solo para contexto
+delivery_strategy: auto-chain
+chain_strategy: feature-branch-chain
+review_budget_lines: 400
 
-# Quality gates
-strict_tdd: true
+# Compuertas de calidad
+strict_tdd: true                # pirámide de tests obligatoria (AGENTS.md); specs junto al código
 test_runner_backend: jest
 test_runner_frontend: vitest
 e2e_runner_frontend: playwright
 
-# Testing capabilities
+# Capacidades de testing (verificadas contra package.json y jest.config.ts)
 testing:
   backend:
     runner: jest
     projects: [unit, integration, api]
-    coverage_threshold:
+    coverage_threshold:         # exigida solo con --coverage (test:all / test:coverage)
       branches: 60
       functions: 70
       lines: 70
       statements: 70
     commands:
-      unit: "npm run test:unit -w @sistema/backend"
-      integration: "npm run test:integration -w @sistema/backend"
+      unit: "npm run test:unit -w @sistema/backend"                 # equivale a: npx jest --selectProjects unit desde apps/backend
+      integration: "npm run test:integration -w @sistema/backend"   # corre --runInBand
       api: "npm run test:api -w @sistema/backend"
       all: "npm run test:all -w @sistema/backend"
   frontend:
@@ -37,23 +38,40 @@ testing:
       coverage: "npm run test:coverage -w @sistema/frontend"
       e2e: "npm run test:e2e -w @sistema/frontend"
   desktop:
-    runner: none               # desktop reuses backend+frontend artifacts
+    runner: none                # desktop empaqueta artefactos de backend+frontend; sin suite propia
+  notes:
+    - "Jest backend: maxWorkers 2 (límite de memoria); timeout 30s por test; unitarios *.spec.ts junto al código; alias @/ → src/"
+    - "E2E Playwright: webServer comentado — levantar backend (:3000) y frontend (:5173) manualmente antes de test:e2e"
+    - "E2E proyecto with-cash corre serializado (1 worker): solo puede haber una caja abierta por usuario; no paralelizar"
 
-# Project-level rules (must mirror AGENTS.md)
+# Reglas a nivel proyecto (espejo de AGENTS.md)
 rules:
   servers:
-    auto_start: false         # never start backend or frontend dev servers automatically
+    auto_start: false           # nunca levantar servidores dev automáticamente
     rule: user_lifts_servers
   migrations:
     index_file: apps/backend/src/migrations.ts
     consistency_test: apps/backend/src/migrations.consistency.spec.ts
     must_register_in_index: true
+  capabilities_engine:          # toda feature por rubro condicionada por el motor de capacidades
+    mandatory: true
+  package_manager: npm          # npm, NO pnpm (los scripts raíz y desktop usan --workspace=)
   code_review:
     skill: code-review
     mandatory: true
 
-# Tracked changes
+# Cambios rastreados (alineado al árbol real de openspec/)
 changes:
-  - name: stock-sectorizado
+  - name: 2026-08-27-multi-fiscal-vat-invoicing
     status: archived
-    description: Stock sectorizado opcional — shipped 2026-08-10 (PR1–PR10). See openspec/changes/stock-sectorizado/archive.md.
+    description: >-
+      Facturación electrónica multi-IVA (WSFE). Archivado y verificado; specs base
+      fiscal-invoicing-wsfe y vat-multi-rate en openspec/specs/. No modificar artefactos archivados.
+  - name: harden-write-authorization
+    status: archived
+    archive_path: openspec/changes/archive/2026-09-06-harden-write-authorization/
+    description: >-
+      C01 parcial archivado y verificado: autorización de escrituras administrativas,
+      asignación segura de roles y autenticación de importación/etiquetas.
+      Spec vigente: openspec/specs/write-authorization/spec.md (6 requisitos).
+      No modificar artefactos archivados.

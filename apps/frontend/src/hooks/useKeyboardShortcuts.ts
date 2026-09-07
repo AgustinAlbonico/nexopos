@@ -93,6 +93,11 @@ export function useKeyboardShortcuts(): void {
      * Maneja teclas de función F1-F11
      */
     const handleFunctionKey = useCallback((event: KeyboardEvent): boolean => {
+        // Si hay un diálogo/modal abierto (ej: venta POS), no ejecutar navegación global
+        if (document.querySelector('[role="dialog"]')) {
+            return false;
+        }
+
         const shortcutAction = SHORTCUT_MAP[event.key] as ShortcutAction | undefined;
         if (!shortcutAction) return false;
 
@@ -129,6 +134,9 @@ export function useKeyboardShortcuts(): void {
         }
 
         const handleKeyDown = (event: KeyboardEvent) => {
+            // Si el evento ya fue manejado por un componente hijo (ej: POS SaleForm), no ejecutar atajos globales
+            if (event.defaultPrevented) return;
+
             // Escape siempre funciona
             if (handleEscapeKey(event)) return;
 

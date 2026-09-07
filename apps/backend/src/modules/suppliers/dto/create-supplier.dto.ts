@@ -92,6 +92,11 @@ export class CreateSupplierDto {
     @MaxLength(1000, { message: 'Las notas no pueden exceder 1000 caracteres' })
     notes?: string;
 
+    @IsString()
+    @IsOptional()
+    @MaxLength(100, { message: 'La clasificación no puede exceder 100 caracteres' })
+    classification?: string;
+
     @IsBoolean()
     @IsOptional()
     isActive?: boolean;

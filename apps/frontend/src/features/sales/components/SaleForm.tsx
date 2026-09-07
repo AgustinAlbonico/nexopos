@@ -14,6 +14,8 @@ import {
     Loader2,
     ShoppingCart,
     AlertCircle,
+    UserCheck,
+    BookmarkCheck,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -65,10 +67,13 @@ import { SalePayments } from './SalePayments';
 import { useParkedSales, ParkedSale } from '../hooks/useParkedSales';
 import { ParkedSalesDialog } from './ParkedSalesDialog';
 import { ProductFormDialog } from '@/features/products/components/ProductFormDialog';
-import { PauseCircle, History } from 'lucide-react';
+import { ProductVariantMatrixSelector } from './ProductVariantMatrixSelector';
+import { ExpressExchangeDialog } from './ExpressExchangeDialog';
+import { PauseCircle, History, Shirt, ArrowRightLeft } from 'lucide-react';
 import { Product } from '@/features/products/types';
 import { useBarcodeScanner } from '@/hooks/useBarcodeScanner';
 import { productsApi } from '@/features/products/api/products.api';
+import { useCapabilities } from '@/hooks/useCapabilities';
 
 interface SaleFormProps {
     readonly onSubmit: (data: CreateSaleDTO) => void;
@@ -131,6 +136,12 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
 
     // Inline Product Creation
     const [showCreateProduct, setShowCreateProduct] = useState(false);
+    const [showMatrixSelector, setShowMatrixSelector] = useState(false);
+    const [showExchangeDialog, setShowExchangeDialog] = useState(false);
+
+    // Capacidades de negocio activas
+    const { data: capabilitiesData } = useCapabilities();
+    const hasVariantsCapability = capabilitiesData?.capabilities['STRUCTURAL.variants'] ?? true;
 
     // Scanner state
     const [pendingItemIndex, setPendingItemIndex] = useState<number | null>(null);
@@ -258,8 +269,22 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
         },
     });
 
+    const selectAndFocusItem = useCallback((index: number) => {
+        setPendingItemIndex(index);
+        setTimeout(() => {
+            const qtyInput = document.querySelector<HTMLInputElement>(
+                `input[name="items.${index}.quantity"]`
+            );
+            if (qtyInput) {
+                qtyInput.focus();
+                qtyInput.select();
+            }
+        }, 60);
+    }, []);
+
     const handleProductSelect = (productId: string, product: any) => {
-        addItemToSale(productId, product);
+        const newIndex = addItemToSale(productId, product);
+        selectAndFocusItem(newIndex);
     };
 
     const addItemToSale = useCallback((productId: string, product: any): number => {
@@ -301,7 +326,8 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
 
     const handleProductCreated = (product: Product) => {
         // Agregar el producto creado a la venta automáticamente
-        addItemToSale(product.id, product);
+        const newIndex = addItemToSale(product.id, product);
+        selectAndFocusItem(newIndex);
     };
 
     // Procesar barcode escaneado (scanner rápido)
@@ -322,11 +348,11 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
 
             const newIndex = addItemToSale(matched.id, matched);
             // El nuevo item queda pendiente para edición de cantidad
-            setPendingItemIndex(newIndex);
+            selectAndFocusItem(newIndex);
         } catch {
             toast.error('Error al buscar producto por código de barras');
         }
-    }, [pendingItemIndex, addItemToSale]);
+    }, [pendingItemIndex, addItemToSale, selectAndFocusItem]);
 
     // Procesar entrada manual lenta + Enter (cantidad)
     const handleManualEnter = useCallback((buffer: string) => {
@@ -351,6 +377,50 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
         onScan: handleBarcodeScan,
         onManualEnter: handleManualEnter,
     });
+
+    // Auto-enfocar y seleccionar la cantidad del ítem recién agregado/modificado para cambiar su cantidad tipeando directamente
+    useEffect(() => {
+        if (pendingItemIndex === null) return;
+
+        const focusInput = () => {
+            const qtyInput = document.querySelector<HTMLInputElement>(
+                `input[name="items.${pendingItemIndex}.quantity"]`
+            );
+            if (qtyInput) {
+                qtyInput.focus();
+                qtyInput.select();
+            }
+        };
+
+        const t1 = setTimeout(focusInput, 50);
+        const t2 = setTimeout(focusInput, 150);
+
+        return () => {
+            clearTimeout(t1);
+            clearTimeout(t2);
+        };
+    }, [pendingItemIndex]);
+
+    // Enfocar automáticamente el buscador de productos al abrir la venta en el POS
+    useEffect(() => {
+        const focusSearch = () => {
+            const productSearchBtn = document.getElementById('pos-product-search-button')
+                || document.querySelector<HTMLButtonElement>('[data-pos-product-search] button');
+            if (productSearchBtn) {
+                productSearchBtn.focus();
+            }
+        };
+
+        const t1 = setTimeout(focusSearch, 50);
+        const t2 = setTimeout(focusSearch, 200);
+        const t3 = setTimeout(focusSearch, 400);
+
+        return () => {
+            clearTimeout(t1);
+            clearTimeout(t2);
+            clearTimeout(t3);
+        };
+    }, []);
 
     // Listener para Escape (cancelar item pendiente)
     useEffect(() => {
@@ -485,6 +555,72 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
         onSubmit(payload);
     };
 
+    // Atajos de teclado del POS (F1 Buscar, F2 Cantidad, F8 Confirmar, F9 Posponer, ESC Cancelar)
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'F1') {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                const searchBtn = document.querySelector<HTMLButtonElement>('[data-pos-product-search] button')
+                    || document.querySelector<HTMLButtonElement>('[role="combobox"]');
+                if (searchBtn) {
+                    searchBtn.click();
+                }
+                return;
+            }
+
+            if (e.key === 'F2') {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                const targetIndex = pendingItemIndex !== null ? pendingItemIndex : (items.length > 0 ? items.length - 1 : null);
+                if (targetIndex !== null) {
+                    const discountInput = document.querySelector<HTMLInputElement>(`input[name="items.${targetIndex}.discount"]`);
+                    if (discountInput) {
+                        discountInput.focus();
+                        discountInput.select();
+                    } else {
+                        const qtyInput = document.querySelector<HTMLInputElement>(`input[name="items.${targetIndex}.quantity"]`);
+                        qtyInput?.focus();
+                        qtyInput?.select();
+                    }
+                } else {
+                    toast.info('Agregá un producto primero para aplicar el descuento');
+                }
+                return;
+            }
+
+            if (e.key === 'F8') {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                form.handleSubmit(handleSubmit)();
+                return;
+            }
+
+            if (e.key === 'F9') {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                handleParkSale();
+                return;
+            }
+
+            if (e.key === 'Escape') {
+                if (pendingItemIndex !== null) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    setPendingItemIndex(null);
+                }
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown, true);
+        return () => window.removeEventListener('keydown', handleKeyDown, true);
+    }, [pendingItemIndex, items.length, form, handleSubmit, handleParkSale]);
+
     return (
         <div className="h-full">
             <Form {...form}>
@@ -551,22 +687,39 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
                                         />
                                     </div>
 
-                                    <div className="w-36">
-                                        <FormField
-                                            control={form.control}
-                                            name="saleDate"
-                                            render={({ field }) => (
-                                                <FormItem className="space-y-1">
-                                                    <FormLabel className="text-xs font-medium text-muted-foreground flex items-center gap-1">
-                                                        <Calendar className="h-3 w-3" /> Fecha
-                                                    </FormLabel>
-                                                    <FormControl>
-                                                        <Input type="date" {...field} className="h-9" />
-                                                    </FormControl>
-                                                </FormItem>
-                                            )}
-                                        />
-                                    </div>
+                                    <div className="w-40">
+                                         <FormField
+                                             control={form.control}
+                                             name="sellerName"
+                                             render={({ field }) => (
+                                                 <FormItem className="space-y-1">
+                                                     <FormLabel className="text-xs font-medium text-muted-foreground flex items-center gap-1">
+                                                         <UserCheck className="h-3 w-3" /> Vendedor
+                                                     </FormLabel>
+                                                     <FormControl>
+                                                         <Input placeholder="Vendedor / Legajo" {...field} value={field.value ?? ''} className="h-9" />
+                                                     </FormControl>
+                                                 </FormItem>
+                                             )}
+                                         />
+                                     </div>
+
+                                     <div className="w-36">
+                                         <FormField
+                                             control={form.control}
+                                             name="saleDate"
+                                             render={({ field }) => (
+                                                 <FormItem className="space-y-1">
+                                                     <FormLabel className="text-xs font-medium text-muted-foreground flex items-center gap-1">
+                                                         <Calendar className="h-3 w-3" /> Fecha
+                                                     </FormLabel>
+                                                     <FormControl>
+                                                         <Input type="date" {...field} className="h-9" />
+                                                     </FormControl>
+                                                 </FormItem>
+                                             )}
+                                         />
+                                     </div>
 
                                     <div className="flex items-center pt-5 shrink-0">
                                         <FormField
@@ -624,31 +777,75 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
                                 </div>
                             </DialogHeader>
 
+                            {/* Barra de Atajos de Teclado POS */}
+                            <div className="flex flex-wrap items-center justify-between gap-1.5 px-3 py-2 bg-muted/40 rounded-lg border text-xs text-muted-foreground">
+                                <span className="font-semibold text-foreground flex items-center gap-1">
+                                    ⚡ Atajos Rápidos POS:
+                                </span>
+                                <div className="flex items-center gap-2 flex-wrap">
+                                    <span className="inline-flex items-center gap-1"><kbd className="px-1.5 py-0.5 bg-background border rounded font-mono text-[10px] shadow-sm text-foreground font-bold">F1</kbd> Buscar</span>
+                                    <span className="inline-flex items-center gap-1"><kbd className="px-1.5 py-0.5 bg-background border rounded font-mono text-[10px] shadow-sm text-foreground font-bold">F2</kbd> Descuento</span>
+                                    <span className="inline-flex items-center gap-1"><kbd className="px-1.5 py-0.5 bg-background border rounded font-mono text-[10px] shadow-sm text-foreground font-bold">F8</kbd> Confirmar</span>
+                                    <span className="inline-flex items-center gap-1"><kbd className="px-1.5 py-0.5 bg-background border rounded font-mono text-[10px] shadow-sm text-foreground font-bold">F9</kbd> Posponer</span>
+                                    <span className="inline-flex items-center gap-1"><kbd className="px-1.5 py-0.5 bg-background border rounded font-mono text-[10px] shadow-sm text-foreground font-bold">ESC</kbd> Cancelar</span>
+                                </div>
+                            </div>
+
                             {/* Búsqueda de productos */}
                             <div className="bg-gradient-to-r from-primary/5 to-primary/10 border-2 border-primary/20 rounded-xl p-4">
-                                <div className="flex items-center gap-3 mb-3">
-                                    <div className="p-2 bg-primary/10 rounded-lg">
-                                        <Package className="h-5 w-5 text-primary" />
+                                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                    <div className="flex items-center gap-3">
+                                        <div className="p-2 bg-primary/10 rounded-lg">
+                                            <Package className="h-5 w-5 text-primary" />
+                                        </div>
+                                        <div>
+                                            <h3 className="font-semibold">Agregar Productos</h3>
+                                            <p className="text-xs text-muted-foreground">
+                                                Buscá por nombre, código o SKU
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <h3 className="font-semibold">Agregar Productos</h3>
-                                        <p className="text-xs text-muted-foreground">
-                                            Buscá por nombre, código o SKU
-                                        </p>
+
+                                    {/* Botones de acción rápida indumentaria */}
+                                    <div className="flex items-center gap-2">
+                                        {hasVariantsCapability && (
+                                            <Button
+                                                type="button"
+                                                variant="outline"
+                                                size="sm"
+                                                onClick={() => setShowMatrixSelector(true)}
+                                                className="bg-background hover:bg-muted text-xs h-8 font-medium shadow-sm border-primary/30"
+                                            >
+                                                <Shirt className="h-3.5 w-3.5 mr-1.5 text-primary" />
+                                                Talles y Colores
+                                            </Button>
+                                        )}
+                                        <Button
+                                            type="button"
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={() => setShowExchangeDialog(true)}
+                                            className="bg-background hover:bg-muted text-xs h-8 font-medium shadow-sm border-amber-500/30 text-amber-900 dark:text-amber-300"
+                                        >
+                                            <ArrowRightLeft className="h-3.5 w-3.5 mr-1.5 text-amber-600 dark:text-amber-400" />
+                                            Cambio de Prenda
+                                        </Button>
                                     </div>
                                 </div>
-                                <ProductSearch
-                                    onSelect={handleProductSelect}
-                                    placeholder="Escribí para buscar productos..."
-                                    showStock
-                                    showSKU
-                                    limit={20}
-                                    className="h-12 text-lg"
-                                    excludeIds={items.map(item => item.productId).filter(id => id !== '')}
-                                    excludeOutOfStock={!allowOutOfStockSale}
-                                    allowCreate
-                                    onCreateClick={handleCreateProduct}
-                                />
+                                <div data-pos-product-search>
+                                    <ProductSearch
+                                        onSelect={handleProductSelect}
+                                        placeholder="Escribí para buscar productos..."
+                                        showStock
+                                        showSKU
+                                        limit={20}
+                                        className="h-12 text-lg"
+                                        excludeIds={items.map(item => item.productId).filter(id => id !== '')}
+                                        excludeOutOfStock={!allowOutOfStockSale}
+                                        allowCreate
+                                        onCreateClick={handleCreateProduct}
+                                    />
+                                </div>
                             </div>
 
                             {/* Lista de productos (Componente Extraído) */}
@@ -659,8 +856,11 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
                                 onRemoveItem={removeItem}
                                 subtotal={subtotal}
                                 control={form.control}
+                                form={form}
                                 pendingItemIndex={pendingItemIndex}
                                 onConfirmPending={() => setPendingItemIndex(null)}
+                                onSelectItem={selectAndFocusItem}
+                                allowOutOfStockSale={allowOutOfStockSale}
                             />
                         </div>
 
@@ -713,7 +913,7 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
                                 type="submit"
                                 size="lg"
                                 className="w-full h-14 text-lg font-bold shadow-lg shadow-primary/20"
-                                disabled={isLoading || items.length === 0 || (!isOnAccount && pendingAmount > 0.01)}
+                                disabled={isLoading || items.length === 0 || total <= 0 || (!isOnAccount && pendingAmount > 0.01)}
                             >
                                 {isLoading ? (
                                     <>
@@ -788,6 +988,22 @@ export function SaleForm({ onSubmit, onParkSale, isLoading, initialData }: SaleF
                 open={showCreateProduct}
                 onOpenChange={setShowCreateProduct}
                 onProductCreated={handleProductCreated}
+            />
+
+            <ProductVariantMatrixSelector
+                open={showMatrixSelector}
+                onOpenChange={setShowMatrixSelector}
+                onSelectVariant={(variant) => handleProductSelect(variant.id, variant)}
+                allowOutOfStockSale={allowOutOfStockSale}
+            />
+
+            <ExpressExchangeDialog
+                open={showExchangeDialog}
+                onOpenChange={setShowExchangeDialog}
+                onComplete={() => {
+                    queryClient.invalidateQueries({ queryKey: ['products'] });
+                    queryClient.invalidateQueries({ queryKey: ['sales'] });
+                }}
             />
         </div>
     );
