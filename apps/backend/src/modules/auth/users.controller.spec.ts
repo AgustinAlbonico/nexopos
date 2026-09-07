@@ -2,6 +2,10 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { UserRole } from './entities/user.entity';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
+import { RolesGuard } from './guards/roles.guard';
+import { ROLES_KEY } from './decorators/roles.decorator';
+import { IS_PUBLIC_KEY } from './decorators/public.decorator';
 
 describe('UsersController', () => {
     let controller: UsersController;
@@ -57,5 +61,49 @@ describe('UsersController', () => {
         const result = await controller.create(dto as any);
         expect(service.create).toHaveBeenCalledWith(dto);
         expect(result).toEqual(createdUser);
+    });
+
+    describe('metadata de autorización', () => {
+        const collectGuards = (...targets: object[]): Function[] =>
+            targets.flatMap((target) => Reflect.getMetadata('__guards__', target) ?? []);
+
+        const hasGuard = (guards: Function[], Guard: Function) =>
+            guards.some((candidate) => candidate === Guard || candidate?.name === Guard.name);
+
+        const writeHandlers = [
+            ['create', UsersController.prototype.create],
+            ['update', UsersController.prototype.update],
+            ['toggleStatus', UsersController.prototype.toggleStatus],
+        ] as const;
+
+        const readHandlers = [
+            ['findAll', UsersController.prototype.findAll],
+            ['findOne', UsersController.prototype.findOne],
+        ] as const;
+
+        it.each(writeHandlers)(
+            '%s declara JwtAuthGuard, RolesGuard, roles ADMIN y no es público',
+            (_name, handler) => {
+                const guards = collectGuards(UsersController, handler);
+                expect(hasGuard(guards, JwtAuthGuard)).toBe(true);
+                expect(hasGuard(guards, RolesGuard)).toBe(true);
+                expect(Reflect.getMetadata(ROLES_KEY, handler)).toEqual([UserRole.ADMIN]);
+                expect(Reflect.getMetadata(IS_PUBLIC_KEY, handler)).toBeUndefined();
+                expect(Reflect.getMetadata(IS_PUBLIC_KEY, UsersController)).toBeUndefined();
+            },
+        );
+
+        it.each(readHandlers)(
+            '%s declara JwtAuthGuard y no declara roles',
+            (_name, handler) => {
+                const guards = collectGuards(UsersController, handler);
+                expect(hasGuard(guards, JwtAuthGuard)).toBe(true);
+                const handlerRoles = Reflect.getMetadata(ROLES_KEY, handler);
+                const classRoles = Reflect.getMetadata(ROLES_KEY, UsersController);
+                expect(handlerRoles ?? []).toEqual([]);
+                expect(classRoles ?? []).toEqual([]);
+                expect(Reflect.getMetadata(IS_PUBLIC_KEY, handler)).toBeUndefined();
+            },
+        );
     });
 });

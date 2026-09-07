@@ -33,7 +33,7 @@ export class UsersService {
         const { password, ...userData } = dto;
         const user = this.usersRepository.create({
             ...userData,
-            role: (dto.role as unknown as UserRole) || UserRole.ADMIN,
+            role: (dto.role as unknown as UserRole) || UserRole.CASHIER,
             passwordHash: password,
         });
 

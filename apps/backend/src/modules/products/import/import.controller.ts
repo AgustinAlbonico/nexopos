@@ -1,6 +1,7 @@
-import { Body, Controller, HttpCode, Post, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post, UseGuards, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import { ImportService } from './import.service';
 import {
     ImportCommitRequest,
@@ -22,6 +23,7 @@ import {
 @ApiTags('products')
 @ApiBearerAuth()
 @Controller('products/import')
+@UseGuards(JwtAuthGuard)
 export class ImportController {
     constructor(private readonly importService: ImportService) {}
 

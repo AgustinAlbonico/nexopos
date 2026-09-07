@@ -5,13 +5,19 @@
 
 import { UsersService } from './users.service';
 import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
+import { User, UserRole } from './entities/user.entity';
 import {
     NotFoundException,
     ConflictException,
     BadRequestException,
 } from '@nestjs/common';
-import { CreateUserDTO, UpdateUserDTO, UpdateProfileDTO } from './dto';
+import {
+    CreateUserDTO,
+    CreateUserSchema,
+    UpdateUserDTO,
+    UpdateUserSchema,
+    UpdateProfileDTO,
+} from './dto';
 
 describe('UsersService', () => {
     let service: UsersService;
@@ -147,6 +153,59 @@ describe('UsersService', () => {
 
             const createCall = repository.create.mock.calls[0][0];
             expect(createCall).toHaveProperty('passwordHash', createUserDto.password);
+        });
+
+        it('debería asignar CASHIER cuando el DTO omite role', async () => {
+            repository.createQueryBuilder.mockReturnValue({
+                where: jest.fn().mockReturnThis(),
+                getOne: jest.fn().mockResolvedValue(null),
+            } as never);
+            repository.create.mockReturnValue(mockUser);
+            repository.save.mockResolvedValue(mockUser);
+
+            const { role: _omitRole, ...dtoWithoutRole } = createUserDto;
+            await service.create(dtoWithoutRole);
+
+            const createCall = repository.create.mock.calls[0][0];
+            expect(createCall).toHaveProperty('role', UserRole.CASHIER);
+        });
+
+        it('debería respetar el role explícito del DTO', async () => {
+            repository.createQueryBuilder.mockReturnValue({
+                where: jest.fn().mockReturnThis(),
+                getOne: jest.fn().mockResolvedValue(null),
+            } as never);
+            repository.create.mockReturnValue(mockUser);
+            repository.save.mockResolvedValue(mockUser);
+
+            await service.create({ ...createUserDto, role: UserRole.ADMIN });
+
+            const createCall = repository.create.mock.calls[0][0];
+            expect(createCall).toHaveProperty('role', UserRole.ADMIN);
+        });
+    });
+
+    describe('CreateUserSchema / UpdateUserSchema', () => {
+        const validCreatePayload = {
+            username: 'newuser',
+            password: 'password123',
+            firstName: 'New',
+            lastName: 'User',
+        };
+
+        it('debería defaultar role a cashier cuando el payload omite role', () => {
+            const parsed = CreateUserSchema.parse(validCreatePayload);
+            expect(parsed.role).toBe('cashier');
+        });
+
+        it('debería conservar role admin cuando el payload lo envía', () => {
+            const parsed = CreateUserSchema.parse({ ...validCreatePayload, role: 'admin' });
+            expect(parsed.role).toBe('admin');
+        });
+
+        it('no debería inyectar role en UpdateUserSchema.parse({})', () => {
+            const parsed = UpdateUserSchema.parse({});
+            expect(parsed).not.toHaveProperty('role');
         });
     });
 

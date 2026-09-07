@@ -8,7 +8,7 @@ import { ConfigService } from '@nestjs/config';
 import { UsersService } from './users.service';
 import { TokensService } from './tokens.service';
 import { LoginDTO, RegisterDTO, ChangePasswordDTO } from './dto';
-import { User } from './entities/user.entity';
+import { User, UserRole } from './entities/user.entity';
 
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -97,7 +97,11 @@ export class AuthService {
             }
         }
 
-        const user = await this.usersService.create({ ...dto, isActive: true });
+        const user = await this.usersService.create({
+            ...dto,
+            isActive: true,
+            role: UserRole.CASHIER,
+        });
 
         return {
             id: user.id,

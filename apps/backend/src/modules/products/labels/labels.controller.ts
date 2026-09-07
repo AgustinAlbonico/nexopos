@@ -8,8 +8,10 @@ import {
     ParseUUIDPipe,
     Post,
     Res,
+    UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../../auth/guards/jwt-auth.guard';
 import type { Response } from 'express';
 
 import { InjectRepository } from '@nestjs/typeorm';
@@ -33,6 +35,7 @@ import { LABEL_TEMPLATE_NAMES, LabelsService, type LabelTemplate, type ApparelLa
 @ApiTags('products')
 @ApiBearerAuth()
 @Controller('products/labels')
+@UseGuards(JwtAuthGuard)
 export class LabelsController {
     constructor(
         private readonly labelsService: LabelsService,
