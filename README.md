@@ -100,10 +100,10 @@ Copiar el archivo de template y ajustar valores:
 
 ```bash
 # En Windows PowerShell
-Copy-Item env.template .env
+Copy-Item .env.example .env
 
 # En Linux/Mac
-cp env.template .env
+cp .env.example .env
 ```
 
 Editar el archivo `.env` con tus valores:
